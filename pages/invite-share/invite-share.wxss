@@ -1,0 +1,93 @@
+/* pages/invite/invite.wxss */
+.page {
+  padding: 15px 15px 85px 15px;
+}
+.shadw {  
+  border-radius: 5px;
+  box-shadow: 0 0 10px #d5d6dc;
+}
+.weui-form-preview:before {
+  border: none;
+}
+.weui-form-preview {
+  margin-bottom: 10px;
+}
+.page__bd {
+  padding: 20px 15px 0;
+}
+.weui-form-preview__hd, .weui-form-preview__bd {
+  padding-left: 0;
+  padding-right: 0;
+  text-align: left;
+  line-height: 1.5;
+  color: #000;
+}
+.placeholder {
+  font-weight: 200;
+  font-size: 17px;
+}
+.weui-form-preview__bd {
+  font-weight: 600;
+  font-size: 20px;
+}
+.weui-form-preview__label.intro {
+  color: #1e1e1e;
+  font-size: 14px;
+  padding-bottom: 15px;
+}
+.datetime {
+  font-size: 13px;
+  color: #1e1e1e;
+  font-weight: 400;
+  padding-bottom: 10px;
+}
+.weui-textarea {
+  font-size: 16px;
+  font-weight: 400;
+  height: 100px;
+}
+.weui-form-preview__hd:after {
+  left: 0;
+  border: none;
+}
+.weui-form-preview__label {
+  color: rgba(30,30,30,.5);
+  font-weight: 400;
+  font-size: 12px;
+  text-align: inherit;
+  text-align-last: initial;
+}
+.weui-form-preview__bd .address {
+  font-size: 17px;
+}
+.weui-input {
+  height: 2em;
+  min-height: 2em;
+  line-height: 2em;
+  margin-top: -10px;
+}
+.page__ft.j_bottom {
+  position: fixed;
+  bottom: 20px;
+  left: 25px;
+  right: 25px;
+  z-index: 100;
+}
+button {
+  border-radius: 25px;
+  border: none;
+  background-color: #36d04c;
+  color: #fff;
+  font-size: 17px;
+  box-shadow: 0 5px 20px rgba(54,208,76,.4);
+}
+.weui-btn:after {
+  border-radius: 0;
+  border: none;
+}
+.weui-form-preview.last:after {
+  border:none;
+}
+.mapContainer {
+  padding-bottom: 20px;
+}

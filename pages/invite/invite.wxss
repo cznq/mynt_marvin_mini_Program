@@ -1,0 +1,76 @@
+/* pages/invite/invite.wxss */
+.weui-form-preview:before {
+  border: none;
+}
+.weui-form-preview {
+  margin-bottom: 10px;
+}
+.page__bd {
+  padding: 20px 20px 0px 20px;
+}
+.weui-form-preview__hd, .weui-form-preview__bd {
+  padding-left: 0;
+  padding-right: 0;
+  text-align: left;
+  line-height: 1.5;
+  color: #000;
+}
+.placeholder {
+  font-weight: 200;
+  font-size: 17px;
+}
+.weui-form-preview__bd {
+  font-weight: 600;
+  font-size: 22px;
+}
+.weui-textarea {
+  font-size: 16px;
+  font-weight: 400;
+  height: 100px;
+}
+.weui-form-preview__hd:after {
+  left: 0;
+  border: none;
+}
+.weui-form-preview__label {
+  color: #000;
+  font-weight: 400;
+  font-size: 17px;
+  text-align: inherit;
+  text-align-last: initial;
+}
+.weui-input {
+  height: 2em;
+  min-height: 2em;
+  line-height: 2em;
+  margin-top: -10px;
+}
+.page__ft.j_bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+button {
+  border-radius: 0;
+  border: none;
+  background-color: #4d65f5;
+  color: #fff;
+  line-height: 2.98222;
+}
+button[disabled]:not([type]) {
+  background-color: #d5d6dc;
+  color: #fff; 
+}
+.weui-btn:after {
+  border-radius: 0;
+  border: none;
+}
+.date, .time, picker {
+  display: inline-block;
+  margin-right: 10px;
+}
+.mapContainer {
+  padding-bottom: 70px;
+}

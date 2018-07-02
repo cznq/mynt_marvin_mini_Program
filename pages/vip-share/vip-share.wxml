@@ -1,0 +1,62 @@
+<!--pages/vip-share/vip-share.wxml-->
+
+<view class="page">
+   
+    <view class="page__bd">
+        <view class="weui-form-preview">
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item first-title">
+                    尊敬的{{invitation.visitor_name}}先生/女士:
+                </view>
+            </view>
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label intro">您好，请完成面部信息录入，以成为小觅智能楼宇服务的VIP用户。</label>
+                </view>
+            </view>
+            
+        </view>
+        
+    
+        <view class="weui-form-preview border-wide">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">VIP功能</label>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-flex function">
+        <view class="weui-flex__item">
+          <image src="../../images/hi_gray.png" style="width:37px;height:37px;"></image>
+          <view class="intro">主动打招呼</view>
+        </view>
+        <view class="weui-flex__item">
+          <image src="../../images/intro_gray.png" style="width:35px;height:36px;"></image>
+          <view class="intro">播放公司简介</view>
+        </view>
+        </view>
+            </view>
+            
+        </view>
+        <view class="weui-form-preview no-border">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">关于VIP</label>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item">
+                   在vip与用户人脸信息录入后，每次小觅智能楼宇服务机器人看到您都会向您问好，并显示贵公司简介。
+                </view>
+            </view>
+            
+        </view>
+        
+    </view>
+        
+    <view class="page__ft j_bottom">
+        <button open-type="share" class="weui-btn weui-btn_primary" id="inviteBtn">
+        <image src="../../images/wechat-icon.png" style="width:37px;height:30px;display:inline-block;vertical-align:middle;margin-right:15px;"></image>分享给微信好友</button>
+    </view>
+
+</view>

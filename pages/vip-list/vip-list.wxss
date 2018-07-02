@@ -1,0 +1,24 @@
+/* pages/vip-list/vip-list.wxss */
+
+.weui-cells {
+  margin-top: 0;
+}
+.weui-cells:before {
+  border-top: none;
+}
+.weui-media-box__hd {
+  height: 55px;
+}
+.page__ft {
+  position: fixed;
+  bottom: 0;
+  padding: 20px;
+  left: 0;
+  right: 0;
+}
+.page__ft button {
+  background-color: #4d65f5;
+  color: #fff;
+  border: none;
+  border-radius: 23px;
+}

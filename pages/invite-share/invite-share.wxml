@@ -1,0 +1,66 @@
+<view class="page">
+   <view class="shadw">
+    <view class="page__bd">
+        <view class="weui-form-preview">
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item">
+                    尊敬的{{invitation.visitor_name}}先生/女士:
+                </view>
+            </view>
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label intro">{{invitation.visit_intro}} </label>
+                </view>
+            </view>
+            
+        </view>
+        <view class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">时间</label>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item datetime">
+                    {{visit_time}}
+                </view>
+            </view>
+            
+        </view>
+        
+        <view class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">备注</label>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item datetime">
+                    {{invitation.mark}}
+                </view>
+            </view>
+            
+        </view>
+        
+        <view class="weui-form-previewm last">
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item address">
+                     {{invitation.address}} 
+                </view>
+            </view>
+                       
+        </view>
+        
+    </view>
+    <view class="mapContainer">
+          <map id="myMap" latitude="{{latitude}}" longitude="{{longitude}}" show-location>
+            <cover-image src="../../images/map-cover.png" bindtap="openLocation"></cover-image>
+          </map>
+        </view>
+    </view>
+    <view class="page__ft j_bottom">
+        <button open-type="share" class="weui-btn weui-btn_primary" id="inviteBtn">
+        <image src="../../images/wechat-icon.png" style="width:30px;height:23px;display:inline-block;vertical-align:middle;margin-right:15px;"></image>分享给微信好友</button>
+    </view>
+
+</view>

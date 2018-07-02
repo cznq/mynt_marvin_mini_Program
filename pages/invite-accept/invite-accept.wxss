@@ -1,0 +1,118 @@
+page, .page-body {
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+.page-body {
+  padding: 0px 20px 80px;
+  box-sizing: border-box;
+}
+.page-body-wrapper {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+.tips-title {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 500;
+}
+.tips-intro {
+  color: rgba(30,30,30,.5);
+  font-size: 14px;
+  margin-top:5px;
+}
+.step-skip {
+  font-size: 15px;
+  margin-top: 15px;
+  font-weight: 500;
+}
+.step-skip image {
+  width: 7px;
+  margin-top: -2px;
+  margin-left: 2px;
+  height: 12px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.circle {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 0px;
+  left: 0;
+  z-index: 100;
+}
+.frame {
+  position: absolute;
+  width: 10%;
+  height: 240px;
+  top: 10px;
+  left: 15%;
+  z-index: 99;
+  transition-property: left opacity;
+  transition-duration: 2s;
+  transition-timing-function: ease-in-out;
+}
+.frame1 {
+  position: absolute;
+  width: 10%;
+  height: 240px;
+  top: 10px;
+  left: 75%;
+  z-index: 99;
+  transition-property: left opacity;
+  transition-duration: 2s;
+  transition-timing-function: ease-in-out;
+}
+.btn-area { 
+  position: fixed;
+  bottom: 20px;
+  width: 150px;
+  left: 50%;
+  margin-left: -75px;
+}
+.btn-area .btn-start .btn {
+  background-color: #f01818;
+  border: 2px solid #fff;
+  border-radius: 25px;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  font-size: 17px;
+}
+.btn-area .btn-frame.btn-complete {
+  padding: 6px;
+  border-radius: 30px;
+}
+.btn-area .btn-complete .btn {
+  background-color: #f01818;
+  border: 0px solid #fff;
+  border-radius: 10px;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+}
+.btn-area .btn-frame {
+  border: 4px solid #ececec;
+  border-radius: 27px;
+}
+.clock-frame {
+  height: 30px;
+}
+.clock {
+  font-weight: 300;
+  line-height: 20px;
+  letter-spacing: 1px;
+}
+.clock image {
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  margin-top: -2px;
+}

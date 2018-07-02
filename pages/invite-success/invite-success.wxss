@@ -1,0 +1,170 @@
+/* pages/invite/invite.wxss */
+.page {
+  padding: 15px 15px 20px 15px; 
+}
+.page_hd {
+  padding: 20px 0 10px;
+}
+button::after, button::before {
+  border: none;
+}
+button.continue {
+  border: 1px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  width: 143px;
+  border-radius: 24px;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+.continue image {
+  width: 14px;
+  height: 14px;
+  margin-right: 10px;
+  vertical-align: middle;
+  margin-top: -2px;
+}
+.page_hd .logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 31px;
+  background-color: #fff;
+  border: 2px solid #fff;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.page_hd .logo image {
+  width: 100%;
+  height: 60px;
+}
+.page_hd .company-name {
+  color: #fff;
+  font-size: 18px;
+}
+.page_hd .status {
+  color: rgba(255,255,255,.5);
+  font-size: 12px;
+}
+.weui-form-preview:before {
+  border: none;
+}
+.weui-form-preview {
+  margin-bottom: 10px;
+}
+.page__bd {
+  padding: 20px 15px 5px;
+  border-radius: 5px;
+  background-color: #fff;
+  position: relative;
+}
+.accept image {
+  position: absolute;
+  width: 83px;
+  height: 83px;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+}
+.weui-form-preview__hd, .weui-form-preview__bd {
+  padding-left: 0;
+  padding-right: 0;
+  text-align: left;
+  line-height: 1.5;
+  color: #000;
+}
+.placeholder {
+  font-weight: 200;
+  font-size: 17px;
+}
+.weui-form-preview__bd {
+  font-weight: 600;
+  font-size: 20px;
+}
+.weui-form-preview__label.intro {
+  color: #1e1e1e;
+  font-size: 14px;
+  padding-bottom: 20px;
+}
+.datetime {
+  font-size: 17px;
+  color: #1e1e1e;
+  font-weight: 500;
+  padding-bottom: 10px;
+}
+.mark {
+  font-size: 13px;
+}
+.datetime.huise {
+  color: rgba(30,30,30,.5);
+  font-size: 13px;
+}
+.weui-textarea {
+  font-size: 16px;
+  font-weight: 400;
+  height: 100px;
+}
+.weui-form-preview__hd:after {
+  left: 0;
+  border: none;
+}
+.weui-form-preview__label {
+  color: rgba(30,30,30,.5);
+  font-weight: 400;
+  font-size: 10px;
+  text-align: inherit;
+  text-align-last: initial;
+  margin-right: 0;
+}
+.invite_label {
+  color: rgba(30,30,30,.5);
+  font-weight: 400;
+  font-size: 10px;
+}
+.weui-input {
+  height: 2em;
+  min-height: 2em;
+  line-height: 2em;
+  margin-top: -10px;
+}
+.page__ft.j_bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+.invitor {
+  margin: 8px 0;
+  font-size: 17px;
+}
+.address {
+  font-size: 17px;
+  font-weight: bold;
+}
+.weui-btn:after {
+  border-radius: 0;
+  border: none;
+}
+.mapContainer {
+  padding-bottom: 10px;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.weui-form-preview.wide:after {
+  left: -15px;
+  right: -15px;
+}
+.vip-intro {
+  text-align: center;
+}
+.vip-intro .invite_label {
+  font-size: 13px;
+}
+.vip-intro image {
+  width: 37px;
+  height: 34px;
+}
+.weui-form-preview.last {
+  border:none;
+  margin-bottom: 0px;
+}

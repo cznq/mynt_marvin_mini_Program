@@ -1,0 +1,166 @@
+<view class="page" style="background-image: url('../../images/accept-bg.png');background-repeat: no-repeat;background-position: 250px 100px;background-color: #38c560;">
+    <view class="page_hd">
+      <button bindtap="goShot" class="continue" wx:if="{{continuevideo}}"><image src="../../images/shot.png"></image>继续录入人脸</button>
+       <block wx:if="{{vip !== 'yes'}}">
+        <view class="logo">
+          <image src="{{invitation.logo}}"></image>
+        </view>
+      </block>
+      <block wx:else>
+        <image src="../../images/vip.png" style="width:63px;height:58px;"></image>
+      </block>
+      <view class="company-name" wx:if="{{vip == 'yes'}}">成为小觅楼宇VIP用户</view>
+      <view class="company-name" wx:else>真诚期待您的来访</view>
+      <view class="status" wx:if="{{vip == 'yes'}}">已完成面部信息录入</view>
+      <view class="status" wx:else>邀请已接受</view>
+    </view>   
+    <view class="page__bd">
+      <view class="accept" wx:if="{{vip !== 'yes'}}"><image src="../../images/accept.png"></image></view>
+        <view class="weui-form-preview">
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item">
+                    尊敬的{{invitation.visitor_name}}先生/女士:
+                </view>
+            </view>
+            <block wx:if="{{vip == 'yes'}}">
+              <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label intro">恭喜你已成为小觅智能楼宇服务的VIP用户。</label>
+                </view>
+              </view>
+            </block>
+            <block wx:if="{{vip !== 'yes'}}">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label intro">{{invitation.visit_intro}} </label>
+                </view>
+            </view>
+            </block>
+        </view>
+        <block wx:if="{{vip !== 'yes'}}">
+        <view class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">备注</label>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item mark">
+                    {{invitation.mark}}
+                </view>
+            </view>
+            
+        </view>
+        <view class="weui-form-preview wide">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">到访时间</label>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item datetime">
+                    {{visit_time}}
+                </view>
+            </view>
+            
+        </view>
+        
+        <view class="weui-form-preview wide last">
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item address">
+                     {{invitation.address}}
+                </view>
+            </view>
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label"></label>
+                </view>
+            </view>
+                       
+        </view>
+        
+        <view class="weui-form-preview mapContainer">
+          <view class="weui-form-preview__bd">
+            <map id="myMap" latitude="{{latitude}}" longitude="{{longitude}}" show-location>
+              <cover-image src="../../images/map-cover.png" bindtap="openLocation"></cover-image>
+            </map>
+          </view>
+        </view>
+        <view class="weui-form-preview wide">
+          <view class="weui-form-preview__bd">
+            <view class="weui-flex">
+              <view class="weui-flex__item">
+                <view class="invite_label">邀请人姓名</view>
+                <view class="invitor">{{invitation.name}}</view>
+              </view>
+              <view class="weui-flex__item">
+                <view class="invite_label">邀请人职位</view>
+                <view class="invitor">{{role}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-form-preview wide">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">公司信息</label>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item datetime huise">
+                    {{invitation.introduction}}
+                </view>
+            </view>
+            
+        </view>
+        <view class="weui-form-preview wide last">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">来访说明</label>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item datetime huise">
+                   您可直接在公司楼下从楼宇服务机器人处领取电梯卡片上楼。建议提前录入面部信息，录入后，在您到达电梯口时，机器人可主动为您服务。
+                </view>
+            </view>
+            
+        </view>
+        </block>
+        <block wx:else>
+        <view class="weui-form-preview wide">
+          <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">VIP功能</label>
+                </view>
+            </view>
+          <view class="weui-form-preview__bd vip-intro">
+            <view class="weui-flex">
+              <view class="weui-flex__item">
+                <image src="../../images/hi_gray.png"></image>
+                <view class="invite_label">邀请人姓名</view>
+              </view>
+              <view class="weui-flex__item">
+                <image src="../../images/intro_gray.png"></image>
+                <view class="invite_label">邀请人职位</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-form-preview wide last">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">关于VIP</label>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item datetime huise">
+                   在您完成人脸信息录入后，每次小觅智能楼宇服务机器人看到您都会向您问好，并显示贵公司简介。
+                </view>
+            </view>
+            
+        </view>
+        </block>
+    </view>
+
+</view>
