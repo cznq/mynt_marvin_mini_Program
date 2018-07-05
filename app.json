@@ -1,9 +1,10 @@
 {
   "pages":[
     "pages/invite/invite",
-    "pages/invite-receive/invite-receive",
-    "pages/invite-success/invite-success",
     "pages/invite-share/invite-share",
+    "pages/edit-info/edit-info",
+    "pages/invite-success/invite-success",
+    "pages/invite-receive/invite-receive",
     "pages/invite-accept/invite-accept",
     "pages/vip-index/vip-index",
     "pages/vip-invite/vip-invite",

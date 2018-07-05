@@ -12,7 +12,8 @@ Page({
     invitation_id: null,
     invitation: null,
     vip: null,
-    base_url: null
+    visitor_id: null,
+    base_url: app.globalData.BASE_URL
   },
 
   /**
@@ -20,10 +21,11 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    if (options.vip !== "yes") { options.vip = null }
     that.setData({
+      visitor_id: options.visitor_id,
       invitation_id: options.invitation_id,
-      vip: options.vip,
-      base_url: app.globalData.BASE_URL
+      vip: options.vip
     })
     that.getInitation();
   },
@@ -44,14 +46,21 @@ Page({
           invitation: res.data,
         })
         
-        if(res.data.visitor_id!==null && res.data.id!==null){
-          if(res.data.input_pic==null){
+        if (res.data.visitor_id !== null && res.data.id !== null && res.data.is_deleted == 0){
+          if(res.data.id_sign == 3 || res.data.phone !== null) {
+            if(res.data.input_pic==null){
+              wx.redirectTo({
+                url: '/pages/invite-accept/invite-accept?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip,
+              })
+            }else{
+              wx.redirectTo({
+                url: '/pages/invite-success/invite-success?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip,
+              })
+            }
+
+          } else {
             wx.redirectTo({
-              url: '/pages/invite-accept/invite-accept?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip,
-            })
-          }else{
-            wx.redirectTo({
-              url: '/pages/invite-success/invite-success?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip,
+              url: '/pages/edit-info/edit-info?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip + '&visitor_id=' + that.data.visitor_id,
             })
           }
           

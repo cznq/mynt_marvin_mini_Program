@@ -7,57 +7,77 @@ Page({
     vip: null,
     time: "00 : 00 : 00",
     animationData: 'frame',
-    width: '250px',
+    width: '0',
     height: '250px',
-    iphonex: false
+    iphonex: false,
+    invitation: null
   },
-  
+
   onLoad: function (options) {
     var that = this;
+    if (options.vip !== "yes") { options.vip = null }
     that.setData({
       invitation_id: options.invitation_id,
       vip: options.vip
     })
-    if (wx.createCameraContext()) {
-      that.ctx = wx.createCameraContext()
-    } else {
-      // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示  
-      wx.showModal({
-        title: '提示',
-        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
-      })
-    }
-    
     wx.getSystemInfo({
       success: function (res) {
-        if(res.model.indexOf('iPhone X')!= -1) {
-          console.log(res.model);
-          that.setData({
-            iphonex: true,
-            width: (res.windowWidth - 40) + 'px',
-            height: (res.windowWidth - 40) + 'px'
-          })
+        console.log(res);
+        if (res.windowWidth !== 0) {
+          if (res.model.indexOf('iPhone X') != -1) {
+            console.log(res.model);
+            that.setData({
+              iphonex: true,
+              width: (res.windowWidth - 40) + 'px',
+              height: (res.windowWidth - 40) + 'px'
+            })
+          } else {
+            that.setData({
+              width: (res.windowWidth - 40) + 'px',
+              height: (res.windowWidth - 40) + 'px'
+            })
+          }
         } else {
           that.setData({
-            width: (res.windowWidth - 60) + 'px',
-            height: (res.windowWidth - 60) + 'px'
+            width: '250px'
           })
         }
-        
+
+      },
+      fail: function () {
+        that.setData({
+          width: '250px'
+        })
       }
     })
   },
-  
+
+  getInitation: function () {
+    var that = this;
+    that.Util.network.POST({
+      url: app.globalData.BASE_URL + "wechat/intapp/invitation",
+      params: {
+        xy_session: app.globalData.xy_session,
+        invitation_id: that.data.invitation_id
+      },
+      success: res => {
+        that.setData({
+          invitation: res.data,
+        })
+      }
+    })
+  },
+
   Util: require('../../utils/util.js'),
 
   setTime: function () {
     var that = this;
     var int;
-    var hour, minute, second,hs,ms,ss;
+    var hour, minute, second, hs, ms, ss;
     hour = minute = second = 0;
-    int = setInterval(function(){
+    int = setInterval(function () {
       if (that.data.vedio) {
-        second=second+1;
+        second = second + 1;
         if (second >= 60) {
           second = 0;
           minute = minute + 1;
@@ -67,9 +87,9 @@ Page({
           hour = hour + 1;
         }
         if (second < 10) {
-          ss = "0"+second;
+          ss = "0" + second;
         } else {
-          ss= second;
+          ss = second;
         }
         if (minute < 10) {
           ms = "0" + minute;
@@ -81,7 +101,7 @@ Page({
         } else {
           hs = hour;
         }
-        var t= hs + " : " + ms + " : " + ss;
+        var t = hs + " : " + ms + " : " + ss;
         that.setData({
           time: t
         })
@@ -93,14 +113,26 @@ Page({
   },
 
   startRecord: function () {
-    this.ctx.startRecord({
-      success: (res) => {
-        this.setData({
-          vedio: true
-        })
-        this.setTime();
-      }
-    })
+    if (this.data.needinfo) {
+      wx.showModal({
+        content: '因公安与物业要求，请先完成身份信息认证。',
+        showCancel: false
+      })
+    } else if (this.data.invitation.input_pic) {
+      wx.showModal({
+        content: '您已经录过人脸信息',
+        showCancel: false
+      })
+    } else {
+      this.ctx.startRecord({
+        success: (res) => {
+          this.setData({
+            vedio: true
+          })
+          this.setTime();
+        }
+      })
+    }
   },
 
   stopRecord: function () {
@@ -135,7 +167,7 @@ Page({
             });
           }
         })
- 
+
       },
       error(e) {
         console.log(e.detail)
@@ -149,8 +181,29 @@ Page({
     })
   },
 
+  goEditinfo: function () {
+    wx.navigateTo({
+      url: '/pages/edit-info/edit-info?visitor_id=' + this.data.invitation.visitor_id + '&vip=' + this.data.vip + '&invitation_id=' + this.data.invitation_id,
+    })
+  },
+
   onReady: function () {
 
+  },
+
+  onShow: function () {
+    var that = this;
+    that.getInitation();
+    if (wx.createCameraContext()) {
+      that.ctx = wx.createCameraContext()
+    } else {
+      // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示  
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+      })
+    }
+    
   }
 
 })

@@ -10,7 +10,7 @@ App({
     meminfo: null,
     latitude: null,
     longitude: null,
-    BASE_URL: 'https://ctest.slightech.com/'
+    BASE_URL: 'https://sendcard.slightech.com/'
   },
   
   onLaunch: function () {
@@ -18,6 +18,5 @@ App({
     //this.login();
     //this.globalData.xy_session = wx.getStorageSync('xy_session');
   }
-
 
 })

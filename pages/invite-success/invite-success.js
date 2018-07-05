@@ -16,7 +16,8 @@ Page({
     invitation: null,
     continuevideo: false,
     visit_time: null,
-    role: "普通员工"
+    role: null,
+    error: ""
   },
 
   /**
@@ -41,6 +42,11 @@ Page({
 
   getInitation: function () {
     var that = this;
+    if (that.data.invitation_id == undefined) {
+      that.setData({
+        error: "没有获取到邀请信息"
+      })
+    }
     that.Util.network.POST({
       url: app.globalData.BASE_URL + "wechat/intapp/invitation",
       params: {
@@ -48,7 +54,7 @@ Page({
         invitation_id: that.data.invitation_id
       },
       success: res => {
-        console.log(res);
+        console.log(res.data);
         if(res.data.input_pic==null){
           that.setData({
             continuevideo: true,
@@ -62,12 +68,21 @@ Page({
           that.setData({
             role: "前台"
           })
+        } else if (res.data.role_id == 1) {
+          that.setData({
+            role: "普通员工"
+          })
         }
         that.setData({
           invitation: res.data,
           visit_time: that.Util.formatTime(res.data.visit_time)
         })
         this.generateMap();
+      },
+      fail: res => {
+        that.setData({
+          error: "没有获取到邀请信息"
+        })
       }
     })
   },
@@ -123,14 +138,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    app.onLaunch();
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**

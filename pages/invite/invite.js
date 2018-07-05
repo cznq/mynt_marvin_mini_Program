@@ -20,7 +20,10 @@ Page({
     time: "",
     formready: false,
     input1: false,
-    input2: false
+    input2: false,
+    error: "",
+    inputHeight1: 30,
+    inputHeight2: 30
   },
 
   /**
@@ -38,106 +41,56 @@ Page({
 
   // 登录
   login: function () {
-
     wx.login({
       success: res => {
         this.setData({
           js_code: res.code
         })
-        this.getUserInfo();
+        this.serverLogin();
       }
     })
   },
 
-  // 获取用户资料
-  getUserInfo: function (login = true, callback = function () { }) {
-    wx.authorize({
-      scope: 'scope.userInfo',
-      success: () => {
-        this.getUserInfoSuccess(login, callback);
+  serverLogin: function() {
+    // 登录请求
+    this.Util.network.POST({
+      url: app.globalData.BASE_URL + "wechat/intapp/login",
+      params: {
+        js_code: this.data.js_code
       },
-      fail: (res) => {
-        console.log(res);
-        if (res.errMsg != 'authorize:fail auth deny') return;
-        wx.showModal({
-          title: '未授权',
-          content: '需要获取用户信息，请在下一个页面中打开用户信息授权',
-          cancelColor: '#96588a',
-          confirmColor: '#96588a',
-          confirmText: '设置授权',
-          success: res => {
-            if (res.confirm) {
-              wx.openSetting({
-                success: res => {
-                  if (res.authSetting['scope.userInfo'] == true) {
-                    this.getUserInfoSuccess(login, callback);
-                  }
-                }
-              })
-            }
-          }
-        })
-      }
-    })
-  },
-  // 获取用户资料成功
-  getUserInfoSuccess: function (login = true, callback = function () { }) {
-
-    wx.getUserInfo({
       success: res => {
-        // 存储用户信息
-        //console.log(res.userInfo);
+        // 存储Sessionc
         this.setData({
-          userInfo: res.userInfo
+          xy_session: res.data.xy_session,
+          meminfo: res.data.meminfo
         })
-        
-        wx.setStorageSync('userInfo', res.userInfo);
-        callback(res.userInfo);
-        if (!login) return;
-        // 登录请求
-        this.Util.network.POST({
-          url: app.globalData.BASE_URL + "wechat/intapp/login",
-          params: {
-            js_code: this.data.js_code,
-            encryptedData: res.encryptedData,
-            iv: encodeURIComponent(res.iv)
-          },
-          success: res => {
-            // 存储Sessionc
-            console.log(res.data.meminfo);
-            this.setData({
-              xy_session: res.data.xy_session,
-              meminfo: res.data.meminfo
-            })
-            
-            if (res.data.meminfo == null) {
-              wx.showModal({
-                title: '你没有邀请权限',
-                content: '请先加入成为公司员工，才能获得邀请权限',
-                success: function (res) {
-                  if (res.confirm) {
-                    wx.navigateBack({
-                      delta: -1
-                    })
-                  } else if (res.cancel) {
-                    wx.navigateBack({
-                      delta: -1
-                    })
-                  }
-                }
-              })
-            } else {
-              this.generateMap(res.data.meminfo.address);
+
+        if (res.data.meminfo == null || res.data.meminfo.role_id == 0) {
+          this.setData({
+            error: "没有邀请权限"
+          })
+          wx.showModal({
+            title: '你没有邀请权限',
+            content: '请先加入成为公司员工，才能获得邀请权限',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.navigateBack({
+                  delta: -1
+                })
+              } 
             }
-            wx.setStorage({
-              key: 'xy_session',
-              data: res.data.xy_session
-            })
-           
-          }
-        });
+          })
+        } else {
+          this.generateMap(res.data.meminfo.address);
+        }
+        wx.setStorage({
+          key: 'xy_session',
+          data: res.data.xy_session
+        })
+
       }
-    })
+    });
   },
 
   generateMap: function (address) {
@@ -215,6 +168,22 @@ Page({
       date: e.detail.value
     })
   },  
+
+  autoHeight: function (e) {
+    console.log(e.detail);
+    if (e.detail.lineCount >= 1) {
+      if (e.target.id == 'i2') {
+        this.setData({
+          inputHeight1: e.detail.height + 19
+        })
+      } else if (e.target.id == 'i3') {
+        this.setData({
+          inputHeight2: e.detail.height + 19
+        })
+      }
+    }
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

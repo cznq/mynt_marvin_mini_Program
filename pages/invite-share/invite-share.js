@@ -12,7 +12,8 @@ Page({
     longitude: null,
     invitation_id: null,
     invitation: null,
-    visit_time: null
+    visit_time: null,
+    error: ""
   },
 
   /**
@@ -32,6 +33,11 @@ Page({
 
   getInitation: function () {
     var that = this;
+    if (that.data.invitation_id == undefined) {
+      that.setData({
+        error: "没有获取到邀请信息"
+      })
+    }
     that.Util.network.POST({
       url: app.globalData.BASE_URL + "wechat/intapp/invitation",
       params: {
@@ -45,6 +51,11 @@ Page({
           visit_time: that.Util.formatTime(res.data.visit_time)
         })
         that.generateMap();
+      },
+      fail: res => {
+        that.setData({
+          error: "没有获取到邀请信息"
+        })
       }
     })
   },

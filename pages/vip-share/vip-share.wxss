@@ -84,6 +84,11 @@ button {
   color: #fff;
   box-shadow: 0 5px 20px rgba(54,208,76,.4);
 }
+button:active {
+  background-color: #36d04c;
+  color: #fff;
+  box-shadow: 0 5px 20px rgba(54,208,76,.4);
+}
 .weui-btn:after {
   border-radius: 0;
   border: none;

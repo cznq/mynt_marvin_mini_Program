@@ -1,3 +1,4 @@
+<block wx:if="{{invitation}}">
 <view class="page">
    <view class="shadw">
     <view class="page__bd">
@@ -27,7 +28,7 @@
             </view>
             
         </view>
-        
+        <block wx:if="{{invitation.mark}}">
         <view class="weui-form-preview">
             <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
@@ -41,7 +42,7 @@
             </view>
             
         </view>
-        
+        </block>
         <view class="weui-form-previewm last">
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item address">
@@ -64,3 +65,7 @@
     </view>
 
 </view>
+</block>
+<block wx:else>
+  <view class="blank-page">{{error}}</view>
+</block>

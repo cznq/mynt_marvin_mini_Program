@@ -4,44 +4,51 @@ page, .page-body {
   overflow: hidden;
   position: relative;
 }
+.page-body::before {
+  content: "";
+  display: block;
+  height: 4px;
+  width: 100%;
+  background: #4d65f5;
+}
 .page-body {
-  padding: 0px 20px 80px;
-  box-sizing: border-box;
+  width: 100%;
 }
 .page-body-wrapper {
+  padding: 0px 20rpx 160rpx;
+  box-sizing: border-box;
   position: relative;
   width: 100%;
   text-align: center;
 }
 .tips-title {
-  margin-top: 15px;
-  font-size: 18px;
+  margin-top: 30rpx;
+  font-size: 36rpx;
   font-weight: 500;
 }
 .tips-intro {
   color: rgba(30,30,30,.5);
-  font-size: 14px;
-  margin-top:5px;
+  font-size: 28rpx;
+  margin-top: 10rpx;
 }
 .step-skip {
-  font-size: 15px;
-  margin-top: 15px;
+  font-size: 30rpx;
+  margin-top: 25rpx;
   font-weight: 500;
 }
 .step-skip image {
-  width: 7px;
+  width: 14rpx;
   margin-top: -2px;
   margin-left: 2px;
-  height: 12px;
+  height: 24rpx;
   display: inline-block;
   vertical-align: middle;
 }
 .circle {
   position: absolute;
-  width: 100%;
-  height: auto;
   top: 0px;
   left: 0;
+  right: 0;
   z-index: 100;
 }
 .frame {
@@ -68,7 +75,7 @@ page, .page-body {
 }
 .btn-area { 
   position: fixed;
-  bottom: 20px;
+  bottom: 40rpx;
   width: 150px;
   left: 50%;
   margin-left: -75px;
@@ -101,11 +108,11 @@ page, .page-body {
   border-radius: 27px;
 }
 .clock-frame {
-  height: 30px;
+  height: 60rpx;
 }
 .clock {
   font-weight: 300;
-  line-height: 20px;
+  line-height: 60rpx;
   letter-spacing: 1px;
 }
 .clock image {

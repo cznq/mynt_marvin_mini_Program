@@ -1,4 +1,5 @@
 <!--pages/vip-invite/vip-invite.wxml-->
+<block wx:if="{{meminfo}}">
 <view class="page">
   <form bindsubmit="inviteSubmit">
     <view class="page_hd">
@@ -14,8 +15,6 @@
                 </view>
             </view>
         </view>
-        
-          
 
     </view>
         
@@ -27,4 +26,7 @@
    </form>
 
 </view>
-
+</block>
+<block wx:else>
+  <view class="blank-page">{{error}}</view>
+</block>

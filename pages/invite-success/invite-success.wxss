@@ -1,4 +1,8 @@
 /* pages/invite/invite.wxss */
+page {
+  background-color: #38c560;
+  height:100%;
+}
 .page {
   padding: 15px 15px 20px 15px; 
 }
@@ -27,7 +31,7 @@ button.continue {
 .page_hd .logo {
   width: 60px;
   height: 60px;
-  border-radius: 31px;
+  border-radius: 5px;
   background-color: #fff;
   border: 2px solid #fff;
   overflow: hidden;
@@ -167,4 +171,7 @@ button.continue {
 .weui-form-preview.last {
   border:none;
   margin-bottom: 0px;
+}
+.blank-page {
+  color: #fff;
 }

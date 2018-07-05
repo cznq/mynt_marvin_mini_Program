@@ -1,0 +1,72 @@
+/* pages/edit-info/edit-info.wxss */
+.page::before {
+  content: "";
+  display: block;
+  height: 4px;
+  width: 50%;
+  background: #4d65f5;
+}
+.weui-cells {
+  margin-top: 0;
+}
+.weui-cells:before, .weui-cells:after {
+  border: none;
+}
+.weui-cell {
+  padding: 22px 15px 8px;
+}
+.phone image {
+  width: 17px;
+  height: 24px;
+  vertical-align: middle;
+}
+.idcard image {
+  width: 26px;
+  height: 20px;
+  vertical-align: middle;
+}
+.weui-cell__hd {
+  width: 40px;
+  padding-right: 8px;
+  text-align: center;
+}
+.weui-cell:before {
+  right: 20px;
+}
+input {
+  color: #000;
+  font-size: 15px;
+  font-weight: 400;
+}
+.phcolor {
+  color: #acacac;
+}
+.page__ft {
+  position: absolute;
+  bottom: 28px;
+  left: 0;
+  right: 0;
+}
+.page__ft.fixed {
+  top: 230px;
+  transition: all .5s ease-in-out;
+}
+.page__ft button {
+  background-color: #4d65f5;
+  color: #fff;
+  border-radius: 23px;
+  border: none;
+  box-shadow: none;
+  width: 130px;
+}
+.weui-btn:after {
+  border-radius: 0;
+  border: none;
+}
+.safe-info {
+  font-size: 15px;
+  color: #4d65f5;
+  text-align: center;
+  line-height: 1;
+  padding: 20px 5px 10px;
+}
