@@ -34,7 +34,7 @@ Page({
       time: util.getTime()
     })
     //console.log(this.data.xy_session);
-    this.getCompany();
+    //this.getCompany();
   },
 
   getCompany: function () {
