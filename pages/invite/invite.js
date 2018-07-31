@@ -44,6 +44,7 @@ Page({
       params: {
         service: 'company',
         method: 'get_info',
+        union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
           
         })
