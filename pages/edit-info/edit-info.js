@@ -26,8 +26,6 @@ Page({
 
   },
 
-  Util: require('../../utils/util.js'),
-
   editSubmit: function (e) {
     var id_type = 0;
     var phone = e.detail.value.phone;
@@ -50,11 +48,11 @@ Page({
         showCancel: false
       })
     } else {
-      this.Util.network.POST({
-        url: app.globalData.BASE_URL + "wechat/intapp/add_visitor_info",
+      app.Util.network.POST({
+        url: app.globalData.BASE_API_URL,
         params: {
-          xy_session: this.data.xy_session,
-          visitor_id: this.data.visitor_id,
+          service: 'visitor',
+          method: 'bind',
           id_type: id_type,
           phone: phone,
           id_number: id_number

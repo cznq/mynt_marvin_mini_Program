@@ -15,9 +15,14 @@
   line-height: 1.5;
   color: #000;
 }
+.placeholder-input {
+  font-size: 17px;
+  font-weight: normal;
+  color: #acacac;
+}
 .placeholder {
   font-size: 17px;
-  font-weight: 400;
+  font-weight: normal;
   color: #acacac;
 }
 .weui-form-preview__bd {
@@ -45,6 +50,9 @@
   min-height: 2em;
   line-height: 2em;
   margin-top: -10px;
+}
+.weui-input:focus {
+  font-weight: normal;
 }
 .page__ft.j_bottom {
   position: fixed;

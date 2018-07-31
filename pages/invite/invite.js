@@ -8,13 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    js_code: null,
     xy_session: null,
-    openid: null,
-    unionid: null,
     latitude: null,
     longitude: null,
-    userInfo: null,
     meminfo: null,
     date: "",
     time: "",
@@ -33,64 +29,35 @@ Page({
     var that = this;
     
     that.setData({
+      xy_session: wx.getStorageSync('xy_session'),
       date: util.getDate(),
       time: util.getTime()
     })
-    that.login();
+    //console.log(this.data.xy_session);
+    this.getCompany();
   },
 
-  // 登录
-  login: function () {
-    wx.login({
-      success: res => {
-        this.setData({
-          js_code: res.code
+  getCompany: function () {
+    var that = this;
+    that.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_info',
+        data: JSON.stringify({
+          
         })
-        this.serverLogin();
+      },
+      success: res => {  
+        console.log(res);
+        if(res.data.result) {
+          that.setData({
+            meminfo: res.data.result
+          })
+        }
+        //that.generateMap(res.data.result.address);
       }
     })
-  },
-
-  serverLogin: function() {
-    // 登录请求
-    this.Util.network.POST({
-      url: app.globalData.BASE_URL + "wechat/intapp/login",
-      params: {
-        js_code: this.data.js_code
-      },
-      success: res => {
-        // 存储Sessionc
-        this.setData({
-          xy_session: res.data.xy_session,
-          meminfo: res.data.meminfo
-        })
-
-        if (res.data.meminfo == null || res.data.meminfo.role_id == 0) {
-          this.setData({
-            error: "没有邀请权限"
-          })
-          wx.showModal({
-            title: '你没有邀请权限',
-            content: '请先加入成为公司员工，才能获得邀请权限',
-            showCancel: false,
-            success: function (res) {
-              if (res.confirm) {
-                wx.navigateBack({
-                  delta: -1
-                })
-              } 
-            }
-          })
-        } else {
-          this.generateMap(res.data.meminfo.address);
-        }
-        wx.setStorage({
-          key: 'xy_session',
-          data: res.data.xy_session
-        })
-
-      }
-    });
   },
 
   generateMap: function (address) {
@@ -140,13 +107,18 @@ Page({
     var mark = e.detail.value.mark;
     var visit_intro = e.detail.value.visit_intro;
     this.Util.network.POST({
-      url: app.globalData.BASE_URL + "wechat/intapp/isend",
+      url: app.globalData.BASE_URL,
       params: {
-        xy_session: this.data.xy_session,
-        visit_time: visit_time,
-        visitor_name: visitor_name,
-        mark: mark,
-        visit_intro: visit_intro
+        service: 'visitor',
+        method: 'invite',
+        data: JSON.stringify({
+          union_id: this.data.xy_session,
+          visitor_name: visitor_name,
+          invitation_type: 0,
+          instruction: visit_intro,
+          note: mark,
+          appointment_time: visit_time
+        })
       },
       success: res => {
         wx.redirectTo({
@@ -170,7 +142,6 @@ Page({
   },  
 
   autoHeight: function (e) {
-    console.log(e.detail);
     if (e.detail.lineCount >= 1) {
       if (e.target.id == 'i2') {
         this.setData({
@@ -188,7 +159,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
     this.mapCtx = wx.createMapContext('myMap');
     this.mapCtx.moveToLocation();
   },

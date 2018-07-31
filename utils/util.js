@@ -1,5 +1,5 @@
 // pages/utils/util.js
-
+var md5 = require('md5.js');
 
 ; (function () {
 
@@ -22,11 +22,12 @@
       title: '正在加载',
       mask: true
     })
-
-    //if (app.globalData.w2w_session != null && app.globalData.w2w_session != '') {
-    //	requestHandler.params = Object.assign({}, requestHandler.params, { w2w_session: app.globalData.w2w_session });
-    //}
-
+    requestHandler.params.app_id = '65effd5a42fd1870b2c7c5343640e9a8';
+    requestHandler.params.timestamp = Math.round(new Date().getTime() / 1000 - 28800);
+    requestHandler.params.sign_type = 'MD5';
+    var stringA = 'app_id=' + requestHandler.params.app_id + '&data=' + requestHandler.params.data + '&method=' + requestHandler.params.method + '&service=' + requestHandler.params.service + '&timestamp=' + requestHandler.params.timestamp;
+    requestHandler.params.sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
+    console.log(requestHandler.params);
     wx.request({
       url: requestHandler.url,
       data: requestHandler.params,

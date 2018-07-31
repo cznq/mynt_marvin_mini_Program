@@ -54,7 +54,7 @@ Page({
 
   getInitation: function () {
     var that = this;
-    that.Util.network.POST({
+    app.Util.network.POST({
       url: app.globalData.BASE_URL + "wechat/intapp/invitation",
       params: {
         xy_session: app.globalData.xy_session,
@@ -67,8 +67,6 @@ Page({
       }
     })
   },
-
-  Util: require('../../utils/util.js'),
 
   setTime: function () {
     var that = this;
@@ -105,6 +103,7 @@ Page({
         that.setData({
           time: t
         })
+        that.takePhoto();
       } else {
         clearInterval(int);
       }
@@ -112,13 +111,40 @@ Page({
 
   },
 
+  takePhoto: function() {
+    this.ctx.takePhoto({
+      quality: 'high',
+      success: (res) => {
+        console.log(res.tempImagePath);
+        wx.uploadFile({
+          url: app.globalData.BASE_API_URL,
+          method: 'POST',
+          filePath: res.tempImagePath,
+          header: {
+            'content-type': 'multipart/form-data'
+          },
+          name: 'face_pic',
+          formData: {
+            service: 'visitor',
+            method: 'upload_face_pic',
+            visitor_id: that.data.visitor_id
+          },
+          success: function (res) {
+            
+          },
+          fail: function (r) {
+            
+          }
+        })
+      },
+      fail: function() {
+
+      }
+    })
+  },
+
   startRecord: function () {
-    if (this.data.needinfo) {
-      wx.showModal({
-        content: '因公安与物业要求，请先完成身份信息认证。',
-        showCancel: false
-      })
-    } else if (this.data.invitation.input_pic) {
+    if (this.data.invitation) {
       wx.showModal({
         content: '您已经录过人脸信息',
         showCancel: false
@@ -155,11 +181,20 @@ Page({
             invitation_id: that.data.invitation_id
           },
           success: function (res) {
-            wx.hideLoading();
-            that.skipVedio();
+            console.log(JSON.parse(res.data));
+            var res = JSON.parse(res.data);
             that.setData({
               time: "00 : 00 : 00"
             });
+            wx.hideLoading();
+            if(res.err){
+              wx.showModal({
+                content: "请对准人脸，重新上传",
+                showCancel: false
+              })
+            }else if(res.msg){
+              that.skipVedio();
+            }
           },
           fail: function (r) {
             that.setData({

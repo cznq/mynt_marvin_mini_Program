@@ -10,7 +10,7 @@
             </view>
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
-                    <input class="weui-input" name="visitor_name" id="i1" bindinput="checkForm" placeholder="请输入被邀请人姓名" placeholder-class="placeholder"></input>
+                    <input class="weui-input" name="visitor_name" id="i1" bindinput="checkForm" placeholder="请输入被邀请人姓名" placeholder-class="placeholder-input"></input>
                 </view>
             </view>
             
