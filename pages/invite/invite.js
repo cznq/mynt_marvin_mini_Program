@@ -34,7 +34,7 @@ Page({
       time: util.getTime()
     })
     //console.log(this.data.xy_session);
-    //this.getCompany();
+    this.getCompany();
   },
 
   getCompany: function () {
@@ -56,7 +56,7 @@ Page({
             meminfo: res.data.result
           })
         }
-        //that.generateMap(res.data.result.address);
+        that.generateMap(res.data.result.address);
       }
     })
   },
@@ -108,26 +108,25 @@ Page({
     var mark = e.detail.value.mark;
     var visit_intro = e.detail.value.visit_intro;
     this.Util.network.POST({
-      url: app.globalData.BASE_URL,
+      url: app.globalData.BASE_API_URL,
       params: {
         service: 'visitor',
         method: 'invite',
+        union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
-          union_id: this.data.xy_session,
           visitor_name: visitor_name,
           invitation_type: 0,
-          instruction: visit_intro,
+          introduction: visit_intro,
           note: mark,
-          appointment_time: visit_time
+          appointment_time: new Date(visit_time).getTime() / 1000
         })
       },
       success: res => {
         wx.redirectTo({
-          url: '/pages/invite-share/invite-share?invitation_id=' + res.data.invitation_id,
+          url: '/pages/invite-share/invite-share?invitation_id=' + res.data.result.invitation_id,
         })
       }
     })
-    
   },
 
   bindTimeChange: function (e) {
