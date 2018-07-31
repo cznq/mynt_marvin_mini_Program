@@ -13,7 +13,7 @@ App({
 
   onLaunch: function () {
     //this.checkLogin();
-    //this.login();
+    this.login();
   },
 
   Util: require('utils/util.js'),
@@ -52,6 +52,7 @@ App({
         if (res.data.sub_code == 0) {
           this.globalData.xy_session = res.data.result.union_id;
           wx.setStorageSync('xy_session', res.data.result.union_id);
+          this.getCompany();
         } else {
           this.setData({
             error: "没有邀请权限"
@@ -68,6 +69,29 @@ App({
 
       }
     });
+  },
+
+  getCompany: function () {
+    var that = this;
+    that.Util.network.POST({
+      url: that.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_info',
+        data: JSON.stringify({
+
+        })
+      },
+      success: res => {
+        console.log(res);
+        if (res.data.result) {
+          that.setData({
+            meminfo: res.data.result
+          })
+        }
+        //that.generateMap(res.data.result.address);
+      }
+    })
   }
 
 
