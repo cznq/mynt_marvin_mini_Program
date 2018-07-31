@@ -41,7 +41,7 @@ Page({
   serverLogin: function () {
     // 登录请求
     this.Util.network.POST({
-      url: app.globalData.BASE_URL + "wechat/intapp/login",
+      url: app.globalData.BASE_API_URL + "wechat/intapp/login",
       params: {
         js_code: this.data.js_code
       },
@@ -99,7 +99,7 @@ Page({
   inviteSubmit: function (e) {
     var visitor_name = e.detail.value.visitor_name;
     this.Util.network.POST({
-      url: app.globalData.BASE_URL + "wechat/intapp/isend",
+      url: app.globalData.BASE_API_URL + "wechat/intapp/isend",
       params: {
         xy_session: this.data.xy_session,
         visitor_name: visitor_name

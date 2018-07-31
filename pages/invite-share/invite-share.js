@@ -24,31 +24,36 @@ Page({
     //console.log(options);
     that.setData({
       invitation_id: options.invitation_id
-    }) 
+    })
     this.getInitation();
-    
+
   },
 
   Util: require('../../utils/util.js'),
 
   getInitation: function () {
     var that = this;
+    console.log(that);
     if (that.data.invitation_id == undefined) {
       that.setData({
         error: "没有获取到邀请信息"
       })
     }
     that.Util.network.POST({
-      url: app.globalData.BASE_URL + "wechat/intapp/invitation",
+      url: app.globalData.BASE_API_URL,
       params: {
-        xy_session: app.globalData.xy_session,
-        invitation_id: that.data.invitation_id
+        service: 'visitor',
+        method: 'get_invitation_info',
+        union_id: wx.getStorageSync('xy_session'),
+        data: JSON.stringify({
+          invitation_id: that.data.invitation_id
+        })
       },
       success: res => {
-        console.log(res.data);
+        var invitation = res.data.result;
         that.setData({
-          invitation: res.data,
-          visit_time: that.Util.formatTime(res.data.visit_time)
+          invitation: invitation,
+          appointment_time: that.Util.formatTime(invitation.appointment_time)
         })
         that.generateMap();
       },
@@ -88,7 +93,7 @@ Page({
   onReady: function () {
     this.mapCtx = wx.createMapContext('myMap');
     this.mapCtx.moveToLocation();
-    
+
   },
 
   openLocation: function () {
@@ -103,35 +108,35 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
@@ -140,7 +145,7 @@ Page({
   onShareAppMessage: function (res) {
     return {
       title: '您收到访问邀请啦！',
-      path: '/pages/invite-receive/invite-receive?invitation_id='+this.data.invitation_id,
+      path: '/pages/invite-receive/invite-receive?invitation_id=' + this.data.invitation_id,
       success: function (res) {
         // 转发成功
         wx.navigateBack({

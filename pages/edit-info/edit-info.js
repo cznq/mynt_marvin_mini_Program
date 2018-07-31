@@ -53,9 +53,12 @@ Page({
         params: {
           service: 'visitor',
           method: 'bind',
-          id_type: id_type,
-          phone: phone,
-          id_number: id_number
+          union_id: wx.getStorageSync('xy_session'),
+          data: JSON.stringify({
+            id_type: id_type,
+            phone: phone,
+            id_number: id_number
+          })
         },
         success: res => {
           if(res.data.msg == 'success') {

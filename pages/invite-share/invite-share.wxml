@@ -10,7 +10,7 @@
             </view>
             <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
-                    <label class="weui-form-preview__label intro">{{invitation.visit_intro}} </label>
+                    <label class="weui-form-preview__label intro">{{invitation.invitation_intro}} </label>
                 </view>
             </view>
             
@@ -23,12 +23,12 @@
             </view>
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item datetime">
-                    {{visit_time}}
+                    {{appointment_time}}
                 </view>
             </view>
             
         </view>
-        <block wx:if="{{invitation.mark}}">
+        <block wx:if="{{invitation_note}}">
         <view class="weui-form-preview">
             <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
@@ -37,7 +37,7 @@
             </view>
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item datetime">
-                    {{invitation.mark}}
+                    {{invitation_note}}
                 </view>
             </view>
             

@@ -27,7 +27,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    
+
     that.setData({
       xy_session: wx.getStorageSync('xy_session'),
       date: util.getDate(),
@@ -46,12 +46,12 @@ Page({
         method: 'get_info',
         union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
-          
+
         })
       },
-      success: res => {  
+      success: res => {
         console.log(res);
-        if(res.data.result) {
+        if (res.data.result) {
           that.setData({
             meminfo: res.data.result
           })
@@ -85,17 +85,19 @@ Page({
 
   Util: require('../../utils/util.js'),
 
-  checkForm: function(e) {
+  checkForm: function (e) {
 
-    if(e.detail.value!=='' && e.currentTarget.id=='i1'){
+    if (e.detail.value !== '' && e.currentTarget.id == 'i1') {
       this.setData({
         input1: true
       });
-    } if (e.detail.value !== '' && e.currentTarget.id == 'i2') {
+    }
+    if (e.detail.value !== '' && e.currentTarget.id == 'i2') {
       this.setData({
         input2: true
       });
-    } if (this.data.input1 && this.data.input2){
+    }
+    if (this.data.input1 && this.data.input2) {
       this.setData({
         formready: true
       });
@@ -134,12 +136,12 @@ Page({
       time: e.detail.value
     })
   },
-   
+
   bindDateChange: function (e) {
     this.setData({
       date: e.detail.value
     })
-  },  
+  },
 
   autoHeight: function (e) {
     if (e.detail.lineCount >= 1) {
@@ -175,15 +177,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
-    
+
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-   this.onload();
+    this.onload();
   }
 
 })

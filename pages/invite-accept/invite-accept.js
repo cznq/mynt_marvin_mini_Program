@@ -55,7 +55,7 @@ Page({
   getInitation: function () {
     var that = this;
     app.Util.network.POST({
-      url: app.globalData.BASE_URL + "wechat/intapp/invitation",
+      url: app.globalData.BASE_API_URL + "wechat/intapp/invitation",
       params: {
         xy_session: app.globalData.xy_session,
         invitation_id: that.data.invitation_id
@@ -170,7 +170,7 @@ Page({
       success: (res) => {
         wx.showLoading({ title: '人脸上传中' });
         wx.uploadFile({
-          url: app.globalData.BASE_URL + 'wechat/intapp/upload',
+          url: app.globalData.BASE_API_URL + 'wechat/intapp/upload',
           method: 'POST',
           filePath: res.tempVideoPath,
           header: {
