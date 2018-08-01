@@ -51,9 +51,10 @@ Page({
       },
       success: res => {
         var invitation = res.data.result;
+        var appointment_time = invitation.appointment_time + 8 * 3600;
         that.setData({
           invitation: invitation,
-          appointment_time: that.Util.formatTime(invitation.appointment_time)
+          appointment_time: that.Util.formatTime(appointment_time)
         })
         that.generateMap();
       },
