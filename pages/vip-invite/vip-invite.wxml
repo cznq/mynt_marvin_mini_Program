@@ -1,5 +1,5 @@
 <!--pages/vip-invite/vip-invite.wxml-->
-<block wx:if="{{meminfo}}">
+<block wx:if="{{invite_auth}}">
 <view class="page">
   <form bindsubmit="inviteSubmit">
     <view class="page_hd">
@@ -27,6 +27,6 @@
 
 </view>
 </block>
-<block wx:else>
-  <view class="blank-page">{{error}}</view>
+<block wx:if="{{invite_auth==false}}">
+  <view class="blank-page">您没有邀请权限</view>
 </block>

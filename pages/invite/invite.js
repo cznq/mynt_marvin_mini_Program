@@ -12,12 +12,12 @@ Page({
     latitude: null,
     longitude: null,
     meminfo: null,
+    invite_auth: null,
     date: "",
     time: "",
     formready: false,
     input1: false,
     input2: false,
-    error: "",
     inputHeight1: 30,
     inputHeight2: 30
   },
@@ -27,19 +27,19 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-
     that.setData({
       xy_session: wx.getStorageSync('xy_session'),
+      invite_auth: app.globalData.invite_auth,
       date: util.getDate(),
       time: util.getTime()
     })
-    //console.log(this.data.xy_session);
+
     this.getCompany();
   },
 
   getCompany: function () {
     var that = this;
-    that.Util.network.POST({
+    app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'company',
@@ -83,8 +83,6 @@ Page({
     })
   },
 
-  Util: require('../../utils/util.js'),
-
   checkForm: function (e) {
 
     if (e.detail.value !== '' && e.currentTarget.id == 'i1') {
@@ -109,7 +107,7 @@ Page({
     var visitor_name = e.detail.value.visitor_name;
     var mark = e.detail.value.mark;
     var visit_intro = e.detail.value.visit_intro;
-    this.Util.network.POST({
+    app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'visitor',
@@ -124,9 +122,11 @@ Page({
         })
       },
       success: res => {
-        wx.redirectTo({
-          url: '/pages/invite-share/invite-share?invitation_id=' + res.data.result.invitation_id,
-        })
+        if(res.data.result.invitation_id){
+          wx.redirectTo({
+            url: '/pages/invite-share/invite-share?invitation_id=' + res.data.result.invitation_id,
+          })
+        }
       }
     })
   },

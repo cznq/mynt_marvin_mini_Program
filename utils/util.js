@@ -27,7 +27,7 @@ var md5 = require('md5.js');
     requestHandler.params.sign_type = 'MD5';
     var stringA = 'app_id=' + requestHandler.params.app_id + '&data=' + requestHandler.params.data + '&method=' + requestHandler.params.method + '&service=' + requestHandler.params.service + '&timestamp=' + requestHandler.params.timestamp;
     requestHandler.params.sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
-    console.log(requestHandler.params);
+
     wx.request({
       url: requestHandler.url,
       data: requestHandler.params,

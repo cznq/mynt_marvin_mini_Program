@@ -8,7 +8,6 @@
     "pages/invite-accept/invite-accept",
     "pages/vip-index/vip-index",
     "pages/vip-invite/vip-invite",
-    "pages/vip-list/vip-list",
     "pages/vip-share/vip-share"
   ],
   "window":{
