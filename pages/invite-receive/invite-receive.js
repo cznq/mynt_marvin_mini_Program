@@ -21,7 +21,9 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    if (options.vip !== "yes") { options.vip = null }
+    if (options.vip !== "yes") {
+      options.vip = null
+    }
     that.setData({
       visitor_id: options.visitor_id,
       invitation_id: options.invitation_id,
@@ -34,91 +36,29 @@ Page({
 
   getInitation: function () {
     var that = this;
+    var invitationId = that.data.invitation_id;
+    var unionId = app.globalData.xy_session;
     that.Util.network.POST({
-      url: app.globalData.BASE_API_URL + "wechat/intapp/invitation",
+      url: app.globalData.BASE_API_URL,
+
       params: {
-        xy_session: app.globalData.xy_session,
-        invitation_id: that.data.invitation_id
+        service: 'visitor',
+        method: 'get_invitation_info',
+        union_id: unionId,
+        data: JSON.stringify({
+          invitation_id: invitationId,
+        })
       },
       success: res => {
-        console.log(res.data);
         that.setData({
-          invitation: res.data,
+          invitation: invitation,
         })
-        
-        if (res.data.visitor_id !== null && res.data.id !== null && res.data.is_deleted == 0){
-          if(res.data.id_sign == 3 || res.data.phone !== null) {
-            if(res.data.input_pic==null){
-              wx.redirectTo({
-                url: '/pages/invite-accept/invite-accept?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip,
-              })
-            }else{
-              wx.redirectTo({
-                url: '/pages/invite-success/invite-success?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip,
-              })
-            }
 
-          } else {
-            wx.redirectTo({
-              url: '/pages/edit-info/edit-info?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip + '&visitor_id=' + that.data.visitor_id,
-            })
-          }
-          
-        }
+        wx.redirectTo({
+          url: '/pages/invite-accept/invite-accept?invitation_id=' + invitationId,
+        })
       }
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-
-  },
-  openLocation: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function (res) {
-    
-  }
 })

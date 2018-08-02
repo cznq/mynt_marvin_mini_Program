@@ -27,13 +27,11 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-
     that.setData({
       xy_session: wx.getStorageSync('xy_session'),
       date: util.getDate(),
       time: util.getTime()
     })
-    //console.log(this.data.xy_session);
     this.getCompany();
   },
 
@@ -56,7 +54,8 @@ Page({
             meminfo: res.data.result
           })
         }
-        that.generateMap(res.data.result.address);
+        console.log(res.data.result);
+        // that.generateMap(res.data.result.address);
       }
     })
   },
@@ -107,7 +106,7 @@ Page({
   inviteSubmit: function (e) {
     var visit_time = e.detail.value.visit_time;
     var visitor_name = e.detail.value.visitor_name;
-    var mark = e.detail.value.mark;
+    var note = e.detail.value.note;
     var visit_intro = e.detail.value.visit_intro;
     this.Util.network.POST({
       url: app.globalData.BASE_API_URL,
@@ -119,11 +118,12 @@ Page({
           visitor_name: visitor_name,
           invitation_type: 0,
           introduction: visit_intro,
-          note: mark,
+          note: note,
           appointment_time: new Date(visit_time).getTime() / 1000
         })
       },
       success: res => {
+        console.log(res.data.result);
         wx.redirectTo({
           url: '/pages/invite-share/invite-share?invitation_id=' + res.data.result.invitation_id,
         })

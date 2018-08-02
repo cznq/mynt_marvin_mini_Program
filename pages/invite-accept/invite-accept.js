@@ -55,7 +55,8 @@ Page({
   getInitation: function () {
     var that = this;
     app.Util.network.POST({
-      url: app.globalData.BASE_API_URL + "wechat/intapp/invitation",
+      url: app.globalData.BASE_API_URL,
+      
       params: {
         xy_session: app.globalData.xy_session,
         invitation_id: that.data.invitation_id
