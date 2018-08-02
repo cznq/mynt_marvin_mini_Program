@@ -4,7 +4,7 @@
       <button bindtap="goShot" class="continue" wx:if="{{continuevideo}}"><image src="../../images/shot.png"></image>继续录入人脸</button>
        <block wx:if="{{vip !== 'yes'}}">
         <view class="logo">
-          <image src="{{invitation.logo}}"></image>
+          <image src="{{invitation.company_logo}}"></image>
         </view>
       </block>
       <block wx:else>
@@ -33,13 +33,13 @@
             <block wx:if="{{vip !== 'yes'}}">
             <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
-                    <label class="weui-form-preview__label intro">{{invitation.visit_intro}} </label>
+                    <label class="weui-form-preview__label intro">{{invitation.invitation_intro}} </label>
                 </view>
             </view>
             </block>
         </view>
         <block wx:if="{{vip !== 'yes'}}">
-        <block wx:if="{{invitation.mark}}">
+        <block wx:if="{{invitation.invitation_note}}">
         <view class="weui-form-preview">
             <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
@@ -48,7 +48,7 @@
             </view>
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item mark">
-                    {{invitation.mark}}
+                    {{invitation.invitation_note}}
                 </view>
             </view>
             
@@ -62,7 +62,7 @@
             </view>
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item datetime">
-                    <text wx:if="{{visit_time}}">{{visit_time}}</text>
+                    <text wx:if="{{appointment_time}}">{{appointment_time}}</text>
                 </view>
             </view>
             
@@ -88,7 +88,7 @@
             <view class="weui-flex">
               <view class="weui-flex__item">
                 <view class="invite_label">邀请人姓名</view>
-                <view class="invitor">{{invitation.invitor_name}}</view>
+                <view class="invitor">{{invitation.visitor_name}}</view>
               </view>
               <view class="weui-flex__item">
                 <view class="invite_label">邀请人职位</view>

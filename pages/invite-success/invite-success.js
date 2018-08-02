@@ -47,35 +47,40 @@ Page({
         error: "没有获取到邀请信息"
       })
     }
+    var unionId = app.globalData.xy_session;
     that.Util.network.POST({
-      url: app.globalData.BASE_API_URL + "wechat/intapp/invitation",
+      url: app.globalData.BASE_API_URL,
       params: {
-        xy_session: app.globalData.xy_session,
-        invitation_id: that.data.invitation_id
+        service: 'visitor',
+        method: 'get_invitation_info',
+        union_id: unionId,
+        data: JSON.stringify({
+          invitation_id: invitationId,
+        })
       },
       success: res => {
-        console.log(res.data);
-        if(res.data.input_pic==null){
+        console.log(res.data.result);
+        if (res.data.result.avatar==null){
           that.setData({
             continuevideo: true,
           })
         }
-        if(res.data.role_id==3){
+        if (res.data.result.role==3){
           that.setData({
             role: "管理员"
           })
-        } else if (res.data.role_id==2){
+        } else if (res.data.result.role==2){
           that.setData({
             role: "前台"
           })
-        } else if (res.data.role_id == 1) {
+        } else if (res.data.result.role == 1) {
           that.setData({
             role: "普通员工"
           })
         }
         that.setData({
-          invitation: res.data,
-          visit_time: that.Util.formatTime(res.data.visit_time)
+          invitation: res.data.result,
+          visit_time: that.Util.formatTime(res.data.result.appointment_time)
         })
         this.generateMap();
       },

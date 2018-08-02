@@ -9,8 +9,8 @@ App({
   },
 
   onLaunch: function () {
-    //this.checkLogin();
-    this.login();
+    this.checkLogin();
+    //this.login();
   },
 
   Util: require('utils/util.js'),

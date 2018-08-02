@@ -33,7 +33,6 @@ Page({
       date: util.getDate(),
       time: util.getTime()
     })
-
     this.getCompany();
   },
 
@@ -50,7 +49,6 @@ Page({
         })
       },
       success: res => {
-        console.log(res);
         if (res.data.result) {
           that.setData({
             meminfo: res.data.result
@@ -122,6 +120,7 @@ Page({
         })
       },
       success: res => {
+        console.log(res);
         if(res.data.result.invitation_id){
           wx.redirectTo({
             url: '/pages/invite-share/invite-share?invitation_id=' + res.data.result.invitation_id,

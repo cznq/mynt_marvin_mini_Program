@@ -40,7 +40,6 @@ Page({
     var unionId = app.globalData.xy_session;
     that.Util.network.POST({
       url: app.globalData.BASE_API_URL,
-
       params: {
         service: 'visitor',
         method: 'get_invitation_info',
@@ -53,7 +52,6 @@ Page({
         that.setData({
           invitation: invitation,
         })
-
         wx.redirectTo({
           url: '/pages/invite-accept/invite-accept?invitation_id=' + invitationId,
         })

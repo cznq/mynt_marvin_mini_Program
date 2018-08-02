@@ -1,4 +1,4 @@
-<block wx:if="{{invite_auth}}">
+<block wx:if="{{xy_session}}">
 <view class="page">
   <form bindsubmit="inviteSubmit">
     <view class="page__bd">
@@ -85,7 +85,7 @@
    </form>
 </view>
 </block>
-<block wx:if="{{invite_auth==false}}">
+<block wx:if="{{xy_session==null}}">
   <view class="noauth">
     <view class="title">如何获得邀请权限？</view>
     <view class="sm-title">成为公司员工后就可以邀请访客</view>

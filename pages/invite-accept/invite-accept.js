@@ -1,4 +1,4 @@
-
+var md5 = require('../../utils/md5.js');
 var app = getApp()
 Page({
   data: {
@@ -54,17 +54,23 @@ Page({
 
   getInitation: function () {
     var that = this;
+    var invitationId = that.data.invitation_id;
+    var unionId = app.globalData.xy_session;
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
-      
       params: {
-        xy_session: app.globalData.xy_session,
-        invitation_id: that.data.invitation_id
+        service: 'visitor',
+        method: 'get_invitation_info',
+        union_id: unionId,
+        data: JSON.stringify({
+          invitation_id: invitationId,
+        })
       },
       success: res => {
         that.setData({
-          invitation: res.data,
+          invitation: res.data.result,
         })
+      
       }
     })
   },
@@ -113,10 +119,18 @@ Page({
   },
 
   takePhoto: function() {
-    this.ctx.takePhoto({
+    var that = this;
+    that.ctx.takePhoto({
       quality: 'high',
       success: (res) => {
         console.log(res.tempImagePath);
+        var service = 'visitor';
+        var method = 'upload_face_pic';
+        var app_id = '65effd5a42fd1870b2c7c5343640e9a8';
+        var timestamp = Math.round(new Date().getTime() / 1000 - 28800);
+        var sign_type = 'MD5';
+        var stringA = 'app_id=' + app_id + '&data=&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
+        var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
         wx.uploadFile({
           url: app.globalData.BASE_API_URL,
           method: 'POST',
@@ -126,12 +140,23 @@ Page({
           },
           name: 'face_pic',
           formData: {
-            service: 'visitor',
-            method: 'upload_face_pic',
-            visitor_id: that.data.visitor_id
+            service: service,
+            method: method,
+            app_id: app_id,
+            timestamp: timestamp,
+            sign_type: sign_type,
+            sign: sign,
+            union_id: app.globalData.xy_session,
+            data: ''
           },
           success: function (res) {
             
+            var data = JSON.parse(res.data);
+            console.log(data);
+            if (data.sub_code==0){
+              wx.showLoading({ title: '人脸上传中' });
+              that.stopRecord();
+            }
           },
           fail: function (r) {
             
@@ -169,41 +194,7 @@ Page({
     });
     that.ctx.stopRecord({
       success: (res) => {
-        wx.showLoading({ title: '人脸上传中' });
-        wx.uploadFile({
-          url: app.globalData.BASE_API_URL + 'wechat/intapp/upload',
-          method: 'POST',
-          filePath: res.tempVideoPath,
-          header: {
-            'content-type': 'multipart/form-data'
-          },
-          name: 'video',
-          formData: {
-            invitation_id: that.data.invitation_id
-          },
-          success: function (res) {
-            console.log(JSON.parse(res.data));
-            var res = JSON.parse(res.data);
-            that.setData({
-              time: "00 : 00 : 00"
-            });
-            wx.hideLoading();
-            if(res.err){
-              wx.showModal({
-                content: "请对准人脸，重新上传",
-                showCancel: false
-              })
-            }else if(res.msg){
-              that.skipVedio();
-            }
-          },
-          fail: function (r) {
-            that.setData({
-              time: "00 : 00 : 00"
-            });
-          }
-        })
-
+        that.skipVedio();
       },
       error(e) {
         console.log(e.detail)
