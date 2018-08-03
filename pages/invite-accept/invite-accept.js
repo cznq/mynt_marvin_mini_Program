@@ -2,6 +2,7 @@ var md5 = require('../../utils/md5.js');
 var app = getApp()
 Page({
   data: {
+    xy_session: null,
     vedio: false,
     invitation_id: null,
     vip: null,
@@ -10,7 +11,8 @@ Page({
     width: '0',
     height: '250px',
     iphonex: false,
-    invitation: null
+    invitation: null,
+    visitor: null
   },
 
   onLoad: function (options) {
@@ -18,7 +20,8 @@ Page({
     if (options.vip !== "yes") { options.vip = null }
     that.setData({
       invitation_id: options.invitation_id,
-      vip: options.vip
+      vip: options.vip,
+      xy_session: wx.getStorageSync('xy_session')
     })
     wx.getSystemInfo({
       success: function (res) {
@@ -70,7 +73,29 @@ Page({
         that.setData({
           invitation: res.data.result,
         })
-      
+        that.getVisitorinfo();
+      }
+    })
+  },
+
+  getVisitorinfo: function () {
+    var that = this;
+    var unionId = that.data.xy_session;
+    that.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'visitor',
+        method: 'get_visitor_info',
+        union_id: unionId,
+        data: JSON.stringify({
+
+        })
+      },
+      success: res => {
+        that.setData({
+          visitor: res.data.result,
+        })
+    
       }
     })
   },
@@ -210,7 +235,7 @@ Page({
 
   goEditinfo: function () {
     wx.navigateTo({
-      url: '/pages/edit-info/edit-info?visitor_id=' + this.data.invitation.visitor_id + '&vip=' + this.data.vip + '&invitation_id=' + this.data.invitation_id,
+      url: '/pages/edit-info/edit-info?vip=' + this.data.vip + '&invitation_id=' + this.data.invitation_id,
     })
   },
 

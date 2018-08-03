@@ -5,9 +5,9 @@ Page({
   /**
    * 页面的初始数据
    */
+
   data: {
     xy_session: null,
-    visitor_id: null,
     invitation_id: null,
     vip: null,
     showkbd: null
@@ -17,13 +17,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
     this.setData({
-      visitor_id: options.visitor_id,
       invitation_id: options.invitation_id,
       vip: options.vip
     })
-
   },
 
   editSubmit: function (e) {

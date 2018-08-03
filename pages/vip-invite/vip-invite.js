@@ -39,12 +39,23 @@ Page({
 
   inviteSubmit: function (e) {
     var visitor_name = e.detail.value.visitor_name;
+    var appointment_time = Math.round(new Date().getTime() / 1000 - 28800);
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
-        visitor_name: visitor_name
+        service: 'visitor',
+        method: 'invite',
+        union_id: wx.getStorageSync('xy_session'),
+        data: JSON.stringify({
+          visitor_name: visitor_name,
+          invitation_type: 1,
+          introduction: '',
+          note: '',
+          appointment_time: appointment_time
+        })
       },
       success: res => {
+        console.log(res);
         wx.redirectTo({
           url: '/pages/vip-share/vip-share?invitation_id=' + res.data.result.invitation_id,
         })

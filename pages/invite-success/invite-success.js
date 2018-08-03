@@ -8,6 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    xy_session: null,
+    visitor: null,
     latitude: null,
     longitude: null,
     address: null,
@@ -15,7 +17,7 @@ Page({
     vip: null,
     invitation: null,
     continuevideo: false,
-    visit_time: null,
+    appointment_time: null,
     role: null,
     error: ""
   },
@@ -26,7 +28,8 @@ Page({
   onLoad: function (options) {
     this.setData({
       invitation_id: options.invitation_id,
-      vip: options.vip
+      vip: options.vip,
+      xy_session: wx.getStorageSync('xy_session')
     })
     this.getInitation();
   },
@@ -47,7 +50,7 @@ Page({
         error: "没有获取到邀请信息"
       })
     }
-    var unionId = app.globalData.xy_session;
+    var unionId = that.data.xy_session;
     that.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
@@ -55,16 +58,12 @@ Page({
         method: 'get_invitation_info',
         union_id: unionId,
         data: JSON.stringify({
-          invitation_id: invitationId,
+          invitation_id: that.data.invitation_id,
         })
       },
       success: res => {
         console.log(res.data.result);
-        if (res.data.result.avatar==null){
-          that.setData({
-            continuevideo: true,
-          })
-        }
+        
         if (res.data.result.role==3){
           that.setData({
             role: "管理员"
@@ -80,14 +79,41 @@ Page({
         }
         that.setData({
           invitation: res.data.result,
-          visit_time: that.Util.formatTime(res.data.result.appointment_time)
+          appointment_time: that.Util.formatTime(res.data.result.appointment_time)
         })
         this.generateMap();
+        this.getVisitorinfo();
       },
       fail: res => {
         that.setData({
           error: "没有获取到邀请信息"
         })
+      }
+    })
+  },
+
+  getVisitorinfo: function () {
+    var that = this;
+    var unionId = that.data.xy_session;
+    that.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'visitor',
+        method: 'get_visitor_info',
+        union_id: unionId,
+        data: JSON.stringify({
+
+        })
+      },
+      success: res => {
+        that.setData({
+          visitor: res.data.result,
+        })
+        if (res.data.result.input_pic_url == "") {
+          that.setData({
+            continuevideo: true,
+          })
+        }
       }
     })
   },

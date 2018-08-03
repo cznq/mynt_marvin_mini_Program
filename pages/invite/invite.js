@@ -33,7 +33,7 @@ Page({
       date: util.getDate(),
       time: util.getTime()
     })
-    this.getCompany();
+    this.getCompany();console.log(that.data.xy_session);
   },
 
   getCompany: function () {
@@ -49,6 +49,7 @@ Page({
         })
       },
       success: res => {
+        console.log(res);
         if (res.data.result) {
           that.setData({
             meminfo: res.data.result

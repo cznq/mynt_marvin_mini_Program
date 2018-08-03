@@ -5,12 +5,13 @@ App({
     xy_session: null,
     company_info: null,
     invite_auth: null,
-    BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/'
+    BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
+    WEB_VIEW_URL: 'http://marvin-official-account-dev.slightech.com/'
   },
 
   onLaunch: function () {
-    this.checkLogin();
-    //this.login();
+    //this.checkLogin();
+    this.login();
   },
 
   Util: require('utils/util.js'),
