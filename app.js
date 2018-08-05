@@ -4,9 +4,8 @@ App({
   globalData: {
     xy_session: null,
     company_info: null,
-    invite_auth: null,
-    BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
-    WEB_VIEW_URL: 'http://marvin-official-account-dev.slightech.com/'
+    BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
+    WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com/'
   },
 
   onLaunch: function () {
@@ -49,9 +48,9 @@ App({
           this.globalData.invite_auth = true;
           this.globalData.xy_session = res.data.result.union_id;
           wx.setStorageSync('xy_session', res.data.result.union_id);
-
+          wx.setStorageSync('invite_auth', true);
         } else {
-          this.globalData.invite_auth = false;
+          wx.setStorageSync('invite_auth', false);
           wx.showModal({
             title: '你没有邀请权限',
             content: '请先加入成为公司员工，才能获得邀请权限',

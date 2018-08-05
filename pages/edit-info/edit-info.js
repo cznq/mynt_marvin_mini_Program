@@ -19,7 +19,8 @@ Page({
   onLoad: function (options) {
     this.setData({
       invitation_id: options.invitation_id,
-      vip: options.vip
+      vip: options.vip,
+      xy_session: wx.getStorageSync('xy_session')
     })
   },
 
@@ -27,10 +28,10 @@ Page({
     var id_type = 0;
     var phone = e.detail.value.phone;
     var id_number = e.detail.value.id_number;
-    var idcard_reg = this.Util.checkID(id_number) || this.Util.checkPassport(id_number);
-    if (this.Util.checkID(id_number)) {
+    var idcard_reg = app.Util.checkID(id_number) || app.Util.checkPassport(id_number);
+    if (app.Util.checkID(id_number)) {
       var id_type = 0;
-    } else if (this.Util.checkPassport(id_number)) {
+    } else if (app.Util.checkPassport(id_number)) {
       var id_type = 1;
     }
     var phone_reg = /^1[3|4|5|7|8][0-9]{9}$/;
@@ -78,6 +79,28 @@ Page({
 
   },
 
+  getVisitorinfo: function () {
+    var that = this;
+    var unionId = that.data.xy_session;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'visitor',
+        method: 'get_visitor_info',
+        union_id: unionId,
+        data: JSON.stringify({})
+      },
+      success: res => {
+        if (res.data.result.phone !== "" && res.data.result.id_number !== "") {
+          wx.redirectTo({
+            url: '/pages/invite-accept/invite-accept?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip,
+          })
+        }
+
+      }
+    })
+  },
+
   showKeyboard: function() {
     this.setData({
       showkbd: "fixed"
@@ -101,7 +124,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getVisitorinfo();
   },
 
   /**

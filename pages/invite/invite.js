@@ -9,6 +9,7 @@ Page({
    */
   data: {
     xy_session: null,
+    invite_auth: null,
     latitude: null,
     longitude: null,
     meminfo: null,
@@ -29,11 +30,14 @@ Page({
     var that = this;
     that.setData({
       xy_session: wx.getStorageSync('xy_session'),
-      invite_auth: app.globalData.invite_auth,
+      invite_auth: wx.getStorageSync('invite_auth'),
       date: util.getDate(),
       time: util.getTime()
     })
-    this.getCompany();console.log(that.data.xy_session);
+    if(that.data.invite_auth==true){
+      this.getCompany();
+    }
+    
   },
 
   getCompany: function () {

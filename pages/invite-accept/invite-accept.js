@@ -81,19 +81,18 @@ Page({
   getVisitorinfo: function () {
     var that = this;
     var unionId = that.data.xy_session;
-    that.Util.network.POST({
+    app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'visitor',
         method: 'get_visitor_info',
         union_id: unionId,
-        data: JSON.stringify({
-
-        })
+        data: JSON.stringify({})
       },
       success: res => {
+        console.log(res);
         that.setData({
-          visitor: res.data.result,
+          visitor: res.data.result
         })
     
       }
@@ -195,7 +194,7 @@ Page({
   },
 
   startRecord: function () {
-    if (this.data.invitation) {
+    if (this.data.visitor.input_pic_url !== "") {
       wx.showModal({
         content: '您已经录过人脸信息',
         showCancel: false
@@ -228,6 +227,7 @@ Page({
   },
 
   skipVedio: function () {
+    wx.showLoading();
     wx.navigateTo({
       url: '/pages/invite-success/invite-success?vip=' + this.data.vip + '&invitation_id=' + this.data.invitation_id,
     })

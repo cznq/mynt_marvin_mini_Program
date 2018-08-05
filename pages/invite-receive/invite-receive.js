@@ -31,15 +31,34 @@ Page({
       xy_session: wx.getStorageSync('xy_session')
     })
     that.getInitation(); 
+    that.viewInvitation();
   },
 
-  Util: require('../../utils/util.js'),
+  viewInvitation: function () {
+    var that = this;
+    var invitationId = that.data.invitation_id;
+    var unionId = that.data.xy_session;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'visitor',
+        method: 'update_Invitation',
+        union_id: unionId,
+        data: JSON.stringify({
+          invitation_id: invitationId,
+        })
+      },
+      success: res => {
+        console.log(res);
+      }
+    })
+  },
 
   getInitation: function () {
     var that = this;
     var invitationId = that.data.invitation_id;
     var unionId = that.data.xy_session;
-    that.Util.network.POST({
+    app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'visitor',
@@ -47,6 +66,7 @@ Page({
         union_id: unionId,
         data: JSON.stringify({
           invitation_id: invitationId,
+          read_status: 1
         })
       },
       success: res => {
@@ -62,7 +82,7 @@ Page({
   getVisitorinfo: function() {
     var that = this;
     var unionId = that.data.xy_session;
-    that.Util.network.POST({
+    app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'visitor',
@@ -73,11 +93,16 @@ Page({
         })
       },
       success: res => {
-        console.log(res.data.result.input_pic_url);
+        console.log(res.data.result.id_number);
         that.setData({
           visitor: res.data.result,
         })
-        if (that.data.invitation.visitor_id !== null) {
+        if (that.data.invitation.visitor_id !== 0) {
+          if (res.data.result.phone == "" && res.data.result.id_number == "") {
+            wx.redirectTo({
+              url: '/pages/edit-info/edit-info?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip,
+            })
+          }
           if (res.data.result.input_pic_url !== ""){
             wx.redirectTo({
               url: '/pages/invite-success/invite-success?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip,
@@ -87,13 +112,8 @@ Page({
               url: '/pages/invite-accept/invite-accept?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip,
             })
           }
-        } else {
-          if (res.data.result.phone == "" && res.data.id_number == "") {
-            wx.redirectTo({
-              url: '/pages/edit-info/edit-info?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip,
-            })
-          }
-        }
+          
+        } 
       }
     })
   }
