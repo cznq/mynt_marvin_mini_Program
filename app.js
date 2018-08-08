@@ -5,7 +5,7 @@ App({
     xy_session: null,
     company_info: null,
     BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
-    WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com/'
+    WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com'
   },
 
   onLaunch: function () {

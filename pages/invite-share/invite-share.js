@@ -12,7 +12,7 @@ Page({
     longitude: null,
     invitation_id: null,
     invitation: null,
-    visit_time: null,
+    appointment_time: null,
     error: ""
   },
 

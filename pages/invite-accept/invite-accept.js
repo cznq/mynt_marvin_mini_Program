@@ -134,7 +134,6 @@ Page({
         that.setData({
           time: t
         })
-        that.takePhoto();
       } else {
         clearInterval(int);
       }
@@ -143,54 +142,58 @@ Page({
   },
 
   takePhoto: function() {
-    var that = this;
-    that.ctx.takePhoto({
-      quality: 'high',
-      success: (res) => {
-        console.log(res.tempImagePath);
-        var service = 'visitor';
-        var method = 'upload_face_pic';
-        var app_id = '65effd5a42fd1870b2c7c5343640e9a8';
-        var timestamp = Math.round(new Date().getTime() / 1000 - 28800);
-        var sign_type = 'MD5';
-        var stringA = 'app_id=' + app_id + '&data=&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
-        var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
-        wx.uploadFile({
-          url: app.globalData.BASE_API_URL,
-          method: 'POST',
-          filePath: res.tempImagePath,
-          header: {
-            'content-type': 'multipart/form-data'
+    var avatar = null;
+    for(var i=0;i<5;i++){
+      if(avatar == null){
+        var that = this;
+        that.ctx.takePhoto({
+          quality: 'low',
+          success: (res) => {
+            console.log(res.tempImagePath);
+            var service = 'visitor';
+            var method = 'upload_face_pic';
+            var app_id = '65effd5a42fd1870b2c7c5343640e9a8';
+            var timestamp = Math.round(new Date().getTime() / 1000 - 28800);
+            var sign_type = 'MD5';
+            var stringA = 'app_id=' + app_id + '&data=&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
+            var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
+            wx.uploadFile({
+              url: app.globalData.BASE_API_URL,
+              method: 'POST',
+              filePath: res.tempImagePath,
+              header: {
+                'content-type': 'multipart/form-data'
+              },
+              name: 'face_pic',
+              formData: {
+                service: service,
+                method: method,
+                app_id: app_id,
+                timestamp: timestamp,
+                sign_type: sign_type,
+                sign: sign,
+                union_id: app.globalData.xy_session,
+                data: ''
+              },
+              success: function (res) {
+                var data = JSON.parse(res.data);
+                console.log(data);
+                if (data.sub_code == 0){
+                  avatar = res.data.url;
+                  wx.showLoading({ title: '人脸上传中' });
+                  that.stopRecord();
+                }
+              },
+              fail: function (r) {
+              }
+            })
           },
-          name: 'face_pic',
-          formData: {
-            service: service,
-            method: method,
-            app_id: app_id,
-            timestamp: timestamp,
-            sign_type: sign_type,
-            sign: sign,
-            union_id: app.globalData.xy_session,
-            data: ''
-          },
-          success: function (res) {
-            
-            var data = JSON.parse(res.data);
-            console.log(data);
-            if (data.sub_code==0){
-              wx.showLoading({ title: '人脸上传中' });
-              that.stopRecord();
-            }
-          },
-          fail: function (r) {
-            
+          fail: function() {
           }
         })
-      },
-      fail: function() {
-
       }
-    })
+    }
+    //setTimeout(takePhoto, 1000);
   },
 
   startRecord: function () {
@@ -200,14 +203,11 @@ Page({
         showCancel: false
       })
     } else {
-      this.ctx.startRecord({
-        success: (res) => {
-          this.setData({
-            vedio: true
-          })
-          this.setTime();
-        }
+      this.setData({
+        vedio: true
       })
+      this.setTime();
+      this.takePhoto();
     }
   },
 
@@ -216,18 +216,11 @@ Page({
     that.setData({
       vedio: false
     });
-    that.ctx.stopRecord({
-      success: (res) => {
-        that.skipVedio();
-      },
-      error(e) {
-        console.log(e.detail)
-      }
-    })
+    that.skipVedio();
   },
 
   skipVedio: function () {
-    wx.showLoading();
+    wx.hideLoading();
     wx.navigateTo({
       url: '/pages/invite-success/invite-success?vip=' + this.data.vip + '&invitation_id=' + this.data.invitation_id,
     })

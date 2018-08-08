@@ -28,7 +28,7 @@
             </view>
             
         </view>
-        <block wx:if="{{invitation_note}}">
+        <block wx:if="{{invitation.invitation_note !==''}}">
         <view class="weui-form-preview">
             <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
@@ -37,7 +37,7 @@
             </view>
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item datetime">
-                    {{invitation_note}}
+                    {{invitation.invitation_note}}
                 </view>
             </view>
             
