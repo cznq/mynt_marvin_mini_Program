@@ -59,7 +59,8 @@ Page({
           })
         },
         success: res => {
-          if(res.data.msg == 'success') {
+          console.log(res.data.sub_code);
+          if(res.data.sub_code == 0) {
             wx.redirectTo({
               url: '/pages/invite-accept/invite-accept?invitation_id=' + this.data.invitation_id +'&vip=' + this.data.vip,
             })

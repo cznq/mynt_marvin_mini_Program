@@ -177,7 +177,9 @@ Page({
                 sign_type: sign_type,
                 sign: sign,
                 union_id: app.globalData.xy_session,
-                data: ''
+                data: JSON.stringify({
+                  invitation_id: that.data.invitation_id
+                })
               },
               success: function (res) {
                 var data = JSON.parse(res.data);

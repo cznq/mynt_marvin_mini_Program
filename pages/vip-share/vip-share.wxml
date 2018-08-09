@@ -14,10 +14,8 @@
                     <label class="weui-form-preview__label intro">您好，请完成面部信息录入，以成为小觅智能楼宇服务的VIP用户。</label>
                 </view>
             </view>
-            
         </view>
         
-    
         <view class="weui-form-preview border-wide">
             <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
