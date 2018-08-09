@@ -3,6 +3,7 @@ var QQMapWX = require('utils/qqmap-wx-jssdk.min.js');
 App({
   globalData: {
     xy_session: null,
+    role: null,
     company_info: null,
     BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
     WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com'
@@ -44,11 +45,16 @@ App({
         })
       },
       success: res => {
+        console.log(res);
         if (res.data.sub_code == 0) {
           this.globalData.invite_auth = true;
           this.globalData.xy_session = res.data.result.union_id;
           wx.setStorageSync('xy_session', res.data.result.union_id);
-          wx.setStorageSync('invite_auth', true);
+          if (res.data.result.role !== 0) {
+            wx.setStorageSync('invite_auth', true);
+          } else {
+            wx.setStorageSync('invite_auth', false);
+          }
         } else {
           wx.setStorageSync('invite_auth', false);
           wx.showModal({
@@ -63,6 +69,28 @@ App({
 
       }
     });
+  },
+
+  generateMap: function (address) {
+    var that = this;
+    var qqmapsdk = new QQMapWX({
+      key: 'CGVBZ-S2KHV-3CBPC-UP4JI-4N55F-7VBFU'
+    });
+    qqmapsdk.geocoder({
+      address: address,
+      success: function (res) {
+        that.setData({
+          latitude: res.result.location.lat,
+          longitude: res.result.location.lng
+        })
+      },
+      fail: function (res) {
+        console.log(res);
+      },
+      complete: function (res) {
+        console.log(res);
+      }
+    })
   }
 
 })

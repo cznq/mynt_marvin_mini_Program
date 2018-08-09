@@ -34,7 +34,7 @@ Page({
     } else if (app.Util.checkPassport(id_number)) {
       var id_type = 1;
     }
-    var phone_reg = /^1[3|4|5|7|8][0-9]{9}$/;
+    var phone_reg = /^1[3|4|5|6|7|8|9][0-9]{9}$/;
     if (phone_reg.test(phone) === false) {
       wx.showModal({
         content: '请输入正确的手机号',
@@ -91,7 +91,7 @@ Page({
         data: JSON.stringify({})
       },
       success: res => {
-        if (res.data.result.phone !== "" && res.data.result.id_number !== "") {
+        if (res.data.result.id_number !== "" && res.data.result.id_number !== null) {
           wx.redirectTo({
             url: '/pages/invite-accept/invite-accept?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip,
           })

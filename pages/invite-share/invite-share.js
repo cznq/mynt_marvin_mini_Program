@@ -1,5 +1,4 @@
 // pages/invite/invite.js
-var util = require('../../utils/util.js');
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
 const app = getApp();
 Page({
@@ -29,8 +28,6 @@ Page({
 
   },
 
-  Util: require('../../utils/util.js'),
-
   getInitation: function () {
     var that = this;
     console.log(that);
@@ -39,7 +36,7 @@ Page({
         error: "没有获取到邀请信息"
       })
     }
-    that.Util.network.POST({
+    app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'visitor',
@@ -54,7 +51,7 @@ Page({
         var appointment_time = invitation.appointment_time + 8 * 3600;
         that.setData({
           invitation: invitation,
-          appointment_time: that.Util.formatTime(appointment_time)
+          appointment_time: app.Util.formatTime(appointment_time)
         })
         that.generateMap();
       },

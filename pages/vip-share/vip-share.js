@@ -1,5 +1,4 @@
 // pages/invite/invite.js
-var util = require('../../utils/util.js');
 const app = getApp();
 Page({
 
@@ -24,22 +23,30 @@ Page({
 
   },
 
-  Util: require('../../utils/util.js'),
-
   getInitation: function () {
     var that = this;
-    that.Util.network.POST({
-      url: app.globalData.BASE_API_URL + "wechat/intapp/invitation",
+    if (that.data.invitation_id == undefined) {
+      that.setData({
+        error: "没有获取到邀请信息"
+      })
+    }
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
       params: {
-        xy_session: app.globalData.xy_session,
-        invitation_id: that.data.invitation_id
+        service: 'visitor',
+        method: 'get_invitation_info',
+        union_id: wx.getStorageSync('xy_session'),
+        data: JSON.stringify({
+          invitation_id: that.data.invitation_id
+        })
       },
       success: res => {
-        console.log(res.data);
         that.setData({
-          invitation: res.data
+          invitation: res.data.result
         })
-
+      },
+      fail: res => {
+        
       }
     })
   },

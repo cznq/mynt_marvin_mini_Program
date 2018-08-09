@@ -94,7 +94,11 @@ Page({
         that.setData({
           visitor: res.data.result
         })
-    
+        if (res.data.result.input_pic_url !== "" && res.data.result.input_pic_url !== null) {
+          wx.redirectTo({
+            url: '/pages/invite-success/invite-success?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip,
+          })
+        }
       }
     })
   },
@@ -193,7 +197,7 @@ Page({
         })
       }
     }
-    //setTimeout(takePhoto, 1000);
+    
   },
 
   startRecord: function () {

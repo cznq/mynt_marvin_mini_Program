@@ -1,5 +1,4 @@
 // pages/invite/invite.js
-var util = require('../../utils/util.js');
 const app = getApp();
 Page({
 
@@ -93,18 +92,16 @@ Page({
         })
       },
       success: res => {
-        console.log(res);
         if (that.data.invitation.visitor_id !== 0) {
           if (res.data.sub_code == 0) {
             that.setData({
               visitor: res.data.result
             })
-            if (res.data.result.phone == "" && res.data.result.id_number == "") {
+            if (res.data.result.id_number == "" || res.data.result.id_number == null) {
               wx.redirectTo({
                 url: '/pages/edit-info/edit-info?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip,
               })
-            }
-            if (res.data.result.input_pic_url == "") {
+            } else if (res.data.result.input_pic_url == "" || res.data.result.input_pic_url == null) {
               wx.redirectTo({
                 url: '/pages/invite-accept/invite-accept?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip,
               })

@@ -1,5 +1,4 @@
 // pages/invite/invite.js
-var util = require('../../utils/util.js');
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
 const app = getApp();
 Page({
@@ -31,8 +30,8 @@ Page({
     that.setData({
       xy_session: wx.getStorageSync('xy_session'),
       invite_auth: wx.getStorageSync('invite_auth'),
-      date: util.getDate(),
-      time: util.getTime()
+      date: app.Util.getDate(),
+      time: app.Util.getTime()
     })
     if(that.data.invite_auth==true){
       this.getCompany();
@@ -87,7 +86,6 @@ Page({
   },
 
   checkForm: function (e) {
-
     if (e.detail.value !== '' && e.currentTarget.id == 'i1') {
       this.setData({
         input1: true
@@ -106,10 +104,12 @@ Page({
   },
 
   inviteSubmit: function (e) {
-    var visit_time = e.detail.value.visit_time;
+    var visit_time = this.data.date + ' ' + this.data.time; 
     var visitor_name = e.detail.value.visitor_name;
     var mark = e.detail.value.mark;
     var visit_intro = e.detail.value.visit_intro;
+    var appointment_time = app.Util.datetoTime(visit_time);
+
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
@@ -121,7 +121,7 @@ Page({
           invitation_type: 0,
           introduction: visit_intro,
           note: mark,
-          appointment_time: new Date(visit_time).getTime() / 1000
+          appointment_time: appointment_time
         })
       },
       success: res => {

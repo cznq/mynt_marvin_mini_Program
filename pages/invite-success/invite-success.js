@@ -1,5 +1,4 @@
 // pages/invite/invite.js
-var util = require('../../utils/util.js');
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
 const app = getApp();
 Page({
@@ -41,7 +40,6 @@ Page({
     })
    
   },
-  Util: require('../../utils/util.js'),
 
   getInitation: function () {
     var that = this;
@@ -51,7 +49,7 @@ Page({
       })
     }
     var unionId = that.data.xy_session;
-    that.Util.network.POST({
+    app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'visitor',
@@ -79,7 +77,7 @@ Page({
         }
         that.setData({
           invitation: res.data.result,
-          appointment_time: that.Util.formatTime(res.data.result.appointment_time)
+          appointment_time: app.Util.formatTime(res.data.result.appointment_time)
         })
         this.generateMap();
         this.getVisitorinfo();
@@ -95,7 +93,7 @@ Page({
   getVisitorinfo: function () {
     var that = this;
     var unionId = that.data.xy_session;
-    that.Util.network.POST({
+    app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'visitor',
@@ -109,7 +107,7 @@ Page({
         that.setData({
           visitor: res.data.result,
         })
-        if (res.data.result.input_pic_url == "") {
+        if (res.data.result.input_pic_url == "" || res.data.result.input_pic_url == null) {
           that.setData({
             continuevideo: true,
           })
