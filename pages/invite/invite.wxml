@@ -23,7 +23,7 @@
             </view>
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
-                    <textarea class="weui-textarea" name="visit_intro" maxlength="400" id="i2" bindinput="checkForm" bindlinechange="autoHeight" placeholder="请输入邀请说明" placeholder-class="placeholder" style="height:{{inputHeight1}}px"></textarea>
+                    <textarea class="weui-textarea" name="visit_intro" maxlength="800" id="i2" bindinput="checkForm" bindlinechange="autoHeight" placeholder="请输入邀请说明" placeholder-class="placeholder" style="height:{{inputHeight1}}px"></textarea>
                 </view>
             </view>
         </view>
@@ -35,7 +35,7 @@
             </view>
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
-                    <textarea class="weui-textarea" name="mark" maxlength="400" id="i3" placeholder="请输入备注内容（选填）" bindlinechange="autoHeight" placeholder-class="placeholder" style="height:{{inputHeight2}}px"></textarea>
+                    <textarea class="weui-textarea" name="mark" maxlength="800" id="i3" placeholder="请输入备注内容（选填）" bindlinechange="autoHeight" placeholder-class="placeholder" style="height:{{inputHeight2}}px"></textarea>
                 </view>
             </view>
             
@@ -46,7 +46,7 @@
                     <label class="weui-form-preview__label">到访时间</label>
                 </view>
             </view>
-            <view class="weui-form-preview__bd">
+            <view class="weui-form-preview__bd time">
                 <view class="weui-form-preview__item">
                     <input class="weui-input" name="visit_time" value="{{date}} {{time}}" hidden></input>
                     <picker mode="date" bindchange="bindDateChange">
@@ -65,9 +65,9 @@
                     <label class="weui-form-preview__label">公司地址</label>
                 </view>
             </view>
-            <view class="weui-form-preview__bd">
+            <view class="weui-form-preview__bd address">
                 <view class="weui-form-preview__item">
-                     {{meminfo.address}}
+                     {{cmpinfo.address}}
                 </view>
             </view>
             

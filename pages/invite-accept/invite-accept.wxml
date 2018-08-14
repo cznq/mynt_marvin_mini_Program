@@ -8,9 +8,8 @@
     <camera device-position="front" flash="off" binderror="error" style="width: {{width}}; height: {{height}};margin: 0 auto;position:relative;">
       <cover-image class="circle" src="../../images/circle_2.png" wx:if="{{iphonex}}"></cover-image>
       <cover-image class="circle" src="../../images/circle_3.png" wx:else style="width: {{width}}; height: {{height}}"></cover-image>
-      <!--<cover-image class="{{animationData}}" src="../../images/line.png"></cover-image>-->
     </camera>
-    
+    <canvas canvas-id='attendCanvasId'></canvas>
     <view class="tips-title">如何录入面部信息</view>
     <view class="tips-intro">首先，将面孔放在相机取景框内并点击开始录入。然后，上下点头，左右摇头，以保证能够录入面部各个角度。录入完成后，点击完成录入</view>
     <view class="step-skip" bindtap='skipVedio'>跳过 <image src="../../images/arrow.png"></image></view>

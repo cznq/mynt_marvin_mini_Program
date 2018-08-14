@@ -5,8 +5,14 @@ App({
     xy_session: null,
     role: null,
     company_info: null,
+    latitude: null,
+    longitude: null,
     BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
     WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com'
+  },
+
+  data: {
+
   },
 
   onLaunch: function () {
@@ -71,24 +77,43 @@ App({
     });
   },
 
-  generateMap: function (address) {
+  //获取访客信息
+  getVisitorinfo: function () {
     var that = this;
-    var qqmapsdk = new QQMapWX({
-      key: 'CGVBZ-S2KHV-3CBPC-UP4JI-4N55F-7VBFU'
-    });
-    qqmapsdk.geocoder({
-      address: address,
-      success: function (res) {
-        that.setData({
-          latitude: res.result.location.lat,
-          longitude: res.result.location.lng
+    var unionId = wx.getStorageSync('xy_session');
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'visitor',
+        method: 'get_visitor_info',
+        union_id: unionId,
+        data: JSON.stringify({})
+      },
+      success: res => {
+        return res.data.result;
+      }
+    })
+  },
+
+  //获取邀请信息
+  getInitation: function (invitation_id) {
+    var that = this;
+    var unionId = wx.getStorageSync('xy_session');
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'visitor',
+        method: 'get_invitation_info',
+        union_id: unionId,
+        data: JSON.stringify({
+          invitation_id: invitation_id
         })
       },
-      fail: function (res) {
-        console.log(res);
+      success: res => {
+        return res.result;
       },
-      complete: function (res) {
-        console.log(res);
+      fail: res => {
+        return "没有获取到邀请信息";
       }
     })
   }

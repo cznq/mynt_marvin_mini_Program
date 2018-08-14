@@ -69,7 +69,6 @@ Page({
         })
       },
       success: res => {
-        console.log(res.data.result);
         that.setData({
           invitation: res.data.result,
         })

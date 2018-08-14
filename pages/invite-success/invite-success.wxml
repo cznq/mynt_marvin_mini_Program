@@ -1,3 +1,4 @@
+<import src="../../utils/wxParse/wxParse.wxml"/>
 <block wx:if="{{invitation}}">
 <view class="page" style="background-image: url('../../images/accept-bg.png');background-repeat: no-repeat;background-position: 250px 100px;background-color: #38c560;">
     <view class="page_hd">
@@ -17,7 +18,7 @@
     </view>   
     <view class="page__bd">
       <view class="accept" wx:if="{{vip !== 'yes'}}"><image src="../../images/accept.png"></image></view>
-        <view class="weui-form-preview">
+        <view class="weui-form-preview first">
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
                     尊敬的{{invitation.visitor_name}}先生/女士:
@@ -33,7 +34,9 @@
             <block wx:if="{{vip !== 'yes'}}">
             <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
-                    <label class="weui-form-preview__label intro">{{invitation.invitation_intro}} </label>
+                    <label class="weui-form-preview__label intro">
+                    <template is="wxParse" data="{{wxParseData:invitation_intro.nodes}}"/> 
+                    </label>
                 </view>
             </view>
             </block>
@@ -48,13 +51,12 @@
             </view>
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item mark">
-                    {{invitation.invitation_note}}
+                    <template is="wxParse" data="{{wxParseData:invitation_note.nodes}}"/>
                 </view>
             </view>
-            
         </view>
         </block>
-        <view class="weui-form-preview wide">
+        <view class="weui-form-preview">
             <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
                     <label class="weui-form-preview__label">到访时间</label>
@@ -68,11 +70,12 @@
             
         </view>
         
-        <view class="weui-form-preview wide last">
-            <view class="weui-form-preview__bd">
-                <view class="weui-form-preview__item address">
+        <view class="weui-form-preview last">
+            <view class="weui-form-preview__bd address">
+                <view class="weui-form-preview__item">
                      {{invitation.address}}
                 </view>
+                <view class="address-first"></view>
             </view>            
         </view>
         
@@ -83,7 +86,7 @@
             </map>
           </view>
         </view>
-        <view class="weui-form-preview wide">
+        <view class="weui-form-preview">
           <view class="weui-form-preview__bd">
             <view class="weui-flex">
               <view class="weui-flex__item">
@@ -97,7 +100,7 @@
             </view>
           </view>
         </view>
-        <view class="weui-form-preview wide">
+        <view class="weui-form-preview">
             <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
                     <label class="weui-form-preview__label">公司信息</label>
@@ -110,7 +113,7 @@
             </view>
             
         </view>
-        <view class="weui-form-preview wide last">
+        <view class="weui-form-preview last">
             <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
                     <label class="weui-form-preview__label">来访说明</label>

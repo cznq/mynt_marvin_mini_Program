@@ -1,4 +1,5 @@
 /* pages/invite/invite.wxss */
+@import "../../utils/wxParse/wxParse.wxss";
 page {
   background-color: #38c560;
   height:100%;
@@ -56,7 +57,7 @@ button.continue {
   margin-bottom: 10px;
 }
 .page__bd {
-  padding: 20px 15px 5px;
+  padding: 20px 0 0;
   border-radius: 5px;
   background-color: #fff;
   position: relative;
@@ -80,6 +81,10 @@ button.continue {
   font-weight: 200;
   font-size: 17px;
 }
+.weui-form-preview.first:after {
+  left: 15px;
+  right: 15px;
+}
 .weui-form-preview__bd {
   font-weight: 600;
   font-size: 20px;
@@ -97,6 +102,7 @@ button.continue {
 }
 .mark {
   font-size: 13px;
+  padding-bottom: 10px;
 }
 .datetime.huise {
   color: rgba(30,30,30,.5);
@@ -106,6 +112,10 @@ button.continue {
   font-size: 16px;
   font-weight: 400;
   height: 100px;
+}
+.weui-form-preview {
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .weui-form-preview__hd:after {
   left: 0;
@@ -144,6 +154,13 @@ button.continue {
 .address {
   font-size: 17px;
   font-weight: bold;
+  padding-bottom: 0;
+}
+.address-first {
+  font-size: 13px;
+  font-weight: 300;
+  margin-top: 5px;
+  line-height: 1.4;
 }
 .weui-btn:after {
   border-radius: 0;
@@ -153,10 +170,6 @@ button.continue {
   padding-bottom: 10px;
   margin-left: -15px;
   margin-right: -15px;
-}
-.weui-form-preview.wide:after {
-  left: -15px;
-  right: -15px;
 }
 .vip-intro {
   text-align: center;

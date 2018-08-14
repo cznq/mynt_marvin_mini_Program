@@ -1,4 +1,5 @@
 /* pages/invite/invite.wxss */
+@import "../../utils/wxParse/wxParse.wxss";
 .page {
   padding: 15px 15px 85px 15px;
 }
@@ -13,7 +14,7 @@
   margin-bottom: 10px;
 }
 .page__bd {
-  padding: 20px 15px 0;
+  padding: 20px 0 0;
 }
 .weui-form-preview__hd, .weui-form-preview__bd {
   padding-left: 0;
@@ -29,6 +30,7 @@
 .weui-form-preview__bd {
   font-weight: 600;
   font-size: 20px;
+  padding-top: 5px;
 }
 .weui-form-preview__label.intro {
   color: #1e1e1e;
@@ -46,6 +48,14 @@
   font-weight: 400;
   height: 100px;
 }
+.weui-form-preview {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.weui-form-preview.short:after {
+  left: 15px;
+  right: 15px;
+}
 .weui-form-preview__hd:after {
   left: 0;
   border: none;
@@ -57,8 +67,9 @@
   text-align: inherit;
   text-align-last: initial;
 }
-.weui-form-preview__bd .address {
+.weui-form-preview__bd.address {
   font-size: 17px;
+  padding-bottom: 0;
 }
 .weui-input {
   height: 2em;

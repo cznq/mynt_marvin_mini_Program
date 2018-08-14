@@ -11,7 +11,7 @@ Page({
     invite_auth: null,
     latitude: null,
     longitude: null,
-    meminfo: null,
+    cmpinfo: null,
     invite_auth: null,
     date: "",
     time: "",
@@ -55,7 +55,7 @@ Page({
         console.log(res);
         if (res.data.result) {
           that.setData({
-            meminfo: res.data.result
+            cmpinfo: res.data.result
           })
         }
         that.generateMap(res.data.result.address);
@@ -106,10 +106,10 @@ Page({
   inviteSubmit: function (e) {
     var visit_time = this.data.date + ' ' + this.data.time; 
     var visitor_name = e.detail.value.visitor_name;
-    var mark = e.detail.value.mark;
-    var visit_intro = e.detail.value.visit_intro;
+    var mark = app.Util.decodeTextAreaString(e.detail.value.mark);
+    var visit_intro = app.Util.decodeTextAreaString(e.detail.value.visit_intro);
     var appointment_time = app.Util.datetoTime(visit_time);
-
+    console.log(visit_intro);
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {

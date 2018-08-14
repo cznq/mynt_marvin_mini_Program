@@ -1,8 +1,9 @@
+<import src="../../utils/wxParse/wxParse.wxml"/>
 <block wx:if="{{invitation}}">
 <view class="page">
    <view class="shadw">
     <view class="page__bd">
-        <view class="weui-form-preview">
+        <view class="weui-form-preview short">
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
                     尊敬的{{invitation.visitor_name}}先生/女士:
@@ -10,7 +11,9 @@
             </view>
             <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
-                    <label class="weui-form-preview__label intro">{{invitation.invitation_intro}} </label>
+                    <label class="weui-form-preview__label intro">
+                    <template is="wxParse" data="{{wxParseData:invitation_intro.nodes}}"/>
+                    </label>
                 </view>
             </view>
             
@@ -37,15 +40,15 @@
             </view>
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item datetime">
-                    {{invitation.invitation_note}}
+                    <template is="wxParse" data="{{wxParseData:invitation_note.nodes}}"/>
                 </view>
             </view>
             
         </view>
         </block>
-        <view class="weui-form-previewm last">
-            <view class="weui-form-preview__bd">
-                <view class="weui-form-preview__item address">
+        <view class="weui-form-preview last">
+            <view class="weui-form-preview__bd address">
+                <view class="weui-form-preview__item">
                      {{invitation.address}} 
                 </view>
             </view>

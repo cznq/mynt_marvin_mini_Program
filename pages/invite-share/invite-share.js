@@ -1,11 +1,13 @@
 // pages/invite/invite.js
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
+var WxParse = require('../../utils/wxParse/wxParse.js');
 const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
+
   data: {
     latitude: null,
     longitude: null,
@@ -20,12 +22,10 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    //console.log(options);
     that.setData({
       invitation_id: options.invitation_id
     })
     this.getInitation();
-
   },
 
   getInitation: function () {
@@ -53,6 +53,8 @@ Page({
           invitation: invitation,
           appointment_time: app.Util.formatTime(appointment_time)
         })
+        WxParse.wxParse('invitation_intro', 'html', invitation.invitation_intro, that, 5);
+        WxParse.wxParse('invitation_note', 'html', invitation.invitation_note, that, 5);
         that.generateMap();
       },
       fail: res => {
@@ -91,7 +93,6 @@ Page({
   onReady: function () {
     this.mapCtx = wx.createMapContext('myMap');
     this.mapCtx.moveToLocation();
-
   },
 
   openLocation: function () {

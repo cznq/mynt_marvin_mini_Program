@@ -1,5 +1,6 @@
 // pages/invite/invite.js
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
+var WxParse = require('../../utils/wxParse/wxParse.js');
 const app = getApp();
 Page({
 
@@ -30,15 +31,12 @@ Page({
       vip: options.vip,
       xy_session: wx.getStorageSync('xy_session')
     })
-    this.getInitation();
   },
 
   goShot: function () {
-    
     wx.navigateTo({
       url: '/pages/invite-accept/invite-accept?vip=' + this.data.vip + '&invitation_id=' + this.data.invitation_id,
     })
-   
   },
 
   getInitation: function () {
@@ -60,8 +58,6 @@ Page({
         })
       },
       success: res => {
-        console.log(res.data.result);
-        
         if (res.data.result.role==3){
           that.setData({
             role: "管理员"
@@ -79,6 +75,8 @@ Page({
           invitation: res.data.result,
           appointment_time: app.Util.formatTime(res.data.result.appointment_time)
         })
+        WxParse.wxParse('invitation_intro', 'html', res.data.result.invitation_intro, that, 5);
+        WxParse.wxParse('invitation_note', 'html', res.data.result.invitation_note, that, 5);
         this.generateMap();
         this.getVisitorinfo();
       },
@@ -123,7 +121,6 @@ Page({
     var that = this;
     that.mapCtx = wx.createMapContext('myMap');
     that.mapCtx.moveToLocation();
-
   },
 
   openLocation: function () {
@@ -153,7 +150,6 @@ Page({
           latitude: res.result.location.lat,
           longitude: res.result.location.lng
         })
-
       },
       fail: function (res) {
         console.log(res);

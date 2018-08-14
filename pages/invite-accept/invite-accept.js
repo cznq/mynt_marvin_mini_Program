@@ -11,8 +11,8 @@ Page({
     width: '0',
     height: '250px',
     iphonex: false,
-    invitation: null,
-    visitor: null
+    visitor: null,
+    face: true
   },
 
   onLoad: function (options) {
@@ -45,35 +45,11 @@ Page({
             width: '250px'
           })
         }
-
       },
       fail: function () {
         that.setData({
           width: '250px'
         })
-      }
-    })
-  },
-
-  getInitation: function () {
-    var that = this;
-    var invitationId = that.data.invitation_id;
-    var unionId = app.globalData.xy_session;
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'visitor',
-        method: 'get_invitation_info',
-        union_id: unionId,
-        data: JSON.stringify({
-          invitation_id: invitationId,
-        })
-      },
-      success: res => {
-        that.setData({
-          invitation: res.data.result,
-        })
-        that.getVisitorinfo();
       }
     })
   },
@@ -141,65 +117,96 @@ Page({
       } else {
         clearInterval(int);
       }
+      if(that.data.face == true){
+        that.takePhoto();
+      }
     }, 1000);
 
   },
 
   takePhoto: function() {
-    var avatar = null;
-    for(var i=0;i<5;i++){
-      if(avatar == null){
-        var that = this;
-        that.ctx.takePhoto({
-          quality: 'low',
-          success: (res) => {
-            console.log(res.tempImagePath);
-            var service = 'visitor';
-            var method = 'upload_face_pic';
-            var app_id = '65effd5a42fd1870b2c7c5343640e9a8';
-            var timestamp = Math.round(new Date().getTime() / 1000 - 28800);
-            var sign_type = 'MD5';
-            var stringA = 'app_id=' + app_id + '&data=&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
-            var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
-            wx.uploadFile({
-              url: app.globalData.BASE_API_URL,
-              method: 'POST',
-              filePath: res.tempImagePath,
-              header: {
-                'content-type': 'multipart/form-data'
-              },
-              name: 'face_pic',
-              formData: {
-                service: service,
-                method: method,
-                app_id: app_id,
-                timestamp: timestamp,
-                sign_type: sign_type,
-                sign: sign,
-                union_id: app.globalData.xy_session,
-                data: JSON.stringify({
-                  invitation_id: that.data.invitation_id
-                })
-              },
-              success: function (res) {
-                var data = JSON.parse(res.data);
-                console.log(data);
-                if (data.sub_code == 0){
-                  avatar = res.data.url;
-                  wx.showLoading({ title: '人脸上传中' });
-                  that.stopRecord();
-                }
-              },
-              fail: function (r) {
-              }
-            })
-          },
-          fail: function() {
-          }
+    var that = this;
+    that.ctx.takePhoto({
+      quality: 'low',
+      success: (res) => {
+        that.setData({
+          face: false
         })
+        that.getCanvasImg(res.tempImagePath);
+      },
+      fail: function() {
       }
-    }
-    
+    })
+  },
+
+  //上传图片
+  uploadCanvasImg: function (canvasImg) {
+    var that = this;
+    var service = 'visitor';
+    var data = JSON.stringify({
+      invitation_id: that.data.invitation_id
+    });
+    var method = 'upload_face_pic';
+    var app_id = '65effd5a42fd1870b2c7c5343640e9a8';
+    var timestamp = Math.round(new Date().getTime() / 1000 - 28800);
+    var sign_type = 'MD5';
+    var stringA = 'app_id=' + app_id + '&data=' + data + '&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
+    var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
+    wx.uploadFile({
+      url: app.globalData.BASE_API_URL,
+      method: 'POST',
+      filePath: canvasImg,
+      header: {
+        'content-type': 'multipart/form-data'
+      },
+      name: 'face_pic',
+      formData: {
+        service: service,
+        method: method,
+        app_id: app_id,
+        timestamp: timestamp,
+        sign_type: sign_type,
+        sign: sign,
+        union_id: app.globalData.xy_session,
+        data: data
+      },
+      success: function (res) {
+        console.log(res);
+        var data = JSON.parse(res.data);
+        if (data.sub_code == 0) {
+          wx.showLoading({ title: '人脸上传中' });
+          that.stopRecord();
+        } else {
+          that.setData({
+            face: true
+          })
+        }
+      },
+      fail: function (r) {
+      }
+    })
+  },
+
+  //压缩并获取图片
+  getCanvasImg: function (tempFilePath) {
+    var that = this;
+    const ctx = wx.createCanvasContext('attendCanvasId');
+    console.log('yasuo');
+    ctx.drawImage(tempFilePath, 0, 0, 300, 300);
+      ctx.draw(true, function () {
+        wx.canvasToTempFilePath({
+          destWidth: 300,
+          destHeight: 300,
+          canvasId: 'attendCanvasId',
+          success: function success(res) {
+            console.log(res);
+            that.uploadCanvasImg(res.tempFilePath);
+          }, fail: function (e) {
+            console.log(e);
+            that.getCanvasImg(tempFilePath);
+          }
+        });
+      });
   },
 
   startRecord: function () {
@@ -244,7 +251,7 @@ Page({
 
   onShow: function () {
     var that = this;
-    that.getInitation();
+    that.getVisitorinfo();
     if (wx.createCameraContext()) {
       that.ctx = wx.createCameraContext()
     } else {

@@ -15,7 +15,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    //console.log(options);
     that.setData({
       invitation_id: options.invitation_id
     })
