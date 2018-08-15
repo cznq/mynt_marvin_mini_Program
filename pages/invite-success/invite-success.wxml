@@ -1,4 +1,3 @@
-<import src="../../utils/wxParse/wxParse.wxml"/>
 <block wx:if="{{invitation}}">
 <view class="page" style="background-image: url('../../images/accept-bg.png');background-repeat: no-repeat;background-position: 250px 100px;background-color: #38c560;">
     <view class="page_hd">
@@ -35,7 +34,7 @@
             <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
                     <label class="weui-form-preview__label intro">
-                    <template is="wxParse" data="{{wxParseData:invitation_intro.nodes}}"/> 
+                    <rich-text nodes="{{invitation.invitation_intro}}"></rich-text>
                     </label>
                 </view>
             </view>
@@ -51,7 +50,7 @@
             </view>
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item mark">
-                    <template is="wxParse" data="{{wxParseData:invitation_note.nodes}}"/>
+                  <rich-text nodes="{{invitation.invitation_note}}"></rich-text>
                 </view>
             </view>
         </view>
@@ -108,10 +107,9 @@
             </view>
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item datetime huise">
-                    {{invitation.introduction}}
+                  <rich-text nodes="{{invitation.introduction}}"></rich-text>
                 </view>
             </view>
-            
         </view>
         <view class="weui-form-preview last">
             <view class="weui-form-preview__hd">
@@ -124,7 +122,6 @@
                    您可直接在公司楼下从楼宇服务机器人处领取电梯卡片上楼。建议提前录入面部信息，录入后，在您到达电梯口时，机器人可主动为您服务。
                 </view>
             </view>
-            
         </view>
         </block>
         <block wx:else>

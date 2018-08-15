@@ -1,5 +1,4 @@
 /* pages/invite/invite.wxss */
-@import "../../utils/wxParse/wxParse.wxss";
 page {
   background-color: #38c560;
   height:100%;

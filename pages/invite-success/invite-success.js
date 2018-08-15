@@ -1,6 +1,5 @@
 // pages/invite/invite.js
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
-var WxParse = require('../../utils/wxParse/wxParse.js');
 const app = getApp();
 Page({
 
@@ -75,8 +74,6 @@ Page({
           invitation: res.data.result,
           appointment_time: app.Util.formatTime(res.data.result.appointment_time)
         })
-        WxParse.wxParse('invitation_intro', 'html', res.data.result.invitation_intro, that, 5);
-        WxParse.wxParse('invitation_note', 'html', res.data.result.invitation_note, that, 5);
         this.generateMap();
         this.getVisitorinfo();
       },

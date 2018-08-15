@@ -1,5 +1,4 @@
 /* pages/invite/invite.wxss */
-@import "../../utils/wxParse/wxParse.wxss";
 .page {
   padding: 15px 15px 85px 15px;
 }

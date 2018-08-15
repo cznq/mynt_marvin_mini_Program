@@ -16,10 +16,10 @@ Page({
     date: "",
     time: "",
     formready: false,
+    visit_intro: "",
+    mark: "",
     input1: false,
-    input2: false,
-    inputHeight1: 30,
-    inputHeight2: 30
+    input2: false
   },
 
   /**
@@ -86,6 +86,7 @@ Page({
   },
 
   checkForm: function (e) {
+    var val = app.Util.filterEmoji(e.detail.value);
     if (e.detail.value !== '' && e.currentTarget.id == 'i1') {
       this.setData({
         input1: true
@@ -93,7 +94,13 @@ Page({
     }
     if (e.detail.value !== '' && e.currentTarget.id == 'i2') {
       this.setData({
-        input2: true
+        input2: true,
+        visit_intro: e.detail.value
+      });
+    }
+    if (e.detail.value !== '' && e.currentTarget.id == 'i3') {
+      this.setData({
+        mark: e.detail.value
       });
     }
     if (this.data.input1 && this.data.input2) {
@@ -101,15 +108,23 @@ Page({
         formready: true
       });
     }
+    return val;
   },
 
   inviteSubmit: function (e) {
     var visit_time = this.data.date + ' ' + this.data.time; 
     var visitor_name = e.detail.value.visitor_name;
-    var mark = app.Util.decodeTextAreaString(e.detail.value.mark);
-    var visit_intro = app.Util.decodeTextAreaString(e.detail.value.visit_intro);
+    var mark = app.Util.decodeTextAreaString(this.data.mark);
+    var visit_intro = app.Util.decodeTextAreaString(this.data.visit_intro);
     var appointment_time = app.Util.datetoTime(visit_time);
-    console.log(visit_intro);
+    if (visitor_name == "" || visit_intro == "" ) {
+      wx.showModal({
+        content: '请填写被邀请人或邀请说明',
+        showCancel: false,
+        success: function (res) {}
+      })
+      return;
+    }
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
@@ -130,8 +145,16 @@ Page({
           wx.redirectTo({
             url: '/pages/invite-share/invite-share?invitation_id=' + res.data.result.invitation_id,
           })
+        }else{
+          wx.showModal({
+            content: '提交失败',
+            showCancel: false,
+            success: function (res) {
+
+            }
+          })
         }
-      }
+      },
     })
   },
 
@@ -147,20 +170,6 @@ Page({
     })
   },
 
-  autoHeight: function (e) {
-    if (e.detail.lineCount >= 1) {
-      if (e.target.id == 'i2') {
-        this.setData({
-          inputHeight1: e.detail.height + 19
-        })
-      } else if (e.target.id == 'i3') {
-        this.setData({
-          inputHeight2: e.detail.height + 19
-        })
-      }
-    }
-
-  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

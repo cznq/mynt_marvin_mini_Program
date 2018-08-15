@@ -85,6 +85,11 @@ var md5 = require('md5.js');
     return result;
   }
 
+  //去除emoji表情输入
+  function filterEmoji (str) {
+    return str.replace(/\ud83c[\udf00-\udfff]|\ud83d[\udc00-\ude4f]|\ud83d[\ude80-\udeff]/g, "");
+  }
+
   // 复制到剪贴板
   function setClipboard(text) {
     wx.setClipboardData({
@@ -201,4 +206,6 @@ var md5 = require('md5.js');
   module.exports.checkPassport = checkPassport;
   module.exports.datetoTime = datetoTime;
   module.exports.decodeTextAreaString = decodeTextAreaString;
+  module.exports.filterEmoji = filterEmoji;
+  
 })();

@@ -1,6 +1,5 @@
 // pages/invite/invite.js
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
-var WxParse = require('../../utils/wxParse/wxParse.js');
 const app = getApp();
 Page({
 
@@ -53,8 +52,6 @@ Page({
           invitation: invitation,
           appointment_time: app.Util.formatTime(appointment_time)
         })
-        WxParse.wxParse('invitation_intro', 'html', invitation.invitation_intro, that, 5);
-        WxParse.wxParse('invitation_note', 'html', invitation.invitation_note, that, 5);
         that.generateMap();
       },
       fail: res => {
@@ -148,7 +145,7 @@ Page({
       success: function (res) {
         // 转发成功
         wx.navigateBack({
-          delta: -1
+          delta: 1
         })
       },
       fail: function (res) {
