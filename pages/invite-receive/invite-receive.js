@@ -29,7 +29,6 @@ Page({
       vip: options.vip,
       xy_session: wx.getStorageSync('xy_session')
     })
-    that.getInitation(); 
     that.viewInvitation();
   },
 
@@ -114,6 +113,10 @@ Page({
       }
 
     })
+  },
+
+  onShow: function () {
+    this.getInitation(); 
   }
 
 })
