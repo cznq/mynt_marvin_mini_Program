@@ -7,7 +7,7 @@ Page({
    */
   data: {
     xy_session: null,
-    invite_auth: null,
+    inviteVip_auth: null,
     formready: false,
     input1: false,
     error: ""
@@ -17,13 +17,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      invite_auth: app.globalData.invite_auth
-    })
+    var that = this;
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function (res) {
+        that.checkInviteAuth();
+      })
+    } else {
+      that.checkInviteAuth();
+    }
+
+  },
+
+  checkInviteAuth: function() {
+    var inviteVip_auth = wx.getStorageSync('invite_auth');
+    if (inviteVip_auth == false) {
+      wx.showModal({
+        title: '你没有邀请权限',
+        content: '请先加入成为公司管理员，才能获得邀请权限',
+        showCancel: false,
+        success: function (res) {}
+      })
+    }
   },
 
   checkForm: function (e) {
-
     if (e.detail.value !== '' && e.currentTarget.id == 's1') {
       this.setData({
         input1: true
@@ -54,7 +71,6 @@ Page({
         })
       },
       success: res => {
-        console.log(res);
         wx.redirectTo({
           url: '/pages/vip-share/vip-share?invitation_id=' + res.data.result.invitation_id,
         })
@@ -63,28 +79,18 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  openLocation: function () {
-
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+    wx.removeStorageSync('xy_session');
+    var that = this;
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function (res) {
+        that.checkInviteAuth();
+      })
+    } else {
+      that.checkInviteAuth();
+    }
   }
 
 })

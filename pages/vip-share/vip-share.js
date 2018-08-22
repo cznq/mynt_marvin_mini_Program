@@ -18,7 +18,14 @@ Page({
     that.setData({
       invitation_id: options.invitation_id
     })
-    this.getInitation();
+
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function (res) {
+        that.getInitation();
+      })
+    } else {
+      that.getInitation();
+    }
 
   },
 
@@ -44,56 +51,8 @@ Page({
           invitation: res.data.result
         })
       },
-      fail: res => {
-        
-      }
+      fail: res => {}
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  openLocation: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
   },
 
   /**

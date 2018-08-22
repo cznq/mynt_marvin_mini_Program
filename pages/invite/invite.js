@@ -28,15 +28,30 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.setData({
-      xy_session: wx.getStorageSync('xy_session'),
-      invite_auth: wx.getStorageSync('invite_auth'),
       date: app.Util.getDate(),
       time: app.Util.getTime()
     })
-    if(that.data.invite_auth==true){
-      this.getCompany();
-    }
     
+  },
+
+  setDataRequest: function () {
+    var that = this;
+    that.setData({
+      xy_session: wx.getStorageSync('xy_session'),
+      invite_auth: wx.getStorageSync('invite_auth')
+    })
+    if (that.data.invite_auth == true) {
+      that.getCompany();
+    } else {
+      wx.showModal({
+        title: '你没有邀请权限',
+        content: '请先加入成为公司员工，才能获得邀请权限',
+        showCancel: false,
+        success: function (res) {
+
+        }
+      })
+    }
   },
 
   getCompany: function () {
@@ -47,9 +62,7 @@ Page({
         service: 'company',
         method: 'get_info',
         union_id: wx.getStorageSync('xy_session'),
-        data: JSON.stringify({
-
-        })
+        data: JSON.stringify({})
       },
       success: res => {
         console.log(res);
@@ -190,15 +203,34 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
-
+    wx.removeStorageSync('xy_session');
+    var that = this;
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function (res) {
+        that.setDataRequest();
+      })
+    } else {
+      that.setDataRequest();
+    }
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.onload();
+    wx.removeStorageSync('xy_session');
+    var that = this;
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function (res) {
+        that.setDataRequest();
+      })
+    } else {
+      that.setDataRequest();
+    }
+  },
+
+  onHide: function() {
+    //wx.removeStorageSync('xy_session');
   }
 
 })

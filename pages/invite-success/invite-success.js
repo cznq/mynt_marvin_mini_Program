@@ -27,8 +27,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       invitation_id: options.invitation_id,
-      vip: options.vip,
-      xy_session: wx.getStorageSync('xy_session')
+      vip: options.vip
     })
   },
 
@@ -45,7 +44,7 @@ Page({
         error: "没有获取到邀请信息"
       })
     }
-    var unionId = that.data.xy_session;
+    var unionId = wx.getStorageSync('xy_session');
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
@@ -87,16 +86,14 @@ Page({
 
   getVisitorinfo: function () {
     var that = this;
-    var unionId = that.data.xy_session;
+    var unionId = wx.getStorageSync('xy_session');
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'visitor',
         method: 'get_visitor_info',
         union_id: unionId,
-        data: JSON.stringify({
-
-        })
+        data: JSON.stringify({})
       },
       success: res => {
         that.setData({
@@ -132,7 +129,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getInitation();
+    var that = this;
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function (res) {
+        that.getInitation();
+      })
+    } else {
+      that.getInitation();
+    }
+
   },
 
   generateMap: function () {
@@ -162,33 +167,6 @@ Page({
    */
   onHide: function () {
     app.onLaunch();
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function (res) {
-    
   }
+
 })

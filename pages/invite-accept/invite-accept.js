@@ -20,8 +20,7 @@ Page({
     if (options.vip !== "yes") { options.vip = null }
     that.setData({
       invitation_id: options.invitation_id,
-      vip: options.vip,
-      xy_session: wx.getStorageSync('xy_session')
+      vip: options.vip
     })
     wx.getSystemInfo({
       success: function (res) {
@@ -167,7 +166,7 @@ Page({
         timestamp: timestamp,
         sign_type: sign_type,
         sign: sign,
-        union_id: app.globalData.xy_session,
+        union_id: that.data.xy_session,
         data: data
       },
       success: function (res) {
@@ -251,11 +250,24 @@ Page({
 
   onShow: function () {
     var that = this;
-    that.getVisitorinfo();
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function (res) {
+        that.setData({
+          xy_session: wx.getStorageSync('xy_session')
+        })
+        that.getVisitorinfo();
+      })
+    } else {
+      that.setData({
+        xy_session: wx.getStorageSync('xy_session')
+      })
+      that.getVisitorinfo();
+    }
+
     if (wx.createCameraContext()) {
       that.ctx = wx.createCameraContext()
     } else {
-      // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示  
+      // 如果希望用户在最新版本的客户端上体验您的小程序，提示  
       wx.showModal({
         title: '提示',
         content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'

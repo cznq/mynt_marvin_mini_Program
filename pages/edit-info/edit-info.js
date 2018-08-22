@@ -19,9 +19,9 @@ Page({
   onLoad: function (options) {
     this.setData({
       invitation_id: options.invitation_id,
-      vip: options.vip,
-      xy_session: wx.getStorageSync('xy_session')
+      vip: options.vip
     })
+    
   },
 
   editSubmit: function (e) {
@@ -59,7 +59,6 @@ Page({
           })
         },
         success: res => {
-          console.log(res.data.sub_code);
           if(res.data.sub_code == 0) {
             wx.redirectTo({
               url: '/pages/invite-accept/invite-accept?invitation_id=' + this.data.invitation_id +'&vip=' + this.data.vip,
@@ -92,6 +91,7 @@ Page({
         data: JSON.stringify({})
       },
       success: res => {
+        console.log(res);
         if (res.data.result.id_number !== "" && res.data.result.id_number !== null) {
           wx.redirectTo({
             url: '/pages/invite-accept/invite-accept?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip,
@@ -115,51 +115,25 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getVisitorinfo();
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+    var that = this;
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function (res) {
+        that.setData({
+          xy_session: wx.getStorageSync('xy_session')
+        })
+        that.getVisitorinfo();
+      })
+    } else {
+      that.setData({
+        xy_session: wx.getStorageSync('xy_session')
+      })
+      that.getVisitorinfo();
+    }
+    
   }
+
+
 })
