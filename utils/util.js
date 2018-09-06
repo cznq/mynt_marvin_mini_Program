@@ -102,6 +102,21 @@ var md5 = require('md5.js');
     })
   }
 
+  function isBlank(str) {
+    if (Object.prototype.toString.call(str) === '[object Undefined]') {//空
+      return true
+    } else if (
+      Object.prototype.toString.call(str) === '[object String]' ||
+      Object.prototype.toString.call(str) === '[object Array]') { //字条串或数组
+      return str.length == 0 ? true : false
+    } else if (Object.prototype.toString.call(str) === '[object Object]') {
+      return JSON.stringify(str) == '{}' ? true : false
+    } else {
+      return true
+    }
+
+  }
+
   function getDate() {
     var myDate = new Date();
     var year = myDate.getFullYear();    
@@ -191,6 +206,14 @@ var md5 = require('md5.js');
     }
   }
 
+  function checkNumber(num) {
+    if(isNaN(num)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   module.exports.network = {
     GET: GET,
     POST: POST
@@ -207,5 +230,6 @@ var md5 = require('md5.js');
   module.exports.datetoTime = datetoTime;
   module.exports.decodeTextAreaString = decodeTextAreaString;
   module.exports.filterEmoji = filterEmoji;
-  
+  module.exports.isBlank = isBlank;
+  module.exports.checkNumber = checkNumber;
 })();

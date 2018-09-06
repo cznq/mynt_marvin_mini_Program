@@ -1,0 +1,61 @@
+<!--pages/invite-apply/invite-apply.wxml-->
+<import src="../../templates/login.wxml" />
+
+<view class="page">
+  <view class="page__hd">
+    <view class="safe-info">
+      <image src="../../images/safe-info.png"></image>
+      <view>根据公安与物业的要求，我们需要对您的手机和身份信息进行备案。</view>
+    </view>
+  </view>
+  <view class="page__bd">
+    <form bindsubmit="applySubmit" report-submit="true">
+      <view class="weui-cells">
+        <view class="weui-cell">
+          <view class="weui-cell__hd">
+              <label class="weui-label name"><image src="../../images/invite_name@2x.png"  mode="widthFix"></image></label>
+          </view>
+          <view class="weui-cell__bd">
+              <input class="weui-input" placeholder-class="phcolor" name="visitor_name" type="text" value="{{visitorInfo.visitor_name}}" placeholder="请输入姓名" />
+          </view>
+            
+        </view>          
+        <view class="weui-cell">
+          <view class="weui-cell__hd">
+              <label class="weui-label phone"><image src="../../images/phone.png"  mode="widthFix"></image></label>
+          </view>
+          <view class="weui-cell__bd">
+              <input class="weui-input" placeholder-class="phcolor" name="phone" type="number" value="{{visitorInfo.phone}}" placeholder="请输入手机号" />
+          </view>
+            
+        </view>
+        <view class="weui-cell">
+          <view class="weui-cell__hd">
+            <label for="" class="weui-label idcard"><image src="../../images/idcard.png"  mode="widthFix"></image></label>
+          </view>
+          <view class="weui-cell__bd">
+            <input placeholder-class="phcolor" class="weui-input" name="id_number" type="idcard" value="{{visitorInfo.id_number}}" placeholder="请输入证件号（身份证号或护照号）" />
+          </view>
+        </view>
+        <view class="weui-cell"></view>
+      </view>
+      
+      <view class="apply-cause">
+       
+        <view class="weui-cell__hd">
+          <label for="" class="weui-label cause"><image src="../../images/invite_intro@2x.png" mode="widthFix"></image>请填写您的来访事由（选填）</label>
+        </view>
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" name="note" maxlength="800" bindinput="countFontNum" maxlength="200" ></textarea>
+          <view class="weui-textarea-counter"><span>{{noteCount}}</span>/200</view>
+        </view>
+      </view>
+     
+      <view class="page__ft">
+        <view>您的个人信息仅用于认证，我们将为您严格保密。</view>
+        <button form-type="submit" class="weui-btn weui-btn_primary" id="">下一步</button>
+      </view>
+    </form>
+  </view>
+</view>
+<template is="login" data="{{showModal: showModal}}"></template>

@@ -75,7 +75,7 @@ Page({
       key: 'CGVBZ-S2KHV-3CBPC-UP4JI-4N55F-7VBFU'
     });
     qqmapsdk.geocoder({
-      address: that.data.invitation.address,
+      address: that.data.invitation.company.address,
       success: function (res) {
         that.setData({
           latitude: res.result.location.lat,

@@ -3,31 +3,34 @@ var app = getApp()
 Page({
   data: {
     xy_session: null,
-    vedio: false,
     invitation_id: null,
+    visit_apply_id: null,
+    company_id: null,
     vip: null,
-    time: "00 : 00 : 00",
-    animationData: 'frame',
     width: '0',
     height: '250px',
     iphonex: false,
     visitor: null,
-    face: true
+    face: true,
+    tips_title: "如何录入面部信息",
+    showButton: true
   },
 
   onLoad: function (options) {
     var that = this;
+    console.log(options);
     if (options.vip !== "yes") { options.vip = null }
     that.setData({
+      vip: options.vip,
+      company_id: options.company_id,
       invitation_id: options.invitation_id,
-      vip: options.vip
-    })
+      visit_apply_id: options.visit_apply_id
+    });
+    
     wx.getSystemInfo({
       success: function (res) {
-        console.log(res);
         if (res.windowWidth !== 0) {
           if (res.model.indexOf('iPhone X') != -1) {
-            console.log(res.model);
             that.setData({
               iphonex: true,
               width: (res.windowWidth - 40) + 'px',
@@ -65,57 +68,26 @@ Page({
         data: JSON.stringify({})
       },
       success: res => {
-        console.log(res);
         that.setData({
           visitor: res.data.result
         })
         if (res.data.result.input_pic_url !== "" && res.data.result.input_pic_url !== null) {
-          wx.redirectTo({
-            url: '/pages/invite-success/invite-success?invitation_id=' + that.data.invitation_id + '&vip=' + that.data.vip,
-          })
+          that.finishRecordFace();
+        } else {
+          //that.startRecodeFace();
         }
       }
     })
   },
 
-  setTime: function () {
+  startRecodeFace: function () {
     var that = this;
     var int;
-    var hour, minute, second, hs, ms, ss;
-    hour = minute = second = 0;
+    that.setData({
+      tips_title: "请将人脸放入框内",
+      showButton: false
+    })
     int = setInterval(function () {
-      if (that.data.vedio) {
-        second = second + 1;
-        if (second >= 60) {
-          second = 0;
-          minute = minute + 1;
-        }
-        if (minute >= 60) {
-          minute = 0;
-          hour = hour + 1;
-        }
-        if (second < 10) {
-          ss = "0" + second;
-        } else {
-          ss = second;
-        }
-        if (minute < 10) {
-          ms = "0" + minute;
-        } else {
-          ms = minute;
-        }
-        if (hour < 10) {
-          hs = "0" + hour;
-        } else {
-          hs = hour;
-        }
-        var t = hs + " : " + ms + " : " + ss;
-        that.setData({
-          time: t
-        })
-      } else {
-        clearInterval(int);
-      }
       if(that.data.face == true){
         that.takePhoto();
       }
@@ -124,18 +96,29 @@ Page({
   },
 
   takePhoto: function() {
-    var that = this;
-    that.ctx.takePhoto({
+    console.log("start face !!!");
+    if (wx.createCameraContext()) {
+      this.ctx = wx.createCameraContext()
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+      })
+    }
+    this.ctx.takePhoto({
       quality: 'low',
       success: (res) => {
-        that.setData({
+        console.log(res);
+        this.setData({
           face: false
         })
-        that.getCanvasImg(res.tempImagePath);
+        this.getCanvasImg(res.tempImagePath);
       },
       fail: function() {
+        console.log("fail take Photo");
       }
     })
+    console.log("stops face");
   },
 
   //上传图片
@@ -143,7 +126,7 @@ Page({
     var that = this;
     var service = 'visitor';
     var data = JSON.stringify({
-      invitation_id: that.data.invitation_id
+      company_id: that.data.company_id
     });
     var method = 'upload_face_pic';
     var app_id = '65effd5a42fd1870b2c7c5343640e9a8';
@@ -170,11 +153,11 @@ Page({
         data: data
       },
       success: function (res) {
-        console.log(res);
+        console.log(res.data);
         var data = JSON.parse(res.data);
         if (data.sub_code == 0) {
           wx.showLoading({ title: '人脸上传中' });
-          that.stopRecord();
+          that.finishRecordFace();
         } else {
           that.setData({
             face: true
@@ -189,63 +172,38 @@ Page({
   //压缩并获取图片
   getCanvasImg: function (tempFilePath) {
     var that = this;
-    const ctx = wx.createCanvasContext('attendCanvasId');
-    console.log('yasuo');
-    ctx.drawImage(tempFilePath, 0, 0, 300, 300);
-      ctx.draw(true, function () {
-        wx.canvasToTempFilePath({
-          destWidth: 300,
-          destHeight: 300,
-          canvasId: 'attendCanvasId',
-          success: function success(res) {
-            console.log(res);
-            that.uploadCanvasImg(res.tempFilePath);
-          }, fail: function (e) {
-            console.log(e);
-            that.getCanvasImg(tempFilePath);
-          }
-        });
+    const ctxv = wx.createCanvasContext('attendCanvasId');
+    ctxv.drawImage(tempFilePath, 0, 0, 300, 300);
+    ctxv.draw(true, function () {
+      wx.canvasToTempFilePath({
+        destWidth: 300,
+        destHeight: 300,
+        canvasId: 'attendCanvasId',
+        success: function success(res) {
+          that.uploadCanvasImg(res.tempFilePath);
+        }, fail: function (e) {
+          that.getCanvasImg(tempFilePath);
+        }
       });
+    });
   },
 
-  startRecord: function () {
-    if (this.data.visitor.input_pic_url !== "") {
-      wx.showModal({
-        content: '您已经录过人脸信息',
-        showCancel: false
+  finishRecordFace: function () {
+    var that = this;
+    wx.hideLoading();
+    if (app.Util.checkNumber(that.data.invitation_id)) {
+      wx.navigateTo({
+        url: '/pages/invite-success/invite-success?vip=' + that.data.vip + '&invitation_id=' + that.data.invitation_id + '&company_id=' + that.data.company_id,
+      })
+    } else if (app.Util.checkNumber(that.data.visit_apply_id)) {
+      wx.navigateTo({
+        url: '/pages/invite-apply-result/invite-apply-result?visit_apply_id=' + that.data.visit_apply_id,
       })
     } else {
-      this.setData({
-        vedio: true
+      wx.navigateTo({
+        url: '/pages/take-card-success/take-card-success?company_id=' + that.data.company_id,
       })
-      this.setTime();
-      this.takePhoto();
     }
-  },
-
-  stopRecord: function () {
-    var that = this;
-    that.setData({
-      vedio: false
-    });
-    that.skipVedio();
-  },
-
-  skipVedio: function () {
-    wx.hideLoading();
-    wx.navigateTo({
-      url: '/pages/invite-success/invite-success?vip=' + this.data.vip + '&invitation_id=' + this.data.invitation_id,
-    })
-  },
-
-  goEditinfo: function () {
-    wx.navigateTo({
-      url: '/pages/edit-info/edit-info?vip=' + this.data.vip + '&invitation_id=' + this.data.invitation_id,
-    })
-  },
-
-  onReady: function () {
-
   },
 
   onShow: function () {
@@ -263,16 +221,10 @@ Page({
       })
       that.getVisitorinfo();
     }
+    
+  },
 
-    if (wx.createCameraContext()) {
-      that.ctx = wx.createCameraContext()
-    } else {
-      // 如果希望用户在最新版本的客户端上体验您的小程序，提示  
-      wx.showModal({
-        title: '提示',
-        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
-      })
-    }
+  onReady: function() {
     
   }
 

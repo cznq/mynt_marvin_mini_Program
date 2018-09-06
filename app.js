@@ -8,12 +8,14 @@ App({
     company_info: null,
     latitude: null,
     longitude: null,
-    BASE_API_URL: 'https://marvin-api.slightech.com/mini_program/api/',
-    WEB_VIEW_URL: 'https://marvin-official-account.slightech.com'
+    BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
+    WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com'
+    //BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
+    //WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com'
   },
 
   onLaunch: function () {
-    //this.checkLogin();
+    
   },
 
   Util: require('utils/util.js'),
@@ -27,7 +29,7 @@ App({
     }
   },
 
-  checkLogin: function () {
+  checkLogin() {
     var that = this;
     return new Promise(function (resolve, reject) {
       if (that.checkSession()) {
@@ -35,7 +37,7 @@ App({
       } else {
         wx.login({
           success: res => {
-            if (res.code) {      
+            if (res.code) {
               console.log("-----login-----");
               that.Util.network.POST({
                 url: that.globalData.BASE_API_URL,
@@ -47,9 +49,9 @@ App({
                   })
                 },
                 success: res => {
+                  console.log(res);
                   if (res.data.sub_code == 0) {
                     that.globalData.invite_auth = true;
-                    that.globalData.xy_session = res.data.result.union_id;
                     wx.setStorageSync('xy_session', res.data.result.union_id);
                     if (res.data.result.role !== 0) {
                       wx.setStorageSync('invite_auth', true);
@@ -70,7 +72,7 @@ App({
                 fail: res => {
                   console.log('fail');
                 }
-              }); 
+              });
 
             } else {
               console.log('获取用户登录态失败！' + res.errMsg);
@@ -78,50 +80,50 @@ App({
             }
           }
         })
-        
       }
     })
   },
 
-  //获取访客信息
-  getVisitorinfo: function () {
+  authorizeLogin(encryptedData, iv) {
     var that = this;
-    var unionId = wx.getStorageSync('xy_session');
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'visitor',
-        method: 'get_visitor_info',
-        union_id: unionId,
-        data: JSON.stringify({})
-      },
+    wx.login({
       success: res => {
-        return res.data.result;
-      }
-    })
-  },
-
-  //获取邀请信息
-  getInitation: function (invitation_id) {
-    var that = this;
-    var unionId = wx.getStorageSync('xy_session');
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'visitor',
-        method: 'get_invitation_info',
-        union_id: unionId,
-        data: JSON.stringify({
-          invitation_id: invitation_id
-        })
-      },
-      success: res => {
-        return res.result;
+        if (res.code) {
+          console.log(res.code + "--" + encryptedData + "--" + iv);
+          that.Util.network.POST({
+            url: that.globalData.BASE_API_URL,
+            params: {
+              service: 'oauth',
+              method: 'login',
+              data: JSON.stringify({
+                code: res.code,
+                encrypted_data: encryptedData,
+                iv: iv
+              })
+            },
+            success: res => {
+              console.log(res);
+              if (res.data.sub_code == 0) {
+                console.log(res);
+              } else {
+                
+              }
+              
+            },
+            fail: res => {
+              console.log('fail');
+            }
+          });
+                   
+        }
       },
       fail: res => {
-        return "没有获取到邀请信息";
+
       }
     })
+    
   }
+  
+  
 
 })

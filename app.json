@@ -1,11 +1,17 @@
 {
   "pages":[
+    "pages/manage/manage",
     "pages/invite/invite",
-    "pages/invite-share/invite-share",
+    "pages/invite-apply/invite-apply",
+    "pages/take-card-guide/take-card-guide",
+    "pages/invite-apply-result/invite-apply-result",
+    "pages/take-card-success/take-card-success",
     "pages/edit-info/edit-info",
+    "pages/invite-accept-info/invite-accept-info",
+    "pages/invite-accept/invite-accept",
+    "pages/invite-share/invite-share",   
     "pages/invite-success/invite-success",
     "pages/invite-receive/invite-receive",
-    "pages/invite-accept/invite-accept",
     "pages/vip-index/vip-index",
     "pages/vip-invite/vip-invite",
     "pages/vip-share/vip-share"

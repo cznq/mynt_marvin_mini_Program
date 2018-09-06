@@ -15,6 +15,7 @@ Page({
     invitation_id: null,
     vip: null,
     invitation: null,
+    company_id: null,
     continuevideo: false,
     appointment_time: null,
     role: null,
@@ -27,13 +28,14 @@ Page({
   onLoad: function (options) {
     this.setData({
       invitation_id: options.invitation_id,
+      company_id: options.company_id,
       vip: options.vip
     })
   },
 
   goShot: function () {
     wx.navigateTo({
-      url: '/pages/invite-accept/invite-accept?vip=' + this.data.vip + '&invitation_id=' + this.data.invitation_id,
+      url: '/pages/invite-accept/invite-accept?vip=' + this.data.vip + '&invitation_id=' + '&company_id=' + this.data.company_id,
     })
   },
 
@@ -56,6 +58,7 @@ Page({
         })
       },
       success: res => {
+        console.log(res);
         if (res.data.result.role==3){
           that.setData({
             role: "管理员"
@@ -146,7 +149,7 @@ Page({
       key: 'CGVBZ-S2KHV-3CBPC-UP4JI-4N55F-7VBFU'
     });
     qqmapsdk.geocoder({
-      address: that.data.invitation.address,
+      address: that.data.invitation.company.address,
       success: function (res) {
         that.setData({
           latitude: res.result.location.lat,

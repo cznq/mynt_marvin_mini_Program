@@ -5,7 +5,7 @@
         <view class="weui-form-preview short">
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
-                    尊敬的{{invitation.visitor_name}}先生/女士:
+                    尊敬的{{invitation.visitor.visitor_name}}先生/女士:
                 </view>
             </view>
             <view class="weui-form-preview__hd">
@@ -48,7 +48,7 @@
         <view class="weui-form-preview last">
             <view class="weui-form-preview__bd address">
                 <view class="weui-form-preview__item">
-                     {{invitation.address}} 
+                     {{invitation.company.address}} 
                 </view>
             </view>
                        

@@ -13,17 +13,15 @@
   border: none;
 }
 .weui-cell {
-  padding: 22px 15px 8px;
+  padding: 8px 15px 8px;
 }
-.phone image {
-  width: 17px;
-  height: 24px;
+.weui-label image {
   vertical-align: middle;
+  width: 30px;
 }
-.idcard image {
-  width: 26px;
-  height: 20px;
+.weui-label image {
   vertical-align: middle;
+  width: 30px;
 }
 .weui-cell__hd {
   width: 40px;
@@ -31,7 +29,8 @@
   text-align: center;
 }
 .weui-cell:before {
-  right: 20px;
+  right: 0;
+  left: 0;
 }
 input {
   color: #000;
@@ -43,13 +42,9 @@ input {
 }
 .page__ft {
   position: absolute;
-  bottom: 28px;
+  bottom: 50rpx;
   left: 0;
   right: 0;
-}
-.page__ft.fixed {
-  top: 230px;
-  transition: all .5s ease-in-out;
 }
 .page__ft button {
   background-color: #4d65f5;
@@ -57,7 +52,13 @@ input {
   border-radius: 23px;
   border: none;
   box-shadow: none;
-  width: 130px;
+  width: 200px;
+}
+.page__ft view {
+  width: 80%;
+  margin: 0 auto;
+  font-size: 24rpx;
+  text-align: center;
 }
 .weui-btn:after {
   border-radius: 0;
@@ -65,8 +66,14 @@ input {
 }
 .safe-info {
   font-size: 15px;
-  color: #4d65f5;
+  color: rgba(53,66,96,.8);
   text-align: center;
-  line-height: 1;
-  padding: 20px 5px 10px;
+  line-height: 1.4;
+  padding: 33px 100rpx;
+  background: #d8e9fd;
+}
+.safe-info image {
+  width: 202px;
+  height: 76px;
+  margin-bottom: 20px;
 }

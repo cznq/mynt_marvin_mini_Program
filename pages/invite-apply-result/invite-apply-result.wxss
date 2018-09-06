@@ -1,0 +1,217 @@
+/* pages/invite-apply-notice/invite-apply-notice.wxss */
+.page {
+  background: #fff;
+}
+.page__hd {
+  color: #fff;
+  padding: 50rpx 15px;
+}
+.page__hd.submited {
+  background: #4d65f5;
+  
+}
+.page__hd.passed {
+  background: #38c560;
+  padding: 50rpx 15px 280rpx;
+  margin-bottom: -240rpx;
+}
+.page__hd.succeed {
+  background: #4d65f5;
+}
+.page__hd.refused {
+  background: #f5563a;
+}
+.status {
+  display: flex;
+}
+.status-icon image {
+  width: 70rpx;
+  margin: 0 25rpx 0 10rpx;
+}
+.status-text {
+  font-size: 26rpx;
+  font-weight: 200;
+}
+.status-text .status-title {
+  font-size: 44rpx;
+  line-height: 1.2;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+.status-step {
+  margin-top: 30px;
+}
+.step__bar {
+  width: calc(100% - 140rpx);
+  margin: 0 auto;
+  height: 2px;
+  background: rgba(255,255,255,.2);
+}
+.step-icon-wrapper {
+  font-size: 25rpx;
+  display: flex;
+  align-items: stretch;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.step-icon {
+  width: 140rpx;
+  text-align: center
+}
+.step-icon.on image {
+  width: 28rpx;
+  height: 28rpx;
+  margin-top: -14rpx;
+}
+.step-icon image {
+  width: 18rpx;
+  height: 18rpx;
+  display: block;
+  margin: 5px auto;
+  margin-top: -9rpx;
+}
+.take-card-guide {
+  height: 480rpx;
+  margin: 20rpx 29rpx 0;
+  padding: 55rpx 45rpx 30rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 0 30px rgba(0,0,0,.15);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+}
+.take-card-guide .guide-title {
+  font-size: 40rpx;
+  font-weight: bold;
+}
+.take-card-guide .guide-info {
+  font-size: 26rpx;
+  margin: 10rpx 0;
+}
+.take-card-guide image {
+  width: 476rpx;
+  margin: 20rpx 15rpx 0 auto;
+}
+.page__bd {
+  padding: 20rpx 0 30px;
+  border-bottom: 1px solid #e5e5e5;
+}
+.weui-cell {
+  padding: 10px 58rpx;
+}
+.company-short-name {
+  font-size: 46rpx;
+  font-weight: 700;
+}
+.full-name {
+  font-size: 30rpx;
+}
+.company-logo {
+  width: 100rpx;
+  height: 100rpx;
+  justify-content: center;
+  border-radius: 14rpx;
+  box-shadow: 0 0 20px rgba(0,0,0,.25);
+}
+.weui-cell__ft {
+  justify-content: center;
+}
+.com-detail {
+  padding: 20rpx 29px 56rpx;
+}
+.company-intro {
+  font-size: 28rpx;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.address {
+  font-size: 28rpx;
+  font-weight: 400;
+}
+.address text {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.weui-media-box {
+  padding-bottom: 56rpx;
+  padding-right: 0;
+  padding-left: 29px;
+}
+.weui-media-box:after, .weui-media-box:before {
+  content: " ";
+  position: absolute;
+  left: 58rpx;
+  bottom: 0;
+  right: 58rpx;
+  height: 1px;
+  border-bottom: 1px solid #E5E5E5;
+  border-top: none;
+  color: #E5E5E5;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+.weui-media-box__title {
+  margin: 30rpx 0 36rpx;
+}
+.crouse-pics image {
+  display: inline-block;
+  margin-right: 10px;
+  height: 242rpx;
+  width: 426rpx;
+}
+.vedioWrapper {
+  margin-right: 58rpx;
+}
+#cmpVideo {
+ width: 100%;
+ height: 365rpx;
+}
+.contact button {
+  width: 55%;
+  background: #fff;
+  color: #4d65f5;
+  border: 1px solid #4d65f5;
+  height: 87rpx;
+  line-height: 87rpx;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  padding-left: 0;
+  margin-top: 30px;
+}
+.contact button image {
+  width: 32rpx;
+  margin: 0 15px -2px;
+
+}
+.contact view {
+  font-size: 28rpx;
+  text-align: center;
+  color: rgba(0,0,0,.5);
+  margin-top: 10px;
+}
+.little-pannel {
+  height: 40rpx;
+  background: #f8f8f8;
+}
+.page__ft {
+  border-top: 1px solid #e5e5e5;
+  padding: 50rpx 0;
+  background: #fff;
+}
+.wechat {
+  width: 240rpx;
+  margin: 0 auto;
+  font-size: 28rpx;
+  text-align: center;
+  color: rgba(0,0,0,.5);
+}
+.wechat image {
+  width: 192rpx;
+}

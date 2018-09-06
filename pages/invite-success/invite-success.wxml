@@ -4,7 +4,7 @@
       <button bindtap="goShot" class="continue" wx:if="{{continuevideo}}"><image src="../../images/shot.png"></image>继续录入人脸</button>
        <block wx:if="{{vip !== 'yes'}}">
         <view class="logo">
-          <image src="{{invitation.company_logo}}"></image>
+          <image src="{{invitation.company.company_logo}}"></image>
         </view>
       </block>
       <block wx:else>
@@ -20,7 +20,7 @@
         <view class="weui-form-preview first">
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
-                    尊敬的{{invitation.visitor_name}}先生/女士:
+                    尊敬的{{invitation.visitor.visitor_name}}先生/女士:
                 </view>
             </view>
             <block wx:if="{{vip == 'yes'}}">
@@ -72,7 +72,7 @@
         <view class="weui-form-preview last">
             <view class="weui-form-preview__bd address">
                 <view class="weui-form-preview__item">
-                     {{invitation.address}}
+                     {{invitation.company.address}}
                 </view>
                 <view class="address-first"></view>
             </view>            
@@ -107,7 +107,7 @@
             </view>
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item datetime huise">
-                  <rich-text nodes="{{invitation.introduction}}"></rich-text>
+                  <rich-text nodes="{{invitation.company.introduction}}"></rich-text>
                 </view>
             </view>
         </view>
