@@ -10,7 +10,6 @@ Page({
     width: '0',
     height: '250px',
     iphonex: false,
-    visitor: null,
     face: true,
     tips_title: "如何录入面部信息",
     showButton: true
@@ -68,9 +67,29 @@ Page({
         data: JSON.stringify({})
       },
       success: res => {
-        that.setData({
-          visitor: res.data.result
+        if (res.data.result.input_pic_url !== "" && res.data.result.input_pic_url !== null) {
+          that.finishRecordFace();
+        } else {
+          //that.startRecodeFace();
+        }
+      }
+    })
+  },
+
+  getEmployeeinfo: function () {
+    var that = this;
+    var unionId = that.data.xy_session;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_employee_info',
+        union_id: unionId,
+        data: JSON.stringify({
+
         })
+      },
+      success: res => {
         if (res.data.result.input_pic_url !== "" && res.data.result.input_pic_url !== null) {
           that.finishRecordFace();
         } else {
@@ -213,13 +232,21 @@ Page({
         that.setData({
           xy_session: wx.getStorageSync('xy_session')
         })
-        that.getVisitorinfo();
+        if (that.data.invitation_id !== null && that.data.invitation_id !== undefined && that.data.invitation_id !== "undefined") {
+          that.getVisitorinfo();
+        } else {
+          that.getEmployeeinfo();
+        }
       })
     } else {
       that.setData({
         xy_session: wx.getStorageSync('xy_session')
       })
-      that.getVisitorinfo();
+      if (that.data.invitation_id !== null && that.data.invitation_id !== undefined && that.data.invitation_id !== "undefined") {
+        that.getVisitorinfo();
+      } else {
+        that.getEmployeeinfo();
+      }
     }
     
   },
