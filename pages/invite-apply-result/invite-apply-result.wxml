@@ -72,9 +72,9 @@
           </view>
         </block>
         <block wx:else>
-          <scroll-view scroll-x style="height: 242rpx;white-space:nowrap;" bindscroll="scroll" class="crouse-pics">
+          <scroll-view scroll-x style="white-space:nowrap;" bindscroll="scroll" class="crouse-pics">
             <block wx:for="{{applyInfo.company.product_pic_urls}}" wx:for-index="idx" wx:for-item="item" wx:key="product_pic_url">
-              <image src="{{item}}" mode="widthFix"></image>
+              <image src="{{item}}" bindload="imageLoad" style="width:{{imgwidth}}rpx; height:{{imgheight }}rpx;"></image>
             </block>
           </scroll-view>
         </block>

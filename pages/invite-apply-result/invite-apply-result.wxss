@@ -161,10 +161,8 @@
   margin: 30rpx 0 36rpx;
 }
 .crouse-pics image {
-  display: inline-block;
   margin-right: 10px;
-  height: 242rpx;
-  width: 426rpx;
+  height: 282rpx;
 }
 .vedioWrapper {
   margin-right: 58rpx;

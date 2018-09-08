@@ -19,7 +19,7 @@
   "window":{
     "backgroundTextStyle":"black",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "邀请",
+    "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"
   },
   "networkTimeout": {

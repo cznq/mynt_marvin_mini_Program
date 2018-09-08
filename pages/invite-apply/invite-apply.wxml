@@ -58,4 +58,4 @@
     </form>
   </view>
 </view>
-<template is="login" data="{{showModal: showModal}}"></template>
+<template is="login" data="{{showLoginModal: showLoginModal}}"></template>

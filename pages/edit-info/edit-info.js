@@ -70,8 +70,7 @@ Page({
 
   checkParam(phone, id_number) {
     var idcard_reg = app.Util.checkID(id_number) || app.Util.checkPassport(id_number);
-    var phone_reg = /^1[3|4|5|6|7|8|9][0-9]{9}$/;
-    if (phone_reg.test(phone) === false) {
+    if (app.Util.checkPhone(phone) === false) {
       wx.showModal({
         content: '请输入正确的手机号',
         showCancel: false

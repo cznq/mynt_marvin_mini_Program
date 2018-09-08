@@ -1,2 +1,3 @@
 <!--pages/manage/manage.wxml-->
 <web-view src="{{web_url}}/home?timestamp={{timestamp}}"></web-view>
+

@@ -10,17 +10,46 @@ Page({
     visit_apply_id: null,
     applyInfo: null,
     showVideo: false,
-    error: ""
+    error: "",
+    screenWidth: 0,
+    screenHeight: 0,
+    imgwidth: 0,
+    imgheight: 0
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
+    var _this = this;
+    _this.setData({
       visit_apply_id: options.visit_apply_id
     });
+    wx.getSystemInfo({
+      success: function (res) {
+        _this.setData({
+          screenHeight: res.windowHeight,
+          screenWidth: res.windowWidth
+        });
+      }
+    });
+
   },
+
+  imageLoad: function (e) {
+    var _this = this;
+    var $width = e.detail.width,
+      $height = e.detail.height,
+      ratio = $width / $height;   
+    var viewWidth = 500,           
+      viewHeight = 500 / ratio;    
+    this.setData({
+      imgwidth: viewWidth,
+      imgheight: viewHeight
+    })
+  },
+
 
   getApplyStatus: function (status, company_short_name) {
     var that = this;

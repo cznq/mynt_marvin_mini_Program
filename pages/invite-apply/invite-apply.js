@@ -10,7 +10,7 @@ Page({
     company_id: null,
     visitorInfo: null,
     noteCount: 0,
-    showModal: true
+    showLoginModal: false
   },
 
   applySubmit: function (e) {
@@ -87,10 +87,11 @@ Page({
   },
 
   getVisitorinfo: function () {
+    console.log("userinfo");
     var that = this;
     return new Promise(function (resolve, reject) {
       if (!that.data.visitorInfo) {
-        var unionId = that.data.xy_session;
+        var unionId = wx.getStorageSync('xy_session');
         app.Util.network.POST({
           url: app.globalData.BASE_API_URL,
           params: {
@@ -117,14 +118,13 @@ Page({
 
   checkParam(visitor_name, phone, id_number, note) {
     var idcard_reg = app.Util.checkID(id_number) || app.Util.checkPassport(id_number);
-    var phone_reg = /^1[3|4|5|6|7|8|9][0-9]{9}$/;
     if (visitor_name == "") {
       wx.showModal({
         content: '请输入您的姓名',
         showCancel: false
       })
       return false;
-    } else if (phone_reg.test(phone) === false) {
+    } else if (app.Util.checkPhone(phone) === false) {
       wx.showModal({
         content: '请输入正确的手机号',
         showCancel: false
@@ -160,6 +160,7 @@ Page({
   },
 
   bindGetUserInfo: function() {
+    var that = this;
     wx.getSetting({
       success: function (res) {
         if (res.authSetting['scope.userInfo']) {
@@ -167,7 +168,10 @@ Page({
           wx.getUserInfo({
             success: function (res) {
               console.log(res);
-              app.authorizeLogin(res.encryptedData, res.iv);
+              that.setData({
+                showLoginModal: false
+              })
+              app.authorizeLogin(res.encryptedData, res.iv, () => {that.getVisitorinfo()});
             }
           })
         }
@@ -185,14 +189,23 @@ Page({
       var company_id = scene_str.split('_')[0];
       var qr_code_key = scene_str.split('_')[1];
     }
+    console.log("Company id" + company_id + "key" + qr_code_key);
     that.updateQrcodeStatus(qr_code_key);
     if (!(app.checkSession())) {
-      app.checkLogin("authorize").then(function (res) {
-        that.setData({
-          company_id: company_id,
-          xy_session: wx.getStorageSync('xy_session')
-        })
-        that.getVisitorinfo();
+      app.checkLogin().then(function (res) {
+        console.log(wx.getStorageSync('xy_session'));
+        if (wx.getStorageSync('xy_session') == null || wx.getStorageSync('xy_session') == "") {
+          that.setData({
+            showLoginModal: true,
+            company_id: company_id
+          })
+        } else {
+          that.setData({
+            company_id: company_id,
+            xy_session: wx.getStorageSync('xy_session')
+          })
+          that.getVisitorinfo();
+        }
       })
     } else {
       that.setData({

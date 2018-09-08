@@ -8,10 +8,10 @@ App({
     company_info: null,
     latitude: null,
     longitude: null,
-    BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
-    WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com'
-    //BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
-    //WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com'
+    //BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
+    //WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com'
+    BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
+    WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com'
   },
 
   onLaunch: function () {
@@ -84,7 +84,7 @@ App({
     })
   },
 
-  authorizeLogin(encryptedData, iv) {
+  authorizeLogin(encryptedData, iv, callback = function () { }) {
     var that = this;
     wx.login({
       success: res => {
@@ -104,9 +104,13 @@ App({
             success: res => {
               console.log(res);
               if (res.data.sub_code == 0) {
-                console.log(res);
+                wx.setStorageSync('xy_session', res.data.result.union_id);
+                callback();
               } else {
-                
+                wx.showModal({
+                  content: '授权登录失败',
+                  showCancel: false
+                })
               }
               
             },
@@ -118,10 +122,12 @@ App({
         }
       },
       fail: res => {
-
+        console.log('获取用户登录态失败！' + res.errMsg);
       }
     })
     
   }
+  
+  
 
 })

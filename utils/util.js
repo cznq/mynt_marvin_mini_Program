@@ -114,7 +114,6 @@ var md5 = require('md5.js');
     } else {
       return true
     }
-
   }
 
   function getDate() {
@@ -206,6 +205,15 @@ var md5 = require('md5.js');
     }
   }
 
+  function checkPhone(phone) {
+    var phone_reg = /^1[0-9]{10}$/;
+    if (phone_reg.test(phone) === false) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   function checkNumber(num) {
     if(isNaN(num)) {
       return false;
@@ -227,9 +235,11 @@ var md5 = require('md5.js');
   module.exports.formatTime = formatTime;
   module.exports.checkID = checkID;
   module.exports.checkPassport = checkPassport;
+  module.exports.checkPhone = checkPhone;
   module.exports.datetoTime = datetoTime;
   module.exports.decodeTextAreaString = decodeTextAreaString;
   module.exports.filterEmoji = filterEmoji;
   module.exports.isBlank = isBlank;
   module.exports.checkNumber = checkNumber;
+
 })();
