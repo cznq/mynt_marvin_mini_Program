@@ -11,7 +11,6 @@ Page({
     height: '250px',
     iphonex: false,
     face: true,
-    tips_title: "如何录入面部信息",
     showButton: true
   },
 
@@ -25,7 +24,14 @@ Page({
       invitation_id: options.invitation_id,
       visit_apply_id: options.visit_apply_id
     });
-    
+    if (wx.createCameraContext()) {
+      that.ctx = wx.createCameraContext()
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+      })
+    }
     wx.getSystemInfo({
       success: function (res) {
         if (res.windowWidth !== 0) {
@@ -67,8 +73,10 @@ Page({
         data: JSON.stringify({})
       },
       success: res => {
-        if (res.data.result.input_pic_url !== "" && res.data.result.input_pic_url !== null) {
-          that.finishRecordFace();
+        if (res.data.result) {
+          if (res.data.result.input_pic_url !== "" && res.data.result.input_pic_url !== null) {
+            that.finishRecordFace();
+          }
         }
       }
     })
@@ -88,8 +96,10 @@ Page({
         })
       },
       success: res => {
-        if (res.data.result.input_pic_url !== "" && res.data.result.input_pic_url !== null) {
-          that.finishRecordFace();
+        if (res.data.result) {
+          if (res.data.result.input_pic_url !== "" && res.data.result.input_pic_url !== null) {
+            that.finishRecordFace();
+          }
         }
       }
     })
@@ -99,7 +109,6 @@ Page({
     var that = this;
     var int;
     that.setData({
-      tips_title: "请将人脸放入框内",
       showButton: false
     })
     int = setInterval(function () {
@@ -111,14 +120,6 @@ Page({
 
   takePhoto: function() {
     console.log("start face !!!");
-    if (wx.createCameraContext()) {
-      this.ctx = wx.createCameraContext()
-    } else {
-      wx.showModal({
-        title: '提示',
-        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
-      })
-    }
     this.ctx.takePhoto({
       quality: 'low',
       success: (res) => {

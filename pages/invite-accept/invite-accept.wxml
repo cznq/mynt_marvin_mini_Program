@@ -1,14 +1,11 @@
 <view class="page-body">
   <view class="page-body-wrapper">
-    <view class="face-recode" wx:if="{{showButton}}">
-      <image src="../../images/face-recode.png" mode="widthFix"></image>
-    </view>
-    <camera device-position="front" flash="off" binderror="error" style="width: {{width}}; height: {{height}};margin: 100rpx auto 80rpx;position:relative;" wx:if="{{showButton == false}}">
+    <camera device-position="front" flash="off" binderror="error" style="width: {{width}}; height: {{height}};margin: 100rpx auto 80rpx;position:relative;">
       <cover-image class="circle" src="../../images/circle_2.png" wx:if="{{iphonex}}"></cover-image>
       <cover-image class="circle" src="../../images/circle_3.png" wx:else style="width: {{width}}; height: {{height}}"></cover-image>
     </camera>
     <canvas canvas-id='attendCanvasId'></canvas>
-    <view class="tips-title">{{tips_title}}</view>
+    <view class="tips-title">请将人脸放入框内</view>
     <view class="tips-intro">将面孔放在相机取景框内并点击开始录入。然后，环状移动头部以显示面部的各个角度。</view>
     <view class="btn-frame" wx:if="{{showButton}}">
       <view class="btn" type="primary" bindtap="startRecodeFace">开始录入</view>
