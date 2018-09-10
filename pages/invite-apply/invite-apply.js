@@ -189,6 +189,7 @@ Page({
       var company_id = scene_str.split('_')[0];
       var qr_code_key = scene_str.split('_')[1];
     }
+    wx.removeStorageSync('xy_session');
     console.log("Company id" + company_id + "key" + qr_code_key);
     that.updateQrcodeStatus(qr_code_key);
     if (!(app.checkSession())) {

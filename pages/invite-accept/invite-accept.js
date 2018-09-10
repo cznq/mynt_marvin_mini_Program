@@ -69,8 +69,6 @@ Page({
       success: res => {
         if (res.data.result.input_pic_url !== "" && res.data.result.input_pic_url !== null) {
           that.finishRecordFace();
-        } else {
-          //that.startRecodeFace();
         }
       }
     })
@@ -92,8 +90,6 @@ Page({
       success: res => {
         if (res.data.result.input_pic_url !== "" && res.data.result.input_pic_url !== null) {
           that.finishRecordFace();
-        } else {
-          //that.startRecodeFace();
         }
       }
     })
@@ -111,7 +107,6 @@ Page({
         that.takePhoto();
       }
     }, 1000);
-
   },
 
   takePhoto: function() {
