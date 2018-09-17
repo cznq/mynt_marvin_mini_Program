@@ -21,12 +21,13 @@ Page({
     var id_number = e.detail.value.id_number;
     var note = e.detail.value.note;
     var form_id = e.detail.formId;
+    var company_id = that.data.company_id;
     if (app.Util.checkID(id_number)) {
       var id_type = 0;
     } else if (app.Util.checkPassport(id_number)) {
       var id_type = 1;
     }
-    if (that.checkParam(visitor_name, phone, id_number, note)) {
+    if (that.checkParam(form_id, visitor_name, phone, id_number, note, company_id)) {
       app.Util.network.POST({
         url: app.globalData.BASE_API_URL,
         params: {
@@ -35,7 +36,7 @@ Page({
           union_id: wx.getStorageSync('xy_session'),
           data: JSON.stringify({
             form_id: form_id,
-            visit_company_id: that.data.company_id,
+            visit_company_id: company_id,
             visitor_name: visitor_name,
             id_type: id_type,
             phone: phone,
@@ -70,7 +71,7 @@ Page({
             }
           } else {
             wx.showModal({
-              content: '提交失败',
+              content: res.data.sub_msg,
               showCancel: false
             })
           }
@@ -116,7 +117,7 @@ Page({
     })
   },
 
-  checkParam(visitor_name, phone, id_number, note) {
+  checkParam(form_id, visitor_name, phone, id_number, note, company_id) {
     var idcard_reg = app.Util.checkID(id_number) || app.Util.checkPassport(id_number);
     if (visitor_name == "") {
       wx.showModal({
@@ -136,13 +137,19 @@ Page({
         showCancel: false
       })
       return false;
-    } 
+    } else if (company_id == null) {
+      wx.showModal({
+        content: '获取公司ID失败，请重新扫码邀请',
+        showCancel: false
+      })
+      return false;
+    }
     return true;
   },
 
   updateQrcodeStatus(qr_code_key) {
     var that = this;
-    var unionId = that.data.xy_session;
+    var unionId = wx.getStorageSync('xy_session');
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
@@ -192,17 +199,16 @@ Page({
     wx.removeStorageSync('xy_session');
     console.log("Company id" + company_id + "key" + qr_code_key);
     that.updateQrcodeStatus(qr_code_key);
+    that.setData({ company_id: company_id })
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
         console.log(wx.getStorageSync('xy_session'));
         if (wx.getStorageSync('xy_session') == null || wx.getStorageSync('xy_session') == "") {
           that.setData({
-            showLoginModal: true,
-            company_id: company_id
+            showLoginModal: true
           })
         } else {
           that.setData({
-            company_id: company_id,
             xy_session: wx.getStorageSync('xy_session')
           })
           that.getVisitorinfo();
@@ -210,7 +216,6 @@ Page({
       })
     } else {
       that.setData({
-        company_id: company_id,
         xy_session: wx.getStorageSync('xy_session')
       })
       that.getVisitorinfo();
@@ -221,7 +226,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+   
   }
 
 })

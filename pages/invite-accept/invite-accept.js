@@ -11,7 +11,9 @@ Page({
     height: '250px',
     iphonex: false,
     face: true,
-    showButton: true
+    showButton: true,
+    tips_title: "如何录入面部信息",
+    cameraErrorText: ""
   },
 
   onLoad: function (options) {
@@ -24,14 +26,8 @@ Page({
       invitation_id: options.invitation_id,
       visit_apply_id: options.visit_apply_id
     });
-    if (wx.createCameraContext()) {
-      that.ctx = wx.createCameraContext()
-    } else {
-      wx.showModal({
-        title: '提示',
-        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
-      })
-    }
+    that.ctx = wx.createCameraContext();
+    that.openCameraAuth();
     wx.getSystemInfo({
       success: function (res) {
         if (res.windowWidth !== 0) {
@@ -57,6 +53,54 @@ Page({
         that.setData({
           width: '250px'
         })
+      }
+    })
+    
+  },
+
+  cameraError: function() {
+    this.setData({
+      cameraErrorText: "你已经取消了人脸录入的授权"
+    });
+  },
+
+  openCameraAuth: function() {
+    var that = this;
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.camera'] == false) {
+          wx.showModal({
+            title: '是否授权录入人脸',
+            content: '录入人脸需要打开摄像头，点击确定打开摄像头',
+            success: function (tip) {
+              if (tip.confirm) {
+                wx.openSetting({
+                  success: function (data) {
+                    if (data.authSetting["scope.camera"] === true) {
+                      wx.showToast({
+                        title: '授权成功',
+                        icon: 'success',
+                        duration: 1000
+                      })
+                      that.setData({
+                        cameraErrorText: "已经授权，请关闭小程序重新打开"
+                      });
+                      wx.redirectTo({
+                        url: '/pages/invite-accept/invite-accept?invitation_id=' + that.data.invitation_id + '&visit_apply_id=' + that.data.visit_apply_id + '&company_id=' + that.data.company_id + '&vip=' + that.data.vip,
+                      })
+                    } else {
+                      wx.showToast({
+                        title: '授权失败',
+                        icon: 'success',
+                        duration: 1000
+                      })
+                    }
+                  }
+                })
+              }
+            }
+          })
+        }
       }
     })
   },
@@ -91,9 +135,7 @@ Page({
         service: 'company',
         method: 'get_employee_info',
         union_id: unionId,
-        data: JSON.stringify({
-
-        })
+        data: JSON.stringify({})
       },
       success: res => {
         if (res.data.result) {
@@ -109,17 +151,18 @@ Page({
     var that = this;
     var int;
     that.setData({
-      showButton: false
+      showButton: false,
+      tips_title: "请将人脸放入框内"
     })
     int = setInterval(function () {
       if(that.data.face == true){
         that.takePhoto();
       }
     }, 1000);
+    
   },
 
   takePhoto: function() {
-    console.log("start face !!!");
     this.ctx.takePhoto({
       quality: 'low',
       success: (res) => {
@@ -130,10 +173,13 @@ Page({
         this.getCanvasImg(res.tempImagePath);
       },
       fail: function() {
-        console.log("fail take Photo");
+        wx.showToast({
+          title: '录入人脸失败',
+          icon: 'none',
+          duration: 1000
+        })
       }
     })
-    console.log("stops face");
   },
 
   //上传图片
@@ -244,11 +290,15 @@ Page({
         that.getEmployeeinfo();
       }
     }
-    
   },
 
   onReady: function() {
-    
+    //const logger = wx.getLogManager()
+    //logger.log({ str: 'hello world' }, 'basic log', 100, [1, 2, 3]);
+  },
+
+  onPullDownRefresh: function() {
+    this.openCameraAuth();
   }
 
 })

@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.5",
+	"libVersion": "2.3.0",
 	"appid": "wxb24a0600ff1539a1",
 	"projectname": "%E5%B0%8F%E8%A7%85%E6%99%BA%E8%83%BD%E6%A5%BC%E5%AE%87%E6%9C%8D%E5%8A%A1",
 	"scripts": {},
@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 5,
 			"list": [
 				{
 					"id": 0,
@@ -71,7 +71,7 @@
 					"id": 5,
 					"name": "申请结果",
 					"pathName": "pages/invite-apply-result/invite-apply-result",
-					"query": "visit_apply_id=1",
+					"query": "visit_apply_id=93",
 					"scene": "1044"
 				},
 				{

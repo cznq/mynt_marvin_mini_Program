@@ -86,6 +86,7 @@
     </view>
 
   </view>
+  <!--
   <view class="little-pannel"></view>
   <view class="page__ft">
     <view class="wechat">
@@ -94,4 +95,5 @@
       <view>小觅智能楼宇服务</view>
     </view>
   </view>
+  -->
 </view>
