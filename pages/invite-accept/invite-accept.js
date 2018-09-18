@@ -253,15 +253,15 @@ Page({
     var that = this;
     wx.hideLoading();
     if (app.Util.checkNumber(that.data.invitation_id)) {
-      wx.navigateTo({
+      wx.redirectTo({
         url: '/pages/invite-success/invite-success?vip=' + that.data.vip + '&invitation_id=' + that.data.invitation_id + '&company_id=' + that.data.company_id,
       })
     } else if (app.Util.checkNumber(that.data.visit_apply_id)) {
-      wx.navigateTo({
+      wx.redirectTo({
         url: '/pages/invite-apply-result/invite-apply-result?visit_apply_id=' + that.data.visit_apply_id,
       })
     } else {
-      wx.navigateTo({
+      wx.redirectTo({
         url: '/pages/take-card-success/take-card-success?company_id=' + that.data.company_id,
       })
     }
