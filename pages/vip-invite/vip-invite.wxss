@@ -1,0 +1,41 @@
+/* pages/vip-invite/vip-invite.wxss */
+.page__bd {
+  padding: 0 20px;
+}
+.weui-cells__title {
+  color: #000;
+  font-size: 17px;
+  padding: 0;
+}
+.weui-cells {
+  margin-top: 0;
+}
+.weui-cell {
+  padding: 5px 0 10px;
+}
+.weui-cells:before {
+  border-top: none;
+}
+.weui-input {
+  font-size: 20px;
+}
+.page__ft {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+button {
+  border-radius: 0;
+  border: none;
+  background-color: #4d65f5;
+  color: #fff;
+  line-height: 2.98222;
+}
+button[disabled]:not([type]) {
+  background-color: #d5d6dc;
+  color: #fff; 
+}
+.page__ft button:after {
+  border: none;
+}

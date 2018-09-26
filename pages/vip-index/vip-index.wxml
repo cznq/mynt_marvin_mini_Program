@@ -1,0 +1,28 @@
+<view class="page">
+    <view class="page_hd">
+      VIP用户设置
+    </view>   
+    <view class="page__bd">
+      <view class="title">关于VIP</view>
+      <view class="intro">在vip与用户人脸信息录入后，每次小觅智能楼宇服务机器人看到您都会向您问好，并显示贵公司简介。</view>
+      
+      <view class="title">VIP功能</view>
+      <view class="weui-flex function">
+        <view class="weui-flex__item">
+          <image src="../../images/hi.png" style="width:37px;height:37px;"></image>
+          <view class="intro">机器人主动打招呼</view>
+        </view>
+        <view class="weui-flex__item">
+          <image src="../../images/intro.png" style="width:35px;height:36px;"></image>
+          <view class="intro">播放公司简介</view>
+        </view>
+      </view>
+    </view>
+        
+    <view class="page__ft">
+        <button bindtap="goInvite" class="weui-btn weui-btn_primary" id="inviteBtn">邀请VIP</button>
+    </view>
+
+
+</view>
+

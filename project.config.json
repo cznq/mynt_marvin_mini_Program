@@ -1,0 +1,87 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": false,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.3.0",
+	"appid": "wxb24a0600ff1539a1",
+	"projectname": "%E5%B0%8F%E8%A7%85%E6%99%BA%E8%83%BD%E6%A5%BC%E5%AE%87%E6%9C%8D%E5%8A%A1",
+	"scripts": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 5,
+			"list": [
+				{
+					"id": 0,
+					"name": "申请发卡",
+					"pathName": "pages/invite-apply/invite-apply",
+					"query": "scene=17_234324",
+					"scene": "1011"
+				},
+				{
+					"id": 1,
+					"name": "接受邀请",
+					"pathName": "pages/invite-receive/invite-receive",
+					"query": "invitation_id=265",
+					"scene": "1044"
+				},
+				{
+					"id": -1,
+					"name": "员工快捷取卡",
+					"pathName": "pages/take-card-guide/take-card-guide",
+					"query": "company_id=3",
+					"scene": "1044"
+				},
+				{
+					"id": -1,
+					"name": "管理",
+					"pathName": "pages/manage/manage",
+					"query": "",
+					"scene": "1044"
+				},
+				{
+					"id": -1,
+					"name": "邀请",
+					"pathName": "pages/invite/invite",
+					"query": "",
+					"scene": "1044"
+				},
+				{
+					"id": 5,
+					"name": "申请结果",
+					"pathName": "pages/invite-apply-result/invite-apply-result",
+					"query": "visit_apply_id=93",
+					"scene": "1044"
+				},
+				{
+					"id": 6,
+					"name": "录入人脸",
+					"pathName": "pages/invite-accept/invite-accept",
+					"query": "company_id=17",
+					"scene": "1044"
+				}
+			]
+		}
+	}
+}

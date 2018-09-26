@@ -1,0 +1,42 @@
+<!--pages/take-card-guide/take-card-guide.wxml-->
+<view class="page">
+  <view class="page__hd">
+    <image src="../../images/take-card-head.png" mode="widthFix"></image>
+  </view>
+  <view class="page__bd">
+    <view class="card-title">如何快速取卡？</view>
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="guide-img">
+          <image src="../../images/take-card-step-1.png" mode="widthFix"></image>
+        </view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="guide-info">填写手机号、身份证等个人信息</view>
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="guide-info">录入人脸信息，以便机器人认出你</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="guide-img">
+          <image src="../../images/take-card-step-2.png" mode="widthFix"></image>
+        </view>
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="guide-img">
+          <image src="../../images/take-card-step-3.png" mode="widthFix"></image>
+        </view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="guide-info">当你忘带员工卡时，可前往机器人，点击员工取卡，快速取出卡片</view>
+      </view>
+    </view>
+  </view>
+  <view class="page__ft">
+    <button bindtap="goEditInfo" class="weui-btn weui-btn_primary" id="">前往录入信息</button>
+  </view>
+</view>
