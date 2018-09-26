@@ -1,0 +1,95 @@
+<block wx:if="{{invite_auth == true}}">
+<view class="page">
+  <form bindsubmit="inviteSubmit">
+    <view class="page__bd">
+        <view class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">被邀请人姓名</label>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd input-no-padding">
+                <view class="weui-form-preview__item">
+                    <input class="weui-input" name="visitor_name" id="i1" bindinput="checkForm" placeholder="请输入被邀请人姓名" placeholder-class="placeholder-input"></input>
+                </view>
+            </view>
+            
+        </view>
+        <view class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">邀请说明</label>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd no-padding-top">
+                <view class="weui-form-preview__item">
+                    <textarea class="weui-textarea" name="visit_intro" maxlength="800" id="i2" bindinput="checkForm" placeholder="请输入邀请说明" placeholder-class="placeholder" auto-height="true"></textarea>
+                </view>
+            </view>
+        </view>
+        <view class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">邀请备注</label>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd no-padding-top">
+                <view class="weui-form-preview__item">
+                    <textarea class="weui-textarea" name="mark" maxlength="800" id="i3" bindinput="checkForm" placeholder="请输入备注内容（选填）" placeholder-class="placeholder" auto-height="true"></textarea>
+                </view>
+            </view>
+            
+        </view>
+        <view class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">到访时间</label>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd time">
+                <view class="weui-form-preview__item">
+                    <input class="weui-input" name="visit_time" value="{{date}} {{time}}" hidden></input>
+                    <picker mode="date" bindchange="bindDateChange">
+                      <view class="picker">{{date}}</view>
+                    </picker>
+                    <picker mode="time" value="" start="" end="" bindchange="bindTimeChange">
+                      <view class="time">{{time}}</view>
+                    </picker>
+                </view>
+            </view>
+            
+        </view>
+        <view class="weui-form-preview last">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">公司地址</label>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd address">
+                <view class="weui-form-preview__item">
+                     {{cmpinfo.address}}
+                </view>
+            </view>
+            
+        </view>
+    </view>
+    <view class="mapContainer">
+          <map id="myMap" latitude="{{latitude}}" longitude="{{longitude}}" show-location>
+            <cover-image src="../../images/map-cover.png" bindtap="openLocation"></cover-image>
+          </map>
+        </view>
+    <view class="page__ft j_bottom">
+        <button form-type="submit" class="weui-btn weui-btn_primary" id="inviteBtn" disabled='disabled' wx:if="{{!formready}}">下一步</button>
+        <button form-type="submit" class="weui-btn weui-btn_primary" id="inviteBtn" wx:if="{{formready}}">下一步</button>
+    </view>
+   </form>
+</view>
+</block>
+<block wx:if="{{invite_auth == false}}">
+  <view class="noauth">
+    <view class="title">如何获得邀请权限？</view>
+    <view class="sm-title">成为公司员工后就可以邀请访客</view>
+    <view class="join-intro">进入公众号，点击首页底部的管理按钮，输入公司号码申请成为公司员工后，就可以开始邀请访客啦！</view>
+    <image src='../../images/invite_no_authority@2x.png'></image>
+  </view>
+</block>
