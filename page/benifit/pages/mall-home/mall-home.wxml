@@ -1,0 +1,98 @@
+<!--pages/benifit-card/benifit-card.wxml-->
+<view class="page">
+  <view class="page__hd">
+    <view class="title-bar">
+      <text>小觅协议优惠</text>
+      <image src="../../images/icon_card@2x.png"></image>
+    </view>
+    <view class="home-slide">
+      <swiper indicator-dots="{{slide_data.indicatorDots}}"
+  autoplay="{{slide_data.autoplay}}" interval="{{slide_data.interval}}" duration="{{slide_data.duration}}">
+        <block wx:for="{{slide_data.imgUrls}}" wx:key="key">
+          <swiper-item>
+            <view class="swiper-item" style="background: url({{item}}) no-repeat center center;background-size:cover;"></view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>          
+  </view>
+  <view class="page__bd">
+    <view class="tab">
+      <block wx:for="{{tabList}}" wx:key="{{key}}">
+        <text wx:if="{{item.id == tabSelected}}" class="selected" bindtap="changeTab" id="{{item.id}}">{{item.title}}</text>
+        <text id="{{item.id}}" bindtap="changeTab" wx:else>{{item.title}}</text>
+      </block>
+    </view>
+    <view class="shop-list">
+      <view class="shop-wrapper">
+        <view class="head-pic" style="background: url(../../images/take-card-success.png) no-repeat center center"></view>
+        <view class="shop-name">扑园饭庄-四季花园</view>
+        <view class="star-part">
+          <view class="star red">♥</view>
+          <view class="star red">♥</view>
+          <view class="star red">♥</view>
+          <view class="star gray">♥</view>
+          <view class="star gray">♥</view>
+        </view>
+        <view class="tags">
+          <view class="tag-name">无锡江浙 海鲜</view>
+          <view class="distance">200m</view>
+        </view>
+        <view class="discount">
+          <view class="price-wrapper">
+            <image src="../../images/shape@2x.png"></image>协议价
+          </view>
+          <view>满100元减25 /消费8折…</view>
+        </view>
+      </view>
+   
+      <view class="shop-wrapper">
+        <view class="head-pic" style="background: url(../../images/take-card-success.png) no-repeat center center"></view>
+        <view class="shop-name">扑园饭庄-四季花园</view>
+        <view class="star-part">
+          <view class="star red">♥</view>
+          <view class="star red">♥</view>
+          <view class="star red">♥</view>
+          <view class="star gray">♥</view>
+          <view class="star gray">♥</view>
+        </view>
+        <view class="tags">
+          <view class="tag-name">无锡江浙 海鲜</view>
+          <view class="distance">200m</view>
+        </view>
+        <view class="discount">
+          <view class="price-wrapper">
+            <image src="../../images/shape@2x.png"></image>协议价
+          </view>
+          <view>满100元减25 /消费8折…</view>
+        </view>
+      </view>
+      <view class="shop-wrapper">
+        <view class="head-pic" style="background: url(../../images/take-card-success.png) no-repeat center center"></view>
+        <view class="shop-name">扑园饭庄-四季花园</view>
+        <view class="star-part">
+          <view class="star red">♥</view>
+          <view class="star red">♥</view>
+          <view class="star red">♥</view>
+          <view class="star gray">♥</view>
+          <view class="star gray">♥</view>
+        </view>
+        <view class="tags">
+          <view class="tag-name">无锡江浙 海鲜</view>
+          <view class="distance">200m</view>
+        </view>
+        <view class="discount">
+          <view class="price-wrapper">
+            <image src="../../images/shape@2x.png"></image>协议价
+          </view>
+          <view>满100元减25 /消费8折…</view>
+        </view>
+      </view>
+    </view>
+  </view>  
+  <view class="page__ft">
+   
+  </view>
+  
+</view>
+

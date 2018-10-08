@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.3.0",
-	"appid": "wxb24a0600ff1539a1",
-	"projectname": "%E5%B0%8F%E8%A7%85%E6%99%BA%E8%83%BD%E6%A5%BC%E5%AE%87%E6%9C%8D%E5%8A%A1",
+	"appid": "wx36410b03870f2336",
+	"projectname": "%E5%B0%8F%E8%A7%85%E6%99%BA%E8%83%BD%E6%A5%BC%E5%AE%87%E6%9C%8D%E5%8A%A1%E6%B5%8B%E8%AF%95",
 	"scripts": {},
 	"condition": {
 		"search": {
@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 10,
 			"list": [
 				{
 					"id": 0,
@@ -80,6 +80,31 @@
 					"pathName": "pages/invite-accept/invite-accept",
 					"query": "company_id=17",
 					"scene": "1044"
+				},
+				{
+					"id": -1,
+					"name": "小觅VIP卡",
+					"pathName": "page/benifit/pages/vip-card/vip-card",
+					"query": "",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "商城首页",
+					"pathName": "page/benifit/pages/mall-home/mall-home",
+					"query": ""
+				},
+				{
+					"id": 9,
+					"name": "商城详情页",
+					"pathName": "page/benifit/pages/mall-detail/mall-detail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "商城评论页",
+					"pathName": "page/benifit/pages/mall-comment/mall-comment",
+					"query": ""
 				}
 			]
 		}

@@ -1,0 +1,161 @@
+<!--pages/mall-detail/mall-detail.wxml-->
+<view class="page">
+  <view class="page__hd">
+    <swiper indicator-dots="{{slide_data.indicatorDots}}"
+  autoplay="{{slide_data.autoplay}}" interval="{{slide_data.interval}}" duration="{{slide_data.duration}}">
+      <block wx:for="{{slide_data.imgUrls}}" wx:key="key">
+        <swiper-item>
+          <view class="swiper-item" style="background: url({{item}}) no-repeat center center;background-size:cover;" bindtap="viewPhoto">
+            <view class="swiperInfo">
+              <image src="../../images/search@2x.png"></image>
+              <text>1/25</text>
+            </view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="infoWrapper top">
+      <view class="shop-name">3W咖啡</view>
+      <view class="needinfo">
+        <text>咖啡馆</text>
+        <view class="star-part">
+          <view class="star red">♥</view>
+          <view class="star red">♥</view>
+          <view class="star red">♥</view>
+          <view class="star gray">♥</view>
+          <view class="star gray">♥</view>
+        </view>
+      </view>
+    </view>
+    <view class="infoWrapper bottom">
+      <view class="info-column">
+        <view class="on-sale-time"><image src="../../images/icon_kitchen@2x.png"></image>11:00-1300 17:00-20:00
+        </view>
+        <view class="on-sale in-right">营业中</view>
+      </view>
+      <view class="info-column">
+        <view class="address"><image src="../../images/icon_add@2x.png"></image>长江北路5号长江俱乐部二楼
+        </view>
+        <view class="on-sale in-right">营业中</view>
+      </view>
+    </view>
+  </view>
+  <view class="page__bd">
+    <view class="tabs">
+      <text class="active">
+        <image src="../../images/shape@3x.png"></image>协议优惠</text>
+      <text bindtap="gotoView">详情展示</text>
+      <text bindtap="gotoView">消费评价</text>
+    </view>
+    <scroll-view scroll-y style="height:100%;" scroll-into-view="{{curPosition}}">
+      <view class="discount-list" id="discSec">
+        <view class="itemWrap">
+          <view class="disText">
+            <view class="item-title">满35元减18元</view>
+            <view class="item-intro">周一至周五可用 | 部分商品可用</view>
+          </view>
+          <view class="disBtn">
+            <button bindtap="cardTopay">协议买单</button>
+          </view>
+        </view>
+        <view class="itemWrap">
+          <view class="disText">
+            <view class="item-title">消费8折优惠</view>
+            <view class="item-intro">周一至周五可用 | 酒水、饮料除外</view>
+          </view>
+          <view class="disBtn">
+            <button bindtap="cardTopay">协议买单</button>
+          </view>
+        </view>
+      </view>
+      <view class="detail_show tabContent" id="detailSec">
+        <view class="content-title">详情展示</view>
+        <view class="content">
+          上海苏蟹阁实业有限公司成立于2010年，专注于中华绒鳌蟹苗（大眼幼体）的培育和成蟹的养殖，并且在全国成立多个培育基地和农业合作养殖社。
+          上海苏蟹阁实业有限公司成立于2010年，专注于中华绒鳌蟹苗（大眼幼体）的培育和成蟹的养殖，并且在全国成立多个培育基地和农业合作养殖社。
+          上海苏蟹阁实业有限公司成立于2010年，专注于中华绒鳌蟹苗（大眼幼体）的培育和成蟹的养殖，并且在全国成立多个培育基地和农业合作养殖社。
+          上海苏蟹阁实业有限公司成立于2010年，专注于中华绒鳌蟹苗（大眼幼体）的培育和成蟹的养殖，并且在全国成立多个培育基地和农业合作养殖社。
+          上海苏蟹阁实业有限公司成立于2010年，专注于中华绒鳌蟹苗（大眼幼体）的培育和成蟹的养殖，并且在全国成立多个培育基地和农业合作养殖社。上海苏蟹阁实业有限公司成立于2010年，专注于中华绒鳌蟹苗（大眼幼体）的培育和成蟹的养殖，并且在全国成立多个培育基地和农业合作养殖社。上海苏蟹阁实业有限公司成立于2010年，专注于中华绒鳌蟹苗（大眼幼体）的培育和成蟹的养殖，并且在全国成立多个培育基地和农业合作养殖社。上海苏蟹阁实业有限公司成立于2010年，专注于中华绒鳌蟹苗（大眼幼体）的培育和成蟹的养殖，并且在全国成立多个培育基地和农业合作养殖社。上海苏蟹阁实业有限公司成立于2010年，专注于中华绒鳌蟹苗（大眼幼体）的培育和成蟹的养殖，并且在全国成立多个培育基地和农业合作养殖社。上海苏蟹阁实业有限公司成立于2010年，专注于中华绒鳌蟹苗（大眼幼体）的培育和成蟹的养殖，并且在全国成立多个培育基地和农业合作养殖社。上海苏蟹阁实业有限公司成立于2010年，专注于中华绒鳌蟹苗（大眼幼体）的培育和成蟹的养殖，并且在全国成立多个培育基地和农业合作养殖社。上海苏蟹阁实业有限公司成立于2010年，专注于中华绒鳌蟹苗（大眼幼体）的培育和成蟹的养殖，并且在全国成立多个培育基地和农业合作养殖社。上海苏蟹阁实业有限公司成立于2010年，专注于中华绒鳌蟹苗（大眼幼体）的培育和成蟹的养殖，并且在全国成立多个培育基地和农业合作养殖社。上海苏蟹阁实业有限公司成立于2010年，专注于中华绒鳌蟹苗（大眼幼体）的培育和成蟹的养殖，并且在全国成立多个培育基地和农业合作养殖社。上海苏蟹阁实业有限公司成立于2010年，专注于中华绒鳌蟹苗（大眼幼体）的培育和成蟹的养殖，并且在全国成立多个培育基地和农业合作养殖社。上海苏蟹阁实业有限公司成立于2010年，专注于中华绒鳌蟹苗（大眼幼体）的培育和成蟹的养殖，并且在全国成立多个培育基地和农业合作养殖社。
+        </view>
+      </view>
+      <view class="coment-list tabContent" id="comtSec">
+        <view class="content-title">
+          <text>消费评价</text>
+          <view><button bindtap="enterComment">写点评</button></view>
+        </view>
+        <view class="content">
+          <view class="coment-wrapper">
+            <view class="avatar"><image src="../../images/employee.png"></image></view>
+            <view class="comment-content">
+              <view class="top">
+                <view class="user-name">巴拉拉小魔仙</view>
+                <view class="time">9月8日</view>
+              </view>
+              <view class="star-part">
+                <view class="star core">打分</view>
+                <view class="star red">♥</view>
+                <view class="star red">♥</view>
+                <view class="star red">♥</view>
+                <view class="star gray">♥</view>
+                <view class="star gray">♥</view>
+              </view>
+              <view class="comment-detail">
+                <text>恩恩，挺不错的，优惠也狠划算，真棒啊，哈哈哈</text>
+                <view class="imgs">
+                  <image src="../../images/take-card-success.png"></image>
+                  <image src="../../images/take-card-success.png"></image>
+                  <image src="../../images/take-card-success.png"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </scroll-view>
+  </view>
+  <view id="vip-dialogs" wx:if="{{showVipCard}}">
+  <view class="js_dialog" id="iosDialog1">
+      <view class="weui-mask"></view>
+      <view class="weui-dialog">
+          <view class="weui-dialog__hd">
+            <view class="weui-dialog__title">向商家出示此页面以享受优惠</view>
+            <view class="shop-pic" >
+              <image src="../../images/take-card-success.png" width="100%" mode="widthFix"></image>
+            </view>
+            <view class="shop-name">太湖码头酒家</view>
+          </view>
+          <view class="weui-dialog__bd">
+            <view class="card-wrapper vip-card-wrapper">
+              <view class="card-content">
+                <view class="vip-card-top">
+                  <view class="name"><text>协</text>王亦加</view>
+                  <image class="avatar" src="../../images/employee.png" mode="widthFix"></image>
+                </view>
+                <view class="vip-card-middle">
+                  <view class="company-name">小弈智能科技有限公司</view>
+                  <view class="company-address">钱江世纪城,望京大厦,C1座</view>
+                </view>
+                <view class="bar">
+                  <view class="id-num">ID: 52345654855</view>
+                  <view class="expire-time">有效期: 2019.8.10</view>
+                </view>
+              </view>
+              <view class="discount-info">
+                <view class="coupon">消费8折优惠</view>
+                <view class="limit">周一至周五可用 酒水饮料除外</view>
+              </view>
+            </view>
+          </view>
+          <view class="weui-dialog__ft">
+              <button class="weui-dialog__btn" bindtap="closeDialog">关闭</button>
+          </view>
+      </view>
+  </view>
+  </view>
+  <view class="page__ft">
+   
+  </view>
+  
+</view>
+

@@ -1,0 +1,413 @@
+/* pages/mall-detail/mall-detail.wxss */
+.page {
+  background-color: rgba(245, 246, 247, 1);
+}
+.page__hd {
+  padding: 20rpx 40rpx 0;
+  background-color: #fff;
+}
+swiper {
+  height: 448rpx;
+}
+.swiper-item {
+  height: 448rpx;
+  position: relative;
+  border-radius: 10rpx;
+}
+.swiperInfo {
+  position: absolute;
+  bottom: 20rpx;
+  right: 20rpx;
+  background: rgba(0, 0, 0, .5);
+  height: 32rpx;
+  width: 88rpx;
+  color: #fff;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  border-radius: 16rpx;
+}
+.swiperInfo image {
+  width: 16rpx;
+  height: 16rpx;
+  margin: 6rpx 6rpx 0;
+  display: inline-block;
+}
+.shop-name {
+  color: rgba(26, 42, 75, 1);
+  font-size: 60rpx;
+  font-weight: bold;
+  line-height: 1;
+  margin: 20rpx 0;
+}
+.infoWrapper {
+  padding: 0 20rpx;
+}
+.infoWrapper.top {
+  border-bottom: 1px solid rgba(216, 227, 240, 1);
+  padding-bottom: 40rpx;
+}
+.needinfo {
+  display: flex;
+  justify-content: space-between;
+}
+.needinfo text {
+  font-size: 32rpx;
+  line-height: 1;
+  color: rgba(136, 145, 169, 1);
+}
+.star-part {
+  height: 30rpx;
+  vertical-align: top;
+
+}
+.star-part .star {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 6rpx 0 0;
+  line-height: 1;
+  font-size: 28rpx;
+}
+.star-part .star.red {
+  color: rgba(255, 58, 51, 1);
+}
+.star-part .star.gray {
+  color: rgba(203, 203, 203, 1);
+}
+.infoWrapper.bottom {
+  font-size: 16rpx;
+  vertical-align: middle;
+  padding: 20rpx 0;
+}
+.infoWrapper.bottom image {
+  width: 28rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+}
+.infoWrapper.bottom .on-sale-time image {
+  width: 36rpx;
+  height: 32rpx;
+}
+.info-column {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  font-size: 32rpx;
+}
+.in-right {
+  padding: 0 30rpx;
+  border-left: 2px solid rgba(136, 145, 169, 0.6);
+}
+
+.page__bd {
+  background-color: #fff;
+  margin-top: 20rpx;
+}
+.tabs {
+  border-bottom: 1px solid rgba(216, 227, 240, 1);
+  display: flex;
+  justify-content: space-around;
+  margin: 0 40rpx;
+}
+.tabs text {
+  font-size: 32rpx;
+  line-height: 1;
+  padding: 20rpx 0;
+  color: rgba(136, 145, 169, 1);
+}
+.tabs text.active {
+  color: rgba(191, 165, 113, 1);
+  border-bottom: 2px solid rgba(191, 165, 113, 1);
+}
+.discount-list .itemWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40rpx 0;
+  margin: 0 40rpx;
+  border-bottom: 1px dashed rgba(216, 227, 240, 1);
+}
+.discount-list .itemWrap:nth-child(2n) {
+  border-bottom: none;
+}
+.discount-list .disText {
+  padding-left: 20rpx;
+}
+.discount-list .disText .item-title {
+  font-size: 40rpx;
+  line-height: 60rpx;
+  color: rgba(26, 42, 75, 1)
+}
+.discount-list .disText .item-intro {
+  font-size: 24rpx;
+  color: rgba(26, 42, 75, 0.6);
+}
+.discount-list .disBtn {
+  padding-right: 20rpx;
+}
+.discount-list .disBtn button {
+  background-color: rgba(255, 105, 0, 1);
+  color: #fff;
+  width: 136rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  font-size: 24rpx;
+  padding: 0;
+  text-align: center;
+  border: none;
+  box-shadow: none;
+}
+.discount-list .disBtn button::after {
+  border: none;
+  box-shadow: none;
+}
+.tabContent::before {
+  display: block;
+  content: '';
+  height: 20rpx;
+  width: 100%;
+  background-color: rgba(245, 246, 247, 1);
+  position: absolute;
+  top: -20rpx;
+  left: 0;
+}
+.tabContent {
+  position: relative;
+  padding: 40rpx 60rpx;
+}
+.content-title {
+  color: rgba(136, 145, 169, 1);
+  font-size: 40rpx;
+  line-height: 60rpx;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content-title button {
+  width: 120rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  font-size: 12px;
+  background: rgba(71, 95, 253, 1);
+  color: #fff;
+  padding: 0;
+  border: none;
+}
+.content {
+  margin-top: 40rpx;
+  font-size: 28rpx;
+}
+.coment-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.coment-wrapper .avatar image {
+  width: 80rpx;
+  height: 80rpx;
+}
+.comment-content {
+  padding-left: 20rpx;
+}
+.comment-content .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.comment-content .user-name {
+  font-size: 28rpx;
+}
+.comment-content .time {
+  font-size: 24rpx;
+  color: rgba(184, 193, 204, 1);
+}
+.comment-content .star-part {
+  margin-top: 10rpx;
+}
+.comment-content .star-part .core {
+  font-size: 24rpx;
+  color: rgba(102, 114, 128, 1);
+}
+
+.comment-content .comment-detail {
+  margin-top: 24rpx;
+  line-height: 48rpx;
+  font-size: 32rpx;
+  color: rgba(102, 114, 128, 1);
+}
+.comment-content .imgs {
+  margin-top: 30rpx;
+}
+.comment-content .imgs image {
+  display: block;
+  width: 29.629629%;
+  margin-right: 3.7037037%;
+  height: 120rpx;
+  float: left;
+}
+
+/* dialog */
+.weui-mask {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+.weui-dialog {
+  position: fixed;
+  z-index: 5000;
+  width: 84%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  text-align: center;
+  overflow: hidden;
+}
+.weui-dialog__title {
+  color: rgba(255, 255, 255, .6);
+  font-size: 22rpx;
+}
+.weui-dialog .shop-pic {
+  width: 144rpx;
+  height: 144rpx;
+  margin: 50rpx auto 0;
+}
+.weui-dialog .shop-pic image {
+  width: 144rpx;
+}
+.weui-dialog .shop-name {
+  color: #fff;
+  font-size: 38rpx;
+  line-height: 1;
+  margin-top: 20rpx;
+}
+.card-content {
+  border: 1px solid #dfe0e5;
+  border-bottom: none;
+  border-bottom: 0;
+  text-align: center;
+  border-radius: 20rpx;
+  background-color: #fffffe;
+}
+.vip-card-wrapper .card-content {
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  background: #fcfcfb;
+  overflow: hidden;
+}
+.vip-card-wrapper {
+  margin: 86rpx 0 0;
+  background-color: transparent;
+}
+.vip-card-top {
+  padding: 0 36rpx;
+  margin-top: 38rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.vip-card-top .name text {
+  background: rgba(224, 181, 127, 1);
+  color: #fff;
+  font-size: 22rpx;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 20rpx;
+  vertical-align: top;
+  margin-top: 5rpx;
+  line-height: 32rpx;
+  width: 32rpx;
+  width: 32rpx;
+  display: inline-block;
+}
+.vip-card-top .name {
+  font-size: 36rpx;
+  margin-top: 10rpx;
+  font-weight: bolder;
+  line-height: 1;
+  color: rgba(26, 42, 75, 1);
+}
+.vip-card-top .avatar {
+  width: 70rpx;
+}
+.vip-card-middle {
+  margin-top: 56rpx;
+  line-height: 1;
+  text-align: left;
+  padding: 0 36rpx 48rpx;
+}
+.vip-card-middle .company-name {
+  font-size: 22rpx;
+  font-weight: bold;
+  color: rgba(26, 42, 75, 1);
+}
+.vip-card-middle .company-address {
+  margin-top: 26rpx;
+  font-size: 36rpx;
+  font-weight: 200;
+}
+.vip-card-wrapper .card-content .bar {
+  background: -webkit-linear-gradient( left, rgba(233, 195, 149, 1), rgba(217, 167, 107, 1));
+  background: linear-gradient( left, rgba(233, 195, 149, 1), rgba(217, 167, 107, 1));
+  padding: 26rpx 34rpx 26rpx 44rpx;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  font-size: 22rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+}
+.vip-card-wrapper .card-content .id-num {
+  background-color: rgba(255, 255, 255, .2);
+  display: inline-block;
+  padding: 0 16rpx;
+}
+.discount-info {
+  margin: 0 30rpx;
+  background-color: rgba(247, 244, 237, 1);
+  padding: 50rpx 0;
+  border-left-bottom-radius: 15rpx;
+  border-right-bottom-radius: 15rpx;
+  position: relative;
+  overflow: hidden;
+}
+.discount-info::before,
+.discount-info::after
+{
+  content: '';
+  width: 32rpx;
+  height: 32rpx;
+  display: block;
+  position: absolute;
+  top: 70rpx;
+  background-color: rgba(0,0,0,.8);
+  border-radius: 16rpx;
+}
+.discount-info::before {
+  left: -16rpx;
+}
+.discount-info::after {
+  right: -16rpx;
+}
+.discount-info .coupon {
+  font-size: 32rpx;
+  color: rgba(26, 42, 75, 1);
+}
+.discount-info .limit {
+  font-size: 22rpx;
+  color: rgba(136, 145, 169, 1);
+}
+
+.weui-dialog__ft {
+  margin-top: 108rpx;
+}
+.weui-dialog__btn {
+  background-color: transparent;
+  color: #fff;
+}

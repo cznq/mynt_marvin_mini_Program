@@ -1,0 +1,167 @@
+<!--pages/benifit-card/benifit-card.wxml-->
+<view class="page">
+  <view class="page__hd">
+    <view class="card-wrapper vip-card-wrapper" wx:if="{{is_vip}}">
+      <view class="card-content">
+        <view class="vip-card-top">
+          <view class="name"><text>协</text>王亦加</view>
+          <image class="avatar" src="../../images/employee.png" mode="widthFix"></image>
+        </view>
+        <view class="vip-card-middle">
+          <view class="company-name">小弈智能科技有限公司</view>
+          <view class="company-address">钱江世纪城,望京大厦,C1座</view>
+        </view>
+        <view class="bar">
+          <view class="id-num">ID: 52345654855</view>
+          <view class="expire-time">有效期: 2019.8.10</view>
+        </view>
+      </view>
+    </view>
+    <view class="card-wrapper" wx:else>
+      <view class="card-content">
+        <view class="card-main">
+          <view class="name">小觅VIP卡</view>
+          <view class="info">您的企业尚未开通企业协议卡，在合约商户消费并出示该卡可享商户协议价。</view>
+        </view>
+        <view class="bar"></view>
+      </view>
+    </view>          
+  </view>
+  <view class="page__bd">
+    <view class="vip-fun-intro">
+      <view class="title">VIP卡特权</view>
+      <view class="subtitle">独享企业协议商户超低协议价</view>
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="icon"><image src="../../images/agreement@2x.png" mode="widthFix"></image></view>
+          <view class="textintro">享协议商户最低5折协议价</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="icon"><image src="../../images/hotel@2x.png" mode="widthFix"></image></view>
+          <view class="textintro">周边星级酒店协议入住</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="icon"><image src="../../images/welfare@2x.png" mode="widthFix"></image></view>
+          <view class="textintro">专属员工福利</view>
+        </view>
+      </view>
+      <view class="vip-area" wx:if="{{is_vip}}">
+        <button bindtap="">前往协议商户</button>
+        <view class="tips">您的企业已为您开通企业协议卡，在合约商户消费并出示该卡可享商户协议价。</view>
+      </view>
+      <view class="contact-admin" wx:else>
+        <view class="tit">请联系管理员开通</view>
+        <view class="tips">如需开通请联系楼宇管理员，以公司为单位开通后，公司员工在合约商户消费可享商户协议价。</view>
+      </view>
+    </view>
+    <!-- 周边热门 -->    
+    <view class="round-hot">
+      <view class="hot-restaurant hot-area">
+        <view class="top-bar">
+          <view class="hot-title">周边热门<text>协议餐饮</text></view>
+          <view class="view-all" bindtap="viewAll">查看全部</view>
+        </view>
+        <view class="shop-list">
+        <scroll-view scroll-x style="white-space:nowrap;" bindscroll="scroll" class="crouse-pics">
+          <view class="shop-wrapper">
+            <view class="head-pic" style="background: url(../../images/take-card-success.png) no-repeat center center"></view>
+            <view class="shop-name">扑园饭庄-四季花园</view>
+            <view class="star-part">
+              <view class="star red">♥</view>
+              <view class="star red">♥</view>
+              <view class="star red">♥</view>
+              <view class="star gray">♥</view>
+            </view>
+            <view class="tags">
+              <view class="tag-name">无锡江浙 海鲜</view>
+              <view class="distance">200m</view>
+            </view>
+            <view class="discount">
+              <view class="price-wrapper">
+                <image src="../../images/shape@2x.png"></image>协议价
+              </view>
+              <view>满100元减25 /消费8折…</view>
+            </view>
+          </view>
+          <view class="shop-wrapper">
+            <view class="head-pic" style="background: url(../../images/take-card-success.png) no-repeat center center"></view>
+            <view class="shop-name">扑园饭庄-四季花园</view>
+            <view class="star-part">
+              <view class="star red">♥</view>
+              <view class="star red">♥</view>
+              <view class="star red">♥</view>
+              <view class="star gray">♥</view>
+            </view>
+            <view class="tags">
+              <view class="tag-name">无锡江浙 海鲜</view>
+              <view class="distance">200m</view>
+            </view>
+            <view class="discount">
+              <view class="price-wrapper">
+                <image src="../../images/shape@2x.png"></image>协议价
+              </view>
+              <view>满100元减25 /消费8折…</view>
+            </view>
+          </view>
+        </scroll-view>
+        </view>
+      </view>
+      <view class="hot-restaurant hot-area">
+        <view class="top-bar">
+          <view class="hot-title">周边热门<text>协议酒店</text></view>
+          <view class="view-all" bindtap="viewAll">查看全部</view>
+        </view>
+        <view class="shop-list">
+        <scroll-view scroll-x style="white-space:nowrap;" bindscroll="scroll" class="crouse-pics">
+          <view class="shop-wrapper">
+            <view class="head-pic" style="background: url(../../images/take-card-success.png) no-repeat center center;"></view>
+            <view class="shop-name">扑园饭庄-四季花园</view>
+            <view class="star-part">
+              <view class="star red">♥</view>
+              <view class="star red">♥</view>
+              <view class="star red">♥</view>
+              <view class="star gray">♥</view>
+            </view>
+            <view class="tags">
+              <view class="tag-name">无锡江浙 海鲜</view>
+              <view class="distance">200m</view>
+            </view>
+            <view class="discount">
+              <view class="price-wrapper">
+                <image src="../../images/shape@2x.png"></image>协议价
+              </view>
+              <view>满100元减25 /消费8折…</view>
+            </view>
+          </view>
+          <view class="shop-wrapper">
+            <view class="head-pic" style="background: url(../../images/take-card-success.png) no-repeat center center"></view>
+            <view class="shop-name">扑园饭庄-四季花园</view>
+            <view class="star-part">
+              <view class="star red">♥</view>
+              <view class="star red">♥</view>
+              <view class="star red">♥</view>
+              <view class="star gray">♥</view>
+            </view>
+            <view class="tags">
+              <view class="tag-name">无锡江浙 海鲜</view>
+              <view class="distance">200m</view>
+            </view>
+            <view class="discount">
+              <view class="price-wrapper">
+                <image src="../../images/shape@2x.png"></image>协议价
+              </view>
+              <view>满100元减25 /消费8折…</view>
+            </view>
+          </view>
+        </scroll-view>
+        </view>
+      </view>
+    </view>
+  </view>
+    
+  <view class="page__ft">
+   
+  </view>
+  
+</view>
+

@@ -1,0 +1,111 @@
+/* pages/mall-detail/mall-detail.wxss */
+.page {
+  background: rgba(245, 246, 247, 1);
+}
+.page__bd {
+  padding: 60rpx 40rpx;
+  background: rgba(255, 255, 255, 1);
+}
+.overall-evaluation {
+  display: flex;
+  justify-content: flex-start;
+  line-height: 68rpx;
+  font-size: 44rpx;
+}
+.overall-evaluation text {
+  font-size: 44rpx;
+  margin-right: 40rpx;
+}
+.star-part {
+  height: 30rpx;
+  vertical-align: top;
+}
+.star-part .star {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 16rpx 0 0;
+  line-height: 1;
+  font-size: 44rpx;
+}
+.star-part .star.red {
+  color: rgba(255, 58, 51, 1);
+}
+.star-part .star.gray {
+  color: rgba(203, 203, 203, 1);
+}
+.comment-content {
+  font-size: 44rpx;
+  margin-top: 80rpx;
+}
+.comment-content .comTitle {
+  margin-bottom: 20rpx;
+  line-height: 1;
+}
+.comment-content .weui-textarea {
+  font-size: 32rpx;
+}
+.placeholder {
+  font-size: 32rpx;
+  color: rgba(26, 42, 75, 0.3);
+  line-height: 48rpx;
+}
+.upload-pic-area {
+  margin-top: 130rpx;
+  padding: 30rpx 0;
+  overflow: hidden;
+}
+.upload-pic-area .pic-list {
+  float: left;
+}
+.upload-pic-area .pic-list view {
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 44rpx;
+  border-radius: 6rpx;
+  position: relative;
+}
+.upload-pic-area .pic-list icon {
+  position: absolute;
+  right: -20rpx;
+  top: -20rpx;
+}
+.upload-pic-area .uploadBtn {
+  font-size: 24rpx;
+  line-height: 1;
+  color: rgba(136, 145, 169, 1);
+  text-align: center;
+  padding-bottom: 40rpx;
+  width: 160rpx;
+  margin-left: 0;
+  border-radius: 6rpx;
+  border: 1px dashed rgba(26, 42, 75, 0.3);
+  float: left;
+}
+.upload-pic-area .uploadBtn::before,
+.upload-pic-area .uploadBtn::after {
+  border: none;
+  box-shadow: none;
+}
+.upload-pic-area .uploadBtn image {
+  width: 48rpx;
+  height: 44rpx;
+  display: block;
+  margin: 40rpx auto 10rpx;
+}
+.page__ft {
+  margin-top: 20rpx;
+  padding-top: 60rpx;
+  background-color: #fff;
+}
+.page__ft button {
+  margin: 0 60rpx;
+  color: #fff;
+  background-color: rgba(26, 42, 75, 0.3);
+  border: none;
+  box-shadow: none;
+}
+.page__ft button::after,
+.page__ft button::before {
+  border: none;
+  box-shadow: none;
+}
