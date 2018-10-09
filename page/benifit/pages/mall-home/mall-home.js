@@ -1,4 +1,5 @@
 // pages/benifit-card/benifit-card.js
+const app = getApp();
 Page({
 
   /**
@@ -6,11 +7,7 @@ Page({
    */
   data: {
     slide_data: {
-      imgUrls: [
-      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-      ],
+      slide_img: {},
       indicatorDots: false,
       autoplay: true,
       interval: 20000,
@@ -18,15 +15,19 @@ Page({
     },
     shopList: null,
     tabSelected: 'food',
+    selectedType: 0,
     tabList: [{
+      typeid: 0,
       id: 'food',
       title: '美食'
     },
     {
+      typeid: 1,
       id: 'entertainment',
       title: '娱乐'
     },
     {
+      typeid: 2,
       id: 'hotel',
       title: '酒店'
     }]
@@ -36,19 +37,64 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var self = this;
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function (res) {
+        self.getCommerceList(0);
+      })
+    } else {
+      self.getCommerceList(0);
+    }
   },
 
   changeTab: function (e) {
     console.log(e);
-    var selectedId = e.target.id;
-    this.setData({ tabSelected: selectedId });
+    var typedId = e.currentTarget.dataset.typeid;
+    var selectedId = e.currentTarget.dataset.selectid;
+    this.setData({ tabSelected: selectedId, selectedType: typedId });
+    this.getCommerceList(typedId);
   },
+
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 获取首页的商家列表
    */
-  onReady: function () {
-  
+  getCommerceList(commerceType) {
+    var that = this;
+    var slide_img = "slide_data.slide_img";
+    app.Util.network.POST({
+      url: app.globalData.BENIFIT_API_URL,
+      params: {
+        service: 'commerce',
+        method: 'get_commerce_list',
+        union_id: wx.getStorageSync('xy_session'),
+        data: JSON.stringify({
+          type: commerceType
+        })
+      },
+      success: res => {
+        if (res.data.sub_code == 0 && res.data.result) {
+          that.setData({
+            shopList: res.data.result,
+            [slide_img]: res.data.result.hompage
+          })
+        } else {
+          that.setData({
+            shopList: null
+          })  
+        }
+      }
+    })
+  },
+
+  /**
+ * 跳转到商家详情
+ */
+  redirectCommerce: function (e) {
+    var commerce_id = e.currentTarget.dataset.commerceid;
+    var commerce_type = e.currentTarget.dataset.commercetype;
+    wx.navigateTo({
+      url: '/page/benifit/pages/mall-detail/mall-detail?commerce_id=' + commerce_id + '&commerce_type=' + commerce_type,
+    })
   },
 
   /**
@@ -58,38 +104,4 @@ Page({
   
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })

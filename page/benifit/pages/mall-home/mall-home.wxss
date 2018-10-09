@@ -1,4 +1,8 @@
 /* pages/benifit-card/benifit-card.wxss */
+page {
+  background: -webkit-linear-gradient( top, rgba(255, 255, 255, 1), rgba(246, 246, 246, 1));
+  background: linear-gradient( top, rgba(255, 255, 255, 1), rgba(246, 246, 246, 1));
+}
 .page {
   padding: 1px 60rpx;
   background: -webkit-linear-gradient( top, rgba(255, 255, 255, 1), rgba(246, 246, 246, 1));
@@ -48,7 +52,7 @@ swiper {
   display: block;
   content: '';
   position: absolute;
-  bottom: -24rpx;
+  bottom: -20rpx;
   left: 24rpx;
   border-left: 14rpx solid transparent;
   border-right: 14rpx solid transparent;
@@ -78,21 +82,20 @@ swiper {
   width: 100%;
   height: 260rpx;
 }
+.shop-wrapper .head-pic image {
+  width: 100%;
+  height: 100%;
+}
 .shop-name {
   font-size: 32rpx;
   margin-top: 20rpx;
 }
 .star-part .star {
   display: inline-block;
-  margin: 0 6rpx 0 0;
+  margin: 0 8rpx 0 0;
   line-height: 1;
-  font-size: 24rpx;
-}
-.star-part .star.red {
-  color: rgba(255, 58, 51, 1);
-}
-.star-part .star.gray {
-  color: rgba(203, 203, 203, 1);
+  width: 16rpx;
+  height: 16rpx;
 }
 .tags {
   display: flex;

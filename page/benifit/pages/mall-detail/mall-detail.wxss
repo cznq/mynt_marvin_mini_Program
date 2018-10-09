@@ -1,4 +1,5 @@
 /* pages/mall-detail/mall-detail.wxss */
+@import "../../vendor/wxParse/wxParse.wxss";
 .page {
   background-color: rgba(245, 246, 247, 1);
 }
@@ -29,15 +30,16 @@ swiper {
 .swiperInfo image {
   width: 16rpx;
   height: 16rpx;
-  margin: 6rpx 6rpx 0;
+  margin: 6rpx 6rpx 0 10rpx;
   display: inline-block;
 }
 .shop-name {
   color: rgba(26, 42, 75, 1);
   font-size: 60rpx;
   font-weight: bold;
-  line-height: 1;
+  line-height: 1.2;
   margin: 20rpx 0;
+  overflow: visible;
 }
 .infoWrapper {
   padding: 0 20rpx;
@@ -49,6 +51,8 @@ swiper {
 .needinfo {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
+  overflow: visible;
 }
 .needinfo text {
   font-size: 32rpx;
@@ -56,22 +60,19 @@ swiper {
   color: rgba(136, 145, 169, 1);
 }
 .star-part {
-  height: 30rpx;
-  vertical-align: top;
-
+  height: 24rpx;
+  overflow: hidden;
 }
 .star-part .star {
   display: inline-block;
   vertical-align: top;
-  margin: 0 6rpx 0 0;
-  line-height: 1;
-  font-size: 28rpx;
+  margin: 0 8rpx 0 0;
+  width: 28rpx;
+  height: 24rpx;
 }
-.star-part .star.red {
-  color: rgba(255, 58, 51, 1);
-}
-.star-part .star.gray {
-  color: rgba(203, 203, 203, 1);
+.star-part.comment-star .start {
+  width: 24rpx;
+  height: 20rpx;
 }
 .infoWrapper.bottom {
   font-size: 16rpx;
@@ -82,19 +83,29 @@ swiper {
   width: 28rpx;
   height: 32rpx;
   margin-right: 10rpx;
+  vertical-align: bottom;
 }
 .infoWrapper.bottom .on-sale-time image {
   width: 36rpx;
   height: 32rpx;
+  margin-right: 20rpx;
+}
+.infoWrapper.bottom .on-sale image {
+  width: 40rpx;
+  height: 44rpx;
 }
 .info-column {
   display: flex;
   justify-content: space-between;
   padding: 20rpx 0;
   font-size: 32rpx;
+  line-height: 1;
 }
 .in-right {
-  padding: 0 30rpx;
+  padding: 0 0 0 30rpx;
+  text-align: right;
+  min-width: 96rpx;
+  overflow: visible;
   border-left: 2px solid rgba(136, 145, 169, 0.6);
 }
 
@@ -108,15 +119,24 @@ swiper {
   justify-content: space-around;
   margin: 0 40rpx;
 }
-.tabs text {
+.tabs image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 4rpx;
+  vertical-align: bottom;
+}
+.tabs view {
   font-size: 32rpx;
-  line-height: 1;
+  line-height: 32rpx;
   padding: 20rpx 0;
   color: rgba(136, 145, 169, 1);
 }
-.tabs text.active {
+.tabs view.active {
   color: rgba(191, 165, 113, 1);
   border-bottom: 2px solid rgba(191, 165, 113, 1);
+}
+.discount-list {
+  padding-bottom: 44rpx;
 }
 .discount-list .itemWrap {
   display: flex;
@@ -173,6 +193,7 @@ swiper {
 .tabContent {
   position: relative;
   padding: 40rpx 60rpx;
+  overflow: visible;
 }
 .content-title {
   color: rgba(136, 145, 169, 1);
@@ -196,18 +217,29 @@ swiper {
 .content {
   margin-top: 40rpx;
   font-size: 28rpx;
+  color: rgba(26, 42, 75, 1);
+}
+.tabContent.coment-list {
+  padding: 40rpx;
 }
 .coment-wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
+  padding: 40rpx 20rpx;
+  border-bottom: 1px solid rgba(216, 227, 240, 1);
+}
+.coment-wrapper .avatar {
+  overflow: visible;
 }
 .coment-wrapper .avatar image {
   width: 80rpx;
   height: 80rpx;
+  border-radius: 40rpx;
 }
 .comment-content {
   padding-left: 20rpx;
+  min-width: calc(100% - 100rpx);
 }
 .comment-content .top {
   display: flex;
@@ -227,6 +259,9 @@ swiper {
 .comment-content .star-part .core {
   font-size: 24rpx;
   color: rgba(102, 114, 128, 1);
+  width: auto;
+  line-height: 24rpx;
+  vertical-align: top;
 }
 
 .comment-content .comment-detail {
@@ -283,7 +318,7 @@ swiper {
 .weui-dialog .shop-name {
   color: #fff;
   font-size: 38rpx;
-  line-height: 1;
+  line-height: 1.2;
   margin-top: 20rpx;
 }
 .card-content {
@@ -335,6 +370,7 @@ swiper {
 }
 .vip-card-top .avatar {
   width: 70rpx;
+  border-radius: 35rpx;
 }
 .vip-card-middle {
   margin-top: 56rpx;
@@ -355,13 +391,16 @@ swiper {
 .vip-card-wrapper .card-content .bar {
   background: -webkit-linear-gradient( left, rgba(233, 195, 149, 1), rgba(217, 167, 107, 1));
   background: linear-gradient( left, rgba(233, 195, 149, 1), rgba(217, 167, 107, 1));
-  padding: 26rpx 34rpx 26rpx 44rpx;
   color: #fff;
+  width: 100%;
+  font-size: 22rpx;
+  line-height: 48rpx;
+}
+.vip-card-wrapper .card-content .bar .bar-bg {
+  padding: 26rpx 34rpx 26rpx 44rpx;
+  height: 48rpx;
   display: flex;
   justify-content: space-between;
-  font-size: 22rpx;
-  height: 48rpx;
-  line-height: 48rpx;
 }
 .vip-card-wrapper .card-content .id-num {
   background-color: rgba(255, 255, 255, .2);
@@ -410,4 +449,8 @@ swiper {
 .weui-dialog__btn {
   background-color: transparent;
   color: #fff;
+}
+.weui-dialog__btn image {
+  width: 62rpx;
+  height: 30rpx;
 }

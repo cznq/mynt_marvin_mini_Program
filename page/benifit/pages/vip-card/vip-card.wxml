@@ -4,16 +4,18 @@
     <view class="card-wrapper vip-card-wrapper" wx:if="{{is_vip}}">
       <view class="card-content">
         <view class="vip-card-top">
-          <view class="name"><text>协</text>王亦加</view>
-          <image class="avatar" src="../../images/employee.png" mode="widthFix"></image>
+          <view class="name"><text>协</text>{{employeeInfo.name}}</view>
+          <image class="avatar" src="{{employeeInfo.avatar}}" mode="widthFix"></image>
         </view>
         <view class="vip-card-middle">
-          <view class="company-name">小弈智能科技有限公司</view>
-          <view class="company-address">钱江世纪城,望京大厦,C1座</view>
+          <view class="company-name">{{employeeInfo.company_name}}</view>
+          <view class="company-address">{{employeeInfo.company_address}}</view>
         </view>
         <view class="bar">
-          <view class="id-num">ID: 52345654855</view>
-          <view class="expire-time">有效期: 2019.8.10</view>
+          <view class="bar-bg" style="background: url(../../images/mynt_vip_bg@2x.png) no-repeat right top;background-size:310rpx 66rpx;">
+            <view class="id-num">ID: {{employeeInfo.employee_card_id}}</view>
+            <view class="expire-time">有效期: {{employeeInfo.expire}}</view>
+          </view>
         </view>
       </view>
     </view>
@@ -46,7 +48,7 @@
         </view>
       </view>
       <view class="vip-area" wx:if="{{is_vip}}">
-        <button bindtap="">前往协议商户</button>
+        <button bindtap="redirectMall">前往协议商户</button>
         <view class="tips">您的企业已为您开通企业协议卡，在合约商户消费并出示该卡可享商户协议价。</view>
       </view>
       <view class="contact-admin" wx:else>
@@ -54,105 +56,75 @@
         <view class="tips">如需开通请联系楼宇管理员，以公司为单位开通后，公司员工在合约商户消费可享商户协议价。</view>
       </view>
     </view>
+
     <!-- 周边热门 -->    
     <view class="round-hot">
-      <view class="hot-restaurant hot-area">
+      <!-- 热门餐饮 -->
+      <view class="hot-restaurant hot-area" wx:if="{{hotDinnerCommerce}}">
         <view class="top-bar">
           <view class="hot-title">周边热门<text>协议餐饮</text></view>
           <view class="view-all" bindtap="viewAll">查看全部</view>
         </view>
         <view class="shop-list">
         <scroll-view scroll-x style="white-space:nowrap;" bindscroll="scroll" class="crouse-pics">
-          <view class="shop-wrapper">
-            <view class="head-pic" style="background: url(../../images/take-card-success.png) no-repeat center center"></view>
-            <view class="shop-name">扑园饭庄-四季花园</view>
+         <block wx:for="{{hotDinnerCommerce}}" wx:key="">
+          <view class="shop-wrapper" bindtap="redirectCommerce" data-commerceid="{{item.commerce_id}}" data-commercetype='0'>
+            <view class="head-pic">
+              <image src="{{item.commerce_homepage_url}}" mode="aspectFill"></image>
+            </view>
+            <view class="shop-name">{{item.commerce_name}}</view>
             <view class="star-part">
-              <view class="star red">♥</view>
-              <view class="star red">♥</view>
-              <view class="star red">♥</view>
-              <view class="star gray">♥</view>
+              <block wx:for="{{5}}" wx:key="">
+                <image class="star" src="../../images/{{item <= rate ? 'love@2x.png' : 'love_gray@2x.png'}}" data-rate="{{item}}" bindtap="rateChange"></image>
+              </block>
             </view>
             <view class="tags">
-              <view class="tag-name">无锡江浙 海鲜</view>
+              <view class="tag-name">{{item.business_projects}}</view>
               <view class="distance">200m</view>
             </view>
             <view class="discount">
               <view class="price-wrapper">
                 <image src="../../images/shape@2x.png"></image>协议价
               </view>
-              <view>满100元减25 /消费8折…</view>
+              <view>{{item.agreement_price}}</view>
             </view>
           </view>
-          <view class="shop-wrapper">
-            <view class="head-pic" style="background: url(../../images/take-card-success.png) no-repeat center center"></view>
-            <view class="shop-name">扑园饭庄-四季花园</view>
-            <view class="star-part">
-              <view class="star red">♥</view>
-              <view class="star red">♥</view>
-              <view class="star red">♥</view>
-              <view class="star gray">♥</view>
-            </view>
-            <view class="tags">
-              <view class="tag-name">无锡江浙 海鲜</view>
-              <view class="distance">200m</view>
-            </view>
-            <view class="discount">
-              <view class="price-wrapper">
-                <image src="../../images/shape@2x.png"></image>协议价
-              </view>
-              <view>满100元减25 /消费8折…</view>
-            </view>
-          </view>
+          </block>
         </scroll-view>
         </view>
       </view>
-      <view class="hot-restaurant hot-area">
+
+      <!-- 热门酒店 -->
+      <view class="hot-restaurant hot-area" wx:if="{{hotHotelCommerce}}">
         <view class="top-bar">
           <view class="hot-title">周边热门<text>协议酒店</text></view>
           <view class="view-all" bindtap="viewAll">查看全部</view>
         </view>
         <view class="shop-list">
         <scroll-view scroll-x style="white-space:nowrap;" bindscroll="scroll" class="crouse-pics">
-          <view class="shop-wrapper">
-            <view class="head-pic" style="background: url(../../images/take-card-success.png) no-repeat center center;"></view>
-            <view class="shop-name">扑园饭庄-四季花园</view>
+        <block wx:for="{{hotHotelCommerce}}" wx:key="">
+          <view class="shop-wrapper" bindtap="redirectCommerce" data-commerceid="{{item.commerce_id}}" data-commercetype='0'>
+            <view class="head-pic">
+              <image src="{{item.commerce_homepage_url}}" mode="aspectFill"></image>
+            </view>
+            <view class="shop-name">{{item.commerce_name}}</view>
             <view class="star-part">
-              <view class="star red">♥</view>
-              <view class="star red">♥</view>
-              <view class="star red">♥</view>
-              <view class="star gray">♥</view>
+              <block wx:for="{{5}}" wx:key="">
+                <image class="star" src="../../images/{{item <= rate ? 'love@2x.png' : 'love_gray@2x.png'}}" data-rate="{{item}}" bindtap="rateChange"></image>
+              </block>
             </view>
             <view class="tags">
-              <view class="tag-name">无锡江浙 海鲜</view>
+              <view class="tag-name">{{item.business_projects}}</view>
               <view class="distance">200m</view>
             </view>
             <view class="discount">
               <view class="price-wrapper">
                 <image src="../../images/shape@2x.png"></image>协议价
               </view>
-              <view>满100元减25 /消费8折…</view>
+              <view>{{item.agreement_price}}</view>
             </view>
           </view>
-          <view class="shop-wrapper">
-            <view class="head-pic" style="background: url(../../images/take-card-success.png) no-repeat center center"></view>
-            <view class="shop-name">扑园饭庄-四季花园</view>
-            <view class="star-part">
-              <view class="star red">♥</view>
-              <view class="star red">♥</view>
-              <view class="star red">♥</view>
-              <view class="star gray">♥</view>
-            </view>
-            <view class="tags">
-              <view class="tag-name">无锡江浙 海鲜</view>
-              <view class="distance">200m</view>
-            </view>
-            <view class="discount">
-              <view class="price-wrapper">
-                <image src="../../images/shape@2x.png"></image>协议价
-              </view>
-              <view>满100元减25 /消费8折…</view>
-            </view>
-          </view>
+        </block>
         </scroll-view>
         </view>
       </view>

@@ -9,7 +9,8 @@ App({
     latitude: null,
     longitude: null,
     BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
-    WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com'
+    WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
+    BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
     //BASE_API_URL: 'https://marvin-api.slightech.com/mini_program/api/',
     //WEB_VIEW_URL: 'https://marvin-official-account.slightech.com'
   },
