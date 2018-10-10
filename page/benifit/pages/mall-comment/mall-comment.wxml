@@ -13,9 +13,9 @@
     </view>
     <view class="comment-content">
       <view class="comTitle">评价</view>
-      <textarea class="weui-textarea" name="visit_intro" maxlength="800" id="i2" bindinput="checkForm" placeholder="亲，分享口味、环境、服务等方面的体验。" placeholder-class="placeholder" auto-height="true"></textarea>
+      <textarea class="weui-textarea" name="content" maxlength="800" id="i2" bindinput="" placeholder="亲，分享口味、环境、服务等方面的体验。" placeholder-class="placeholder" auto-height="true"></textarea>
       <view class="upload-pic-area">
-        <view class="pic-list">
+        <view class="pic-list {{uploading ? 'uploading' : ''}}">
 
           <block wx:for="{{selectedImages}}" wx:key="">
             <view class="image">
@@ -29,12 +29,12 @@
                     </block>
                     <block wx:elif="{{progress[index] == false}}">
                         <view class="icon error">
-                            <image src="/images/warn.svg"></image>
+                            <image src="../../images/warn.svg"></image>
                         </view>
                     </block>
                     <block wx:elif="{{progress[index] == 100}}">
                         <view class="icon success">
-                            <image src="/images/check_white.svg"></image>
+                            <image src="../../images/check_white.svg"></image>
                         </view>
                     </block>
                     <block wx:else>

@@ -30,7 +30,8 @@ Page({
       typeid: 2,
       id: 'hotel',
       title: '酒店'
-    }]
+    }],
+    tabFixed: false
   },
 
   /**
@@ -47,8 +48,19 @@ Page({
     }
   },
 
+  onPageScroll: function (e) {
+    if (e.scrollTop > 140) {
+      this.setData({
+        tabFixed: true
+      });
+    } else {
+      this.setData({
+        tabFixed: false
+      });
+    }
+  },
+
   changeTab: function (e) {
-    console.log(e);
     var typedId = e.currentTarget.dataset.typeid;
     var selectedId = e.currentTarget.dataset.selectid;
     this.setData({ tabSelected: selectedId, selectedType: typedId });

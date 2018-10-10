@@ -6,10 +6,10 @@
   autoplay="{{slide_data.autoplay}}" interval="{{slide_data.interval}}" duration="{{slide_data.duration}}">
       <block wx:for="{{slide_data.thumbnail_url}}" wx:key="key">
         <swiper-item>
-          <view class="swiper-item" style="background: url({{item}}) no-repeat center center;background-size:cover;" bindtap="viewPhoto">
+          <view class="swiper-item" style="background: url({{item}}) no-repeat center center;background-size:cover;" bindtap="viewPhoto" data-index="{{index}}">
             <view class="swiperInfo">
               <image src="../../images/search@2x.png"></image>
-              <text>1/25</text>
+              <text>{{index+1}}/{{slide_data.imgCount}}</text>
             </view>
           </view>
         </swiper-item>
@@ -18,7 +18,7 @@
     <view class="infoWrapper top">
       <view class="shop-name">{{commerceDetail.name}}</view>
       <view class="needinfo">
-        <text>咖啡馆</text>
+        <text>{{commerceDetail.business_projects}}</text>
         <view class="star-part">
           <block wx:for="{{5}}" wx:key="">
             <image class="star" src="../../images/{{item <= rate ? 'love@2x.png' : 'love_gray@2x.png'}}" data-rate="{{item}}" bindtap="rateChange"></image>
@@ -27,10 +27,10 @@
       </view>
     </view>
     <view class="infoWrapper bottom">
-      <view class="info-column">
+      <view class="info-column" wx:if="{{commerce_type < 2}}">
         <view class="on-sale-time"><image src="../../images/icon_kitchen@2x.png"></image>{{commerceDetail.business_hours.start}} - {{commerceDetail.business_hours.end}}
         </view>
-        <view class="on-sale in-right">营业中</view>
+        <view class="on-sale in-right">{{businessStatus}}</view>
       </view>
       <view class="info-column">
         <view class="address"><image src="../../images/icon_add@2x.png"></image>{{commerceDetail.address}}
@@ -41,14 +41,15 @@
   </view>
   <view class="page__bd">
     <view class="tabs">
-      <view class="active"><image src="../../images/icon_protocol@2x.png"></image>
+      <view class="golden {{viewID == 'discSec' ? 'active' : ''}}" bindtap="gotoView" data-partid="discSec"><image src="../../images/icon_protocol{{viewID == 'discSec' ? '' : '_gray'}}@2x.png"></image>
         <text>协议优惠</text></view>
-      <view bindtap="gotoView">详情展示</view>
-      <view bindtap="gotoView">消费评价</view>
+      <view class="{{viewID == 'detailSec' ? 'active' : ''}}" bindtap="gotoView" data-partid="detailSec">详情展示</view>
+      <view class="{{viewID == 'comtSec' ? 'active' : ''}}" bindtap="gotoView" data-partid="comtSec">消费评价</view>
     </view>
-    <scroll-view scroll-y style="height:100%;" scroll-into-view="{{curPosition}}">
+    <scroll-view scroll-y="true" style="height:{{systemInfo.windowHeight}}px;" scroll-into-view="{{viewID}}">
       <view class="discount-list" id="discSec">
-      <block wx:for="{{protocolInfo}}" wx:key="">
+      <!-- 餐饮和娱乐协议优惠列表 -->
+      <block wx:for="{{protocolInfo}}" wx:key="" wx:if="{{commerce_type < 2}}">
         <view class="itemWrap">
           <view class="disText">
             <view class="item-title">{{item.benifit_content}}</view>
@@ -58,6 +59,41 @@
             <button bindtap="cardTopay" data-discount="{{item.benifit_content}}" data-limit="{{item.benifit_limit}}">协议买单</button>
           </view>
         </view>
+      </block>
+      <!-- 酒店协议优惠列表 -->
+      <block wx:for="{{protocolInfo}}" wx:key="" wx:if="{{commerce_type == 2}}">
+        <view class="hotel-protocol-item" id="discSec">
+          <view class="hotel-short-img">
+            <image src="{{item.thumbnail_url}}" mode="aspectFill"></image>
+          </view>
+          <view class="textArea"> 
+            <view class="self-price"> 
+              <view class="hotel-intro"> 
+                <view class="it-title">{{item.bed_introduce}}</view>
+                <view class="it-intro">{{item.area}}㎡ | {{item.bed}} | {{item.has_breakfast ? "早餐" : "无早餐"}}</view>
+              </view>
+              <view class="disBtn">
+              <!--
+                <view class="price-num">¥{{item.deal_price_fen}}</view>  -->
+                <view class="price-num">
+                  <image src="../../images/num/numb.png"></image>
+                  <block wx:for="{{item.deal_price_fen}}" wx:for-item="num" wx:key="">
+                    <image src="../../images/num/num{{num}}.png"></image>
+                  </block>
+                </view>
+                
+                <button open-type="contact" show-message-card="true" session-from="shop-order-detail" send-message-title="{{commerceDetail.name}} - {{item.bed}}">协议咨询</button>
+              </view>
+            </view>
+            <view class="other-price">
+              <view class=""><image src="../../images/icon_store@2x.png"></image>门店价{{item.store_price_fen}}</view>
+              <view class=""><image src="../../images/icon_xiecheng@2x.png"></image>携程价{{item.xiecheng_price_fen}}</view>
+              <view class=""><image src="../../images/icon_feizhu@2x.png"></image>飞猪价{{item.feizhu_price_fen}}</view>
+            </view>
+          </view>
+        </view>
+        
+        
       </block>
       </view>
       <view class="detail_show tabContent" id="detailSec">
@@ -70,11 +106,11 @@
       <view class="coment-list tabContent" id="comtSec">
         <view class="content-title">
           <text>消费评价</text>
-          <view><button bindtap="enterComment">写点评</button></view>
+          <view><button bindtap="enterComment" data-commerceid="{{commerce_id}}">写点评</button></view>
         </view>
         <view class="content">
         <!-- 评论列表 -->
-        <block wx:for="{{commentList}}" wx:key="">
+        <block wx:for="{{commentList}}" wx:for-index="mindex" wx:key="">
           <view class="coment-wrapper">
             <view class="avatar"><image src="{{item.user_avatar_url}}"></image></view>
             <view class="comment-content">
@@ -91,8 +127,14 @@
               <view class="comment-detail">
                 <text>{{item.comment}}</text>
                 <view class="imgs">
-                  <block wx:for="{{item.pic_url}}" wx:key="">
-                    <image src="{{item}}"></image>
+                  <block wx:for="{{item.pic_url}}" wx:for-item="pitem" wx:for-index="pindex" wx:key="">
+                    <view class="imgWrap" wx:if="{{pindex < 3}}">
+                      <image src="{{pitem}}" bindtap="previewImage" data-mindex="{{mindex}}" data-pindex="{{pindex}}" mode="aspectFill"></image>
+                      <view class="imgInfo" wx:if="{{pindex == 2 && item.pic_url.length > 3}}">
+                        <image src="../../images/search@2x.png"></image>
+                        <text>{{item.pic_url.length}}</text>
+                      </view>
+                      </view>
                   </block>
                 </view>
               </view>

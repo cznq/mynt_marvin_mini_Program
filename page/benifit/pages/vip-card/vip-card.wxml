@@ -63,10 +63,10 @@
       <view class="hot-restaurant hot-area" wx:if="{{hotDinnerCommerce}}">
         <view class="top-bar">
           <view class="hot-title">周边热门<text>协议餐饮</text></view>
-          <view class="view-all" bindtap="viewAll">查看全部</view>
+          <view class="view-all" bindtap="redirectMall">查看全部</view>
         </view>
         <view class="shop-list">
-        <scroll-view scroll-x style="white-space:nowrap;" bindscroll="scroll" class="crouse-pics">
+        <scroll-view scroll-x style="white-space:nowrap;" bindscroll="" class="crouse-pics">
          <block wx:for="{{hotDinnerCommerce}}" wx:key="">
           <view class="shop-wrapper" bindtap="redirectCommerce" data-commerceid="{{item.commerce_id}}" data-commercetype='0'>
             <view class="head-pic">
@@ -98,12 +98,12 @@
       <view class="hot-restaurant hot-area" wx:if="{{hotHotelCommerce}}">
         <view class="top-bar">
           <view class="hot-title">周边热门<text>协议酒店</text></view>
-          <view class="view-all" bindtap="viewAll">查看全部</view>
+          <view class="view-all" bindtap="redirectMall">查看全部</view>
         </view>
         <view class="shop-list">
-        <scroll-view scroll-x style="white-space:nowrap;" bindscroll="scroll" class="crouse-pics">
+        <scroll-view scroll-x style="white-space:nowrap;" bindscroll="" class="crouse-pics">
         <block wx:for="{{hotHotelCommerce}}" wx:key="">
-          <view class="shop-wrapper" bindtap="redirectCommerce" data-commerceid="{{item.commerce_id}}" data-commercetype='0'>
+          <view class="shop-wrapper" bindtap="redirectCommerce" data-commerceid="{{item.commerce_id}}" data-commercetype='1'>
             <view class="head-pic">
               <image src="{{item.commerce_homepage_url}}" mode="aspectFill"></image>
             </view>
@@ -128,6 +128,41 @@
         </scroll-view>
         </view>
       </view>
+      <!-- 热门娱乐 -->
+      <view class="hot-restaurant hot-area" wx:if="{{hotEnterCommerce}}">
+        <view class="top-bar">
+          <view class="hot-title">周边热门<text>协议娱乐</text></view>
+          <view class="view-all" bindtap="redirectMall">查看全部</view>
+        </view>
+        <view class="shop-list">
+        <scroll-view scroll-x style="white-space:nowrap;" bindscroll="" class="crouse-pics">
+        <block wx:for="{{hotEnterCommerce}}" wx:key="">
+          <view class="shop-wrapper" bindtap="redirectCommerce" data-commerceid="{{item.commerce_id}}" data-commercetype='2'>
+            <view class="head-pic">
+              <image src="{{item.commerce_homepage_url}}" mode="aspectFill"></image>
+            </view>
+            <view class="shop-name">{{item.commerce_name}}</view>
+            <view class="star-part">
+              <block wx:for="{{5}}" wx:key="">
+                <image class="star" src="../../images/{{item <= rate ? 'love@2x.png' : 'love_gray@2x.png'}}" data-rate="{{item}}" bindtap="rateChange"></image>
+              </block>
+            </view>
+            <view class="tags">
+              <view class="tag-name">{{item.business_projects}}</view>
+              <view class="distance">200m</view>
+            </view>
+            <view class="discount">
+              <view class="price-wrapper">
+                <image src="../../images/shape@2x.png"></image>协议价
+              </view>
+              <view>{{item.agreement_price}}</view>
+            </view>
+          </view>
+        </block>
+        </scroll-view>
+        </view>
+      </view>
+
     </view>
   </view>
     

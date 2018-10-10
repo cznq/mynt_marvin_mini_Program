@@ -82,7 +82,7 @@ swiper {
 .infoWrapper.bottom image {
   width: 28rpx;
   height: 32rpx;
-  margin-right: 10rpx;
+  margin-right: 20rpx;
   vertical-align: bottom;
 }
 .infoWrapper.bottom .on-sale-time image {
@@ -131,10 +131,17 @@ swiper {
   padding: 20rpx 0;
   color: rgba(136, 145, 169, 1);
 }
-.tabs view.active {
+.tabs view.active.golden {
   color: rgba(191, 165, 113, 1);
   border-bottom: 2px solid rgba(191, 165, 113, 1);
 }
+.tabs view.active {
+  color: rgba(26, 42, 75, 1);
+  border-bottom: 2px solid rgba(26, 42, 75, 1);
+  font-weight: bold;
+}
+
+
 .discount-list {
   padding-bottom: 44rpx;
 }
@@ -161,11 +168,77 @@ swiper {
   font-size: 24rpx;
   color: rgba(26, 42, 75, 0.6);
 }
+.hotel-protocol-item .textArea {
+  min-width: calc(100% - 140rpx);
+}
+.hotel-protocol-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 40rpx 0 4rpx;
+  margin: 0 40rpx;
+  border-bottom: 1px solid rgba(216, 227, 240, 1);
+}
+.hotel-protocol-item .self-price {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid rgba(216, 227, 240, 1);
+}
+.hotel-protocol-item .self-price .it-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: rgba(26, 42, 75, 1);
+}
+.hotel-protocol-item .self-price .it-intro {
+  font-size: 24rpx;
+  color: rgba(136, 145, 169, 1);
+}
+
+.hotel-protocol-item .other-price {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 24rpx;
+  line-height: 1.2;
+  margin-top: 16rpx;
+  color: rgba(26, 42, 75, 1);
+}
+.hotel-protocol-item .other-price view {
+  margin-right: 20rpx;
+}
+.hotel-protocol-item .other-price image {
+  width: 24rpx;
+  height: 20rpx;
+  margin-right: 8rpx;
+}
+.hotel-protocol-item .price-num {
+  color: rgba(255, 105, 0, 1);
+  font-size: 28rpx;
+  text-align: right;
+  margin-right: 20rpx;
+}
+.hotel-protocol-item .price-num image {
+  width: 20rpx;
+  height: 48rpx;
+  margin-right: 4rpx;
+  display: inline-block;
+}
+
+
+.hotel-protocol-item .hotel-short-img {
+  width: 120rpx;
+  height: 120rpx;
+}
+.hotel-protocol-item .hotel-short-img image {
+  width: 100%;
+  height: 100%;
+  border-radius: 6rpx;
+}
 .discount-list .disBtn {
   padding-right: 20rpx;
 }
 .discount-list .disBtn button {
   background-color: rgba(255, 105, 0, 1);
+  border-radius: 5rpx;
   color: #fff;
   width: 136rpx;
   height: 48rpx;
@@ -228,6 +301,7 @@ swiper {
   align-items: flex-start;
   padding: 40rpx 20rpx;
   border-bottom: 1px solid rgba(216, 227, 240, 1);
+  overflow: visible;
 }
 .coment-wrapper .avatar {
   overflow: visible;
@@ -240,6 +314,7 @@ swiper {
 .comment-content {
   padding-left: 20rpx;
   min-width: calc(100% - 100rpx);
+  overflow: visible;
 }
 .comment-content .top {
   display: flex;
@@ -269,18 +344,44 @@ swiper {
   line-height: 48rpx;
   font-size: 32rpx;
   color: rgba(102, 114, 128, 1);
+  overflow: visible;
 }
 .comment-content .imgs {
   margin-top: 30rpx;
+  overflow: visible;
 }
-.comment-content .imgs image {
+.comment-content .imgs .imgWrap {
   display: block;
   width: 29.629629%;
   margin-right: 3.7037037%;
   height: 120rpx;
   float: left;
+  position: relative;
+  overflow: visible;
+}
+.imgWrap .imgInfo {
+  position: absolute;
+  bottom: 12rpx;
+  right: 12rpx;
+  background: rgba(0, 0, 0, .5);
+  height: 32rpx;
+  width: 58rpx;
+  color: #fff;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  border-radius: 16rpx;
+}
+.imgs .imgWrap .imgInfo image {
+  width: 16rpx;
+  height: 16rpx;
+  margin: 6rpx 6rpx 0 10rpx;
+  display: inline-block;
 }
 
+.comment-content .imgs image {
+  width: 100%;
+  height: 100%;
+}
 /* dialog */
 .weui-mask {
   position: fixed;

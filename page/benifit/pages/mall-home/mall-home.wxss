@@ -32,12 +32,19 @@ swiper {
   height: 212rpx;
 }
 .page__bd {
-  margin-top: 60rpx;
+  margin-top: 20rpx;
 }
 .tab {
   font-size: 40rpx;
   color: rgba(26, 42, 75, 0.6);
   line-height: 1;
+  padding: 10px 0 20px;
+  width: 100%;
+}
+.tab.fixed {
+  position: fixed;
+  top: 0;
+  background: #fff;
 }
 .tab text {
   margin-right: 72rpx;
@@ -60,7 +67,7 @@ swiper {
 
 }
 .shop-list {
-  margin-top: 40rpx;
+  margin-top: 20rpx;
   width: 100%;
   overflow: hidden;
 }

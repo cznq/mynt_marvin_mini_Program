@@ -1,4 +1,5 @@
 // pages/mall-comment/mall-comment.js
+var md5 = require('../../../../utils/md5.js');
 const app = getApp();
 Page({
 
@@ -10,13 +11,15 @@ Page({
     selectedImages: [],
     uploading: false,
     uploadImagesLimit: 9,
-    rate: -1
+    rate: -1,
+    content: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options.commerce_id);
     var self = this;
     self.setData({
       commerce_id: options.commerce_id
@@ -24,7 +27,7 @@ Page({
     
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
-        
+        console.log();
       })
     } else {
       
@@ -77,18 +80,36 @@ Page({
     });
   },
 
-  // 提交
-  submit(content) {
-    var that = this;
-    if (content.length == 0) {
+  // 提交评价
+  reviewSubmit(e) {
+    if (this.data.uploading) {
+      return;
+    }
+    if (this.data.rate == -1) {
+      wx.showToast({
+        icon: 'none',
+        title: '请选择评星'
+      })
+      return;
+    }
+    if (e.detail.value.content.length == 0) {
       wx.showToast({
         title: '请输入评价内容'
       })
       return;
     }
-    that.setData({
-      uploading: true
-    });
+    this.setData({ content: e.detail.value.content });
+    if (this.data.selectedImages.length > 0) {
+      this.uploadImage(0);
+    } else {
+      this.submit(e.detail.value.content);
+    }
+  },
+
+  // 提交
+  submit() {
+    var that = this;
+    console.log(that.data.selectedImages);
     app.Util.network.POST({
       url: app.globalData.BENIFIT_API_URL,
       params: {
@@ -100,16 +121,12 @@ Page({
           user_nickname: wx.getStorageSync('nickname'),
           user_avatar_url: wx.getStorageSync('avatar'),
           pic_url: that.data.selectedImages,
-          comment: content,
+          comment: that.data.content,
           score: that.data.rate + 1
         })
       },
       success: data => {
-        if (this.data.selectedImages.length > 0) {
-          this.uploadImage(0, data.id);
-        } else {
-          this.reviewDone();
-        }
+        that.reviewDone();
       },
       fail: data => {
         wx.showToast({
@@ -118,50 +135,63 @@ Page({
         })
       }
     });
+    
   },
 
   // 上传图片
-  uploadImage(i, commentID) {
+  uploadImage(i) {
     var that = this;
-    var service = 'visitor';
-    var data = JSON.stringify({
-      company_id: that.data.company_id
-    });
-    var method = 'upload_face_pic';
+    var service = 'commerce';
+    var data = JSON.stringify({});
+    var method = 'upload_comment_file';
     var app_id = '65effd5a42fd1870b2c7c5343640e9a8';
     var timestamp = Math.round(new Date().getTime() / 1000 - 28800);
     var sign_type = 'MD5';
     var stringA = 'app_id=' + app_id + '&data=' + data + '&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
     var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
-
+    that.setData({
+      uploading: true
+    });
     var uploadTask = wx.uploadFile({
-      url: app.API('product_review_image'),
-      filePath: this.data.selectedImages[i],
-      formData: {
-        w2w_session: app.data.w2w_session,
-        comment_id: commentID
+      url: app.globalData.BENIFIT_API_URL,
+      filePath: that.data.selectedImages[i],
+      header: {
+        'content-type': 'multipart/form-data'
       },
-      name: 'image',
+      name: 'comment_pic',
+      formData: {
+        union_id: wx.getStorageSync('xy_session'),
+        service: service,
+        method: method,
+        app_id: app_id,
+        timestamp: timestamp,
+        sign_type: sign_type,
+        sign: sign,
+        data: data
+      },
       success: res => {
-        console.log(res);
-        if (i < this.data.selectedImages.length - 1) {
+        var data = JSON.parse(res.data);
+        that.setData({
+          [`selectedImages[${i}]`]: data.result.comment_pic
+        })
+        if (i < that.data.selectedImages.length - 1) {
           i++;
-          this.uploadImage(i, commentID);
+          that.uploadImage(i);
         } else {
-          this.reviewDone();
+          that.submit(that.data.content);
         }
       },
       fail: res => {
         wx.showToast({
           title: '上传失败'
         })
-        this.setData({
+        that.setData({
           ['progress[' + i + ']']: false
         });
       }
     })
     uploadTask.onProgressUpdate(res => {
-      this.setData({
+      that.setData({
         ['progress[' + i + ']']: res.progress
       });
     })

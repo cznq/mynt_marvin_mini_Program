@@ -17,7 +17,7 @@
     </view>          
   </view>
   <view class="page__bd">
-    <view class="tab">
+    <view class="tab {{tabFixed ? 'fixed' : ''}}">
       <block wx:for="{{tabList}}" wx:key="{{key}}">
         <text wx:if="{{item.id == tabSelected}}" class="selected" bindtap="changeTab" data-typeid="{{item.typeid}}" data-selectid="{{item.id}}">{{item.title}}</text>
         <text bindtap="changeTab" data-typeid="{{item.typeid}}" data-selectid="{{item.id}}" wx:else>{{item.title}}</text>

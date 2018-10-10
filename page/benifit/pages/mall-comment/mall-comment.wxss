@@ -60,6 +60,7 @@
   position: relative;
   margin-bottom: 30rpx;
   display: inline-block;
+  position: relative;
 }
 .upload-pic-area .pic-list .image image {
   width: 100%;
@@ -102,18 +103,60 @@
 }
 .page__ft {
   margin-top: 20rpx;
-  padding-top: 60rpx;
+  padding: 60rpx 0;
   background-color: #fff;
 }
 .page__ft button {
   margin: 0 60rpx;
   color: #fff;
-  background-color: rgba(26, 42, 75, 0.3);
+  background-color: rgba(71, 95, 253, 1);
   border: none;
   box-shadow: none;
+  height: 100rpx;
+  line-height: 100rpx;
 }
 .page__ft button::after,
 .page__ft button::before {
   border: none;
   box-shadow: none;
+}
+.image .progress {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.image .progress-bar {
+    width: 80%;
+    height: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+}
+.uploading .image .progress {
+    display: flex;
+}
+.image .progress-inner {
+    height: 100%;
+    background-color: #96588a;
+}
+.icon {
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    border-radius: 50%;
+}
+.icon.success {
+    background-color: #09bb07;
+}
+.icon.error {
+    background-color: #f5615f;
+}
+.icon image {
+  display: block;
 }

@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 9,
 			"list": [
 				{
 					"id": 0,
@@ -98,13 +98,14 @@
 					"id": 9,
 					"name": "商城详情页",
 					"pathName": "page/benifit/pages/mall-detail/mall-detail",
-					"query": "commerce_id=1&commerce_type=0"
+					"query": "commerce_id=6&commerce_type=2",
+					"scene": "1011"
 				},
 				{
 					"id": 10,
 					"name": "商城评论页",
 					"pathName": "page/benifit/pages/mall-comment/mall-comment",
-					"query": "commerce_id=1"
+					"query": "commerce_id=6"
 				}
 			]
 		}
