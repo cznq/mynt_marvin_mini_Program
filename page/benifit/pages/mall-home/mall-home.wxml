@@ -1,9 +1,13 @@
 <!--pages/benifit-card/benifit-card.wxml-->
-<view class="page">
+<view class="page" style="background-image:url(http://static.slightech.com/img/bg.png);background-repeat:repeat-x;background-attachment: fixed;">
   <view class="page__hd">
     <view class="title-bar">
       <text>小觅协议优惠</text>
-      <image src="../../images/icon_card@2x.png"></image>
+      <view class="vip-card-wrapper" wx:if="{{is_vip}}">
+        <image src="../../images/icon_card@2x.png" bindtap="backVipCard"></image>
+        <view class="vip-card-info" wx:if="{{showVipCardTips}}">你的协议卡在这</view>
+      </view>
+      
     </view>
     <view class="home-slide">
       <swiper indicator-dots="{{slide_data.indicatorDots}}"
@@ -33,18 +37,26 @@
         <view class="shop-name">{{item.commerce_name}}</view>
         <view class="star-part">
           <block wx:for="{{5}}" wx:key="" wx:for-item="num">
-            <image class="star" src="../../images/{{num <= item.score-1 ? 'love@2x.png' : 'love_gray@2x.png'}}" data-rate="{{item}}" bindtap="rateChange"></image>
+            <image class="star" src="../../images/{{num <= item.score-1 ? 'love@2x.png' : 'love_gray@2x.png'}}"></image>
           </block>
         </view>
         <view class="tags">
           <view class="tag-name">{{item.business_projects}}</view>
-          <view class="distance">200m</view>
+          <view class="distance"></view>
         </view>
-        <view class="discount">
+        <view class="discount {{selectedType == 2 ? 'hotel-discount' : ''}}">
           <view class="price-wrapper">
             <image src="../../images/shape@2x.png"></image>协议价
           </view>
-          <view>{{item.agreement_price}}</view>
+          <view class="price-protocol hotel-price" wx:if="{{selectedType == 2}}">
+            <image src="../../images/num/num_yb.png"></image>
+            <block wx:for="{{item.agreement_price}}" wx:for-item="imgnum" wx:key="">
+              <image src="../../images/num/num_y{{imgnum}}.png"></image>
+            </block>
+          </view>
+          <view class="price-protocol" wx:else>
+            {{item.agreement_price}}
+          </view>
         </view>
       </view>
     </block>

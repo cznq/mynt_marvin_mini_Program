@@ -1,6 +1,8 @@
 /* pages/benifit-card/benifit-card.wxss */
 .page__hd {
   overflow: hidden;
+  min-height: 400rpx;
+  max-height: 480rpx;
 }
 .card-wrapper {
   padding: 60rpx 60rpx 0;
@@ -51,8 +53,7 @@
   background: #fcfcfb;
 }
 .vip-card-top {
-  padding: 0 36rpx 36rpx;
-  margin-top: 38rpx;
+  padding: 38rpx 36rpx 36rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -83,10 +84,9 @@
   border-radius: 35rpx;
 }
 .vip-card-middle {
-  margin-top: 20rpx;
   line-height: 1;
   text-align: left;
-  padding: 0 36rpx 38rpx;
+  padding: 20rpx 36rpx 38rpx;
 }
 .vip-card-middle .company-name {
   font-size: 22rpx;
@@ -249,7 +249,7 @@
   flex-direction: row;
   justify-content: space-between;
   vertical-align: bottom;
-  align-items: flex-end;
+  align-items: center;
   padding-right: 60rpx;
 }
 .shop-list {
@@ -262,6 +262,9 @@
   border-radius: 10rpx;
   display: inline-block;
   margin-right: 30rpx;
+  vertical-align: top;
+  box-sizing: border-box;
+  box-shadow: 0 0 16rpx rgba(0, 0, 0, 0.05);
 }
 .shop-wrapper .head-pic {
   width: 100%;
@@ -274,13 +277,25 @@
 .shop-name {
   font-size: 32rpx;
   margin-top: 20rpx;
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2; 
+  height: 100rpx;
+  white-space: pre-wrap;
+}
+.star-part {
+  margin-top: 10rpx;
+  height: 30rpx;
 }
 .star-part .star {
   display: inline-block;
+  vertical-align: top;
   margin: 0 8rpx 0 0;
   line-height: 1;
   width: 16rpx;
-  height: 16rpx;
+  height: 13rpx;
 }
 .tags {
   display: flex;
@@ -295,9 +310,11 @@
   font-size: 24rpx;
   color: rgba(191, 165, 113, 1);
   margin-top: 20rpx;
+  white-space: pre-wrap;
 }
 .discount .price-wrapper {
   font-size: 16rpx;
+  font-weight: bold;
   border-radius: 24rpx;
   border-top-right-radius: 0;
   height: 28rpx;
@@ -310,4 +327,19 @@
   width: 16rpx;
   height: 16rpx;
   margin: 0 8rpx;
+}
+.hotel-discount {
+  display: flex;
+  justify-content: space-between;
+}
+.price-protocol {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.discount .hotel-price image {
+  width: 14rpx;
+  height: 36rpx;
+  margin-right: 2rpx;
+  display: inline-block;
 }

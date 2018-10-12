@@ -19,7 +19,7 @@
         </view>
       </view>
     </view>
-    <view class="card-wrapper" wx:else>
+    <view class="card-wrapper" wx:elif="{{is_vip == false}}">
       <view class="card-content">
         <view class="card-main">
           <view class="name">小觅VIP卡</view>
@@ -35,15 +35,21 @@
       <view class="subtitle">独享企业协议商户超低协议价</view>
       <view class="weui-flex">
         <view class="weui-flex__item">
-          <view class="icon"><image src="../../images/agreement@2x.png" mode="widthFix"></image></view>
+          <view class="icon">
+            <image src="../../images/agreement@2x.png" mode="widthFix"></image>
+          </view>
           <view class="textintro">享协议商户最低5折协议价</view>
         </view>
         <view class="weui-flex__item">
-          <view class="icon"><image src="../../images/hotel@2x.png" mode="widthFix"></image></view>
+          <view class="icon">
+            <image src="../../images/hotel@2x.png" mode="widthFix"></image>
+          </view>
           <view class="textintro">周边星级酒店协议入住</view>
         </view>
         <view class="weui-flex__item">
-          <view class="icon"><image src="../../images/welfare@2x.png" mode="widthFix"></image></view>
+          <view class="icon">
+            <image src="../../images/welfare@2x.png" mode="widthFix"></image>
+          </view>
           <view class="textintro">专属员工福利</view>
         </view>
       </view>
@@ -74,19 +80,19 @@
             </view>
             <view class="shop-name">{{item.commerce_name}}</view>
             <view class="star-part">
-              <block wx:for="{{5}}" wx:key="">
-                <image class="star" src="../../images/{{item <= rate ? 'love@2x.png' : 'love_gray@2x.png'}}" data-rate="{{item}}" bindtap="rateChange"></image>
+              <block wx:for="{{5}}" wx:key="" wx:for-item="num">
+                <image class="star" src="../../images/{{num <= item.score-1 ? 'love@2x.png' : 'love_gray@2x.png'}}" data-rate="{{item}}" bindtap="rateChange"></image>
               </block>
             </view>
             <view class="tags">
               <view class="tag-name">{{item.business_projects}}</view>
-              <view class="distance">200m</view>
+              <view class="distance"></view>
             </view>
             <view class="discount">
               <view class="price-wrapper">
                 <image src="../../images/shape@2x.png"></image>协议价
               </view>
-              <view>{{item.agreement_price}}</view>
+              <view class="price-protocol">{{item.agreement_price}}</view>
             </view>
           </view>
           </block>
@@ -109,19 +115,26 @@
             </view>
             <view class="shop-name">{{item.commerce_name}}</view>
             <view class="star-part">
-              <block wx:for="{{5}}" wx:key="">
-                <image class="star" src="../../images/{{item <= rate ? 'love@2x.png' : 'love_gray@2x.png'}}" data-rate="{{item}}" bindtap="rateChange"></image>
+              <block wx:for="{{5}}" wx:key="" wx:for-item="num">
+                <image class="star" src="../../images/{{num <= item.score-1 ? 'love@2x.png' : 'love_gray@2x.png'}}"></image>
               </block>
             </view>
             <view class="tags">
               <view class="tag-name">{{item.business_projects}}</view>
-              <view class="distance">200m</view>
+              <view class="distance"></view>
             </view>
-            <view class="discount">
+            <view class="discount hotel-discount">
               <view class="price-wrapper">
                 <image src="../../images/shape@2x.png"></image>协议价
               </view>
-              <view>{{item.agreement_price}}</view>
+              <view class="price-protocol hotel-price">
+            
+                <image src="../../images/num/num_yb.png"></image>
+                <block wx:for="{{item.agreement_price}}" wx:for-item="imgnum" wx:key="">
+                  <image src="../../images/num/num_y{{imgnum}}.png"></image>
+                </block>
+                
+              </view>
             </view>
           </view>
         </block>
@@ -143,19 +156,19 @@
             </view>
             <view class="shop-name">{{item.commerce_name}}</view>
             <view class="star-part">
-              <block wx:for="{{5}}" wx:key="">
-                <image class="star" src="../../images/{{item <= rate ? 'love@2x.png' : 'love_gray@2x.png'}}" data-rate="{{item}}" bindtap="rateChange"></image>
+              <block wx:for="{{5}}" wx:key="" wx:for-item="num">
+                <image class="star" src="../../images/{{num <= item.score-1 ? 'love@2x.png' : 'love_gray@2x.png'}}"></image>
               </block>
             </view>
             <view class="tags">
               <view class="tag-name">{{item.business_projects}}</view>
-              <view class="distance">200m</view>
+              <view class="distance"></view>
             </view>
             <view class="discount">
               <view class="price-wrapper">
                 <image src="../../images/shape@2x.png"></image>协议价
               </view>
-              <view>{{item.agreement_price}}</view>
+              <view class="price-protocol">{{item.agreement_price}}</view>
             </view>
           </view>
         </block>

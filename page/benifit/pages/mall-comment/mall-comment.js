@@ -12,7 +12,9 @@ Page({
     uploading: false,
     uploadImagesLimit: 9,
     rate: -1,
-    content: null
+    content: null,
+    formReady: false,
+    disabled: true
   },
 
   /**
@@ -53,13 +55,33 @@ Page({
     })
   },
 
+  /**
+   * 监听表单提交状态
+   */
+  monitorInput: function (e) {
+    if (e.detail.value !== '') {
+      this.setData({
+        formReady: true
+      });
+    }
+    if (this.data.formReady && this.data.rate !== -1) {
+      this.setData({
+        disabled: false
+      });
+    }
+  },
+
   // 评星点击
   rateChange(e) {
     var rate = e.currentTarget.dataset.rate;
-    console.log(rate);
     this.setData({
       rate: rate
     });
+    if (this.data.formReady && this.data.rate !== -1) {
+      this.setData({
+        disabled: false
+      });
+    }
   },
 
   // 全屏看图

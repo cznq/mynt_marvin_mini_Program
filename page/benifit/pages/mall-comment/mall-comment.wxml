@@ -13,7 +13,7 @@
     </view>
     <view class="comment-content">
       <view class="comTitle">评价</view>
-      <textarea class="weui-textarea" name="content" maxlength="800" id="i2" bindinput="" placeholder="亲，分享口味、环境、服务等方面的体验。" placeholder-class="placeholder" auto-height="true"></textarea>
+      <textarea class="weui-textarea" name="content" maxlength="800" id="i2" bindinput="monitorInput" placeholder="亲，分享口味、环境、服务等方面的体验。" placeholder-class="placeholder" auto-height="true"></textarea>
       <view class="upload-pic-area">
         <view class="pic-list {{uploading ? 'uploading' : ''}}">
 
@@ -53,7 +53,7 @@
     </view> 
   </view>
   <view class="page__ft">
-    <button form-type="submit">确认发表</button>
+    <button form-type="submit" disabled="{{disabled}}">确认发表</button>
   </view>
   </form>
 </view>

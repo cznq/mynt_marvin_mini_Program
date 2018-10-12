@@ -1,5 +1,6 @@
 // pages/mall-detail/mall-detail.js
 const app = getApp();
+var QQMapWX = require('../../../../utils/qqmap-wx-jssdk.min.js');
 var wxParse = require('../../vendor/wxParse/wxParse.js');
 
 Page({
@@ -36,7 +37,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this; console.log("ok" + options.commerce_type);
+    var that = this; 
     that.setData({
       commerce_id: options.commerce_id,
       commerce_type: options.commerce_type
@@ -78,7 +79,8 @@ Page({
         if (res.data.result) {
           if (res.data.result.has_employee_benefit == 1) {
             that.setData({
-              is_vip: true
+              is_vip: true,
+              employeeInfo: res.data.result
             })
           }
           that.setData({
@@ -126,13 +128,9 @@ Page({
   },
   
   /**
-  *用来判断一个时间是不是在某个时间段内
-  *参数：
-      *beginTime 开始时间 
-      *endTime 结束时间 
-      *varTime 需要判断的时间
-      *falg  true 边界值校验   false 边界值不校验 
-      *返回： true/false
+  * 用来判断一个时间是不是在某个时间段内
+  * beginTime 开始时间 
+  * endTime 结束时间 
   */
   onBusiness(beginTime, endTime) {
     var hour = new Date().getHours();
@@ -194,12 +192,9 @@ Page({
       success: res => {
         if (res.data.result) {
           var data = res.data.result;
-          
           for (var i = 0; i < data.length; i++) {
-            //console.log(data[i].deal_price_fen);
             data[i].deal_price_fen = String(data[i].deal_price_fen).split('');
           }
-          console.log(data);
           that.setData({
             protocolInfo: data
           })
@@ -208,36 +203,6 @@ Page({
     })
   },
 
-  transNumtoArr(num) {
-    var a = String(num).split('');
-    
-  },
-
-  /**
-   * 获取员工信息
-   */
-  getEmployeeInfo() {
-    var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
-      params: {
-        service: 'company',
-        method: 'get_employee_info',
-        union_id: wx.getStorageSync('xy_session'),
-        data: JSON.stringify({})
-      },
-      success: res => {
-        if (res.data.result) {
-          if (res.data.result.has_employee_benefit == 1) {
-            that.setData({
-              is_vip: true
-            })
-          }
-          
-        }
-      }
-    })
-  },
   /**
    * 获取评论信息
    */
@@ -335,13 +300,55 @@ Page({
   },
 
   /**
+   * 打开地图服务
+   */
+  generateMap: function () {
+    var that = this;
+    var qqmapsdk = new QQMapWX({
+      key: 'CGVBZ-S2KHV-3CBPC-UP4JI-4N55F-7VBFU'
+    });
+    qqmapsdk.geocoder({
+      address: this.data.commerceDetail.address,
+      success: function (res) {
+        if (res.result.location) {
+          wx.openLocation({
+            latitude: res.result.location.lat,
+            longitude: res.result.location.lng,
+            scale: 28
+          })
+        } else {
+          wx.showToast({
+            title: '获取经纬度失败'
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '获取经纬度失败'
+        })
+      },
+      complete: function (res) {
+        console.log(res);
+      }
+    })
+  },
+
+  /**
    * 去评论
    */
   enterComment: function (e) {
-    var commerce_id = e.currentTarget.dataset.commerceid;
-    wx.navigateTo({
-      url: '/page/benifit/pages/mall-comment/mall-comment?commerce_id=' + commerce_id
-    })
+    if (this.data.is_vip) {
+      var commerce_id = e.currentTarget.dataset.commerceid;
+      wx.navigateTo({
+        url: '/page/benifit/pages/mall-comment/mall-comment?commerce_id=' + commerce_id
+      })
+    } else {
+      wx.showToast({
+        icon: 'none',
+        title: '你还不是VIP，不能评论'
+      })
+    }
+    
   },
 
   /**

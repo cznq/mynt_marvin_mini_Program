@@ -23,10 +23,10 @@
 .star-part .star {
   display: inline-block;
   vertical-align: middle;
-  margin: 0 16rpx 0 0;
+  margin: 0 20rpx 0 0;
   line-height: 1;
   width: 36rpx;
-  height: 32rpx;
+  height: 28rpx;
 }
 .comment-content {
   font-size: 44rpx;
@@ -65,6 +65,7 @@
 .upload-pic-area .pic-list .image image {
   width: 100%;
   height: 100%;
+  border-radius: 6rpx;
 }
 .upload-pic-area .pic-list .image .remove {
   position: absolute;
@@ -114,6 +115,9 @@
   box-shadow: none;
   height: 100rpx;
   line-height: 100rpx;
+}
+.page__ft button[disabled] {
+  background-color: rgba(26, 42, 75, 0.3);
 }
 .page__ft button::after,
 .page__ft button::before {

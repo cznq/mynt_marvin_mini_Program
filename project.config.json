@@ -98,7 +98,7 @@
 					"id": 9,
 					"name": "商城详情页",
 					"pathName": "page/benifit/pages/mall-detail/mall-detail",
-					"query": "commerce_id=6&commerce_type=2",
+					"query": "commerce_id=14&commerce_type=2",
 					"scene": "1011"
 				},
 				{

@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    is_vip: false,
+    is_vip: null,
     employeeInfo: null,
     commerceData: [0, 1, 2],
     hotDinnerCommerce: null,
@@ -26,8 +26,7 @@ Page({
         that.getEmployeeInfo();
         for (let index in commerceData) {
           that.getHotCommerce(index);
-        };  
-        
+        };
       })
     } else {
       that.getEmployeeInfo();
@@ -53,9 +52,9 @@ Page({
       success: res => {
         if (res.data.result) {
           if (res.data.result.has_employee_benefit == 1) {
-            that.setData({
-              is_vip: true
-            })
+            that.setData({ is_vip: true })
+          } else {
+            that.setData({ is_vip: false })
           }
           that.setData({
             employeeInfo: res.data.result
@@ -88,16 +87,23 @@ Page({
             })
           } else if (typeId == 1) {
             that.setData({
-              hotHotelCommerce: res.data.result
+              hotEnterCommerce: res.data.result
             })
           } else {
             that.setData({
-              hotEnterCommerce: res.data.result
+              hotHotelCommerce: that.transData(res.data.result)
             })
           }
         }
       }
     })
+  },
+
+  transData(preData) {
+    for (var i = 0; i < preData.length; i++) {
+      preData[i].agreement_price = String(preData[i].agreement_price).split('');
+    }
+    return preData;
   },
 
   /**
@@ -118,26 +124,6 @@ Page({
     wx.navigateTo({
       url: '/page/benifit/pages/mall-home/mall-home',
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   }
+
 })
