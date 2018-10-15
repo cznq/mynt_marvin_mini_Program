@@ -110,6 +110,7 @@
 .page__ft button {
   margin: 0 60rpx;
   color: #fff;
+  font-weight: bold;
   background-color: rgba(71, 95, 253, 1);
   border: none;
   box-shadow: none;
@@ -118,6 +119,7 @@
 }
 .page__ft button[disabled] {
   background-color: rgba(26, 42, 75, 0.3);
+  color: #fff;
 }
 .page__ft button::after,
 .page__ft button::before {

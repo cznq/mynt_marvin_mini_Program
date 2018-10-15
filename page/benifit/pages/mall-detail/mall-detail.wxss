@@ -100,6 +100,10 @@ swiper {
   line-height: 1;
   height: 40rpx;
 }
+.info-column .on-sale-time {
+  word-break: keep-all;
+  overflow: visible;
+}
 .info-column .address {
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -148,7 +152,7 @@ swiper {
 }
 
 .discount-list {
-  padding: 20rpx 0 44rpx;
+  padding: 20rpx 0 20rpx;
 }
 .discount-list .itemWrap {
   display: flex;
@@ -182,7 +186,7 @@ swiper {
   justify-content: space-between;
   padding: 40rpx 20rpx 4rpx;
   margin: 0 40rpx;
-  border-bottom: 1px solid rgba(216, 227, 240, 1);
+  border-bottom: 1px dashed rgba(216, 227, 240, 1);
 }
 .hotel-protocol-item:last-child {
   border-bottom: none;
@@ -190,8 +194,6 @@ swiper {
 .hotel-protocol-item .self-price {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 20rpx;
-  border-bottom: 1px dashed rgba(216, 227, 240, 1);
 }
 .hotel-protocol-item .self-price .it-title {
   font-size: 28rpx;
@@ -209,7 +211,7 @@ swiper {
   align-items: center;
   font-size: 24rpx;
   line-height: 1.2;
-  padding: 16rpx 0;
+  padding: 20rpx 0 40rpx;
   color: rgba(26, 42, 75, 1);
 }
 .hotel-protocol-item .other-price image {
@@ -255,7 +257,7 @@ swiper {
   border: none;
   box-shadow: none;
 }
-.discount-list .disBtn button::after {
+button::after {
   border: none;
   box-shadow: none;
 }
@@ -302,7 +304,7 @@ swiper {
   background: rgba(71, 95, 253, 1);
   color: #fff;
   padding: 0;
-  border-radius: 4rpx;
+  border-radius: 8rpx;
   border: none;
 }
 .content {
@@ -344,10 +346,13 @@ swiper {
 }
 .comment-content .user-name {
   font-size: 28rpx;
+  line-height: 1.2;
 }
 .comment-content .time {
   font-size: 24rpx;
   color: rgba(184, 193, 204, 1);
+  min-width: 220rpx;
+  text-align: right;
 }
 .comment-content .star-part {
   margin-top: 10rpx;

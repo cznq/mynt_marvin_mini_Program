@@ -290,6 +290,16 @@ Page({
     })
   },
 
+  // 查看房型缩略图
+  previewHotelImage(e) {
+    var pindex = e.currentTarget.dataset.pindex;
+    var row = e.currentTarget.dataset.rowid;
+    wx.previewImage({
+      current: this.data.protocolInfo[row].thumbnail_url[pindex],
+      urls: this.data.protocolInfo[row].thumbnail_url
+    })
+  },
+
   /**
    * 拨打电话
    */

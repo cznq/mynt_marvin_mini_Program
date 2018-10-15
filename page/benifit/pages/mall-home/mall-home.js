@@ -34,7 +34,8 @@ Page({
     tabFixed: false,
     showVipCardTips: true,
     is_vip: false,
-    employeeInfo: null
+    employeeInfo: null,
+    taboffsetTop: null
   },
 
   /**
@@ -55,6 +56,23 @@ Page({
       self.getCommerceList(self.data.selectedType);
       self.getEmployeeInfo();
     }
+    self.getOffsetTop();
+  },
+
+  /**
+   * 获取tab 距离上面的距离
+   */
+  getOffsetTop() {
+    var that = this;
+    const query = wx.createSelectorQuery()
+    query.select('#selTab').boundingClientRect()
+    query.selectViewport().scrollOffset()
+    query.exec(function (res) {
+      console.log(res[0].top);
+      that.setData({
+        taboffsetTop: res[0].top
+      })
+    })
   },
 
   /**
@@ -90,16 +108,18 @@ Page({
    * 监听滚动，tab置顶
    */
   onPageScroll: function (e) {
-    console.log(e);
-    if (e.scrollTop > 155) {
-      this.setData({
-        tabFixed: true
-      });
-    } else {
-      this.setData({
+    console.log(e.scrollTop);
+    var that = this;
+    
+    if (e.scrollTop < that.data.taboffsetTop) {
+      that.setData({
         tabFixed: false
       });
-    }
+    } else {
+      that.setData({
+        tabFixed: true
+      });
+    }    
   },
 
   /**
