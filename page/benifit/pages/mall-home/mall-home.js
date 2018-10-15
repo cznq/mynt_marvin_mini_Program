@@ -41,14 +41,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
+    if (options.tabSelected && options.selectedType) {
+      this.setData({ tabSelected: options.tabSelected, selectedType: options.selectedType });
+    }
     var self = this;
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
-        self.getCommerceList(0);
+        self.getCommerceList(self.data.selectedType);
         self.getEmployeeInfo();
       })
     } else {
-      self.getCommerceList(0);
+      self.getCommerceList(self.data.selectedType);
       self.getEmployeeInfo();
     }
   },
@@ -86,6 +90,7 @@ Page({
    * 监听滚动，tab置顶
    */
   onPageScroll: function (e) {
+    console.log(e);
     if (e.scrollTop > 155) {
       this.setData({
         tabFixed: true
@@ -105,6 +110,16 @@ Page({
     var selectedId = e.currentTarget.dataset.selectid;
     this.setData({ tabSelected: selectedId, selectedType: typedId });
     this.getCommerceList(typedId);
+  },
+
+  /**
+   * 头部轮播图跳转
+   */
+  linkRedirect: function (e) {
+    var link = e.currentTarget.dataset.link;
+    wx.navigateTo({
+      url: link,
+    })
   },
 
   /**

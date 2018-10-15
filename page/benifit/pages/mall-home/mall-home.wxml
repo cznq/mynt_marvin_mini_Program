@@ -1,5 +1,5 @@
 <!--pages/benifit-card/benifit-card.wxml-->
-<view class="page" style="background-image:url(http://static.slightech.com/img/bg.png);background-repeat:repeat-x;background-attachment: fixed;">
+<view class="page">
   <view class="page__hd">
     <view class="title-bar">
       <text>小觅协议优惠</text>
@@ -14,7 +14,7 @@
   autoplay="{{slide_data.autoplay}}" interval="{{slide_data.interval}}" duration="{{slide_data.duration}}">
         <block wx:for="{{slide_data.slide_img}}" wx:key="key">
           <swiper-item>
-            <view class="swiper-item" style="background: url({{item.homepage_url}}) no-repeat center center;background-size:cover;"></view>
+            <view class="swiper-item" bindtap="linkRedirect" data-link="{{item.link_url}}" style="background: url({{item.homepage_url}}) no-repeat center center;background-size:cover;"></view>
           </swiper-item>
         </block>
       </swiper>

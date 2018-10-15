@@ -120,9 +120,13 @@ Page({
   /**
    * 跳转到商城首页
    */
-  redirectMall: function () {
+  redirectMall: function (e) {
+    console.log(e);
+    var tabSelected = e.currentTarget.dataset.tabselected;
+    var selectedType = e.currentTarget.dataset.selectedtype;
+    console.log(tabSelected + '--' + selectedType);
     wx.navigateTo({
-      url: '/page/benifit/pages/mall-home/mall-home',
+      url: '/page/benifit/pages/mall-home/mall-home?tabSelected=' + tabSelected + '&selectedType=' + selectedType,
     })
   }
 

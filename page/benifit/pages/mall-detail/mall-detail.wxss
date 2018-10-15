@@ -174,7 +174,8 @@ swiper {
   color: rgba(26, 42, 75, 0.6);
 }
 .hotel-protocol-item .textArea {
-  min-width: calc(100% - 140rpx);
+  width: calc(100% - 120rpx);
+  margin-left: 20rpx;
 }
 .hotel-protocol-item {
   display: flex;
@@ -204,14 +205,12 @@ swiper {
 
 .hotel-protocol-item .other-price {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: center;
   font-size: 24rpx;
   line-height: 1.2;
   padding: 16rpx 0;
   color: rgba(26, 42, 75, 1);
-}
-.hotel-protocol-item .other-price view {
-  margin-right: 20rpx;
 }
 .hotel-protocol-item .other-price image {
   width: 24rpx;

@@ -54,7 +54,7 @@
         </view>
       </view>
       <view class="vip-area" wx:if="{{is_vip}}">
-        <button bindtap="redirectMall">前往协议商户</button>
+        <button bindtap="redirectMall" data-tabselected="food" data-selectedtype="0">前往协议商户</button>
         <view class="tips">您的企业已为您开通企业协议卡，在合约商户消费并出示该卡可享商户协议价。</view>
       </view>
       <view class="contact-admin" wx:else>
@@ -69,7 +69,7 @@
       <view class="hot-restaurant hot-area" wx:if="{{hotDinnerCommerce}}">
         <view class="top-bar">
           <view class="hot-title">周边热门<text>协议餐饮</text></view>
-          <view class="view-all" bindtap="redirectMall">查看全部</view>
+          <view class="view-all" bindtap="redirectMall" data-tabselected="food" data-selectedtype="0">查看全部</view>
         </view>
         <view class="shop-list">
         <scroll-view scroll-x style="white-space:nowrap;" bindscroll="" class="crouse-pics">
@@ -104,7 +104,7 @@
       <view class="hot-restaurant hot-area" wx:if="{{hotHotelCommerce}}">
         <view class="top-bar">
           <view class="hot-title">周边热门<text>协议酒店</text></view>
-          <view class="view-all" bindtap="redirectMall">查看全部</view>
+          <view class="view-all" bindtap="redirectMall" data-tabselected="hotel" data-selectedtype="2">查看全部</view>
         </view>
         <view class="shop-list">
         <scroll-view scroll-x style="white-space:nowrap;" bindscroll="" class="crouse-pics">
@@ -145,7 +145,7 @@
       <view class="hot-restaurant hot-area" wx:if="{{hotEnterCommerce}}">
         <view class="top-bar">
           <view class="hot-title">周边热门<text>协议娱乐</text></view>
-          <view class="view-all" bindtap="redirectMall">查看全部</view>
+          <view class="view-all" bindtap="redirectMall" data-tabselected="entertainment" data-selectedtype="1">查看全部</view>
         </view>
         <view class="shop-list">
         <scroll-view scroll-x style="white-space:nowrap;" bindscroll="" class="crouse-pics">

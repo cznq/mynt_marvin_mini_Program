@@ -1,7 +1,4 @@
 /* pages/benifit-card/benifit-card.wxss */
-page {
-  
-}
 .page {
   background-attachment: fixed;
   background-repeat: repeat-x;
