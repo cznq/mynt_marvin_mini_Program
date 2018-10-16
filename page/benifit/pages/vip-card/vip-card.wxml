@@ -12,7 +12,7 @@
           <view class="company-address">{{employeeInfo.company_address}}</view>
         </view>
         <view class="bar">
-          <view class="bar-bg" style="background: url(../../images/mynt_vip_bg@2x.png) no-repeat right top;background-size:310rpx 66rpx;">
+          <view class="bar-bg" style="background: url(https://static.slightech.com/uploads/2018/10/20181016051756198.png) no-repeat right top;background-size:310rpx 66rpx;">
             <view class="id-num">ID: {{employeeInfo.employee_card_id}}</view>
             <view class="expire-time">有效期: {{employeeInfo.expire}}</view>
           </view>
@@ -109,7 +109,7 @@
         <view class="shop-list">
         <scroll-view scroll-x style="white-space:nowrap;" bindscroll="" class="crouse-pics">
         <block wx:for="{{hotHotelCommerce}}" wx:key="">
-          <view class="shop-wrapper" bindtap="redirectCommerce" data-commerceid="{{item.commerce_id}}" data-commercetype='1'>
+          <view class="shop-wrapper" bindtap="redirectCommerce" data-commerceid="{{item.commerce_id}}" data-commercetype='2'>
             <view class="head-pic">
               <image src="{{item.commerce_homepage_url}}" mode="aspectFill"></image>
             </view>
@@ -150,7 +150,7 @@
         <view class="shop-list">
         <scroll-view scroll-x style="white-space:nowrap;" bindscroll="" class="crouse-pics">
         <block wx:for="{{hotEnterCommerce}}" wx:key="">
-          <view class="shop-wrapper" bindtap="redirectCommerce" data-commerceid="{{item.commerce_id}}" data-commercetype='2'>
+          <view class="shop-wrapper" bindtap="redirectCommerce" data-commerceid="{{item.commerce_id}}" data-commercetype='1'>
             <view class="head-pic">
               <image src="{{item.commerce_homepage_url}}" mode="aspectFill"></image>
             </view>

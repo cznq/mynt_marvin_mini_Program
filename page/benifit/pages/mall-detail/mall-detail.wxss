@@ -111,6 +111,7 @@ swiper {
   padding-right: 10rpx;
 }
 .info-column .in-right {
+  color: rgba(136, 145, 169, 1);
   padding: 0 0 0 30rpx;
   text-align: right;
   min-width: 96rpx;
@@ -152,7 +153,7 @@ swiper {
 }
 
 .discount-list {
-  padding: 20rpx 0 20rpx;
+  padding: 40rpx 0 40rpx;
 }
 .discount-list .itemWrap {
   display: flex;
@@ -207,16 +208,19 @@ swiper {
 
 .hotel-protocol-item .other-price {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   font-size: 24rpx;
   line-height: 1.2;
   padding: 20rpx 0 40rpx;
   color: rgba(26, 42, 75, 1);
 }
+.hotel-protocol-item .other-price view {
+  margin-right: 22rpx;
+}
 .hotel-protocol-item .other-price image {
-  width: 24rpx;
-  height: 20rpx;
+  width: 22rpx;
+  height: 22rpx;
   margin-right: 8rpx;
 }
 .hotel-protocol-item .price-num {

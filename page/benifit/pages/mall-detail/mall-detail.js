@@ -119,7 +119,7 @@ Page({
           wx.setNavigationBarTitle({
             title: res.data.result.name
           })
-          that.onBusiness(res.data.result.business_hours.start, res.data.result.business_hours.end);
+          that.onBusiness(res.data.result.business_hours);
         }
         that.getProtocol(commerce_id, that.data.commerce_type);
         that.getComments(commerce_id);
@@ -132,42 +132,50 @@ Page({
   * beginTime 开始时间 
   * endTime 结束时间 
   */
-  onBusiness(beginTime, endTime) {
-    var hour = new Date().getHours();
-    var min = new Date().getMinutes();
-
-    var varTime = hour + ':' + min;
-    
-    var strb = beginTime.split(":");
-    if (strb.length != 2) {
-      return false;
-    }
-    var stre = endTime.split(":");
-    if (stre.length != 2) {
-      return false;
-    }
-    var strv = varTime.split(":");
-    if (strv.length != 2) {
-      return false;
-    }
-    var b = new Date();
-    var e = new Date();
-    var v = new Date();
-    b.setHours(strb[0]);
-    b.setMinutes(strb[1]);
-    e.setHours(stre[0]);
-    e.setMinutes(stre[1]);
-    v.setHours(strv[0]);
-    v.setMinutes(strv[1]);
-    
-    if ((v.getTime() - b.getTime() >= 0 && (e.getTime() - v.getTime()) >= 0)) {
+  onBusiness(businessHours) {
+    if (businessHours == null) {
       this.setData({
         businessStatus: "营业中"
       })
-    } else {
-      this.setData({
-        businessStatus: "已歇业"
-      })
+      return ;
+    }
+    for (var i=0; i<businessHours.length; i++) {
+      var hour = new Date().getHours();
+      var min = new Date().getMinutes();
+
+      var varTime = hour + ':' + min;
+      
+      var strb = businessHours[i].start.split(":");
+      if (strb.length != 2) {
+        return false;
+      }
+      var stre = businessHours[i].end.split(":");
+      if (stre.length != 2) {
+        return false;
+      }
+      var strv = varTime.split(":");
+      if (strv.length != 2) {
+        return false;
+      }
+      var b = new Date();
+      var e = new Date();
+      var v = new Date();
+      b.setHours(strb[0]);
+      b.setMinutes(strb[1]);
+      e.setHours(stre[0]);
+      e.setMinutes(stre[1]);
+      v.setHours(strv[0]);
+      v.setMinutes(strv[1]);
+      
+      if ((v.getTime() - b.getTime() >= 0 && (e.getTime() - v.getTime()) >= 0)) {
+        this.setData({
+          businessStatus: "营业中"
+        })
+      } else {
+        this.setData({
+          businessStatus: "已歇业"
+        })
+      }
     }
     
   },

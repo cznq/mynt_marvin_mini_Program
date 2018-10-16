@@ -9,7 +9,7 @@
   background: linear-gradient( top, rgba(255, 255, 255, 1), rgba(246, 246, 246, 1));
 }
 .page__bd {
-  padding: 20rpx 60rpx 0;
+  padding: 40rpx 60rpx 0;
   background-color: rgba(246, 246, 246, 1);
 }
 .title-bar {
