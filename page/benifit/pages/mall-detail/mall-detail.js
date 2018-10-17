@@ -15,7 +15,7 @@ Page({
       indicatorDots: false,
       autoplay: false,
       interval: 20000,
-      duration: 1000
+      duration: 300
     },
     showVipCard: false,
     is_vip: false,
@@ -30,7 +30,7 @@ Page({
     dialog_discount_limit: null,
     systemInfo: null,
     viewID: "discSec",
-    businessStatus: null
+    businessStatus: ""
   },
 
   /**
@@ -171,6 +171,7 @@ Page({
         this.setData({
           businessStatus: "营业中"
         })
+        return false;
       } else {
         this.setData({
           businessStatus: "已歇业"

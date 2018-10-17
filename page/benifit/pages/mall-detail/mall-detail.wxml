@@ -21,13 +21,13 @@
         <text>{{commerceDetail.business_projects}}</text>
         <view class="star-part">
           <block wx:for="{{5}}" wx:key="">
-            <image class="star" src="../../images/{{item <= rate ? 'love@2x.png' : 'love_gray@2x.png'}}"></image>
+            <image class="star" src="../../images/{{item <= commerceDetail.score-1 ? 'love@2x.png' : 'love_gray@2x.png'}}"></image>
           </block>
         </view>
       </view>
     </view>
     <view class="infoWrapper bottom">
-      <view class="info-column" wx:if="{{commerce_type < 2}}">
+      <view class="info-column">
         <view class="on-sale-time"><image src="../../images/icon_kitchen@2x.png"></image>
           <block wx:if="{{commerceDetail.business_hours == null}}">
             <text >全天</text>

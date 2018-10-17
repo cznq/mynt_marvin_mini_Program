@@ -50,6 +50,7 @@ Page({
         data: JSON.stringify({})
       },
       success: res => {
+        console.log(res);
         if (res.data.result) {
           if (res.data.result.has_employee_benefit == 1) {
             that.setData({ is_vip: true })
@@ -59,6 +60,8 @@ Page({
           that.setData({
             employeeInfo: res.data.result
           })
+        } else {
+          that.setData({ is_vip: false })
         }
       }
     })
