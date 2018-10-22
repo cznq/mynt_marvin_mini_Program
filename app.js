@@ -1,6 +1,11 @@
 //app.js
 var QQMapWX = require('utils/qqmap-wx-jssdk.min.js');
 const Promise = require('utils/promise.js');
+var fundebug = require('utils/fundebug.0.9.0.min.js');
+fundebug.init({
+  apikey: "f7a08bd4f8006965ba11314b2571777ea295a98e84766ade31bdb5c272b87428"
+})
+
 App({
   globalData: {
     xy_session: null,
@@ -17,12 +22,14 @@ App({
   },
 
   onLaunch: function () {
-    
+    //fundebug.notify("Test", "Hello, Fundebug!");
   },
 
   Util: require('utils/util.js'),
 
-  // 检查App是否登录
+  /**
+   * 检查App是否登录
+   */
   checkSession: function () {
     if (wx.getStorageSync('xy_session') == '' || wx.getStorageSync('xy_session') == null) {
       return false;

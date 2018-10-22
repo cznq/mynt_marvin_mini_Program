@@ -81,6 +81,7 @@
 }
 .vip-card-top .avatar {
   width: 70rpx;
+  height: 70rpx;
   border-radius: 35rpx;
 }
 .vip-card-middle {

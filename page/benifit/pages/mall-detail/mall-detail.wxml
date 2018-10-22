@@ -99,7 +99,7 @@
       
     </block>
     </view>
-    <view class="detail_show tabContent" id="detailSec">
+    <view class="detail_show tabContent" id="detailSec" wx:if="{{commerceDetail.details}}">
       <view class="content-title">详情展示</view>
       <view class="content">
         <!-- <template is="html2wxml" data="{{wxmlData:details}}" /> -->
