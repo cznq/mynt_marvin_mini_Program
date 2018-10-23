@@ -100,3 +100,4 @@
 .btn-confirm:after, .btn-confirm:after {
   border:none;
 }
+
