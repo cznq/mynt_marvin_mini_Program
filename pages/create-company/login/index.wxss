@@ -1,0 +1,6 @@
+@import "../public/style.wxss";
+.login{background: url('http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/login_pic.png') no-repeat;background-size: 100%;}
+.login .title{padding:637rpx 145rpx 0rpx 145rpx;text-align: center;}
+.login .introduce{padding:41rpx 76rpx 138rpx 76rpx;}
+.login .copy{font-size:24rpx;color:#8891A9;text-align: center;padding:28rpx 0;font-weight: 300;}
+.login .t_blue{color:#475FFD;}

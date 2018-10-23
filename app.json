@@ -1,7 +1,8 @@
 {
   "pages":[
-    "pages/demo/iconfont/index",
-    "pages/demo/showToastDemo/index",
+    "pages/create-company/company-code/index",
+    "pages/create-company/login/index",
+   
     "pages/manage/manage",
     "pages/invite/invite",
     "pages/invite-share/invite-share",
@@ -15,7 +16,10 @@
     "pages/edit-info/edit-info",
     "pages/vip-index/vip-index",
     "pages/vip-invite/vip-invite",
-    "pages/vip-share/vip-share"
+    "pages/vip-share/vip-share",
+    "pages/demo/showToastDemo/index",
+    "pages/demo/iconfont/index"
+    
   ],
   "subPackages": [
     {
