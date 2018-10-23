@@ -1,0 +1,72 @@
+<!--pages/benifit-card/benifit-card.wxml-->
+<view class="page">
+  <view class="page__hd">
+    <view class="title-bar">
+      <text>小觅协议优惠</text>
+      <view class="vip-card-wrapper" wx:if="{{is_vip}}">
+        <image src="../../images/icon_card@2x.png" bindtap="backVipCard"></image>
+        <view class="vip-card-info" wx:if="{{showVipCardTips}}">你的协议卡在这</view>
+      </view>
+      
+    </view>
+    <view class="home-slide">
+      <swiper indicator-dots="{{slide_data.indicatorDots}}"
+  autoplay="{{slide_data.autoplay}}" interval="{{slide_data.interval}}" duration="{{slide_data.duration}}">
+        <block wx:for="{{slide_data.slide_img}}" wx:key="key">
+          <swiper-item>
+            <view class="swiper-item" bindtap="linkRedirect" data-link="{{item.link_url}}" style="background: url({{item.homepage_url}}) no-repeat center center;background-size:cover;"></view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>          
+  </view>
+  <view class="page__bd">
+    <view class="tab {{tabFixed ? 'fixed' : ''}}" id="selTab">
+      <block wx:for="{{tabList}}" wx:key="{{key}}">
+        <text wx:if="{{item.id == tabSelected}}" class="selected" bindtap="changeTab" data-typeid="{{item.typeid}}" data-selectid="{{item.id}}">{{item.title}}</text>
+        <text bindtap="changeTab" data-typeid="{{item.typeid}}" data-selectid="{{item.id}}" wx:else>{{item.title}}</text>
+      </block>
+    </view>
+    <view class="shop-list">
+    <!-- 商家列表 -->
+    <block wx:for="{{shopList.commerces}}" wx:key="{{key}}">
+      <view class="shop-wrapper" bindtap="redirectCommerce" data-commerceid="{{item.commerce_id}}" data-commercetype="{{selectedType}}">
+        <view class="head-pic">
+          <image src="{{item.commerce_homepage_url}}" mode="aspectFill"></image>
+        </view>
+        <view class="shop-name">{{item.commerce_name}}</view>
+        <view class="star-part">
+          <block wx:for="{{5}}" wx:key="" wx:for-item="num">
+            <image class="star" src="../../images/{{num <= item.score-1 ? 'love@2x.png' : 'love_gray@2x.png'}}"></image>
+          </block>
+        </view>
+        <view class="tags">
+          <view class="tag-name">{{item.business_projects}}</view>
+          <view class="distance"></view>
+        </view>
+        <view class="discount {{selectedType == 2 ? 'hotel-discount' : ''}}">
+          <view class="price-wrapper">
+            <image src="../../images/shape@2x.png"></image>协议价
+          </view>
+          <view class="price-protocol hotel-price" wx:if="{{selectedType == 2}}">
+            <image src="../../images/num/num_yb.png"></image>
+            <block wx:for="{{item.agreement_price}}" wx:for-item="imgnum" wx:key="">
+              <image src="../../images/num/num_y{{imgnum}}.png"></image>
+            </block>
+          </view>
+          <view class="price-protocol" wx:else>
+            {{item.agreement_price}}
+          </view>
+        </view>
+      </view>
+    </block>
+      
+      
+    </view>
+  </view>  
+  <view class="page__ft">
+   
+  </view>
+  
+</view>
+
