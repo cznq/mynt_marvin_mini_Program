@@ -1,5 +1,7 @@
 {
   "pages":[
+    "pages/demo/iconfont/index",
+    "pages/demo/showToastDemo/index",
     "pages/manage/manage",
     "pages/invite/invite",
     "pages/invite-share/invite-share",

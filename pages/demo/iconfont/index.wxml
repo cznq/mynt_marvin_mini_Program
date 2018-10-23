@@ -1,0 +1,189 @@
+<view class="icon_viewsts clear">
+            <view class="block">
+                <view class='icon-cjcg _relative'>
+                  <view class="iconfont icon-chuangjiangongsichenggong3 _absolute"></view>
+                  <view class="iconfont icon-chuangjiangongsichenggong2 _absolute"></view>
+                  <view class="iconfont icon-chuangjiangongsichenggong1 _absolute"></view>
+                </view>
+                
+                
+                   <view class="name">创建公司成功</view>
+                    <view class="fontclass">.icon-cjcg</view>
+                </view>
+                <view class="block">
+                <view class="iconfont icon-jiqiren"></view>
+                    <view class="name">机器人</view>
+                    <view class="fontclass">.icon-jiqiren</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-guibin"></view>
+                    <view class="name">贵宾</view>
+                    <view class="fontclass">.icon-guibin</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-bofanggongsijianjie"></view>
+                    <view class="name">播放公司简介</view>
+                    <view class="fontclass">.icon-bofanggongsijianjie</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-suishiquqia"></view>
+                    <view class="name">随时取卡</view>
+                    <view class="fontclass">.icon-suishiquqia</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-card"></view>
+                    <view class="name">card</view>
+                    <view class="fontclass">.icon-card</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-icon_xiaoxi_fangke"></view>
+                    <view class="name">icon_消息_访客</view>
+                    <view class="fontclass">.icon-icon_xiaoxi_fangke</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-xiaoxi"></view>
+                    <view class="name">消息</view>
+                    <view class="fontclass">.icon-xiaoxi</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-icon_xiaoxi_gongsi"></view>
+                    <view class="name">icon_消息_公司</view>
+                    <view class="fontclass">.icon-icon_xiaoxi_gongsi</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-icon_xiaoxi_yaoqing"></view>
+                    <view class="name">icon_消息_邀请</view>
+                    <view class="fontclass">.icon-icon_xiaoxi_yaoqing</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-robot"></view>
+                    <view class="name">robot</view>
+                    <view class="fontclass">.icon-robot</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-icon_xiaoxi_yuangong"></view>
+                    <view class="name">icon_消息_员工</view>
+                    <view class="fontclass">.icon-icon_xiaoxi_yuangong</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-vip"></view>
+                    <view class="name">vip</view>
+                    <view class="fontclass">.icon-vip</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-duocishuaqia"></view>
+                    <view class="name">多次刷卡</view>
+                    <view class="fontclass">.icon-duocishuaqia</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-jieshouyaoqingchenggong"></view>
+                    <view class="name">接受邀请成功</view>
+                    <view class="fontclass">.icon-jieshouyaoqingchenggong</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-ditudingweidian"></view>
+                    <view class="name">地图定位点</view>
+                    <view class="fontclass">.icon-ditudingweidian</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-viewviewanqichuview"></view>
+                    <view class="name">浏览器处理</view>
+                    <view class="fontclass">.icon-viewviewanqichuview</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-kongyemian"></view>
+                    <view class="name">空页面</view>
+                    <view class="fontclass">.icon-kongyemian</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-tianjiayuangong"></view>
+                    <view class="name">添加员工</view>
+                    <view class="fontclass">.icon-tianjiayuangong</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-xuanze"></view>
+                    <view class="name">选择</view>
+                    <view class="fontclass">.icon-xuanze</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-yaoqinghan"></view>
+                    <view class="name">邀请函</view>
+                    <view class="fontclass">.icon-yaoqinghan</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-yaoqingshijian"></view>
+                    <view class="name">邀请时间</view>
+                    <view class="fontclass">.icon-yaoqingshijian</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-yuangonglururenlian"></view>
+                    <view class="name">员工录入人脸</view>
+                    <view class="fontclass">.icon-yuangonglururenviewan</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-yuangongzhuye_bianji"></view>
+                    <view class="name">员工主页_编辑</view>
+                    <view class="fontclass">.icon-yuangongzhuye_bianji</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-zhuanrangguanliyuanchenggong"></view>
+                    <view class="name">转让管理员成功</view>
+                    <view class="fontclass">.icon-zhuanrangguanviewyuanchenggong</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-weixin"></view>
+                    <view class="name">微信</view>
+                    <view class="fontclass">.icon-weixin</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-bianji"></view>
+                    <view class="name">编辑</view>
+                    <view class="fontclass">.icon-bianji</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-chuangjiangongsichenggong1"></view>
+                    <view class="name">创建公司成功3</view>
+                    <view class="fontclass">.icon-c1</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-chuangjiangongsichenggong2"></view>
+                    <view class="name">创建公司成功1</view>
+                    <view class="fontclass">.icon-chuangjiangongsichenggong2</view>
+                </view>
+            
+                <view class="block">
+                <view class="iconfont icon-chuangjiangongsichenggong3"></view>
+                    <view class="name">创建公司成功2</view>
+                    <view class="fontclass">.icon-chuangjiangongsichenggong3</view>
+                </view>
+
+                
+            
+        </view>

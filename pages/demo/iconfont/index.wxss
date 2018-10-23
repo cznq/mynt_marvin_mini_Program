@@ -1,0 +1,7 @@
+@import "../../../templates/iconfont/iconfont.wxss";
+
+.block{float:left;width:249rpx;height:250rpx;font-weight: 300;font-size:22rpx;text-align:center;border-left:1rpx solid #eaeaea;border-bottom:1rpx solid #eaeaea;}
+.block .name{margin-top:20rpx;}
+
+.iconfont{font-size:52rpx;}
+

@@ -1,0 +1,39 @@
+<view class='z_warp'>
+
+  <view class='z_pop _clearfloat'>
+    <view class='z_demotoast'><image src='images/1.png' mode='widthFix'></image></view>
+    <view class='z_f' bindtap='bindToastOpen1'>TRY</view>
+  </view>
+
+  <view class='z_pop _clearfloat'>
+    <view class='z_demotoast'><image src='images/2.png' mode='widthFix'></image></view>
+    <view class='z_f' bindtap='bindToastOpen2'>TRY</view>
+  </view>
+
+  <view class='z_pop _clearfloat'>
+    <view class='z_demotoast'><image src='images/3.png' mode='widthFix'></image></view>
+    <view class='z_f' bindtap='bindToastOpen3'>TRY</view>
+  </view>
+
+    <view class='z_pop _clearfloat'>
+    <view class='z_demotoast'><image src='images/4.png' mode='widthFix'></image></view>
+    <view class='z_f' bindtap='bindToastOpen4'>TRY</view>
+  </view>
+
+  <view class='z_pop _clearfloat'>
+    <view class='z_demotoast'><image src='images/5.png' mode='widthFix'></image></view>
+    <view class='z_f' bindtap='bindToastOpen5'>TRY</view>
+  </view>
+
+   <view class='z_pop _clearfloat'>
+    <view class='z_demotoast'><image src='images/6.png' mode='widthFix'></image></view>
+    <view class='z_f' bindtap='bindToastOpen6'>TRY</view>
+  </view>
+
+     <view class='z_pop _clearfloat'>
+    <view class='z_demotoast'><image src='images/7.png' mode='widthFix'></image></view>
+    <view class='z_f' bindtap='bindToastOpen7'>TRY</view>
+  </view>
+</view>
+<import src="../../../templates/showToast/showToast.wxml" /> 
+ <template is="showToast" data="{{showToast: showToast}}" /> 

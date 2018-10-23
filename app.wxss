@@ -101,3 +101,126 @@
   border:none;
 }
 
+/**app.wxss**/
+/* margin  */
+._mt10 { margin-top: 10rpx !important; }
+._mb10 { margin-bottom: 10rpx !important; }
+._ml10 { margin-left: 10rpx !important; }
+._mr10 { margin-right: 10rpx !important; }
+
+._mt20 { margin-top: 20rpx !important; }
+._mb20 { margin-bottom: 20rpx !important; }
+._ml20 { margin-left: 20rpx !important; }
+._mr20 { margin-right: 20rpx !important; }
+
+._mt30 { margin-top: 30rpx !important; }
+._mb30 { margin-bottom: 30rpx !important; }
+._ml30 { margin-left: 30rpx !important; }
+._mr30 { margin-right: 30rpx !important; }
+
+/* padding  */
+/*20  */
+._pt20 { padding-top: 20rpx !important; }
+._pb20 { padding-bottom: 20rpx !important; }
+._pl20 { padding-left: 20rpx !important; }
+._pr20 { padding-right: 20rpx !important; }
+
+/*30  */
+._pt30 { padding-top: 30rpx !important; }
+._pb30 { padding-bottom: 30rpx !important; }
+._pl30 { padding-left: 30rpx !important; }
+._pr30 { padding-right: 30rpx !important; }
+
+/* 四周  */
+._pd10 { padding: 10rpx !important; }
+._pd20 { padding: 20rpx !important; }
+._pd30 { padding: 30rpx !important;  }
+
+/* color */
+._txt_gray { color: #1a2a4b !important; } /*灰色 一般情况 标题 正文*/
+._txt_darkgrey{color:#8891a9!important;}/*深灰色 层级表现*/
+._txt_lightgray { color: #babfc9 !important; }/*浅灰色 输入框提示*/
+._txt_lightgray2 { color: #b8bdcb !important; } /* 淡灰色 层级表现*/
+._txt_blue,._bg_blue { color: #475ffd !important; } /* 蓝色 主题色 强调色*/
+._txt_lightblue,._bg_lightblue { color: #6092fe !important; } /* 淡蓝色 普通员工头像*/
+._txt_green,._bg_green{ color: #0cce15 !important; } /* 绿色 微信颜色*/
+._txt_lightgreen,._bg_lightgreen { color: #64db89 !important; } /* 浅绿色 正面信息*/
+._txt_red,._bg_red { color: #fd4747 !important; } /* 红色 负面信息颜色*/
+._txt_lightblack,._bg_lightblack { color: #484f62 !important; } /*浅黑 管理员头像背景颜*/
+._txt_orange,._bg_orange { color: #f9922f !important; } /* 橘色 前台员工头像背景*/
+._txt_golden,._bg_golden { color: #daa86c !important; } /* 金色 贵宾尊贵背景*/
+
+/* 边框  */
+._line_color{color:#f0f0f0!important;}/*线条颜色*/
+._border_bottom_gray{border-bottom:1rpx solid #f0f0f0;}
+
+/* border-radius  */
+._border_radius10{border-radius:10rpx;}
+._border_radius4{border-radius:4rpx;}
+
+/* 文字对其方式 */
+._txt_center { text-align: center; }
+._txt_right { text-align: right; }
+._txt_left { text-align: left; }
+
+/* background  */
+._bg_white { background: #f9fafb !important;}
+._bg_gray { background: #191918 !important;}
+
+/*icon-background*/
+._icon_bg_purplishblue{color:#8080ff!important;}/*访客信息*/
+._icon_bg_golden{color:#e9c395!important;}/*贵宾邀请信息*/
+._icon_bg_darkgreen{color:#478fb3!important;}/*公司信息*/
+._icon__bg_lightgreen{color:#64db89!important;}/*邀请信息*/
+._icon_bg_wathet{color:#6092fe!important;}/*员工信息*/
+
+/* 宽高 100%  */
+._w100{ width: 100% }
+._h100{ height: 100% }
+._whFull{ width: 100%; height: 100%;}
+ /* 浮动 */
+._f_left { float: left; }
+._f_right { float: right; }
+
+/* 清除浮动  */
+._clearfloat{zoom:1}
+._clearfloat:after{display:block;clear:both;content:"";visibility:hidden;height:0} 
+
+/* 定位属性  */
+._relative { position: relative; }
+._absolute { position: absolute; }
+._fixed{ position:fixed; }
+
+/*block属性  */
+._block { display: block; }
+._inline_block { display: inline-block; }
+._hidden { display: none; }
+._overflow_hidden { overflow: hidden; }
+._visibility{ visibility:hidden; }
+._opacity0{ opacity:0 !important; }
+._opacity1{ opacity:1 !important; }
+/* 弹性盒  */
+._flex { display: flex; }
+._flex_item_center { align-items: center; }
+._flex_justify_center { justify-content: center; }
+._flex_space_between { justify-content: space-between; }
+
+/* 去除边框  */
+button::after { border:none; }
+
+/* 向内挤压  */
+._border_box { box-sizing: border-box; }
+
+/* 超出一省略 */
+._ellipsis {overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+
+/* 标签默认样式 placeholder*/
+input:-webkit-input-placeholder {
+    color:#ccc;
+}
+
+/* buttonr*/
+._button{background:#475FFD;color:#ffffff;width:630rpx;height:100rpx;text-align: center;line-height:100rpx;}
+._button_disabled{background: #d9dffd !important;color:#fff !important;}
+._button_width306{width:306rpx;}
+._button_white{background: #ffff;color:#475FFD;border:1rpx solid #e8e9e9;}
