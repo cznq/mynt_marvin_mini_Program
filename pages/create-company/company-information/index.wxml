@@ -1,13 +1,17 @@
 <view class='_content company-code'>
   <view class="_flex step">
     <view class='cur'></view>
-    <view></view>
-    <view></view>
+    <view class='cur'></view>
+    <view class='cur'></view>
     <view></view>
   </view>
   <view class='mainTitle'>{{mainTitle}}</view>
-  <input class='inp' maxlength='8' confirm-hold="true" focus="true"></input>
-  <view class='hint _font22 _txt_darkgrey _fontw300'>{{hint}}</view>
+  <form>
+    <view>
+      <view><text class='_font24 _txt_darkgrey'>公司全称</text><text class='_font22 _txt_darkgrey'>(必填)</text></view>
+      <input></input>
+    </view>
+  </form>
   <view class='_fixed footer'>
     <button  class="_button" bindtap="next">{{button_text}}</button>
   </view>

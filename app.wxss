@@ -150,6 +150,20 @@
 ._txt_orange,._bg_orange { color: #f9922f !important; } /* 橘色 前台员工头像背景*/
 ._txt_golden,._bg_golden { color: #daa86c !important; } /* 金色 贵宾尊贵背景*/
 
+/*字体大小*/
+._font22{font-size: 22rpx;}
+._font24{font-size:24rpx;}
+._font28{font-size:28rpx;}
+._font32{font-size:32rpx;}
+._font36{font-size:36rpx;}
+._font38{font-size:38rpx;}
+._font44{font-size:44rpx;}
+._font56{font-size:56rpx;}
+._font60{font-size:60rpx;}
+
+/*字体粗细*/
+._fontw300{font-weight: 300;}
+
 /* 边框  */
 ._line_color{color:#f0f0f0!important;}/*线条颜色*/
 ._border_bottom_gray{border-bottom:1rpx solid #f0f0f0;}
