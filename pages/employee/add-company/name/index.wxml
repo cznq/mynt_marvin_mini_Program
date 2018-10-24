@@ -3,15 +3,10 @@
     <view class='cur'></view>
     <view class='cur'></view>
     <view class='cur'></view>
-    <view></view>
+    <view class='cur'></view>
   </view>
   <view class='mainTitle'>{{mainTitle}}</view>
-  <form>
-    <view>
-      <view><text class='_font24 _txt_darkgrey'>公司全称</text><text class='_font22 _txt_darkgrey'>(必填)</text></view>
-      <input></input>
-    </view>
-  </form>
+  <input class='inp' maxlength='8' confirm-hold="true" focus="true"></input>
   <view class='_fixed footer'>
     <button  class="_button" bindtap="next">{{button_text}}</button>
   </view>

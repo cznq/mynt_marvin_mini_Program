@@ -5,10 +5,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    mainTitle: '填写企业信息',
-    button_text: '下一步'
+    mainTitle:'输入公司码',
+    button_text:'下一步',
+    hint: '公司码需向楼宇管理申领\n服务热线：0510-88877799'
   },
-
+  next: function () {
+    wx.navigateTo({
+      url: '../name/index',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

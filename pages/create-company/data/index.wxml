@@ -1,0 +1,60 @@
+<view class='_content company-data'>
+  <view class="_flex step">
+    <view class='cur'></view>
+    <view class='cur'></view>
+    <view class='cur'></view>
+    <view class='cur'></view>
+  </view>
+  <view class='mainTitle'><text class='_f_right _font32 _fontw300 _txt_blue'>示例 ></text>{{mainTitle}}</view>
+  <view class='hint'><text class='_font24 _fontw300'>{{hint}}</text></view>
+
+  <view class='upload-block up_logo'>
+    <view class='_font32'>公司LOGO</view>
+    <view class='up_pub'>
+      <view class='up_con'>
+        <view class='up_dot'>+</view>
+        <view class='up_text _fontw300'>图片</view>
+      </view>
+    </view>
+    <view class='up_hint _font22 _fontw300 _txt_darkgrey'>建议尺寸：1:1</view>
+  </view>
+
+    <view class='upload-block up_propaganda'>
+    <view class='_font32'>宣传背景图</view>
+    <view class='up_pub'>
+      <view class='up_con'>
+        <view class='up_dot'>+</view>
+        <view class='up_text _fontw300'>图片</view>
+      </view>
+    </view>
+    <view class='up_hint _font22 _fontw300 _txt_darkgrey'>建议尺寸：1920*1080</view>
+  </view>
+
+  <view class='upload-block up_broadcast'>
+    <view class='_font32'>轮播图</view>
+    <view class='up_pub'>
+      <view class='up_con'>
+        <view class='up_dot'>+</view>
+        <view class='up_text _fontw300'>图片</view>
+      </view>
+    </view>
+    <view class='up_hint _font22 _fontw300 _txt_darkgrey'>建议尺寸：1920*1080,最多6张</view>
+  </view>
+
+  <view class='upload-block up_video'>
+    <view class='_font32'>宣传视频 <view class='vip'><view class='vip_arrow'></view><view class='vip_text'>VIP专享</view></view></view>
+    <view class='up_pub'>
+      <view class='up_con'>
+        <view class='up_dot'>+</view>
+        <view class='up_text _fontw300'>视频</view>
+      </view>
+    </view>
+    <view class='up_hint _font22 _fontw300 _txt_darkgrey'><text>宣传视频与轮播图共用机器人端同个展示位，可选择播放\n建议尺寸：1920*1080</text></view>
+  </view>
+
+
+
+  <view class='_fixed footer'>
+    <button  class="_button" bindtap="next">{{button_text}}</button>
+  </view>
+</view>
