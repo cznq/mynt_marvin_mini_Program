@@ -52,13 +52,13 @@
       <view class="company-intro">
       {{applyInfo.company.introduction}}
       </view>
-      <view class="address">
+      <view class="address" wx:if="{{applyInfo.company.room !== ''}}">
         <text>门牌号：</text>{{applyInfo.company.room}}
       </view>
-      <view class="address">
+      <view class="address" wx:if="{{applyInfo.company.phone !== ''}}">
         <text>电话：</text>{{applyInfo.company.phone}}
       </view>
-      <view class="address">
+      <view class="address" wx:if="{{applyInfo.company.website !== ''}}">
         <text>网址：</text>{{applyInfo.company.website}}
       </view>
     </view>
