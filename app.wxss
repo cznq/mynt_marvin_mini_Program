@@ -1,5 +1,6 @@
 /**app.wxss**/
 @import 'weui.wxss';
+@import "templates/iconfont/iconfont.wxss";
 .container {
   height: 100%;
   display: flex;
@@ -163,7 +164,8 @@
 
 /*字体粗细*/
 ._fontw300{font-weight: 300;}
-
+._fontw500{font-weight: 500;}
+._fontw700{font-weight: 700;}
 /* 边框  */
 ._line_color{color:#f0f0f0!important;}/*线条颜色*/
 ._border_bottom_gray{border-bottom:1rpx solid #f0f0f0;}
@@ -248,3 +250,6 @@ input:-webkit-input-placeholder {
 
 /*主标题*/
 .mainTitle{font-size:60rpx;font-weight: 500;}
+
+/* 红色数字提醒 */
+._num_info{width: auto;padding:0 8rpx;box-sizing:border-box;min-width:26rpx;height: 26rpx;background: #FA4343;display: inline-block;font-size: 18rpx;line-height: 26rpx;text-align: center;color: #fff;border-radius: 13rpx;}

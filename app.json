@@ -1,5 +1,7 @@
 {
   "pages":[
+    "pages/employee/staff-list/index",
+
     "pages/create-company/company-information/index",
     "pages/create-company/company-name/index",
     "pages/create-company/company-code/index",

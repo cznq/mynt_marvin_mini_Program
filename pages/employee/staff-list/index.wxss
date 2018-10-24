@@ -1,0 +1,70 @@
+/* pages/employee/staff-list/index.wxss */
+page {
+  background: #F9FAFB;
+}
+.page__hd {
+  padding: 32rpx 60rpx;
+  line-height: 1;
+  background: #fff;
+}
+.iconfont.icon-tianjiayuangong {
+  font-size: 52rpx;
+}
+.page__bd {
+  padding: 54rpx 60rpx;
+  background: #F9FAFB;
+}
+.new-staff-btn {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,.1);
+
+}
+._num_info {
+  margin: 0 18rpx;
+}
+.staff-list {
+  padding-top: 30rpx;
+}
+._list_item {
+  padding: 60rpx 0 30rpx;
+}
+.admin-list, .front-list {
+  border-bottom: 2rpx solid rgba(0,0,0,.1);
+}
+._list_item._role_staff {
+  padding: 30rpx 0;
+}
+._family_name {
+  width: 70rpx;
+  height: 70rpx;
+  margin-right: 30rpx;
+  color: #fff;
+  border-radius: 35rpx;
+  text-align: center;
+  line-height: 70rpx;
+  font-size: 28rpx;
+}
+
+.handle_btn {
+  width: 46rpx;
+  height: 46rpx;
+  border-radius: 24rpx;
+  box-sizing: border-box;
+  border: 1px solid rgba(0,0,0,.1);
+  line-height: 46rpx;
+  text-align: center;
+  vertical-align: middle;
+}
+.handle_btn .iconfont {
+  font-size: 6rpx;
+
+}
+._role_admin ._family_name {
+  background-color: #484F62;
+}
+._role_front ._family_name {
+  background-color: #F9922F;
+}
+._role_staff ._family_name {
+  background-color: #6092FE;
+}

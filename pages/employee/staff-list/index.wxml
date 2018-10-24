@@ -1,0 +1,82 @@
+<!--pages/employee/staff-list/index.wxml-->
+<view class="page">
+  <view class="page__hd _flex _flex_space_between _flex_item_center">
+      <text class="_font60 _fontw700">员工列表</text>
+      <icon class="iconfont icon-tianjiayuangong"></icon>
+  </view>
+  <view class="page__bd">
+    <button class="new-staff-btn _flex _flex_justify_center  _flex_item_center _fontw500">新员工<view class="_num_info">3</view></button>
+    <block>
+      <view class="staff_list">
+      <!-- 管理员列表 -->
+      <view class="admin-list">      
+        <view class="_list_item _flex _flex_space_between _role_admin">
+          <view class="_lft _flex _flex_item_center">
+            <view class="_family_name">范</view>
+            <view class="_name _fontw500">停生</view>
+          </view>
+          <view class="_rgt _flex _flex_item_center">
+            <view class="handle_btn" bindtap="editEmp"><view class="iconfont icon-bianji"></view></view>
+          </view>
+        </view>
+      </view>
+      <!-- 前台列表 -->
+      <view class="front-list">
+        <view class="_list_item _flex _flex_space_between _role_front">
+          <view class="_lft _flex _flex_item_center">
+            <view class="_family_name">范</view>
+            <view class="_name _fontw500">停生</view>
+          </view>
+          <view class="_rgt _flex _flex_item_center">
+            <view class="handle_btn"><view class="iconfont icon-bianji"></view></view>
+          </view>
+        </view>
+        <view class="_list_item _flex _flex_space_between _role_front">
+          <view class="_lft _flex _flex_item_center">
+            <view class="_family_name">范</view>
+            <view class="_name _fontw500">停生</view>
+          </view>
+          <view class="_rgt _flex _flex_item_center">
+            <view class="handle_btn"><view class="iconfont icon-bianji"></view></view>
+          </view>
+        </view>
+      </view>
+      <!-- 员工列表 -->
+      <view class="staff-list">
+        <view class="_list_item _flex _flex_space_between _role_staff">
+          <view class="_lft _flex _flex_item_center">
+            <view class="_family_name">范</view>
+            <view class="_name _fontw500">停生</view>
+          </view>
+          <view class="_rgt _flex _flex_item_center">
+            <view class="handle_btn"><view class="iconfont icon-bianji"></view></view>
+          </view>
+        </view>
+        <view class="_list_item _flex _flex_space_between _role_staff">
+          <view class="_lft _flex _flex_item_center">
+            <view class="_family_name">范</view>
+            <view class="_name _fontw500">停生</view>
+          </view>
+          <view class="_rgt _flex _flex_item_center">
+            <view class="handle_btn"><view class="iconfont icon-bianji"></view></view>
+          </view>
+        </view>
+        <view class="_list_item _flex _flex_space_between _role_staff">
+          <view class="_lft _flex _flex_item_center">
+            <view class="_family_name">范</view>
+            <view class="_name _fontw500">停生</view>
+          </view>
+          <view class="_rgt _flex _flex_item_center">
+            <view class="handle_btn"><view class="iconfont icon-bianji"></view></view>
+          </view>
+        </view>
+      </view>
+
+      </view>
+    </block>
+  </view>
+   
+  
+   
+</view>
+
