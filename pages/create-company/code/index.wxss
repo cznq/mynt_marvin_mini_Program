@@ -1,0 +1,3 @@
+@import "../public/style.wxss";
+page{background: #f9fafb;}
+.hint{margin:139rpx auto 0 auto;}

@@ -1,20 +1,17 @@
-// pages/create-company/login/index.js
+// pages/create-company/company-code/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    title: 'Welcome to use building services.',
-    introduce:'Join a company and start enjoying high-end building services like visitor invitations, building statistics, employee quick access cards',
-    copy:'Company hasen’t been settled. ',
-    copy2:'Create a new company.',
-    button_text:'下一步'
-
+    mainTitle: '上传企业资料',
+    button_text: '提交',
+    hint: '以下资料需经过楼宇管理员审核，严禁上传色情、\n暴力、血腥、骇人或政治相关内容的图片'
   },
-  next:function(){
+  next: function () {
     wx.navigateTo({
-      url: '../code/index',
+      url: '../success/index',
     })
   },
   /**

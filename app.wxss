@@ -141,14 +141,14 @@
 ._txt_darkgrey{color:#8891a9!important;}/*深灰色 层级表现*/
 ._txt_lightgray { color: #babfc9 !important; }/*浅灰色 输入框提示*/
 ._txt_lightgray2 { color: #b8bdcb !important; } /* 淡灰色 层级表现*/
-._txt_blue,._bg_blue { color: #475ffd !important; } /* 蓝色 主题色 强调色*/
-._txt_lightblue,._bg_lightblue { color: #6092fe !important; } /* 淡蓝色 普通员工头像*/
-._txt_green,._bg_green{ color: #0cce15 !important; } /* 绿色 微信颜色*/
-._txt_lightgreen,._bg_lightgreen { color: #64db89 !important; } /* 浅绿色 正面信息*/
-._txt_red,._bg_red { color: #fd4747 !important; } /* 红色 负面信息颜色*/
-._txt_lightblack,._bg_lightblack { color: #484f62 !important; } /*浅黑 管理员头像背景颜*/
-._txt_orange,._bg_orange { color: #f9922f !important; } /* 橘色 前台员工头像背景*/
-._txt_golden,._bg_golden { color: #daa86c !important; } /* 金色 贵宾尊贵背景*/
+._txt_blue { color: #475ffd !important; } /* 蓝色 主题色 强调色*/
+._txt_lightblue { color: #6092fe !important; } /* 淡蓝色 普通员工头像*/
+._txt_green{ color: #0cce15 !important; } /* 绿色 微信颜色*/
+._txt_lightgreen { color: #64db89 !important; } /* 浅绿色 正面信息*/
+._txt_red { color: #fd4747 !important; } /* 红色 负面信息颜色*/
+._txt_lightblack{ color: #484f62 !important; } /*浅黑 管理员头像背景颜*/
+._txt_orange{ color: #f9922f !important; } /* 橘色 前台员工头像背景*/
+._txt_golden{ color: #daa86c !important; } /* 金色 贵宾尊贵背景*/
 
 /*字体大小*/
 ._font22{font-size: 22rpx;}
@@ -158,6 +158,7 @@
 ._font36{font-size:36rpx;}
 ._font38{font-size:38rpx;}
 ._font44{font-size:44rpx;}
+._font46{font-size:46rpx;}
 ._font56{font-size:56rpx;}
 ._font60{font-size:60rpx;}
 
@@ -180,6 +181,14 @@
 /* background  */
 ._bg_white { background: #f9fafb !important;}
 ._bg_gray { background: #191918 !important;}
+._bg_blue { background: #475ffd !important; } /* 蓝色 主题色 强调色*/
+._bg_lightblue { background: #6092fe !important; } /* 淡蓝色 普通员工头像*/
+._bg_green{ background: #0cce15 !important; } /* 绿色 微信颜色*/
+._bg_lightgreen { background: #64db89 !important; } /* 浅绿色 正面信息*/
+._bg_red { background: #fd4747 !important; } /* 红色 负面信息颜色*/
+._bg_lightblack { background: #484f62 !important; } /*浅黑 管理员头像背景颜*/
+._bg_orange { background: #f9922f !important; } /* 橘色 前台员工头像背景*/
+._bg_golden { background: #daa86c !important; } /* 金色 贵宾尊贵背景*/
 
 /*icon-background*/
 ._icon_bg_purplishblue{color:#8080ff!important;}/*访客信息*/
@@ -192,6 +201,7 @@
 ._w100{ width: 100% }
 ._h100{ height: 100% }
 ._whFull{ width: 100%; height: 100%;}
+
  /* 浮动 */
 ._f_left { float: left; }
 ._f_right { float: right; }
@@ -213,6 +223,7 @@
 ._visibility{ visibility:hidden; }
 ._opacity0{ opacity:0 !important; }
 ._opacity1{ opacity:1 !important; }
+
 /* 弹性盒  */
 ._flex { display: flex; }
 ._flex_item_center { align-items: center; }
@@ -233,18 +244,24 @@ input:-webkit-input-placeholder {
     color:#ccc;
 }
 
-/* buttonr*/
+/* button*/
 ._button{background:#475FFD;color:#ffffff;width:630rpx;height:100rpx;text-align: center;line-height:100rpx;}
 ._button_disabled{background: #d9dffd !important;color:#fff !important;}
 ._button_width306{width:306rpx;}
 ._button_white{background: #ffff;color:#475FFD;border:1rpx solid #e8e9e9;}
 
-/**/
+/*外轮廓*/
 ._content{padding:0 60rpx;color:#1A2A4B;}
+
+/*主标题*/
+.mainTitle{font-size:60rpx;font-weight: 500;}
 
 /*步骤提示模块*/
 .step view{background:#E7E8EE;width: 143rpx;height:6rpx;margin-right:19rpx;border-radius: 6rpx;}
 .step .cur{background: #475FFD;}
 
-/*主标题*/
-.mainTitle{font-size:60rpx;font-weight: 500;}
+
+
+/*输入框*/
+.input_text{height:65rpx;font-size:32rpx;padding-bottom:13rpx;color:#1A2A4B;border-bottom: 1rpx solid #ededed;}
+.input_text_phc{color:#D1D4DB;font-weight: 300;}

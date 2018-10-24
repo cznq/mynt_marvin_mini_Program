@@ -1,0 +1,25 @@
+@import "../public/style.wxss";
+.mainTitle text{margin-top:37rpx;font-family: Arial, Helvetica, sans-serif;}
+.hint{margin-top:60rpx;line-height:28rpx;}
+.upload-block{margin-top:50rpx;}
+.up_pub{background: #F3F5F9;border-radius: 10rpx;position: relative;margin:19rpx 0 6rpx 0;}
+.up_logo .up_pub{width:240rpx;height:240rpx;}
+.up_con{width:70rpx;height: 95rpx;margin: auto;position: absolute;left: 0;right: 0;top: 0;bottom: 0;}
+
+.up_dot{width:44rpx;height:44rpx;border-radius: 48rpx;text-align:center;line-height: 36rpx;background: #ffffff;border:1rpx solid #bbbbbb;color:#bbbbbb;font-weight:300;font-family:-BlinkMacSystemFont;margin:0 auto;}
+.up_text{color:#bbbbbb;font-size:30rpx;text-align: center;}
+
+.up_propaganda .up_pub{width:528rpx;height:300rpx;}
+.up_broadcast .up_pub{width:300rpx;height:170rpx;}
+.up_video .up_pub{width:528rpx;height:300rpx;}
+.vip{display: inline-block;width:93rpx;height:30rpx;position: relative; vertical-align: -3rpx;}
+.vip_arrow{float:left;width:5rpx;margin:0;position:absolute;left:-5rpx;top:-16rpx;}
+.vip_arrow:after{
+    width: 0;
+    height: 0; content: '';
+    display: inline-block;
+    border: 3px solid transparent;
+    border-right: 3px solid #e1b88b;
+    margin:0;
+}
+.vip_text{float:left;width:88rpx;color:#fff;height:30rpx;line-height:30rpx;background: #e1b88b;font-size:20rpx;margin-left:6rpx;font-weight: 300;border-radius: 4rpx;text-align: center;}

@@ -1,0 +1,24 @@
+<view class='s_hint'>
+  <view class='icon-cjcg _relative'>
+                  <view class="iconfont icon-chuangjiangongsichenggong3 _absolute"></view>
+                  <view class="iconfont icon-chuangjiangongsichenggong2 _absolute"></view>
+                  <view class="iconfont icon-chuangjiangongsichenggong1 _absolute"></view>
+                </view>
+
+                <view class='_font32 text _txt_lightblue'>申请已提交，等待企业通过...</view>
+</view>
+
+<view class='_content company-success'>
+  <view class='input_block '>
+        <view><text class='_font24 _txt_darkgrey'>申请人</text></view>
+        <input class='input_text' disabled = 'false ' value='Adobe'></input>
+      </view>
+      <view class='input_block'>
+        <view><text class='_font24 _txt_darkgrey'>申请加入</text></view>
+        <input class='input_text' disabled = 'false ' value='小觅机器人楼宇服务取卡有限公司'></input>
+      </view>
+  <view class='_fixed footer'>
+    <button  class="_button _button_white" bindtap="button">{{button_text}}</button>
+  </view>
+</view>
+

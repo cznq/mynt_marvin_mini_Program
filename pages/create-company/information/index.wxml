@@ -1,0 +1,62 @@
+<view class='_content company-information'>
+  <view class="_flex step">
+    <view class='cur'></view>
+    <view class='cur'></view>
+    <view class='cur'></view>
+    <view></view>
+  </view>
+  <view class='mainTitle'>{{mainTitle}}</view>
+    <form>
+      <view class='input_block'>
+        <view><text class='_font24 _txt_darkgrey'>公司全称</text><text class='_font22 _txt_darkgrey _fontw300'>(必填)</text></view>
+        <input class='input_text' disabled = 'false ' value='小觅楼宇服务有限公司'></input>
+      </view>
+      <view class='input_block'>
+        <view><text class='_font24 _txt_darkgrey'>公司简介2</text><text class='_font22 _txt_darkgrey _fontw300'>(必填)</text></view>
+        <input class='input_text' value='' placeholder='显示在机器人端公司主页，最多8个字' placeholder-class='input_text_phc' maxlength='8'></input>
+      </view>
+      <view class='input_block'>
+        <view><text class='_font24 _txt_darkgrey'>公司别称</text></view>
+        <input class='input_text' value='' placeholder='通常用于访客搜索' placeholder-class='input_text_phc' maxlength='8'></input>
+      </view>
+      <view class='input_block'>
+        <view><text class='_font24 _txt_darkgrey'>公司别称</text></view>
+        <input class='input_text' value='' placeholder='通常用于访客搜索' placeholder-class='input_text_phc' maxlength='8'></input>
+      </view>
+      <view class='input_block'>
+        <view><text class='_font24 _txt_darkgrey'>公司别称</text></view>
+        <input class='input_text' value='' placeholder='通常用于访客搜索' placeholder-class='input_text_phc' maxlength='8'></input>
+      </view>
+      <view class='_font22 _txt_blue _fontw300 _txt_center add_c'>+添加别称</view>
+      <view class='input_block'>
+        <view><text class='_font24 _txt_darkgrey'>公司地址</text></view>
+        <view class='input_text location'>杭州市什么区什么楼</view>
+      </view>
+      <view class='input_block'>
+        <view><text class='_font24 _txt_darkgrey'>详细地址</text><text class='_font22 _txt_darkgrey _fontw300'>(必填)</text></view>
+        <view class='detailedAddress _clearfloat'>
+          <input class='input_text input_dis' disabled='false' value='E2栋'></input>
+          <input class='input_text input_dis' disabled='false' value='12层'></input>
+          <input class='input_text ' placeholder='请输入'placeholder-class='input_text_phc'></input>
+          <input class='input_text input_dis input_s' disabled='false' value='室'></input>
+        </view>
+        
+      </view>
+      <view class='input_block'>
+        <view><text class='_font24 _txt_darkgrey'>联系方式</text></view>
+        <input class='input_text' placeholder-class='input_text_phc'  placeholder='座机或手机号'></input>
+      </view>
+      <view class='input_block'>
+        <view><text class='_font24 _txt_darkgrey'>公司网址</text></view>
+        <input class='input_text' placeholder-class='input_text_phc'  placeholder='官网网址'></input>
+      </view>
+      <view class='input_block'>
+        <view><text class='_font24 _txt_darkgrey'>公司介绍</text></view>
+        <input class='input_text' placeholder-class='input_text_phc'  placeholder='用于机器人端对外展示，最多50字'></input>
+      </view>
+
+    </form>
+  <view class='_fixed footer'>
+    <button  class="_button" bindtap="next">{{button_text}}</button>
+  </view>
+</view>

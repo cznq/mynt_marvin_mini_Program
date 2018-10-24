@@ -1,20 +1,16 @@
-// pages/create-company/login/index.js
+// pages/create-company/company-code/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    title: 'Welcome to use building services.',
-    introduce:'Join a company and start enjoying high-end building services like visitor invitations, building statistics, employee quick access cards',
-    copy:'Company hasen’t been settled. ',
-    copy2:'Create a new company.',
-    button_text:'下一步'
-
+    mainTitle: '输入真实姓名',
+    button_text: '下一步'
   },
-  next:function(){
+  next: function () {
     wx.navigateTo({
-      url: '../code/index',
+      url: '../information/index',
     })
   },
   /**

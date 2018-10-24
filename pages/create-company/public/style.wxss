@@ -1,3 +1,11 @@
-.mainTitle{padding-top:54rpx;}
-.footer{height:209rpx;background: #ccc;left:0;bottom:0;width:100%;padding-top:30rpx;}
+.mainTitle{padding-top:35rpx;}
+.hint{text-align: center;}
+.footer{height:209rpx;background: #ccc;left:0;bottom:0;width:100%;padding-top:30rpx;background-image: linear-gradient(160deg, #fcfcfc 100%,#ffffff 100%);border-top:1rpx solid #eeeeee;}
 .inp{width:500rpx;height: 100rpx;border-bottom: 1rpx solid #4f5c74;margin:111rpx auto 0 auto;font-size:46rpx;text-align: center; }
+._content{padding-bottom: 250rpx;}
+.s_hint{padding:60rpx 0;border-bottom:16rpx solid #f5f6fa;}
+.s_hint .text{text-align:center;padding-top:37rpx;}
+
+.company-success{padding-top:37rpx;}
+.company-success .input_block{padding-bottom:26rpx;}
+.company-success .hint{padding-top:87rpx;line-height:30rpx;text-align:center; }

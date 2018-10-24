@@ -7,7 +7,7 @@
   </view>
   <view class='mainTitle'>{{mainTitle}}</view>
   <input class='inp' maxlength='8' confirm-hold="true" focus="true"></input>
-  <view class='hint _font22 _txt_darkgrey _fontw300'>{{hint}}</view>
+  <view class='hint _font22 _txt_darkgrey _fontw300'><text>{{hint}}</text></view>
   <view class='_fixed footer'>
     <button  class="_button" bindtap="next">{{button_text}}</button>
   </view>

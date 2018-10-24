@@ -5,9 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    mainTitle:'输入公司码',
-    button_text:'下一步',
-    hint: '公司码需向楼宇管理申领\n服务热线：0510-88877799'
+    mainTitle: '输入真实姓名',
+    button_text: '取消申请'
   },
 
   /**

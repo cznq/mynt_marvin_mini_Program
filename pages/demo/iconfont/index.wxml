@@ -184,6 +184,41 @@
                     <view class="fontclass">.icon-chuangjiangongsichenggong3</view>
                 </view>
 
+<view class="block">
+                <view class="icon iconfont icon-jiantou"></view>
+                    <view class="name">箭头</view>
+                    <view class="fontclass">.icon-jiantou</view>
+                </view>
+            
+                <view class="block">
+                <view class="icon iconfont icon-qiantai"></view>
+                    <view class="name">前台</view>
+                    <view class="fontclass">.icon-qiantai</view>
+                </view>
+            
+                <view class="block">
+                <view class="icon iconfont icon-tianjiayuangong1"></view>
+                    <view class="name">添加员工</view>
+                    <view class="fontclass">.icon-tianjiayuangong1</view>
+                </view>
+            
+                <view class="block">
+                <view class="icon iconfont icon-vip1"></view>
+                    <view class="name">vip</view>
+                    <view class="fontclass">.icon-vip1</view>
+                </view>
+            
+                <view class="block">
+                <view class="icon iconfont icon-dengdaitongguo"></view>
+                    <view class="name">等待通过</view>
+                    <view class="fontclass">.icon-dengdaitongguo</view>
+                </view>
+            
+                <view class="block">
+                <view class="icon iconfont icon-shenqingbeijujue"></view>
+                    <view class="name">申请被拒绝</view>
+                    <view class="fontclass">.icon-shenqingbeijujue</view>
+                </view>
                 
             
         </view>
