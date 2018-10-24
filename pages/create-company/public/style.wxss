@@ -1,0 +1,3 @@
+.mainTitle{padding-top:54rpx;}
+.footer{height:209rpx;background: #ccc;left:0;bottom:0;width:100%;padding-top:30rpx;}
+.inp{width:500rpx;height: 100rpx;border-bottom: 1rpx solid #4f5c74;margin:111rpx auto 0 auto;font-size:46rpx;text-align: center; }

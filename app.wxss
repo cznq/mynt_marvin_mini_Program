@@ -224,3 +224,13 @@ input:-webkit-input-placeholder {
 ._button_disabled{background: #d9dffd !important;color:#fff !important;}
 ._button_width306{width:306rpx;}
 ._button_white{background: #ffff;color:#475FFD;border:1rpx solid #e8e9e9;}
+
+/**/
+._content{padding:0 60rpx;color:#1A2A4B;}
+
+/*步骤提示模块*/
+.step view{background:#E7E8EE;width: 143rpx;height:6rpx;margin-right:19rpx;border-radius: 6rpx;}
+.step .cur{background: #475FFD;}
+
+/*主标题*/
+.mainTitle{font-size:60rpx;font-weight: 500;}
