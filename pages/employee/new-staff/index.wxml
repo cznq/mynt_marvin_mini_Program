@@ -22,8 +22,8 @@
         </view>
         <view class="_list_item _flex _flex_space_between">
           <view class="_lft _flex _flex_item_center">
-            <view class="_family_name">范</view>
-            <view class="_name _fontw500">停生</view>
+            <view class="_family_name">张</view>
+            <view class="_name _fontw500">无忌</view>
           </view>
           <view class="_rgt _flex _flex_item_center">
             <text class="status _fontw300">通过申请</text>

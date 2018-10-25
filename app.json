@@ -4,11 +4,7 @@
     "pages/employee/staff-list/index",
     "pages/employee/new-staff/index",
 
-    "pages/employee/add-company/submit/index",
-    "pages/employee/add-company/name/index",
-    "pages/employee/add-company/confirm/index",
-    "pages/employee/add-company/code/index",
-    "pages/employee/add-company/choice/index",
+    
 
     "pages/manage/manage",
     "pages/create-company/information/index",
@@ -27,9 +23,6 @@
 
     
     
-     "pages/employee/staff-list/index",
-
-
     "pages/invite/invite",
     "pages/invite-share/invite-share",
     "pages/invite-receive/invite-receive",
