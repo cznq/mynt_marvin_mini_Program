@@ -2,6 +2,7 @@
   "pages":[
 
     "pages/employee/staff-list/index",
+    "pages/employee/new-staff/index",
 
     "pages/employee/add-company/submit/index",
     "pages/employee/add-company/name/index",

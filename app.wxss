@@ -250,6 +250,7 @@ input:-webkit-input-placeholder {
 ._button{background:#475FFD;color:#ffffff;width:630rpx;height:100rpx;text-align: center;line-height:100rpx;}
 ._button_disabled{background: #d9dffd !important;color:#fff !important;}
 ._button_width306{width:306rpx;}
+._button_width350{width:350rpx;}
 ._button_white{background: #ffff;color:#475FFD;border:1rpx solid #e8e9e9;}
 
 /*外轮廓*/
@@ -269,3 +270,5 @@ input:-webkit-input-placeholder {
 .input_text{height:65rpx;font-size:32rpx;padding-bottom:13rpx;color:#1A2A4B;border-bottom: 1rpx solid #ededed;}
 .input_text_phc{color:#D1D4DB;font-weight: 300;}
 
+/* 列表页人姓圆框*/
+._family_name {width: 70rpx;height: 70rpx;margin-right: 30rpx;color: #fff;border-radius: 35rpx;text-align: center;line-height: 70rpx;font-size: 28rpx;}

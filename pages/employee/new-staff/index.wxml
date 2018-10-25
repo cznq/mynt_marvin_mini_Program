@@ -1,0 +1,50 @@
+<import src="../../../templates/showToast/showToast.wxml" /> 
+<import src="../../../templates/showMenu/showMenu.wxml" /> 
+
+<view class="page">
+  <view class="page__hd _flex _flex_space_between _flex_item_center">
+      <text class="_font60 _fontw700">新申请员工</text>
+  </view>
+  <view class="page__bd">
+    <block>
+      <view class="staff_list">
+      <!-- 员工列表 -->
+      <view class="staff-list">
+        <view class="_list_item _flex _flex_space_between">
+          <view class="_lft _flex _flex_item_center">
+            <view class="_family_name">范</view>
+            <view class="_name _fontw500">停生</view>
+          </view>
+          <view class="_rgt _flex _flex_item_center">
+            <button class="btn refuse" bindtap="refuseApply">拒绝</button>
+            <button class="btn allow" bindtap="allowApply">同意</button>
+          </view>
+        </view>
+        <view class="_list_item _flex _flex_space_between">
+          <view class="_lft _flex _flex_item_center">
+            <view class="_family_name">范</view>
+            <view class="_name _fontw500">停生</view>
+          </view>
+          <view class="_rgt _flex _flex_item_center">
+            <text class="status _fontw300">通过申请</text>
+          </view>
+        </view>
+        <view class="_list_item _flex _flex_space_between">
+          <view class="_lft _flex _flex_item_center">
+            <view class="_family_name">范</view>
+            <view class="_name _fontw500">停生</view>
+          </view>
+          <view class="_rgt _flex _flex_item_center">
+            
+          </view>
+        </view>
+      </view>
+
+      </view>
+    </block>
+  </view>
+   
+</view>
+
+<template is="showMenu" data="{{showMenu: showMenu}}" /> 
+ <template is="showToast" data="{{showToast: showToast}}" />

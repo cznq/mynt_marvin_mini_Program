@@ -1,4 +1,6 @@
-/* pages/employee/staff-list/index.wxss */
+@import "../../../templates/showMenu/showMenu.wxss";
+@import "../../../templates/showToast/showToast.wxss";
+
 page {
   background: #F9FAFB;
 }
@@ -34,17 +36,6 @@ page {
 ._list_item._role_staff {
   padding: 30rpx 0;
 }
-._family_name {
-  width: 70rpx;
-  height: 70rpx;
-  margin-right: 30rpx;
-  color: #fff;
-  border-radius: 35rpx;
-  text-align: center;
-  line-height: 70rpx;
-  font-size: 28rpx;
-}
-
 .handle_btn {
   width: 46rpx;
   height: 46rpx;
@@ -57,7 +48,6 @@ page {
 }
 .handle_btn .iconfont {
   font-size: 6rpx;
-
 }
 ._role_admin ._family_name {
   background-color: #484F62;
@@ -67,4 +57,35 @@ page {
 }
 ._role_staff ._family_name {
   background-color: #6092FE;
+}
+.icon-qiantai {
+  color: #F9922F;
+  font-size: 36rpx;
+  margin: 0 28rpx 0 10rpx; 
+}
+.icon-qiantai.admin {
+  color: #484F62;
+}
+
+page, .page {
+  height: 100%;
+}
+.noneWrapper {
+  height: 100%;
+  width: 100%;
+}
+.icon-kongyemian {
+  color: #b6bac9;
+  font-size: 180rpx;
+  text-align: center;
+}
+.invite_info {
+  font-size: 28rpx;
+  color: #8891A9;
+}
+.invte-btn {
+  color: #1F2F4F;
+  height: 66rpx;
+  line-height: 66rpx;
+  margin: 88rpx 0 80rpx;
 }
