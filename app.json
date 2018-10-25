@@ -10,14 +10,26 @@
     "pages/employee/add-company/code/index",
     "pages/employee/add-company/choice/index",
 
+    "pages/manage/manage",
+    "pages/create-company/information/index",
     "pages/create-company/login/index",
     "pages/create-company/success/index",
     "pages/create-company/data/index",
-    "pages/create-company/information/index",
     "pages/create-company/name/index",
     "pages/create-company/code/index",
+ 
+
+    "pages/employee/join-company/submit/index",
+    "pages/employee/join-company/name/index",
+    "pages/employee/join-company/confirm/index",
+    "pages/employee/join-company/code/index",
+    "pages/employee/join-company/choice/index",
+
     
-    "pages/manage/manage",
+    
+     "pages/employee/staff-list/index",
+
+
     "pages/invite/invite",
     "pages/invite-share/invite-share",
     "pages/invite-receive/invite-receive",
@@ -31,6 +43,7 @@
     "pages/vip-index/vip-index",
     "pages/vip-invite/vip-invite",
     "pages/vip-share/vip-share",
+    "pages/demo/iconfont/index",
     "pages/demo/showToastDemo/index"
     
   ],

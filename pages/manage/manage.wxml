@@ -1,2 +1,47 @@
-<!--pages/manage/manage.wxml-->
-<web-view src="{{web_url}}/home?timestamp={{timestamp}}"></web-view>
+<!--web view-->
+
+<web-view wx:if="{{iswebview==false? false : true}}" src="{{web_url}}/home?timestamp={{timestamp}}"></web-view>
+
+<!--登陆页面-->
+<view wx:if="{{islogin==false? false : true}}">
+  <view class='_content _fixed login'>
+  </view>
+  <view class='_fixed logon_c'>
+    <view class='title'>{{title}}</view>
+    <view class='introduce _font32'>{{introduce}}</view>
+    <button class="_button button426" bindtap="joinCompany">{{button_text}}</button>
+    <view class='copy'>
+      <text>{{copy}}</text>
+      <text class="t_blue" bindtap="createCompany">{{copy2}}</text>
+    </view>
+  </view>
+</view>
+
+<!-- 审核中 -->
+<view wx:if="{{isexamine==false? false : true}}">
+  <view class='s_hint _top_gradient3'>
+    <view class='icon-cjcg _relative'>
+      <view class="iconfont icon-chuangjiangongsichenggong3 _absolute"></view>
+      <view class="iconfont icon-chuangjiangongsichenggong2 _absolute"></view>
+      <view class="iconfont icon-dengdaitongguo _absolute"></view>
+    </view>
+    <view class='_font32 text _txt_lightblue'>申请已提交，等待企业通过...</view>
+  </view>
+  <view class='_content company-sh'>
+    <view class='input_block '>
+      <view>
+        <text class='_font24 _txt_darkgrey'>申请人</text>
+      </view>
+      <input class='input_text' disabled='false ' value='{{name}}'></input>
+    </view>
+    <view class='input_block'>
+      <view>
+        <text class='_font24 _txt_darkgrey'>申请加入</text>
+      </view>
+      <input class='input_text' disabled='false ' value='{{company_name}}'></input>
+    </view>
+    <view class='_fixed footer'>
+      <button class="_button _button_white" bindtap="button">{{button_text_qx}}</button>
+    </view>
+  </view>
+</view>

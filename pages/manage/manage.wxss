@@ -1,1 +1,50 @@
-/* pages/manage/manage.wxss */
+@import "../create-company/public/style.wxss";
+
+.login {
+  background: url('http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/login_pic.png') no-repeat;
+  background-size: 100%;
+  height: 900rpx;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.logon_c {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 580rpx;
+}
+
+.logon_c .title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 56rpx;
+}
+
+.logon_c .introduce {
+  padding: 41rpx 76rpx 128rpx 76rpx;
+  text-align: center;
+  font-weight: 500;
+}
+
+.logon_c .copy {
+  font-size: 24rpx;
+  color: #8891a9;
+  text-align: center;
+  padding: 28rpx 0;
+  font-weight: 300;
+}
+
+.logon_c .t_blue {
+  color: #475ffd;
+}
+
+.s_hint .text {
+  color: #3ed26b;
+}
+
+.button426 {
+  width: 426rpx;
+}
+.company-sh{background: #fff;}

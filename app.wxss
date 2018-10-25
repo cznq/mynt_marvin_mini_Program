@@ -255,6 +255,9 @@ input:-webkit-input-placeholder {
 
 /*外轮廓*/
 ._content{padding:0 60rpx;color:#1A2A4B;}
+._content,._top_gradient{background: linear-gradient(to bottom,#f1f1f3 0%,#fff 3%,#fff 97%,#fff 100%);}
+._top_gradient2{background: linear-gradient(to bottom,#f1f1f3 0%,#f9fafb 6%,#f9fafb 94%,#f9fafb 100%);}
+._top_gradient3{background: linear-gradient(to bottom,#f1f1f3 0%,#fff 20%,#fff 80%,#fff 100%);}
 
 /*主标题*/
 .mainTitle{font-size:60rpx;font-weight: 500;}
