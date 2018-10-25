@@ -1,4 +1,4 @@
-<view class='_content company-code'>
+<view class='_content _top_gradient2 company-code'>
   <view class="_flex step">
     <view class='cur'></view>
     <view class='cur'></view>

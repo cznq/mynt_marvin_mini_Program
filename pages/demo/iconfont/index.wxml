@@ -10,6 +10,19 @@
                    <view class="name">创建公司成功</view>
                     <view class="fontclass">.icon-cjcg</view>
                 </view>
+
+                <view class="block">
+                <view class='icon-cjcg _relative'>
+                  <view class="iconfont icon-chuangjiangongsichenggong3 _absolute"></view>
+                  <view class="iconfont icon-chuangjiangongsichenggong2 _absolute"></view>
+                  <view class="iconfont icon-dengdaitongguo _absolute"></view>
+                </view>
+                
+                
+                   <view class="name">创建公司成功</view>
+                    <view class="fontclass">.icon-cjcg</view>
+                </view>
+
                 <view class="block">
                 <view class="iconfont icon-jiqiren"></view>
                     <view class="name">机器人</view>
