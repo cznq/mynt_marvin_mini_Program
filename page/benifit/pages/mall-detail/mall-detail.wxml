@@ -33,8 +33,8 @@
             <text >全天</text>
           </block>
           <block wx:else>
-            <block wx:for="{{commerceDetail.business_hours}}" wx:key="">
-              {{item.start}} - {{item.end}} 
+            <block wx:for="{{commerceDetail.business_hours}}" wx:key="" >
+              {{item.start}} - {{item.end}}<text wx:if="{{index<commerceDetail.business_hours.length-1}}">,</text> 
             </block>
           </block>
         </view>

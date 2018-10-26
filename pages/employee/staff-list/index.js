@@ -7,7 +7,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    noneStaff: false
+    noneStaff: false,
+    noneData: {
+      buttonText: '邀请员工',
+      textInfo: '还没有任何员工，赶紧邀请加入员工'
+    }
   },
 
   /**
