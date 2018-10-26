@@ -11,10 +11,17 @@
   <view class='upload-block up_logo'>
     <view class='_font32'>公司LOGO</view>
     <view class='up_pub'>
-      <view class='up_con'>
-        <view class='up_dot'>+</view>
-        <view class='up_text _fontw300'>图片</view>
-      </view>
+
+    <view class='showpic' wx:if="{{cd.logo !== ''}}">
+      <image src='{{cd.logo}}'></image>
+      <view class='clearpic _position' bindtap='bindclearpic' data-n='logo'>×</view>
+    </view>
+    <view class='up_con' wx:else>
+            <view class='up_dot'>+</view>
+            <view class='up_text _fontw300'>图片</view>
+    </view>
+
+
     </view>
     <view class='up_hint _font22 _fontw300 _txt_darkgrey'>建议尺寸：1:1</view>
   </view>
@@ -22,7 +29,11 @@
     <view class='upload-block up_propaganda'>
     <view class='_font32'>宣传背景图</view>
     <view class='up_pub'>
-      <view class='up_con'>
+      <view class='showpic' wx:if="{{cd.background_url !== ''}}">
+        <image src='{{cd.background_url}}'></image>
+        <view class='clearpic _position' bindtap='bindclearpic' data-n='background_url'>×</view>
+      </view>
+      <view class='up_con' wx:else>
         <view class='up_dot'>+</view>
         <view class='up_text _fontw300'>图片</view>
       </view>
@@ -32,6 +43,35 @@
 
   <view class='upload-block up_broadcast'>
     <view class='_font32'>轮播图</view>
+
+    <view wx:for="{{cd.product_urls}}">
+{{item}}
+</view>
+
+    <view class='up_pub'>
+      <view class='up_con'>
+        <view class='up_dot'>+</view>
+        <view class='up_text _fontw300'>图片</view>
+      </view>
+    </view>
+    <view class='up_pub'>
+      <view class='up_con'>
+        <view class='up_dot'>+</view>
+        <view class='up_text _fontw300'>图片</view>
+      </view>
+    </view>
+    <view class='up_pub'>
+      <view class='up_con'>
+        <view class='up_dot'>+</view>
+        <view class='up_text _fontw300'>图片</view>
+      </view>
+    </view>
+    <view class='up_pub'>
+      <view class='up_con'>
+        <view class='up_dot'>+</view>
+        <view class='up_text _fontw300'>图片</view>
+      </view>
+    </view>
     <view class='up_pub'>
       <view class='up_con'>
         <view class='up_dot'>+</view>

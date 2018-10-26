@@ -80,8 +80,5 @@ Page({
     wx.navigateTo({
       url: '../create-company/code/index',
     })
-  },
-  onPullDownRefresh() {
-    wx.stopPullDownRefresh()
   }
 })
