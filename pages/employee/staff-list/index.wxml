@@ -1,8 +1,9 @@
 <import src="../../../templates/showToast/showToast.wxml" /> 
-<import src="../../../templates/showMenu/showMenu.wxml" /> 
+<import src="../../../templates/showMenu/showMenu.wxml" />
+<import src="../../../templates/noneData/noneData.wxml" /> 
 
+<block wx:if="{{!noneStaff}}">
 <view class="page">
-  <block wx:if="{{!noneStaff}}">
   <view class="page__hd _flex _flex_space_between _flex_item_center">
       <text class="_font60 _fontw700">员工列表</text>
       <icon class="iconfont icon-tianjiayuangong"></icon>
@@ -32,6 +33,7 @@
             <view class="_name _fontw500">停生</view>
           </view>
           <view class="_rgt _flex _flex_item_center">
+            <image class="vip-icon" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/vip%402x.png"></image>
             <view class="iconfont icon-qiantai"></view>
             <view class="handle_btn" bindtap="editEmp"><view class="iconfont icon-bianji"></view></view>
           </view>
@@ -80,17 +82,14 @@
       </view>
     </block>
   </view>
-  </block>
-  <block wx:else>
-    <view class="noneWrapper _flex _flex_item_center _flex_justify_center">
-      <view>
-        <view class="iconfont icon-kongyemian"></view>
-        <view class="invite_info _txt_center">你还没邀请任何人</view>
-        <button class='_button_width350 _button_white invte-btn _font24'>邀请员工</button>
-      </view>
-    </view>
-  </block>
 </view>
 
+</block>
+
+<block wx:else>
+  <template is="noneDataPage" data="{{noneData: noneData}}" />
+</block>
+
+
 <template is="showMenu" data="{{showMenu: showMenu}}" /> 
- <template is="showToast" data="{{showToast: showToast}}" />
+<template is="showToast" data="{{showToast: showToast}}" />

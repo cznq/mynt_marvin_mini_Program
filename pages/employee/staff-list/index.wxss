@@ -1,5 +1,6 @@
 @import "../../../templates/showMenu/showMenu.wxss";
 @import "../../../templates/showToast/showToast.wxss";
+@import "../../../templates/noneData/noneData.wxss";
 
 page {
   background: #F9FAFB;
@@ -66,26 +67,7 @@ page {
 .icon-qiantai.admin {
   color: #484F62;
 }
-
-page, .page {
-  height: 100%;
-}
-.noneWrapper {
-  height: 100%;
-  width: 100%;
-}
-.icon-kongyemian {
-  color: #b6bac9;
-  font-size: 180rpx;
-  text-align: center;
-}
-.invite_info {
-  font-size: 28rpx;
-  color: #8891A9;
-}
-.invte-btn {
-  color: #1F2F4F;
-  height: 66rpx;
-  line-height: 66rpx;
-  margin: 88rpx 0 80rpx;
+.vip-icon {
+  width: 40rpx;
+  height: 40rpx;
 }

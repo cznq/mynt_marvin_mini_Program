@@ -1,0 +1,9 @@
+<template name="noneDataPage">
+  <view class="nonePage _flex _flex_item_center _flex_justify_center">
+    <view class="noneWrapper">
+      <view class="iconfont icon-kongyemian"></view>
+      <view class="invite_info _txt_center">{{noneData.textInfo}}</view>
+      <button class='_button_width350 _button_white invte-btn _font24' wx:if="{{noneData.buttonText}}">{{noneData.buttonText}}</button>
+    </view>
+  </view>
+</template>
