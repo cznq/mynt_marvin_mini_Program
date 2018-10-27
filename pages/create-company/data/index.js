@@ -1,4 +1,5 @@
-// pages/create-company/company-code/index.js
+var app = getApp();
+var toast = require('../../../templates/showToast/showToast');
 Page({
 
   /**
@@ -8,9 +9,10 @@ Page({
     mainTitle: '上传企业资料',
     button_text: '提交',
     hint: '以下资料需经过楼宇管理员审核，严禁上传色情、\n暴力、血腥、骇人或政治相关内容的图片',
-    cd:{}
+    cd: {},
+    isSowingMapUp: false
   },
-  next: function () {
+  next: function() {
     wx.navigateTo({
       url: '../success/index',
     })
@@ -18,10 +20,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this;
     /** ===== test data ====*/
     var resdata = {
+      //请求接口
       "company_id": 1,
       "company_name": "轻客智能科技(江苏)有限公司",
       "company_short_name": "轻客",
@@ -33,17 +36,12 @@ Page({
       "introduction": "轻客智能",
       "floor": 19,
       "room": "1909",
-      "video_url": "http://sendcard.slightech.com/video/slightech.mp4",
-      "background_url": "http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/111.jpg",
+      "video_url": "http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400",
+      "background_url": "",
       "address": "北京市浦项中心A座3201",
       "website": "http://www.slightech.com",
       "phone": '17600406831',
-      "product_urls": [
-        "http://sendcard.slightech.com/pic/slightech1.jpg",
-        "http://sendcard.slightech.com/pic/slightech2.jpg",
-        "http://sendcard.slightech.com/pic/slightech3.jpg",
-        "http://sendcard.slightech.com/pic/slightech4.jpg"
-      ],
+      "product_urls": [],
       "company_code": "1234",
       "review_status": 1,
       "has_employee_benefit": 0
@@ -53,86 +51,101 @@ Page({
     that.setData({
       cd: resdata
     })
-  },
-  // 图片选择
-  // selectImage() {
-  //   if (this.data.uploading) {
-  //     return;
-  //   }
-  //   wx.chooseImage({
-  //     count: this.data.uploadImagesLimit - this.data.selectedImages.length,
-  //     sizeType: 'compressed',
-  //     success: res => {
-  //       for (var i in res.tempFilePaths) {
-  //         this.data.selectedImages.push(res.tempFilePaths[i]);
-  //       }
-  //       this.setData({
-  //         selectedImages: this.data.selectedImages
-  //       });
-  //     }
-  //   })
-  // },
 
-  //删除图片
-  bindclearpic:function(e){
+    if (resdata.product_urls.length < 6) {
+      that.setData({
+        isSowingMapUp: true
+      })
+    }
+
+  },
+  //单张删除图片
+  bindclearpic: function(e) {
     var that = this;
-    var name = 'cd.'+e.currentTarget.dataset.n;
-    //console.log(name);
-    that.setData({
-      [name]: ''
+    var c_key = e.currentTarget.dataset.key;
+    if (typeof c_key == 'number') {
+      //轮播图
+      that.data.cd.product_urls.splice(c_key, 1);
+      console.log('-------' + typeof that.data.cd.product_urls);
+      that.setData({
+        "cd.product_urls": that.data.cd.product_urls
+      })
+      if (that.data.cd.product_urls.length < 6) {
+        that.setData({
+          isSowingMapUp: true
+        })
+      }
+    } else {
+      //其他
+      var name = 'cd.' + c_key;
+      that.setData({
+        [name]: ''
+      })
+    }
+  },
+
+  //上传图片
+  uploadimages: function(e) {
+    var that = this;
+    var c_key = e.currentTarget.dataset.key; //获取栏目
+    var name = 'cd.' + c_key; //拼接对象
+    var num = 1; //上传图片数量
+    if (c_key == 'product_urls') { //轮播图
+      var num = 6 - that.data.cd.product_urls.length; //可上传数量
+    }
+    that.upimage(this, num, name);
+  },
+  upimage: function(that, num, name) {
+    wx.chooseImage({
+      count: num,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success(res) {
+        const tempFilePaths = res.tempFilePaths
+        if (name == 'cd.product_urls') { //轮播图
+          for (var i in res.tempFilePaths) {
+            that.data.cd.product_urls.push(res.tempFilePaths[i]);
+          }
+          if (that.data.cd.product_urls.length >= 6) {
+            that.setData({
+              isSowingMapUp: false
+            })
+          }
+          that.setData({
+            [name]: that.data.cd.product_urls
+          })
+        } else { //其他
+          that.setData({
+            [name]: tempFilePaths
+          })
+        }
+      }
     })
-   
   },
+  //提交
+  submit: function() {
+    var that = this;
+    console.log('logo' + that.data.cd.logo.length);
+    console.log('background_url' + that.data.cd.background_url.length);
+    console.log('background_url' + that.data.cd.product_urls.length);
+    console.log('video_url' + that.data.cd.video_url.length);
 
+    if (that.data.cd.logo.length !== 0 && that.data.cd.background_url.length !== 0 && that.data.cd.product_urls.length !== 0 && that.data.cd.video_url.length !== 0) {
+      
+      //请求接口
+      console.log('可以通过');
+      wx.navigateTo({
+        url: '../success/index',
+      })
 
-  
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    } else {
+      console.log('tishicuowu');
+      toast.showToast(this, {
+        toastStyle: 'toast',
+        title: '填的还不完整哦',
+        duration: 1500,
+        mask: false
+      });
+    }
   }
 })

@@ -1,5 +1,3 @@
-<import src="../../../templates/showToast/showToast.wxml" /> 
-<template is="showToast" data="{{showToast: showToast}}" /> 
 <view class='_content company-information'>
   <view class="_flex step">
     <view class='cur'></view>
@@ -82,3 +80,5 @@
     </view>
   </form>
 </view>
+<import src="../../../templates/showToast/showToast.wxml" /> 
+<template is="showToast" data="{{showToast: showToast}}" /> 
