@@ -6,8 +6,12 @@
     <view></view>
   </view>
   <view class='mainTitle'>{{mainTitle}}</view>
-  <input class='inp' maxlength='8' confirm-hold="true" focus="true"></input>
+  <form bindsubmit='formSubmit'>
+  <input class='inp' maxlength='8' name="realName" focus="{{isfocus}}"></input>
   <view class='_fixed footer'>
-    <button  class="_button" bindtap="next">{{button_text}}</button>
+    <button  class="_button" bindtap="next" formType="submit" type="primary">{{button_text}}</button>
   </view>
+  </form>
 </view>
+<import src="../../../templates/showToast/showToast.wxml" /> 
+<template is="showToast" data="{{showToast: showToast}}" /> 

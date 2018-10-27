@@ -7,6 +7,7 @@
 .toast-sure{font-size: 24rpx;height:66rpx;border:1px solid #e5e5e5;border-radius:5px;line-height:66rpx;float: left;width:294rpx;}
 .toast-pic {display: block;margin: 0 auto 40rpx auto;width: 80rpx;}
 .toast {padding: 19rpx 40rpx;font-weight: 300;font-size: 24rpx;color: #fff;background: #000000;width: auto;}
+.toast{padding-left:35rpx;padding-right:35rpx;}
 .toast .toast-title{font-size:24rpx;font-weight:350;}
 .toast2 .toast-sure{margin:0 auto;float:none;}
 .toast3 {padding-top:60rpx;background: url('http://www.ygyhtrans.com/Public/images/about_img.jpg') no-repeat #ffff;background-size: 100%;}

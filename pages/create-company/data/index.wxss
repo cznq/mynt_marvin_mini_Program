@@ -1,15 +1,20 @@
 @import "../public/style.wxss";
+.company-data{padding-bottom: 300rpx;}
 .mainTitle text{margin-top:37rpx;font-family: Arial, Helvetica, sans-serif;}
-.hint{margin-top:60rpx;line-height:28rpx;}
+.hint{margin-top:60rpx;line-height:28rpx;text-align: left;}
 .upload-block{margin-top:50rpx;}
 .up_pub{background: #F3F5F9;border-radius: 10rpx;position: relative;margin:19rpx 0 6rpx 0;}
-.up_logo .up_pub{width:240rpx;height:240rpx;}
+.up_pub image{width: 100%;height:100%;border-radius: 10rpx;}
+.clearpic{width:40rpx;height: 40rpx;border-radius: 40rpx;background: #7f7f7f;left:-8rpx;top:-14rpx;position:absolute;color:#fff;line-height: 40rpx;border:1rpx solid #fff;text-align: center;font-family:cursive;font-size: 28rpx;}
+
+
+.up_logo .up_pub,.up_logo .showpic{width:240rpx;height:240rpx;}
 .up_con{width:70rpx;height: 95rpx;margin: auto;position: absolute;left: 0;right: 0;top: 0;bottom: 0;}
 
 .up_dot{width:44rpx;height:44rpx;border-radius: 48rpx;text-align:center;line-height: 36rpx;background: #ffffff;border:1rpx solid #bbbbbb;color:#bbbbbb;font-weight:300;font-family:-BlinkMacSystemFont;margin:0 auto;}
 .up_text{color:#bbbbbb;font-size:30rpx;text-align: center;}
 
-.up_propaganda .up_pub{width:528rpx;height:300rpx;}
+.up_propaganda .up_pub,.up_propaganda .showpic{width:528rpx;height:300rpx;}
 .up_broadcast .up_pub{width:300rpx;height:170rpx;}
 .up_video .up_pub{width:528rpx;height:300rpx;}
 .vip{display: inline-block;width:93rpx;height:30rpx;position: relative; vertical-align: -3rpx;}
