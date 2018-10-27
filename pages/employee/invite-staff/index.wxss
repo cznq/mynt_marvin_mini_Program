@@ -1,0 +1,204 @@
+page {
+  background: #F9FAFB;
+}
+.page__hd {
+  padding: 32rpx 60rpx;
+  line-height: 1;
+  background: #fff;
+}
+.company-card {
+  margin: 108rpx 60rpx;
+  padding: 90rpx 96rpx 48rpx;
+  background-color: #fff;
+  position: relative;
+  border-radius: 10rpx;
+  box-shadow: 14rpx 14rpx 122rpx rgba(0, 0, 0, 0.06);
+}
+.logo {
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  top: -50rpx;
+  left: 50%;
+  margin-left: -50rpx;
+  border-radius: 10rpx;
+  background-color: #fff;
+  box-shadow: 6rpx 6rpx 92rpx rgba(43, 51, 72, 0.12);
+}
+._short_name {
+  font-size: 36rpx;
+  line-height: 1;
+  margin-bottom: 16rpx;
+  color: rgba(26, 42, 75, 1);
+}
+._company_name {
+  font-size: 22rpx;
+  color: rgba(136, 145, 169, 1);
+}
+.invite_btn {
+  color: #fff;
+  margin-top: 56rpx;
+  background-color: rgba(12, 206, 21, 1);
+  font-size: 32rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 278rpx;
+  box-shadow: 14rpx 14rpx 122rpx rgba(0, 0, 0, 0.06);
+}
+.icon-weixin {
+  font-size: 42rpx;
+  margin-right: 18rpx;
+}
+.share-info {
+  margin-top: 20rpx;
+  color: rgba(136, 145, 169, 1);
+  font-size: 24rpx;
+  line-height: 36rpx;
+}
+.invite-method .title {
+  color: rgba(136, 145, 169, 1);
+  line-height: 1;
+} 
+.invite-by {
+  margin: 44rpx 60rpx;
+  overflow: hidden;
+}
+.invite-by .invite-wrap {
+  float: left;
+  width: 47.61904761%;
+  height: 214rpx;
+  background-color: #fff;
+  padding: 48rpx 0 38px;
+  border: 2rpx solid RGBA(0, 0, 0, .1);
+  border-radius: 10rpx;
+  box-sizing: border-box;
+}
+.invite-wrap.invite-by-code {
+  margin-left: 4.761904761%;
+}
+.icon-tianjiayuangong_erweima, .icon-tianjiayuangong_yaoqingma {
+  color: rgba(136, 145, 169, 1);
+  height: 70rpx;
+  line-height: 70rpx;
+  margin-bottom: 30rpx;
+}
+.icon-tianjiayuangong_yaoqingma {
+  font-size: 12rpx;
+}
+.icon-tianjiayuangong_erweima {
+  font-size: 52rpx;
+}
+.method-name {
+  font-size: 28rpx;
+  line-height: 1;
+  color: rgba(26, 42, 75, 1);
+}
+.invite-intro {
+  width: 476rpx;
+  margin: 30rpx auto 60rpx;
+  line-height: 36rpx;
+  color: rgba(136, 145, 169, 1);
+}
+
+.modal-bg {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 900;
+  left: 0;
+  right: 0;
+  background: rgba(129, 129, 129, .7);
+}
+.invite-modal {
+  position: fixed;
+  display: inline-block;
+  border-radius: 10rpx;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  z-index: 901;
+  transform: translate(-50%, -50%);
+  color:#1B2B4C;
+  background: #fff;
+  margin: 25rpx auto 0;
+  box-sizing: border-box;
+  width: 612rpx;
+}
+.modal-header {
+  padding: 90rpx 96rpx 48rpx; 
+  position: relative;
+}
+.modal-body {
+  position: relative;
+  border-top: 1px solid rgba(220, 220, 220, .2);
+}
+.modal-body::before {
+  content: '';
+  width: 10rpx;
+  height: 20rpx;
+  background-color: rgba(129, 129, 129, .7);
+  position: absolute;
+  left: 0;
+  top: -10rpx;
+  border-radius: 0 10rpx 10rpx 0;
+}
+.modal-body::after {
+  content: '';
+  width: 10rpx;
+  height: 20rpx;
+  background-color: rgba(129, 129, 129, .7);
+  position: absolute;
+  right: 0;
+  top: -10rpx;
+  border-radius: 10rpx 0 0 10rpx;
+}
+.invite-method-part {
+  margin-top: 40rpx;
+  height: 430rpx;
+}
+.qrcode-img {
+  width: 354rpx;
+  height: 354rpx;
+  border: 14rpx solid rgba(221, 221, 221, 1);
+}
+.tips {
+  margin-top: 14rpx;
+  line-height: 1;
+  color: rgba(136, 145, 169, 1);
+}
+.code .tit {
+  font-size: 42rpx;
+  line-height: 1;
+  color: rgba(26, 42, 75, 1);
+  margin-bottom: 52rpx;
+}
+.code button {
+  width: 480rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 76rpx;
+  color: rgba(33, 38, 47, 1);
+  background: rgba(242, 244, 247, 1);
+  margin-bottom: 28rpx;
+  border-radius: 10rpx;
+  box-shadow: 0rpx 2rpx 2rpx rgba(112, 123, 141, 0.7) inset;
+}
+
+.invite-btn-area {
+  margin: 72rpx 0 60rpx;
+}
+.invite-btn-area button {
+  width: 246rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-bottom: 32rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #fff;
+  background-color: rgba(71, 95, 253, 1);
+}
+.invite-btn-area button.save {
+  background-color: transparent;
+  color: rgba(71, 95, 253, 1);
+  border: 1px solid rgba(71, 95, 253, 1);
+}

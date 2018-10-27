@@ -15,6 +15,24 @@ Page({
   },
 
   /**
+   * 邀请员工 
+   */
+  inviteStaff: function () {
+    wx.navigateTo({
+      url: '/pages/employee/invite-staff/index',
+    })
+  },
+
+  /**
+   * 查看新员工
+   */
+  newStaff: function () {
+    wx.navigateTo({
+      url: '/pages/employee/new-staff/index',
+    })
+  },
+
+  /**
    * 员工列表点击编辑
    */
   editEmp: function (e) {

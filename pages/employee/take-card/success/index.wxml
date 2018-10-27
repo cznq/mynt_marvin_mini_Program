@@ -1,0 +1,22 @@
+
+<view class="page">
+  <view class="page__hd">
+      <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/staff-take-card-banner.png" mode='widthFix'></image>
+  </view>
+  <view class="page__bd ">
+    <view class="guide-title _txt_center _font44 _fontw500">Staff card issuing</view>
+    <view class="guide-intro _font28 _txt_center">If you can't finish the job that you're applying for at the front desk in time, or if you want visitors to visit your company without a threshold, please turn on the function.</view>
+    
+    <view class="status _font36 _fontw500 _txt_center">Open function</view>
+   
+    
+      
+     
+      
+    
+
+  </view>
+  <view class="page__ft _fixed">
+    <view class="_back_function _txt_center">What is Unattended functions?</view>
+  </view>
+</view>

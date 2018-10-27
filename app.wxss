@@ -231,6 +231,7 @@
 ._flex_item_center { align-items: center; }
 ._flex_justify_center { justify-content: center; }
 ._flex_space_between { justify-content: space-between; }
+._flex_space_around { justify-content: space-around; }
 
 /* 去除边框  */
 button::after { border:none; }

@@ -109,8 +109,10 @@ Page({
         })
       },
       success: res => {
-        wxParse.wxParse('details', 'html', res.data.result.details, that, 5);
         if (res.data.result) {
+          if (res.data.result.details) {
+            wxParse.wxParse('details', 'html', res.data.result.details, that, 5);
+          }
           that.setData({
             commerceDetail: res.data.result,
             [slide_img]: res.data.result.thumbnail_url,

@@ -1,7 +1,13 @@
 {
   "pages":[
 
+    "pages/employee/take-card/inform/index",
+    "pages/employee/take-card/success/index",
+    "pages/employee/take-card/guide/index",
+
     "pages/employee/staff-list/index",
+    "pages/employee/invite-staff/index",
+    
     "pages/employee/new-staff/index",
 
     
