@@ -1,0 +1,41 @@
+<import src="../../../../templates/showToast/showToast.wxml" /> 
+
+<view class="page">
+  <view class="page__hd">
+      <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/staff-take-card-banner.png" mode='widthFix'></image>
+  </view>
+  <view class="page__bd ">
+    <view class="guide-title _txt_center _font44 _fontw500">Staff card issuing</view>
+    <view class="guide-intro _font28 _txt_center _fontw300">If you can't finish the job that you're applying for at the front desk in time, or if you want visitors to visit your company without a threshold, please turn on the function.</view>
+    <button class="open-btn _font32" bindtap="openFunction">Open function</button>
+    <!-- How it Work -->
+    <view class="how-it-work ">
+      <view class="tit _txt_center _font32">How it works</view>
+
+      <view class="guide-item _flex _flex_item_center">
+        <view class="photo"><image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/step-1.png" mode='widthFix' style='width:194rpx'></image></view>
+        <view class="txt">
+          <view class="step-num _font38">Step 1</view>
+          <view class="intro _font28">Fill in your name and identity information.</view>
+        </view>
+      </view>
+      <view class="guide-item  _flex _flex_item_center">
+        <view class="photo"><image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/step-2.png" mode='widthFix' style='width:194rpx'></image></view>
+        <view class="txt">
+          <view class="step-num _font38">Step 2</view>
+          <view class="intro _font28">Enter your face information and let the  you.</view>
+        </view>
+      </view>
+      <view class="guide-item _flex _flex_item_center">
+        <view class="photo"><image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/step-3.png" mode='widthFix' style='width:194rpx'></image></view>
+        <view class="txt">
+          <view class="step-num _font38">Step 3</view>
+          <view class="intro _font28">Click the employee card on the robot.</view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>
+
+<template is="showToast" data="{{showToast: showToast}}" />
