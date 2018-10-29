@@ -1,2 +1,25 @@
-<!--pages/employee/take-card/inform/index.wxml-->
-<text>pages/employee/take-card/inform/index.wxml</text>
+<view class='_content company-information'>
+  <view class="_flex step">
+    <view class='cur'></view>
+    <view></view>
+  </view>
+  <view class='mainTitle'>Proof of identity</view>
+  <form bindsubmit='formSubmit'>
+    <view class='input_block'>
+      <view>
+        <text class='_font24 _txt_darkgrey'>Phone number</text>
+      </view>
+      <input class='input_text' disabled='false' name="company_name"  value='{{cd.company_name}}' placeholder='Enter your phone number'></input>
+    </view>
+    <view class='input_block'>
+      <view>
+        <text class='_font24 _txt_darkgrey'>ID number</text>
+      </view>
+      <input class='input_text' name="company_short_name" value='{{cd.company_short_name}}' placeholder='Enter your real ID card number' placeholder-class='input_text_phc' maxlength='8'></input>
+    </view>
+
+    <view class='_fixed footer'>
+      <button class="_button _font32" formType="submit" disabled='disabled'>NEXT</button>
+    </view>
+  </form>
+</view>
