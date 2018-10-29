@@ -1,18 +1,19 @@
 {
   "pages":[
-
-  
-  "pages/employee/join-company/choice/index",
-  "pages/employee/join-company/submit/index",
+    "pages/manage/manage",
+"pages/employee/join-company/submit/index",
   "pages/employee/join-company/name/index",
-  "pages/employee/join-company/confirm/index",
   "pages/employee/join-company/code/index",
+  "pages/employee/join-company/choice/index",
+  
+  "pages/employee/join-company/confirm/index",
+
 
     "pages/create-company/data/index",
     "pages/create-company/information/index",
     "pages/create-company/name/index",
     "pages/create-company/code/index",
-    "pages/manage/manage",
+   
     "pages/create-company/login/index",
     "pages/create-company/success/index",
     

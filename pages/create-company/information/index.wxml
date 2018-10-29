@@ -76,7 +76,7 @@
 
 
     <view class='_fixed footer'>
-      <button class="_button" formType="submit" type="primary">{{button_text}}</button>
+      <button class="_button" formType="submit">{{button_text}}</button>
     </view>
   </form>
 </view>

@@ -22,6 +22,8 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
+    app.Util.checkcanIUse('cover-view'); //础库 1.4.0 开始支持
+ 
     /** ===== test data ====*/
     var resdata = {
       //请求接口
@@ -134,7 +136,7 @@ Page({
       
       //请求接口
       console.log('可以通过');
-      wx.navigateTo({
+      wx.redirectTo({
         url: '../success/index',
       })
 
@@ -147,5 +149,14 @@ Page({
         mask: false
       });
     }
+  },
+  onReady() {
+    this.videoCtx = wx.createVideoContext('myVideo')
+  },
+  play() {
+    this.videoCtx.play()
+  },
+  pause() {
+    this.videoCtx.pause()
   }
 })

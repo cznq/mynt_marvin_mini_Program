@@ -1,4 +1,4 @@
-<view class='_content addcompany-confirm'>
+<view class='_content _top_gradient2 addcompany-confirm'>
   <view class="_flex step">
     <view class='cur'></view>
     <view class='cur'></view>

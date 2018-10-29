@@ -1,8 +1,8 @@
-<view class='s_hint'>
+<view class='s_hint _top_gradient3'>
   <view class='icon-cjcg _relative'>
                   <view class="iconfont icon-chuangjiangongsichenggong3 _absolute"></view>
                   <view class="iconfont icon-chuangjiangongsichenggong2 _absolute"></view>
-                  <view class="iconfont icon-chuangjiangongsichenggong1 _absolute"></view>
+                  <view class="iconfont icon-dengdaitongguo _absolute"></view>
                 </view>
 
                 <view class='_font32 text _txt_lightblue'>申请已提交，等待企业通过...</view>

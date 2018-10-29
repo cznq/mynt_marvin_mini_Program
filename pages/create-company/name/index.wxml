@@ -9,7 +9,7 @@
   <form bindsubmit='formSubmit'>
   <input class='inp' maxlength='8' name="realName" focus="{{isfocus}}"></input>
   <view class='_fixed footer'>
-    <button  class="_button" bindtap="next" formType="submit" type="primary">{{button_text}}</button>
+    <button  class="_button" bindtap="next" formType="submit">{{button_text}}</button>
   </view>
   </form>
 </view>

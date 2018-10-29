@@ -150,3 +150,27 @@
   border-radius: 4rpx;
   text-align: center;
 }
+
+
+.controls {
+  position: relative;
+  top: -50rpx;
+  height: 50px;
+
+  display: flex;
+}
+.play,.pause,.time {
+  flex: 1;
+  height: 100%;
+}
+.time {
+  text-align: center;
+  background-color: rgba(0, 0, 0, .5);
+  color: white;
+  line-height: 50px;
+}
+.img {
+  width: 40px;
+  height: 40px;
+  margin: 5px auto;
+}

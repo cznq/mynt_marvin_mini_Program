@@ -64,8 +64,13 @@
       </view>
     </view>
     <view class='up_pub' wx:if="{{cd.video_url !== ''}}">
-      <video id="myVideo" src="{{cd.video_url}}"></video>
-      <view class='clearpic _position' bindtap='bindclearpic' data-key='video_url'>×</view>
+      <video id="myVideo" src="{{cd.video_url}}">
+        
+      </video>
+      <!-- <view class='clearpic _position' bindtap='bindclearpic' data-key='video_url'>×</view> -->
+      <cover-view class="clearpic _position" bindtap="bindclearpic" data-key='video_url'>
+      ×
+    </cover-view>
     </view>
     <view class='up_pub' wx:else>
       <view class='up_con'>
@@ -77,9 +82,9 @@
       <text>宣传视频与轮播图共用机器人端同个展示位，可选择播放\n建议尺寸：1920*1080</text>
     </view>
   </view>
-  <view class='_fixed footer'>
+  <cover-view class='_fixed footer covview'>
     <button class="_button" bindtap="submit">{{button_text}}</button>
-  </view>
+  </cover-view>
 </view>
 <import src="../../../templates/showToast/showToast.wxml" />
 <template is="showToast" data="{{showToast: showToast}}" />

@@ -1,4 +1,4 @@
-<view class='_content company-code'>
+<view class='_content _top_gradient2 company-code'>
   <view class="_flex step">
     <view class='cur'></view>
     <view class='cur'></view>
@@ -6,9 +6,8 @@
     <view></view>
   </view>
   <view class='mainTitle'>{{mainTitle}}</view>
-  <input class='inp' maxlength='8' confirm-hold="true" focus="true"></input>
+  <input class='inp' bindinput='companyCode' maxlength='8' confirm-hold="true" focus="true" value='{{codevalue}}' focus="{{isfocus}}"></input>
   <view class='hint _font22 _txt_darkgrey _fontw300'><text>{{hint}}</text></view>
-  <view class='_fixed footer'>
-    <button  class="_button" bindtap="next">{{button_text}}</button>
-  </view>
 </view>
+<import src="../../../../templates/showToast/showToast.wxml" /> 
+<template is="showToast" data="{{showToast: showToast}}" /> 
