@@ -8,7 +8,7 @@ Page({
     company_id: null,
     vip: null,
     width: '0',
-    height: '250px',
+    height: '500rpx',
     iphonex: false,
     face: true,
     showButton: true,
@@ -31,27 +31,27 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         if (res.windowWidth !== 0) {
-          if (res.model.indexOf('iPhone X') != -1) {
+          if (res.model.indexOf('iPhone X') !== -1) {
             that.setData({
               iphonex: true,
-              width: (res.windowWidth - 40) + 'px',
-              height: (res.windowWidth - 40) + 'px'
+              width: (res.windowWidth - 40)*2 + 'rpx',
+              height: (res.windowWidth - 40)*2 + 'rpx'
             })
           } else {
             that.setData({
-              width: (res.windowWidth - 40) + 'px',
-              height: (res.windowWidth - 40) + 'px'
+              width: (res.windowWidth - 40)*2 + 'rpx',
+              height: (res.windowWidth - 40)*2 + 'rpx'
             })
           }
         } else {
           that.setData({
-            width: '250px'
+            width: '500rpx'
           })
         }
       },
       fail: function () {
         that.setData({
-          width: '250px'
+          width: '500rpx'
         })
       }
     })

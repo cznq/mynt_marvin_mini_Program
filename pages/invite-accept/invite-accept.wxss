@@ -7,7 +7,7 @@ page, .page-body {
 .page-body::before {
   content: "";
   display: block;
-  height: 4px;
+  height: 8rpx;
   width: 100%;
   background: #4d65f5;
 }
@@ -23,8 +23,8 @@ page, .page-body {
 }
 .face-recode {
   margin: 100rpx auto 80rpx;
-  width: 251px;
-  height: 251px;
+  width: 502rpx;
+  height: 502rpx;
 }
 .face-recode image {
   width: 100%;
@@ -32,7 +32,7 @@ page, .page-body {
 }
 .cameraErrorText {
   position: absolute;
-  top: 150px;
+  top: 300rpx;
   left: 0;
   right: 0;
 }
@@ -55,21 +55,21 @@ page, .page-body {
 canvas {
   position: absolute;
   top: 0;
-  right: -300px;
-  height: 300px;
-  width: 300px;
+  right: -600rpx;
+  height: 600rpx;
+  width: 600rpx;
 }
 .btn-frame { 
-  width: 200px;
+  width: 400rpx;
   margin: 60rpx auto;
 }
 .btn-frame .btn {
   background-color: #4d65f5;
-  border: 2px solid #fff;
-  border-radius: 25px;
+  border: none;
+  border-radius: 43rpx;
   text-align: center;
-  height: 43px;
-  line-height: 43px;
+  height: 86rpx;
+  line-height: 86rpx;
   color: #fff;
-  font-size: 17px;
+  font-size: 34rpx;
 }
