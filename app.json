@@ -1,38 +1,31 @@
 {
   "pages":[
+
+  
+  "pages/employee/join-company/choice/index",
+  "pages/employee/join-company/submit/index",
+  "pages/employee/join-company/name/index",
+  "pages/employee/join-company/confirm/index",
+  "pages/employee/join-company/code/index",
+
     "pages/create-company/data/index",
     "pages/create-company/information/index",
     "pages/create-company/name/index",
-
-    "pages/employee/take-card/inform/index",
-    "pages/employee/take-card/success/index",
-    "pages/employee/take-card/guide/index",
-
-    "pages/employee/staff-list/index",
-    "pages/employee/invite-staff/index",
-    
-    "pages/employee/new-staff/index",
-
-
-    "pages/vip-index/vip-index",
     "pages/create-company/code/index",
-
-    
-  
     "pages/manage/manage",
-   
     "pages/create-company/login/index",
     "pages/create-company/success/index",
     
     "pages/demo/iconfont/index",
     
  
-
-    "pages/employee/join-company/submit/index",
-    "pages/employee/join-company/name/index",
-    "pages/employee/join-company/confirm/index",
-    "pages/employee/join-company/code/index",
-    "pages/employee/join-company/choice/index",
+"pages/employee/take-card/inform/index",
+"pages/employee/take-card/success/index",
+"pages/employee/take-card/guide/index",
+"pages/employee/staff-list/index",
+"pages/employee/invite-staff/index",
+"pages/employee/new-staff/index",
+    
 
       
     
@@ -46,7 +39,7 @@
     "pages/invite-apply/invite-apply",
     "pages/invite-apply-result/invite-apply-result",
     "pages/edit-info/edit-info",
-   
+   "pages/vip-index/vip-index",
     "pages/vip-invite/vip-invite",
     "pages/vip-share/vip-share",
  
