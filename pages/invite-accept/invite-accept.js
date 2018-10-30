@@ -7,9 +7,6 @@ Page({
     visit_apply_id: null,
     company_id: null,
     vip: null,
-    width: '0',
-    height: '250px',
-    iphonex: false,
     face: true,
     showButton: true,
     tips_title: "如何录入面部信息",
@@ -18,7 +15,6 @@ Page({
 
   onLoad: function (options) {
     var that = this;
-    console.log(options);
     if (options.vip !== "yes") { options.vip = null }
     that.setData({
       vip: options.vip,
@@ -26,36 +22,11 @@ Page({
       invitation_id: options.invitation_id,
       visit_apply_id: options.visit_apply_id
     });
-    that.ctx = wx.createCameraContext();
-    that.openCameraAuth();
-    wx.getSystemInfo({
-      success: function (res) {
-        if (res.windowWidth !== 0) {
-          if (res.model.indexOf('iPhone X') != -1) {
-            that.setData({
-              iphonex: true,
-              width: (res.windowWidth - 40) + 'px',
-              height: (res.windowWidth - 40) + 'px'
-            })
-          } else {
-            that.setData({
-              width: (res.windowWidth - 40) + 'px',
-              height: (res.windowWidth - 40) + 'px'
-            })
-          }
-        } else {
-          that.setData({
-            width: '250px'
-          })
-        }
-      },
-      fail: function () {
-        that.setData({
-          width: '250px'
-        })
-      }
-    })
-    
+    if(app.Util.checkcanIUse('camera')){
+      that.ctx = wx.createCameraContext();
+      that.openCameraAuth();
+    }
+    app.Util.checkcanIUse('cover-view');
   },
 
   cameraError: function() {
@@ -113,8 +84,9 @@ Page({
       params: {
         service: 'visitor',
         method: 'get_visitor_info',
-        union_id: unionId,
-        data: JSON.stringify({})
+        data: JSON.stringify({
+          union_id: unionId
+        })
       },
       success: res => {
         if (res.data.result) {
@@ -134,8 +106,9 @@ Page({
       params: {
         service: 'company',
         method: 'get_employee_info',
-        union_id: unionId,
-        data: JSON.stringify({})
+        data: JSON.stringify({
+          union_id: unionId
+        })
       },
       success: res => {
         if (res.data.result) {
@@ -187,6 +160,7 @@ Page({
     var that = this;
     var service = 'visitor';
     var data = JSON.stringify({
+      union_id: that.data.xy_session,
       company_id: that.data.company_id
     });
     var method = 'upload_face_pic';
@@ -210,7 +184,6 @@ Page({
         timestamp: timestamp,
         sign_type: sign_type,
         sign: sign,
-        union_id: that.data.xy_session,
         data: data
       },
       success: function (res) {

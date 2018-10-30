@@ -157,8 +157,8 @@ Page({
       params: {
         service: 'visitor',
         method: 'get_visit_apply_info',
-        union_id: unionId,
         data: JSON.stringify({
+          union_id: unionId,
           visit_apply_id: that.data.visit_apply_id,
         })
       },

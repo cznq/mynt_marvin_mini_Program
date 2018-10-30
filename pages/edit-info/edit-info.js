@@ -44,8 +44,8 @@ Page({
         params: {
           service: service,
           method: method,
-          union_id: wx.getStorageSync('xy_session'),
           data: JSON.stringify({
+            union_id: wx.getStorageSync('xy_session'),
             id_type: id_type,
             phone: phone,
             id_number: id_number
@@ -94,8 +94,9 @@ Page({
       params: {
         service: 'visitor',
         method: 'get_visitor_info',
-        union_id: unionId,
-        data: JSON.stringify({})
+        data: JSON.stringify({
+          union_id: unionId
+        })
       },
       success: res => {
         console.log(res);
@@ -117,9 +118,8 @@ Page({
       params: {
         service: 'company',
         method: 'get_employee_info',
-        union_id: unionId,
         data: JSON.stringify({
-
+          union_id: unionId,
         })
       },
       success: res => {
