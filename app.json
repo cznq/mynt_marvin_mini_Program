@@ -1,34 +1,27 @@
 {
   "pages":[
+    "pages/create-company/enterpriseInformation/index",
+    "pages/create-company/enterCompanyCode/index",
     "pages/manage/manage",
-"pages/employee/join-company/submit/index",
-  "pages/employee/join-company/name/index",
-  "pages/employee/join-company/code/index",
-  "pages/employee/join-company/choice/index",
-  
-  "pages/employee/join-company/confirm/index",
-
-
-    "pages/create-company/data/index",
-    "pages/create-company/information/index",
-    "pages/create-company/name/index",
-    "pages/create-company/code/index",
-   
+    "pages/create-company/enterRealName/index",
+    "pages/create-company/updateReviewInfo/index",
     "pages/create-company/login/index",
     "pages/create-company/success/index",
-    
-    "pages/demo/iconfont/index",
-    
- 
-"pages/employee/take-card/inform/index",
-"pages/employee/take-card/success/index",
-"pages/employee/take-card/guide/index",
-"pages/employee/staff-list/index",
-"pages/employee/invite-staff/index",
-"pages/employee/new-staff/index",
-    
 
-      
+    "pages/employee/join-company/submit/index",
+    "pages/employee/join-company/name/index",
+    "pages/employee/join-company/code/index",
+    "pages/employee/join-company/choice/index",
+    "pages/employee/join-company/confirm/index",
+    "pages/demo/iconfont/index",
+        
+    "pages/employee/take-card/inform/index",
+    "pages/employee/take-card/success/index",
+    "pages/employee/take-card/guide/index",
+    "pages/employee/staff-list/index",
+    "pages/employee/invite-staff/index",
+    "pages/employee/new-staff/index",
+    
     
     "pages/invite/invite",
     "pages/invite-share/invite-share",

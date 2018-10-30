@@ -41,7 +41,7 @@
       <input class='input_text' disabled='false ' value='{{company_name}}'></input>
     </view>
     <view class='_fixed footer'>
-      <button class="_button _button_white" bindtap="button">{{button_text_qx}}</button>
+      <button class="_button _button_white" bindtap="withdraw">{{button_text_qx}}</button>
     </view>
   </view>
 </view>
