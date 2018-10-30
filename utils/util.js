@@ -244,8 +244,8 @@ var md5 = require('md5.js');
       })
       return false;
     }
+    return true;
   }
-
 
   module.exports.network = {
     GET: GET,
@@ -268,6 +268,5 @@ var md5 = require('md5.js');
   module.exports.checkNumber = checkNumber;
   module.exports.checkApi = checkApi;
   module.exports.checkcanIUse = checkcanIUse;
-  
 
 })();

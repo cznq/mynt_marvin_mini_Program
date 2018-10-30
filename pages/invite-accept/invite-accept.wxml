@@ -3,9 +3,8 @@
     <view class="cameraErrorText">
       <text>{{cameraErrorText}}</text>
     </view>
-    <camera device-position="front" flash="off" binderror="cameraError" style="width: {{width}}; height: {{height}};margin: 80rpx auto 60rpx;position:relative;">
-      <cover-image class="circle" src="../../images/circle_2.png" wx:if="{{iphonex}}"></cover-image>
-      <cover-image class="circle" src="../../images/circle_3.png" wx:else style="width: {{width}}; height: {{height}}"></cover-image>
+    <camera device-position="front" flash="off" binderror="cameraError" style="width: 700rpx; height: 700rpx;margin: 80rpx auto 60rpx;position:relative;">
+      <cover-image class="circle" src="../../images/circle_3.png" style="width: 702rpx; height: 702rpx"></cover-image>
       <cover-image class="circle" src="../../images/camera-cover.png" wx:if="{{showButton}}"></cover-image>
     </camera>
     

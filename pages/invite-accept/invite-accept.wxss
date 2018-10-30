@@ -7,7 +7,7 @@ page, .page-body {
 .page-body::before {
   content: "";
   display: block;
-  height: 4px;
+  height: 8rpx;
   width: 100%;
   background: #4d65f5;
 }
@@ -21,18 +21,9 @@ page, .page-body {
   width: 100%;
   text-align: center;
 }
-.face-recode {
-  margin: 100rpx auto 80rpx;
-  width: 251px;
-  height: 251px;
-}
-.face-recode image {
-  width: 100%;
-  height: 100%;
-}
 .cameraErrorText {
   position: absolute;
-  top: 150px;
+  top: 300rpx;
   left: 0;
   right: 0;
 }
@@ -49,7 +40,7 @@ page, .page-body {
   position: absolute;
   top: 0px;
   left: 0;
-  right: 0;
+  right: -2rpx;
   z-index: 100;
 }
 canvas {
@@ -60,16 +51,16 @@ canvas {
   width: 300px;
 }
 .btn-frame { 
-  width: 200px;
+  width: 400rpx;
   margin: 60rpx auto;
 }
 .btn-frame .btn {
   background-color: #4d65f5;
-  border: 2px solid #fff;
-  border-radius: 25px;
+  border: none;
+  border-radius: 43rpx;
   text-align: center;
-  height: 43px;
-  line-height: 43px;
+  height: 86rpx;
+  line-height: 86rpx;
   color: #fff;
-  font-size: 17px;
+  font-size: 34rpx;
 }
