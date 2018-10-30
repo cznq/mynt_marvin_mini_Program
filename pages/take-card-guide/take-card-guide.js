@@ -44,9 +44,8 @@ Page({
       params: {
         service: 'company',
         method: 'get_employee_info',
-        union_id: unionId,
         data: JSON.stringify({
-          
+          union_id: unionId
         })
       },
       success: res => {

@@ -113,8 +113,9 @@ Page({
       params: {
         service: 'visitor',
         method: 'get_visitor_info',
-        union_id: unionId,
-        data: JSON.stringify({})
+        data: JSON.stringify({
+          union_id: unionId
+        })
       },
       success: res => {
         if (res.data.result) {
@@ -134,8 +135,9 @@ Page({
       params: {
         service: 'company',
         method: 'get_employee_info',
-        union_id: unionId,
-        data: JSON.stringify({})
+        data: JSON.stringify({
+          union_id: unionId
+        })
       },
       success: res => {
         if (res.data.result) {
@@ -187,6 +189,7 @@ Page({
     var that = this;
     var service = 'visitor';
     var data = JSON.stringify({
+      union_id: that.data.xy_session,
       company_id: that.data.company_id
     });
     var method = 'upload_face_pic';
@@ -210,7 +213,6 @@ Page({
         timestamp: timestamp,
         sign_type: sign_type,
         sign: sign,
-        union_id: that.data.xy_session,
         data: data
       },
       success: function (res) {

@@ -52,8 +52,8 @@ Page({
       params: {
         service: 'visitor',
         method: 'get_invitation_info',
-        union_id: unionId,
         data: JSON.stringify({
+          union_id: unionId,
           invitation_id: that.data.invitation_id,
         })
       },
@@ -95,8 +95,9 @@ Page({
       params: {
         service: 'visitor',
         method: 'get_visitor_info',
-        union_id: unionId,
-        data: JSON.stringify({})
+        data: JSON.stringify({
+          union_id: unionId
+        })
       },
       success: res => {
         that.setData({

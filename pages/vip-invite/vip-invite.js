@@ -61,8 +61,8 @@ Page({
       params: {
         service: 'visitor',
         method: 'invite',
-        union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
           visitor_name: visitor_name,
           invitation_type: 1,
           introduction: '',

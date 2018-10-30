@@ -33,8 +33,8 @@ Page({
         params: {
           service: 'visitor',
           method: 'visit_apply',
-          union_id: wx.getStorageSync('xy_session'),
           data: JSON.stringify({
+            union_id: wx.getStorageSync('xy_session'),
             form_id: form_id,
             visit_company_id: company_id,
             visitor_name: visitor_name,
@@ -98,8 +98,8 @@ Page({
           params: {
             service: 'visitor',
             method: 'get_visitor_info',
-            union_id: unionId,
             data: JSON.stringify({
+              union_id: unionId,
               visit_company_id: that.data.company_id
             })
           },
@@ -155,8 +155,8 @@ Page({
       params: {
         service: 'visitor',
         method: 'save_qr_code_key',
-        union_id: unionId,
         data: JSON.stringify({
+          union_id: unionId,
           qr_code_key: qr_code_key
         })
       },
