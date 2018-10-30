@@ -58,7 +58,11 @@ Page({
         })
       },
       success: res => {
-        console.log(res);
+        if (res.data.result.visitor.input_pic_url == "" || res.data.result.visitor.input_pic_url == null) {
+          that.setData({
+            continuevideo: true
+          })
+        }
         if (res.data.result.role==3){
           that.setData({
             role: "管理员"
@@ -77,36 +81,12 @@ Page({
           appointment_time: app.Util.formatTime(res.data.result.appointment_time)
         })
         this.generateMap();
-        this.getVisitorinfo();
+        
       },
       fail: res => {
         that.setData({
           error: "没有获取到邀请信息"
         })
-      }
-    })
-  },
-
-  getVisitorinfo: function () {
-    var that = this;
-    var unionId = wx.getStorageSync('xy_session');
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'visitor',
-        method: 'get_visitor_info',
-        union_id: unionId,
-        data: JSON.stringify({})
-      },
-      success: res => {
-        that.setData({
-          visitor: res.data.result,
-        })
-        if (res.data.result.input_pic_url == "" || res.data.result.input_pic_url == null) {
-          that.setData({
-            continuevideo: true,
-          })
-        }
       }
     })
   },
