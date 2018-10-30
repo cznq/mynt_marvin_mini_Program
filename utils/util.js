@@ -222,6 +222,30 @@ var md5 = require('md5.js');
     }
   }
 
+  //检测接口兼容性
+  function checkApi(apiName, cb) {
+    if (apiName) {
+      cb();
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+      })
+      return false;
+    }
+  }
+
+  //检测组件兼容性
+  function checkcanIUse(canIUseName) {
+    if (wx.canIUse(canIUseName) == false) {
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+      })
+      return false;
+    }
+  }
+
   module.exports.network = {
     GET: GET,
     POST: POST
@@ -241,5 +265,6 @@ var md5 = require('md5.js');
   module.exports.filterEmoji = filterEmoji;
   module.exports.isBlank = isBlank;
   module.exports.checkNumber = checkNumber;
-
+  module.exports.checkApi = checkApi;
+  module.exports.checkcanIUse = checkcanIUse;
 })();

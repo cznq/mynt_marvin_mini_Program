@@ -7,9 +7,6 @@ Page({
     visit_apply_id: null,
     company_id: null,
     vip: null,
-    width: '0',
-    height: '500rpx',
-    iphonex: false,
     face: true,
     showButton: true,
     tips_title: "如何录入面部信息",
@@ -18,7 +15,6 @@ Page({
 
   onLoad: function (options) {
     var that = this;
-    console.log(options);
     if (options.vip !== "yes") { options.vip = null }
     that.setData({
       vip: options.vip,
@@ -26,36 +22,11 @@ Page({
       invitation_id: options.invitation_id,
       visit_apply_id: options.visit_apply_id
     });
-    that.ctx = wx.createCameraContext();
-    that.openCameraAuth();
-    wx.getSystemInfo({
-      success: function (res) {
-        if (res.windowWidth !== 0) {
-          if (res.model.indexOf('iPhone X') !== -1) {
-            that.setData({
-              iphonex: true,
-              width: (res.windowWidth - 40)*2 + 'rpx',
-              height: (res.windowWidth - 40)*2 + 'rpx'
-            })
-          } else {
-            that.setData({
-              width: (res.windowWidth - 40)*2 + 'rpx',
-              height: (res.windowWidth - 40)*2 + 'rpx'
-            })
-          }
-        } else {
-          that.setData({
-            width: '500rpx'
-          })
-        }
-      },
-      fail: function () {
-        that.setData({
-          width: '500rpx'
-        })
-      }
-    })
-    
+    if(app.Util.checkcanIUse('camera')){
+      that.ctx = wx.createCameraContext();
+      that.openCameraAuth();
+    }
+    app.Util.checkcanIUse('cover-view');
   },
 
   cameraError: function() {

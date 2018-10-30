@@ -21,15 +21,6 @@ page, .page-body {
   width: 100%;
   text-align: center;
 }
-.face-recode {
-  margin: 100rpx auto 80rpx;
-  width: 502rpx;
-  height: 502rpx;
-}
-.face-recode image {
-  width: 100%;
-  height: 100%;
-}
 .cameraErrorText {
   position: absolute;
   top: 300rpx;
@@ -49,15 +40,15 @@ page, .page-body {
   position: absolute;
   top: 0px;
   left: 0;
-  right: 0;
+  right: -2rpx;
   z-index: 100;
 }
 canvas {
   position: absolute;
   top: 0;
-  right: -600rpx;
-  height: 600rpx;
-  width: 600rpx;
+  right: -300px;
+  height: 300px;
+  width: 300px;
 }
 .btn-frame { 
   width: 400rpx;
