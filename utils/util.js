@@ -244,6 +244,7 @@ var md5 = require('md5.js');
       })
       return false;
     }
+    return true;
   }
 
   module.exports.network = {
