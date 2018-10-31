@@ -221,6 +221,15 @@ var md5 = require('md5.js');
       return true;
     }
   }
+  //检验公司码/邀请码
+  function checkCode(code) {
+    var code_reg = /[\W]/;
+    if (code_reg.test(code) === false) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   //检测接口兼容性
   function checkApi(apiName, cb) {
@@ -268,5 +277,7 @@ var md5 = require('md5.js');
   module.exports.checkNumber = checkNumber;
   module.exports.checkApi = checkApi;
   module.exports.checkcanIUse = checkcanIUse;
+  module.exports.checkCode = checkCode;
+  
 
 })();

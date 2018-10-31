@@ -29,7 +29,6 @@ Page({
         },
         success: res => {
           console.log(res);
-          res.data.sub_code = 0;
           if (res.data.sub_code == 0){
              wx.navigateTo({
               url: '../enterpriseInformation/index',

@@ -1,5 +1,17 @@
 {
   "pages":[
+    "pages/create-company/updateReviewInfo/index",
+    "pages/create-company/enterpriseInformation/index",
+    
+    "pages/create-company/enterCompanyCode/index",
+    "pages/manage/manage",
+    "pages/create-company/createSuccess/index",
+    
+    
+    
+    "pages/create-company/enterRealName/index",
+    "pages/create-company/login/index",
+
     "pages/collect-info/face/index",
     "pages/collect-info/identity/index",
 
@@ -9,24 +21,13 @@
     "pages/employee/invite-staff/index",
     "pages/employee/new-staff/index",
 
-
-    "pages/create-company/enterpriseInformation/index",
-    "pages/create-company/enterCompanyCode/index",
-    "pages/manage/manage",
-    "pages/create-company/enterRealName/index",
-    "pages/create-company/updateReviewInfo/index",
-    "pages/create-company/login/index",
-    "pages/create-company/success/index",
-
     "pages/employee/join-company/submit/index",
     "pages/employee/join-company/name/index",
     "pages/employee/join-company/code/index",
     "pages/employee/join-company/choice/index",
     "pages/employee/join-company/confirm/index",
     "pages/demo/iconfont/index",
-        
-
-    
+    "pages/demo/showToastDemo/index",
     
     "pages/invite/invite",
     "pages/invite-share/invite-share",
@@ -40,9 +41,7 @@
     "pages/edit-info/edit-info",
    "pages/vip-index/vip-index",
     "pages/vip-invite/vip-invite",
-    "pages/vip-share/vip-share",
- 
-    "pages/demo/showToastDemo/index"
+    "pages/vip-share/vip-share"
     
   ],
   "subPackages": [

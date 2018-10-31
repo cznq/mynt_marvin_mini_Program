@@ -28,7 +28,7 @@ Page({
     }
   },
   //获取用户信息
-  get_review_status: function (_this,union_id) {
+  get_review_status: function(_this, union_id) {
     if (union_id !== '') {
       app.Util.network.POST({
         url: app.globalData.BASE_API_URL,
@@ -40,14 +40,10 @@ Page({
           })
         },
         success: res => {
+          console.log(res);
           var resdata = res.data.result;
-          console.log(resdata);
-          /*======= testdata =======*/
-          //resdata.role = 1;
-          // resdata.employee_status = 2;
-          // resdata.company_name = "fdfgdfgf";
-          // resdata.name = "张三";
-          /*======= testdata =======*/
+          
+
           if (resdata) {
             if (resdata.role == 0 && resdata.employee_status == '') {
               console.log('小机器人');
@@ -82,19 +78,19 @@ Page({
     }
   },
   //加入公司
-  joinCompany:function(){
+  joinCompany: function() {
     wx.navigateTo({
       url: '../employee/join-company/choice/index'
     })
   },
   //创建公司
-  createCompany:function(){
+  createCompany: function() {
     wx.navigateTo({
       url: '../create-company/enterCompanyCode/index',
     })
   },
   //取消申请
-  withdraw:function(){
+  withdraw: function() {
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
@@ -110,7 +106,7 @@ Page({
           wx.reLaunch({
             url: '../manage/manage',
           })
-        }else{
+        } else {
           wx.showToast({
             title: '取消失败',
             icon: 'none',
