@@ -1,4 +1,4 @@
-// pages/company/unattended/unattended-index.js
+// pages/company-unattended/index.js
 var app = getApp();
 var toast = require('../../templates/showToast/showToast');
 Page({
@@ -12,13 +12,36 @@ Page({
         explain: '无人值守功能已经打开,访客将会直接来访',
         isShow: true,
         isChecked: true,
-        union_id: "o3iamjv6fSidsfEAYTWpuBiYoZUE" //"wx.getStorageSync('xy_session')
+        union_id: wx.getStorageSync('xy_session')
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-
+        var that = this;
+        app.Util.network.POST({
+            url: app.globalData.BASE_API_URL,
+            params: {
+                service: 'company',
+                method: 'get_info',
+                data: JSON.stringify({
+                    union_id: that.data.union_id
+                })
+            },
+            success: res => {
+                var resdata = res.data.result;
+                // resdata.attend_status = 0;
+                if (resdata) {
+                    that.setData({
+                        isChecked: resdata.attend_status == 1 ? true : false,
+                        isShow: resdata.attend_status == 1 ? false : true
+                    })
+                }
+            },
+            fail: res => {
+                console.log('fail');
+            }
+        })
     },
 
     /**
@@ -70,7 +93,6 @@ Page({
 
     },
     bindSwitchChange: function(e) {
-        console.log('switch 发生 change 事件，携带值为', e.detail.value);
         if (e.detail.value) {
             toast.showToast(this, {
                 toastStyle: 'toast4',
@@ -84,27 +106,46 @@ Page({
             });
         } else {
             var that = this;
+            that.postRequestOwn(0);
             that.setData({
+                isChecked: false,
                 isShow: true
-            })
+            });
         }
 
     },
     bindToastSure: function(value) {
         var that = this;
+        that.postRequestOwn(1);
         that.setData({
+            isChecked: true,
             isShow: false
         });
-        console.log("仍然打开");
         toast.hideToast();
     },
     bindToastClose: function() {
         var that = this;
         that.setData({
-            isShow: true,
-            isChecked: false
+            isChecked: false,
+            isShow: true
         })
-        console.log("取消打开");
         toast.hideToast();
+    },
+    postRequestOwn: function(attend_status) {
+        app.Util.network.POST({
+            url: app.globalData.BASE_API_URL,
+            params: {
+                service: 'company',
+                method: 'update_attend_status',
+                data: JSON.stringify({
+                    union_id: this.data.union_id,
+                    attend_status: attend_status
+                })
+            },
+            success: res => {},
+            fail: res => {
+                console.log('fail');
+            }
+        })
     }
 })
