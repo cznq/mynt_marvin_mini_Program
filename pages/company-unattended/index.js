@@ -9,7 +9,7 @@ Page({
     data: {
         title: '无人值守功能',
         introduce: '如果您不能及时处理前台到访请求,或者您希望访客能够直接来访,请打开这个开关',
-        explain: '无人值守功能已经打开,访客将会直接来访',
+        explain: '无人值守功能已经打开,访客将会直接来到公司',
         isShow: true,
         isChecked: true,
         union_id: wx.getStorageSync('xy_session')
