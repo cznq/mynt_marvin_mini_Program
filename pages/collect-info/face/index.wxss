@@ -1,20 +1,53 @@
+.coverview {
+  position: absolute;
+  z-index: 100;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+}
 
-.step view {
+.camera-bottom-text {
+  margin: -10rpx 88rpx 0;
+}
+.circle {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin-left: -50%;
+  width: 100%;
+}
+.step cover-view {
   width: 50%;
 }
+.step cover-view{background:#E7E8EE;height:6rpx;margin-right:19rpx;border-radius: 6rpx;}
+.step .cur{background: #007bff;}
+
 .company-information {
-  padding-bottom:300rpx;
+  padding-bottom:30rpx;
   position: relative;
 }
 .mainTitle {
   padding-bottom: 50rpx;
-  padding-top:35rpx;
+  padding-top:56rpx;
+  line-height: 1;
+}
+.txt {
+  margin-top: 52rpx;
+  line-height: 48rpx;
+  white-space: pre-wrap;
+}
+.bottom-txt {
+  margin-top: 0;
 }
 .step {
   padding-top:30rpx;
 }
+.face-pic {
+  width: 172rpx;
+  margin: 66rpx auto 0;
+}
 .footer {
-  height:209rpx;
+  height:240rpx;
   background: #ccc;
   left:0;
   bottom:0;
@@ -24,7 +57,7 @@
   border-top:1rpx solid #eeeeee;
 }
 .footer button {
-  background: rgba(71, 95, 253, 1);
+  background: #007bff;
   color: #fff!important;
 }
 ._button.back_btn {
@@ -32,6 +65,7 @@
   margin-right: 0;
   background-color: #fff;
   color: rgba(26, 42, 75, 1)!important;
+  border: 2rpx solid rgba(0,0,0,.05);
 }
 ._button.next_btn {
   margin-left: 32rpx;

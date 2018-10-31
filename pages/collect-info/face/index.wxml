@@ -1,20 +1,43 @@
 <view class="page">
   <view class="page__bd">
-    <view class='_content company-information'>
-      <view class="_flex step">
-        <view class='cur'></view>
-        <view></view>
-      </view>
-      <view class='mainTitle'>Proof of identity</view>
-      <view class="_txt_center">We will collect your identity information 
+
+    <view class="cameraErrorText">
+      <text>{{cameraErrorText}}</text>
+    </view>
+    <camera device-position="front" flash="off" binderror="cameraError" style="width: 100%; height: 750rpx;position:relative;">
+      
+      <cover-image class="circle" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/face-recode-cover.png?t=1"></cover-image>
+
+      <cover-view class="coverview" wx:if="{{showButton}}">
+
+        <cover-view class='_content company-information'>
+          <cover-view class="_flex step">
+            <cover-view class='cur'></cover-view>
+            <cover-view class='cur'></cover-view>
+          </cover-view>
+          <cover-view class='mainTitle _fontw700'>Proof of identity</cover-view>
+          <cover-view class="_txt_center txt _font32">We will collect your identity information 
+    and click next to start collecting.</cover-view>
+          
+          <cover-image class="face-pic" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/face_shibie.png" mode='widthFix'></cover-image>
+         
+          
+        </cover-view>
+
+      </cover-view>
+
+    </camera>
+    <view class="camera-bottom-text" wx:if="{{!showButton}}">
+      <view class="_txt_center txt bottom-txt _font32">We will collect your identity information 
 and click next to start collecting.</view>
-      <view class='_fixed footer _flex _flex_justify_center _flex_space_around'>
-        <button class="_button back_btn">Back</button>
-        <button class="_button next_btn _font32" formType="submit" disabled='disabled'>NEXT</button>
+      <view class="_txt_center">
+        <image class="face-pic" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/face_shibie.png" mode='widthFix'></image>
       </view>
     </view>
+    <view class='_fixed footer _flex _flex_justify_center _flex_space_around' wx:if="{{showButton}}">
+      <button class="_button back_btn" bindtap="backAction">Back</button>
+      <button class="_button next_btn _font32" bindtap="startRecodeFace">NEXT</button>
+    </view>
+    
   </view>
-
-
-  
 </view>

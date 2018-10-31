@@ -265,7 +265,7 @@ input:-webkit-input-placeholder {
 
 /*步骤提示模块*/
 .step view{background:#E7E8EE;width: 143rpx;height:6rpx;margin-right:19rpx;border-radius: 6rpx;}
-.step .cur{background: #475FFD;}
+.step .cur{background: #007bff;}
 
 /* 红色数字提醒 */
 ._num_info{width: auto;padding:0 8rpx;box-sizing:border-box;min-width:26rpx;height: 26rpx;background: #FA4343;display: inline-block;font-size: 18rpx;line-height: 26rpx;text-align: center;color: #fff;border-radius: 13rpx;}

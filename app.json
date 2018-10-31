@@ -1,8 +1,9 @@
 {
   "pages":[
-    "pages/collect-info/face/index",
+    
     "pages/collect-info/identity/index",
-
+    "pages/collect-info/face/index",
+    
     "pages/employee/take-card/success/index",
     "pages/employee/take-card/guide/index",
     "pages/employee/staff-list/index",
