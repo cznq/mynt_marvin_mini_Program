@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/create-company/updateReviewInfo/index",
+    "pages/manage/manage",
     "pages/collect-info/face/index",
     "pages/collect-info/identity/index",
     "pages/employee/take-card/success/index",
@@ -9,9 +11,7 @@
     "pages/employee/new-staff/index",
     "pages/create-company/enterpriseInformation/index",
     "pages/create-company/enterCompanyCode/index",
-    "pages/manage/manage",
     "pages/create-company/enterRealName/index",
-    "pages/create-company/updateReviewInfo/index",
     "pages/create-company/login/index",
     "pages/create-company/success/index",
     "pages/employee/join-company/submit/index",

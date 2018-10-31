@@ -101,15 +101,47 @@ Page({
       sourceType: ['album', 'camera'],
       success(res) {
         const tempFilePaths = res.tempFilePaths
-        //console.log(tempFiles.path);
+
         //上传图片到oss
+       
+        var service = 'company';
+        var data = JSON.stringify({});
+        var method = 'upload_file';
+        var app_id = '65effd5a42fd1870b2c7c5343640e9a8';
+        var timestamp = Math.round(new Date().getTime() / 1000 - 28800);
+        var sign_type = 'MD5';
+        var stringA = 'app_id=' + app_id + '&data=' + data + '&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
+        var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
+
+
+        console.log(service, method, app_id, timestamp, sign_type, stringA, sign);
+        console.log(app.globalData.BASE_API_URL);
         
-        _this.uploadImage(tempFilePaths)
+        wx.uploadFile({
+          url: app.globalData.BASE_API_URL,
+          filePath: tempFilePaths,
+          name: 'company_pic',
+          formData: {
+            union_id: wx.getStorageSync('xy_session'),
+            service: service,
+            method: method,
+            app_id: app_id,
+            timestamp: timestamp,
+            sign_type: sign_type,
+            sign: sign,
+            data: data
+          },
+          success: res => {
+            console.log(res);
 
+          },
+          fail: res => {
+            wx.showToast({
+              title: '上传失败'
+            })
 
-
-
-
+          }
+        })
 
 
 
@@ -204,72 +236,11 @@ Page({
         mask: false
       });
     }
-  },
-
-
-
-  // 上传图片
-  uploadImage(aaaaaaa) {
-    console.log(aaaaaaa);
-    var that = this;
-    var service = 'company';
-    var data = JSON.stringify({});
-    var method = 'upload_file';
-    var app_id = '65effd5a42fd1870b2c7c5343640e9a8';
-    var timestamp = Math.round(new Date().getTime() / 1000 - 28800);
-    var sign_type = 'MD5';
-    var stringA = 'app_id=' + app_id + '&data=' + data + '&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
-    var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
-    // that.setData({
-    //   uploading: true
-    // });
-    console.log('pppppppppppp');
-    var uploadTask = wx.uploadFile({
-      url: app.globalData.BASE_API_URL,
-      filePath: aaaaaaa,
-      header: {
-        'content-type': 'multipart/form-data'
-      },
-      name: 'company_pic',
-      formData: {
-        union_id: wx.getStorageSync('xy_session'),
-        service: service,
-        method: method,
-        app_id: app_id,
-        timestamp: timestamp,
-        sign_type: sign_type,
-        sign: sign,
-        data: data
-      },
-      success: res => {
-        console.log(res);
-        // var data = JSON.parse(res.data);
-        // that.setData({
-        //   [`selectedImages[${i}]`]: data.result.comment_pic
-        // })
-        // if (i < that.data.selectedImages.length - 1) {
-        //   i++;
-        //   that.uploadImage(i);
-        // } else {
-        //   that.submit(that.data.content);
-        // }
-      },
-      fail: res => {
-        wx.showToast({
-          title: '上传失败'
-        })
-        // that.setData({
-        //   ['progress[' + i + ']']: false
-        // });
-      }
-    })
-    // uploadTask.onProgressUpdate(res => {
-    //   // that.setData({
-    //   //   ['progress[' + i + ']']: res.progress
-    //   // });
-    //   console.log('ttttttttttt'+res);
-    // })
   }
+  
+
+
+
 
 
 
