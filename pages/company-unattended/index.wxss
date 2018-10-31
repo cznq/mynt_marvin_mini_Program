@@ -1,0 +1,24 @@
+@import "../../templates/showToast/showToast.wxss";
+
+.content {
+    height: 1200rpx;
+    background: url("http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/WechatIMG12.png") no-repeat;
+    background-size: 100%;
+}
+
+.content .title {
+    padding: 562rpx 157rpx 0 158rpx;
+}
+
+.content .introduce {
+    padding: 44rpx 75rpx 0 74rpx;
+}
+
+.content .switch {
+    padding-top: 226rpx;
+}
+
+.content .explain {
+    padding: 37rpx 131rpx 0 125rpx;
+    color: #8891A9;
+}

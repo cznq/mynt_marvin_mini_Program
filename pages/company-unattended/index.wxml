@@ -1,0 +1,17 @@
+<!--pages/company/unattended/unapptended-index.wxml-->
+<import src="../../templates/showToast/showToast.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />
+<view class="content">
+    <view class="title _font44 _txt_center">
+        <text>{{title}}</text>
+    </view>
+    <view class="introduce _font28 _txt_center">
+        <text> {{introduce}} </text>
+    </view>
+    <view class="switch _txt_center">
+        <switch checked="{{isChecked}}" bindchange="bindSwitchChange" />
+    </view>
+    <view hidden="{{isShow}}" class="explain _font24 _txt_center">
+        <text>{{explain}}</text>
+    </view>
+</view>
