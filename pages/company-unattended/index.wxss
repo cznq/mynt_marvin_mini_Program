@@ -2,8 +2,9 @@
 
 .content {
     height: 1200rpx;
-    background: url("http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/WechatIMG12.png") no-repeat;
+    background: url("http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/WechatIMG12.png") #E7EBEF no-repeat;
     background-size: 100%;
+    /*background-color: linear-gradient(to bottom, #E7EBEF, #FFFFFF);*/
 }
 
 .content .title {
