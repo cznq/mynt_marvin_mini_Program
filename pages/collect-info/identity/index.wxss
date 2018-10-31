@@ -1,0 +1,37 @@
+
+.step view {
+  width: 50%;
+}
+.company-information {
+  padding-bottom:300rpx;
+  position: relative;
+}
+.mainTitle {
+  padding-bottom: 50rpx;
+}
+.input_block {
+  padding-bottom: 25rpx;
+}
+.mainTitle {
+  padding-top:35rpx;
+}
+.step {
+  padding-top:30rpx;
+}
+.footer {
+  height:209rpx;
+  background: #ccc;
+  left:0;
+  bottom:0;
+  width:100%;
+  padding-top:30rpx;
+  background: linear-gradient(to bottom,#fafbfb 0%,#fcfdfd 60%,#fcfdfd 60%,#fcfdfd 100%);
+  border-top:1rpx solid #eeeeee;
+}
+.footer button {
+  background: rgba(71, 95, 253, 1);
+  color: #fff!important;
+}
+.footer button[disabled] {
+  background: rgba(71, 95, 253, .2);
+}

@@ -20,11 +20,11 @@ Page({
     if (!(app.checkSession())) {
       app.checkLogin().then(function(res) {
         var union_id = wx.getStorageSync('xy_session');
-        _this.get_review_status(this, union_id);
+        _this.get_review_status(_this, union_id);
       })
     } else {
       var union_id = wx.getStorageSync('xy_session');
-      _this.get_review_status(this, union_id);
+      _this.get_review_status(_this, union_id);
     }
   },
   //获取用户信息

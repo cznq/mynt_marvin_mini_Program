@@ -1,0 +1,20 @@
+<view class="page">
+  <view class="page__bd">
+    <view class='_content company-information'>
+      <view class="_flex step">
+        <view class='cur'></view>
+        <view></view>
+      </view>
+      <view class='mainTitle'>Proof of identity</view>
+      <view class="_txt_center">We will collect your identity information 
+and click next to start collecting.</view>
+      <view class='_fixed footer _flex _flex_justify_center _flex_space_around'>
+        <button class="_button back_btn">Back</button>
+        <button class="_button next_btn _font32" formType="submit" disabled='disabled'>NEXT</button>
+      </view>
+    </view>
+  </view>
+
+
+  
+</view>

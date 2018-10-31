@@ -1,22 +1,15 @@
+
 .step view {
   width: 50%;
 }
-
 .company-information {
   padding-bottom:300rpx;
+  position: relative;
 }
-
 .mainTitle {
   padding-bottom: 50rpx;
-}
-.input_block {
-  padding-bottom: 25rpx;
-}
-
-.mainTitle {
   padding-top:35rpx;
 }
-
 .step {
   padding-top:30rpx;
 }
@@ -33,6 +26,16 @@
 .footer button {
   background: rgba(71, 95, 253, 1);
   color: #fff!important;
+}
+._button.back_btn {
+  width: 156rpx;
+  margin-right: 0;
+  background-color: #fff;
+  color: rgba(26, 42, 75, 1)!important;
+}
+._button.next_btn {
+  margin-left: 32rpx;
+  width: 442rpx;
 }
 .footer button[disabled] {
   background: rgba(71, 95, 253, .2);

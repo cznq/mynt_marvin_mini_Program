@@ -18,7 +18,7 @@ function showMenu(_this, obj) {
     }
     obj.menuList = obj.menuList || ['error'];
     var that = _this; //获取当前page实例 
-    obj.isShow = true; //开启toast  
+    obj.isShow = true; //显示menu  
     that.setData({
       showMenu: obj
     });
@@ -26,6 +26,7 @@ function showMenu(_this, obj) {
     console.log('请传入菜单列表');
   }
 }
+
 /**  
  * 手动关闭menu提示  
  */
@@ -37,6 +38,7 @@ function hideMenu(obj) {
     });
   }
 }
+
 module.exports = {
   showMenu: showMenu,
   hideMenu: hideMenu

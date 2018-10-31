@@ -1,4 +1,4 @@
-// pages/employee/take-card/inform/index.js
+// pages/collect-info/face/index.js
 Page({
 
   /**

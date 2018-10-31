@@ -1,5 +1,15 @@
 {
   "pages":[
+    "pages/collect-info/face/index",
+    "pages/collect-info/identity/index",
+
+    "pages/employee/take-card/success/index",
+    "pages/employee/take-card/guide/index",
+    "pages/employee/staff-list/index",
+    "pages/employee/invite-staff/index",
+    "pages/employee/new-staff/index",
+
+
     "pages/create-company/enterpriseInformation/index",
     "pages/create-company/enterCompanyCode/index",
     "pages/manage/manage",
@@ -15,12 +25,7 @@
     "pages/employee/join-company/confirm/index",
     "pages/demo/iconfont/index",
         
-    "pages/employee/take-card/inform/index",
-    "pages/employee/take-card/success/index",
-    "pages/employee/take-card/guide/index",
-    "pages/employee/staff-list/index",
-    "pages/employee/invite-staff/index",
-    "pages/employee/new-staff/index",
+
     
     
     "pages/invite/invite",
