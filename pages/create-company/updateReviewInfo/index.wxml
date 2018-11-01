@@ -13,7 +13,7 @@
   <view class='upload-block up_logo'>
     <view class='_font32'>公司LOGO</view>
     <view class='up_pub' wx:if="{{cd.logo !== ''}}">
-      <image src='{{cd.logo}}'></image>
+      <image mode="{{mode}}" src='{{cd.logo}}'></image>
       <view class='clearpic _position' bindtap='bindclearpic' data-key='logo'>×</view>
     </view>
     <view class='up_pub' bindtap='uploadimages' data-key='logo' wx:else>
@@ -27,7 +27,7 @@
   <view class='upload-block up_propaganda'>
     <view class='_font32'>宣传背景图</view>
     <view class='up_pub' wx:if="{{cd.background_url !== ''}}">
-      <image src='{{cd.background_url}}'></image>
+      <image mode="{{mode}}" src='{{cd.background_url}}'></image>
       <view class='clearpic _position' bindtap='bindclearpic' data-key='background_url'>×</view>
     </view>
     <view class='up_pub' bindtap='uploadimages' data-key='background_url' wx:else>
@@ -43,7 +43,7 @@
     <view class='_clearfloat'>
       <view class='up_pub' wx:key="unique" wx:for-index="idx" wx:for="{{cd.product_urls}}">
         <view class='showpic'>
-          <image src='{{item}}'></image>
+          <image mode="{{mode}}" src='{{item}}'></image>
           <view class='clearpic _position' bindtap='bindclearpic' data-key='{{idx}}'>×</view>
         </view>
       </view>
@@ -72,7 +72,7 @@
       ×
     </cover-view>
     </view>
-    <view class='up_pub' wx:else>
+    <view class='up_pub' bindtap='uploadvideo' wx:else>
       <view class='up_con'>
         <view class='up_dot'>+</view>
         <view class='up_text _fontw300'>视频</view>

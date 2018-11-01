@@ -1,34 +1,26 @@
 {
-  "pages":[
-    
-    "pages/collect-info/identity/index",
+  "pages": [
+    "pages/create-company/updateReviewInfo/index",
+    "pages/manage/manage",
     "pages/collect-info/face/index",
-    
+    "pages/collect-info/identity/index",
+
     "pages/employee/take-card/success/index",
     "pages/employee/take-card/guide/index",
     "pages/employee/staff-list/index",
     "pages/employee/invite-staff/index",
     "pages/employee/new-staff/index",
-
-
     "pages/create-company/enterpriseInformation/index",
     "pages/create-company/enterCompanyCode/index",
-    "pages/manage/manage",
     "pages/create-company/enterRealName/index",
-    "pages/create-company/updateReviewInfo/index",
     "pages/create-company/login/index",
     "pages/create-company/success/index",
-
     "pages/employee/join-company/submit/index",
     "pages/employee/join-company/name/index",
     "pages/employee/join-company/code/index",
     "pages/employee/join-company/choice/index",
     "pages/employee/join-company/confirm/index",
     "pages/demo/iconfont/index",
-        
-
-    
-    
     "pages/invite/invite",
     "pages/invite-share/invite-share",
     "pages/invite-receive/invite-receive",
@@ -39,12 +31,11 @@
     "pages/invite-apply/invite-apply",
     "pages/invite-apply-result/invite-apply-result",
     "pages/edit-info/edit-info",
-   "pages/vip-index/vip-index",
+    "pages/vip-index/vip-index",
     "pages/vip-invite/vip-invite",
     "pages/vip-share/vip-share",
- 
+    "pages/company-unattended/index",
     "pages/demo/showToastDemo/index"
-    
   ],
   "subPackages": [
     {
@@ -58,8 +49,8 @@
       ]
     }
   ],
-  "window":{
-    "backgroundTextStyle":"black",
+  "window": {
+    "backgroundTextStyle": "black",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"

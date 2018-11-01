@@ -1,4 +1,1 @@
-@import "../public/style.wxss";
-@import "../../../templates/iconfont/iconfont.wxss";
-.s_hint .text{color:#3ED26B;}
-.company-success{background: #fff;}
+/* pages/create-company/success/index.wxss */

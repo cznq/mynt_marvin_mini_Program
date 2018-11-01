@@ -1,0 +1,27 @@
+@import "../../templates/showToast/showToast.wxss";
+
+.content {
+    height: 1200rpx;
+    background: url("http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/WechatIMG12.png") #E7EBEF no-repeat;
+    background-size: 100%;
+    /*background-color: linear-gradient(to bottom, #E7EBEF, #FFFFFF);*/
+}
+
+.content .title {
+    padding: 562rpx 157rpx 0 158rpx;
+    color: #1B2B4C;
+}
+
+.content .introduce {
+    padding: 44rpx 75rpx 0 74rpx;
+    color: #1A2A4B;
+}
+
+.content .switch {
+    padding-top: 226rpx;
+}
+
+.content .explain {
+    padding: 37rpx 131rpx 0 125rpx;
+    color: #8891A9;
+}

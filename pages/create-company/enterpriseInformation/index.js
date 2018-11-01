@@ -9,19 +9,20 @@ Page({
   },
   onLoad: function(options) {
     var _this = this;
+    app.Util.checkcanIUse('cover-view'); //检测组件兼容性 础库 1.4.0 开始支持
+
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'company',
         method: 'get_info',
         data: JSON.stringify({
-          union_id: "o3iamjv6fSidsfEAYTWpuBiYoZUE" //"wx.getStorageSync('xy_session')
+          union_id: wx.getStorageSync('xy_session')
         })
       },
       success: res => {
         console.log(res);
         if (res.data.sub_code == 0) {
-          //console.log('99999999999999'+res.data.result.introduction);
           _this.setData({
             cd: res.data.result
           })
@@ -68,9 +69,9 @@ Page({
         url: app.globalData.BASE_API_URL,
         params: {
           service: 'company',
-          method: 'update_basic_info',
+          method: 'update',
           data: JSON.stringify({
-            union_id: "o3iamjv6fSidsfEAYTWpuBiYoZUE", //"wx.getStorageSync('xy_session')
+            union_id: wx.getStorageSync('xy_session'),
             company_name: company_name,
             company_short_name: company_short_name,
             name_alias: [name_alias0, name_alias1, name_alias2],

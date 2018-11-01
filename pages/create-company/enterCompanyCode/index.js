@@ -9,13 +9,34 @@ Page({
   },
   companyCode: function(e) {
     var _this = this;
+    //判断公司码不能为汉字
+    if (app.Util.checkCode(e.detail.value) == true){
+      _this.setData({
+        isfocus: false
+      })
+      toast.showToast(this, {
+        toastStyle: 'toast',
+        title: '公司码不能为汉字',
+        duration: 2000,
+        mask: false,
+        cb: function () {
+          _this.setData({
+            codevalue: '',
+            isfocus: true
+          })
+        }
+      });
+    }
+    //判断公司码8位输入完请求
     if (e.detail.value.length == 8) {
       var company_verify_code = e.detail.value,
         union_id = wx.getStorageSync('xy_session'),
         open_id = wx.getStorageSync('open_id'),
         name = wx.getStorageSync('nickname'),
         avatar = wx.getStorageSync('avatar'),
-        open_id_type = 1;
+        open_id_type = app.globalData.open_id_type;
+      console.log(company_verify_code, union_id, open_id, name, avatar, open_id_type);
+
       //请求
       app.Util.network.POST({
         url: app.globalData.BASE_API_URL,
@@ -33,7 +54,6 @@ Page({
         },
         success: res => {
           console.log(res);
-          res.data.sub_code = 0;//testdata
           if (res.data.sub_code == 0) {
             wx.navigateTo({
               url: '../enterRealName/index?company_verify_code=' + company_verify_code,

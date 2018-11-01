@@ -47,4 +47,7 @@
 .button426 {
   width: 426rpx;
 }
-.company-sh{background: #fff;}
+
+.company-sh {
+  background: #fff;
+}
