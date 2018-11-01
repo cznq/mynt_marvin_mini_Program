@@ -101,7 +101,26 @@
 .btn-confirm:after, .btn-confirm:after {
   border:none;
 }
-
+/* switch 样式*/
+/*swtich整体大小及背景色*/
+.wx-switch-input{
+    width:88rpx !important;
+    height:36rpx !important;
+    background: rgba(78, 222, 122, 1) !important;
+    border: rgba(78, 222, 122, 1) !important; /* 2018-07-18 重置开关边框颜色 */
+}
+/*白色样式（false的样式）*/
+.wx-switch-input::before{
+    width: 52rpx !important;
+    height: 52rpx !important;
+    margin-top: -10rpx;
+}
+/*绿色样式（true的样式）*/
+.wx-switch-input::after{
+    width: 52rpx !important;
+    height: 52rpx !important;
+    margin-top: -10rpx;
+}
 /**app.wxss**/
 /* margin  */
 ._mt10 { margin-top: 10rpx !important; }
