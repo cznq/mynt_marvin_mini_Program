@@ -13,7 +13,7 @@
     "pages/create-company/enterCompanyCode/index",
     "pages/create-company/enterRealName/index",
     "pages/create-company/login/index",
-    "pages/create-company/success/index",
+    "pages/create-company/createSuccess/index",
     "pages/employee/join-company/submit/index",
     "pages/employee/join-company/name/index",
     "pages/employee/join-company/code/index",

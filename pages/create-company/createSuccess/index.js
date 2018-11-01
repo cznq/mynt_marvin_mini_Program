@@ -34,7 +34,7 @@ Page({
     })
   },
   next: function() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../../manage/manage',
     })
   }

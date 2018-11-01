@@ -256,6 +256,103 @@ var md5 = require('md5.js');
     return true;
   }
 
+//选择图片
+  function uploadImage(count, sizeType, sourceType, uposs_url, uposs_service, uposs_method,uposs_name,cb) {
+    wx.chooseImage({
+      count: count,
+      sizeType: sizeType,
+      sourceType: sourceType,
+      success(res) {
+        const tempFilePaths = res.tempFilePaths;
+        var i = 0;//选择上传位置
+        var dataArr =[];//返回数据组
+        uposs(uposs_url, uposs_service, uposs_method, uposs_name, tempFilePaths, i, dataArr, function (obj) {
+          cb(obj);
+        });
+        
+      }
+    })
+  }
+
+  //选择视频
+  function uploadvideo(sourceType, compressed, maxDuration, camera, uposs_url, uposs_service, uposs_method, uposs_name,cb){
+    wx.chooseVideo({
+      sourceType: sourceType,
+      maxDuration: maxDuration,
+      compressed: compressed,
+      camera: camera,
+      success(res) {
+        console.log(res.tempFilePath);
+        var datatt = [];
+        datatt.push(res.tempFilePath);
+        var i = 0;//选择上传位置
+        var dataArr = [];//返回数据组
+        uposs(uposs_url, uposs_service, uposs_method, uposs_name, datatt, i, dataArr,  function (obj) {
+          cb(obj);
+        });
+      }
+    })
+  }
+
+  //上传oss
+  function uposs(uposs_url, uposs_service, uposs_method, uposs_name, tempFilePaths, i, dataArr,cb){
+    var spliceArr = dataArr;
+    var tempFilePathsLength = tempFilePaths.length-1;//图片数量
+    var url = uposs_url;
+    var name = uposs_name;
+    var service = uposs_service;
+    var data = JSON.stringify({});
+    var method = uposs_method;
+    var app_id = '65effd5a42fd1870b2c7c5343640e9a8';
+    var timestamp = Math.round(new Date().getTime() / 1000 - 28800);
+    var sign_type = 'MD5';
+    var stringA = 'app_id=' + app_id + '&data=' + data + '&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
+    var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
+    wx.showLoading({
+      title: '加载中',
+    })
+      const uploadTask = wx.uploadFile({
+        url: url,
+        filePath: tempFilePaths[i],
+        header: {
+          'content-type': 'multipart/form-data'
+        },
+        name: name,
+        formData: {
+          union_id: wx.getStorageSync('xy_session'),
+          service: service,
+          method: method,
+          app_id: app_id,
+          timestamp: timestamp,
+          sign_type: sign_type,
+          sign: sign,
+          data: data
+        },
+        success: res => {
+          console.log("aa"+i);
+          var resdata = JSON.parse(res.data);
+          spliceArr.push(resdata.result.company_pic);
+          if (i == tempFilePathsLength) {
+            cb(spliceArr);
+            wx.hideLoading();
+          } else if(i < tempFilePathsLength){
+            i++;
+            uposs(url, service, method, name, tempFilePaths, i, spliceArr, cb);
+          }
+        },
+        fail: res => {
+          wx.showToast({
+            title: '上传失败'
+          })
+        }
+      })
+      uploadTask.onProgressUpdate((res) => {
+        console.log('上传进度', res.progress)
+        console.log('已经上传的数据长度', res.totalBytesSent)
+        console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
+      })
+  } 
+
   module.exports.network = {
     GET: GET,
     POST: POST
@@ -278,6 +375,8 @@ var md5 = require('md5.js');
   module.exports.checkApi = checkApi;
   module.exports.checkcanIUse = checkcanIUse;
   module.exports.checkCode = checkCode;
+  module.exports.uploadImage = uploadImage;
+  module.exports.uploadvideo = uploadvideo;
   
 
 })();
