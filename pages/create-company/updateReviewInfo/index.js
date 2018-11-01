@@ -10,12 +10,12 @@ Page({
     isSowingMapUp: false,
     mode: 'aspectFill'
   },
-  next: function() {
+  next: function () {
     wx.navigateTo({
       url: '../success/index',
     })
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
     var _this = this;
     app.Util.checkcanIUse('cover-view'); //检测组件兼容性 础库 1.4.0 开始支持
     //请求数据
@@ -51,7 +51,7 @@ Page({
     })
   },
   //删除图片
-  bindclearpic: function(e) {
+  bindclearpic: function (e) {
     var _this = this;
     var c_key = e.currentTarget.dataset.key; //获取对象
 
@@ -75,7 +75,7 @@ Page({
     }
   },
   //上传图片
-  uploadimages: function(e) {
+  uploadimages: function (e) {
     var _this = this;
     var c_key = e.currentTarget.dataset.key; //获取栏目
     var name = 'cd.' + c_key; //拼接对象
@@ -95,7 +95,7 @@ Page({
     var uposs_name = 'company_pic';
 
     //上传图片
-    app.Util.uploadImage(chooseImage_count, chooseImage_sizeType, chooseImage_sourceType, uposs_url, uposs_service, uposs_method, uposs_name, function(obj) {
+    app.Util.uploadImage(chooseImage_count, chooseImage_sizeType, chooseImage_sourceType, uposs_url, uposs_service, uposs_method, uposs_name, function (obj) {
       if (name == 'cd.product_urls') {
         //轮播图
         for (var i in obj) {
@@ -119,7 +119,7 @@ Page({
   },
 
   //上传视频
-  uploadvideo: function() {
+  uploadvideo: function () {
     var _this = this;
 
     /** 上传到oss服务器参数 */
@@ -134,14 +134,14 @@ Page({
     var chooseVideo_maxDuration = 60;
     var chooseVideo_camera = 'back';
 
-    app.Util.uploadvideo(chooseVideo_sourceType, chooseVideo_compressed, chooseVideo_maxDuration, chooseVideo_camera, uposs_url, uposs_service, uposs_method, uposs_name, function(obj) {
+    app.Util.uploadvideo(chooseVideo_sourceType, chooseVideo_compressed, chooseVideo_maxDuration, chooseVideo_camera, uposs_url, uposs_service, uposs_method, uposs_name, function (obj) {
       _this.setData({
         "cd.video_url": obj[0]
       })
     });
   },
   //提交信息
-  submit: function() {
+  submit: function () {
     var _this = this;
     console.log('logo' + _this.data.cd.logo.length);
     console.log('background_url' + _this.data.cd.background_url.length);

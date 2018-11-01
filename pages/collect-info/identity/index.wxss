@@ -29,9 +29,9 @@
   border-top:1rpx solid #eeeeee;
 }
 .footer button {
-  background: rgba(71, 95, 253, 1);
+  background: #007bff;
   color: #fff!important;
 }
 .footer button[disabled] {
-  background: rgba(71, 95, 253, .2);
+  background: rgba(0, 123, 255, .2);
 }

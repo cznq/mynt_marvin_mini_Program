@@ -33,7 +33,6 @@
     "pages/vip-index/vip-index",
     "pages/vip-invite/vip-invite",
     "pages/vip-share/vip-share",
-    "pages/company-unattended/index",
     "pages/demo/showToastDemo/index"
   ],
   "subPackages": [

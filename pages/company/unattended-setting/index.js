@@ -1,6 +1,6 @@
 // pages/company-unattended/index.js
 var app = getApp();
-var toast = require('../../templates/showToast/showToast');
+var toast = require('../../../templates/showToast/showToast');
 Page({
 
     /**

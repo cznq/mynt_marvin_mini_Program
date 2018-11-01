@@ -6,22 +6,22 @@
     <view></view>
   </view>
   <view class='mainTitle'>Proof of identity</view>
-  <form bindsubmit='formSubmit'>
-    <view class='input_block'>
+  <form bindsubmit='editSubmit'>
+    <view class='input_block' id='ib1'>
       <view>
         <text class='_font24 _txt_darkgrey'>Phone number</text>
       </view>
-      <input class='input_text' disabled='false' name="company_name"  value='{{cd.company_name}}' placeholder='Enter your phone number'></input>
+      <input class="input_text {{inputError.phone?'error':''}}" type="number" name="phone" value='' bindinput="checkForm" placeholder-class='input_text_phc' placeholder='Enter your phone number' id='i1'></input>
     </view>
-    <view class='input_block' id='id_num'>
+    <view class='input_block' id='ib2'>
       <view>
         <text class='_font24 _txt_darkgrey'>ID number</text>
       </view>
-      <input class='input_text error' name="company_short_name" value='{{cd.company_short_name}}' placeholder='Enter your real ID card number' placeholder-class='input_text_phc' maxlength='8'></input>
+      <input class="input_text {{(inputError.id_number)?'error':''}}" name="id_number" type="idcard" bindinput="checkForm" value='' placeholder='Enter your real ID card number' placeholder-class='input_text_phc' id='i2'></input>
     </view>
 
     <view class='_fixed footer'>
-      <button class="_button _font32" formType="submit" disabled='disabled'>NEXT</button>
+      <button class="_button _font32" formType="submit" disabled="{{(formData.phone && formData.id_number)?'':'disabled'}}" form-type="submit">NEXT</button>
     </view>
   </form>
 </view>
