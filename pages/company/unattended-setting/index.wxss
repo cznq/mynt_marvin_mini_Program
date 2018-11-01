@@ -1,4 +1,4 @@
-@import "../../templates/showToast/showToast.wxss";
+@import "../../../templates/showToast/showToast.wxss";
 
 .content {
     height: 1200rpx;
