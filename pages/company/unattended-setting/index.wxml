@@ -2,6 +2,7 @@
 <import src="../../../templates/showToast/showToast.wxml" />
 <template is="showToast" data="{{showToast: showToast}}" />
 <view class="content">
+    <view class="bg-image"></view>
     <view class="title _font44 _txt_center">
         <text>{{title}}</text>
     </view>
