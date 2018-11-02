@@ -32,6 +32,9 @@ Page({
         console.log(res);
         if (res.data.sub_code == 0) {
           var resdata = res.data.result;
+          if (res.data.result.product_urls[0] == ""){
+            res.data.result.product_urls=[]
+          }
           _this.setData({
             cd: resdata
           })
@@ -169,7 +172,7 @@ Page({
           console.log(res);
           if (res.data.sub_code == 0) {
             console.log('数据成功');
-            wx.redirectTo({
+            wx.reLaunch({
               url: '../createSuccess/index',
             })
           } else {

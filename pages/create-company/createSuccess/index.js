@@ -34,7 +34,7 @@ Page({
     })
   },
   next: function() {
-    wx.redirectTo({
+    wx.reLaunch({
       url: '../../manage/manage',
     })
   }

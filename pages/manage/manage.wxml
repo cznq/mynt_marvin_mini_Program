@@ -1,3 +1,5 @@
+
+<view>dfgdfgdfgdfgdfgfdgdfgdfgfd</view>
 <!--web view-->
 <web-view wx:if="{{iswebview==false? false : true}}" src="{{web_url}}/home?timestamp={{timestamp}}"></web-view>
 

@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/create-company/updateReviewInfo/index",
     "pages/manage/manage",
     "pages/collect-info/face/index",
     "pages/collect-info/identity/index",
@@ -14,11 +13,12 @@
     "pages/create-company/enterRealName/index",
     "pages/create-company/login/index",
     "pages/create-company/createSuccess/index",
+    "pages/create-company/updateReviewInfo/index",
     "pages/employee/join-company/submit/index",
-    "pages/employee/join-company/name/index",
-    "pages/employee/join-company/code/index",
-    "pages/employee/join-company/choice/index",
-    "pages/employee/join-company/confirm/index",
+    "pages/employee/join-company/enterRealName/index",
+    "pages/employee/join-company/invitationCode/index",
+    "pages/employee/join-company/choiceJoin/index",
+    "pages/employee/join-company/confirmCompanyInformation/index",
     "pages/demo/iconfont/index",
     "pages/invite/invite",
     "pages/invite-share/invite-share",
