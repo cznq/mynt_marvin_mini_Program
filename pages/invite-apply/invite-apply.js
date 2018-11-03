@@ -53,7 +53,7 @@ Page({
                   })
                 } else {
                   wx.redirectTo({
-                    url: '/pages/invite-accept/invite-accept?visit_apply_id=' + res.data.result.visit_apply_id + '&company_id=' + that.data.company_id,
+                    url: '/pages/collect-info/face/index?visit_apply_id=' + res.data.result.visit_apply_id + '&company_id=' + that.data.company_id,
                   })
                 }
               })
@@ -64,7 +64,7 @@ Page({
                 })
               } else {
                 wx.redirectTo({
-                  url: '/pages/invite-accept/invite-accept?visit_apply_id=' + res.data.result.visit_apply_id + '&company_id=' + that.data.company_id,
+                  url: '/pages/collect-info/face/index?visit_apply_id=' + res.data.result.visit_apply_id + '&company_id=' + that.data.company_id,
                 })
               }
             }
@@ -210,8 +210,8 @@ Page({
     that.setData({ company_id: company_id })
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
-        console.log(wx.getStorageSync('xy_session'));
-        if (wx.getStorageSync('xy_session') == null || wx.getStorageSync('xy_session') == "") {
+        //console.log(wx.getStorageSync('xy_session'));
+        if (!(app.checkSession())) {
           that.setData({
             showLoginModal: true
           })

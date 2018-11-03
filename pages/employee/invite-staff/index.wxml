@@ -28,7 +28,7 @@
       <view class="invite-intro _font24">展示二维码或者邀请码即可邀请员工加入，员工点击按钮加入公司，管理员同意之后，即可加入公司</view>
     </view>
   </view>
-  <canvas canvas-id="inviteCanvas"></canvas>
+  <canvas canvas-id="inviteCanvas" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px"></canvas>
   <block wx:if="{{inviteModal.showModal? inviteModal.showModal: false}}">
     <view class="modal-bg" bindtap="closeModal"></view>
     <view class="invite-modal">
@@ -52,8 +52,8 @@
           </view>
 
           <view class="invite-btn-area">
-            <button bindtap="getInvitePhoto">生成邀请图</button>
-            <button class="save" wx:if="{{inviteModal.inviteType == 'code'}}" bindtap="copyInviteCode" data-code="45we45e">复制邀请码</button>
+            <button bindtap="getInvitePhoto" data-by="{{inviteModal.inviteType}}">生成邀请图</button>
+            <button class="save" wx:if="{{inviteModal.inviteType == 'code'}}" bindtap="copyInviteCode" data-code="{{companyInfo.company_code}}">复制邀请码</button>
             <button class="save" wx:if="{{inviteModal.inviteType == 'qrcode'}}" bindtap="saveToLocal">保存到手机</button>
           </view>
         </view>

@@ -101,14 +101,10 @@ page {
   color: rgba(136, 145, 169, 1);
 }
 canvas {
-  width: 300px;
-  height: 600px;
   position: absolute;
-  left: -300px;
+  left: -500px;
   top: 0;
-  background: #fff;
 }
-
 .modal-bg {
   position: fixed;
   top: 0;
