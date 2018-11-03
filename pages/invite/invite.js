@@ -6,12 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    xy_session: null,
-    invite_auth: null,
     latitude: null,
     longitude: null,
     cmpinfo: null,
-    invite_auth: null,
     date: "",
     time: "",
     formready: false,
@@ -38,11 +35,7 @@ Page({
    */
   setDataRequest: function () {
     var that = this;
-    that.setData({
-      xy_session: wx.getStorageSync('xy_session'),
-      invite_auth: wx.getStorageSync('invite_auth')
-    })
-    if (that.data.invite_auth == true) {
+    if (wx.getStorageSync('invite_auth') == true) {
       that.getCompany();
     } else {
       wx.showModal({

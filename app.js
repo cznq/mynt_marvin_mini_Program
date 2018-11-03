@@ -14,12 +14,12 @@ App({
     latitude: null,
     longitude: null,
     open_id_type: 1,
-   // BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
+    BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
     //WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
     //BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
     //BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
     //BENIFIT_API_URL: 'https://marvin-benifit-api-test.slightech.com/mini_program/api',
-    BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/',//开发环境
+    //BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/',//开发环境
     WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com',
   },
   
@@ -40,6 +40,9 @@ App({
     }
   },
 
+  /**
+   * 静默登录
+   */
   checkLogin() {
     var that = this;
     return new Promise(function (resolve, reject) {
@@ -60,27 +63,22 @@ App({
                   })
                 },
                 success: res => {
-                  console.log('=====',res);
+                  console.log(res.data);
                   if (res.data.sub_code == 0) {
                     that.globalData.invite_auth = true;
                     wx.setStorageSync('xy_session', res.data.result.union_id);
                     wx.setStorageSync('open_id', res.data.result.open_id);
                     wx.setStorageSync('nickname', res.data.result.nickname);
                     wx.setStorageSync('avatar', res.data.result.avatar);
-                    if (res.data.result.role !== 0) {
-                      wx.setStorageSync('invite_auth', true);
-                    } else {
-                      wx.setStorageSync('invite_auth', false);
-                    }
-                    if (res.data.result.role == 3) {
-                      wx.setStorageSync('inviteVip_auth', true);
-                    } else {
-                      wx.setStorageSync('inviteVip_auth', false);
-                    }
-                  } else {
                     wx.setStorageSync('invite_auth', false);
                     wx.setStorageSync('inviteVip_auth', false);
-                  }
+                    if (res.data.result.role !== 0) {
+                      wx.setStorageSync('invite_auth', true);
+                    } 
+                    if (res.data.result.role == 3) {
+                      wx.setStorageSync('inviteVip_auth', true);
+                    } 
+                  } 
                   resolve(res);
                 },
                 fail: res => {
@@ -98,6 +96,9 @@ App({
     })
   },
 
+  /**
+   * 授权登录，弹出授权框
+   */
   authorizeLogin(encryptedData, iv, callback = function () { }) {
     var that = this;
     wx.login({
