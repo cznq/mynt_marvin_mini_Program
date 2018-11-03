@@ -1,17 +1,17 @@
 var app = getApp();
-var toast = require('../../../templates/showToast/showToast');
+var toast = require('../../../../templates/showToast/showToast');
 Page({
   data: {
-    mainTitle: '输入公司码',
-    hint: '公司码需向楼宇管理申领\n服务热线：0510-88877799',
-    codevalue:'',
-    isfocus:true
+    mainTitle: '输入邀请码',
+    hint: '二维码与邀请码来自于企业内部人员的分享,可\n向企业员工或管理员索要',
+    codevalue: '',
+    isfocus: true
   },
   companyCode: function(e) {
     var _this = this;
-    var company_verify_code= e.detail.value.replace(/\s/ig, '');
+    var company_code = e.detail.value.replace(/\s/ig, '');
     //判断公司码不能为汉字
-    if (app.Util.checkCode(company_verify_code) == true){
+    if (app.Util.checkCode(company_code) == true) {
       _this.setData({
         isfocus: false
       })
@@ -20,7 +20,7 @@ Page({
         title: '你输入的码有误,请重新输入',
         duration: 2000,
         mask: false,
-        cb: function () {
+        cb: function() {
           _this.setData({
             codevalue: '',
             isfocus: true
@@ -29,38 +29,34 @@ Page({
       });
     }
     //判断公司码8位输入完请求
-    if (company_verify_code.length == 8) {
-      var company_verify_code = company_verify_code,
-        union_id = wx.getStorageSync('xy_session')
-        
-
-      //请求
+    if (company_code.length == 8) {
+      var company_code = company_code;
+      var union_id = wx.getStorageSync('xy_session');
       app.Util.network.POST({
         url: app.globalData.BASE_API_URL,
         params: {
           service: 'company',
           method: 'get_company_info',
           data: JSON.stringify({
-            company_verify_code: company_verify_code,
+            company_code: company_code,
             union_id: union_id
           })
         },
         success: res => {
-          console.log(res);
           if (res.data.sub_code == 0) {
             wx.navigateTo({
-              url: '../enterRealName/index?company_verify_code=' + company_verify_code,
+              url: '../confirmCompanyInformation/index?company_code=' + company_code,
             })
-          }else{
+          } else {
             _this.setData({
               isfocus: false
             })
-            toast.showToast(this, {
+            toast.showToast(_this, {
               toastStyle: 'toast',
               title: '你输入的码有误,请重新输入',
               duration: 2000,
               mask: false,
-              cb: function () {
+              cb: function() {
                 _this.setData({
                   codevalue: '',
                   isfocus: true

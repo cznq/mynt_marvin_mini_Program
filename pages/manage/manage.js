@@ -1,4 +1,3 @@
-// pages/manage/manage.js
 var app = getApp()
 Page({
   data: {
@@ -42,10 +41,8 @@ Page({
         success: res => {
           console.log(res);
           var resdata = res.data.result;
-          
-
           if (resdata) {
-            if (resdata.role == 0 && resdata.employee_status == '') {
+            if (resdata.employee_status == '' || resdata.employee_status == 1 || resdata.employee_status == 3 || resdata.employee_status == 4) {
               console.log('小机器人');
               _this.setData({
                 islogin: true
@@ -57,7 +54,7 @@ Page({
                 company_name: resdata.company_name,
                 name: resdata.name
               })
-            } else {
+            } else if (resdata.role == 1 || resdata.role == 2 || resdata.role == 3 && resdata.employee_status == 0) {
               console.log('webview');
               _this.setData({
                 iswebview: true
@@ -80,7 +77,7 @@ Page({
   //加入公司
   joinCompany: function() {
     wx.navigateTo({
-      url: '../employee/join-company/choice/index'
+      url: '../employee/join-company/choiceJoin/index'
     })
   },
   //创建公司

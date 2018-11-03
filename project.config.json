@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 13,
 			"list": [
 				{
 					"id": 0,
@@ -116,10 +116,21 @@
 				},
 				{
 					"id": 12,
-					"name": "开发",
-					"pathName": "pages/employee/staff-list/index",
-					"query": "",
-					"scene": "1011"
+					"name": "首页",
+					"pathName": "pages/manage/manage",
+					"query": ""
+				},
+				{
+					"id": 13,
+					"name": "上传视频",
+					"pathName": "pages/create-company/updateReviewInfo/index",
+					"query": ""
+				},
+				{
+					"id": 14,
+					"name": "确定公司信息",
+					"pathName": "pages/employee/join-company/confirmCompanyInformation/index",
+					"query": "company_code=GERW1XWQ"
 				}
 			]
 		}

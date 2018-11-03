@@ -89,6 +89,7 @@
   width: 528rpx;
   height: 300rpx;
 }
+.video{width:528rpx;height:300rpx;}
 
 .up_broadcast .up_pub, .up_broadcast .showpic {
   width: 300rpx;

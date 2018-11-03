@@ -34,7 +34,7 @@ Page({
     })
   },
   next: function() {
-    wx.navigateTo({
+    wx.reLaunch({
       url: '../../manage/manage',
     })
   }

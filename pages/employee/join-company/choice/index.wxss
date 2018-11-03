@@ -1,8 +1,0 @@
-@import "../../../create-company/public/style.wxss";
-page{background: #f9fafb;}
-.mainTitle{margin-bottom:74rpx;}
-.hint{margin:80rpx auto 0 auto;}
-
-.c_block{height:150rpx;border-radius: 10rpx;background: #fff;line-height:150rpx;color:#233252;font-size:34rpx;text-indent: 127rpx;margin-bottom:30rpx;}
-.c_block image{width:50rpx;height:50rpx;left:39rpx;top:50rpx;}
-.c_block .c_dot{float:right;color:#C2C6CC;font-size:20rpx;margin:-1rpx 17rpx 0 0;font-weight:bold;}

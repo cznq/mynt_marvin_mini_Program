@@ -64,13 +64,12 @@
       </view>
     </view>
     <view class='up_pub' wx:if="{{cd.video_url !== ''}}">
-      <video id="myVideo" src="{{cd.video_url}}">
-        
+      <video class='video' id="myVideo" src="{{cd.video_url}}">
       </video>
       <!-- <view class='clearpic _position' bindtap='bindclearpic' data-key='video_url'>×</view> -->
       <cover-view class="clearpic _position" bindtap="bindclearpic" data-key='video_url'>
-      ×
-    </cover-view>
+        ×
+      </cover-view>
     </view>
     <view class='up_pub' bindtap='uploadvideo' wx:else>
       <view class='up_con'>

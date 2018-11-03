@@ -4,11 +4,12 @@ Page({
   data: {
     mainTitle: '输入真实姓名',
     button_text: '下一步',
-    isfocus: true
+    isfocus: true,
+    company_verify_code:''
   },
   onLoad: function(options) {
     var _this = this;
-    //_this.data.company_verify_code = options.company_verify_code;
+    _this.data.company_verify_code = options.company_verify_code;
   },
   //提交数据
   formSubmit: function(e) {
@@ -20,11 +21,14 @@ Page({
         url: app.globalData.BASE_API_URL,
         params: {
           service: 'company',
-          method: 'update_employee',
+          method: 'bind_admin',
           data: JSON.stringify({
+            company_verify_code: _this.data.company_verify_code,
             union_id: wx.getStorageSync('xy_session'),
+            open_id: wx.getStorageSync('open_id'),
             name: realName,
-            avatar: wx.getStorageSync('avatar')
+            avatar: wx.getStorageSync('avatar'),
+            open_id_type: app.globalData.open_id_type
           })
         },
         success: res => {
