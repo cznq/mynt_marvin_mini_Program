@@ -1,23 +1,52 @@
 var toast = require('../../../../templates/showToast/showToast');
 
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    company_id: null,
+    empInfo: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      company_id: options.company_id
+    })
   },
 
   /**
-   * Open Function
+   * 获取员工信息
+   */
+  getEmployeeInfo: function () {
+    var that = this;
+    var unionId = wx.getStorageSync('xy_session');
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_employee_info',
+        data: JSON.stringify({
+          union_id: unionId
+        })
+      },
+      success: res => {
+        if (res.data.result) {
+          that.setData({
+            empInfo: res.data.result
+          })
+        }
+      }
+    })
+  },
+
+  /**
+   * 开启快捷取卡
    */
   openFunction: function () {
     var self = this;
@@ -33,51 +62,49 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 取消 开启快捷取卡
    */
-  onReady: function () {
+  bindToastClose: function () {
+    toast.hideToast();
+  },
 
+  /**
+   * 确定 开启快捷取卡
+   */
+  bindToastSure: function () {
+    var _this = this;
+    toast.hideToast(_this, {
+      cb: function () {
+        if (app.Util.checkEmpty(_this.data.empInfo.id_number)) {
+          wx.navigateTo({
+            url: '/pages/collect-info/identity/index?company_id=' + _this.data.company_id
+          })
+        } else if (app.Util.checkEmpty(_this.data.empInfo.input_pic_url)) {
+          wx.redirectTo({
+            url: '/pages/collect-info/face/index?company_id=' + _this.data.company_id
+          })
+        } else {
+          wx.redirectTo({
+            url: '/pages/employee/take-card/success/index?company_id=' + _this.data.company_id
+          })
+        }
+      }
+    });
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function (res) {
+        that.getEmployeeInfo();
+      })
+    } else {
+      that.getEmployeeInfo();
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

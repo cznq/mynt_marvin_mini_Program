@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": 6,
 			"list": [
 				{
 					"id": 0,
@@ -47,10 +47,10 @@
 					"scene": "1044"
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "员工快捷取卡",
-					"pathName": "pages/take-card-guide/take-card-guide",
-					"query": "company_id=3",
+					"pathName": "pages/employee/take-card/guide/index",
+					"query": "company_id=17",
 					"scene": "1044"
 				},
 				{
@@ -77,7 +77,7 @@
 				{
 					"id": 6,
 					"name": "录入人脸",
-					"pathName": "pages/invite-accept/invite-accept",
+					"pathName": "pages/collect-info/face/index",
 					"query": "company_id=17",
 					"scene": "1044"
 				},
@@ -111,6 +111,13 @@
 					"id": -1,
 					"name": "ifontdemo",
 					"pathName": "pages/demo/iconfont/index",
+					"query": "",
+					"scene": "1011"
+				},
+				{
+					"id": 12,
+					"name": "开发",
+					"pathName": "pages/employee/staff-list/index",
 					"query": "",
 					"scene": "1011"
 				}

@@ -1,5 +1,6 @@
-// pages/utils/util.js
+
 var md5 = require('md5.js');
+var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
 ; (function () {
   // 网络请求
@@ -21,7 +22,7 @@ var md5 = require('md5.js');
       title: '正在加载',
       mask: true
     })
-    requestHandler.params.app_id = '65effd5a42fd1870b2c7c5343640e9a8';
+    requestHandler.params.app_id = '65effd5a42fd1870b2c7c5343640e9a8'; //接口需要的第三方App_id
     requestHandler.params.timestamp = Math.round(new Date().getTime() / 1000 - 28800);
     requestHandler.params.sign_type = 'MD5';
     var stringA = 'app_id=' + requestHandler.params.app_id + '&data=' + requestHandler.params.data + '&method=' + requestHandler.params.method + '&service=' + requestHandler.params.service + '&timestamp=' + requestHandler.params.timestamp;
@@ -49,6 +50,31 @@ var md5 = require('md5.js');
       complete: () => {
         wx.stopPullDownRefresh();
         if (requestHandler.complete) requestHandler.complete();
+      }
+    })
+  }
+
+  //根据地址获取经纬度
+  function generateMap(_this, address) {
+    var qqmapsdk = new QQMapWX({
+      key: 'CGVBZ-S2KHV-3CBPC-UP4JI-4N55F-7VBFU'
+    });
+    qqmapsdk.geocoder({
+      address: address,
+      success: function (res) {
+        console.log(res.result);
+        _this.setData({
+          latitude: res.result.location.lat,
+          longitude: res.result.location.lng
+        })
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '获取经纬度失败',
+        })
+      },
+      complete: function (res) {
+        console.log(res);
       }
     })
   }
@@ -172,6 +198,7 @@ var md5 = require('md5.js');
     return str;
   }
 
+  //校验身份证
   function checkID(ID) {
     if (typeof ID !== 'string') return '非法字符串';
     var city = { 11: "北京", 12: "天津", 13: "河北", 14: "山西", 15: "内蒙古", 21: "辽宁", 22: "吉林", 23: "黑龙江 ", 31: "上海", 32: "江苏", 33: "浙江", 34: "安徽", 35: "福建", 36: "江西", 37: "山东", 41: "河南", 42: "湖北 ", 43: "湖南", 44: "广东", 45: "广西", 46: "海南", 50: "重庆", 51: "四川", 52: "贵州", 53: "云南", 54: "西藏 ", 61: "陕西", 62: "甘肃", 63: "青海", 64: "宁夏", 65: "新疆", 71: "台湾", 81: "香港", 82: "澳门", 91: "国外" };
@@ -196,6 +223,7 @@ var md5 = require('md5.js');
     return true;
   }
 
+  //校验护照
   function checkPassport(passport) {
     var reg = /^1[45][0-9]{7}|([P|p|S|s]\d{7})|([S|s|G|g]\d{8})|([Gg|Tt|Ss|Ll|Qq|Dd|Aa|Ff]\d{8})|([H|h|M|m]\d{8，10})$/;
     if (reg.test(passport) === false) {
@@ -205,6 +233,7 @@ var md5 = require('md5.js');
     }
   }
 
+  //校验电话
   function checkPhone(phone) {
     var phone_reg = /^1[0-9]{10}$/;
     if (phone_reg.test(phone) === false) {
@@ -221,6 +250,7 @@ var md5 = require('md5.js');
       return true;
     }
   }
+
   //检验公司码/邀请码
   function checkCode(code) {
     var code_reg = /[\W]/;
@@ -229,6 +259,14 @@ var md5 = require('md5.js');
     } else {
       return true;
     }
+  }
+
+  //判断接口返回数据是否为空
+  function checkEmpty(data) {
+    if(data == "" || data == null) {
+      return true;
+    }
+    return false;
   }
 
   //检测接口兼容性
@@ -260,7 +298,7 @@ var md5 = require('md5.js');
     GET: GET,
     POST: POST
   }
-
+  module.exports.generateMap = generateMap;
   module.exports.dateFormat = dateFormat;
   module.exports.unique = unique;
   module.exports.setClipboard = setClipboard;
@@ -278,6 +316,6 @@ var md5 = require('md5.js');
   module.exports.checkApi = checkApi;
   module.exports.checkcanIUse = checkcanIUse;
   module.exports.checkCode = checkCode;
-  
+  module.exports.checkEmpty = checkEmpty;
 
 })();

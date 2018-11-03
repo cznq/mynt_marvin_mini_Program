@@ -298,7 +298,7 @@ input:-webkit-input-placeholder {
 ._family_name {width: 70rpx;height: 70rpx;margin-right: 30rpx;color: #fff;border-radius: 35rpx;text-align: center;line-height: 70rpx;font-size: 28rpx;}
 
 /* 输入框错误提示 */
-.errorwrap {position: absolute;left: 0;right: 0;top: 200rpx;}
+.errorwrap {position: absolute;left: 0;right: 0;top: 200rpx;z-index:99}
 .errorwrap .arrow {border-width: 0 22rpx 22rpx;border-style: solid;border-color: transparent transparent rgba(252, 252, 252, 1);position: absolute;left: 50%;margin-left: -11rpx;top: -26rpx;
 }
 .errorwrap text {background-color: rgba(252, 252, 252, 1);padding: 28rpx 64rpx;color: rgba(136, 145, 169, 1);border-radius: 10rpx;max-width: 520rpx;

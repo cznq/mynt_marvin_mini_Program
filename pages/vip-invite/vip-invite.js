@@ -6,7 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    xy_session: null,
     inviteVip_auth: null,
     formready: false,
     input1: false,

@@ -38,6 +38,6 @@ and click next to start collecting.</view>
       <button class="_button back_btn" bindtap="backAction">Back</button>
       <button class="_button next_btn _font32" bindtap="startRecodeFace">NEXT</button>
     </view>
-    
+    <canvas canvas-id='attendCanvasId'></canvas>
   </view>
 </view>

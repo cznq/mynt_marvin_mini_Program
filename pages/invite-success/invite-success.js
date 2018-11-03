@@ -1,5 +1,4 @@
-// pages/invite/invite.js
-var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
+
 const app = getApp();
 Page({
 
@@ -7,7 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    xy_session: null,
     visitor: null,
     latitude: null,
     longitude: null,
@@ -35,7 +33,7 @@ Page({
 
   goShot: function () {
     wx.navigateTo({
-      url: '/pages/invite-accept/invite-accept?vip=' + this.data.vip + '&invitation_id=' + '&company_id=' + this.data.company_id,
+      url: '/pages/collect-info/face/index?vip=' + this.data.vip + '&invitation_id=' + '&company_id=' + this.data.company_id,
     })
   },
 
@@ -58,7 +56,7 @@ Page({
         })
       },
       success: res => {
-        if (res.data.result.visitor.input_pic_url == "" || res.data.result.visitor.input_pic_url == null) {
+        if (app.Util.checkEmpty(res.data.result.visitor.input_pic_url)) {
           that.setData({
             continuevideo: true
           })
@@ -80,7 +78,7 @@ Page({
           invitation: res.data.result,
           appointment_time: app.Util.formatTime(res.data.result.appointment_time)
         })
-        this.generateMap();
+        app.Util.generateMap(that, res.data.result.company.address);
         
       },
       fail: res => {
@@ -121,28 +119,6 @@ Page({
       that.getInitation();
     }
 
-  },
-
-  generateMap: function () {
-    var that = this;
-    var qqmapsdk = new QQMapWX({
-      key: 'CGVBZ-S2KHV-3CBPC-UP4JI-4N55F-7VBFU'
-    });
-    qqmapsdk.geocoder({
-      address: that.data.invitation.company.address,
-      success: function (res) {
-        that.setData({
-          latitude: res.result.location.lat,
-          longitude: res.result.location.lng
-        })
-      },
-      fail: function (res) {
-        console.log(res);
-      },
-      complete: function (res) {
-        console.log(res);
-      }
-    })
   },
 
   /**

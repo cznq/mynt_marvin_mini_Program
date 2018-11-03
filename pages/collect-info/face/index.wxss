@@ -46,6 +46,13 @@
   width: 172rpx;
   margin: 66rpx auto 0;
 }
+canvas {
+  position: absolute;
+  top: 0;
+  right: -300px;
+  height: 300px;
+  width: 300px;
+}
 .footer {
   height:240rpx;
   background: #ccc;

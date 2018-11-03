@@ -6,7 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    xy_session: null,
     company_id: null,
     visitorInfo: null,
     noteCount: 0,
@@ -47,8 +46,8 @@ Page({
         success: res => {
           if (res.data.sub_code == 0) {
             if (that.data.visitorInfo == null) {
-              that.getVisitorinfo().then(function(){
-                if (that.data.visitorInfo.input_pic_url !== null && that.data.visitorInfo.input_pic_url !== "") {
+              that.getVisitorInfo().then(function(){
+                if (!app.Util.checkEmpty(that.data.visitorInfo.input_pic_url)) {
                   wx.redirectTo({
                     url: '/pages/invite-apply-result/invite-apply-result?visit_apply_id=' + res.data.result.visit_apply_id + '&company_id=' + that.data.company_id,
                   })
@@ -59,7 +58,7 @@ Page({
                 }
               })
             } else {
-              if (that.data.visitorInfo.input_pic_url !== null && that.data.visitorInfo.input_pic_url !== "") {
+              if (!app.Util.checkEmpty(that.data.visitorInfo.input_pic_url)) {
                 wx.redirectTo({
                   url: '/pages/invite-apply-result/invite-apply-result?visit_apply_id=' + res.data.result.visit_apply_id + '&company_id=' + that.data.company_id,
                 })
@@ -80,6 +79,9 @@ Page({
     }
   },
 
+  /**
+   * 统计输入字数
+   */
   countFontNum: function(e) {
     var that = this;
     that.setData({
@@ -87,7 +89,10 @@ Page({
     })
   },
 
-  getVisitorinfo: function () {
+  /**
+   * 获取访客信息
+   */
+  getVisitorInfo: function () {
     console.log("userinfo");
     var that = this;
     return new Promise(function (resolve, reject) {
@@ -117,6 +122,9 @@ Page({
     })
   },
 
+  /**
+   * 检测提交数据合法性
+   */
   checkParam(form_id, visitor_name, phone, id_number, note, company_id) {
     var idcard_reg = app.Util.checkID(id_number) || app.Util.checkPassport(id_number);
     if (visitor_name == "") {
@@ -178,7 +186,7 @@ Page({
               that.setData({
                 showLoginModal: false
               })
-              app.authorizeLogin(res.encryptedData, res.iv, () => {that.getVisitorinfo()});
+              app.authorizeLogin(res.encryptedData, res.iv, () => {that.getVisitorInfo()});
             }
           })
         }
@@ -208,25 +216,12 @@ Page({
             showLoginModal: true
           })
         } else {
-          that.setData({
-            xy_session: wx.getStorageSync('xy_session')
-          })
-          that.getVisitorinfo();
+          that.getVisitorInfo();
         }
       })
     } else {
-      that.setData({
-        xy_session: wx.getStorageSync('xy_session')
-      })
-      that.getVisitorinfo();
+      that.getVisitorInfo();
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-   
   }
 
 })

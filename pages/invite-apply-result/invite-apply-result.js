@@ -1,4 +1,4 @@
-// pages/invite-apply-notice/invite-apply-notice.js
+
 var app = getApp()
 Page({
 
@@ -144,6 +144,9 @@ Page({
     }
   },
 
+  /**
+   * 获取申请信息
+   */
   getApplyInfo: function () {
     var that = this;
     if (that.data.visit_apply_id == undefined) {
@@ -180,12 +183,18 @@ Page({
     })
   },
 
+  /**
+   * 拨打联系电话
+   */
   makePhoneCall(e) {
     wx.makePhoneCall({
       phoneNumber: e.target.id
     })
   },
 
+  /**
+   * 长按识别二维码
+   */
   identifyQrcode() {
     wx.previewImage({
       current: '', 

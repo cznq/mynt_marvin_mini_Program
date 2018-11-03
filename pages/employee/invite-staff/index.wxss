@@ -1,5 +1,6 @@
 page {
   background: #F9FAFB;
+  position: relative;
 }
 .page__hd {
   padding: 32rpx 60rpx;
@@ -98,6 +99,14 @@ page {
   margin: 30rpx auto 60rpx;
   line-height: 36rpx;
   color: rgba(136, 145, 169, 1);
+}
+canvas {
+  width: 300px;
+  height: 600px;
+  position: absolute;
+  left: -300px;
+  top: 0;
+  background: #fff;
 }
 
 .modal-bg {

@@ -14,13 +14,13 @@ page {
   font-size: 52rpx;
 }
 .page__bd {
-  padding: 54rpx 60rpx;
+  padding: 0 60rpx 54rpx;
   background: #F9FAFB;
 }
 .new-staff-btn {
   background: transparent;
   border: 1px solid rgba(0,0,0,.1);
-
+  margin-top: 54rpx;
 }
 ._num_info {
   margin: 0 18rpx;
@@ -28,10 +28,16 @@ page {
 .staff-list {
   padding-top: 30rpx;
 }
+._name {
+  font-weight: 600;
+}
 ._list_item {
   padding: 60rpx 0 30rpx;
 }
-.admin-list, .front-list {
+.front-list ._list_item:last-child {
+  border-bottom: 2rpx solid rgba(0,0,0,.1);
+}
+.admin-list ._list_item:last-child {
   border-bottom: 2rpx solid rgba(0,0,0,.1);
 }
 ._list_item._role_staff {
@@ -40,15 +46,22 @@ page {
 .handle_btn {
   width: 46rpx;
   height: 46rpx;
+  padding: 0 8rpx;
   border-radius: 24rpx;
   box-sizing: border-box;
   border: 1px solid rgba(0,0,0,.1);
   line-height: 46rpx;
   text-align: center;
   vertical-align: middle;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.handle_btn .iconfont {
-  font-size: 6rpx;
+.handle_btn .dot {
+  width: 6rpx;
+  height: 6rpx;
+  border-radius: 6rpx;
+  background-color: #000;
 }
 ._role_admin ._family_name {
   background-color: #484F62;

@@ -29,6 +29,9 @@ Page({
 
   },
 
+  /**
+   * 获取邀请信息
+   */
   getInitation: function () {
     var that = this;
     if (that.data.invitation_id == undefined) {

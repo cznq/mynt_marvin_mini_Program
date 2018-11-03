@@ -5,10 +5,10 @@
   </view>
   <view class="page__bd">
     <view class="company-card _txt_center">
-      <image class='logo' src='https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/vip%402x.png'></image>
-      <view class="_short_name _fontw700">请客智能科技</view>
-      <view class="_company_name">小觅智能</view>
-      <button class="invite_btn _flex _flex_item_center _flex_justify_center">
+      <image class='logo' src='{{companyInfo.logo}}'></image>
+      <view class="_short_name _fontw700">{{companyInfo.company_short_name}}</view>
+      <view class="_company_name">{{companyInfo.company_name}}</view>
+      <button class="invite_btn _flex _flex_item_center _flex_justify_center" open-type="share">
         <text class="iconfont icon-weixin"></text>邀请员工
       </button>
       <view class="share-info">点击按钮分享链接</view>
@@ -28,36 +28,36 @@
       <view class="invite-intro _font24">展示二维码或者邀请码即可邀请员工加入，员工点击按钮加入公司，管理员同意之后，即可加入公司</view>
     </view>
   </view>
+  <canvas canvas-id="inviteCanvas"></canvas>
+  <block wx:if="{{inviteModal.showModal? inviteModal.showModal: false}}">
+    <view class="modal-bg" bindtap="closeModal"></view>
+    <view class="invite-modal">
+        <view class="modal-header _txt_center">
+          <image class='logo' src='{{companyInfo.logo}}'></image>
+          <view class="_short_name _fontw700">{{companyInfo.company_short_name}}</view>
+          <view class="_company_name">{{companyInfo.company_name}}</view>
 
-    <block wx:if="{{inviteModal.showModal? inviteModal.showModal: false}}">
-        <view class="modal-bg" bindtap="closeModal"></view>
-        <view class="invite-modal">
-            <view class="modal-header _txt_center">
-              <image class='logo' src='https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/vip%402x.png'></image>
-              <view class="_short_name _fontw700">请客智能科技</view>
-              <view class="_company_name">小觅智能</view>
-
-            </view>
-            <view class="modal-body">
-              <view class="invite-method-part">
-                <view class="qrcode" wx:if="{{inviteModal.inviteType == 'qrcode'}}">
-                  <image class="qrcode-img" src='{{qrcodeUrl}}'></image>
-                  <view class="tips _font24">扫描二维申请加入公司</view>
-                </view>
-                <view class="code" wx:if="{{inviteModal.inviteType == 'code'}}">
-                  <view class="tit">邀请码</view>
-                  <button>ed12345c</button>
-                  <view class="tips _font24">使用邀请码申请加入公司</view>
-                </view>
-              </view>
-
-              <view class="invite-btn-area">
-                <button>生成邀请图</button>
-                <button class="save" wx:if="{{inviteModal.inviteType == 'code'}}" bindtap="copyInviteCode" data-code="45we45e">复制邀请码</button>
-                <button class="save" wx:if="{{inviteModal.inviteType == 'qrcode'}}" bindtap="saveToLocal">保存到手机</button>
-              </view>
-            </view>
         </view>
-    </block>
+        <view class="modal-body">
+          <view class="invite-method-part">
+            <view class="qrcode" wx:if="{{inviteModal.inviteType == 'qrcode'}}">
+              <image class="qrcode-img" src='{{companyInfo.company_qrcode_url}}'></image>
+              <view class="tips _font24">扫描二维申请加入公司</view>
+            </view>
+            <view class="code" wx:if="{{inviteModal.inviteType == 'code'}}">
+              <view class="tit">邀请码</view>
+              <button>{{companyInfo.company_code}}</button>
+              <view class="tips _font24">使用邀请码申请加入公司</view>
+            </view>
+          </view>
+
+          <view class="invite-btn-area">
+            <button bindtap="getInvitePhoto">生成邀请图</button>
+            <button class="save" wx:if="{{inviteModal.inviteType == 'code'}}" bindtap="copyInviteCode" data-code="45we45e">复制邀请码</button>
+            <button class="save" wx:if="{{inviteModal.inviteType == 'qrcode'}}" bindtap="saveToLocal">保存到手机</button>
+          </view>
+        </view>
+    </view>
+  </block>
   
 </view>

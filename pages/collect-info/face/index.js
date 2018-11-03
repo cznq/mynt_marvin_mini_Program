@@ -1,8 +1,17 @@
 var md5 = require('../../../utils/md5.js');
 var app = getApp()
 Page({
+
+  /**
+   * 录入人脸信息公共页面
+   * 邀请流程，申请发卡流程，员工快捷取卡
+   * Param: 
+   * invitation_id   邀请id
+   * vip   是否VIP邀请
+   * company_id   公司id
+   */
+
   data: {
-    xy_session: null,
     invitation_id: null,
     visit_apply_id: null,
     company_id: null,
@@ -75,9 +84,9 @@ Page({
     })
   },
 
-  getVisitorinfo: function () {
+  getVisitorInfo: function () {
     var that = this;
-    var unionId = that.data.xy_session;
+    var unionId = wx.getStorageSync('xy_session');
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
@@ -89,7 +98,7 @@ Page({
       },
       success: res => {
         if (res.data.result) {
-          if (res.data.result.input_pic_url !== "" && res.data.result.input_pic_url !== null) {
+          if (!app.Util.checkEmpty(res.data.result.input_pic_url)) {
             that.finishRecordFace();
           }
         }
@@ -97,9 +106,12 @@ Page({
     })
   },
 
-  getEmployeeinfo: function () {
+  /**
+   * 获取员工信息页面
+   */
+  getEmployeeInfo: function () {
     var that = this;
-    var unionId = that.data.xy_session;
+    var unionId = wx.getStorageSync('xy_session');
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
@@ -111,7 +123,7 @@ Page({
       },
       success: res => {
         if (res.data.result) {
-          if (res.data.result.input_pic_url !== "" && res.data.result.input_pic_url !== null) {
+          if (!app.Util.checkEmpty(res.data.result.input_pic_url)) {
             that.finishRecordFace();
           }
         }
@@ -119,6 +131,9 @@ Page({
     })
   },
 
+  /**
+   * 开始录入
+   */
   startRecodeFace: function () {
     var that = this;
     var int;
@@ -134,6 +149,9 @@ Page({
 
   },
 
+  /**
+   * 相机拍照
+   */
   takePhoto: function () {
     this.ctx.takePhoto({
       quality: 'low',
@@ -154,12 +172,14 @@ Page({
     })
   },
 
-  //上传图片
+  /**
+   * 上传图片
+   */
   uploadCanvasImg: function (canvasImg) {
     var that = this;
     var service = 'visitor';
     var data = JSON.stringify({
-      union_id: that.data.xy_session,
+      union_id: wx.getStorageSync('xy_session'),
       company_id: that.data.company_id
     });
     var method = 'upload_face_pic';
@@ -202,7 +222,9 @@ Page({
     })
   },
 
-  //压缩并获取图片
+  /**
+   * Canvas画图，压缩并获取图片
+   */
   getCanvasImg: function (tempFilePath) {
     var that = this;
     const ctxv = wx.createCanvasContext('attendCanvasId');
@@ -221,6 +243,12 @@ Page({
     });
   },
 
+  /**
+   * 结束录入人脸
+   * 邀请流程跳转到invite-success
+   * 发卡申请跳转到 invite-apply-result
+   * 员工快捷取卡跳转到 take-card/success/index
+   */
   finishRecordFace: function () {
     var that = this;
     wx.hideLoading();
@@ -234,8 +262,18 @@ Page({
       })
     } else {
       wx.redirectTo({
-        url: '/pages/take-card-success/take-card-success?company_id=' + that.data.company_id,
+        url: '/pages/employee/take-card/success/index?company_id=' + that.data.company_id,
       })
+    }
+  },
+
+  getStaffInfo: function () {
+    if (this.data.invitation_id !== null && this.data.invitation_id !== undefined && this.data.invitation_id !== "undefined") {
+      this.getVisitorInfo();
+    } else if (this.data.visit_apply_id !== null && this.data.visit_apply_id !== undefined && this.data.visit_apply_id !== "undefined") {
+      this.getVisitorInfo();
+    } else {
+      this.getEmployeeInfo();
     }
   },
 
@@ -243,36 +281,21 @@ Page({
     var that = this;
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
-        that.setData({
-          xy_session: wx.getStorageSync('xy_session')
-        })
-        if (that.data.invitation_id !== null && that.data.invitation_id !== undefined && that.data.invitation_id !== "undefined") {
-          that.getVisitorinfo();
-        } else {
-          that.getEmployeeinfo();
-        }
+        that.getStaffInfo();
       })
     } else {
-      that.setData({
-        xy_session: wx.getStorageSync('xy_session')
-      })
-      if (that.data.invitation_id !== null && that.data.invitation_id !== undefined && that.data.invitation_id !== "undefined") {
-        that.getVisitorinfo();
-      } else {
-        that.getEmployeeinfo();
-      }
+      that.getStaffInfo();
+      
     }
   },
 
+  /**
+   * 返回按钮
+   */
   backAction: function () {
-    wx.navigateBack({
-      
-    });
+    wx.navigateBack({});
   },
 
-  onReady: function () {
-    
-  },
 
   onPullDownRefresh: function () {
     this.openCameraAuth();

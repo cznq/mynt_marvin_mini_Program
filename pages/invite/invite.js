@@ -1,5 +1,4 @@
-// pages/invite/invite.js
-var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
+
 const app = getApp();
 Page({
 
@@ -34,6 +33,9 @@ Page({
     
   },
 
+  /**
+   * 判断是否员工
+   */
   setDataRequest: function () {
     var that = this;
     that.setData({
@@ -54,6 +56,9 @@ Page({
     }
   },
 
+  /**
+   * 获取公司信息
+   */
   getCompany: function () {
     var that = this;
     app.Util.network.POST({
@@ -72,29 +77,7 @@ Page({
             cmpinfo: res.data.result
           })
         }
-        that.generateMap(res.data.result.address);
-      }
-    })
-  },
-
-  generateMap: function (address) {
-    var that = this;
-    var qqmapsdk = new QQMapWX({
-      key: 'CGVBZ-S2KHV-3CBPC-UP4JI-4N55F-7VBFU'
-    });
-    qqmapsdk.geocoder({
-      address: address,
-      success: function (res) {
-        that.setData({
-          latitude: res.result.location.lat,
-          longitude: res.result.location.lng
-        })
-      },
-      fail: function (res) {
-        console.log(res);
-      },
-      complete: function (res) {
-        console.log(res);
+        app.Util.generateMap(that, res.data.result.address);
       }
     })
   },
