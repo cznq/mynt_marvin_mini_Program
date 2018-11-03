@@ -1,37 +1,39 @@
 @import "../../../templates/showToast/showToast.wxss";
+
 page {
   height: 100%;
   overflow: hidden;
 }
+
 .content {
-    height: 100%;
-    background: linear-gradient(to bottom, #E7EBEF, #FFFFFF);
+  height: 100%;
+  background: linear-gradient(to bottom, #e7ebef, #fff);
 }
 
 .content .bg-image {
-    background: url("http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/WechatIMG12.png") no-repeat;
-    background-size: 100%;
-    width: 100%;
-    height: 528rpx;
+  background: url("http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/WechatIMG12.png") no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 528rpx;
 }
 
 .content .title {
-    padding: 0 157rpx 0 158rpx;
-    color: #1B2B4C;
-    line-height: 1;
+  padding: 0 157rpx 0 158rpx;
+  color: #1b2b4c;
+  line-height: 1;
 }
 
 .content .introduce {
-    padding: 44rpx 75rpx 0 74rpx;
-    color: #1A2A4B;
-    line-height: 42rpx;
+  padding: 44rpx 75rpx 0 74rpx;
+  color: #1a2a4b;
+  line-height: 42rpx;
 }
 
 .content .switch {
-    padding-top: 226rpx;
+  padding-top: 226rpx;
 }
 
 .content .explain {
-    padding: 37rpx 131rpx 0 125rpx;
-    color: #8891A9;
+  padding: 37rpx 131rpx 0 125rpx;
+  color: #8891a9;
 }
