@@ -96,7 +96,7 @@
 				},
 				{
 					"id": 9,
-					"name": "商城评论页",
+					"name": "邀请员工",
 					"pathName": "pages/employee/invite-staff/index",
 					"query": "commerce_id=6",
 					"scene": "1044"

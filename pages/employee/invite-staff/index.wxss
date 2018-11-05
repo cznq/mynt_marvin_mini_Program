@@ -92,18 +92,19 @@ page {
 .method-name {
   font-size: 28rpx;
   line-height: 1;
+  font-weight: 500;
   color: rgba(26, 42, 75, 1);
 }
 .invite-intro {
   width: 476rpx;
-  margin: 30rpx auto 60rpx;
+  margin: 30rpx auto;
   line-height: 36rpx;
   color: rgba(136, 145, 169, 1);
 }
 canvas {
   position: absolute;
-  left: 200px;
-  top: 0;
+  left: -500px;
+  top: -300px;
 }
 .modal-bg {
   position: fixed;
@@ -157,9 +158,13 @@ canvas {
   top: -10rpx;
   border-radius: 10rpx 0 0 10rpx;
 }
-.invite-method-part {
+.invite-method-part .qrcode{
   margin-top: 40rpx;
   height: 430rpx;
+}
+.invite-method-part .code {
+  margin-top: 40rpx;
+  height: 310rpx;
 }
 .qrcode-img {
   width: 354rpx;
@@ -193,17 +198,17 @@ canvas {
   margin: 72rpx 0 60rpx;
 }
 .invite-btn-area button {
-  width: 246rpx;
+  width: 416rpx;
   height: 80rpx;
   line-height: 80rpx;
   margin-bottom: 32rpx;
   font-size: 32rpx;
   font-weight: 500;
   color: #fff;
-  background-color: rgba(71, 95, 253, 1);
+  background-color: #007bff;
 }
 .invite-btn-area button.save {
   background-color: transparent;
-  color: rgba(71, 95, 253, 1);
-  border: 1px solid rgba(71, 95, 253, 1);
+  color: #007bff;
+  border: 1px solid #007bff;
 }

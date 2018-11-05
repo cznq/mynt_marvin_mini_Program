@@ -11,8 +11,7 @@ Page({
     },
     companyInfo: null,
     canvasWidth: 375,
-    canvasHeight: 667,
-    showCanvas: false
+    canvasHeight: 667
   },
 
   /**
@@ -26,6 +25,14 @@ Page({
     } else {
       this.getCompanyInfo();
     }
+
+    wx.getSystemInfo({
+      success: (res) => {
+        console.log(res, "=====")
+        //app.myLog('notify', "获取SystemInfo:", res.errMsg);
+      }
+    })
+
   },
 
   /**
@@ -76,6 +83,7 @@ Page({
   inviteOpen: function (e) {
     console.log(e);
     var method = e.currentTarget.dataset.method;
+    this.setData({ canvasHeight: 667 });
     if (method == 'code') {
       this.setData({ canvasHeight: 549});
     }
@@ -100,11 +108,14 @@ Page({
   saveToLocal: function () {
     var self = this;
     wx.canvasToTempFilePath({
-      destWidth: self.data.canvasWidth,
-      destHeight: self.data.canvasHeight,
+      x: 0,
+      y: 0,
+      width: self.data.canvasWidth,
+      height: self.data.canvasHeight,
+      destWidth: self.data.canvasWidth*2,
+      destHeight: self.data.canvasHeight*2,
       canvasId: 'inviteCanvas',
       quality: 1,
-      fileType: 'jpg',
       success: function success(res) {
         //console.log(res.tempFilePath);
         wx.saveImageToPhotosAlbum({
@@ -129,7 +140,6 @@ Page({
    * 圆角图片 
    */
   circleImg(ctx, img, x, y, w, h, r, callback = function(){}) {
-    //this.drawNetworkPhoto(ctx, img, x, y, w, h, callback);
     var that = this;
     wx.getImageInfo({
       src: img,
@@ -289,20 +299,75 @@ Page({
   },
 
   /**
-   * 生成邀请图
+   * 生成邀请码邀请图
    */
-  getInvitePhoto: function (e) {
-    var ch = e.currentTarget.dataset.by; 
+  getInviteCodePhoto: function (e) {
+   
     var that = this;
     const ctxv = wx.createCanvasContext('inviteCanvas');
-    if (ch == 'code') {
-      that.drawCodePhoto(ctxv);
-      that.drawNetworkPhoto(ctxv, 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/canvas-logo.png', 107, 477, 160, 29, that.circleImg(ctxv, that.data.companyInfo.logo, 156, 47, 64, 64, 8, function () { ctxv.draw(true, function () { that.closeModal(); that.setData({ showCanvas: true }); that.saveToLocal() }); }));
-    } else {
-      that.drawQrcodePhoto(ctxv);
-      that.drawNetworkPhoto(ctxv, 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/canvas-logo.png', 107, 595, 160, 29, that.drawNetworkPhoto(ctxv, that.data.companyInfo.company_qrcode_url, 94, 291, 188, 188, that.circleImg(ctxv, that.data.companyInfo.logo, 156, 47, 64, 64, 8, function () { ctxv.draw(true, function () { that.closeModal(); that.setData({ showCanvas: true }); that.saveToLocal()}); })));
-    }
+
+    that.drawCodePhoto(ctxv);
+    wx.getImageInfo({
+      src: that.data.companyInfo.logo,
+      success: function (res) {
+        ctxv.save();
+        ctxv.beginPath(); //开始绘制
+        //先画个圆角矩形
+        that.roundRect(ctxv, 156, 47, 64, 64, 8, '#fff');
+        ctxv.clip();
+        ctxv.drawImage(res.path, 156, 47, 64, 64);
+        ctxv.restore();
+        
+        wx.getImageInfo({
+          src: 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/canvas-logo.png',
+          success: function (res) {
+            ctxv.drawImage(res.path, 107, 477, 160, 29);
+            ctxv.draw(true, function () { that.saveToLocal() })
+          }
+        })
+          
+      }
+    })
+
   },
+
+  /**
+   * 生成二维码邀请图
+   */
+
+  getInviteQrcodePhoto: function (e) {
+    
+    var that = this;
+    const ctxv = wx.createCanvasContext('inviteCanvas');
+    that.drawQrcodePhoto(ctxv);
+    wx.getImageInfo({
+      src: that.data.companyInfo.logo,
+      success: function (res) {
+        ctxv.save();
+        ctxv.beginPath(); //开始绘制
+        //先画个圆角矩形
+        that.roundRect(ctxv, 156, 47, 64, 64, 8, '#fff');
+        ctxv.clip();
+        ctxv.drawImage(res.path, 156, 47, 64, 64);
+        ctxv.restore();
+        wx.getImageInfo({
+          src: that.data.companyInfo.company_qrcode_url,
+          success: function (res) {
+            ctxv.drawImage(res.path, 94, 291, 188, 188);
+            wx.getImageInfo({
+              src: 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/canvas-logo.png',
+              success: function (res) {
+                ctxv.drawImage(res.path, 107, 595, 160, 29);
+                ctxv.draw(true, function () { that.saveToLocal() })
+              }
+            })
+          }
+        })
+      }
+    })
+
+  },
+
 
   /**
   * 用户点击右上角分享
@@ -310,7 +375,7 @@ Page({
   onShareAppMessage: function (res) {
     return {
       title: '邀请加入' + this.data.companyInfo.company_name,
-      path: '/pages/employee/join-company/confirmCompanyInformation/index',
+      path: '/pages/employee/join-company/confirmCompanyInformation/index?company_code=' + this.data.companyInfo.company_code,
       success: function (res) {},
       fail: function (res) {}
     }

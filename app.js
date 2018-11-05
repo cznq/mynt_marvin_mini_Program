@@ -1,18 +1,19 @@
-//app.js
-var QQMapWX = require('utils/qqmap-wx-jssdk.min.js');
 const Promise = require('utils/promise.js');
+/**
+ * Fundebug 打印日志
+ * 其它页面引用  app.globalData.fundebug.notify("TEST", "Hello, Fundebug!");
+ * 抛出的错误对象   app.globalData.fundebug.notifyError(new Error("TEST"));
+ */
 var fundebug = require('utils/fundebug.0.9.0.min.js');
+// 配置项
 fundebug.init({
   apikey: "f7a08bd4f8006965ba11314b2571777ea295a98e84766ade31bdb5c272b87428"
 })
 
+
 App({
   globalData: {
-    xy_session: null,
-    role: null,
-    company_info: null,
-    latitude: null,
-    longitude: null,
+    fundebug: fundebug,
     open_id_type: 1,
     BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
     //WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
@@ -24,9 +25,9 @@ App({
   },
   
   onLaunch: function () {
-    //fundebug.notify("Test", "Hello, Fundebug!");
+    
   },
-
+  
   Util: require('utils/util.js'),
 
   /**
@@ -82,11 +83,13 @@ App({
                   resolve(res);
                 },
                 fail: res => {
+                  fundebug.notify("登录失败", res.sub_msg)
                   console.log('fail');
                 }
               });
 
             } else {
+              fundebug.notify("微信登录失败", res.errMsg)
               console.log('获取用户登录态失败！' + res.errMsg);
               reject('error');
             }
