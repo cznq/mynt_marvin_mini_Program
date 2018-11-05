@@ -70,13 +70,15 @@
   height: 44rpx;
   border-radius: 48rpx;
   text-align: center;
-  line-height: 36rpx;
+  line-height: 40rpx;
   background: #fff;
   border: 1rpx solid #bbb;
   color: #bbb;
   font-weight: 300;
-  font-family: -BlinkMacSystemFont;
+ font-family: -BlinkMacSystemFont;
   margin: 0 auto;
+  font-size:45rpx;
+  padding:0;
 }
 
 .up_text {
