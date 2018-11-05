@@ -28,7 +28,7 @@
       <view class="invite-intro _font24">展示二维码或者邀请码即可邀请员工加入，员工点击按钮加入公司，管理员同意之后，即可加入公司</view>
     </view>
   </view>
-  <canvas canvas-id="inviteCanvas" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px"></canvas>
+  <canvas canvas-id="inviteCanvas" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px;left:{{showCanvas?0:'-375px;'}}"></canvas>
   <block wx:if="{{inviteModal.showModal? inviteModal.showModal: false}}">
     <view class="modal-bg" bindtap="closeModal"></view>
     <view class="invite-modal">
