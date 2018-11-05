@@ -102,7 +102,7 @@ page {
 }
 canvas {
   position: absolute;
-  left: -500px;
+  left: 200px;
   top: 0;
 }
 .modal-bg {

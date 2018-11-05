@@ -11,14 +11,14 @@ Page({
     },
     companyInfo: null,
     canvasWidth: 375,
-    canvasHeight: 667
+    canvasHeight: 667,
+    showCanvas: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
         this.getCompanyInfo();
@@ -71,7 +71,7 @@ Page({
 
   /**
    * 打开邀请
-   * method    code为邀请码方式，qrcode为二维码方式 
+   * method:  code为邀请码方式，qrcode为二维码方式 
    */
   inviteOpen: function (e) {
     console.log(e);
@@ -99,38 +99,52 @@ Page({
    */
   saveToLocal: function () {
     var self = this;
-    wx.downloadFile({
-      url: self.data.companyInfo.company_qrcode_url,
-      success: function (ret) {
-        var path = ret.tempFilePath;
+    wx.canvasToTempFilePath({
+      destWidth: self.data.canvasWidth,
+      destHeight: self.data.canvasHeight,
+      canvasId: 'inviteCanvas',
+      quality: 1,
+      fileType: 'jpg',
+      success: function success(res) {
+        //console.log(res.tempFilePath);
         wx.saveImageToPhotosAlbum({
-          filePath: path,
+          filePath: res.tempFilePath,
           success(result) {
             wx.showToast({
               title: '保存成功',
               icon: 'success',
               duration: 1000
             });
-
-          },
-          fail: function (result) {}
+          }
         })
+      },
+      fail: function (e) {
+        console.log(e);
       }
-    })
+    });
+
   },
 
   /**
    * 圆角图片 
    */
-  circleImg: function (ctx, img, x, y, w, h, r) {
-    ctx.save();
-    ctx.beginPath(); //开始绘制
-    //先画个圆角矩形
-    this.roundRect(ctx, x, y, w, h, r, '#fff');
-    ctx.clip();// 再剪切  原始画布中剪切任意形状和尺寸。一旦剪切了某个区域，则所有之后的绘图都会被限制在被剪切的区域内
-    ctx.drawImage(img, x, y, w, h); // 推进去图片
-    ctx.restore(); //恢复之前保存的绘图上下文 恢复之前保存的绘图上下午即状态 可以继续绘制
-    
+  circleImg(ctx, img, x, y, w, h, r, callback = function(){}) {
+    //this.drawNetworkPhoto(ctx, img, x, y, w, h, callback);
+    var that = this;
+    wx.getImageInfo({
+      src: img,
+      success: function (res) {
+        console.log(res);
+        ctx.save();
+        ctx.beginPath(); //开始绘制
+        //先画个圆角矩形
+        that.roundRect(ctx, x, y, w, h, r, '#fff');
+        ctx.clip(); 
+        ctx.drawImage(res.path, x, y, w, h);
+        ctx.restore(); 
+        callback();
+      }
+    })
   },
 
   /**
@@ -164,7 +178,6 @@ Page({
     // 这里是使用 fill 还是 stroke都可以，二选一即可，但是需要与上面对应
     ctx.fill()
     ctx.closePath()
-    
   },
 
   /**
@@ -196,12 +209,27 @@ Page({
   },
 
   /**
+   * 绘制网络图片
+   */
+  drawNetworkPhoto(ctx, img, x, y, w, h, callback = function(){}) {
+    wx.getImageInfo({
+      src: img,
+      success: function (res) {
+        console.log(res);
+        ctx.drawImage(res.path, x, y, w, h);
+        callback();
+      }
+    })
+  },
+
+  /**
    * 绘制二维码邀请图
    */
   drawQrcodePhoto(ctx) {
     //背景色
-    //var that = this;
-
+    this.drawRect(ctx, 0, 0, this.data.canvasWidth, this.data.canvasHeight, '#0084FF');
+    //公司logo
+    //this.circleImg(ctx, this.data.companyInfo.logo, 156, 47, 64, 64, 8);
     //卡片背景色
     this.roundRect(ctx, 26, 77, 323, 481, 8, '#fff');
     //卡片左圆点
@@ -210,9 +238,6 @@ Page({
     this.drawDot(ctx, 350, 202, 8, '#0084FF');
     //分割线
     this.drawRect(ctx, 33, 202, 308, 1, '#f9f9f9');
-
-    //公司logo
-    this.circleImg(ctx, this.data.companyInfo.logo, 156, 47, 64, 64, 8);
     //公司名字
     this.drawText(ctx, 22, '#000', 'center', this.data.companyInfo.company_short_name, 187, 150);
     //公司别称
@@ -223,14 +248,12 @@ Page({
     ctx.setStrokeStyle('#DDDDDD')
     ctx.setLineWidth(7)
     ctx.strokeRect(87, 284, 202, 202)
-    //二维码
-    ctx.drawImage(this.data.companyInfo.company_qrcode_url, 94, 291, 188, 188);
     //二维码描述
     this.drawText(ctx, 14, '#8891A9', 'center', '扫描二维码申请加入公司', 187, 520);
-
+    //二维码
+    //this.drawNetworkPhoto(ctx, this.data.companyInfo.company_qrcode_url, 94, 291, 188, 188);
     //底部logo
-    ctx.drawImage('https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/canvas-logo.png', 107, 595, 160, 29);
-   
+    //this.drawNetworkPhoto(ctx, 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/canvas-logo.png', 107, 595, 160, 29);
   },
 
   /**
@@ -238,8 +261,9 @@ Page({
    */
   drawCodePhoto(ctx) {
     //背景色
-    //var that = this;
-
+    this.drawRect(ctx, 0, 0, this.data.canvasWidth, this.data.canvasHeight, '#0084FF');
+    //公司logo
+    //this.circleImg(ctx, this.data.companyInfo.logo, 156, 47, 64, 64, 8);
     //卡片背景色
     this.roundRect(ctx, 26, 77, 323, 364, 8, '#fff');
     //卡片左圆点
@@ -249,8 +273,6 @@ Page({
     //分割线
     this.drawRect(ctx, 33, 202, 308, 1, '#f9f9f9');
 
-    //公司logo
-    this.circleImg(ctx, this.data.companyInfo.logo, 156, 47, 64, 64, 8);
     //公司名字
     this.drawText(ctx, 22, '#000', 'center', this.data.companyInfo.company_short_name, 187, 150);
     //公司别称
@@ -262,9 +284,8 @@ Page({
     this.drawText(ctx, 45, '#21262F', 'center', this.data.companyInfo.company_code, 187, 342);
     //二维码描述
     this.drawText(ctx, 14, '#8891A9', 'center', '扫描二维码申请加入公司', 187, 400);
-
     //底部logo
-    ctx.drawImage('https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/canvas-logo.png', 107, 477, 160, 29);
+    //this.drawNetworkPhoto(ctx, 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/canvas-logo.png', 107, 477, 160, 29);
   },
 
   /**
@@ -272,41 +293,15 @@ Page({
    */
   getInvitePhoto: function (e) {
     var ch = e.currentTarget.dataset.by; 
-    console.log(ch);
     var that = this;
     const ctxv = wx.createCanvasContext('inviteCanvas');
-    that.drawRect(ctxv, 0, 0, that.data.canvasWidth, that.data.canvasHeight, '#0084FF');
-  
     if (ch == 'code') {
       that.drawCodePhoto(ctxv);
+      that.drawNetworkPhoto(ctxv, 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/canvas-logo.png', 107, 477, 160, 29, that.circleImg(ctxv, that.data.companyInfo.logo, 156, 47, 64, 64, 8, function () { ctxv.draw(true, function () { that.closeModal(); that.setData({ showCanvas: true }); that.saveToLocal() }); }));
     } else {
       that.drawQrcodePhoto(ctxv);
+      that.drawNetworkPhoto(ctxv, 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/canvas-logo.png', 107, 595, 160, 29, that.drawNetworkPhoto(ctxv, that.data.companyInfo.company_qrcode_url, 94, 291, 188, 188, that.circleImg(ctxv, that.data.companyInfo.logo, 156, 47, 64, 64, 8, function () { ctxv.draw(true, function () { that.closeModal(); that.setData({ showCanvas: true }); that.saveToLocal()}); })));
     }
-    
-    ctxv.draw(true, function () {
-      wx.canvasToTempFilePath({
-        destWidth: that.data.canvasWidth,
-        destHeight: that.data.canvasHeight,
-        canvasId: 'inviteCanvas',
-        success: function success(res) {
-          console.log(res.tempFilePath);
-          wx.saveImageToPhotosAlbum({
-            filePath: res.tempFilePath,
-            success(result) {
-              wx.showToast({
-                title: '保存成功',
-                icon: 'success',
-                duration: 1000
-              });
-            }
-          })
-        }, 
-        fail: function (e) {
-          that.getInvitePhoto();
-        }
-      });
-    });
-    
   },
 
   /**
@@ -315,7 +310,7 @@ Page({
   onShareAppMessage: function (res) {
     return {
       title: '邀请加入' + this.data.companyInfo.company_name,
-      path: '/pages/invite-receive/invite-receive?vip=yes&invitation_id=' + this.data.invitation_id,
+      path: '/pages/employee/join-company/confirmCompanyInformation/index',
       success: function (res) {},
       fail: function (res) {}
     }
