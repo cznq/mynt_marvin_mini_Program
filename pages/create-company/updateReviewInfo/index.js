@@ -94,8 +94,8 @@ Page({
     /** 上传到oss服务器参数 */
     var uposs_url = app.globalData.BASE_API_URL;
     var uposs_service = 'company';
-    var uposs_method = 'upload_file';
-    var uposs_name = 'company_pic';
+    var uposs_method = 'upload_company_multimedia';
+    var uposs_name = 'company_multimedia_url';
 
     //上传图片
     app.Util.uploadImage(chooseImage_count, chooseImage_sizeType, chooseImage_sourceType, uposs_url, uposs_service, uposs_method, uposs_name, function (obj) {
@@ -128,8 +128,8 @@ Page({
     /** 上传到oss服务器参数 */
     var uposs_url = app.globalData.BASE_API_URL;
     var uposs_service = 'company';
-    var uposs_method = 'upload_file';
-    var uposs_name = 'company_pic';
+    var uposs_method = 'upload_company_multimedia';
+    var uposs_name = 'company_multimedia_url';
 
     /**选择视频参数 */
     var chooseVideo_sourceType = ['album', 'camera'];
@@ -151,7 +151,26 @@ Page({
     console.log('background_url' + _this.data.cd.product_urls.length);
     console.log('video_url' + _this.data.cd.video_url.length);
 
+
     //表单验证
+
+    if (_this.data.cd.logo.length == 0) {
+      _this.Toast('需要上传公司LOGO')
+      return false;
+    }
+    if (_this.data.cd.background_url.length == 0) {
+      _this.Toast('需要上传宣传背景图')
+      return false;
+    }
+    if (_this.data.cd.product_urls.length == 0) {
+      _this.Toast('需要上传轮播图')
+      return false;
+    }
+    if (_this.data.cd.video_url.length == 0) {
+      _this.Toast('需要上传视频')
+      return false;
+    }
+
     if (_this.data.cd.logo.length !== 0 && _this.data.cd.background_url.length !== 0 && _this.data.cd.product_urls.length !== 0 && _this.data.cd.video_url.length !== 0) {
       console.log('可以通过');
       //更新
@@ -192,5 +211,13 @@ Page({
         mask: false
       });
     }
+  },
+  Toast: function (text) {
+    toast.showToast(this, {
+      toastStyle: 'toast',
+      title: text,
+      duration: 1500,
+      mask: false
+    });
   }
 })

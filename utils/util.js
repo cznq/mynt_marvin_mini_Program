@@ -369,7 +369,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         success: res => {
           console.log("aa"+i);
           var resdata = JSON.parse(res.data);
-          spliceArr.push(resdata.result.company_pic);
+          spliceArr.push(resdata.result.company_multimedia_url);
           if (i == tempFilePathsLength) {
             cb(spliceArr);
             wx.hideLoading();

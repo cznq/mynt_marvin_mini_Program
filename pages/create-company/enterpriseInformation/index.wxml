@@ -16,7 +16,7 @@
     </view>
     <view class='input_block'>
       <view>
-        <text class='_font24 _txt_darkgrey'>公司简介</text>
+        <text class='_font24 _txt_darkgrey'>公司简称</text>
         <text class='_font22 _txt_darkgrey _fontw300'>(必填)</text>
       </view>
       <input class='input_text' name="company_short_name" value='{{cd.company_short_name}}' placeholder='显示在机器人端公司主页，最多8个字' placeholder-class='input_text_phc' maxlength='8'></input>
