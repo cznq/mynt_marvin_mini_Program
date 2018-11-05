@@ -49,6 +49,23 @@
   font-size: 30rpx;
 }
 
+.clearvideo {
+  width: 28rpx;
+  height: 28rpx;
+  padding: 12rpx 0 0 12rpx;
+}
+
+.clearvideo .cha {
+  width: 16rpx;
+  height: 16rpx;
+}
+
+.icon-cha {
+  font-size: 16rpx;
+  color: #fff;
+  padding-top: 5rpx;
+}
+
 .up_logo .up_pub, .up_logo .showpic {
   width: 240rpx;
   height: 240rpx;
@@ -70,15 +87,16 @@
   height: 44rpx;
   border-radius: 48rpx;
   text-align: center;
-  line-height: 40rpx;
   background: #fff;
   border: 1rpx solid #bbb;
-  color: #bbb;
-  font-weight: 300;
- font-family: -BlinkMacSystemFont;
   margin: 0 auto;
-  font-size:45rpx;
-  padding:0;
+}
+
+.up_dot .icon-tianjia {
+  padding-top: 12rpx;
+  line-height: 22rpx;
+  font-size: 22rpx;
+  color: #bbb;
 }
 
 .up_text {
@@ -91,7 +109,11 @@
   width: 528rpx;
   height: 300rpx;
 }
-.video{width:528rpx;height:300rpx;}
+
+.video {
+  width: 528rpx;
+  height: 300rpx;
+}
 
 .up_broadcast .up_pub, .up_broadcast .showpic {
   width: 300rpx;
@@ -154,24 +176,25 @@
   text-align: center;
 }
 
-
 .controls {
   position: relative;
   top: -50rpx;
   height: 50px;
-
   display: flex;
 }
-.play,.pause,.time {
+
+.play, .pause, .time {
   flex: 1;
   height: 100%;
 }
+
 .time {
   text-align: center;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   line-height: 50px;
 }
+
 .img {
   width: 40px;
   height: 40px;

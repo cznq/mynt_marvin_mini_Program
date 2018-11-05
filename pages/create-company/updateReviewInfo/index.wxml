@@ -18,7 +18,7 @@
     </view>
     <view class='up_pub' bindtap='uploadimages' data-key='logo' wx:else>
       <view class='up_con'>
-        <view class='up_dot'>+</view>
+        <view class='up_dot'><view class="iconfont icon-tianjia"></view></view>
         <view class='up_text _fontw300'>图片</view>
       </view>
     </view>
@@ -32,7 +32,7 @@
     </view>
     <view class='up_pub' bindtap='uploadimages' data-key='background_url' wx:else>
       <view class='up_con'>
-        <view class='up_dot'>+</view>
+        <view class='up_dot'><view class="iconfont icon-tianjia"></view></view>
         <view class='up_text _fontw300'>图片</view>
       </view>
     </view>
@@ -49,7 +49,7 @@
       </view>
       <view class='up_pub' bindtap='uploadimages' data-num="6" data-key='product_urls' wx:if="{{isSowingMapUp==false? false : true}}">
         <view class='up_con'>
-          <view class='up_dot'>+</view>
+          <view class='up_dot'><view class="iconfont icon-tianjia"></view></view>
           <view class='up_text _fontw300'>图片</view>
         </view>
       </view>
@@ -66,14 +66,14 @@
     <view class='up_pub' wx:if="{{cd.video_url !== ''}}">
       <video class='video' id="myVideo" src="{{cd.video_url}}">
       </video>
-      <!-- <view class='clearpic _position' bindtap='bindclearpic' data-key='video_url'>×</view> -->
-      <cover-view class="clearpic _position" bindtap="bindclearpic" data-key='video_url'>
-        ×
+      <cover-view class="clearpic clearvideo _position" bindtap="bindclearpic" data-key='video_url'>
+      <cover-image class="cha" src="http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/cha.png" />
       </cover-view>
     </view>
+    <!--   -->
     <view class='up_pub' bindtap='uploadvideo' wx:else>
       <view class='up_con'>
-        <view class='up_dot'>+</view>
+        <view class='up_dot'><view class="iconfont icon-tianjia"></view></view>
         <view class='up_text _fontw300'>视频</view>
       </view>
     </view>

@@ -62,6 +62,15 @@ Page({
       phone = e.detail.value.phone,
       website = e.detail.value.website,
       introduction = e.detail.value.introduction;
+
+    if (company_short_name.length == 0) {
+      _this.Toast('公司简介填写不完整')
+      return false
+    }
+    if (room.length == 0) {
+      _this.Toast('公司地址填写不完整')
+      return false
+    }
     if (company_name !== '' && company_short_name !== '' && address !== '' && floor !== '' && room !== '') {
       console.log('ok');
       //请求接口
@@ -105,5 +114,13 @@ Page({
         mask: false
       });
     }
+  },
+  Toast:function(text){
+    toast.showToast(this, {
+      toastStyle: 'toast',
+      title: text,
+      duration: 1500,
+      mask: false
+    });
   }
 })
