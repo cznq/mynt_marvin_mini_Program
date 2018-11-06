@@ -7,7 +7,7 @@
   <view class="page__bd ">
     <view class="guide-title _txt_center _font44 _fontw500">快捷取卡指南</view>
     <view class="guide-intro _font28 _txt_center _fontw300">录入信息后可以让机器人认出你，并为您提供快捷取卡等服务，同时也是员工身份的证明</view>
-    <button class="open-btn _font32" bindtap="openFunction">开启快捷取卡</button>
+    <button class="open-btn _font32" bindtap="openFunction" wx:if="{{!opened}}">开启快捷取卡</button>
     <!-- How it Work -->
     <view class="how-it-work ">
       <view class="tit _txt_center _font32">如何快捷取卡</view>

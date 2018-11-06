@@ -129,6 +129,7 @@ Page({
    * 检测表单可提交状态
    */
   checkForm: function (e) {
+    console.log(e);
     var val = app.Util.filterEmoji(e.detail.value);
     if (e.currentTarget.id == 'i1') {
       if (e.detail.value !== '') {
@@ -196,6 +197,13 @@ Page({
   },
 
   /**
+   * 输入框失去焦点，清除按钮消失
+   */
+  loseFocus: function () {
+
+  },
+
+  /**
    * 获取访客信息
    */
   getVisitorInfo: function () {
@@ -211,8 +219,14 @@ Page({
         })
       },
       success: res => {
-        console.log(res);
-        if (!app.Util.checkEmpty(res.data.result.id_number)) {
+        if (res.data.sub_code == 100013) {
+          wx.showToast({
+            title: res.data.sub_msg,
+            icon: 'none'
+          })
+          return false;
+        }
+        if (res.data.result && !app.Util.checkEmpty(res.data.result.id_number)) {
           wx.redirectTo({
             url: '/pages/collect-info/face/index?invitation_id=' + that.data.invitation_id + '&company_id=' + this.data.company_id + '&vip=' + that.data.vip,
           })
@@ -238,7 +252,13 @@ Page({
         })
       },
       success: res => {
-        console.log(res);
+        if (res.data.sub_code == 100013) {
+          wx.showToast({
+            title: res.data.sub_msg,
+            icon: 'none'
+          })
+          return false;
+        }
         if (!app.Util.checkEmpty(res.data.result.id_number)) {
           wx.redirectTo({
             url: '/pages/collect-info/face/index?invitation_id=' + that.data.invitation_id + '&company_id=' + this.data.company_id + '&vip=' + that.data.vip,

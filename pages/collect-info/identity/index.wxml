@@ -11,14 +11,14 @@
       <view>
         <text class='_font24 _txt_darkgrey'>手机号</text>
       </view>
-      <input class="input_text {{inputError.phone?'error':''}}" type="number" name="phone" value='{{formData.phone}}' bindinput="checkForm" placeholder-class='input_text_phc' placeholder='Enter your phone number' id='i1'></input>
+      <input class="input_text {{inputError.phone?'error':''}}" type="number" name="phone" value='{{formData.phone}}' bindinput="checkForm" bindblur="loseFocus" placeholder-class='input_text_phc' placeholder='Enter your phone number' id='i1'></input>
       <icon type="clear" size="16" wx:if="{{formData.phone}}" catchtap="clearInput" id="b1"></icon>
     </view>
     <view class='input_block' id='ib2'>
       <view>
         <text class='_font24 _txt_darkgrey'>身份证号</text>
       </view>
-      <input class="input_text {{(inputError.id_number)?'error':''}}" name="id_number" type="idcard" bindinput="checkForm" value='{{formData.id_number}}' placeholder='Enter your real ID card number' placeholder-class='input_text_phc' id='i2'></input><icon type="clear" size="16" wx:if="{{formData.id_number}}" catchtap="clearInput" id="b2"></icon>
+      <input class="input_text {{(inputError.id_number)?'error':''}}" name="id_number" type="idcard" bindinput="checkForm" bindblur="loseFocus" value='{{formData.id_number}}' placeholder='Enter your real ID card number' placeholder-class='input_text_phc' id='i2'></input><icon type="clear" size="16" wx:if="{{formData.id_number}}" catchtap="clearInput" id="b2"></icon>
     </view>
 
     <view class='_fixed footer'>

@@ -21,7 +21,7 @@ Page({
    * 返回快捷取卡指南页
    */
   backGuide: function () {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/employee/take-card/guide/index?company_id=' + this.data.company_id
     })
   }

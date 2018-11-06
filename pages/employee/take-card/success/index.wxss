@@ -17,7 +17,7 @@ page, .page {
 }
 
 .status {
-  margin-top: 184rpx;
+  margin-top: 144rpx;
   color: rgba(78, 221, 122, 1);
 }
 .page__ft {
