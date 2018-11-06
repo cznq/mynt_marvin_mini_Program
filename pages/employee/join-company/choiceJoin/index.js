@@ -18,8 +18,8 @@ Page({
       success(res) {
         console.log(res.path);
         wx.navigateTo({
-          //url: '/' + res.path,
-          url:'../confirmCompanyInformation/index?scene=GERW1XWQ',
+          url: '/' + res.path,
+          //url:'../confirmCompanyInformation/index?scene=GERW1XWQ',
         })
       }
     })
