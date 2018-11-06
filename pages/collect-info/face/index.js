@@ -65,7 +65,7 @@ Page({
                         cameraErrorText: "已经授权，请关闭小程序重新打开"
                       });
                       wx.redirectTo({
-                        url: '/pages/invite-accept/invite-accept?invitation_id=' + that.data.invitation_id + '&visit_apply_id=' + that.data.visit_apply_id + '&company_id=' + that.data.company_id + '&vip=' + that.data.vip,
+                        url: '/pages/collect-info/face/index?invitation_id=' + that.data.invitation_id + '&visit_apply_id=' + that.data.visit_apply_id + '&company_id=' + that.data.company_id + '&vip=' + that.data.vip,
                       })
                     } else {
                       wx.showToast({
