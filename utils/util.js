@@ -295,7 +295,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   }
 
 //选择图片
-  function uploadImage(count, sizeType, sourceType, uposs_url, uposs_service, uposs_method,uposs_name,cb) {
+  function uploadImage(_this,count, sizeType, sourceType, uposs_url, uposs_service, uposs_method,uposs_name,cb) {
     wx.chooseImage({
       count: count,
       sizeType: sizeType,
@@ -304,7 +304,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         const tempFilePaths = res.tempFilePaths;
         var i = 0;//选择上传位置
         var dataArr =[];//返回数据组
-        uposs(uposs_url, uposs_service, uposs_method, uposs_name, tempFilePaths, i, dataArr, function (obj) {
+        uposs(_this,uposs_url, uposs_service, uposs_method, uposs_name, tempFilePaths, i, dataArr, function (obj) {
           cb(obj);
         });
         
@@ -313,7 +313,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   }
 
   //选择视频
-  function uploadvideo(sourceType, compressed, maxDuration, camera, uposs_url, uposs_service, uposs_method, uposs_name,cb){
+  function uploadvideo(_this,sourceType, compressed, maxDuration, camera, uposs_url, uposs_service, uposs_method, uposs_name,cb){
     wx.chooseVideo({
       sourceType: sourceType,
       maxDuration: maxDuration,
@@ -325,7 +325,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         datatt.push(res.tempFilePath);
         var i = 0;//选择上传位置
         var dataArr = [];//返回数据组
-        uposs(uposs_url, uposs_service, uposs_method, uposs_name, datatt, i, dataArr,  function (obj) {
+        uposs(_this,uposs_url, uposs_service, uposs_method, uposs_name, datatt, i, dataArr,  function (obj) {
           cb(obj);
         });
       }
@@ -333,7 +333,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   }
 
   //上传oss
-  function uposs(uposs_url, uposs_service, uposs_method, uposs_name, tempFilePaths, i, dataArr,cb){
+  function uposs(_this,uposs_url, uposs_service, uposs_method, uposs_name, tempFilePaths, i, dataArr,cb){
     var spliceArr = dataArr;
     var tempFilePathsLength = tempFilePaths.length-1;//图片数量
     var url = uposs_url;
@@ -375,7 +375,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
               wx.hideLoading();
             } else if(i < tempFilePathsLength){
               i++;
-              uposs(url, service, method, name, tempFilePaths, i, spliceArr, cb);
+              uposs(_this,url, service, method, name, tempFilePaths, i, spliceArr, cb);
             }
           }else{
             app.globalData.fundebug.notify("上传图片视频/upload_company_multimedia", res.data.sub_msg);

@@ -81,7 +81,11 @@
       <text>宣传视频与轮播图共用机器人端同个展示位，可选择播放\n建议尺寸：1920*1080</text>
     </view>
   </view>
+
   <cover-view class='_fixed footer covview'>
+    <button class="_button" bindtap="submit">{{button_text}}</button>
+  </cover-view>
+  <cover-view class='_fixed footer covview' wx:if="{{isvideoshow==false? false : true}}">
     <button class="_button" bindtap="submit">{{button_text}}</button>
   </cover-view>
 </view>

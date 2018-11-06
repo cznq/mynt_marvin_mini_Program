@@ -25,7 +25,7 @@ Page({
         })
       },
       success: res => {
-        //console.log(res);
+        console.log(res);
         if (res.data.sub_code == 0) {
           console.log('数据成功');
           _this.setData({

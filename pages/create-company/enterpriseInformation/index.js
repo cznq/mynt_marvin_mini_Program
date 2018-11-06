@@ -73,7 +73,6 @@ Page({
       return false
     }
     if (company_name !== '' && company_short_name !== '' && address !== '' && floor !== '' && room !== '') {
-      console.log('ok');
       //请求接口
       app.Util.network.POST({
         url: app.globalData.BASE_API_URL,
@@ -97,7 +96,7 @@ Page({
           console.log(res);
           if (res.data.sub_code == 0) {
             wx.navigateTo({
-              url: '../updateReviewInfo/index',
+              url: '../updateReviewInfo/index?introduction=' + introduction,
             })
           } else {
             app.globalData.fundebug.notify("更新用户信息/update", res.data.sub_msg);

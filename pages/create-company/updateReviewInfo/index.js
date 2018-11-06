@@ -8,7 +8,9 @@ Page({
     hint: '以下资料需经过楼宇管理员审核，严禁上传色情、\n暴力、血腥、骇人或政治相关内容的图片',
     cd: {},
     isSowingMapUp: false,
-    mode: 'aspectFill'
+    mode: 'aspectFill',
+    isvideoshow:false,
+    introduction:''
   },
   next: function () {
     wx.navigateTo({
@@ -18,6 +20,8 @@ Page({
   onLoad: function (options) {
     var _this = this;
     app.Util.checkcanIUse('cover-view'); //检测组件兼容性 础库 1.4.0 开始支持
+    _this.data.introduction = options.introduction;
+    console.log(_this.data.introduction);
     //请求数据
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
@@ -99,7 +103,7 @@ Page({
     var uposs_name = 'company_multimedia_url';
 
     //上传图片
-    app.Util.uploadImage(chooseImage_count, chooseImage_sizeType, chooseImage_sourceType, uposs_url, uposs_service, uposs_method, uposs_name, function (obj) {
+    app.Util.uploadImage(_this,chooseImage_count, chooseImage_sizeType, chooseImage_sourceType, uposs_url, uposs_service, uposs_method, uposs_name, function (obj) {
       if (name == 'cd.product_urls') {
         //轮播图
         for (var i in obj) {
@@ -138,10 +142,15 @@ Page({
     var chooseVideo_maxDuration = 60;
     var chooseVideo_camera = 'back';
 
-    app.Util.uploadvideo(chooseVideo_sourceType, chooseVideo_compressed, chooseVideo_maxDuration, chooseVideo_camera, uposs_url, uposs_service, uposs_method, uposs_name, function (obj) {
+    app.Util.uploadvideo(_this,chooseVideo_sourceType, chooseVideo_compressed, chooseVideo_maxDuration, chooseVideo_camera, uposs_url, uposs_service, uposs_method, uposs_name, function (obj) {
       _this.setData({
         "cd.video_url": obj[0]
       })
+      setTimeout(() => {
+        _this.setData({
+         isvideoshow:true
+        })
+      }, 500);
     });
   },
   //提交信息
@@ -166,7 +175,6 @@ Page({
     }
 
     if (_this.data.cd.logo.length !== 0 && _this.data.cd.background_url.length !== 0 && _this.data.cd.product_urls.length !== 0 && _this.data.cd.video_url.length !== 0) {
-      console.log('可以通过');
       //更新
       app.Util.network.POST({
         url: app.globalData.BASE_API_URL,
@@ -178,7 +186,8 @@ Page({
             logo: _this.data.cd.logo,
             background_url: _this.data.cd.background_url,
             product_urls: _this.data.cd.product_urls,
-            video_url: _this.data.cd.video_url
+            video_url: _this.data.cd.video_url,
+            introduction: _this.data.introduction
           })
         },
         success: res => {
