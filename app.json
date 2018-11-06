@@ -19,6 +19,7 @@
     "pages/employee/join-company/invitationCode/index",
     "pages/employee/join-company/choiceJoin/index",
     "pages/employee/join-company/confirmCompanyInformation/index",
+    "pages/company/unattended-setting/index",
     "pages/demo/iconfont/index",
     "pages/invite/invite",
     "pages/invite-share/invite-share",

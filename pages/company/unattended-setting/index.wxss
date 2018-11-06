@@ -21,12 +21,13 @@ page {
   padding: 0 157rpx 0 158rpx;
   color: #1b2b4c;
   line-height: 1;
+  font-weight: 600;
 }
 
 .content .introduce {
   padding: 44rpx 75rpx 0 74rpx;
   color: #1a2a4b;
-  line-height: 42rpx;
+  line-height: 24px;
 }
 
 .content .switch {

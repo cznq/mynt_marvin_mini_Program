@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 15,
+			"current": 5,
 			"list": [
 				{
 					"id": 0,
@@ -71,13 +71,13 @@
 					"id": 5,
 					"name": "申请结果",
 					"pathName": "pages/invite-apply-result/invite-apply-result",
-					"query": "visit_apply_id=96",
+					"query": "visit_apply_id=1",
 					"scene": "1044"
 				},
 				{
 					"id": 6,
 					"name": "录入人脸",
-					"pathName": "pages/collect-info/face/index",
+					"pathName": "pages/collect-info/identity/index",
 					"query": "company_id=17",
 					"scene": "1044"
 				},
@@ -137,6 +137,13 @@
 					"name": "员工列表",
 					"pathName": "pages/employee/staff-list/index",
 					"query": "company_code=GERW1XWQ",
+					"scene": "1044"
+				},
+				{
+					"id": -1,
+					"name": "录入人脸",
+					"pathName": "pages/company/unattended-setting/index",
+					"query": "company_id=17",
 					"scene": "1044"
 				}
 			]

@@ -166,7 +166,13 @@ Page({
         })
       },
       success: res => {
-        console.log(res.data.result);
+        if (res.data.sub_code == 500025) {
+          wx.showToast({
+            title: '邀请不存在',
+            icon: 'none'
+          })
+          return ;
+        }
         that.getApplyStatus(res.data.result.status, res.data.result.company.company_short_name);
         if (res.data.result.company.video_url !== "") {
           that.setData({

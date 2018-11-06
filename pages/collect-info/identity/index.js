@@ -17,8 +17,8 @@ Page({
     vip: null,
     company_id: null,
     formData: {
-      phone: false,
-      id_number: false
+      phone: null,
+      id_number: null
     },
     inputError: {
       phone: false,
@@ -113,6 +113,7 @@ Page({
               url: '/pages/collect-info/face/index?invitation_id=' + this.data.invitation_id + '&company_id=' + this.data.company_id + '&vip=' + this.data.vip,
             })
           } else {
+            app.globalData.fundebug.notify("提交身份信息", res.data.error_msg);
             wx.showModal({
               content: res.data.error_msg,
               showCancel: false
@@ -129,15 +130,27 @@ Page({
    */
   checkForm: function (e) {
     var val = app.Util.filterEmoji(e.detail.value);
-    if (e.detail.value !== '' && e.currentTarget.id == 'i1') {
-      this.setData({
-        'formData.phone': true
-      });
+    if (e.currentTarget.id == 'i1') {
+      if (e.detail.value !== '') {
+        this.setData({
+          'formData.phone': e.detail.value
+        });
+      } else {
+        this.setData({
+          'formData.phone': null
+        });
+      } 
     }
-    if (e.detail.value !== '' && e.currentTarget.id == 'i2') {
-      this.setData({
-        'formData.id_number': true
-      });
+    if (e.currentTarget.id == 'i2') {
+      if (e.detail.value !== '') {
+        this.setData({
+          'formData.id_number': e.detail.value
+        });
+      } else {
+        this.setData({
+          'formData.id_number': null
+        });
+      } 
     }
   },
 
@@ -162,6 +175,24 @@ Page({
       return false;
     }
     return true;
+  },
+
+  /**
+   * 清空输入框
+   */
+  clearInput: function (e) {
+    console.log(e);
+    var bid = e.currentTarget.id;
+    if (bid == 'b1') {
+      this.setData({
+        'formData.phone': null
+      })
+    }
+    if (bid == 'b2') {
+      this.setData({
+        'formData.id_number': null
+      })
+    }
   },
 
   /**
@@ -229,7 +260,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function (options) {
-    console.log(this.data.invitation_id);
+    
     var that = this;
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
