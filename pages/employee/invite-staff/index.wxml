@@ -11,10 +11,10 @@
       <button class="invite_btn _flex _flex_item_center _flex_justify_center" open-type="share">
         <text class="iconfont icon-weixin"></text>邀请员工
       </button>
-      <view class="share-info">点击按钮分享链接</view>
+      <view class="share-info">点击邀请好友加入公司</view>
     </view>
     <view class="invite-method _txt_center">
-      <view class="title _font28 _fontw500">更多的邀请方式</view>
+      <view class="title _font28 _fontw500">更多邀请途径</view>
       <view class="invite-by">
         <view class="invite-wrap invite-by-qrcode" bindtap="inviteOpen" data-method='qrcode'>
           <view class="iconfont icon-tianjiayuangong_erweima"></view>
@@ -25,7 +25,7 @@
           <view class="method-name">通过公司码</view>
         </view>
       </view>
-      <view class="invite-intro _font24 _fontw300">展示二维码或者邀请码即可邀请员工加入，员工点击按钮加入公司，管理员同意之后，即可加入公司</view>
+      <view class="invite-intro _font24 _fontw300">员工通过扫描二维码或输入邀请码的方式申请加入</view>
     </view>
   </view>
   <canvas canvas-id="inviteCanvas" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px;"></canvas>

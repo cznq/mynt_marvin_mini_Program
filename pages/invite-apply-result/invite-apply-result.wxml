@@ -86,14 +86,12 @@
     </view>
 
   </view>
-  <!--
+  
   <view class="little-pannel"></view>
   <view class="page__ft">
     <view class="wechat">
-      <image src="../../images/qrcode.png" mode="widthFix" bindtap="identifyQrcode"></image>
-      <view>长按识别关注</view>
-      <view>小觅智能楼宇服务</view>
+      <official-account></official-account>
     </view>
   </view>
-  -->
+  
 </view>

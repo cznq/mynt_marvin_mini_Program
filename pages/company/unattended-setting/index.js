@@ -7,9 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: '无人值守功能',
-    introduce: '如果您不能及时处理前台到访请求,或者您希望访客能够直接来访,请打开这个开关',
-    explain: '无人值守功能已经打开,访客将会直接来到公司',
+    title: '无人值守',
+    introduce: '如果您无法及时处理访客申请，或您希望访客无需通过申请即可取卡，请开启此功能',
+    explain: '无人值守功能已开启,请留意您的访客',
     isShow: true,
     isChecked: true,
     union_id: wx.getStorageSync('xy_session')
@@ -57,7 +57,7 @@ Page({
       toast.showToast(this, {
         toastStyle: 'toast4',
         title: '注意',
-        introduce: '打开无人值守功能后,未申请到访的访客将会直接来到公司,请谨慎选择。',
+        introduce: '开启无人值守，未预约访客取卡无需前台确认，为确保公司安全，请谨慎开启',
         mask: true,
         isSure: true,
         sureText: '仍然打开',

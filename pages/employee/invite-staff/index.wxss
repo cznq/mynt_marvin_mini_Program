@@ -96,7 +96,7 @@ page {
   color: rgba(26, 42, 75, 1);
 }
 .invite-intro {
-  width: 476rpx;
+  width: 406rpx;
   margin: 30rpx auto;
   line-height: 36rpx;
   color: rgba(136, 145, 169, 1);

@@ -11,6 +11,13 @@
 }
 .input_block {
   padding-bottom: 25rpx;
+  position: relative;
+}
+icon {
+  position: absolute;
+  bottom: 50rpx;
+  right: 0;
+  z-index: 100;
 }
 .mainTitle {
   padding-top:35rpx;

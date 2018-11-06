@@ -17,8 +17,8 @@ Page({
     vip: null,
     company_id: null,
     formData: {
-      phone: false,
-      id_number: false
+      phone: null,
+      id_number: null
     },
     inputError: {
       phone: false,
@@ -113,6 +113,7 @@ Page({
               url: '/pages/collect-info/face/index?invitation_id=' + this.data.invitation_id + '&company_id=' + this.data.company_id + '&vip=' + this.data.vip,
             })
           } else {
+            app.globalData.fundebug.notify("提交身份信息", res.data.error_msg);
             wx.showModal({
               content: res.data.error_msg,
               showCancel: false
@@ -128,16 +129,29 @@ Page({
    * 检测表单可提交状态
    */
   checkForm: function (e) {
+    console.log(e);
     var val = app.Util.filterEmoji(e.detail.value);
-    if (e.detail.value !== '' && e.currentTarget.id == 'i1') {
-      this.setData({
-        'formData.phone': true
-      });
+    if (e.currentTarget.id == 'i1') {
+      if (e.detail.value !== '') {
+        this.setData({
+          'formData.phone': e.detail.value
+        });
+      } else {
+        this.setData({
+          'formData.phone': null
+        });
+      } 
     }
-    if (e.detail.value !== '' && e.currentTarget.id == 'i2') {
-      this.setData({
-        'formData.id_number': true
-      });
+    if (e.currentTarget.id == 'i2') {
+      if (e.detail.value !== '') {
+        this.setData({
+          'formData.id_number': e.detail.value
+        });
+      } else {
+        this.setData({
+          'formData.id_number': null
+        });
+      } 
     }
   },
 
@@ -165,6 +179,31 @@ Page({
   },
 
   /**
+   * 清空输入框
+   */
+  clearInput: function (e) {
+    console.log(e);
+    var bid = e.currentTarget.id;
+    if (bid == 'b1') {
+      this.setData({
+        'formData.phone': null
+      })
+    }
+    if (bid == 'b2') {
+      this.setData({
+        'formData.id_number': null
+      })
+    }
+  },
+
+  /**
+   * 输入框失去焦点，清除按钮消失
+   */
+  loseFocus: function () {
+
+  },
+
+  /**
    * 获取访客信息
    */
   getVisitorInfo: function () {
@@ -180,8 +219,14 @@ Page({
         })
       },
       success: res => {
-        console.log(res);
-        if (!app.Util.checkEmpty(res.data.result.id_number)) {
+        if (res.data.sub_code == 100013) {
+          wx.showToast({
+            title: res.data.sub_msg,
+            icon: 'none'
+          })
+          return false;
+        }
+        if (res.data.result && !app.Util.checkEmpty(res.data.result.id_number)) {
           wx.redirectTo({
             url: '/pages/collect-info/face/index?invitation_id=' + that.data.invitation_id + '&company_id=' + this.data.company_id + '&vip=' + that.data.vip,
           })
@@ -207,7 +252,13 @@ Page({
         })
       },
       success: res => {
-        console.log(res);
+        if (res.data.sub_code == 100013) {
+          wx.showToast({
+            title: res.data.sub_msg,
+            icon: 'none'
+          })
+          return false;
+        }
         if (!app.Util.checkEmpty(res.data.result.id_number)) {
           wx.redirectTo({
             url: '/pages/collect-info/face/index?invitation_id=' + that.data.invitation_id + '&company_id=' + this.data.company_id + '&vip=' + that.data.vip,
@@ -229,7 +280,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function (options) {
-    console.log(this.data.invitation_id);
+    
     var that = this;
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {

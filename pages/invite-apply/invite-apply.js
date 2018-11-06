@@ -203,6 +203,8 @@ Page({
     if (scene_str !== undefined) { 
       var company_id = scene_str.split('_')[0];
       var qr_code_key = scene_str.split('_')[1];
+    } else {
+      app.globalData.fundebug.notify("扫码二维码出错", "请重新扫码二维码");
     }
     wx.removeStorageSync('xy_session');
     console.log("Company id" + company_id + "key" + qr_code_key);

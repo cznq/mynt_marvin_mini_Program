@@ -10,7 +10,7 @@
   vertical-align: bottom;
 }
 .page__bd {
-  padding: 100rpx 74rpx 100rpx;
+  padding: 100rpx 74rpx 50rpx;
 }
 .guide-title {
   line-height: 1;
@@ -45,6 +45,8 @@
 }
 .step-num {
   color: rgba(136, 145, 169, 1);
+  line-height: 1;
+  margin-bottom: 20rpx;
 }
 .intro {
   line-height: 42rpx;

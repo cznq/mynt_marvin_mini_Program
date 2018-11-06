@@ -8,7 +8,8 @@ Page({
    */
   data: {
     company_id: null,
-    empInfo: null
+    empInfo: null,
+    opened: false
   },
 
   /**
@@ -40,6 +41,11 @@ Page({
           that.setData({
             empInfo: res.data.result
           })
+          if (!app.Util.checkEmpty(that.data.empInfo.input_pic_url) && !app.Util.checkEmpty(that.data.empInfo.id_number)) {
+            that.setData({
+              opened: true
+            })
+          }
         }
       }
     })
