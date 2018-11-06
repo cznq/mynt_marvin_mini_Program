@@ -32,7 +32,7 @@ button.btn {
   margin-left: 20rpx;
 }
 button.btn.allow {
-  background: #475FFD;
+  background: #007bff;
   color: #fff;
 }
 .status {

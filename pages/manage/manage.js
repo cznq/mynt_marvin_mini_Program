@@ -26,7 +26,7 @@ Page({
       _this.get_review_status(_this, union_id);
     }
   },
-  //获取用户信息
+  //获取用户状态
   get_review_status: function(_this, union_id) {
     if (union_id !== '') {
       app.Util.network.POST({
@@ -41,7 +41,7 @@ Page({
         success: res => {
           console.log(res);
           var resdata = res.data.result;
-          if (resdata) {
+          if (res.data.sub_code == 0) {
             if (resdata.employee_status === 0) {
               console.log('webview');
               _this.setData({
@@ -63,6 +63,8 @@ Page({
               })
             } 
 
+          }else{
+            // app.globalData.fundebug.notify("获取用户状态/get_review_status", res.data.sub_msg);
           }
         },
         fail: res => {
@@ -112,6 +114,8 @@ Page({
             icon: 'none',
             duration: 3000
           })
+          // app.globalData.fundebug.notify("取消申请/ cancel_apply", res.data.sub_msg);
+          // console.log(res.data.sub_msg);
         }
       },
       fail: res => {

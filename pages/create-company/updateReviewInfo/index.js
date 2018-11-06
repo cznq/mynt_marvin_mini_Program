@@ -45,7 +45,8 @@ Page({
             })
           }
         } else {
-          console.log('请求出错');
+          app.globalData.fundebug.notify("获取用户信息/get_info", res.data.sub_msg);
+          console.log(res.data.sub_msg);
         }
       },
       fail: res => {
@@ -146,14 +147,7 @@ Page({
   //提交信息
   submit: function () {
     var _this = this;
-    console.log('logo' + _this.data.cd.logo.length);
-    console.log('background_url' + _this.data.cd.background_url.length);
-    console.log('background_url' + _this.data.cd.product_urls.length);
-    console.log('video_url' + _this.data.cd.video_url.length);
-
-
     //表单验证
-
     if (_this.data.cd.logo.length == 0) {
       _this.Toast('需要上传公司LOGO')
       return false;
@@ -195,7 +189,8 @@ Page({
               url: '../createSuccess/index',
             })
           } else {
-            console.log('请求出错');
+            app.globalData.fundebug.notify("图片视频更新/update", res.data.sub_msg);
+            console.log(res.data.sub_msg);
           }
         },
         fail: res => {

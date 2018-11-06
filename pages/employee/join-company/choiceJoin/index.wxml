@@ -20,5 +20,3 @@
     <text>{{hint}}</text>
   </view>
 </view>
-<import src="../../../../templates/showToast/showToast.wxml" />
-<template is="showToast" data="{{showToast: showToast}}" />

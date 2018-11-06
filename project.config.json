@@ -123,8 +123,8 @@
 				{
 					"id": 13,
 					"name": "测试",
-					"pathName": "pages/employee/join-company/confirmCompanyInformation/index",
-					"query": "company_code=GERW1XWQ"
+					"pathName": "pages/employee/join-company/enterRealName/index",
+					"query": "scene=GERW1XWQ  "
 				},
 				{
 					"id": -1,

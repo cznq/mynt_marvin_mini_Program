@@ -3,4 +3,4 @@
 .login .title{padding:637rpx 145rpx 0rpx 145rpx;text-align: center;}
 .login .introduce{padding:41rpx 76rpx 138rpx 76rpx;}
 .login .copy{font-size:24rpx;color:#8891A9;text-align: center;padding:28rpx 0;font-weight: 300;}
-.login .t_blue{color:#475FFD;}
+.login .t_blue{color:#007bff;}
