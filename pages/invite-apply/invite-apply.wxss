@@ -1,5 +1,4 @@
 /* pages/invite-apply/invite-apply.wxss */
-/* pages/edit-info/edit-info.wxss */
 .page::before {
   content: "";
   display: block;

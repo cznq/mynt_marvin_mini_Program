@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 13,
+			"current": 15,
 			"list": [
 				{
 					"id": 0,
@@ -131,6 +131,13 @@
 					"name": "信息",
 					"pathName": "pages/create-company/enterpriseInformation/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "员工列表",
+					"pathName": "pages/employee/staff-list/index",
+					"query": "company_code=GERW1XWQ",
+					"scene": "1044"
 				}
 			]
 		}
