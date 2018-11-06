@@ -25,7 +25,8 @@ Page({
             company_name: res.data.result.company_name
           })
         } else {
-          console.log('请求出错');
+          app.globalData.fundebug.notify("创建成功/get_review_status", res.data.sub_msg);
+          console.log(res.data.sub_msg);
         }
       },
       fail: res => {

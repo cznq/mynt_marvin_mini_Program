@@ -1,4 +1,5 @@
 var app = getApp();
+var toast = require('../../../../templates/showToast/showToast');
 Page({
   data: {
     mainTitle: '确认加入此公司',
@@ -8,7 +9,11 @@ Page({
   },
   onLoad: function(options) {
     var _this = this;
-    _this.data.company_code = options.company_code;
+    if (!options.company_code){
+      _this.data.company_code = decodeURIComponent(options.scene);
+    }else{
+      _this.data.company_code = options.company_code;
+    }
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
@@ -16,7 +21,7 @@ Page({
         method: 'get_company_info',
         data: JSON.stringify({
           union_id: wx.getStorageSync('xy_session'),
-          company_code: options.company_code
+          company_code: _this.data.company_code
         })
       },
       success: res => {
@@ -27,15 +32,16 @@ Page({
             cd: res.data.result
           })
         } else {
+          app.globalData.fundebug.notify("邀请码错误/get_company_info", res.data.sub_msg);
+          console.log(res.data.sub_msg);
           toast.showToast(this, {
             toastStyle: 'toast',
             title: res.data.sub_msg,
-            duration: 2000,
+            duration: 1000,
             mask: false,
             cb: function() {
-              _this.setData({
-                codevalue: '',
-                isfocus: true
+              wx.reLaunch({
+                url: '../choiceJoin/index',
               })
             }
           });

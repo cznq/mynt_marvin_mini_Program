@@ -37,8 +37,9 @@ Page({
              wx.navigateTo({
               url: '../enterpriseInformation/index',
             })
-          }else{
-            console.log("返回数据错误");
+          } else {
+            app.globalData.fundebug.notify("绑定用户/bind_admin", res.data.sub_msg);
+            console.log(res.data.sub_msg);
           }
         },
         fail: res => {

@@ -4,14 +4,14 @@ Page({
   data: {
     mainTitle: '输入公司码',
     hint: '公司码需向楼宇管理申领\n服务热线：0510-88877799',
-    codevalue:'',
-    isfocus:true
+    codevalue: '',
+    isfocus: true
   },
   companyCode: function(e) {
     var _this = this;
-    var company_verify_code= e.detail.value.replace(/\s/ig, '');
+    var company_verify_code = e.detail.value.replace(/\s/ig, '');
     //判断公司码不能为汉字
-    if (app.Util.checkCode(company_verify_code) == true){
+    if (app.Util.checkCode(company_verify_code) == true) {
       _this.setData({
         isfocus: false
       })
@@ -20,7 +20,7 @@ Page({
         title: '你输入的码有误,请重新输入',
         duration: 2000,
         mask: false,
-        cb: function () {
+        cb: function() {
           _this.setData({
             codevalue: '',
             isfocus: true
@@ -32,7 +32,6 @@ Page({
     if (company_verify_code.length == 8) {
       var company_verify_code = company_verify_code,
         union_id = wx.getStorageSync('xy_session')
-        
 
       //请求
       app.Util.network.POST({
@@ -51,7 +50,7 @@ Page({
             wx.navigateTo({
               url: '../enterRealName/index?company_verify_code=' + company_verify_code,
             })
-          }else{
+          } else {
             _this.setData({
               isfocus: false
             })
@@ -60,7 +59,7 @@ Page({
               title: '你输入的码有误,请重新输入',
               duration: 2000,
               mask: false,
-              cb: function () {
+              cb: function() {
                 _this.setData({
                   codevalue: '',
                   isfocus: true

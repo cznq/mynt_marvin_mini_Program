@@ -267,11 +267,11 @@ input:-webkit-input-placeholder {
 }
 
 /* button*/
-._button{background:#475FFD;color:#ffffff;width:630rpx;height:100rpx;text-align: center;line-height:100rpx;}
+._button{background:#007bff;color:#ffffff;width:630rpx;height:100rpx;text-align: center;line-height:100rpx;}
 ._button_disabled{background: #d9dffd !important;color:#fff !important;}
 ._button_width306{width:306rpx;}
 ._button_width350{width:350rpx;}
-._button_white{background: #fff !important;color:#475FFD;border:1rpx solid #e8e9e9;}
+._button_white{background: #fff !important;color:#007bff;border:1rpx solid #e8e9e9;}
 
 /*外轮廓*/
 ._content{padding:0 60rpx;color:#1A2A4B;}

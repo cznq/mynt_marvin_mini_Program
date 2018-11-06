@@ -1,5 +1,4 @@
 @import "../../../create-company/public/style.wxss";
-@import "../../../../templates/showToast/showToast.wxss";
 
 page {
   background: #f9fafb;

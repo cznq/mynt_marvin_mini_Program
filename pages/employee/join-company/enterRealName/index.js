@@ -13,27 +13,6 @@ Page({
     var _this = this;
     _this.data.company_code = options.company_code;
   },
-  // companyCode: function (e) {
-  //   var _this = this;
-  //   //判断公司码不能为汉字
-  //   if (app.Util.checkCode(e.detail.value) == false) {
-  //     _this.setData({
-  //       isfocus: false
-  //     })
-  //     toast.showToast(this, {
-  //       toastStyle: 'toast',
-  //       title: '行',
-  //       duration: 2000,
-  //       mask: false,
-  //       cb: function () {
-  //         _this.setData({
-  //           codevalue: '',
-  //           isfocus: true
-  //         })
-  //       }
-  //     });
-  //   }
-  // },
   //提交数据
   formSubmit: function (e) {
     var _this = this;

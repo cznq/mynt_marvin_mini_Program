@@ -367,15 +367,19 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
           data: data
         },
         success: res => {
-          console.log("aa"+i);
           var resdata = JSON.parse(res.data);
-          spliceArr.push(resdata.result.company_multimedia_url);
-          if (i == tempFilePathsLength) {
-            cb(spliceArr);
-            wx.hideLoading();
-          } else if(i < tempFilePathsLength){
-            i++;
-            uposs(url, service, method, name, tempFilePaths, i, spliceArr, cb);
+          if (resdata.sub_code == 0){
+            spliceArr.push(resdata.result.company_multimedia_url);
+            if (i == tempFilePathsLength) {
+              cb(spliceArr);
+              wx.hideLoading();
+            } else if(i < tempFilePathsLength){
+              i++;
+              uposs(url, service, method, name, tempFilePaths, i, spliceArr, cb);
+            }
+          }else{
+            app.globalData.fundebug.notify("上传图片视频/upload_company_multimedia", res.data.sub_msg);
+            console.log(res.data.sub_msg);
           }
         },
         fail: res => {

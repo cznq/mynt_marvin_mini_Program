@@ -1,4 +1,5 @@
 @import "../../../create-company/public/style.wxss";
+@import "../../../../templates/showToast/showToast.wxss";
 
 page {
   background: #f9fafb;
@@ -32,7 +33,8 @@ page {
   width: 123rpx;
   height: 123rpx;
   border-radius: 10rpx;
-  left: 260rpx;
+  left: 50%;
+  margin-left:-61rpx;
   top: 168rpx;
   background: #fff;
   border: 1rpx solid #ddd;
