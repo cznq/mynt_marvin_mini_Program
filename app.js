@@ -7,7 +7,8 @@ const Promise = require('utils/promise.js');
 var fundebug = require('utils/fundebug.0.9.0.min.js');
 // 配置项
 fundebug.init({
-  apikey: "f7a08bd4f8006965ba11314b2571777ea295a98e84766ade31bdb5c272b87428"
+  apikey: "f7a08bd4f8006965ba11314b2571777ea295a98e84766ade31bdb5c272b87428",
+  silent: false
 })
 
 
@@ -15,17 +16,33 @@ App({
   globalData: {
     fundebug: fundebug,
     open_id_type: 1,
-    //BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
-    //WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
-    //BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
+    BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
+    WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
+    BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
     //BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
     //BENIFIT_API_URL: 'https://marvin-benifit-api-test.slightech.com/mini_program/api',
-    BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/',//开发环境
-    WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com',
+    //BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/',//开发环境
+    //WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com',
   },
   
   onLaunch: function () {
-    
+    wx.getSystemInfo({
+      success(res) {
+        wx.setStorage({
+          key: 'sysinfo',
+          data: res,
+        })
+      }
+    })
+    this.myLog('test', 'test');
+  },         
+
+  /**
+   * 自定义日志函数
+   */       
+  myLog(tit, cont) {
+    var sysinfo = wx.getStorageSync('sysinfo');
+    fundebug.notify(tit, cont + '--' + JSON.stringify(sysinfo));
   },
   
   Util: require('utils/util.js'),

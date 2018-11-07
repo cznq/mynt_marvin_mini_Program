@@ -27,6 +27,8 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     requestHandler.params.sign_type = 'MD5';
     var stringA = 'app_id=' + requestHandler.params.app_id + '&data=' + requestHandler.params.data + '&method=' + requestHandler.params.method + '&service=' + requestHandler.params.service + '&timestamp=' + requestHandler.params.timestamp;
     requestHandler.params.sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
+    //打印参数
+    app.myLog("请求参数", JSON.stringify(requestHandler.params));
 
     wx.request({
       url: requestHandler.url,
@@ -36,10 +38,13 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: res => {
+        app.myLog("请求返回", JSON.stringify(res.data));
         wx.hideLoading();
         if (requestHandler.success) requestHandler.success(res);
       },
-      fail: () => {
+      fail: (res) => {
+        console.log(res);
+        app.myLog("请求错误", JSON.stringify(res));
         wx.hideLoading();
         wx.showToast({
           title: '加载失败，请尝试刷新',
@@ -56,6 +61,8 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
   //根据地址获取经纬度
   function generateMap(_this, address) {
+    var app = getApp();
+
     var qqmapsdk = new QQMapWX({
       key: 'CGVBZ-S2KHV-3CBPC-UP4JI-4N55F-7VBFU'
     });
@@ -69,6 +76,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         })
       },
       fail: function (res) {
+        app.myLog("根据地址获取经纬度: ", " 地址："+address + '返回：' + JSON.stringify(res));
         wx.showToast({
           title: '获取经纬度失败',
         })
@@ -399,6 +407,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     GET: GET,
     POST: POST
   }
+  
   module.exports.generateMap = generateMap;
   module.exports.dateFormat = dateFormat;
   module.exports.unique = unique;

@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    invite_auth: null,
     latitude: null,
     longitude: null,
     cmpinfo: null,
@@ -35,7 +36,10 @@ Page({
    */
   setDataRequest: function () {
     var that = this;
-    if (wx.getStorageSync('invite_auth') == true) {
+    that.setData({
+      invite_auth: wx.getStorageSync('invite_auth')
+    })
+    if (that.data.invite_auth == true) {
       that.getCompany();
     } else {
       wx.showModal({
