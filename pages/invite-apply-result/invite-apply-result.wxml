@@ -86,12 +86,12 @@
     </view>
 
   </view>
-  
+  <!--
   <view class="little-pannel"></view>
   <view class="page__ft">
     <view class="wechat">
       <official-account></official-account>
     </view>
   </view>
-  
+  -->
 </view>
