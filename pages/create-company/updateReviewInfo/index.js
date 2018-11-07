@@ -49,7 +49,6 @@ Page({
             })
           }
         } else {
-          app.globalData.fundebug.notify("获取用户信息/get_info", res.data.sub_msg);
           console.log(res.data.sub_msg);
         }
       },
@@ -198,7 +197,6 @@ Page({
               url: '../createSuccess/index',
             })
           } else {
-            app.globalData.fundebug.notify("图片视频更新/update", res.data.sub_msg);
             console.log(res.data.sub_msg);
           }
         },

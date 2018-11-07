@@ -32,7 +32,6 @@ Page({
             cd: res.data.result
           })
         } else {
-          app.globalData.fundebug.notify("邀请码错误/get_company_info", res.data.sub_msg);
           console.log(res.data.sub_msg);
           toast.showToast(this, {
             toastStyle: 'toast',

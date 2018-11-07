@@ -27,7 +27,6 @@ Page({
             cd: res.data.result
           })
         } else {
-          app.globalData.fundebug.notify("获取用户信息/get_info", res.data.sub_msg);
           console.log(res.data.sub_msg);
         }
       },
@@ -99,7 +98,6 @@ Page({
               url: '../updateReviewInfo/index?introduction=' + introduction,
             })
           } else {
-            app.globalData.fundebug.notify("更新用户信息/update", res.data.sub_msg);
             console.log(res.data.sub_msg);
           }
         },

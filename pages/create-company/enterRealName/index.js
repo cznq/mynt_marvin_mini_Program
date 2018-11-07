@@ -38,7 +38,6 @@ Page({
               url: '../enterpriseInformation/index',
             })
           } else {
-            app.globalData.fundebug.notify("绑定用户/bind_admin", res.data.sub_msg);
             console.log(res.data.sub_msg);
           }
         },

@@ -64,7 +64,7 @@ Page({
             } 
 
           }else{
-            // app.globalData.fundebug.notify("获取用户状态/get_review_status", res.data.sub_msg);
+            console.log(res.data.sub_msg);
           }
         },
         fail: res => {
@@ -114,8 +114,7 @@ Page({
             icon: 'none',
             duration: 3000
           })
-          // app.globalData.fundebug.notify("取消申请/ cancel_apply", res.data.sub_msg);
-          // console.log(res.data.sub_msg);
+          console.log(res.data.sub_msg);
         }
       },
       fail: res => {

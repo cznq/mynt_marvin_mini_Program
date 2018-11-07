@@ -1,7 +1,0 @@
-<view class='_content login'>
-<view class='title'>{{title}}</view>
-<view class='introduce'>{{introduce}}</view>
-<button  class="_button" bindtap="next">{{button_text}}</button>
-<view class='copy'><text>{{copy}}</text><text class="t_blue">{{copy2}}</text></view>
-</view>
-
