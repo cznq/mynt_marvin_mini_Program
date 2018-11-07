@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 18,
 			"list": [
 				{
 					"id": 0,
@@ -123,7 +123,7 @@
 				{
 					"id": 13,
 					"name": "测试",
-					"pathName": "pages/employee/join-company/enterRealName/index",
+					"pathName": "pages/create-company/createSuccess/index",
 					"query": "scene=GERW1XWQ  "
 				},
 				{
@@ -145,6 +145,17 @@
 					"pathName": "pages/company/unattended-setting/index",
 					"query": "company_id=17",
 					"scene": "1044"
+				},
+				{
+					"id": 17,
+					"name": "showToastDemo",
+					"pathName": "pages/demo/showToastDemo/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "iconfont",
+					"pathName": "pages/demo/iconfont/index"
 				}
 			]
 		}
