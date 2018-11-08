@@ -5,7 +5,6 @@
   width: 100%;
   height: 100%;
 }
-
 .camera-bottom-text {
   margin: -10rpx 88rpx 0;
 }
@@ -22,14 +21,22 @@
 .step cover-view{background:#E7E8EE;height:6rpx;margin-right:19rpx;border-radius: 6rpx;}
 .step .cur{background: #007bff;}
 
-.company-information {
-  padding-bottom:30rpx;
+.collect-information {
+  padding-bottom:300rpx;
   position: relative;
 }
-.mainTitle {
-  padding-bottom: 50rpx;
-  padding-top:56rpx;
-  line-height: 1;
+.recodeTitle {
+  padding-bottom: 20rpx;
+  padding-top:60rpx;
+  line-height: 1.2;
+  color: #1A2A4B;
+}
+.recodeIntro {
+  font-size: 30rpx;
+  color: #1A2A4B;
+  font-weight: 400;
+  margin-bottom: 80rpx;
+  white-space: pre-wrap;
 }
 .txt {
   margin-top: 52rpx;
@@ -37,14 +44,19 @@
   white-space: pre-wrap;
 }
 .bottom-txt {
-  margin-top: 0;
+  width: 372rpx;
+  margin: 10rpx auto;
+  text-align: center;
 }
 .step {
   padding-top:30rpx;
 }
 .face-pic {
   width: 172rpx;
-  margin: 66rpx auto 0;
+  margin: 67rpx auto 0;
+}
+.collect-information .face-pic {
+  margin: 200rpx auto 0;
 }
 canvas {
   position: absolute;

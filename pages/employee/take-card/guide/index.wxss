@@ -47,6 +47,7 @@
   color: rgba(136, 145, 169, 1);
   line-height: 1;
   margin-bottom: 20rpx;
+  font-weight: 600;
 }
 .intro {
   line-height: 42rpx;

@@ -1,6 +1,6 @@
 <template name="inputError">
   <view class="errorwrap _txt_center" style="top:{{errorData.top}}px">
     <view class="arrow" style="border-color: transparent transparent {{errorData.bgcolor}};"></view>
-    <view><text class="text _font28" style="background-color: {{errorData.bgcolor}};color: {{errorData.txtcolor}};">{{errorData.text}}</text></view>
+    <view style="background-color: {{errorData.bgcolor}};color: {{errorData.txtcolor}};"><text class="text _font24">{{errorData.text}}</text></view>
   </view>
 </template>

@@ -185,6 +185,7 @@
 /*字体粗细*/
 ._fontw300{font-weight: 300;}
 ._fontw500{font-weight: 500;}
+._fontw600{font-weight: 600;}
 ._fontw700{font-weight: 700;}
 /* 边框  */
 ._line_color{color:#f0f0f0!important;}/*线条颜色*/
@@ -296,10 +297,9 @@ input:-webkit-input-placeholder {
 
 /* 列表页人姓圆框*/
 ._family_name {width: 70rpx;height: 70rpx;margin-right: 30rpx;color: #fff;border-radius: 35rpx;text-align: center;line-height: 70rpx;font-size: 28rpx;}
-
+._family_name.dark {opacity: .5}
 /* 输入框错误提示 */
-.errorwrap {position: absolute;left: 0;right: 0;top: 200rpx;z-index:99}
-.errorwrap .arrow {border-width: 0 22rpx 22rpx;border-style: solid;border-color: transparent transparent rgba(252, 252, 252, 1);position: absolute;left: 50%;margin-left: -11rpx;top: -26rpx;
-}
-.errorwrap text {background-color: rgba(252, 252, 252, 1);padding: 28rpx 64rpx;color: rgba(136, 145, 169, 1);border-radius: 10rpx;max-width: 520rpx;
-}
+.errorwrap {position: absolute;left: 50%;margin-left: -273rpx;z-index:99;width: 546rpx;}
+.errorwrap .arrow {border-width: 0 22rpx 22rpx;border-style: solid;border-color: transparent transparent rgba(252, 252, 252, 1);position: absolute;left: 50%;margin-left: -11rpx;top: -18rpx;}
+.errorwrap view {border-radius: 10rpx;}
+.errorwrap text {padding: 30rpx 30rpx;border-radius: 10rpx;display: inline-block;}

@@ -2,12 +2,21 @@
 .step view {
   width: 50%;
 }
-.company-information {
+.collect-information {
   padding-bottom:300rpx;
   position: relative;
 }
-.mainTitle {
-  padding-bottom: 50rpx;
+.recodeTitle {
+  padding-bottom: 20rpx;
+  padding-top:60rpx;
+  line-height: 1.2;
+  color: #1A2A4B;
+}
+.recodeIntro {
+  font-size: 30rpx;
+  color: #1A2A4B;
+  font-weight: 400;
+  margin-bottom: 80rpx;
 }
 .input_block {
   padding-bottom: 25rpx;
@@ -18,9 +27,6 @@ icon {
   bottom: 50rpx;
   right: 0;
   z-index: 100;
-}
-.mainTitle {
-  padding-top:35rpx;
 }
 .step {
   padding-top:30rpx;

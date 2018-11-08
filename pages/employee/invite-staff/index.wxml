@@ -22,7 +22,7 @@
         </view>
         <view class="invite-wrap invite-by-code" bindtap="inviteOpen" data-method='code'>
           <view class="iconfont icon-tianjiayuangong_yaoqingma"></view>
-          <view class="method-name">通过公司码</view>
+          <view class="method-name">通过邀请码</view>
         </view>
       </view>
       <view class="invite-intro _font24 _fontw300">员工通过扫描二维码或输入邀请码的方式申请加入</view>

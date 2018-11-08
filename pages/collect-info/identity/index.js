@@ -36,7 +36,7 @@ Page({
       company_id: options.company_id,
       invitation_id: options.invitation_id
     })
-    this.showInfo('#ib2', '在验证人脸信息的时候用到');
+    this.showInfo('#ib2', '录入信息后可以让机器人认出你，并为您提供快捷取卡等服务，同时也是员工身份的证明');
   },
 
   /**

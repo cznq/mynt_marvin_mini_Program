@@ -163,7 +163,7 @@ Page({
         this.getCanvasImg(res.tempImagePath);
       },
       fail: function () {
-        app.globalData.fundebug.notify("录入人脸失败", "相机拍照失败");
+        app.myLog("录入人脸失败", "相机拍照失败");
         wx.showToast({
           title: '录入人脸失败',
           icon: 'none',
@@ -219,7 +219,7 @@ Page({
         }
       },
       fail: function (r) {
-        app.globalData.fundebug.notify("微信上传文件失败", "上传人脸失败");
+        app.myLog("微信上传文件失败", "上传人脸失败");
       }
     })
   },
@@ -235,6 +235,7 @@ Page({
       wx.canvasToTempFilePath({
         destWidth: 300,
         destHeight: 300,
+        quality: 1,
         canvasId: 'attendCanvasId',
         success: function success(res) {
           that.uploadCanvasImg(res.tempFilePath);

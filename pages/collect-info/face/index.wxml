@@ -10,14 +10,13 @@
 
       <cover-view class="coverview" wx:if="{{showButton}}">
 
-        <cover-view class='_content company-information'>
+        <cover-view class='_content collect-information'>
           <cover-view class="_flex step">
             <cover-view class='cur'></cover-view>
             <cover-view class='cur'></cover-view>
           </cover-view>
-          <cover-view class='mainTitle _fontw700'>验证身份信息</cover-view>
-          <cover-view class="_txt_center txt _font32">We will collect your identity information 
-    and click next to start collecting.</cover-view>
+          <cover-view class='recodeTitle _fontw600 _font48rpx;'>录入人脸信息</cover-view>
+          <cover-view class="recodeIntro">我们即将采集您的人脸信息，以便机器人能够快速认出您，并为您提供相应的服务。</cover-view>
           
           <cover-image class="face-pic" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/face_shibie.png" mode='widthFix'></cover-image>
          
@@ -28,13 +27,13 @@
 
     </camera>
     <view class="camera-bottom-text" wx:if="{{!showButton}}">
-      <view class="_txt_center txt bottom-txt _font32">请将您的人脸置于圆圈内</view>
+      <view class="_txt_center txt bottom-txt _font32">请将人脸置于圆形选框内，并保持一段时间。</view>
       <view class="_txt_center">
         <image class="face-pic" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/face_shibie.png" mode='widthFix'></image>
       </view>
     </view>
     <view class='_fixed footer _flex _flex_justify_center _flex_space_around' wx:if="{{showButton}}">
-      <button class="_button back_btn" bindtap="backAction">返回</button>
+      <button class="_button back_btn _font32" bindtap="backAction">返回</button>
       <button class="_button next_btn _font32" bindtap="startRecodeFace">下一步</button>
     </view>
     <canvas canvas-id='attendCanvasId'></canvas>
