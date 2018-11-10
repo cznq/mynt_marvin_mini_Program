@@ -6,7 +6,7 @@
     <view class='cur'></view>
   </view>
   <view class='mainTitle'>
-    <text class='_f_right _font32 _fontw300 _txt_blue'>示例 ></text>{{mainTitle}}</view>
+    <text class='_f_right _font32 _fontw300 _txt_blue' bindtap='examples'>示例 ></text>{{mainTitle}}</view>
   <view class='hint'>
     <text class='_font24 _fontw300'>{{hint}}</text>
   </view>

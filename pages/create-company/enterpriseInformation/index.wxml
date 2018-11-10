@@ -75,9 +75,9 @@
       </view>
       <input class='input_text' placeholder-class='input_text_phc' name="introduction" maxlength='50' value='{{cd.introduction}}' placeholder='用于机器人端对外展示，最多50字'></input>
     </view>
-    <view class='_fixed footer covview'>
+    <cover-view class='_fixed footer covview'>
       <button class="_button" formType="submit">{{button_text}}</button>
-    </view>
+    </cover-view>
   </form>
 </view>
 <import src="../../../templates/showToast/showToast.wxml" />

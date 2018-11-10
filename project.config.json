@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 19,
+			"current": 20,
 			"list": [
 				{
 					"id": 0,
@@ -161,7 +161,14 @@
 				{
 					"id": -1,
 					"name": "上传视频示例",
-					"pathName": "pages/create-company/examples/index"
+					"pathName": "pages/create-company/examples/index",
+					"query": ""
+				},
+				{
+					"id": 20,
+					"name": "加入公司-确定信息",
+					"pathName": "pages/employee/join-company/confirmCompanyInformation/index",
+					"query": "company_code=GERW1XWQ"
 				}
 			]
 		}

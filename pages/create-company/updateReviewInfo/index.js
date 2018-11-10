@@ -217,5 +217,10 @@ Page({
       duration: 1500,
       mask: false
     });
+  },
+  examples:function(){
+    wx.navigateTo({
+      url: '../examples/index',
+    })
   }
 })
