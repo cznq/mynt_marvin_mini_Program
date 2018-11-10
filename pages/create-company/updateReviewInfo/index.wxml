@@ -14,7 +14,8 @@
     <view class='_font32'>公司LOGO</view>
     <view class='up_pub' wx:if="{{cd.logo !== ''}}">
       <image mode="{{mode}}" src='{{cd.logo}}'></image>
-      <view class='clearpic _position' bindtap='bindclearpic' data-key='logo'>×</view>
+      <view class='clearpic _position' bindtap='bindclearpic' 
+      data-key='logo'>×</view>
     </view>
     <view class='up_pub' bindtap='uploadimages' data-key='logo' wx:else>
       <view class='up_con'>
