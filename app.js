@@ -21,7 +21,6 @@ App({
     BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
     //BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
     //BENIFIT_API_URL: 'https://marvin-benifit-api-test.slightech.com/mini_program/api',
-    //BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/',//开发环境
     //WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com',
   },
   
@@ -34,7 +33,6 @@ App({
         })
       }
     })
-    this.myLog('test', 'test');
   },         
 
   /**
