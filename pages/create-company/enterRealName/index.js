@@ -10,6 +10,11 @@ Page({
   onLoad: function(options) {
     var _this = this;
     _this.data.company_verify_code = options.company_verify_code;
+
+    if (wx.getStorageSync('open_id') == '' || wx.getStorageSync('xy_session') == '') {
+      app.checkLogin().then(function (res) {})
+    }
+
   },
   //提交数据
   formSubmit: function(e) {
