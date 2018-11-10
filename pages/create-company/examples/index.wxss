@@ -1,0 +1,5 @@
+@import "../public/style.wxss";
+page{background: #f9fafb;}
+.examples{padding-bottom:30rpx;}
+.examples image{width: 630rpx;height:640rpx;padding-top:70rpx;}
+.line{padding-bottom:68rpx;border-bottom: 1rpx solid #e2e2e2;margin-bottom:20rpx;}

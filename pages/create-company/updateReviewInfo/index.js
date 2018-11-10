@@ -168,12 +168,8 @@ Page({
       _this.Toast('需要上传轮播图')
       return false;
     }
-    if (_this.data.cd.video_url.length == 0) {
-      _this.Toast('需要上传视频')
-      return false;
-    }
 
-    if (_this.data.cd.logo.length !== 0 && _this.data.cd.background_url.length !== 0 && _this.data.cd.product_urls.length !== 0 && _this.data.cd.video_url.length !== 0) {
+    if (_this.data.cd.logo.length !== 0 && _this.data.cd.background_url.length !== 0 && _this.data.cd.product_urls.length !== 0) {
       //更新
       app.Util.network.POST({
         url: app.globalData.BASE_API_URL,

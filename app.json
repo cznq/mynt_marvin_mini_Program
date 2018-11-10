@@ -12,6 +12,7 @@
     "pages/create-company/enterCompanyCode/index",
     "pages/create-company/enterRealName/index",
     "pages/create-company/createSuccess/index",
+    "pages/create-company/examples/index",
     "pages/create-company/updateReviewInfo/index",
     "pages/employee/join-company/enterRealName/index",
     "pages/employee/join-company/invitationCode/index",

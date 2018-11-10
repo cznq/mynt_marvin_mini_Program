@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 18,
+			"current": 19,
 			"list": [
 				{
 					"id": 0,
@@ -155,7 +155,13 @@
 				{
 					"id": -1,
 					"name": "iconfont",
-					"pathName": "pages/demo/iconfont/index"
+					"pathName": "pages/demo/iconfont/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "上传视频示例",
+					"pathName": "pages/create-company/examples/index"
 				}
 			]
 		}
