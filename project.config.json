@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 20,
+			"current": 21,
 			"list": [
 				{
 					"id": 0,
@@ -169,6 +169,12 @@
 					"name": "加入公司-确定信息",
 					"pathName": "pages/employee/join-company/confirmCompanyInformation/index",
 					"query": "company_code=GERW1XWQ"
+				},
+				{
+					"id": -1,
+					"name": "无人值守",
+					"pathName": "pages/company/unattended-setting/index",
+					"query": ""
 				}
 			]
 		}

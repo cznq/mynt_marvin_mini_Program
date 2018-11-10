@@ -11,7 +11,7 @@ page {
 
 .c_block {
   width: 680rpx;
-  padding-bottom: 30rpx;
+  height: 540rpx;
   border-radius: 20rpx;
   background: #fff;
   margin: 0 auto;
@@ -57,5 +57,5 @@ page {
 }
 
 .introduction {
-  padding: 0 20rpx 20rpx 20rpx;
+  padding: 0 20rpx 30rpx 20rpx;
 }
