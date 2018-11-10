@@ -13,10 +13,10 @@
 
 <view class='c_block _relative'>
   <view class='img'>
-    <image src='{{cd.background_url}}'></image>
+    <image mode='aspectFill' src='{{cd.background_url}}'></image>
   </view>
   <view class='c_logo _absolute'>
-    <image src='{{cd.logo}}'></image>
+    <image mode='aspectFill' src='{{cd.logo}}'></image>
   </view>
   <view class='t1 _font46 _txt_center'>{{cd.company_short_name}}</view>
   <view class='t2 _font24 _txt_darkgrey _txt_center _fontw300 introduction'>{{cd.company_name}}</view>
