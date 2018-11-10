@@ -16,7 +16,7 @@ Page({
   onLoad: function(options) {
     var _this = this;
     //检测登陆
-    if (!(app.checkSession())) {
+    if (!(app.checkSession()) || wx.getStorageSync('open_id') == '' || wx.getStorageSync('xy_session') == '') {
       app.checkLogin().then(function(res) {
         var union_id = wx.getStorageSync('xy_session');
         _this.get_review_status(_this, union_id);
@@ -28,6 +28,9 @@ Page({
   },
   //获取用户状态
   get_review_status: function(_this, union_id) {
+    console.log('union_id:' + wx.getStorageSync('xy_session'))
+    console.log('open_id:' + wx.getStorageSync('open_id'))
+
     if (union_id !== '') {
       app.Util.network.POST({
         url: app.globalData.BASE_API_URL,
