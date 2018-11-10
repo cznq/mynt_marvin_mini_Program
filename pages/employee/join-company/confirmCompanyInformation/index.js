@@ -9,6 +9,10 @@ Page({
   },
   onLoad: function(options) {
     var _this = this;
+    //检测登陆
+    if (!(app.checkSession()) || wx.getStorageSync('open_id') == '' || wx.getStorageSync('xy_session') == '') {
+      app.checkLogin().then(function (res) { })
+    }
     if (!options.company_code){
       _this.data.company_code = decodeURIComponent(options.scene);
     }else{
