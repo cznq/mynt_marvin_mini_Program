@@ -20,7 +20,7 @@ Page({
   //提交数据
   formSubmit: function (e) {
     var _this = this;
-    //获取真实姓名 class='cur' class='cur' class='cur' class='cur'fddddddddddd
+    //获取真实姓名
     var realName = e.detail.value.realName;
     var form_id = e.detail.formId;
     var company_code = _this.data.company_code,
