@@ -71,7 +71,7 @@ Page({
       _this.Toast('公司地址填写不完整')
       return false
     }
-    if (company_name !== '' && company_short_name !== '' && address !== '' && floor !== '' && room !== '') {
+    if (company_name !== '' && company_short_name !== '' && room !== '') {
       //请求接口
       app.Util.network.POST({
         url: app.globalData.BASE_API_URL,
