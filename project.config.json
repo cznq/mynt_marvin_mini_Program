@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 21,
+			"current": 22,
 			"list": [
 				{
 					"id": 0,
@@ -174,6 +174,12 @@
 					"id": -1,
 					"name": "无人值守",
 					"pathName": "pages/company/unattended-setting/index",
+					"query": ""
+				},
+				{
+					"id": 22,
+					"name": "创建公司-输入公司码",
+					"pathName": "pages/create-company/enterCompanyCode/index",
 					"query": ""
 				}
 			]

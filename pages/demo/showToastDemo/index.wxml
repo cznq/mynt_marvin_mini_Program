@@ -1,4 +1,8 @@
 <view class='z_warp'>
+<view class='z_pop _clearfloat'>
+    <view class='z_demotoast'><image src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/showToastDemo/8.png' mode='widthFix'></image></view>
+    <view class='z_f' bindtap='bindToastOpen8'>TRY</view>
+  </view>
 
   <view class='z_pop _clearfloat'>
     <view class='z_demotoast'><image src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/showToastDemo/1.png' mode='widthFix'></image></view>

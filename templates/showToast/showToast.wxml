@@ -12,6 +12,7 @@
         <view class="toastPubStyle {{showToast.toastStyle}}">
             <image class="toast-pic" src="{{showToast.pic}}" mode="scaleToFill" wx:if="{{showToast.pic}}" />
             <view class='toast-b-con'>
+              <view class='arrow' wx:if="{{showToast.isArrow==false? false : true}}"></view>
               <view class="toast-title">{{showToast.title}}</view>
               <view class="toast-introduce" wx:if="{{showToast.introduce}}">{{showToast.introduce}}</view>
               <view class='toast-close' bindtap="bindToastClose" wx:if="{{showToast.isClose==false? false : true}}">{{showToast.closeText}}</view>
