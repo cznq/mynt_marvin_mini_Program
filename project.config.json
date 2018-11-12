@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 22,
+			"current": 19,
 			"list": [
 				{
 					"id": 0,
@@ -109,26 +109,26 @@
 					"scene": "1011"
 				},
 				{
-					"id": 12,
-					"name": "首页",
+					"id": 11,
+					"name": "加入公司-首页",
 					"pathName": "pages/manage/manage",
 					"query": ""
 				},
 				{
-					"id": 13,
-					"name": "上传视频",
+					"id": 12,
+					"name": "创建4-上传视频",
 					"pathName": "pages/create-company/updateReviewInfo/index",
 					"query": ""
 				},
 				{
 					"id": 13,
-					"name": "测试",
+					"name": "创建5-创建成功",
 					"pathName": "pages/create-company/createSuccess/index",
 					"query": "scene=GERW1XWQ  "
 				},
 				{
-					"id": -1,
-					"name": "信息",
+					"id": 14,
+					"name": "创建3-填写企业信息",
 					"pathName": "pages/create-company/enterpriseInformation/index",
 					"query": ""
 				},
@@ -159,14 +159,14 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "上传视频示例",
+					"id": 19,
+					"name": "创建-上传视频示例",
 					"pathName": "pages/create-company/examples/index",
 					"query": ""
 				},
 				{
 					"id": 20,
-					"name": "加入公司-确定信息",
+					"name": "加入2-确定信息",
 					"pathName": "pages/employee/join-company/confirmCompanyInformation/index",
 					"query": "company_code=GERW1XWQ"
 				},
@@ -178,9 +178,27 @@
 				},
 				{
 					"id": 22,
-					"name": "创建公司-输入公司码",
+					"name": "创建1-输入公司码",
 					"pathName": "pages/create-company/enterCompanyCode/index",
 					"query": ""
+				},
+				{
+					"id": 23,
+					"name": "加入3-输入真实姓名",
+					"pathName": "pages/employee/join-company/enterRealName/index",
+					"query": "company_code=76537C43"
+				},
+				{
+					"id": 24,
+					"name": "加入1-输入邀请码第",
+					"pathName": "pages/employee/join-company/invitationCode/index",
+					"query": ""
+				},
+				{
+					"id": 25,
+					"name": "创建2-输入真实姓名",
+					"pathName": "pages/create-company/enterRealName/index",
+					"query": "company_verify_code=EBFCZPKM"
 				}
 			]
 		}

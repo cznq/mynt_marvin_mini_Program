@@ -49,7 +49,7 @@ Page({
         success: res => {
           console.log(res);
           if (res.data.sub_code == 0) {
-            wx.navigateTo({
+            wx.reLaunch({
               url: '../../../manage/manage',
             })
           } else {

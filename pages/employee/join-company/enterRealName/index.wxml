@@ -2,8 +2,8 @@
   <view class="_flex step">
     <view class='cur'></view>
     <view class='cur'></view>
-    <view></view>
-    <view></view>
+    <view class='cur'></view>
+    <view class='cur'></view>
   </view>
   <view class='mainTitle'>{{mainTitle}}</view>
   <form bindsubmit='formSubmit'  report-submit="{{true}}">
