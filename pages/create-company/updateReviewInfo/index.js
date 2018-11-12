@@ -155,60 +155,36 @@ Page({
   //提交信息
   submit: function () {
     var _this = this;
-    //表单验证
-    if (_this.data.cd.logo.length == 0) {
-      _this.Toast('需要上传公司LOGO')
-      return false;
-    }
-    if (_this.data.cd.background_url.length == 0) {
-      _this.Toast('需要上传宣传背景图')
-      return false;
-    }
-    if (_this.data.cd.product_urls.length == 0) {
-      _this.Toast('需要上传轮播图')
-      return false;
-    }
-
-    if (_this.data.cd.logo.length !== 0 && _this.data.cd.background_url.length !== 0 && _this.data.cd.product_urls.length !== 0) {
-      //更新
-      app.Util.network.POST({
-        url: app.globalData.BASE_API_URL,
-        params: {
-          service: 'company',
-          method: 'update',
-          data: JSON.stringify({
-            union_id: wx.getStorageSync('xy_session'),
-            logo: _this.data.cd.logo,
-            background_url: _this.data.cd.background_url,
-            product_urls: _this.data.cd.product_urls,
-            video_url: _this.data.cd.video_url,
-            introduction: _this.data.introduction
+    //更新
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'update',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+          logo: _this.data.cd.logo,
+          background_url: _this.data.cd.background_url,
+          product_urls: _this.data.cd.product_urls,
+          video_url: _this.data.cd.video_url,
+          introduction: _this.data.introduction
+        })
+      },
+      success: res => {
+        console.log(res);
+        if (res.data.sub_code == 0) {
+          console.log('数据成功');
+          wx.reLaunch({
+            url: '../createSuccess/index',
           })
-        },
-        success: res => {
-          console.log(res);
-          if (res.data.sub_code == 0) {
-            console.log('数据成功');
-            wx.reLaunch({
-              url: '../createSuccess/index',
-            })
-          } else {
-            console.log(res.data.sub_msg);
-          }
-        },
-        fail: res => {
-          console.log('fail');
+        } else {
+          console.log(res.data.sub_msg);
         }
-      })
-    } else {
-      console.log('tishicuowu');
-      toast.showToast(this, {
-        toastStyle: 'toast',
-        title: '填的还不完整哦',
-        duration: 1500,
-        mask: false
-      });
-    }
+      },
+      fail: res => {
+        console.log('fail');
+      }
+    })
   },
   Toast: function (text) {
     toast.showToast(this, {
