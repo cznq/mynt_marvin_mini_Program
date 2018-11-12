@@ -15,6 +15,15 @@ Page({
   onLoad: function (options) {
 
   },
+  bindToastOpen8: function () {
+    toast.showToast(this, {
+      toastStyle: 'toast errorwrap',
+      title: '你输入的码有误你输入的码有误你输入的码有误你输入的码有误你输入的码有误',
+      duration: 100000,
+      mask: false,
+      isArrow: true
+    });
+  },
   bindToastOpen1: function () {
     toast.showToast(this, {
       toastStyle: 'toast',

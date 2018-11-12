@@ -10,59 +10,64 @@ sureText:   确定按钮文案 isSure->true 必填
 isClose:   是否显示关闭按钮 默认 true 选填
 closeText:    关闭按钮文案 isClose->true 必填
 pic:     展示图 //请指定正确的路径，选填
-cb:       1500毫秒自动隐藏后接口调用成功的回调函数 选填  
+isArrow: input错误提示小箭头
+cb:       1500毫秒自动隐藏后接口调用成功的回调函数 选填 
  */
 function showToast(_this, obj) {
-    if (typeof obj == 'object') {
-      if (!obj.isClose || typeof obj.isClose != 'boolean') {
-        obj.isClose = false;
-      }
-      if (!obj.isSure || typeof obj.isSure != 'boolean') {
-        obj.isSure = false;
-      }
-      if (obj.isSure == true && obj.sureText == '') {
-        obj.sureText = '确定';
-      }
-      if (obj.isClose == true && obj.closeText == '') {
-        obj.closeText = '取消';
-      }
-      obj.title = obj.title || "服务器繁忙，稍后再试";
-      if (!obj.duration || typeof obj.duration != 'number') {
-          obj.duration = 10000;
-      }
-      var that = _this; //获取当前page实例 
-      obj.isShow = true; //开启toast  
-      if (obj.duration < 10000) {
-          setTimeout(function() {
-              obj.isShow = false;
-              obj.cb && typeof obj.cb == 'function' && obj.cb(); //如果有成功的回调则执行  
-              that.setData({
-                  'showToast.isShow': obj.isShow
-              });
-          }, obj.duration);
-      }
-      that.setData({
-          showToast: obj
-      });
-    } else {
-        console.log('showToast fail:请确保传入的是对象并且title必填');
+  if (typeof obj == 'object') {
+    if (!obj.isClose || typeof obj.isClose != 'boolean') {
+      obj.isClose = false;
     }
+    if (!obj.isSure || typeof obj.isSure != 'boolean') {
+      obj.isSure = false;
+    }
+    if (obj.isSure == true && obj.sureText == '') {
+      obj.sureText = '确定';
+    }
+    if (obj.isClose == true && obj.closeText == '') {
+      obj.closeText = '取消';
+    }
+    if (!obj.isArrow || typeof obj.isArrow != 'boolean') {
+      obj.isArrow = false;
+    }
+
+    obj.title = obj.title || "服务器繁忙，稍后再试";
+    if (!obj.duration || typeof obj.duration != 'number') {
+      obj.duration = 10000;
+    }
+    var that = _this; //获取当前page实例 
+    obj.isShow = true; //开启toast  
+    if (obj.duration < 10000) {
+      setTimeout(function () {
+        obj.isShow = false;
+        obj.cb && typeof obj.cb == 'function' && obj.cb(); //如果有成功的回调则执行  
+        that.setData({
+          'showToast.isShow': obj.isShow
+        });
+      }, obj.duration);
+    }
+    that.setData({
+      showToast: obj
+    });
+  } else {
+    console.log('showToast fail:请确保传入的是对象并且title必填');
+  }
 }
 /**  
  *手动关闭toast提示  
  */
-function hideToast(_this,obj) {
-    var that = getCurrentPages()[getCurrentPages().length - 1]; //获取当前page实例  
-    if (typeof obj == "object"){
-      obj.cb && typeof obj.cb == 'function' && obj.cb(); 
-    }
-    if (that.data.showToast) {
-        that.setData({
-            'showToast.isShow': false
-        });
-    }
+function hideToast(_this, obj) {
+  var that = getCurrentPages()[getCurrentPages().length - 1]; //获取当前page实例  
+  if (typeof obj == "object") {
+    obj.cb && typeof obj.cb == 'function' && obj.cb();
+  }
+  if (that.data.showToast) {
+    that.setData({
+      'showToast.isShow': false
+    });
+  }
 }
 module.exports = {
-    showToast: showToast,
-    hideToast: hideToast
+  showToast: showToast,
+  hideToast: hideToast
 }
