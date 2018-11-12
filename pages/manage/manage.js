@@ -28,9 +28,6 @@ Page({
   },
   //获取用户状态
   get_review_status: function(_this, union_id) {
-    console.log('union_id:' + wx.getStorageSync('xy_session'))
-    console.log('open_id:' + wx.getStorageSync('open_id'))
-
     if (union_id !== '') {
       app.Util.network.POST({
         url: app.globalData.BASE_API_URL,
