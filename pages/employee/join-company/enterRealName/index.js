@@ -20,7 +20,7 @@ Page({
   //提交数据
   formSubmit: function (e) {
     var _this = this;
-    //获取真实姓名
+    //获取真实姓名 class='cur' class='cur' class='cur' class='cur'fddddddddddd
     var realName = e.detail.value.realName;
     var form_id = e.detail.formId;
     var company_code = _this.data.company_code,
@@ -49,7 +49,7 @@ Page({
         success: res => {
           console.log(res);
           if (res.data.sub_code == 0) {
-            wx.navigateTo({
+            wx.reLaunch({
               url: '../../../manage/manage',
             })
           } else {
