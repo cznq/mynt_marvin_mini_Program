@@ -35,7 +35,7 @@
         <input class='input_text' name="name_alias2" value='{{cd.name_alias[2]}}' placeholder='通常用于访客搜索' placeholder-class='input_text_phc' maxlength='8'></input>
       </view>
     </view>
-    <view class='_font22 _txt_blue _fontw300 _txt_center add_c' bindtap='moreAlias'>+添加别称</view>
+    <!-- <view class='_font22 _txt_blue _fontw300 _txt_center add_c' bindtap='moreAlias'>+添加别称</view> -->
     <view class='input_block'>
       <view>
         <text class='_font24 _txt_darkgrey'>公司地址</text>
