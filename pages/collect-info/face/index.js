@@ -17,6 +17,7 @@ Page({
     company_id: null,
     vip: null,
     face: true,
+    ctx: {},
     showButton: true,
     cameraErrorText: ""
   },
@@ -31,13 +32,16 @@ Page({
       visit_apply_id: options.visit_apply_id
     });
     if (app.Util.checkcanIUse('camera')) {
-      that.ctx = wx.createCameraContext();
+      that.setData({
+        ctx: wx.createCameraContext()
+      }) 
       that.openCameraAuth();
     }
     app.Util.checkcanIUse('cover-view');
   },
 
   cameraError: function () {
+    app.myLog('取消打开摄像头授权', '你已经取消了人脸录入的授权');
     this.setData({
       cameraErrorText: "你已经取消了人脸录入的授权"
     });
@@ -141,10 +145,12 @@ Page({
       showButton: false,
       tips_title: "请将人脸放入框内"
     })
+    var k = 0;
     int = setInterval(function () {
-      if (that.data.face == true) {
-        that.takePhoto();
+      if (that.data.face == true && k > 2) {
+        that.takePhoto(that.data.ctx);
       }
+      k++;
     }, 1000);
 
   },
@@ -152,15 +158,17 @@ Page({
   /**
    * 相机拍照
    */
-  takePhoto: function () {
-    this.ctx.takePhoto({
+  takePhoto: function (ctx) {
+    app.myLog('调用相机拍照事件：', JSON.stringify(ctx));
+    var that = this;
+    ctx.takePhoto({
       quality: 'low',
       success: (res) => {
         console.log(res);
-        this.setData({
+        that.setData({
           face: false
         })
-        this.getCanvasImg(res.tempImagePath);
+        that.getCanvasImg(res.tempImagePath);
       },
       fail: function () {
         app.myLog("录入人脸失败", "相机拍照失败");
@@ -207,8 +215,8 @@ Page({
         data: data
       },
       success: function (res) {
-        console.log(res.data);
         var data = JSON.parse(res.data);
+        app.myLog('上传人脸图片', JSON.stringify(data));
         if (data.sub_code == 0) {
           wx.showLoading({ title: '人脸上传中' });
           that.finishRecordFace();
@@ -270,6 +278,9 @@ Page({
     }
   },
 
+  /**
+   * 判断是Visitor还是Employee
+   */
   getStaffInfo: function () {
     if (this.data.invitation_id !== null && this.data.invitation_id !== undefined && this.data.invitation_id !== "undefined") {
       this.getVisitorInfo();
