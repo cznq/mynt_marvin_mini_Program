@@ -85,11 +85,3 @@
    </form>
 </view>
 </block>
-<block wx:if="{{invite_auth == false}}">
-  <view class="noauth">
-    <view class="title">如何获得邀请权限？</view>
-    <view class="sm-title">成为公司员工后就可以邀请访客</view>
-    <view class="join-intro">进入公众号，点击首页底部的管理按钮，输入公司号码申请成为公司员工后，就可以开始邀请访客啦！</view>
-    <image src='../../images/invite_no_authority@2x.png'></image>
-  </view>
-</block>

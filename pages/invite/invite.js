@@ -42,13 +42,8 @@ Page({
     if (that.data.invite_auth == true) {
       that.getCompany();
     } else {
-      wx.showModal({
-        title: '你没有邀请权限',
-        content: '请先加入成为公司员工，才能获得邀请权限',
-        showCancel: false,
-        success: function (res) {
-
-        }
+      wx.redirectTo({
+        url: '/pages/manage/manage',
       })
     }
   },
@@ -105,6 +100,10 @@ Page({
     return val;
   },
 
+  /**
+   * 提交表单
+   * param: visitor_name, mark, visit_intro, appointment_time
+   */
   inviteSubmit: function (e) {
     var visit_time = this.data.date + ' ' + this.data.time; 
     var visitor_name = e.detail.value.visitor_name;
