@@ -28,9 +28,6 @@ page {
 .staff-list {
   padding-top: 30rpx;
 }
-._name {
-  font-weight: 600;
-}
 ._list_item {
   padding: 60rpx 0 30rpx;
 }

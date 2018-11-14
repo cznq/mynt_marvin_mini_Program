@@ -211,4 +211,5 @@ canvas {
   background-color: transparent;
   color: #007bff;
   border: 1px solid #007bff;
+  padding: 0 10rpx;
 }

@@ -20,7 +20,7 @@
         <view class="_list_item _flex _flex_space_between _role_admin" wx:if="{{item.role == 3}}">
           <view class="_lft _flex _flex_item_center">
             <view class="_family_name">{{item.first_name}}</view>
-            <view class="_name _fontw500">{{item.last_name}}</view>
+            <view class="_name _fontw500">{{item.employee_name}}</view>
           </view>
           <view class="_rgt _flex _flex_item_center">
             <view class="iconfont icon-qiantai admin"></view>
@@ -34,7 +34,7 @@
           <view class="_list_item _flex _flex_space_between _role_front" wx:if="{{item.role == 2}}">
             <view class="_lft _flex _flex_item_center">
               <view class="_family_name">{{item.first_name}}</view>
-              <view class="_name _fontw500">{{item.last_name}}</view>
+              <view class="_name _fontw500">{{item.employee_name}}</view>
             </view>
             <view class="_rgt _flex _flex_item_center">
               <!--<image class="vip-icon" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/vip%402x.png"></image>-->
@@ -51,7 +51,7 @@
         <view class="_list_item _flex _flex_space_between _role_staff" wx:if="{{item.role == 1}}">
           <view class="_lft _flex _flex_item_center">
             <view class="_family_name">{{item.first_name}}</view>
-            <view class="_name _fontw500">{{item.last_name}}</view>
+            <view class="_name _fontw500">{{item.employee_name}}</view>
           </view>
           <view class="_rgt _flex _flex_item_center">
             <view class="handle_btn" bindtap="editEmp" data-unionid='{{item.union_id}}' data-name='{{item.employee_name}}'><view class="dot"></view><view class="dot"></view><view class="dot"></view></view>

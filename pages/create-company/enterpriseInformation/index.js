@@ -4,7 +4,7 @@ Page({
   data: {
     mainTitle: '填写企业信息',
     button_text: '下一步',
-    moreAlias: true,
+    moreAlias: false,
     cd: {}
   },
   onLoad: function(options) {
