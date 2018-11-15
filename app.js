@@ -11,7 +11,6 @@ fundebug.init({
   silent: false
 })
 
-
 App({
   globalData: {
     fundebug: fundebug,
@@ -26,6 +25,7 @@ App({
   },
   
   onLaunch: function () {
+    /**  获取手机信息 */
     wx.getSystemInfo({
       success(res) {
         wx.setStorage({
@@ -106,7 +106,6 @@ App({
 
             } else {
               fundebug.notify("微信登录失败", res.errMsg)
-              console.log('获取用户登录态失败！' + res.errMsg);
               reject('error');
             }
           }
@@ -123,7 +122,7 @@ App({
     wx.login({
       success: res => {
         if (res.code) {
-          console.log(res.code + "--" + encryptedData + "--" + iv);
+          //console.log(res.code + "--" + encryptedData + "--" + iv);
           that.Util.network.POST({
             url: that.globalData.BASE_API_URL,
             params: {
@@ -136,7 +135,6 @@ App({
               })
             },
             success: res => {
-              console.log(res);
               if (res.data.sub_code == 0) {
                 wx.setStorageSync('xy_session', res.data.result.union_id);
                 wx.setStorageSync('nickname', res.data.result.nickname);
