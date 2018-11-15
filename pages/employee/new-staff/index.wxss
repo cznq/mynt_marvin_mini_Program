@@ -25,11 +25,14 @@ page {
   background-color: #6092FE;
 }
 button.btn {
-  padding: 20rpx 16rpx;
+  padding: 0 20rpx;
   font-size: 24rpx;
   line-height: 1;
+  border-radius: 10rpx;
   border: 2rpx solid rgba(0, 0, 0, .1);
   margin-left: 20rpx;
+  height: 60rpx;
+  line-height: 60rpx;
 }
 button.btn.allow {
   background: #007bff;

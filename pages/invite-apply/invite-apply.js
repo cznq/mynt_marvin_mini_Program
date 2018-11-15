@@ -13,6 +13,7 @@ Page({
   },
 
   applySubmit: function (e) {
+    app.myLog('申请提交', JSON.stringify(e.detail.value));
     var that = this;
     var id_type = 0;
     var visitor_name = e.detail.value.visitor_name;
@@ -93,7 +94,6 @@ Page({
    * 获取访客信息
    */
   getVisitorInfo: function () {
-    console.log("userinfo");
     var that = this;
     return new Promise(function (resolve, reject) {
       if (!that.data.visitorInfo) {
@@ -200,14 +200,17 @@ Page({
   onLoad: function (options) {
     var that = this;
     var scene_str = decodeURIComponent(options.scene);
-    if (scene_str !== undefined) { 
+    if (scene_str !== 'undefined' && scene_str !== undefined) { 
       var company_id = scene_str.split('_')[0];
       var qr_code_key = scene_str.split('_')[1];
     } else {
-      app.globalData.fundebug.notify("扫码二维码出错", "请重新扫码二维码");
+      wx.showToast({
+        title: '识别二维码出错，请重新扫码',
+      })
+      app.myLog("扫码二维码出错", "申请发卡扫码二维码未识别公司ID");
     }
     wx.removeStorageSync('xy_session');
-    console.log("Company id" + company_id + "key" + qr_code_key);
+    app.myLog('申请发卡：', "公司ID:" + company_id + " Key:" + qr_code_key);
     that.updateQrcodeStatus(qr_code_key);
     that.setData({ company_id: company_id })
     if (!(app.checkSession())) {
