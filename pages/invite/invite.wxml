@@ -78,10 +78,10 @@
             <cover-image src="../../images/map-cover.png" bindtap="openLocation"></cover-image>
           </map>
         </view>
-    <view class="page__ft j_bottom">
+    <cover-view class="page__ft j_bottom">
         <button form-type="submit" class="weui-btn weui-btn_primary" id="inviteBtn" disabled='disabled' wx:if="{{!formready}}">下一步</button>
         <button form-type="submit" class="weui-btn weui-btn_primary" id="inviteBtn" wx:if="{{formready}}">下一步</button>
-    </view>
+    </cover-view>
    </form>
 </view>
 </block>

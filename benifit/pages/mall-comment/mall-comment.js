@@ -1,5 +1,5 @@
 // pages/mall-comment/mall-comment.js
-var md5 = require('../../../../utils/md5.js');
+var md5 = require('../../../utils/md5.js');
 const app = getApp();
 Page({
 

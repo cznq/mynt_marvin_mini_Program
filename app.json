@@ -33,7 +33,7 @@
   ],
   "subPackages": [
     {
-      "root": "page/benifit",
+      "root": "benifit",
       "name": "Benifit",
       "pages": [
         "pages/vip-card/vip-card",

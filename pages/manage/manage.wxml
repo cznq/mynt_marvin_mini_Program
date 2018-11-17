@@ -3,7 +3,7 @@
 
 <!--登陆页面-->
 <view wx:if="{{islogin==false? false : true}}">
-  <view class='_content _fixed login'>
+  <view class=' _fixed login'>
   </view>
   <view class='_fixed logon_c'>
     <view class='title'>{{title}}</view>

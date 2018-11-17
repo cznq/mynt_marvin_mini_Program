@@ -129,8 +129,13 @@ Page({
    * 检测表单可提交状态
    */
   checkForm: function (e) {
-    console.log(e);
-    var val = app.Util.filterEmoji(e.detail.value);
+    this.setData({
+      errorData: null,
+      inputError: {
+        phone: false,
+        id_number: false
+      }
+    })
     if (e.currentTarget.id == 'i1') {
       if (e.detail.value !== '') {
         this.setData({
@@ -183,15 +188,26 @@ Page({
    */
   clearInput: function (e) {
     console.log(e);
+    this.setData({
+      errorData: null,
+      inputError: {
+        phone: false,
+        id_number: false
+      }
+    })
     var bid = e.currentTarget.id;
     if (bid == 'b1') {
       this.setData({
-        'formData.phone': null
+        'formData.phone': null,
+        'inputError.phone': null,
+        errorData: null
       })
     }
     if (bid == 'b2') {
       this.setData({
-        'formData.id_number': null
+        'formData.id_number': null,
+        'inputError.id_number': null,
+        errorData: null
       })
     }
   },

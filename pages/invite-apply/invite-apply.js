@@ -13,7 +13,6 @@ Page({
   },
 
   applySubmit: function (e) {
-    app.myLog('申请提交', JSON.stringify(e.detail.value));
     var that = this;
     var id_type = 0;
     var visitor_name = e.detail.value.visitor_name;
