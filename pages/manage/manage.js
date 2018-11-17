@@ -5,6 +5,7 @@ Page({
     isexamine: false,
     iswebview: false,
     timestamp: null,
+    showLoginModal: false,
     web_url: app.globalData.WEB_VIEW_URL,
     title: '欢迎使用小觅楼宇服务',
     introduce: '加入一个公司并开始享受高端楼宇服务，包括邀请访客、员工快速发卡等',
@@ -13,13 +14,41 @@ Page({
     button_text: '加入公司',
     button_text_qx: '取消申请'
   },
+  bindGetUserInfo: function () {
+    var that = this;
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function (res) {
+              console.log(res);
+              that.setData({
+                showLoginModal: false
+              })
+              app.authorizeLogin(res.encryptedData, res.iv, () => { 
+                var union_id = wx.getStorageSync('xy_session');
+                that.get_review_status(_this, union_id);
+              });
+            }
+          })
+        }
+      }
+    })
+  },
   onLoad: function(options) {
     var _this = this;
     //检测登陆
     if (!(app.checkSession()) || wx.getStorageSync('open_id') == '' || wx.getStorageSync('xy_session') == '') {
       app.checkLogin().then(function(res) {
-        var union_id = wx.getStorageSync('xy_session');
-        _this.get_review_status(_this, union_id);
+        if (!(app.checkSession())) {
+          that.setData({
+            showLoginModal: true
+          })
+        } else {
+          var union_id = wx.getStorageSync('xy_session');
+          _this.get_review_status(_this, union_id);
+        }
       })
     } else {
       var union_id = wx.getStorageSync('xy_session');
@@ -34,6 +63,7 @@ Page({
   },
   //获取用户状态
   get_review_status: function(_this, union_id) {
+    console.log(union_id+'pppppp');
     if (union_id !== '') {
       app.Util.network.POST({
         url: app.globalData.BASE_API_URL,
