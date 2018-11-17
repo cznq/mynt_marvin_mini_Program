@@ -80,7 +80,7 @@ App({
                   })
                 },
                 success: res => {
-                  console.log(res.data + '----login');
+                  console.log(res.data);
                   if (res.data.sub_code == 0) {
                     that.globalData.invite_auth = true;
                     wx.setStorageSync('xy_session', res.data.result.union_id);
