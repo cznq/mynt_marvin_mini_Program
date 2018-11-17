@@ -3,9 +3,14 @@ page, .page {
   background: -webkit-linear-gradient( top, rgba(231, 235, 239, 1), rgba(255, 255, 255, 1));
   background: linear-gradient( top, rgba(231, 235, 239, 1), rgba(255, 255, 255, 1));
 }
+.page__hd image {
+  width: 100%;
+  vertical-align: bottom;
+}
 .page__bd {
   padding: 156rpx 74rpx 100rpx;
 }
+
 .guide-title {
   line-height: 1;
   margin-bottom: 30rpx;

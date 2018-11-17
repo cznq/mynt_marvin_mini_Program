@@ -147,7 +147,7 @@ Page({
    */
   backVipCard() {
     wx.navigateTo({
-      url: '/page/benifit/pages/vip-card/vip-card'
+      url: '/benifit/pages/vip-card/vip-card'
     })
   },
 
@@ -203,7 +203,7 @@ Page({
     var commerce_id = e.currentTarget.dataset.commerceid;
     var commerce_type = e.currentTarget.dataset.commercetype;
     wx.navigateTo({
-      url: '/page/benifit/pages/mall-detail/mall-detail?commerce_id=' + commerce_id + '&commerce_type=' + commerce_type,
+      url: '/benifit/pages/mall-detail/mall-detail?commerce_id=' + commerce_id + '&commerce_type=' + commerce_type,
     })
   },
 

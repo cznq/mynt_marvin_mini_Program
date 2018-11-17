@@ -163,6 +163,7 @@
 .crouse-pics image {
   margin-right: 10px;
   height: 282rpx;
+  vertical-align: top;
 }
 .vedioWrapper {
   margin-right: 58rpx;

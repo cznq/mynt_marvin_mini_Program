@@ -163,6 +163,7 @@
 ._font36{font-size:36rpx;}
 ._font38{font-size:38rpx;}
 ._font44{font-size:44rpx;}
+._font48{font-size:48rpx;}
 ._font46{font-size:46rpx;}
 ._font56{font-size:56rpx;}
 ._font60{font-size:60rpx;}
@@ -284,7 +285,7 @@ input:-webkit-input-placeholder {
 ._family_name {width: 70rpx;height: 70rpx;margin-right: 30rpx;color: #fff;border-radius: 35rpx;text-align: center;line-height: 70rpx;font-size: 28rpx;}
 ._family_name.dark {opacity: .5}
 /* 输入框错误提示 */
-.errorwrap {position: absolute;left: 50%;margin-left: -273rpx;z-index:99;width: 546rpx;}
+.errorwrap {position: absolute;left: 50%;margin-left: -283rpx;z-index:99;width: 566rpx;}
 .errorwrap .arrow {border-width: 0 22rpx 22rpx;border-style: solid;border-color: transparent transparent rgba(252, 252, 252, 1);position: absolute;left: 50%;margin-left: -11rpx;top: -18rpx;}
 .errorwrap view {border-radius: 10rpx;}
 .errorwrap text {padding: 30rpx 30rpx;border-radius: 10rpx;display: inline-block;}

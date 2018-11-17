@@ -31,7 +31,7 @@ Page({
         console.log(res);
         var resdata = res.data.result;
         if (res.data.sub_code == 0) {
-          if (resdata.employee_status === 2) {
+          if (resdata.employee_status === 2 || resdata.employee_status === 0) {
             wx.reLaunch({
               url: '../../../manage/manage',
             })

@@ -41,7 +41,7 @@
         <view class="on-sale in-right">{{businessStatus}}</view>
       </view>
       <view class="info-column">
-        <view class="address" bindtap="generateMap"><image src="../../images/icon_add@2x.png"></image>{{commerceDetail.address}}
+        <view class="address" bindtap="openMap"><image src="../../images/icon_add@2x.png"></image>{{commerceDetail.address}}
         </view>
         <view class="on-sale in-right"><image src="../../images/icon_telephone@2x.png" bindtap="makePhoneCall" data-phone="{{commerceDetail.phone}}"></image></view>
       </view>
@@ -171,7 +171,7 @@
                   <view class="company-address">{{employeeInfo.company_address}}</view>
                 </view>
                 <view class="bar">
-                  <view class="bar-bg" style="background: url(https://static.slightech.com/uploads/2018/10/20181016051756198.png) no-repeat right center;background-size:310rpx 66rpx;">
+                  <view class="bar-bg" style="background: url(https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/benifit/mynt_vip_bg.png) no-repeat right center;background-size:310rpx 66rpx;">
                   <view class="id-num">ID: {{employeeInfo.employee_card_id}}</view>
                   <view class="expire-time">有效期: {{employeeInfo.expire}}</view>
                 </view>
