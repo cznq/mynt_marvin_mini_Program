@@ -26,9 +26,9 @@ Page({
               that.setData({
                 showLoginModal: false
               })
-              app.authorizeLogin(res.encryptedData, res.iv, () => { 
+              app.authorizeLogin(res.encryptedData, res.iv, () => {
                 var union_id = wx.getStorageSync('xy_session');
-                that.get_review_status(_this, union_id);
+                that.get_review_status(that, union_id);
               });
             }
           })
