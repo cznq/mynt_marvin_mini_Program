@@ -11,8 +11,10 @@ Page({
     var _this = this;
     _this.data.company_verify_code = options.company_verify_code;
 
-    if (wx.getStorageSync('open_id') == '' || wx.getStorageSync('xy_session') == '') {
-      app.checkLogin().then(function (res) {})
+    //检测登陆
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function (res) {
+      })
     }
 
   },

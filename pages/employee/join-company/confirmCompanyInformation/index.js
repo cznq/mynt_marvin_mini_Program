@@ -31,14 +31,13 @@ Page({
   onLoad: function(options) {
     var _this = this;
     //检测登陆
-    if (!(app.checkSession()) || wx.getStorageSync('open_id') == '' || wx.getStorageSync('xy_session') == '') {
+    if (!(app.checkSession())) {
       app.checkLogin().then(function(res) {
         if (!(app.checkSession())) {
           that.setData({
             showLoginModal: true
           })
         } else {
-          
         }
       })
     }

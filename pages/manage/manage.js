@@ -39,7 +39,8 @@ Page({
   onLoad: function(options) {
     var _this = this;
     //检测登陆
-    if (!(app.checkSession()) || wx.getStorageSync('open_id') == '' || wx.getStorageSync('xy_session') == '') {
+
+    if (!(app.checkSession())) {
       app.checkLogin().then(function(res) {
         if (!(app.checkSession())) {
           that.setData({
@@ -63,6 +64,7 @@ Page({
   },
   //获取用户状态
   get_review_status: function(_this, union_id) {
+    console.log('openid-----' + wx.getStorageSync('open_id'));
     console.log(union_id+'pppppp');
     if (union_id !== '') {
       app.Util.network.POST({

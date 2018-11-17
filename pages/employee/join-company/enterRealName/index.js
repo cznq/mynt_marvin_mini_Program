@@ -13,7 +13,7 @@ Page({
     var _this = this;
     _this.data.company_code = options.company_code;
     //检测登陆
-    if (!(app.checkSession()) || wx.getStorageSync('open_id') == '' || wx.getStorageSync('xy_session') == '') {
+    if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {})
     }
   },
