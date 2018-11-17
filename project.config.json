@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 26,
+			"current": 27,
 			"list": [
 				{
 					"id": 0,
@@ -205,6 +205,13 @@
 					"name": "collect-info/face",
 					"pathName": "pages/collect-info/face/index",
 					"query": ""
+				},
+				{
+					"id": 27,
+					"name": "开发",
+					"pathName": "pages/collect-info/guide/index",
+					"query": "",
+					"scene": "1044"
 				}
 			]
 		}

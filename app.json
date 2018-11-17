@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/manage/manage",
+    "pages/collect-info/guide/index",
     "pages/collect-info/face/index",
     "pages/collect-info/identity/index",
     "pages/employee/take-card/success/index",

@@ -1,0 +1,21 @@
+/* pages/collect-info/guide/index.wxss */
+
+
+
+.page__bd {
+  margin: 218rpx 84rpx 0;
+}
+
+.icon-yuangonglururenlian {
+  color: #007bff;
+  font-size: 144rpx;
+}
+.invoice {
+  margin-bottom: 58rpx;
+}
+.page__ft {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30rpx 0 110rpx;
+}
