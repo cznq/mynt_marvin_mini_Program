@@ -1,31 +1,29 @@
 
 <view class="page">
-  <view class="page__hd _flex _flex_space_between _flex_item_center">
-      <text class="_font60 _fontw700">邀请员工</text>
-  </view>
+  
   <view class="page__bd">
     <view class="company-card _txt_center">
       <image class='logo' src='{{companyInfo.logo}}'></image>
       <view class="_short_name _fontw700">{{companyInfo.company_short_name}}</view>
       <view class="_company_name">{{companyInfo.company_name}}</view>
       <button class="invite_btn _flex _flex_item_center _flex_justify_center" open-type="share">
-        <text class="iconfont icon-weixin"></text>邀请员工
+        <text class="iconfont icon-weixin"></text>通过微信邀请
       </button>
-      <view class="share-info">点击邀请好友加入公司</view>
+      <view class="share-info">点击邀请按钮将链接发送给同事，以此方式邀请同事加入你的公司。</view>
     </view>
     <view class="invite-method _txt_center">
-      <view class="title _font28 _fontw500">更多邀请途径</view>
+      <view class="title _font28 _fontw500">其他邀请同事加入公司的方式</view>
       <view class="invite-by">
         <view class="invite-wrap invite-by-qrcode" bindtap="inviteOpen" data-method='qrcode'>
           <view class="iconfont icon-tianjiayuangong_erweima"></view>
-          <view class="method-name">通过二维码</view>
+          <view class="method-name">二维码邀请</view>
         </view>
         <view class="invite-wrap invite-by-code" bindtap="inviteOpen" data-method='code'>
           <view class="iconfont icon-tianjiayuangong_yaoqingma"></view>
-          <view class="method-name">通过邀请码</view>
+          <view class="method-name">公司码邀请</view>
         </view>
       </view>
-      <view class="invite-intro _font24 _fontw300">员工通过扫描二维码或输入邀请码的方式申请加入</view>
+      <view class="invite-intro _font24 _fontw300">将二维码或公司码出示给你的同事，同事在加入公司选项中输入对应的码即可快速申请加入你的公司。</view>
     </view>
   </view>
   <canvas canvas-id="inviteCanvas" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px;"></canvas>

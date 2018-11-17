@@ -2,7 +2,7 @@
 
 .login {
   background: url('http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/login_pic.png') no-repeat;
-  background-size: 100%;
+  background-size: contain;
   height: 900rpx;
   left: 0;
   top: 0;
@@ -18,14 +18,13 @@
 
 .logon_c .title {
   text-align: center;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 56rpx;
 }
 
 .logon_c .introduce {
   padding: 41rpx 76rpx 128rpx 76rpx;
   text-align: center;
-  font-weight: 500;
 }
 
 .logon_c .copy {

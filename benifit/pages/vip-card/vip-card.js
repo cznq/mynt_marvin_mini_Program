@@ -54,6 +54,13 @@ Page({
         if (res.data.result) {
           if (res.data.result.has_employee_benefit == 1) {
             that.setData({ is_vip: true })
+            wx.setBackgroundColor({
+              backgroundColor: '#404452', // 窗口的背景色为白色
+            })
+            wx.setNavigationBarColor({
+              frontColor: '#ffffff',
+              backgroundColor: '#404452'
+            })
           } else {
             that.setData({ is_vip: false })
           }
@@ -116,7 +123,7 @@ Page({
     var commerce_id = e.currentTarget.dataset.commerceid;
     var commerce_type = e.currentTarget.dataset.commercetype;
     wx.navigateTo({
-      url: '/page/benifit/pages/mall-detail/mall-detail?commerce_id=' + commerce_id + '&commerce_type=' + commerce_type,
+      url: '/benifit/pages/mall-detail/mall-detail?commerce_id=' + commerce_id + '&commerce_type=' + commerce_type,
     })
   },
 
@@ -129,7 +136,7 @@ Page({
     var selectedType = e.currentTarget.dataset.selectedtype;
     console.log(tabSelected + '--' + selectedType);
     wx.navigateTo({
-      url: '/page/benifit/pages/mall-home/mall-home?tabSelected=' + tabSelected + '&selectedType=' + selectedType,
+      url: '/benifit/pages/mall-home/mall-home?tabSelected=' + tabSelected + '&selectedType=' + selectedType,
     })
   }
 

@@ -45,6 +45,7 @@ Page({
     this.setData({
       cameraErrorText: "你已经取消了人脸录入的授权"
     });
+    wx.navigateBack({});
   },
 
   openCameraAuth: function () {

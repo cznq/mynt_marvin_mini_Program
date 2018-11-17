@@ -1,6 +1,6 @@
 // pages/mall-detail/mall-detail.js
 const app = getApp();
-var QQMapWX = require('../../../../utils/qqmap-wx-jssdk.min.js');
+var QQMapWX = require('../../../utils/qqmap-wx-jssdk.min.js');
 var wxParse = require('../../vendor/wxParse/wxParse.js');
 
 Page({
@@ -30,7 +30,9 @@ Page({
     dialog_discount_limit: null,
     systemInfo: null,
     viewID: "discSec",
-    businessStatus: ""
+    businessStatus: "",
+    latitude: null,
+    longitude: null
   },
 
   /**
@@ -125,6 +127,7 @@ Page({
         }
         that.getProtocol(commerce_id, that.data.commerce_type);
         that.getComments(commerce_id);
+        app.Util.generateMap(this, res.data.result.address);
       }
     })
   },
@@ -264,7 +267,7 @@ Page({
   cardTopay: function (e) {
     if (this.data.is_vip == false) {
       wx.navigateTo({
-        url: '/page/benifit/pages/vip-card/vip-card'
+        url: '/benifit/pages/vip-card/vip-card'
       })
       return ;
     }
@@ -323,35 +326,13 @@ Page({
   /**
    * 打开地图服务
    */
-  generateMap: function () {
-    var that = this;
-    var qqmapsdk = new QQMapWX({
-      key: 'CGVBZ-S2KHV-3CBPC-UP4JI-4N55F-7VBFU'
-    });
-    qqmapsdk.geocoder({
-      address: this.data.commerceDetail.address,
-      success: function (res) {
-        if (res.result.location) {
-          wx.openLocation({
-            latitude: res.result.location.lat,
-            longitude: res.result.location.lng,
-            scale: 28
-          })
-        } else {
-          wx.showToast({
-            title: '获取经纬度失败'
-          })
-        }
-      },
-      fail: function (res) {
-        wx.showToast({
-          title: '获取经纬度失败'
-        })
-      },
-      complete: function (res) {
-        console.log(res);
-      }
-    })
+
+  openMap: function () { 
+    wx.openLocation({
+      latitude: this.data.latitude,
+      longitude: this.data.longitude,
+      scale: 28
+    })    
   },
 
   /**
@@ -361,7 +342,7 @@ Page({
     if (this.data.is_vip) {
       var commerce_id = e.currentTarget.dataset.commerceid;
       wx.navigateTo({
-        url: '/page/benifit/pages/mall-comment/mall-comment?commerce_id=' + commerce_id
+        url: '/benifit/pages/mall-comment/mall-comment?commerce_id=' + commerce_id
       })
     } else {
       wx.showToast({

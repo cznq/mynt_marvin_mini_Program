@@ -76,6 +76,7 @@ page {
 }
 .icon-qiantai.admin {
   color: #484F62;
+  margin-right: 0;
 }
 .vip-icon {
   width: 40rpx;

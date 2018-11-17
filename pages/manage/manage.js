@@ -26,6 +26,12 @@ Page({
       _this.get_review_status(_this, union_id);
     }
   },
+
+  onShow: function () {
+    this.setData({
+      timestamp: Date.parse(new Date())
+    })
+  },
   //获取用户状态
   get_review_status: function(_this, union_id) {
     if (union_id !== '') {

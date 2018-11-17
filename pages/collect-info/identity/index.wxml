@@ -5,7 +5,7 @@
     <view class='cur'></view>
     <view></view>
   </view>
-  <view class='recodeTitle _fontw600 _font48rpx;'>录入身份信息</view>
+  <view class='recodeTitle _fontw600 _font48;'>录入身份信息</view>
   <view class='recodeIntro'>根据公安部和物业要求，请输您的身份信息，请注意证件号一旦确认不可更改。</view>
   <form bindsubmit='editSubmit'>
     <view class='input_block' id='ib1'>
