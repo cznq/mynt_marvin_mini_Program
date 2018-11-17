@@ -138,6 +138,7 @@ App({
               if (res.data.sub_code == 0) {
                 wx.setStorageSync('xy_session', res.data.result.union_id);
                 wx.setStorageSync('nickname', res.data.result.nickname);
+                wx.setStorageSync('open_id', res.data.result.open_id);
                 wx.setStorageSync('avatar', res.data.result.avatar);
                 callback();
               } else {
