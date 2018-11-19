@@ -1,4 +1,46 @@
 <view class="icon_viewsts clear">
+
+
+
+    <view class="block">
+                <view class="icon iconfont icon-fenxiang"></view>
+                    <view class="name">分享</view>
+                    <view class="fontclass">.icon-fenxiang</view>
+                </view>
+            
+                <view class="block">
+                <view class="icon iconfont icon-dunpai"></view>
+                    <view class="name">盾牌</view>
+                    <view class="fontclass">.icon-dunpai</view>
+                </view>
+            
+                <view class="block">
+                <view class="icon iconfont icon-suoshuqiye"></view>
+                    <view class="name">所属企业</view>
+                    <view class="fontclass">.icon-suoshuqiye</view>
+                </view>
+            
+                <view class="block">
+                <view class="icon iconfont icon-shenqingtijiao"></view>
+                    <view class="name">申请提交</view>
+                    <view class="fontclass">.icon-shenqingtijiao</view>
+                </view>
+            
+                <view class="block">
+                <view class="icon iconfont icon-lianxiqiantai"></view>
+                    <view class="name">联系前台</view>
+                    <view class="fontclass">.icon-lianxiqiantai</view>
+                </view>
+            
+                <view class="block">
+                <view class="icon iconfont icon-shenqingtongguo"></view>
+                    <view class="name">申请通过</view>
+                    <view class="fontclass">.icon-shenqingtongguo</view>
+                </view>
+
+
+
+
   <view class="block">
     <view class='icon-cjcg _relative'>
       <view class="iconfont icon-chuangjiangongsichenggong3 _absolute"></view>
