@@ -86,6 +86,7 @@ Page({
       app.checkLogin().then(function(res) {
         var union_id = wx.getStorageSync('xy_session');
         _this.get_review_status(_this, union_id);
+
       })
     } else {
       var union_id = wx.getStorageSync('xy_session');
