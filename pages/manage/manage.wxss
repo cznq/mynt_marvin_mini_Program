@@ -1,52 +1,53 @@
 @import "../create-company/public/style.wxss";
+/* 创建公司&&加入公司首页 */
+.login .headlines {padding:47rpx 0 0 58rpx;font-size:68rpx;line-height:68rpx;font-weight: bold;}
+.login .headlines .t2{padding:19rpx 0 43rpx 0;color:#0093FE;}
+.login .copy {font-size: 24rpx;color: #8891a9;text-align: center;padding: 28rpx 0;font-weight: 300;}
+.login .t_blue {color: #475ffd;}
+.login .footer_s{width:100%;position: absolute;left: 0;bottom: 0;}
+.login swiper{height: 837rpx;}
+.login .slide-image{width: 750rpx;height: 580rpx;}
+.login .copywriting{padding:10rpx 0 0 58rpx;font-size:32rpx;color:#1A2A4B;line-height: 32rpx;}
+.login .copywriting .content{font-weight: 300;line-height: 42rpx;padding-top:5rpx;}
+.login .wx-swiper-dots{margin-bottom:260rpx;}
+.login .swiper-box .wx-swiper-dot{width:12rpx;height: 12rpx;}
 
-.login {
-  background: url('http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/login_pic.png') no-repeat;
-  background-size: contain;
-  height: 900rpx;
-  left: 0;
-  top: 0;
-  width: 100%;
-}
+/* 管理中心 */
+.manage .header{background: #092344;height:273rpx;padding-top:22rpx;}
+.header .rim{width:670rpx;height: 273rpx;background: #fff;margin:0 auto;border-top-left-radius: 8rpx;border-top-right-radius: 8rpx;}
+.header .top{border-bottom: 1rpx dashed #D8E3F0;height:100rpx;padding:30rpx;}
+.header .top .vip{right: 0;top:0;width:50rpx;height:43rpx;}
+.header .top image{width: 100rpx;height:100rpx;border-radius: 8rpx;float: left;margin-right:20rpx;}
+.header .t1{font-size:44rpx;line-height:65rpx;color: #081C33;}
+.header .t2{font-size:24rpx;color:#8891A9;}
+.header .bottom{padding:20rpx 0 0 30rpx;}
+.header .bottom .c{float: left;}
+.header .bottom .c1{width:270rpx;}
+.header .bottom .c2{width:160rpx;}
+.header .bottom .c3{width:170rpx;}
+.header .bottom .name{font-size:20rpx;line-height:30rpx;color:#8891A9;}
+.header .bottom .con{font-size:28rpx;font-weight: 400;}
 
-.logon_c {
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 580rpx;
-}
+.section{padding:25rpx 0 0 45rpx;}
+.section .title{color:#1A2A4B;font-size:32rpx;line-height: 32rpx;padding-bottom:20rpx;font-weight: bold;padding-top:35rpx;padding-left:15rpx;}
+.application .block{float: left;width:140rpx;font-size:24rpx;color:#1A2A4B;text-align: center;line-height:24rpx;padding-top:10rpx;height:100rpx;margin:0 33rpx 25rpx 0;}
+.application .block image{display: block;margin:0 auto 20rpx auto;}
+.application .block image.m1{width:64rpx;height:56rpx;}
+.application .block image.m2{width:56rpx;height:56rpx;}
+.application .block image.m3{width:48rpx;height:56rpx;}
+.application .block image.m4{width:56rpx;height:54rpx;}
+.application .block image.m5{width:56rpx;height:56rpx;}
+.application .block image.m6{width:60rpx;height:54rpx;}
+.service .block{width:264rpx;height:120rpx;background:#F5F5FF;border-radius: 8rpx;text-align:right;padding-right:40rpx;font-size:28rpx;color:#1A2A4B;line-height:28rpx;margin-left:15rpx;float:left;margin-right:7rpx;}
+.service .con .t1{padding:30rpx 0 12rpx 0;}
+.service .con .t2{font-size:20rpx;line-height:20rpx;color:#B8C1CC;}
 
-.logon_c .title {
-  text-align: center;
-  font-weight: 600;
-  font-size: 56rpx;
+.service image{width:56rpx;height:56rpx;float: left;margin:32rpx 0 0 40rpx;}
+.service image.s2{width:52rpx;height:46rpx;margin:38rpx 0 0 40rpx;}
+.adrim {
+    padding: 60rpx;
 }
+/* 审核中 */
+.s_hint .text {color: #3ed26b;}
+.company-sh {background: #fff;}
 
-.logon_c .introduce {
-  padding: 41rpx 76rpx 128rpx 76rpx;
-  text-align: center;
-}
-
-.logon_c .copy {
-  font-size: 24rpx;
-  color: #8891a9;
-  text-align: center;
-  padding: 28rpx 0;
-  font-weight: 300;
-}
-
-.logon_c .t_blue {
-  color: #475ffd;
-}
-
-.s_hint .text {
-  color: #3ed26b;
-}
-
-.button426 {
-  width: 426rpx;
-}
-
-.company-sh {
-  background: #fff;
-}

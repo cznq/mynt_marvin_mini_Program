@@ -1,17 +1,89 @@
 <!--web view-->
-<web-view wx:if="{{iswebview==false? false : true}}" src="{{web_url}}/home"></web-view>
+<!-- <web-view wx:if="{{iswebview==false? false : true}}" src="{{web_url}}/home?timestamp={{timestamp}}"></web-view> -->
+
+<!-- 管理中心 -->
+<view wx:if="{{ismanage==false? false : true}}">
+  <view class='manage'>
+    <view class='header'>
+      <view class='rim'>
+        <view class='_relative top'>
+        <image   class='logo' src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/111.jpg' mode="{{mode}}"></image>
+            <view class='t1'>轻客智能科技</view>
+            <view class='t2'>轻客智能科技（江苏）有限公司</view>
+            <image class='_absolute vip' src='{{vipImg}}'></image>
+        </view>
+        <view class='bottom'>
+          <view class='c c1'>
+            <view class='name'>联系方式</view>
+            <view class='con _txt_blue_c'>40022568888</view>
+          </view>
+          <view class='c c2'>
+            <view class='name'>行业</view>
+            <view class='con'>科技</view>
+          </view>
+          <view class='c c3'>
+            <view class='name'>位置</view>
+            <view class='con'>杭州萧山芜湖</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='section'>
+      <view class='title'>企业应用</view>
+      <view class='content _clearfloat application'>
+        <view wx:for="{{application}}" wx:for-index="idx" wx:key="key" class='block'>
+          <image class="m{{idx+1}}" src='{{item.pic}}'></image>
+          {{item.name}}
+        </view>
+        
+      </view>
+      <view class='title'>企业服务</view>
+      <view class='content _clearfloat service'>
+          <view class='block' wx:for="{{service}}" wx:for-index="idx" wx:key="key" style='background:{{item.backgroundColor}}'>
+            <image class='s{{idx+1}}' src='{{item.pic}}'></image>
+            <view class='con'>
+              <view class='t1'>{{item.text1}}</view>
+              <view class='t2'>{{item.text2}}</view>
+            </view>
+
+            
+          </view>
+      </view>
+    </view>
+    <view class="adrim">
+      <import src="../../templates/vipAd/vipAd.wxml" />
+      <template is="vipAd" data="{{text: 'forbar'}}" />
+    </view>
+  </view>
+</view>
+
 
 <!--登陆页面-->
 <view wx:if="{{islogin==false? false : true}}">
-  <view class=' _fixed login'>
-  </view>
-  <view class='_fixed logon_c'>
-    <view class='title'>{{title}}</view>
-    <view class='introduce _font32'>{{introduce}}</view>
-    <button class="_button button426" bindtap="joinCompany">{{button_text}}</button>
-    <view class='copy'>
-      <text>{{copy}}</text>
-      <text class="t_blue" bindtap="createCompany">{{copy2}}</text>
+  <view class='login'>
+    <view class='headlines'>
+      <view>{{headlinesT1}}</view>
+      <view class='t2'>{{headlinesT2}}</view>
+    </view>
+    <swiper class='swiper-box' indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
+      <block wx:for="{{imgUrls}}">
+        <swiper-item>
+          <image src="{{item.url}}" class="slide-image" />
+          <view class='copywriting'>
+            <view class='title'>{{item.title}}</view>
+            <view class='content'>
+              <text>{{item.content}}</text>
+            </view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class='footer_s'>
+      <button class="_button" bindtap="joinCompany">{{button_text}}</button>
+      <view class='copy'>
+        {{copy}}
+        <text class="t_blue" bindtap="createCompany">{{copy2}}</text>
+      </view>
     </view>
   </view>
 </view>
@@ -44,5 +116,3 @@
     </view>
   </view>
 </view>
-<import src="../../templates/login.wxml" />
-<template is="login" data="{{showLoginModal: showLoginModal}}"></template>

@@ -15,6 +15,13 @@
     "pages/create-company/createSuccess/index",
     "pages/create-company/examples/index",
     "pages/create-company/updateReviewInfo/index",
+
+        "pages/create-company/guide/index",
+        "pages/create-company/guideVip/index",
+        "pages/create-company/basicInformation/index",
+        "pages/create-company/vipInformation/index",
+        "pages/create-company/companyPages/index",
+        "pages/create-company/robotPreview/index",
     "pages/employee/join-company/enterRealName/index",
     "pages/employee/join-company/invitationCode/index",
     "pages/employee/join-company/choiceJoin/index",

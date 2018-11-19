@@ -1,0 +1,204 @@
+@import "../public/style.wxss";
+@import "../../../templates/showToast/showToast.wxss";
+
+
+
+.mainTitle text {
+  margin-top: 37rpx;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hint {
+  margin-top: 40rpx;
+  line-height: 28rpx;
+  text-align: left;
+}
+
+.upload-block {
+  margin-top: 35rpx;
+  border-bottom:1rpx solid #eeeeee;
+  padding-bottom:31rpx;
+}
+
+.up_pub {
+  background: #f3f5f9;
+  border-radius: 10rpx;
+  position: relative;
+  margin: 19rpx 0 6rpx 0;
+}
+
+.up_pub image {
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+}
+
+.clearpic {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 40rpx;
+  background: #8891A9;
+  right: -8rpx;
+  top: -14rpx;
+  position: absolute;
+  color: #fff;
+  line-height: 34rpx;
+  border: 1rpx solid #fff;
+  text-align: center;
+  font-family: -BlinkMacSystemFont;
+  font-size: 30rpx;
+}
+
+.clearvideo {
+  width: 28rpx;
+  height: 28rpx;
+  padding: 12rpx 0 0 12rpx;
+}
+
+.clearvideo .cha {
+  width: 16rpx;
+  height: 16rpx;
+}
+
+.icon-cha {
+  font-size: 16rpx;
+  color: #fff;
+  padding-top: 5rpx;
+}
+
+.up_logo .up_pub, .up_logo .showpic {
+  width: 240rpx;
+  height: 240rpx;
+}
+
+.up_con {
+  width: 124rpx;
+  height: 95rpx;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.up_dot {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 48rpx;
+  text-align: center;
+  background: #fff;
+  border: 1rpx solid #bbb;
+  margin: 0 auto;
+}
+
+.up_dot .icon-tianjia {
+  padding-top: 12rpx;
+  line-height: 22rpx;
+  font-size: 22rpx;
+  color: #bbb;
+}
+
+.up_text {
+  color: #bbb;
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.up_propaganda .up_pub, .up_propaganda .showpic {
+  width: 630rpx;
+  height: 354rpx;
+}
+
+.video {
+  width: 630rpx;
+  height: 354rpx;
+}
+
+.up_broadcast .up_pub, .up_broadcast .showpic {
+  width: 300rpx;
+  height: 170rpx;
+}
+
+.up_broadcast .up_pub {
+  float: left;
+}
+
+/*偶数*/
+
+.up_broadcast .up_pub:nth-child(even) {
+  margin-left: 30rpx;
+}
+
+.up_video .up_pub, .up_video .showpic, .up_video .showpic video {
+  width: 630rpx;
+  height: 354rpx;
+}
+
+.vip {
+  display: inline-block;
+  width: 93rpx;
+  height: 30rpx;
+  position: relative;
+  vertical-align: -3rpx;
+}
+
+.vip_arrow {
+  float: left;
+  width: 5rpx;
+  margin: 0;
+  position: absolute;
+  left: -5rpx;
+  top: -16rpx;
+}
+
+.vip_arrow:after {
+  width: 0;
+  height: 0;
+  content: '';
+  display: inline-block;
+  border: 3px solid transparent;
+  border-right: 3px solid #e1b88b;
+  margin: 0;
+}
+
+.vip_text {
+  float: left;
+  width: 88rpx;
+  color: #fff;
+  height: 30rpx;
+  line-height: 30rpx;
+  background: #e1b88b;
+  font-size: 20rpx;
+  margin-left: 6rpx;
+  font-weight: 300;
+  border-radius: 4rpx;
+  text-align: center;
+}
+
+.controls {
+  position: relative;
+  top: -50rpx;
+  height: 50px;
+  display: flex;
+}
+
+.play, .pause, .time {
+  flex: 1;
+  height: 100%;
+}
+
+.time {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  line-height: 50px;
+}
+
+.img {
+  width: 40px;
+  height: 40px;
+  margin: 5px auto;
+}
+
+.vipInformation{background: #F9FAFB;padding-bottom:300rpx;}

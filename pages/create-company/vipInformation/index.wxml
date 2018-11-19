@@ -1,0 +1,86 @@
+<view class='_content guide vipInformation'>
+  <view class='_txt_gray title step_title'>{{mainTitle}}</view>
+  <view class='_txt_gray _fontw300 con'>添加企业宣传图片和视频，生成企业主页，让您的企业在各种端都获得更好形象展现。</view>
+  <view class='upload-block up_logo'>
+    <view class='_font32'><view class='up_hint _font22 _fontw300 _txt_darkgrey _f_right '>建议尺寸：1:1</view>公司LOGO</view>
+    <view class='up_pub' wx:if="{{cd.logo !== ''}}">
+      <image mode="{{mode}}" src='{{cd.logo}}'></image>
+      <view class='clearpic _position' bindtap='bindclearpic' data-key='logo'>×</view>
+    </view>
+    <view class='up_pub' bindtap='uploadimages' data-key='logo' wx:else>
+      <view class='up_con'>
+        <view class='up_dot'><view class="iconfont icon-tianjia"></view></view>
+        <view class='up_text _txt_darkgrey _fontw300 _font32'>上传图片</view>
+      </view>
+    </view>
+    
+  </view>
+  <view class='upload-block up_propaganda'>
+    <view class='_font32'><view class='up_hint _font22 _fontw300 _txt_darkgrey _f_right'>建议尺寸：1920*1080</view>宣传背景图</view>
+    <view class='up_pub' wx:if="{{cd.background_url !== ''}}">
+      <image mode="{{mode}}" src='{{cd.background_url}}'></image>
+      <view class='clearpic _position' bindtap='bindclearpic' data-key='background_url'>×</view>
+    </view>
+    <view class='up_pub' bindtap='uploadimages' data-key='background_url' wx:else>
+      <view class='up_con'>
+        <view class='up_dot'><view class="iconfont icon-tianjia"></view></view>
+        <view class='up_text _txt_darkgrey _fontw300 _font32'>上传图片</view>
+      </view>
+    </view>
+    
+  </view>
+  <view class='upload-block up_video'>
+    <view class='_font32'><view class='up_hint _font22 _fontw300 _txt_darkgrey _f_right'>建议不超过100M</view>宣传视频
+      <!-- <view class='vip'>
+        <view class='vip_arrow'></view>
+        <view class='vip_text'>VIP专享</view>
+      </view> -->
+    </view>
+    <view class='up_pub' wx:if="{{cd.video_url !== ''}}">
+      <video class='video' id="myVideo" src="{{cd.video_url}}">
+      </video>
+      <cover-view class="clearpic clearvideo _position" bindtap="bindclearpic" data-key='video_url'>
+      <cover-image class="cha" src="http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/cha.png" />
+      </cover-view>
+    </view>
+    <!--   -->
+    <view class='up_pub' bindtap='uploadvideo' wx:else>
+      <view class='up_con'>
+        <view class='up_dot'><view class="iconfont icon-tianjia"></view></view>
+        <view class='up_text _txt_darkgrey _fontw300 _font32'>上传视频</view>
+      </view>
+    </view>
+
+  </view>
+  <view class='upload-block up_broadcast'>
+    <view class='_font32'><view class='up_hint _font22 _fontw300 _txt_darkgrey '>建议比例：16:9,最多6张</view>轮播图</view>
+    <view class='_clearfloat'>
+      <view class='up_pub' wx:key="unique" wx:for-index="idx" wx:for="{{cd.product_urls}}">
+        <view class='showpic'>
+          <image mode="{{mode}}" src='{{item}}'></image>
+          <view class='clearpic _position' bindtap='bindclearpic' data-key='{{idx}}'>×</view>
+        </view>
+      </view>
+      <view class='up_pub' bindtap='uploadimages' data-num="6" data-key='product_urls' wx:if="{{isSowingMapUp==false? false : true}}">
+        <view class='up_con'>
+          <view class='up_dot'><view class="iconfont icon-tianjia"></view></view>
+          <view class='up_text _txt_darkgrey _fontw300 _font32'>上传图片</view>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+  <view class='hint'>
+    <text class='_font24 _fontw300'>{{hint}}</text>
+  </view>
+  
+
+  <cover-view class='_fixed footer covview'>
+    <button class="_button" bindtap="submit">{{button_text}}</button>
+  </cover-view>
+  <cover-view class='_fixed footer covview' wx:if="{{isvideoshow==false? false : true}}">
+    <button class="_button" bindtap="submit">{{button_text}}</button>
+  </cover-view>
+</view>
+<import src="../../../templates/showToast/showToast.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />

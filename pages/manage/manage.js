@@ -1,71 +1,99 @@
 var app = getApp()
 Page({
   data: {
-    islogin: false,
-    isexamine: false,
-    iswebview: false,
-    timestamp: null,
-    showLoginModal: false,
-    web_url: app.globalData.WEB_VIEW_URL,
-    title: '欢迎使用小觅楼宇服务',
-    introduce: '加入一个公司并开始享受高端楼宇服务，包括邀请访客、员工快速发卡等',
-    copy: '公司还未入驻. ',
-    copy2: '新建公司',
+    indicatorDots: true, //是否显示面板指示点
+    indicatorColor: "#8891A9", //指示点颜色
+    indicatorActiveColor: "#007BFF", //当前选中的指示点颜色
+    autoplay: true, //是否自动切换
+    interval: 2000, //自动切换时间间隔
+    duration: 500, //滑动动画时长
+    circular: true, //是否采用衔接滑动
+    islogin: false,//创建公司&&加入公司首页
+    isexamine: false,//审核中
+    ismanage: false,//管理中心
+    headlinesT1: "欢迎使用",
+    headlinesT2: "小觅楼宇服务",
+    copy: '我的公司还未入驻小觅楼宇服务，点击 ',
+    copy2: '创建公司',
     button_text: '加入公司',
-    button_text_qx: '取消申请'
-  },
-  bindGetUserInfo: function () {
-    var that = this;
-    wx.getSetting({
-      success: function (res) {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: function (res) {
-              console.log(res);
-              that.setData({
-                showLoginModal: false
-              })
-              app.authorizeLogin(res.encryptedData, res.iv, () => {
-                var union_id = wx.getStorageSync('xy_session');
-                that.get_review_status(that, union_id);
-              });
-            }
-          })
-        }
+    button_text_qx: '取消申请',
+    imgUrls: [{
+      url: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+      title: '优享智能服务',
+      content: '享受机器人贴心服务，\n颠覆传统解放人力'
+    },
+    {
+      url: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+      title: '线上访客邀请',
+      content: '通过线上邀请访客，到访流程\n更加便捷高效'
+    },
+    {
+      url: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg',
+      title: '商户协议买单',
+      content: '享受周边商户专属协议优惠，\n升级消费体验'
+    }
+    ],
+    mode: 'aspectFill',//manage logo展示效果
+    application:[
+      {
+        url:'',
+        pic:'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m1.png',
+        name:'公司信息'
+      }, {
+        url: '',
+        pic: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m2.png',
+        name: '员工信息'
       }
-    })
+      , {
+        url: '',
+        pic: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m3.png',
+        name: '访客列表'
+      }, {
+        url: '',
+        pic: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m4.png',
+        name: '邀请列表'
+      }, {
+        url: '',
+        pic: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m5.png',
+        name: 'VIP列表'
+      }, {
+        url: '',
+        pic: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m6.png',
+        name: '前台列表'
+      }
+    ],
+    vipImg:'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/vip@2x.png',
+    service:[
+      {
+        url: '',
+        pic: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m7.png',
+        text1: '自动值守',
+        text2: '未开启 >',
+        backgroundColor: '#F5F5FF'
+      }, {
+        url: '',
+        pic: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m8.png',
+        text1: '员工取卡',
+        text2: '未开启 >',
+        backgroundColor:'#F0FAF7'
+      }
+    ]
   },
   onLoad: function(options) {
     var _this = this;
     //检测登陆
-
-    if (!(app.checkSession())) {
+    if (!(app.checkSession()) || wx.getStorageSync('open_id') == '' || wx.getStorageSync('xy_session') == '') {
       app.checkLogin().then(function(res) {
-        if (!(app.checkSession())) {
-          that.setData({
-            showLoginModal: true
-          })
-        } else {
-          var union_id = wx.getStorageSync('xy_session');
-          _this.get_review_status(_this, union_id);
-        }
+        var union_id = wx.getStorageSync('xy_session');
+        _this.get_review_status(_this, union_id);
       })
     } else {
       var union_id = wx.getStorageSync('xy_session');
       _this.get_review_status(_this, union_id);
     }
   },
-
-  onShow: function () {
-    this.setData({
-      timestamp: Date.parse(new Date())
-    })
-  },
   //获取用户状态
   get_review_status: function(_this, union_id) {
-    console.log('openid-----' + wx.getStorageSync('open_id'));
-    console.log(union_id+'pppppp');
     if (union_id !== '') {
       app.Util.network.POST({
         url: app.globalData.BASE_API_URL,
@@ -79,11 +107,21 @@ Page({
         success: res => {
           console.log(res);
           var resdata = res.data.result;
+          //resdata.employee_status = 0;
           if (res.data.sub_code == 0) {
             if (resdata.employee_status === 0) {
-              console.log('webview');
+              console.log('管理中心');
               _this.setData({
-                iswebview: true
+                ismanage: true
+              })
+
+              wx.setNavigationBarColor({
+                frontColor: '#ffffff',
+                backgroundColor: '#092344',
+                animation: {
+                  duration: 400,
+                  timingFunc: 'easeIn'
+                }
               })
             }
             if (resdata.employee_status === 2) {
@@ -95,13 +133,13 @@ Page({
               })
             }
             if (resdata.employee_status === "" || resdata.employee_status === 1 || resdata.employee_status === 3 || resdata.employee_status === 4) {
-              console.log('小机器人');
+              console.log('创建&&加入公司首页');
               _this.setData({
                 islogin: true
               })
-            } 
+            }
 
-          }else{
+          } else {
             console.log(res.data.sub_msg);
           }
         },

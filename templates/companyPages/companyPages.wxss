@@ -1,0 +1,30 @@
+.banner{height: 300rpx;}
+.banner image{width:750rpx;height: 300rpx;}
+.banner .logo{left:60rpx;bottom: -50rpx;width:100rpx;height: 100rpx;border-radius: 10rpx;}
+
+.companyPages{padding:0 60rpx;}
+.header .rim{padding:32rpx 0 0 0;}
+.header .top{height:91rpx;padding:30rpx 0;}
+.header .top .vip{right: 0;top:0;width:50rpx;height:43rpx;}
+.header .top image{width: 100rpx;height:100rpx;border-radius: 8rpx;float: left;margin-right:20rpx;}
+.header .t1{font-size:44rpx;line-height:65rpx;color: #081C33;font-weight:500;}
+.header .t2{font-size:24rpx;color:#8891A9;}
+.header .bottom{margin:20rpx 0 0 0;border-bottom:1rpx solid #eeeeee;padding-bottom:32rpx;width:630rpx;}
+.header .bottom .c{float: left;}
+.header .bottom .c1{width:270rpx;}
+.header .bottom .c2{width:160rpx;}
+.header .bottom .c3{width:170rpx;}
+.header .bottom .name{font-size:20rpx;line-height:20rpx;color:#8891A9;}
+.header .bottom .con{font-size:28rpx;font-weight: 400;}
+.header .share{float:right;width:30rpx;height:30rpx;background: #ccc;margin:18rpx 35rpx 0 0;}
+.h3{padding-top:47rpx;font-weight: 500;}
+.blockCon{border-bottom:1rpx solid #eeeeee;padding-bottom:45rpx;padding-top:13rpx;}
+.imagearr{padding-left:60rpx;}
+.scrollView{white-space: nowrap;}
+.scrollView-item{display: inline-block;width: 630rpx;height: 354rpx;margin-right: 20rpx;}
+.scrollView-item image{width: 630rpx;height: 354rpx;}
+
+.introCon {line-height: 28rpx;}
+.introCon .tr {font-size: 28rpx;color: #223151;padding:21rpx 0 36rpx 0;}
+.introCon .tr text{font-size:24rpx;color:#8891A9;float: left;padding-right: 35rpx;}
+.downpadd{padding-bottom:240rpx;}
