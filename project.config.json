@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 27,
+			"current": 6,
 			"list": [
 				{
 					"id": 0,
@@ -77,22 +77,23 @@
 				{
 					"id": 6,
 					"name": "录入人脸",
-					"pathName": "pages/collect-info/identity/index",
+					"pathName": "pages/collect-info/face/index",
 					"query": "company_id=17",
 					"scene": "1044"
 				},
 				{
-					"id": -1,
+					"id": 7,
 					"name": "小觅VIP卡",
-					"pathName": "page/benifit/pages/vip-card/vip-card",
+					"pathName": "benifit/pages/vip-card/vip-card",
 					"query": "",
 					"scene": "1011"
 				},
 				{
-					"id": -1,
+					"id": 8,
 					"name": "商城首页",
-					"pathName": "page/benifit/pages/mall-home/mall-home",
-					"query": ""
+					"pathName": "benifit/pages/mall-home/mall-home",
+					"query": "",
+					"scene": "1011"
 				},
 				{
 					"id": 9,
@@ -133,7 +134,7 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 15,
 					"name": "员工列表",
 					"pathName": "pages/employee/staff-list/index",
 					"query": "company_code=GERW1XWQ",

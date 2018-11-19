@@ -374,7 +374,7 @@ Page({
   */
   onShareAppMessage: function (res) {
     return {
-      title: '邀请加入' + this.data.companyInfo.company_name,
+      title: this.data.companyInfo.company_short_name + '给您发送了一个邀请，期待您的到访！',
       path: '/pages/employee/join-company/confirmCompanyInformation/index?company_code=' + this.data.companyInfo.company_code,
       success: function (res) {},
       fail: function (res) {}

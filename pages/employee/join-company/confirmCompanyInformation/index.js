@@ -5,13 +5,41 @@ Page({
     mainTitle: '确认加入此公司',
     button_text: '下一步',
     hint: '二维码与邀请码来自于企业内部人员的分享,可\n向企业员工或管理员索要',
-    company_code: ''
+    company_code: '',
+    showLoginModal:false
+  },
+  bindGetUserInfo: function () {
+    var that = this;
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function (res) {
+              console.log(res);
+              that.setData({
+                showLoginModal: false
+              })
+              app.authorizeLogin(res.encryptedData, res.iv, () => {
+              });
+            }
+          })
+        }
+      }
+    })
   },
   onLoad: function(options) {
     var _this = this;
     //检测登陆
-    if (!(app.checkSession()) || wx.getStorageSync('open_id') == '' || wx.getStorageSync('xy_session') == '') {
-      app.checkLogin().then(function(res) {})
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function(res) {
+        if (!(app.checkSession())) {
+          that.setData({
+            showLoginModal: true
+          })
+        } else {
+        }
+      })
     }
     if (!options.company_code) {
       _this.data.company_code = decodeURIComponent(options.scene);
@@ -31,7 +59,7 @@ Page({
         console.log(res);
         var resdata = res.data.result;
         if (res.data.sub_code == 0) {
-          if (resdata.employee_status === 2) {
+          if (resdata.employee_status === 2 || resdata.employee_status === 0) {
             wx.reLaunch({
               url: '../../../manage/manage',
             })

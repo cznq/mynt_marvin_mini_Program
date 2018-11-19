@@ -18,8 +18,8 @@ App({
     isIphoneX: false,
     BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
     WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
-    BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
-    //BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
+    //BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
+    BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
     //BENIFIT_API_URL: 'https://marvin-benifit-api-test.slightech.com/mini_program/api',
     //WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com',
     //BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/',//开发环境
@@ -55,7 +55,7 @@ App({
    * 检查App是否登录
    */
   checkSession: function () {
-    if (wx.getStorageSync('xy_session') == '' || wx.getStorageSync('xy_session') == null) {
+    if (wx.getStorageSync('xy_session') == '' || wx.getStorageSync('xy_session') == null || wx.getStorageSync('open_id') == '' || wx.getStorageSync('open_id') == null) {
       return false;
     } else {
       return true;
@@ -143,6 +143,7 @@ App({
               if (res.data.sub_code == 0) {
                 wx.setStorageSync('xy_session', res.data.result.union_id);
                 wx.setStorageSync('nickname', res.data.result.nickname);
+                wx.setStorageSync('open_id', res.data.result.open_id);
                 wx.setStorageSync('avatar', res.data.result.avatar);
                 callback();
               } else {

@@ -38,7 +38,11 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: res => {
-        app.myLog("请求返回", JSON.stringify(res.data));
+        if(res.data.sub_code !== 0) {
+          app.myLog("请求错误返回", JSON.stringify(res.data));
+        } else {
+          app.myLog("请求成功返回", JSON.stringify(res.data));
+        }
         wx.hideLoading();
         if (requestHandler.success) requestHandler.success(res);
       },

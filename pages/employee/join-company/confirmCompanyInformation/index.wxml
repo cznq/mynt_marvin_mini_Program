@@ -24,3 +24,5 @@
 </view>
 <import src="../../../../templates/showToast/showToast.wxml" />
 <template is="showToast" data="{{showToast: showToast}}" />
+<import src="../../../../templates/login.wxml" />
+<template is="login" data="{{showLoginModal: showLoginModal}}"></template>

@@ -1,9 +1,9 @@
 <!--web view-->
-<web-view wx:if="{{iswebview==false? false : true}}" src="{{web_url}}/home?timestamp={{timestamp}}"></web-view>
+<web-view wx:if="{{iswebview==false? false : true}}" src="{{web_url}}/home"></web-view>
 
 <!--登陆页面-->
 <view wx:if="{{islogin==false? false : true}}">
-  <view class='_content _fixed login'>
+  <view class=' _fixed login'>
   </view>
   <view class='_fixed logon_c'>
     <view class='title'>{{title}}</view>
@@ -44,3 +44,5 @@
     </view>
   </view>
 </view>
+<import src="../../templates/login.wxml" />
+<template is="login" data="{{showLoginModal: showLoginModal}}"></template>
