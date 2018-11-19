@@ -1,0 +1,15 @@
+/* pages/invite-visitor/edit/index.wxss */
+.page {
+  background-color: #F9FAFB;
+}
+.page_hd {
+  padding: 28rpx 60rpx;
+
+}
+.step view {
+  width: 50%;
+}
+.head_title {
+  font-size: 60rpx;
+  margin: 62rpx 0 90rpx;
+}

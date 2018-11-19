@@ -1,0 +1,23 @@
+<view class="page">
+  <view class="page_hd"></view>
+
+  <view class="page_bd _txt_center">
+    <view class="_fontw600 _font44 tit">发微信邀请访客，全程省心</view>
+    <view class=" _font32 intro">访客全程由小觅机器人代替您接待上楼，智能高效、简单省心。</view>
+    
+    <button class="_button _font34" wx:if="{{inviteAuth == 'tried'}}">试用邀请功能</button>
+    <button class="_button _font34" wx:elif="{{inviteAuth == 'opened'}}">开始邀请</button>
+    <button class="_button close _font34 _flex _flex_item_center _flex_justify_center" wx:else>
+    <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/vip%402x.png"></image>
+    了解小觅商业服务套件</button>
+
+    <view class="voice _font24">编辑邀请函，通过微信发送给您的访客，他接受邀请后机器人便可认识他并为他提供接待。</view>
+
+
+  </view>
+
+  
+
+  <view class="page_ft"></view>
+
+</view>

@@ -30,7 +30,9 @@
     "pages/vip-index/vip-index",
     "pages/vip-invite/vip-invite",
     "pages/vip-share/vip-share",
-    "pages/demo/showToastDemo/index"
+    "pages/demo/showToastDemo/index",
+    "pages/invite-visitor/guide/index",
+    "pages/invite-visitor/edit/index"
   ],
   "subPackages": [
     {

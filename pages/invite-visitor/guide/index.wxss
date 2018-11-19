@@ -1,0 +1,34 @@
+/* pages/invite-visitor/guide/index.wxss */
+.page_bd {
+  padding: 74rpx 80rpx 0;
+}
+.tit {
+  margin-bottom: 20rpx;
+  line-height: 1;
+  color: #1A2A4B;
+}
+.intro {
+  line-height: 46rpx;
+  color: #1A2A4B;
+}
+._button {
+  width: 496rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin: 96rpx auto 26rpx;
+}
+.voice {
+  width: 505rpx;
+  margin: 0 auto;
+  color: #8891A9;
+  line-height: 36rpx;
+}
+.close {
+  background: -webkit-linear-gradient( left, #E9C395, #D9A76B);
+  background: linear-gradient( left, #E9C395, #D9A76B);
+}
+.close image {
+  width: 44rpx;
+  height: 38rpx;
+  margin-right: 10rpx;
+}

@@ -1,0 +1,20 @@
+<!--pages/invite-visitor/edit/index.wxml-->
+<view class="page">
+  <view class="page_hd">
+    <view class="_flex step">
+      <view class='cur'></view>
+      <view></view>
+    </view>
+    <view class="_fontw600 head_title">编辑邀请函</view>
+  </view>
+
+  <view class="page_bd _txt_center">
+    
+
+  </view>
+
+  
+
+  <view class="page_ft"></view>
+
+</view>

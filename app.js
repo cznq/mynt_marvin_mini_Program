@@ -15,6 +15,7 @@ App({
   globalData: {
     fundebug: fundebug,
     open_id_type: 1,
+    isIphoneX: false,
     BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
     WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
     BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
@@ -26,12 +27,16 @@ App({
   
   onLaunch: function () {
     /**  获取手机信息 */
+    var that = this;
     wx.getSystemInfo({
       success(res) {
         wx.setStorage({
           key: 'sysinfo',
           data: res,
         })
+        if (res.model.search('iPhone X') != -1) {
+          that.globalData.isIphoneX = true
+        }
       }
     })
   },         
