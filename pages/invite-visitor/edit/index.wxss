@@ -1,10 +1,10 @@
 /* pages/invite-visitor/edit/index.wxss */
 .page {
   background-color: #F9FAFB;
+  color: #1A2A4B;
 }
 .page_hd {
   padding: 28rpx 60rpx;
-
 }
 .step view {
   width: 50%;
@@ -12,4 +12,21 @@
 .head_title {
   font-size: 60rpx;
   margin: 62rpx 0 90rpx;
+
+}
+.page_bd {
+  padding: 0 60rpx;
+}
+.sec_title {
+  margin-bottom: 50rpx;
+}
+
+.label, .placeholder-input {
+  color: rgba(26, 42, 75, .3);
+}
+.weui-input {
+  padding: 10rpx 0 0;
+  border-bottom: 1px solid rgba(220, 220, 220, .5);
+  height: 64rpx;
+  margin-bottom: 52rpx;
 }
