@@ -289,3 +289,4 @@ input:-webkit-input-placeholder {
 .errorwrap .arrow {border-width: 0 22rpx 22rpx;border-style: solid;border-color: transparent transparent rgba(252, 252, 252, 1);position: absolute;left: 50%;margin-left: -11rpx;top: -18rpx;}
 .errorwrap view {border-radius: 10rpx;}
 .errorwrap text {padding: 30rpx 30rpx;border-radius: 10rpx;display: inline-block;}
+
