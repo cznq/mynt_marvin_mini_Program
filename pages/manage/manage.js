@@ -43,7 +43,7 @@ Page({
     if (!(app.checkSession())) {
       app.checkLogin().then(function(res) {
         if (!(app.checkSession())) {
-          that.setData({
+          _this.setData({
             showLoginModal: true
           })
         } else {
