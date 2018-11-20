@@ -11,6 +11,7 @@
 .login .copywriting .content{font-weight: 300;line-height: 42rpx;padding-top:5rpx;}
 .login .wx-swiper-dots{margin-bottom:260rpx;}
 .login .swiper-box .wx-swiper-dot{width:12rpx;height: 12rpx;}
+.footer_x{padding-bottom:30rpx;}
 
 /* 管理中心 */
 .manage .header{background: #092344;height:273rpx;padding-top:22rpx;}

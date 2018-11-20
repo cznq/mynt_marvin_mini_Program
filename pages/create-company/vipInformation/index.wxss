@@ -83,22 +83,13 @@
 }
 
 .up_dot {
-  width: 44rpx;
-  height: 44rpx;
-  border-radius: 48rpx;
-  text-align: center;
-  background: #fff;
-  border: 1rpx solid #bbb;
+  width: 58rpx;
+  height: 66rpx;
   margin: 0 auto;
+  background: url(http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/picture@2x.png) no-repeat;
+  background-size: 100%;
 }
-
-.up_dot .icon-tianjia {
-  padding-top: 12rpx;
-  line-height: 22rpx;
-  font-size: 22rpx;
-  color: #bbb;
-}
-
+.up_dot_video{ background: url(http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/video@2x.png) no-repeat;background-size: 100%;}
 .up_text {
   color: #bbb;
   font-size: 30rpx;

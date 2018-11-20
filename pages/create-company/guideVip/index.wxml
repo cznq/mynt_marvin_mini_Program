@@ -1,11 +1,13 @@
 <image src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/111.jpg' class='exploded'></image>
 <view class="_content guidevip _txt_center">
   <view class='_font44 title'>生成企业主页，形象多端曝光</view>
-  <view class='_txt_gray _fontw300 con'><text>添加企业宣传图片和视频，生成企业主页，\n多端曝光，提升企业形象。</text></view>
+  <view class='_txt_gray _fontw300 con'>
+    <text>添加企业宣传图片和视频，生成企业主页，\n多端曝光，提升企业形象。</text>
+  </view>
   <button class="_button" bindtap="next" formType="submit">上传信息，试用企业主页</button>
-  <view class="_font24 _txt_darkgrey isj"><text>上传完成后我们会为您生成手机端和机器人端的\n企业主页，您可以随时预览和更改上传的内容。</text></view>
-      
-
+  <view class="_font24 _txt_darkgrey isj">
+    <text>上传完成后我们会为您生成手机端和机器人端的\n企业主页，您可以随时预览和更改上传的内容。</text>
+  </view>
+  <import src="../../../templates/vipAd/vipAd.wxml" />
+  <template is="vipAd" data="{{text: 'forbar'}}" />
 </view>
-<import src="../../../templates/vipAd/vipAd.wxml" />
-      <template is="vipAd" data="{{text: 'forbar'}}" />

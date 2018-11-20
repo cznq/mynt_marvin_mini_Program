@@ -7,10 +7,10 @@
     <view class='header'>
       <view class='rim'>
         <view class='_relative top'>
-        <image   class='logo' src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/111.jpg' mode="{{mode}}"></image>
-            <view class='t1'>轻客智能科技</view>
-            <view class='t2'>轻客智能科技（江苏）有限公司</view>
-            <image class='_absolute vip' src='{{vipImg}}'></image>
+          <image class='logo' src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/111.jpg' mode="{{mode}}"></image>
+          <view class='t1'>轻客智能科技</view>
+          <view class='t2'>轻客智能科技（江苏）有限公司</view>
+          <image class='_absolute vip' src='{{vipImg}}'></image>
         </view>
         <view class='bottom'>
           <view class='c c1'>
@@ -35,19 +35,19 @@
           <image class="m{{idx+1}}" src='{{item.pic}}'></image>
           {{item.name}}
         </view>
-        
+
       </view>
       <view class='title'>企业服务</view>
       <view class='content _clearfloat service'>
-          <view class='block' wx:for="{{service}}" wx:for-index="idx" wx:key="key" style='background:{{item.backgroundColor}}'>
-            <image class='s{{idx+1}}' src='{{item.pic}}'></image>
-            <view class='con'>
-              <view class='t1'>{{item.text1}}</view>
-              <view class='t2'>{{item.text2}}</view>
-            </view>
-
-            
+        <view class='block' wx:for="{{service}}" wx:for-index="idx" wx:key="key" style='background:{{item.backgroundColor}}'>
+          <image class='s{{idx+1}}' src='{{item.pic}}'></image>
+          <view class='con'>
+            <view class='t1'>{{item.text1}}</view>
+            <view class='t2'>{{item.text2}}</view>
           </view>
+
+
+        </view>
       </view>
     </view>
     <view class="adrim">
@@ -78,7 +78,7 @@
         </swiper-item>
       </block>
     </swiper>
-    <view class='footer_s'>
+    <view class='footer_s {{isiphoneX ? "footer_x" : ""}}'>
       <button class="_button" bindtap="joinCompany">{{button_text}}</button>
       <view class='copy'>
         {{copy}}

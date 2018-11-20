@@ -1,6 +1,7 @@
 var app = getApp()
 Page({
   data: {
+    isiphoneX:app.globalData.isIphoneX,
     indicatorDots: true, //是否显示面板指示点
     indicatorColor: "#8891A9", //指示点颜色
     indicatorActiveColor: "#007BFF", //当前选中的指示点颜色
@@ -81,6 +82,8 @@ Page({
   },
   onLoad: function(options) {
     var _this = this;
+    console.log(_this.data.isiphoneX );
+
     //检测登陆
     if (!(app.checkSession()) || wx.getStorageSync('open_id') == '' || wx.getStorageSync('xy_session') == '') {
       app.checkLogin().then(function(res) {

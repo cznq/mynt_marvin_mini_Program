@@ -1,73 +1,68 @@
 <template name="companyPages">
+<image wx:if="{{cd.background_url}}" class='background_url' mode="aspectFill" src='{{cd.background_url}}'></image>
+    
 
-  <view class='banner _relative'>
-    <image class='background_url' mode="aspectFill" src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/111.jpg'></image>
-    <image class='logo _absolute' mode="aspectFill" src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m7.png'></image>
-  </view>
-  <view class='companyPages'>
+  <view class='companyPages _relative'>
     <view class='header'>
+    <image class='logo _absolute {{!cd.background_url ? "topnone" : ""}}' mode="aspectFill" src='{{cd.logo}}'></image>
       <view class='rim'>
         <view class='_relative top'>
           <view class='t1'>
-            <view class='share'></view>轻客智能科技
+            <view class='share icon iconfont icon-fenxiang'></view>
+            {{cd.company_name}}
             <view class='vipicon'></view>
           </view>
-          <view class='t2'>轻客智能科技（江苏）有限公司</view>
+          <view class='t2'>{{cd.company_short_name}}</view>
           <image class='_absolute vip' src='{{vipImg}}'></image>
         </view>
         <view class='bottom _clearfloat'>
           <view class='c c1'>
             <view class='name'>联系方式</view>
-            <view class='con _txt_blue_c'>40022568888</view>
+            <view class='con _txt_blue_c'>{{cd.phone}}</view>
           </view>
           <view class='c c2'>
             <view class='name'>行业</view>
-            <view class='con'>科技</view>
+            <view class='con'></view>
           </view>
           <view class='c c3'>
             <view class='name'>位置</view>
-            <view class='con'>杭州萧山芜湖</view>
+            <view class='con addressw'>{{cd.address}}方法</view>
           </view>
         </view>
       </view>
     </view>
 
     <view class='h3 _txt_gray _font38'>简介</view>
-    <view class='introductionCon blockCon _txt_gray _font28'>
-      MYNTAI（小觅智能）2014年7月成立于美国硅谷，专注立体视觉技术整体解决方案，是行业领先的视觉定位导航VPS核心技术提供商，目前已...
-      <text class='_txt_blue_c'>展开</text>
-    </view>
-    <view class='h3 _txt_gray _font38'>
-      <view class='_txt_blue_c _font28 _f_right'>机器人端预览</view>产品及服务</view>
-    </view>
+    <view class='introductionCon blockCon _txt_gray _font28'  wx:if="{{cd.introduction}}">
+{{cd.introduction}}
       
+      <text class='_txt_blue_c' wx:if="{{cd.introductionAll_button}}" bindtap="introductionAll">展开</text>
+    </view>
+    <view wx:else class="introductionCon blockCon _txt_gray _font28">暂无</view>
 
-    <view class='imagearr blockCon'>
-
+    <view class='h3 _txt_gray _font38' wx:if='{{cd.product_urls[0]==""?false:true}}'>
+      <view class='_txt_blue_c _font28 _f_right' bindtap="robotPreview">机器人端预览</view>产品及服务</view>
+    </view>
+    <view class='imagearr blockCon' wx:if='{{cd.product_urls[0]==""?false:true}}'>
       <scroll-view class="scrollView" scroll-x="true" style="width: 100%">
-        <view class="scrollView-item"><image src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/111.jpg'></image></view>
-        <view class="scrollView-item"><image mode="aspectFill"  src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/111.jpg'></image></view>
-        <view class="scrollView-item"><image mode="aspectFill"  src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/vip@2x.png'></image></view>
-        <view class="scrollView-item"><image mode="aspectFill"  src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/vip@2x.png'></image></view>
-        <view class="scrollView-item"><image mode="aspectFill"  src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/vip@2x.png'></image></view>
-        <view class="scrollView-item"><image mode="aspectFill"  src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/vip@2x.png'></image></view>
+        <view class="scrollView-item" wx:for="{{cd.product_urls}}" wx:key="key"><image mode="aspectFill"  src='{{item}}'></image></view>
       </scroll-view>
 
     </view>
     <view class='companyPages downpadd'>
     <view class='h3 _txt_gray _font38'>详细信息</view>
     <view class='introCon blockCon'>
-        <view class='tr _clearfloat'>
-          <text>公司位置</text> 北京市朝阳区158号科技园E2栋
+        <view class='tr _clearfloat' wx:if="{{cd.address}}">
+          <text>公司位置</text> {{cd.address}}
         </view>
-        <view class='tr _clearfloat'>
-          <text>详细地址</text> 12层 1506室
+        <view class='tr _clearfloat' wx:if="{{cd.floor=='' && cd.room==''?false:true}}">
+          <text>详细地址</text> {{cd.floor?cd.floor+'层':''}}  {{cd.room?cd.room+'室':''}}  
         </view>
-        <view class='tr _clearfloat'>
-          <text>联系方式</text> 13961829999
+        <view class='tr _clearfloat' wx:if="{{cd.phone}}">
+          <text>联系方式</text> {{cd.phone}}
         </view>
-        <view class='tr _clearfloat'>
-          <text>公司网址</text> www.Slightech.com
+        <view class='tr _clearfloat' wx:if="{{cd.website}}">
+          <text>公司网址</text> {{cd.website}}
         </view>
     </view>
 

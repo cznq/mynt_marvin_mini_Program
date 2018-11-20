@@ -1,6 +1,6 @@
 <!--pages/create-company/companyPages/index.wxml-->
 <import src="../../../templates/companyPages/companyPages.wxml" /> 
-<template is="companyPages" data="{{data}}" /> 
+<template is="companyPages" data="{{cd:cd}}" /> 
 
 
 <view class='_fixed footer'>
