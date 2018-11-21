@@ -2,6 +2,6 @@
   <view class="vipAd _relative">
     小觅商业服务套件
     <view class="introduce">开启楼宇服务新模式 <text class="_txt_blue_c">了解更多</text></view>
-    <view class=" _absolute"></view>
+    <view class="vipicon _absolute"></view>
     </view>
 </template>

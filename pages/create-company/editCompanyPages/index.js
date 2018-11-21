@@ -1,11 +1,11 @@
-// pages/create-company/companyPages/index.js
+// pages/create-company/editcompanyPages/index.js
 var app = getApp();
 Page({
   data: {
     isiphoneX: app.globalData.isIphoneX,
     CstateCode: 1,
-    cd:{},
-    button_text:'确认创建公司'
+    cd: {},
+    button_text: '编辑企业信息'
   },
   onLoad: function (options) {
     var _this = this;
@@ -26,7 +26,7 @@ Page({
         service: 'company',
         method: 'get_info',
         data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session') 
+          union_id: wx.getStorageSync('xy_session')
         })
       },
       success: res => {
@@ -42,9 +42,9 @@ Page({
           // res.data.result.website = '';
 
           //简介展开
-          if (res.data.result.introduction.length>=68){
+          if (res.data.result.introduction.length >= 68) {
             res.data.result.introductionAll = res.data.result.introduction;
-            res.data.result.introduction = res.data.result.introduction.substr(0,68)+'...';
+            res.data.result.introduction = res.data.result.introduction.substr(0, 68) + '...';
             res.data.result.introductionAll_button = true;
           }
           _this.setData({
@@ -61,14 +61,14 @@ Page({
 
   },
   //机器人端预览
-  robotPreview:function(){
+  robotPreview: function () {
     var _this = this;
     wx.navigateTo({
       url: '../robotPreview/index?CstateCode=' + _this.data.CstateCode,
     })
   },
   //简介展开功能
-  introductionAll:function(){
+  introductionAll: function () {
     var _this = this;
     _this.setData({
       'cd.introductionAll_button': false,
@@ -86,10 +86,11 @@ Page({
       title: _this.data.cd.company_name
     }
   },
-  //确认创建公司
-  next:function(){
+  //编辑企业信息
+  next: function () {
+    var _this = this;
     wx.reLaunch({
-      url: '../../manage/manage',
+      url: '../guide/index?CstateCode=' + _this.data.CstateCode,
     })
   }
 })

@@ -26,25 +26,25 @@
     </view>
 
     <view class='input_block'>
-        <view class='st'>
-          <text class='_font24 _txt_darkgrey _fontw300'>公司别称2 (选填)</text>
-        </view>
-        <input class='input_text pj9' name="name_alias1" value='{{cd.name_alias[1]}}' placeholder='例：小觅智能是轻客智能的别称' placeholder-class='input_text_phc' maxlength='8'></input>
+      <view class='st'>
+        <text class='_font24 _txt_darkgrey _fontw300'>公司别称2 (选填)</text>
       </view>
+      <input class='input_text pj9' name="name_alias1" value='{{cd.name_alias[1]}}' placeholder='例：小觅智能是轻客智能的别称' placeholder-class='input_text_phc' maxlength='8'></input>
+    </view>
 
-      <view class='input_block'>
-        <view class='st'>
-          <text class='_font24 _txt_darkgrey _fontw300'>公司别称3 (选填)</text>
-        </view>
-        <input class='input_text pj9' name="name_alias2" value='{{cd.name_alias[2]}}' placeholder='例：小觅智能是轻客智能的别称' placeholder-class='input_text_phc' maxlength='8'></input>
+    <view class='input_block'>
+      <view class='st'>
+        <text class='_font24 _txt_darkgrey _fontw300'>公司别称3 (选填)</text>
       </view>
+      <input class='input_text pj9' name="name_alias2" value='{{cd.name_alias[2]}}' placeholder='例：小觅智能是轻客智能的别称' placeholder-class='input_text_phc' maxlength='8'></input>
+    </view>
 
     <view class='input_block'>
       <view class='st'>
         <text class='_font24 _txt_darkgrey _fontw300'>公司地址</text>
       </view>
 
-        <input class='input_text dis_b_n pj9' disabled='false' name="address" value='北京市朝阳区158号科技园E2栋{{cd.address}}'></input>
+      <input class='input_text dis_b_n pj9' disabled='false' name="address" value='{{cd.address}}'></input>
 
     </view>
     <view class='input_block'>
@@ -52,31 +52,25 @@
         <text class='_font24 _txt_darkgrey _fontw300'>楼层信息</text>
       </view>
 
-      <input class='input_text dis_b_n pj9' disabled='false' name="floor" value='10{{cd.floor}}层'></input>
+      <input class='input_text dis_b_n pj9' disabled='false' name="floor" value='{{cd.floor}}层'></input>
 
 
       <view class='st'>
         <text class='_font24 _txt_darkgrey _fontw300'>门牌号（必填）</text>
       </view>
       <input class='input_text pj9' name="room" value='{{cd.room}}' placeholder='请输入' maxlength='20' placeholder-class='input_text_phc'></input>
-
-
     </view>
-
     <view class='_txt_gray _font38 subTitle'>企业简介</view>
-
-
-
-
     <view class='input_block'>
       <view wx:if="{{introduction==false? true : false}}">
-          <view class=' _txt_gray _font34 jjs'><view class='_txt_blue_c _font32 _f_right' bindtap='showintroduction'>编辑</view>简介</view>
-      <input class='input_text _font24 _txt_darkgrey' name="" value='完善您的企业简介，便于访客更好的认识您的企业' disabled='false' placeholder=''></input>
+        <view class=' _txt_gray _font34 jjs'>
+          <view class='_txt_blue_c _font32 _f_right' bindtap='showintroduction'>编辑</view>简介</view>
+        <input class='input_text _font24 _txt_darkgrey' name="" value='完善您的企业简介，便于访客更好的认识您的企业' disabled='false' placeholder=''></input>
       </view>
-      <textarea wx:if="{{introduction==false? false : true}}" class='text_a' placeholder-class='input_text_phc _font24 text_a' cursor-spacing="100rpx" placeholder="MYNTAI（小觅智能）2014年7月成立于美国硅谷。专注立体视觉技术整体解决方案，是行业领先的视觉定位导航VPS核心技术提供商..."></textarea>
+      <textarea wx:if="{{introduction==false? false : true}}" class='text_a' placeholder-class='input_text_phc _font24 text_a' cursor-spacing="100rpx" name="introduction" placeholder="MYNTAI（小觅智能）2014年7月成立于美国硅谷。专注立体视觉技术整体解决方案，是行业领先的视觉定位导航VPS核心技术提供商...">{{cd.introduction}}</textarea>
     </view>
 
-    <cover-view class='_fixed footer covview'>
+    <cover-view class='_fixed footer covview {{isiphoneX ? "footer_x" : ""}}'>
       <button class="_button" formType="submit">{{button_text}}</button>
     </cover-view>
   </form>

@@ -10,7 +10,7 @@ Page({
     isSowingMapUp: false,
     mode: 'aspectFill',
     isvideoshow:false,
-    introduction:''
+    CstateCode: 1
   },
   next: function () {
     wx.navigateTo({
@@ -19,9 +19,19 @@ Page({
   },
   onLoad: function (options) {
     var _this = this;
+    _this.data.CstateCode = options.CstateCode;
+    if (options.CstateCode == 1) {
+      wx.setNavigationBarTitle({
+        title: '创建公司'
+      })
+    } else if (options.CstateCode == 2) {
+      wx.setNavigationBarTitle({
+        title: '编辑企业信息'
+      })
+    }
     app.Util.checkcanIUse('cover-view'); //检测组件兼容性 础库 1.4.0 开始支持
-    _this.data.introduction = options.introduction;
-    console.log(_this.data.introduction);
+  
+    
     //请求数据
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
@@ -56,6 +66,8 @@ Page({
         console.log('fail');
       }
     })
+
+    
   },
   //删除图片
   bindclearpic: function (e) {
@@ -167,7 +179,7 @@ Page({
           background_url: _this.data.cd.background_url,
           product_urls: _this.data.cd.product_urls,
           video_url: _this.data.cd.video_url,
-          introduction: _this.data.introduction
+          introduction: _this.data.cd.introduction
         })
       },
       success: res => {
@@ -175,7 +187,7 @@ Page({
         if (res.data.sub_code == 0) {
           console.log('数据成功');
           wx.reLaunch({
-            url: '../createSuccess/index',
+            url: '../guide/index?CstateCode=' + _this.data.CstateCode,
           })
         } else {
           console.log(res.data.sub_msg);
@@ -193,10 +205,5 @@ Page({
       duration: 1500,
       mask: false
     });
-  },
-  examples:function(){
-    wx.navigateTo({
-      url: '../examples/index',
-    })
   }
 })

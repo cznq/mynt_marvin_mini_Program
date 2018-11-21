@@ -9,11 +9,10 @@
     </view>
     <view class='up_pub' bindtap='uploadimages' data-key='logo' wx:else>
       <view class='up_con'>
-        <view class='up_dot'><view class="iconfont icon-tianjia"></view></view>
+        <view class='up_dot'></view>
         <view class='up_text _txt_darkgrey _fontw300 _font32'>上传图片</view>
       </view>
     </view>
-    
   </view>
   <view class='upload-block up_propaganda'>
     <view class='_font32'><view class='up_hint _font22 _fontw300 _txt_darkgrey _f_right'>建议尺寸：1920*1080</view>宣传背景图</view>
@@ -23,7 +22,7 @@
     </view>
     <view class='up_pub' bindtap='uploadimages' data-key='background_url' wx:else>
       <view class='up_con'>
-        <view class='up_dot'><view class="iconfont icon-tianjia"></view></view>
+        <view class='up_dot'></view>
         <view class='up_text _txt_darkgrey _fontw300 _font32'>上传图片</view>
       </view>
     </view>
@@ -46,7 +45,7 @@
     <!--   -->
     <view class='up_pub' bindtap='uploadvideo' wx:else>
       <view class='up_con'>
-        <view class='up_dot'><view class="iconfont icon-tianjia"></view></view>
+        <view class='up_dot up_dot_video'></view>
         <view class='up_text _txt_darkgrey _fontw300 _font32'>上传视频</view>
       </view>
     </view>
@@ -63,7 +62,7 @@
       </view>
       <view class='up_pub' bindtap='uploadimages' data-num="6" data-key='product_urls' wx:if="{{isSowingMapUp==false? false : true}}">
         <view class='up_con'>
-          <view class='up_dot'><view class="iconfont icon-tianjia"></view></view>
+          <view class='up_dot'></view>
           <view class='up_text _txt_darkgrey _fontw300 _font32'>上传图片</view>
         </view>
       </view>

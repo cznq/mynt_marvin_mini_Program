@@ -24,6 +24,9 @@
     "pages/create-company/vipInformation/index",
     "pages/create-company/companyPages/index",
     "pages/create-company/robotPreview/index",
+
+    "pages/create-company/editCompanyPages/index",
+
     "pages/employee/join-company/enterRealName/index",
     "pages/employee/join-company/invitationCode/index",
     "pages/employee/join-company/choiceJoin/index",

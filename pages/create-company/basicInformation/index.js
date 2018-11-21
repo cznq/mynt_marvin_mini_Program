@@ -2,6 +2,8 @@ var app = getApp();
 var toast = require('../../../templates/showToast/showToast');
 Page({
   data: {
+    isiphoneX: app.globalData.isIphoneX,
+    CstateCode: 1,
     mainTitle: '企业基础信息',
     button_text: '保存',
     moreAlias: false,
@@ -10,6 +12,16 @@ Page({
   },
   onLoad: function(options) {
     var _this = this;
+    _this.data.CstateCode = options.CstateCode;
+    if (options.CstateCode == 1) {
+      wx.setNavigationBarTitle({
+        title: '创建公司'
+      })
+    } else if (options.CstateCode == 2) {
+      wx.setNavigationBarTitle({
+        title: '编辑企业信息'
+      })
+    }
     app.Util.checkcanIUse('cover-view'); //检测组件兼容性 础库 1.4.0 开始支持
 
     app.Util.network.POST({
@@ -18,7 +30,7 @@ Page({
         service: 'company',
         method: 'get_info',
         data: JSON.stringify({
-          union_id: 'o3iamjgSMDm5_MEsnOBzoQCTlaks'//wx.getStorageSync('xy_session')
+          union_id: wx.getStorageSync('xy_session')
         })
       },
       success: res => {
@@ -69,7 +81,7 @@ Page({
       return false
     }
     if (room.length == 0) {
-      _this.Toast('公司地址填写不完整')
+      _this.Toast('门牌号填写不完整')
       return false
     }
     if (company_name !== '' && company_short_name !== '' && room !== '') {
@@ -87,16 +99,14 @@ Page({
             introduction: introduction,
             address: address,
             floor: floor,
-            room: room,
-            phone: phone,
-            website: website
+            room: room
           })
         },
         success: res => {
           console.log(res);
           if (res.data.sub_code == 0) {
             wx.navigateTo({
-              url: '../updateReviewInfo/index?introduction=' + introduction,
+              url: '../guide/index?CstateCode=' + _this.data.CstateCode,
             })
           } else {
             console.log(res.data.sub_msg);

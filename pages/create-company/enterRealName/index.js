@@ -2,9 +2,11 @@ var app = getApp();
 var toast = require('../../../templates/showToast/showToast');
 Page({
   data: {
+    isiphoneX: app.globalData.isIphoneX,
     mainTitle: '输入真实姓名',
     button_text: '下一步',
     isfocus: true,
+    CstateCode:1,//1为创建 2为编辑
     company_verify_code:''
   },
   onLoad: function(options) {
@@ -13,8 +15,7 @@ Page({
 
     //检测登陆
     if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-      })
+      app.checkLogin().then(function (res) {})
     }
 
   },
@@ -42,7 +43,7 @@ Page({
           console.log(res);
           if (res.data.sub_code == 0){
              wx.navigateTo({
-              url: '../enterpriseInformation/index',
+               url: '../guide/index?CstateCode= ' + _this.data.CstateCode,
             })
           } else {
             console.log(res.data.sub_msg);

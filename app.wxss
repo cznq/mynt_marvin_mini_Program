@@ -293,27 +293,8 @@ input:-webkit-input-placeholder {
 .errorwrap text {padding: 30rpx 30rpx;border-radius: 10rpx;display: inline-block;}
 
 /*vipAd*/
-
-
-
-.vipAd {
-    border: 1rpx solid #DCDCDC;
-    border-radius: 8rpx;
-    width: 566rpx;
-    height: 76rpx;
-    margin: 0 auto 10rpx auto;
-    padding: 32rpx;
-    font-size: 40rpx;
-    line-height: 40rpx;
-}
-
-.vipAd .introduce {
-    font-size: 24rpx;
-    line-height: 24rpx;
-    padding-top: 12rpx;
-    color: #8891A9;
-}
-
-.vipicon{
-  width:34rpx;height:30rpx;background: url(http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/diamond@2x.png) no-repeat;background-size: 100%;display:inline-block;}
+.vipAd {border: 1rpx solid #eeeeee;border-radius: 8rpx;height: 76rpx;text-align:left;padding: 32rpx 44rpx;line-height: 40rpx;font-size:34rpx;font-weight: bold;}
+.vipAd .introduce {font-size: 24rpx;line-height: 24rpx;padding-top: 12rpx;color: #8891A9;font-weight: 400;}
+.vipicon{width:34rpx;height:30rpx;background: url(http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/diamond@2x.png) no-repeat;background-size: 100%;display:inline-block;}
+.vipAd .vipicon{width:76rpx;height: 66rpx;right: 44rpx;top:37rpx;}
 

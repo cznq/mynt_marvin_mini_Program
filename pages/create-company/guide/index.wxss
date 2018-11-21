@@ -2,10 +2,11 @@
 @import "../../../templates/showToast/showToast.wxss";
 .guide{background: #fff;}
 .step{color:#8891a9;font-size:24rpx;line-height: 24rpx;padding:51rpx 0 23rpx 0;}
-.title{font-size:48rpx;line-height: 48rpx;}
+.title{font-size:48rpx;line-height: 48rpx;font-weight: 500;}
 .con{font-size:30rpx;line-height: 40rpx;padding:13rpx 0 0 0;}
 .button{width:215rpx;height:80rpx;border:1rpx solid #ededed;border-radius: 10rpx;text-align: center;line-height: 80rpx;margin-top:45rpx;}
 
 .viptext{font-size:20rpx;line-height: 20rpx;padding-top:15rpx;}
 .line{height: 1rpx;background: #ededed;margin:43rpx 0 4rpx 0;clear: both;}
 .errorhint{color:#F52D2D;font-size:24rpx;line-height: 24rpx;padding-top:20rpx;}
+.viptext .vipicon{width:26rpx;height:26rpx;float: left;margin-right: 11rpx;}
