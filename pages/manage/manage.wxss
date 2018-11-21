@@ -15,9 +15,11 @@
 
 /* 管理中心 */
 .manage .header{background: #092344;height:273rpx;padding-top:22rpx;}
-.header .rim{width:670rpx;height: 273rpx;background: #fff;margin:0 auto;border-top-left-radius: 8rpx;border-top-right-radius: 8rpx;}
+.header .rim{width:670rpx;height: 273rpx;margin:0 auto;border-top-left-radius: 8rpx;border-top-right-radius: 8rpx;
+background: linear-gradient(to bottom,#ffffff 0%,#ffffff 3%,#f3f3f3 97%,#f3f3f3 100%);
+}
 .header .top{border-bottom: 1rpx dashed #D8E3F0;height:100rpx;padding:30rpx;}
-.header .top .vip{right: 0;top:0;width:50rpx;height:43rpx;}
+.header .top .vipicon{right: 32rpx;top:58rpx;width:50rpx;height:44rpx;}
 .header .top image{width: 100rpx;height:100rpx;border-radius: 8rpx;float: left;margin-right:20rpx;}
 .header .t1{font-size:44rpx;line-height:65rpx;color: #081C33;}
 .header .t2{font-size:24rpx;color:#8891A9;}
@@ -48,6 +50,7 @@
 .adrim {
     padding: 60rpx;
 }
+.addressw{width:180rpx; overflow-y: hidden;height:48rpx;}
 /* 审核中 */
 .s_hint .text {color: #3ed26b;}
 .company-sh {background: #fff;}

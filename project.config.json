@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 27,
+			"current": 34,
 			"list": [
 				{
 					"id": 0,
@@ -231,16 +231,28 @@
 					"query": "CstateCode=2"
 				},
 				{
-					"id": -1,
+					"id": 31,
 					"name": "创建-企业主页",
 					"pathName": "pages/create-company/companyPages/index",
-					"query": ""
+					"query": "CstateCode=1"
+				},
+				{
+					"id": 32,
+					"name": "加入公司-机器人预览",
+					"pathName": "pages/create-company/robotPreview/index",
+					"query": "CstateCode=1"
+				},
+				{
+					"id": 33,
+					"name": "编辑公司-企业主页",
+					"pathName": "pages/create-company/editCompanyPages/index",
+					"query": "CstateCode=2"
 				},
 				{
 					"id": -1,
-					"name": "加入公司-机器人预览",
-					"pathName": "pages/create-company/robotPreview/index",
-					"query": ""
+					"name": "啊啊啊",
+					"pathName": "pages/vip-index/vip-index",
+					"query": "CstateCode=2"
 				}
 			]
 		}

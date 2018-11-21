@@ -1,14 +1,16 @@
 <template name="companyPages">
-<image wx:if="{{cd.background_url}}" class='background_url' mode="aspectFill" src='{{cd.background_url}}'></image>
-    
+  <image wx:if="{{cd.background_url}}" class='background_url' mode="aspectFill" src='{{cd.background_url}}'></image>
+
 
   <view class='companyPages _relative'>
     <view class='header'>
-    <image class='logo _absolute {{!cd.background_url ? "topnone" : ""}}' mode="aspectFill" src='{{cd.logo}}'></image>
+      <image class='logo _absolute {{!cd.background_url ? "topnone" : ""}}' mode="aspectFill" src='{{cd.logo}}'></image>
       <view class='rim'>
         <view class='_relative top'>
           <view class='t1'>
-            <view class='share icon iconfont icon-fenxiang'></view>
+            <form>
+              <button open-type="share" class='share icon iconfont icon-fenxiang' bindtap="share"></button>
+            </form>
             {{cd.company_name}}
             <view class='vipicon'></view>
           </view>
@@ -31,39 +33,42 @@
         </view>
       </view>
     </view>
-
     <view class='h3 _txt_gray _font38'>简介</view>
-    <view class='introductionCon blockCon _txt_gray _font28'  wx:if="{{cd.introduction}}">
-{{cd.introduction}}
-      
-      <text class='_txt_blue_c' wx:if="{{cd.introductionAll_button}}" bindtap="introductionAll">展开</text>
+    <view class='introductionCon blockCon _txt_gray _font28' wx:if="{{cd.introduction}}">
+      {{cd.introduction}}
+      <text class='_txt_blue_c zk' wx:if="{{cd.introductionAll_button}}" bindtap="introductionAll">展开</text>
     </view>
     <view wx:else class="introductionCon blockCon _txt_gray _font28">暂无</view>
-
     <view class='h3 _txt_gray _font38' wx:if='{{cd.product_urls[0]==""?false:true}}'>
       <view class='_txt_blue_c _font28 _f_right' bindtap="robotPreview">机器人端预览</view>产品及服务</view>
-    </view>
-    <view class='imagearr blockCon' wx:if='{{cd.product_urls[0]==""?false:true}}'>
-      <scroll-view class="scrollView" scroll-x="true" style="width: 100%">
-        <view class="scrollView-item" wx:for="{{cd.product_urls}}" wx:key="key"><image mode="aspectFill"  src='{{item}}'></image></view>
-      </scroll-view>
-
-    </view>
-    <view class='companyPages downpadd'>
+  </view>
+  <view class='imagearr blockCon' wx:if='{{cd.product_urls[0]==""?false:true}}'>
+    <scroll-view class="scrollView" scroll-x="true" style="width: 100%">
+      <view class="scrollView-item" wx:for="{{cd.product_urls}}" wx:key="key">
+        <image mode="aspectFill" src='{{item}}'></image>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='companyPages downpadd'>
+  <view class='h3 _txt_gray _font38' wx:if='{{cd.video_url}}'>宣传视频</view>
+  <view class='blockCon video' wx:if='{{cd.video_url}}'>
+    <video class='video' id="myVideo" src="{{cd.video_url}}">
+      </video>
+  </view>
     <view class='h3 _txt_gray _font38'>详细信息</view>
     <view class='introCon blockCon'>
-        <view class='tr _clearfloat' wx:if="{{cd.address}}">
-          <text>公司位置</text> {{cd.address}}
-        </view>
-        <view class='tr _clearfloat' wx:if="{{cd.floor=='' && cd.room==''?false:true}}">
-          <text>详细地址</text> {{cd.floor?cd.floor+'层':''}}  {{cd.room?cd.room+'室':''}}  
-        </view>
-        <view class='tr _clearfloat' wx:if="{{cd.phone}}">
-          <text>联系方式</text> {{cd.phone}}
-        </view>
-        <view class='tr _clearfloat' wx:if="{{cd.website}}">
-          <text>公司网址</text> {{cd.website}}
-        </view>
+      <view class='tr _clearfloat' wx:if="{{cd.address}}">
+        <text>公司位置</text> {{cd.address}}
+      </view>
+      <view class='tr _clearfloat' wx:if="{{cd.floor=='' && cd.room==''?false:true}}">
+        <text>详细地址</text> {{cd.floor?cd.floor+'层':''}} {{cd.room?cd.room+'室':''}}
+      </view>
+      <view class='tr _clearfloat' wx:if="{{cd.phone}}">
+        <text>联系方式</text> {{cd.phone}}
+      </view>
+      <view class='tr _clearfloat' wx:if="{{cd.website}}">
+        <text>公司网址</text> {{cd.website}}
+      </view>
     </view>
 
   </view>

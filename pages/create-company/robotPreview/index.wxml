@@ -1,8 +1,8 @@
 <view class="robotPreview">
-  <image class="zs" mode="aspectFill" src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/111.jpg'></image>
+  <image class="zs" mode="aspectFill" src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/preview_homepage.png'></image>
   <view class="rt _font28">企业主页</view>
   <view class='rc _font24'>在访客访问公司时向访客展示。</view>
-  <image class="zs" mode="aspectFill" src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/111.jpg'></image>
+  <image class="zs" mode="aspectFill" src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/preview_standby.png'></image>
   <view class='rt _font28'>待机广告</view>
   <view class='rc _font24'>在服务机器人待机时轮播展示。</view>
 </view>

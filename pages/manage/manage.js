@@ -18,6 +18,8 @@ Page({
     copy2: '创建公司',
     button_text: '加入公司',
     button_text_qx: '取消申请',
+    mode: 'aspectFill',//manage logo展示效果
+    cd:{},
     imgUrls: [{
       url: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
       title: '优享智能服务',
@@ -34,49 +36,63 @@ Page({
       content: '享受周边商户专属协议优惠，\n升级消费体验'
     }
     ],
-    mode: 'aspectFill',//manage logo展示效果
     application:[
       {
         url:'',
         pic:'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m1.png',
-        name:'公司信息'
+        name:'公司信息',
+        bindtap:'editCompanyPages',
+        isShow:true
       }, {
         url: '',
         pic: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m2.png',
-        name: '员工信息'
+        name: '员工信息',
+        bindtap: 'staffList',
+        isShow: true
       }
       , {
         url: '',
         pic: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m3.png',
-        name: '访客列表'
+        name: '访客列表',
+        bindtap: '',
+        isShow: true
       }, {
         url: '',
         pic: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m4.png',
-        name: '邀请列表'
+        name: '邀请列表',
+        bindtap: '',
+        isShow: true
       }, {
         url: '',
         pic: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m5.png',
-        name: 'VIP列表'
+        name: 'VIP列表',
+        bindtap: '',
+        isShow: true
       }, {
         url: '',
         pic: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m6.png',
-        name: '前台列表'
+        name: '前台列表',
+        bindtap: '',
+        isShow: true
       }
     ],
-    vipImg:'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/vip@2x.png',
     service:[
       {
         url: '',
         pic: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m7.png',
         text1: '自动值守',
         text2: '未开启 >',
-        backgroundColor: '#F5F5FF'
+        backgroundColor: '#F5F5FF',
+        bindtap:'unattendedSetting',
+        isShow:true
       }, {
         url: '',
         pic: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m8.png',
         text1: '员工取卡',
         text2: '未开启 >',
-        backgroundColor:'#F0FAF7'
+        backgroundColor:'#F0FAF7',
+        bindtap:'takeCard',
+        isShow: true
       }
     ]
   },
@@ -111,7 +127,9 @@ Page({
         success: res => {
           console.log(res);
           var resdata = res.data.result;
-          //resdata.employee_status = 0;
+          // resdata.employee_status = 0;
+          // resdata.role = 2;
+
           if (res.data.sub_code == 0) {
             if (resdata.employee_status === 0) {
               console.log('管理中心');
@@ -119,12 +137,54 @@ Page({
                 ismanage: true
               })
 
+              /* ----- 企业应用显示权限 ----- */
+              if (resdata.role==1){
+                //普通员工
+                _this.setData({
+                  'application[4].isShow': false,//vip列表
+                  'application[5].isShow': false//前台列表
+                })
+              }
+              if (resdata.role == 2) {
+                 //前台
+                _this.setData({
+                  'application[5].isShow': false//前台列表
+                })
+              }
+              
+              wx.setNavigationBarTitle({
+                title: '企业管理'
+              })
               wx.setNavigationBarColor({
                 frontColor: '#ffffff',
                 backgroundColor: '#092344',
                 animation: {
                   duration: 400,
                   timingFunc: 'easeIn'
+                }
+              })
+              //请求企业信息
+              app.Util.network.POST({
+                url: app.globalData.BASE_API_URL,
+                params: {
+                  service: 'company',
+                  method: 'get_info',
+                  data: JSON.stringify({
+                    union_id: wx.getStorageSync('xy_session')
+                  })
+                },
+                success: res => {
+                  console.log(res);
+                  if (res.data.sub_code == 0) {
+                    _this.setData({
+                      cd: res.data.result
+                    })
+                  } else {
+                    console.log(res.data.sub_msg);
+                  }
+                },
+                fail: res => {
+                  console.log('fail');
                 }
               })
             }
@@ -142,7 +202,6 @@ Page({
                 islogin: true
               })
             }
-
           } else {
             console.log(res.data.sub_msg);
           }
@@ -200,6 +259,31 @@ Page({
       fail: res => {
         console.log('fail');
       }
+    })
+  },
+  //管理中心-企业应用-公司信息
+  editCompanyPages:function(){
+    wx.navigateTo({
+      url: '../create-company/editCompanyPages/index?CstateCode=2'
+    })
+  },
+  //管理中心-企业应用-员工信息
+  staffList:function(){
+    wx.navigateTo({
+      url: '../employee/staff-list/index'
+    })
+  },
+  //管理中心-企业服务-自动值守
+  unattendedSetting:function(){
+    wx.navigateTo({
+      url: '../company/unattended-setting/index'
+    })
+  },
+  //管理中心-企业服务-员工取卡
+  takeCard:function(){
+    var _this = this;
+    wx.navigateTo({
+      url: '../employee/take-card/guide/index?company_id=' + _this.data.cd.company_id
     })
   }
 })

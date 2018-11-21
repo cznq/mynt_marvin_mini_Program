@@ -25,12 +25,14 @@ Page({
       })
     }
   },
+  //编辑基础信息
   basicInformation:function(){
     var _this = this;
     wx.navigateTo({
       url: '../basicInformation/index?CstateCode= ' + _this.data.CstateCode,
     })
   },
+  //编辑vip信息
   guideVip:function(){
     var _this = this;
     wx.navigateTo({
@@ -40,12 +42,14 @@ Page({
   next:function(){
     var _this = this;
     if (_this.data.CstateCode == 1){
+      //创建公司
       wx.navigateTo({
         url: '../companyPages/index?CstateCode= ' + _this.data.CstateCode,
       })
     } else if(_this.data.CstateCode == 2){
+      //编辑公司
       wx.navigateTo({
-        url: '../companyPagesEdit/index?CstateCode= ' + _this.data.CstateCode,
+        url: '../editCompanyPages/index?CstateCode= ' + _this.data.CstateCode,
       })
     }
   }

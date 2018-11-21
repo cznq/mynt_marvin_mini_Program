@@ -1,7 +1,3 @@
 /* pages/create-company/companyPages/index.wxss */
-
 @import "../public/style.wxss";
 @import "../../../templates/companyPages/companyPages.wxss";
-
-.hint{height:84rpx;color:#f00;opacity: 0.9;line-height:84rpx;background: #fff;position:absolute;left:0;top:-84rpx;font-size:24rpx;text-align: center;width:100%;border-top:1rpx solid #eeeeee;
-}
