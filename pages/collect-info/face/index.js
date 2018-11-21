@@ -12,6 +12,7 @@ Page({
    */
 
   data: {
+    isIphoneX: app.globalData.isIphoneX,
     invitation_id: null,
     visit_apply_id: null,
     company_id: null,

@@ -1,0 +1,23 @@
+
+<view class="page">
+<view class='_content collect-information'>
+  <view class="_flex step">
+    <view class='cur'></view>
+    <view></view>
+  </view>
+  <view class='recodeTitle _fontw600 _font48;'>身份验证</view>
+  <view class='recodeIntro'>在重设人脸之前，我们需要验证身份以确保是您本人，请输入您的身份证后六位。</view>
+  <form bindsubmit='editSubmit'>
+    <view class="inputWrapper" id="inputRow">
+      <block wx:for="{{Length}}" wx:key="item"> 
+        <input class="iptbox {{inputValue.length==index?'active':''}}" value="{{inputValue.length>=index+1?inputValue[index]:''}}" disabled catchtap='Tap'></input> 
+      </block>
+    </view>
+    <input name="idnum" type="idcard" class='ipt' focus="{{isFocus}}" bindinput="Focus"></input> 
+    
+  </form>
+  <view class="_font24 _txt_center friendinfo">如您遗忘了录入人脸时填写的身份证信息，请联系楼宇管理员处理。</view>
+</view>
+</view>
+<import src="../../../templates/inputError/inputError.wxml" /> 
+<template is="inputError" data="{{errorData: errorData}}" />

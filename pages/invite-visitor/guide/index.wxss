@@ -1,4 +1,9 @@
 /* pages/invite-visitor/guide/index.wxss */
+.page_hd {
+  height: 580rpx;
+  background: url(https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/invite_visitor%402x.png) no-repeat center center;
+  background-size: contain;
+}
 .page_bd {
   padding: 74rpx 80rpx 0;
 }

@@ -66,10 +66,13 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   //根据地址获取经纬度
   function generateMap(_this, address) {
     var app = getApp();
-
     var qqmapsdk = new QQMapWX({
       key: 'CGVBZ-S2KHV-3CBPC-UP4JI-4N55F-7VBFU'
     });
+    if (address == undefined) {
+      return false;
+      app.myLog("根据地址获取经纬度: ", "没有传入地址");
+    }
     qqmapsdk.geocoder({
       address: address,
       success: function (res) {

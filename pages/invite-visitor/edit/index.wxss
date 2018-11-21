@@ -1,10 +1,10 @@
 /* pages/invite-visitor/edit/index.wxss */
-.page {
+page {
   background-color: #F9FAFB;
   color: #1A2A4B;
 }
 .page_hd {
-  padding: 28rpx 60rpx;
+  padding: 28rpx 60rpx 0;
 }
 .step view {
   width: 50%;
@@ -12,7 +12,7 @@
 .head_title {
   font-size: 60rpx;
   margin: 62rpx 0 90rpx;
-
+  line-height: 1;
 }
 .page_bd {
   padding: 0 60rpx;
@@ -29,4 +29,46 @@
   border-bottom: 1px solid rgba(220, 220, 220, .5);
   height: 64rpx;
   margin-bottom: 52rpx;
+}
+.form_submit {
+  background-color: #fff;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30rpx 60rpx;
+}
+.form_submit.iphonex {
+  padding-bottom: 110rpx;
+}
+.timeBtn {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 36rpx;
+  text-align: center;
+  line-height: 72rpx;
+  color: #007bff;
+  background: rgba(242, 243, 246, 1);
+  right: 0;
+  top: 6rpx;
+  z-index: 10;
+}
+.timePicker {
+  position:absolute;
+  bottom:0;z-index:11;
+  background:#fff;
+  width:100%;
+  text-align:center;
+  font-size: 30rpx;
+}
+.timePicker .titleBar {
+  padding: 32rpx 0 28rpx;
+  color: rgba(71, 95, 253, 1);
+}
+.timePicker picker-view {
+  width: 100%; 
+  padding: 0 100rpx 20rpx;
+  box-sizing: border-box;
+  height: 420rpx;
+  font-size: 42rpx;
 }

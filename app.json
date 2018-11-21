@@ -4,6 +4,8 @@
     "pages/collect-info/guide/index",
     "pages/collect-info/face/index",
     "pages/collect-info/identity/index",
+    "pages/collect-info/confirm/index",
+    "pages/employee/homepage/index",
     "pages/employee/take-card/success/index",
     "pages/employee/take-card/guide/index",
     "pages/employee/staff-list/index",
@@ -16,12 +18,12 @@
     "pages/create-company/examples/index",
     "pages/create-company/updateReviewInfo/index",
 
-        "pages/create-company/guide/index",
-        "pages/create-company/guideVip/index",
-        "pages/create-company/basicInformation/index",
-        "pages/create-company/vipInformation/index",
-        "pages/create-company/companyPages/index",
-        "pages/create-company/robotPreview/index",
+    "pages/create-company/guide/index",
+    "pages/create-company/guideVip/index",
+    "pages/create-company/basicInformation/index",
+    "pages/create-company/vipInformation/index",
+    "pages/create-company/companyPages/index",
+    "pages/create-company/robotPreview/index",
     "pages/employee/join-company/enterRealName/index",
     "pages/employee/join-company/invitationCode/index",
     "pages/employee/join-company/choiceJoin/index",
@@ -39,7 +41,8 @@
     "pages/vip-share/vip-share",
     "pages/demo/showToastDemo/index",
     "pages/invite-visitor/guide/index",
-    "pages/invite-visitor/edit/index"
+    "pages/invite-visitor/edit/index",
+    "pages/invite-visitor/share/index"
   ],
   "subPackages": [
     {

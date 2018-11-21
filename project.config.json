@@ -1,248 +1,249 @@
 {
-  "description": "项目配置文件。",
-  "setting": {
-    "urlCheck": false,
-    "es6": true,
-    "postcss": false,
-    "minified": true,
-    "newFeature": true
-  },
-  "compileType": "miniprogram",
-  "libVersion": "2.3.2",
-  "appid": "wx36410b03870f2336",
-  "projectname": "555%E5%B0%8F%E8%A7%85%E6%99%BA%E8%83%BD%E6%A5%BC%E5%AE%87%E6%9C%8D%E5%8A%A1%E6%B5%8B%E8%AF%95555555",
-  "scripts": {},
-  "condition": {
-    "search": {
-      "current": -1,
-      "list": []
-    },
-    "conversation": {
-      "current": -1,
-      "list": []
-    },
-    "plugin": {
-      "current": -1,
-      "list": []
-    },
-    "game": {
-      "current": -1,
-      "list": []
-    },
-    "miniprogram": {
-      "current": 32,
-      "list": [
-        {
-          "id": 0,
-          "name": "申请发卡",
-          "pathName": "pages/invite-apply/invite-apply",
-          "query": "scene=17_234324",
-          "scene": "1011"
-        },
-        {
-          "id": 1,
-          "name": "接受邀请",
-          "pathName": "pages/invite-receive/invite-receive",
-          "query": "invitation_id=265",
-          "scene": "1044"
-        },
-        {
-          "id": 2,
-          "name": "员工快捷取卡",
-          "pathName": "pages/employee/take-card/guide/index",
-          "query": "company_id=17",
-          "scene": "1044"
-        },
-        {
-          "id": -1,
-          "name": "管理",
-          "pathName": "pages/manage/manage",
-          "query": "",
-          "scene": "1044"
-        },
-        {
-          "id": 4,
-          "name": "邀请",
-          "pathName": "pages/invite/invite",
-          "query": "",
-          "scene": "1044"
-        },
-        {
-          "id": 5,
-          "name": "申请结果",
-          "pathName": "pages/invite-apply-result/invite-apply-result",
-          "query": "visit_apply_id=1",
-          "scene": "1044"
-        },
-        {
-          "id": 6,
-          "name": "录入人脸",
-          "pathName": "pages/collect-info/identity/index",
-          "query": "company_id=17",
-          "scene": "1044"
-        },
-        {
-          "id": -1,
-          "name": "小觅VIP卡",
-          "pathName": "page/benifit/pages/vip-card/vip-card",
-          "query": "",
-          "scene": "1011"
-        },
-        {
-          "id": -1,
-          "name": "商城首页",
-          "pathName": "page/benifit/pages/mall-home/mall-home",
-          "query": ""
-        },
-        {
-          "id": 9,
-          "name": "邀请员工",
-          "pathName": "pages/employee/invite-staff/index",
-          "query": "commerce_id=6",
-          "scene": "1044"
-        },
-        {
-          "id": -1,
-          "name": "ifontdemo",
-          "pathName": "pages/demo/iconfont/index",
-          "query": "",
-          "scene": "1011"
-        },
-        {
-          "id": 11,
-          "name": "加入公司-首页",
-          "pathName": "pages/manage/manage",
-          "query": ""
-        },
-        {
-          "id": 12,
-          "name": "创建4-上传视频",
-          "pathName": "pages/create-company/updateReviewInfo/index",
-          "query": ""
-        },
-        {
-          "id": 13,
-          "name": "创建5-创建成功",
-          "pathName": "pages/create-company/createSuccess/index",
-          "query": "scene=GERW1XWQ  "
-        },
-        {
-          "id": 14,
-          "name": "创建3-填写企业信息",
-          "pathName": "pages/create-company/enterpriseInformation/index",
-          "query": ""
-        },
-        {
-          "id": -1,
-          "name": "员工列表",
-          "pathName": "pages/employee/staff-list/index",
-          "query": "company_code=GERW1XWQ",
-          "scene": "1044"
-        },
-        {
-          "id": -1,
-          "name": "录入人脸",
-          "pathName": "pages/company/unattended-setting/index",
-          "query": "company_id=17",
-          "scene": "1044"
-        },
-        {
-          "id": 17,
-          "name": "showToastDemo",
-          "pathName": "pages/demo/showToastDemo/index",
-          "query": ""
-        },
-        {
-          "id": -1,
-          "name": "iconfont",
-          "pathName": "pages/demo/iconfont/index",
-          "query": ""
-        },
-        {
-          "id": 19,
-          "name": "创建-上传视频示例",
-          "pathName": "pages/create-company/examples/index",
-          "query": ""
-        },
-        {
-          "id": 20,
-          "name": "加入2-确定信息",
-          "pathName": "pages/employee/join-company/confirmCompanyInformation/index",
-          "query": "company_code=GERW1XWQ"
-        },
-        {
-          "id": -1,
-          "name": "无人值守",
-          "pathName": "pages/company/unattended-setting/index",
-          "query": ""
-        },
-        {
-          "id": 22,
-          "name": "创建1-输入公司码",
-          "pathName": "pages/create-company/enterCompanyCode/index",
-          "query": ""
-        },
-        {
-          "id": 23,
-          "name": "加入3-输入真实姓名",
-          "pathName": "pages/employee/join-company/enterRealName/index",
-          "query": "company_code=76537C43"
-        },
-        {
-          "id": 24,
-          "name": "加入1-输入邀请码第",
-          "pathName": "pages/employee/join-company/invitationCode/index",
-          "query": ""
-        },
-        {
-          "id": 25,
-          "name": "创建2-输入真实姓名",
-          "pathName": "pages/create-company/enterRealName/index",
-          "query": "company_verify_code=EBFCZPKM"
-        },
-        {
-          "id": -1,
-          "name": "collect-info/face",
-          "pathName": "pages/collect-info/face/index",
-          "query": ""
-        },
-        {
-          "id": -1,
-          "name": "创建-引导",
-          "pathName": "pages/create-company/guide/index",
-          "query": ""
-        },
-        {
-          "id": -1,
-          "name": "创建-vip引导",
-          "pathName": "pages/create-company/guideVip/index",
-          "query": ""
-        },
-        {
-          "id": -1,
-          "name": "创建-基础信息",
-          "pathName": "pages/create-company/basicInformation/index",
-          "query": ""
-        },
-        {
-          "id": -1,
-          "name": "创建-vip信息",
-          "pathName": "pages/create-company/vipInformation/index",
-          "query": ""
-        },
-        {
-          "id": -1,
-          "name": "创建-企业主页",
-          "pathName": "pages/create-company/companyPages/index",
-          "query": ""
-        },
-        {
-          "id": -1,
-          "name": "加入公司-机器人预览",
-          "pathName": "pages/create-company/robotPreview/index",
-          "query": ""
-        }
-      ]
-    }
-  }
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": false,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.3.2",
+	"appid": "wx36410b03870f2336",
+	"projectname": "555%E5%B0%8F%E8%A7%85%E6%99%BA%E8%83%BD%E6%A5%BC%E5%AE%87%E6%9C%8D%E5%8A%A1%E6%B5%8B%E8%AF%95555555",
+	"scripts": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 26,
+			"list": [
+				{
+					"id": 0,
+					"name": "申请发卡",
+					"pathName": "pages/invite-apply/invite-apply",
+					"query": "scene=17_234324",
+					"scene": "1011"
+				},
+				{
+					"id": 1,
+					"name": "接受邀请",
+					"pathName": "pages/invite-receive/invite-receive",
+					"query": "invitation_id=265",
+					"scene": "1044"
+				},
+				{
+					"id": 2,
+					"name": "员工快捷取卡",
+					"pathName": "pages/employee/take-card/guide/index",
+					"query": "company_id=17",
+					"scene": "1044"
+				},
+				{
+					"id": -1,
+					"name": "管理",
+					"pathName": "pages/manage/manage",
+					"query": "",
+					"scene": "1044"
+				},
+				{
+					"id": 4,
+					"name": "邀请",
+					"pathName": "pages/invite/invite",
+					"query": "",
+					"scene": "1044"
+				},
+				{
+					"id": 5,
+					"name": "申请结果",
+					"pathName": "pages/invite-apply-result/invite-apply-result",
+					"query": "visit_apply_id=1",
+					"scene": "1044"
+				},
+				{
+					"id": 6,
+					"name": "录入人脸",
+					"pathName": "pages/collect-info/identity/index",
+					"query": "company_id=17",
+					"scene": "1044"
+				},
+				{
+					"id": -1,
+					"name": "小觅VIP卡",
+					"pathName": "page/benifit/pages/vip-card/vip-card",
+					"query": "",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "商城首页",
+					"pathName": "page/benifit/pages/mall-home/mall-home",
+					"query": ""
+				},
+				{
+					"id": 9,
+					"name": "邀请员工",
+					"pathName": "pages/employee/invite-staff/index",
+					"query": "commerce_id=6",
+					"scene": "1044"
+				},
+				{
+					"id": -1,
+					"name": "ifontdemo",
+					"pathName": "pages/demo/iconfont/index",
+					"query": "",
+					"scene": "1011"
+				},
+				{
+					"id": 11,
+					"name": "加入公司-首页",
+					"pathName": "pages/manage/manage",
+					"query": ""
+				},
+				{
+					"id": 12,
+					"name": "创建4-上传视频",
+					"pathName": "pages/create-company/updateReviewInfo/index",
+					"query": ""
+				},
+				{
+					"id": 13,
+					"name": "创建5-创建成功",
+					"pathName": "pages/create-company/createSuccess/index",
+					"query": "scene=GERW1XWQ  "
+				},
+				{
+					"id": 14,
+					"name": "创建3-填写企业信息",
+					"pathName": "pages/create-company/enterpriseInformation/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "员工列表",
+					"pathName": "pages/employee/staff-list/index",
+					"query": "company_code=GERW1XWQ",
+					"scene": "1044"
+				},
+				{
+					"id": -1,
+					"name": "录入人脸",
+					"pathName": "pages/company/unattended-setting/index",
+					"query": "company_id=17",
+					"scene": "1044"
+				},
+				{
+					"id": 17,
+					"name": "showToastDemo",
+					"pathName": "pages/demo/showToastDemo/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "iconfont",
+					"pathName": "pages/demo/iconfont/index",
+					"query": ""
+				},
+				{
+					"id": 19,
+					"name": "创建-上传视频示例",
+					"pathName": "pages/create-company/examples/index",
+					"query": ""
+				},
+				{
+					"id": 20,
+					"name": "加入2-确定信息",
+					"pathName": "pages/employee/join-company/confirmCompanyInformation/index",
+					"query": "company_code=GERW1XWQ"
+				},
+				{
+					"id": -1,
+					"name": "无人值守",
+					"pathName": "pages/company/unattended-setting/index",
+					"query": ""
+				},
+				{
+					"id": 22,
+					"name": "创建1-输入公司码",
+					"pathName": "pages/create-company/enterCompanyCode/index",
+					"query": ""
+				},
+				{
+					"id": 23,
+					"name": "加入3-输入真实姓名",
+					"pathName": "pages/employee/join-company/enterRealName/index",
+					"query": "company_code=76537C43"
+				},
+				{
+					"id": 24,
+					"name": "加入1-输入邀请码第",
+					"pathName": "pages/employee/join-company/invitationCode/index",
+					"query": ""
+				},
+				{
+					"id": 25,
+					"name": "创建2-输入真实姓名",
+					"pathName": "pages/create-company/enterRealName/index",
+					"query": "company_verify_code=EBFCZPKM"
+				},
+				{
+					"id": 26,
+					"name": "开发",
+					"pathName": "pages/invite-visitor/share/index",
+					"query": "",
+					"scene": "1044"
+				},
+				{
+					"id": -1,
+					"name": "创建-引导",
+					"pathName": "pages/create-company/guide/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "创建-vip引导",
+					"pathName": "pages/create-company/guideVip/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "创建-基础信息",
+					"pathName": "pages/create-company/basicInformation/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "创建-vip信息",
+					"pathName": "pages/create-company/vipInformation/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "创建-企业主页",
+					"pathName": "pages/create-company/companyPages/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "加入公司-机器人预览",
+					"pathName": "pages/create-company/robotPreview/index",
+					"query": ""
+				}
+			]
+		}
+	}
 }

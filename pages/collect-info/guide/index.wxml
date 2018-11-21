@@ -6,7 +6,7 @@
   </view>
 
   <view class='_fixed page__ft  _txt_center'>
-    <view class="_font24 invoice"><text class=""></text>请放心我们不会向任何第三方透露您的身份信息。</view>
+    <view class="_font24 invoice"><text class="iconfont icon-dunpai"></text>请放心我们不会向任何第三方透露您的身份信息。</view>
     <button class="_button next_btn _font32" bindtap="startRecodeFace">开始录入</button>
   </view>
    
