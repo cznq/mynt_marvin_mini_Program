@@ -54,13 +54,13 @@ Page({
         url: '',
         pic: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m3.png',
         name: '访客列表',
-        bindtap: '',
+        bindtap: 'visitor',
         isShow: true
       }, {
         url: '',
         pic: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/manage/m4.png',
         name: '邀请列表',
-        bindtap: '',
+        bindtap: 'invite',
         isShow: true
       }, {
         url: '',
@@ -101,7 +101,7 @@ Page({
     console.log(_this.data.isiphoneX );
 
     //检测登陆
-    if (!(app.checkSession()) || wx.getStorageSync('open_id') == '' || wx.getStorageSync('xy_session') == '') {
+    if (!(app.checkSession())) {
       app.checkLogin().then(function(res) {
         var union_id = wx.getStorageSync('xy_session');
         _this.get_review_status(_this, union_id);
@@ -264,13 +264,25 @@ Page({
   //管理中心-企业应用-公司信息
   editCompanyPages:function(){
     wx.navigateTo({
-      url: '../create-company/editCompanyPages/index?CstateCode=2'
+      url: '../create-company/editCompanyPages/index'
     })
   },
   //管理中心-企业应用-员工信息
   staffList:function(){
     wx.navigateTo({
       url: '../employee/staff-list/index'
+    })
+  },
+  //管理中心-企业应用-访客列表
+  visitor: function () {
+    wx.navigateTo({
+      url: '../company/webview/index?page=visitor'
+    })
+  },
+  //管理中心-企业应用-邀请列表
+  invite: function () {
+    wx.navigateTo({
+      url: '../company/webview/index?page=invite'
     })
   },
   //管理中心-企业服务-自动值守
@@ -286,4 +298,5 @@ Page({
       url: '../employee/take-card/guide/index?company_id=' + _this.data.cd.company_id
     })
   }
+  
 })

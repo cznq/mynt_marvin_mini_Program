@@ -4,22 +4,25 @@ var companyPage = require('../../../templates/companyPages/companyPages');
 Page({
   data: {
     isiphoneX: app.globalData.isIphoneX,
-    CstateCode: 1,
+    CstateCode: 2,
     cd: {},
     button_text: '编辑企业信息'
   },
   onLoad: function (options) {
     var _this = this;
-    _this.data.CstateCode = options.CstateCode;
-    if (options.CstateCode == 1) {
-      wx.setNavigationBarTitle({
-        title: '创建公司'
-      })
-    } else if (options.CstateCode == 2) {
-      wx.setNavigationBarTitle({
-        title: '编辑企业信息'
-      })
-    }
+    //_this.data.CstateCode = options.CstateCode;
+    // if (options.CstateCode == 1) {
+    //   wx.setNavigationBarTitle({
+    //     title: '创建公司'
+    //   })
+    // } else if (options.CstateCode == 2) {
+    //   wx.setNavigationBarTitle({
+    //     title: '编辑企业信息'
+    //   })
+    // }
+    wx.setNavigationBarTitle({
+      title: '编辑企业信息'
+    })
     //请求数据
     companyPage.cd(_this, app, "company", "get_info", wx.getStorageSync('xy_session'));
 

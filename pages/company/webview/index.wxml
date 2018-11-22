@@ -1,0 +1,2 @@
+<!--pages/company/webview/index.wxml-->
+<web-view src="{{web_url}}/{{route}}/record?timestamp={{timestamp}}"></web-view>
