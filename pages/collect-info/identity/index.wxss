@@ -1,0 +1,50 @@
+
+.step view {
+  width: 50%;
+}
+.collect-information {
+  padding-bottom:300rpx;
+  position: relative;
+}
+.recodeTitle {
+  padding-bottom: 20rpx;
+  padding-top:60rpx;
+  line-height: 1.2;
+  color: #1A2A4B;
+}
+.recodeIntro {
+  font-size: 30rpx;
+  color: #1A2A4B;
+  font-weight: 400;
+  margin-bottom: 80rpx;
+}
+.input_block {
+  padding-bottom: 25rpx;
+  position: relative;
+}
+icon {
+  position: absolute;
+  bottom: 50rpx;
+  right: 0;
+  z-index: 100;
+}
+.step {
+  padding-top:30rpx;
+}
+.footer {
+  height:209rpx;
+  background: #ccc;
+  left:0;
+  bottom:0;
+  width:100%;
+  padding-top:30rpx;
+  background: linear-gradient(to bottom,#fafbfb 0%,#fcfdfd 60%,#fcfdfd 60%,#fcfdfd 100%);
+  border-top:1rpx solid #eeeeee;
+}
+.footer button {
+  background: #007bff;
+  color: #fff!important;
+}
+.footer button[disabled] {
+  background: rgba(0, 123, 255, .2);
+}

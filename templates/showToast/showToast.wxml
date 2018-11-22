@@ -1,0 +1,23 @@
+<!-- 用法 在 wxml里面 引入下面两个 -->
+<!--<import src="../../template/showToast/showToast.wxml" /> 
+ <template is="showToast" data="{{showToast: showToast}}" />  -->
+<!-- 用法 在 js里面 引入下面 -->
+<!-- var toast = require('../../template/showToast/showToast'); -->
+<!--调用方法：  toast.showToast({
+					title: '请输入正确的手机号',
+	})	 -->
+<template name="showToast">
+    <block wx:if="{{showToast.isShow? showToast.isShow: false}}">
+        <view class="toast-bg" wx:if="{{showToast.mask==false? false : true}}"></view>
+        <view class="toastPubStyle {{showToast.toastStyle}}">
+            <image class="toast-pic" src="{{showToast.pic}}" mode="scaleToFill" wx:if="{{showToast.pic}}" />
+            <view class='toast-b-con'>
+              <view class='arrow' wx:if="{{showToast.isArrow==false? false : true}}"></view>
+              <view class="toast-title">{{showToast.title}}</view>
+              <view class="toast-introduce" wx:if="{{showToast.introduce}}">{{showToast.introduce}}</view>
+              <view class='toast-close' bindtap="bindToastClose" wx:if="{{showToast.isClose==false? false : true}}">{{showToast.closeText}}</view>
+              <view class='toast-sure' bindtap="bindToastSure" wx:if="{{showToast.isSure==false? false : true}}">{{showToast.sureText}}</view>
+            </view>
+        </view>
+    </block>
+</template>

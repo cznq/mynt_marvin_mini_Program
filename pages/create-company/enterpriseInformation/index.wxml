@@ -1,0 +1,84 @@
+<view class='_content company-information'>
+  <view class="_flex step">
+    <view class='cur'></view>
+    <view class='cur'></view>
+    <view class='cur'></view>
+    <view></view>
+  </view>
+  <view class='mainTitle'>{{mainTitle}}</view>
+  <form bindsubmit='formSubmit'>
+    <view class='input_block'>
+      <view>
+        <text class='_font24 _txt_darkgrey'>公司全称</text>
+        <text class='_font22 _txt_darkgrey _fontw300'>(必填)</text>
+      </view>
+      <input class='input_text' disabled='false' name="company_name" value='{{cd.company_name}}'></input>
+    </view>
+    <view class='input_block'>
+      <view>
+        <text class='_font24 _txt_darkgrey'>公司简称</text>
+        <text class='_font22 _txt_darkgrey _fontw300'>(必填)</text>
+      </view>
+      <input class='input_text' name="company_short_name" value='{{cd.company_short_name}}' placeholder='显示在机器人端公司主页，最多8个字' placeholder-class='input_text_phc' maxlength='8'></input>
+    </view>
+    <view class='input_block'>
+      <view>
+        <text class='_font24 _txt_darkgrey'>公司别称</text>
+      </view>
+      <input class='input_text' name="name_alias0" value='{{cd.name_alias[0]}}' placeholder='通常用于访客搜索' placeholder-class='input_text_phc' maxlength='8'></input>
+    </view>
+    <view class='' hidden="{{moreAlias ? true : false}}">
+      <view class='input_block'>
+        <input class='input_text' name="name_alias1" value='{{cd.name_alias[1]}}' placeholder='通常用于访客搜索' placeholder-class='input_text_phc' maxlength='8'></input>
+      </view>
+      <view class='input_block'>
+        <input class='input_text' name="name_alias2" value='{{cd.name_alias[2]}}' placeholder='通常用于访客搜索' placeholder-class='input_text_phc' maxlength='8'></input>
+      </view>
+    </view>
+    <!-- <view class='_font22 _txt_blue _fontw300 _txt_center add_c' bindtap='moreAlias'>+添加别称</view> -->
+    <view class='input_block'>
+      <view>
+        <text class='_font24 _txt_darkgrey'>公司地址</text>
+      </view>
+      <view class='input_text location'>
+        <view class="iconfont icon-ditudingweidian"></view>
+        <input class='input_text' disabled='false' name="address" value='{{cd.address}}'></input>
+      </view>
+    </view>
+    <view class='input_block'>
+      <view>
+        <text class='_font24 _txt_darkgrey'>详细地址</text>
+        <text class='_font22 _txt_darkgrey _fontw300'>(必填)</text>
+      </view>
+      <view class='detailedAddress _clearfloat'>
+        <input class='input_text input_dis' disabled='false' name="floor" value='{{cd.floor}}层'></input>
+        <input class='input_text' name="room" value='{{cd.room}}' placeholder='请输入' maxlength='6' placeholder-class='input_text_phc'></input>
+        <input class='input_text input_dis input_s' disabled='false' value='室'></input>
+      </view>
+
+    </view>
+    <view class='input_block'>
+      <view>
+        <text class='_font24 _txt_darkgrey'>联系方式</text>
+      </view>
+      <input class='input_text' placeholder-class='input_text_phc' name="phone" value='{{cd.phone}}' maxlength='13' placeholder='座机或手机号'></input>
+    </view>
+    <view class='input_block'>
+      <view>
+        <text class='_font24 _txt_darkgrey'>公司网址</text>
+      </view>
+      <input class='input_text' placeholder-class='input_text_phc' name="website" value='{{cd.website}}' placeholder='官网网址'></input>
+    </view>
+    <view class='input_block'>
+      <view>
+        <text class='_font24 _txt_darkgrey'>公司介绍</text>
+      </view>
+      <input class='input_text' placeholder-class='input_text_phc' name="introduction" maxlength='50' value='{{cd.introduction}}' placeholder='用于机器人端对外展示，最多50字'></input>
+    </view>
+    <cover-view class='_fixed footer covview'>
+      <button class="_button" formType="submit">{{button_text}}</button>
+    </cover-view>
+  </form>
+</view>
+<import src="../../../templates/showToast/showToast.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />

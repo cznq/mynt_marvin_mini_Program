@@ -1,0 +1,11 @@
+@import "../public/style.wxss";
+@import "../../../templates/showToast/showToast.wxss";
+
+page {
+  background: #f9fafb;
+}
+
+.hint {
+  width: 277rpx;
+  margin: 139rpx auto 0 auto;
+}

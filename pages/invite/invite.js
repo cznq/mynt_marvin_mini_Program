@@ -1,5 +1,4 @@
-// pages/invite/invite.js
-var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
+
 const app = getApp();
 Page({
 
@@ -7,12 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    xy_session: null,
     invite_auth: null,
     latitude: null,
     longitude: null,
     cmpinfo: null,
-    invite_auth: null,
     date: "",
     time: "",
     formready: false,
@@ -34,26 +31,26 @@ Page({
     
   },
 
+  /**
+   * 判断是否员工
+   */
   setDataRequest: function () {
     var that = this;
     that.setData({
-      xy_session: wx.getStorageSync('xy_session'),
       invite_auth: wx.getStorageSync('invite_auth')
     })
     if (that.data.invite_auth == true) {
       that.getCompany();
     } else {
-      wx.showModal({
-        title: '你没有邀请权限',
-        content: '请先加入成为公司员工，才能获得邀请权限',
-        showCancel: false,
-        success: function (res) {
-
-        }
+      wx.redirectTo({
+        url: '/pages/manage/manage',
       })
     }
   },
 
+  /**
+   * 获取公司信息
+   */
   getCompany: function () {
     var that = this;
     app.Util.network.POST({
@@ -61,8 +58,9 @@ Page({
       params: {
         service: 'company',
         method: 'get_info',
-        union_id: wx.getStorageSync('xy_session'),
-        data: JSON.stringify({})
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session')
+        })
       },
       success: res => {
         console.log(res);
@@ -71,29 +69,7 @@ Page({
             cmpinfo: res.data.result
           })
         }
-        that.generateMap(res.data.result.address);
-      }
-    })
-  },
-
-  generateMap: function (address) {
-    var that = this;
-    var qqmapsdk = new QQMapWX({
-      key: 'CGVBZ-S2KHV-3CBPC-UP4JI-4N55F-7VBFU'
-    });
-    qqmapsdk.geocoder({
-      address: address,
-      success: function (res) {
-        that.setData({
-          latitude: res.result.location.lat,
-          longitude: res.result.location.lng
-        })
-      },
-      fail: function (res) {
-        console.log(res);
-      },
-      complete: function (res) {
-        console.log(res);
+        app.Util.generateMap(that, res.data.result.address);
       }
     })
   },
@@ -124,6 +100,10 @@ Page({
     return val;
   },
 
+  /**
+   * 提交表单
+   * param: visitor_name, mark, visit_intro, appointment_time
+   */
   inviteSubmit: function (e) {
     var visit_time = this.data.date + ' ' + this.data.time; 
     var visitor_name = e.detail.value.visitor_name;
@@ -143,8 +123,8 @@ Page({
       params: {
         service: 'visitor',
         method: 'invite',
-        union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
           visitor_name: visitor_name,
           invitation_type: 0,
           introduction: visit_intro,

@@ -1,0 +1,13 @@
+@import "../public/style.wxss";
+@import "../../../templates/showToast/showToast.wxss";
+.company-information{padding-bottom:300rpx;}
+.hint{width:277rpx;margin:139rpx auto 0 auto;}
+.mainTitle{padding-bottom: 50rpx;}
+.input_block{padding-bottom: 25rpx;}
+.add_c{padding-bottom:19rpx;}
+.location{padding-top:8rpx;border-bottom:0;}
+.detailedAddress .input_text{float:left;width:130rpx;text-align: center;margin-right:13rpx;}
+.detailedAddress .input_dis{border-bottom:0;width:150rpx;text-align: left;margin-right:0;}
+.detailedAddress .input_s{color:#8891A9;}
+.icon-ditudingweidian{float:left;margin-right:5rpx;}
+.location input{border-bottom: 0;float:left;margin-top:-7rpx;}

@@ -1,0 +1,44 @@
+@import "../../../templates/showToast/showToast.wxss";
+
+page {
+  background: #F9FAFB;
+}
+.page__hd {
+  padding: 32rpx 60rpx;
+  line-height: 1;
+  background: #fff;
+}
+.iconfont.icon-tianjiayuangong {
+  font-size: 52rpx;
+}
+.page__bd {
+  padding: 0 60rpx;
+  background: #F9FAFB;
+}
+.staff-list {
+  padding-top: 30rpx;
+}
+._list_item {
+  padding: 30rpx 0 30rpx;
+}
+._family_name {
+  background-color: #6092FE;
+}
+button.btn {
+  padding: 0 20rpx;
+  font-size: 24rpx;
+  line-height: 1;
+  border-radius: 10rpx;
+  border: 2rpx solid rgba(0, 0, 0, .1);
+  margin-left: 20rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+button.btn.allow {
+  background: #007bff;
+  color: #fff;
+}
+.status {
+  font-size: 24rpx;
+  color: #8891A9;
+}

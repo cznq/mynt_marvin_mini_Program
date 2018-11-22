@@ -1,5 +1,6 @@
-// pages/utils/util.js
+
 var md5 = require('md5.js');
+var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
 ; (function () {
   // 网络请求
@@ -21,11 +22,13 @@ var md5 = require('md5.js');
       title: '正在加载',
       mask: true
     })
-    requestHandler.params.app_id = '65effd5a42fd1870b2c7c5343640e9a8';
+    requestHandler.params.app_id = '65effd5a42fd1870b2c7c5343640e9a8'; //接口需要的第三方App_id
     requestHandler.params.timestamp = Math.round(new Date().getTime() / 1000 - 28800);
     requestHandler.params.sign_type = 'MD5';
     var stringA = 'app_id=' + requestHandler.params.app_id + '&data=' + requestHandler.params.data + '&method=' + requestHandler.params.method + '&service=' + requestHandler.params.service + '&timestamp=' + requestHandler.params.timestamp;
     requestHandler.params.sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
+    //打印参数
+    app.myLog("请求参数", JSON.stringify(requestHandler.params));
 
     wx.request({
       url: requestHandler.url,
@@ -35,10 +38,17 @@ var md5 = require('md5.js');
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: res => {
+        if(res.data.sub_code !== 0) {
+          app.myLog("请求错误返回", JSON.stringify(res.data));
+        } else {
+          app.myLog("请求成功返回", JSON.stringify(res.data));
+        }
         wx.hideLoading();
         if (requestHandler.success) requestHandler.success(res);
       },
-      fail: () => {
+      fail: (res) => {
+        console.log(res);
+        app.myLog("请求错误", JSON.stringify(res));
         wx.hideLoading();
         wx.showToast({
           title: '加载失败，请尝试刷新',
@@ -49,6 +59,35 @@ var md5 = require('md5.js');
       complete: () => {
         wx.stopPullDownRefresh();
         if (requestHandler.complete) requestHandler.complete();
+      }
+    })
+  }
+
+  //根据地址获取经纬度
+  function generateMap(_this, address) {
+    var app = getApp();
+
+    var qqmapsdk = new QQMapWX({
+      key: 'CGVBZ-S2KHV-3CBPC-UP4JI-4N55F-7VBFU'
+    });
+    qqmapsdk.geocoder({
+      address: address,
+      success: function (res) {
+        console.log(res.result);
+        app.myLog("根据地址获取经纬度: ", " 地址：" + address + '返回：' + JSON.stringify(res.result));
+        _this.setData({
+          latitude: res.result.location.lat,
+          longitude: res.result.location.lng
+        })
+      },
+      fail: function (res) {
+        app.myLog("根据地址获取经纬度: ", " 地址："+address + '返回：' + JSON.stringify(res));
+        wx.showToast({
+          title: '获取经纬度失败',
+        })
+      },
+      complete: function (res) {
+        console.log(res);
       }
     })
   }
@@ -172,6 +211,7 @@ var md5 = require('md5.js');
     return str;
   }
 
+  //校验身份证
   function checkID(ID) {
     if (typeof ID !== 'string') return '非法字符串';
     var city = { 11: "北京", 12: "天津", 13: "河北", 14: "山西", 15: "内蒙古", 21: "辽宁", 22: "吉林", 23: "黑龙江 ", 31: "上海", 32: "江苏", 33: "浙江", 34: "安徽", 35: "福建", 36: "江西", 37: "山东", 41: "河南", 42: "湖北 ", 43: "湖南", 44: "广东", 45: "广西", 46: "海南", 50: "重庆", 51: "四川", 52: "贵州", 53: "云南", 54: "西藏 ", 61: "陕西", 62: "甘肃", 63: "青海", 64: "宁夏", 65: "新疆", 71: "台湾", 81: "香港", 82: "澳门", 91: "国外" };
@@ -196,6 +236,7 @@ var md5 = require('md5.js');
     return true;
   }
 
+  //校验护照
   function checkPassport(passport) {
     var reg = /^1[45][0-9]{7}|([P|p|S|s]\d{7})|([S|s|G|g]\d{8})|([Gg|Tt|Ss|Ll|Qq|Dd|Aa|Ff]\d{8})|([H|h|M|m]\d{8，10})$/;
     if (reg.test(passport) === false) {
@@ -205,6 +246,7 @@ var md5 = require('md5.js');
     }
   }
 
+  //校验电话
   function checkPhone(phone) {
     var phone_reg = /^1[0-9]{10}$/;
     if (phone_reg.test(phone) === false) {
@@ -220,6 +262,24 @@ var md5 = require('md5.js');
     } else {
       return true;
     }
+  }
+
+  //检验公司码/邀请码
+  function checkCode(code) {
+    var code_reg = /[\W]/;
+    if (code_reg.test(code) === false) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  //判断接口返回数据是否为空
+  function checkEmpty(data) {
+    if(data == "" || data == null) {
+      return true;
+    }
+    return false;
   }
 
   //检测接口兼容性
@@ -247,11 +307,113 @@ var md5 = require('md5.js');
     return true;
   }
 
+//选择图片
+  function uploadImage(_this,count, sizeType, sourceType, uposs_url, uposs_service, uposs_method,uposs_name,cb) {
+    wx.chooseImage({
+      count: count,
+      sizeType: sizeType,
+      sourceType: sourceType,
+      success(res) {
+        const tempFilePaths = res.tempFilePaths;
+        var i = 0;//选择上传位置
+        var dataArr =[];//返回数据组
+        uposs(_this,uposs_url, uposs_service, uposs_method, uposs_name, tempFilePaths, i, dataArr, function (obj) {
+          cb(obj);
+        });
+        
+      }
+    })
+  }
+
+  //选择视频
+  function uploadvideo(_this,sourceType, compressed, maxDuration, camera, uposs_url, uposs_service, uposs_method, uposs_name,cb){
+    wx.chooseVideo({
+      sourceType: sourceType,
+      maxDuration: maxDuration,
+      compressed: compressed,
+      camera: camera,
+      success(res) {
+        console.log(res.tempFilePath);
+        var datatt = [];
+        datatt.push(res.tempFilePath);
+        var i = 0;//选择上传位置
+        var dataArr = [];//返回数据组
+        uposs(_this,uposs_url, uposs_service, uposs_method, uposs_name, datatt, i, dataArr,  function (obj) {
+          cb(obj);
+        });
+      }
+    })
+  }
+
+  //上传oss
+  function uposs(_this,uposs_url, uposs_service, uposs_method, uposs_name, tempFilePaths, i, dataArr,cb){
+    var spliceArr = dataArr;
+    var tempFilePathsLength = tempFilePaths.length-1;//图片数量
+    var url = uposs_url;
+    var name = uposs_name;
+    var service = uposs_service;
+    var data = JSON.stringify({});
+    var method = uposs_method;
+    var app_id = '65effd5a42fd1870b2c7c5343640e9a8';
+    var timestamp = Math.round(new Date().getTime() / 1000 - 28800);
+    var sign_type = 'MD5';
+    var stringA = 'app_id=' + app_id + '&data=' + data + '&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
+    var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
+    wx.showLoading({
+      title: '加载中',
+    })
+      const uploadTask = wx.uploadFile({
+        url: url,
+        filePath: tempFilePaths[i],
+        header: {
+          'content-type': 'multipart/form-data'
+        },
+        name: name,
+        formData: {
+          union_id: wx.getStorageSync('xy_session'),
+          service: service,
+          method: method,
+          app_id: app_id,
+          timestamp: timestamp,
+          sign_type: sign_type,
+          sign: sign,
+          data: data
+        },
+        success: res => {
+          var resdata = JSON.parse(res.data);
+          if (resdata.sub_code == 0){
+            spliceArr.push(resdata.result.company_multimedia_url);
+            if (i == tempFilePathsLength) {
+              cb(spliceArr);
+              wx.hideLoading();
+            } else if(i < tempFilePathsLength){
+              i++;
+              uposs(_this,url, service, method, name, tempFilePaths, i, spliceArr, cb);
+            }
+          }else{
+            app.globalData.fundebug.notify("上传图片视频/upload_company_multimedia", res.data.sub_msg);
+            console.log(res.data.sub_msg);
+          }
+        },
+        fail: res => {
+          wx.showToast({
+            title: '上传失败'
+          })
+        }
+      })
+      uploadTask.onProgressUpdate((res) => {
+        console.log('上传进度', res.progress)
+        console.log('已经上传的数据长度', res.totalBytesSent)
+        console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
+      })
+  } 
+
   module.exports.network = {
     GET: GET,
     POST: POST
   }
-
+  
+  module.exports.generateMap = generateMap;
   module.exports.dateFormat = dateFormat;
   module.exports.unique = unique;
   module.exports.setClipboard = setClipboard;
@@ -268,4 +430,9 @@ var md5 = require('md5.js');
   module.exports.checkNumber = checkNumber;
   module.exports.checkApi = checkApi;
   module.exports.checkcanIUse = checkcanIUse;
+  module.exports.checkCode = checkCode;
+  module.exports.checkEmpty = checkEmpty;
+  module.exports.uploadImage = uploadImage;
+  module.exports.uploadvideo = uploadvideo;
+
 })();
