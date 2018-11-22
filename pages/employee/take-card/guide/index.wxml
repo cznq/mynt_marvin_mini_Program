@@ -2,35 +2,25 @@
 
 <view class="page">
   <view class="page__hd">
-      <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/staff-take-card-banner.png" mode='widthFix'></image>
+      <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/staff_card%402x.png" mode='widthFix'></image>
   </view>
   <view class="page__bd ">
-    <view class="guide-title _txt_center _font44 _fontw600">快捷取卡指南</view>
-    <view class="guide-intro _font28 _txt_center">录入信息后可以让机器人认出你，并为您提供快捷取卡等服务，同时也是员工身份的证明</view>
-    <button class="open-btn _font32" bindtap="openFunction" wx:if="{{!opened}}">开启快捷取卡</button>
+    <view class="guide-title _txt_center _font44 _fontw600">员工取卡使用流程</view>
     <!-- How it Work -->
     <view class="how-it-work ">
-      <view class="tit _txt_center _font32">如何快捷取卡</view>
-
-      <view class="guide-item _flex _flex_item_center">
-        <view class="photo"><image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/step-1.png" mode='widthFix' style='width:194rpx'></image></view>
-        <view class="txt">
-          <view class="step-num _font38">Step 1</view>
-          <view class="intro _font28">填写姓名、手机号、身份证号等个人信息</view>
-        </view>
-      </view>
+      
       <view class="guide-item  _flex _flex_item_center">
-        <view class="photo"><image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/step-2.png" mode='widthFix' style='width:194rpx'></image></view>
+        <view class="photo"><image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/staff_card_one%402x.png" mode='widthFix'></image></view>
         <view class="txt">
-          <view class="step-num _font38">Step 2</view>
-          <view class="intro _font28">录入人脸信息，以便让机器人认出你</view>
+          <view class="step-num _font38">第一步</view>
+          <view class="intro _font28">录入身份及人脸信息开通员工取卡功能。</view>
         </view>
       </view>
       <view class="guide-item _flex _flex_item_center">
-        <view class="photo"><image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/step-3.png" mode='widthFix' style='width:194rpx'></image></view>
+        <view class="photo"><image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/staff_card_two%402x.png" mode='widthFix'></image></view>
         <view class="txt">
-          <view class="step-num _font38">Step 3</view>
-          <view class="intro _font28">在机器人屏幕，点击员工取卡，快速取出卡片</view>
+          <view class="step-num _font38">第二步</view>
+          <view class="intro _font28">在忘带电梯卡时在机器人端点击员工取卡取出电梯卡。</view>
         </view>
       </view>
     </view>

@@ -6,6 +6,7 @@
     "pages/collect-info/identity/index",
     "pages/collect-info/confirm/index",
     "pages/employee/homepage/index",
+    "pages/employee/take-card/open/index",
     "pages/employee/take-card/success/index",
     "pages/employee/take-card/guide/index",
     "pages/employee/staff-list/index",

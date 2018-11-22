@@ -10,10 +10,11 @@
   vertical-align: bottom;
 }
 .page__bd {
-  padding: 80rpx 86rpx 50rpx;
+  padding: 100rpx 74rpx 50rpx;
 }
 .guide-title {
   line-height: 1;
+  margin-bottom: 30rpx;
   color: rgba(27, 43, 76, 1);
 }
 .guide-intro {
@@ -29,23 +30,18 @@
   margin-top: 140rpx;
 }
 .how-it-work {
-  padding: 70rpx 0 0;
+  padding: 120rpx 36rpx 0;
 }
 .how-it-work .tit {
   color: rgba(136, 145, 169, 1);
   margin-bottom: 58rpx;
 }
 .guide-item {
-  margin-bottom: 136rpx;
-}
-.guide-item:last-child {
-  margin-bottom: 36rpx;
-}
-.photo image {
-  width: 240rpx;
+  margin-bottom: 76rpx;
+  justify-content: space-around;
 }
 .guide-item .txt {
-  margin-left: 60rpx;
+  margin-left: 84rpx;
 }
 .step-num {
   color: rgba(136, 145, 169, 1);
