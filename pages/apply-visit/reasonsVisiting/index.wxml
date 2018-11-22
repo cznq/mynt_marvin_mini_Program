@@ -1,0 +1,27 @@
+<!--pages/apply-visit/reasonsVisiting/index.wxml-->
+<import src="../../../templates/inputError/inputError.wxml" /> 
+
+<view class='_content reasonsVisiting'>
+  <view class='recodeTitle _fontw600 _font48;'>填写到访事由</view>
+  <view class='recodeIntro'>请填写您的姓名与到访事由，以便公司前台确认您的身份和到访意图。</view>
+  <form bindsubmit='editSubmit'>
+    <view class='input_block'>
+      <view>
+        <text class='_font34 _txt_gray'>姓名</text>
+      </view>
+      <input class="input_text" type="number" name="name"  placeholder-class='input_text_phc' placeholder='请输入您的姓名'></input>
+    </view>
+    <view class='input_block'>
+      <view>
+        <text class='_font34 _txt_gray'>到访事由（选填）</text>
+      </view>
+      <textarea class='textarea_text' placeholder-class='textarea_text_phc' placeholder='请在这里描述您的到访事由，以便公司前台确认您的身份和到访意图。'>
+      
+      </textarea>
+    </view>
+
+    <view class='_fixed footer {{isiphoneX ? "footer_x" : ""}}'>
+  <button class="_button" bindtap="next" formType="submit">{{button_text}}</button>
+  </view>
+  </form>
+</view>

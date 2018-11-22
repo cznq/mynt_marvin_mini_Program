@@ -1,0 +1,2 @@
+/* pages/apply-visit/noAppointment/index.wxss */
+@import "../../../templates/companyPages/companyPages.wxss";

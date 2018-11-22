@@ -1,0 +1,8 @@
+<!--pages/apply-visit/applicationStatus/index.wxml-->
+<import src="../../../templates/companyPages/companyPages.wxml" />
+<view class='headerCon' style="background:{{background_color}}">
+</view>
+<template is="companyPages" data="{{cd:cd}}" />
+<view class='_fixed footer f_follow'>
+  <official-account></official-account>
+</view>

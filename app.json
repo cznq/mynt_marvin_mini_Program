@@ -43,7 +43,11 @@
     "pages/demo/showToastDemo/index",
     "pages/invite-visitor/guide/index",
     "pages/invite-visitor/edit/index",
-    "pages/invite-visitor/share/index"
+    "pages/invite-visitor/share/index",
+    "pages/apply-visit/noAppointment/index",
+    "pages/apply-visit/reasonsVisiting/index",
+    "pages/apply-visit/applicationStatus/index"
+    
   ],
   "subPackages": [
     {

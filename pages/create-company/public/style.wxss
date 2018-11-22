@@ -1,9 +1,9 @@
 .mainTitle{padding-top:35rpx;}
 .hint{text-align: center;}
 .step{padding-top:30rpx;}
-.footer{left:0;bottom:0;width:100%;padding:30rpx 0;background: linear-gradient(to bottom,#fafbfb 0%,#fcfdfd 60%,#fcfdfd 60%,#fcfdfd 100%);border-top:1rpx solid #eeeeee;}
+/* .footer{left:0;bottom:0;width:100%;padding:30rpx 0;background: linear-gradient(to bottom,#fafbfb 0%,#fcfdfd 60%,#fcfdfd 60%,#fcfdfd 100%);border-top:1rpx solid #eeeeee;}
 .footer_x{padding-bottom:109rpx;}
-.inp{width:500rpx;height: 100rpx;border-bottom: 1rpx solid #4f5c74;margin:111rpx auto 0 auto;font-size:46rpx;text-align: center; }
+.inp{width:500rpx;height: 100rpx;border-bottom: 1rpx solid #4f5c74;margin:111rpx auto 0 auto;font-size:46rpx;text-align: center; } */
 .s_hint{padding:60rpx 0;border-bottom:16rpx solid #f5f6fa;}
 .s_hint .text{text-align:center;padding-top:37rpx;}
 .company-success{padding-top:37rpx;}
