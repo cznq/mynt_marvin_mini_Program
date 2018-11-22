@@ -4,7 +4,7 @@
 
   <view class='companyPages _relative'>
     <view class='header'>
-      <image class='logo _absolute {{!cd.background_url ? "topnone" : ""}}' mode="aspectFill" src='{{cd.logo}}'></image>
+      <image class='logo _absolute {{!cd.background_url ? "topnone" : ""}}' mode="aspectFill" src='{{cd.logo}}' wx:if="{{cd.logo}}"></image>
       <view class='rim'>
         <view class='_relative top'>
           <view class='t1'>

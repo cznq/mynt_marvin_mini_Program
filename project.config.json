@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 34,
+			"current": 27,
 			"list": [
 				{
 					"id": 0,
@@ -210,7 +210,7 @@
 					"id": 27,
 					"name": "创建-引导",
 					"pathName": "pages/create-company/guide/index",
-					"query": "CstateCode=1"
+					"query": "CstateCode=2"
 				},
 				{
 					"id": 28,
@@ -249,10 +249,10 @@
 					"query": "CstateCode=2"
 				},
 				{
-					"id": -1,
-					"name": "啊啊啊",
-					"pathName": "pages/vip-index/vip-index",
-					"query": "CstateCode=2"
+					"id": 34,
+					"name": "webview",
+					"pathName": "pages/company/webview/index",
+					"query": ""
 				}
 			]
 		}
