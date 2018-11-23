@@ -48,7 +48,7 @@
     "pages/invite-visitor/share/index",
 
     "pages/invite-visitor/receive/index",
-    "pages/invite-visitor/success/index"
+    "pages/invite-visitor/success/index",
 
     "pages/apply-visit/noAppointment/index",
     "pages/apply-visit/reasonsVisiting/index",
