@@ -53,21 +53,21 @@
   </view>
   <view class="page__bd">
     <view class="discount-list" id="discSec">
-        <view class="content-title" wx:if="{{commerce_type < 3}}">
-          <view class="vertical-middle">
-            <image src="../../images/icon_protocol@2x.png"></image>
-            <text>协议优惠</text>
-          </view>
+      <view class="content-title" wx:if="{{commerce_type < 3}}">
+        <view class="vertical-middle">
+          <image src="../../images/icon_protocol@2x.png"></image>
+          <text>协议优惠</text>
         </view>
+      </view>
       <view class="itemWrap" wx:else>
-          <view class="disText">
-              <image src="../../images/shape@2x.png"></image>
-              <text>商务宴请</text>
-          </view>
-          <view class="disBtn">
-            <button bindtap="makePhoneCall" data-phone="{{commerceDetail.phone}}">协议咨询</button>
-          </view>
+        <view class="disText">
+          <image src="../../images/shape@2x.png"></image>
+          <text>商务宴请</text>
         </view>
+        <view class="disBtn">
+          <button bindtap="makePhoneCall" data-phone="{{commerceDetail.phone}}">协议咨询</button>
+        </view>
+      </view>
       <!-- 餐饮和娱乐协议优惠列表 -->
       <block wx:for="{{protocolInfo}}" wx:key="" wx:if="{{commerce_type < 2}}">
         <view class="itemWrap">

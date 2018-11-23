@@ -32,7 +32,7 @@ Page({
       title: '酒店'
     },
       {
-        typeid: 2,
+        typeid: 3,
         id: 'business',
         title: '商务宴请'
       }

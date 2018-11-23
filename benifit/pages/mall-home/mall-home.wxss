@@ -1,17 +1,21 @@
 /* pages/benifit-card/benifit-card.wxss */
+
 .page {
   background-attachment: fixed;
   background-repeat: repeat-x;
 }
+
 .page__hd {
   padding: 1px 50rpx;
-  background: -webkit-linear-gradient( top, rgba(255, 255, 255, 1), rgba(246, 246, 246, 1));
-  background: linear-gradient( top, rgba(255, 255, 255, 1), rgba(246, 246, 246, 1));
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1), rgba(246, 246, 246, 1));
+  background: linear-gradient(top, rgba(255, 255, 255, 1), rgba(246, 246, 246, 1));
 }
+
 .page__bd {
   padding: 40rpx 50rpx 0;
   background-color: rgba(246, 246, 246, 1);
 }
+
 .title-bar {
   display: flex;
   justify-content: space-between;
@@ -21,13 +25,16 @@
   font-size: 48rpx;
   color: rgba(8, 28, 51, 1);
 }
+
 .title-bar image {
   width: 48rpx;
   height: 36rpx;
 }
+
 .vip-card-wrapper {
   position: relative;
 }
+
 .title-bar .vip-card-info {
   font-size: 24rpx;
   color: #fff;
@@ -42,6 +49,7 @@
   line-height: 50rpx;
   border-radius: 5rpx;
 }
+
 .title-bar .vip-card-info::after {
   position: absolute;
   content: '';
@@ -51,16 +59,20 @@
   border-bottom: 14rpx solid rgba(0, 0, 0, 0.8);
   border-right: 12rpx solid transparent;
 }
+
 .home-slide {
   margin-top: 40rpx;
 }
+
 .home-slide .swiper-item {
   width: 100%;
   height: 212rpx;
 }
+
 swiper {
   height: 212rpx;
 }
+
 .tab {
   font-size: 40rpx;
   color: rgba(26, 42, 75, 0.6);
@@ -68,6 +80,7 @@ swiper {
   padding: 10px 0 20px;
   width: 100%;
 }
+
 .tab.fixed {
   position: fixed;
   top: 0;
@@ -75,15 +88,18 @@ swiper {
   padding: 10rpx 60rpx 40rpx;
   background: #fff;
 }
+
 .tab text {
   margin-right: 72rpx;
 }
+
 .tab text.selected {
   font-size: 40rpx;
   font-weight: bold;
   color: rgba(8, 28, 51, 1);
   position: relative;
 }
+
 .tab text.selected::after {
   display: block;
   content: '';
@@ -93,12 +109,13 @@ swiper {
   border-left: 14rpx solid transparent;
   border-right: 14rpx solid transparent;
   border-bottom: 20rpx solid rgba(255, 105, 0, 1);
-
 }
+
 .shop-list {
   width: 100%;
   overflow: hidden;
 }
+
 .shop-list .shop-wrapper {
   width: calc(50% - 7px);
   box-sizing: border-box;
@@ -111,31 +128,37 @@ swiper {
   margin-bottom: 14px;
   box-shadow: 0 0 16rpx rgba(0, 0, 0, 0.05);
 }
+
 .shop-list .shop-wrapper:nth-child(2n) {
   margin-right: 0;
 }
+
 .shop-wrapper .head-pic {
   width: 100%;
   height: 260rpx;
 }
+
 .shop-wrapper .head-pic image {
   width: 100%;
   height: 100%;
 }
+
 .shop-wrapper .shop-name {
   font-size: 32rpx;
   margin-top: 20rpx;
-  overflow:hidden; 
-  text-overflow:ellipsis;
-  display:-webkit-box; 
-  -webkit-box-orient:vertical;
-  -webkit-line-clamp:2; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   height: 100rpx;
 }
+
 .star-part {
   margin-top: 10rpx;
   height: 30rpx;
 }
+
 .star-part .star {
   display: inline-block;
   vertical-align: top;
@@ -144,6 +167,7 @@ swiper {
   width: 16rpx;
   height: 13rpx;
 }
+
 .tags {
   display: flex;
   justify-content: space-between;
@@ -153,11 +177,13 @@ swiper {
   border-bottom: 4rpx dashed rgba(216, 227, 240, 1);
   padding-bottom: 16rpx;
 }
+
 .discount {
   font-size: 24rpx;
   color: rgba(191, 165, 113, 1);
   margin-top: 20rpx;
 }
+
 .discount .price-wrapper {
   font-size: 16rpx;
   font-weight: bold;
@@ -170,16 +196,19 @@ swiper {
   margin-bottom: 10rpx;
   overflow: hidden;
 }
+
 .discount .price-wrapper image {
   width: 16rpx;
   height: 16rpx;
   margin: 0 8rpx;
   vertical-align: text-bottom;
 }
+
 .hotel-discount {
   display: flex;
   justify-content: space-between;
 }
+
 .discount .hotel-price image {
   width: 14rpx;
   height: 36rpx;
