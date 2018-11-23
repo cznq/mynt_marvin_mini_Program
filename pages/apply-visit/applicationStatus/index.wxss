@@ -1,0 +1,4 @@
+/* pages/apply-visit/applicationStatus/index.wxss */
+@import "../../../templates/companyPages/companyPages.wxss";
+.f_follow{border-top:0;padding:0;}
+.headerCon{height:500rpx;}

@@ -298,3 +298,8 @@ input:-webkit-input-placeholder {
 .vipicon{width:34rpx;height:30rpx;background: url(http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/diamond@2x.png) no-repeat;background-size: 100%;display:inline-block;}
 .vipAd .vipicon{width:76rpx;height: 66rpx;right: 44rpx;top:37rpx;}
 
+/*底部button*/
+.footer{left:0;bottom:0;width:100%;padding:30rpx 0;background: linear-gradient(to bottom,#fafbfb 0%,#fcfdfd 60%,#fcfdfd 60%,#fcfdfd 100%);border-top:1rpx solid #eeeeee;}
+.footer_x{padding-bottom:109rpx;}
+.inp{width:500rpx;height: 100rpx;border-bottom: 1rpx solid #4f5c74;margin:111rpx auto 0 auto;font-size:46rpx;text-align: center; }
+
