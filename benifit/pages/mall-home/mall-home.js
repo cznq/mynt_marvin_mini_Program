@@ -30,7 +30,13 @@ Page({
       typeid: 2,
       id: 'hotel',
       title: '酒店'
-    }],
+    },
+      {
+        typeid: 2,
+        id: 'business',
+        title: '商务宴请'
+      }
+    ],
     tabFixed: false,
     showVipCardTips: true,
     is_vip: false,

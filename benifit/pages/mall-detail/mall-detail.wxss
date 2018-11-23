@@ -86,6 +86,12 @@ swiper {
   margin-right: 20rpx;
   vertical-align: bottom;
 }
+.itemWrap .disText image {
+  width: 36rpx;
+  height: 32rpx;
+  margin-right: 20rpx;
+  vertical-align: middle;
+}
 .infoWrapper.bottom .on-sale image {
   width: 40rpx;
   height: 44rpx;
@@ -589,4 +595,15 @@ button::after {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+.itemWrap .disText image {
+  width: 36rpx;
+  height: 32rpx;
+  margin-right: 20rpx;
+  vertical-align: middle;
+}
+.itemWrap .disText text {
+  font-size:40rpx;
+  font-weight:bold;
+  color: rgba(191, 165, 113, 1);
 }
