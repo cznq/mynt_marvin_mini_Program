@@ -1,16 +1,12 @@
-@import "../../../../templates/showToast/showToast.wxss";
-
-.page__hd {
-  background-color: #e3e9ee;
-  height: auto;
-  overflow: hidden;
+page, .page {
+  
 }
 .page__hd image {
   width: 100%;
   vertical-align: bottom;
 }
 .page__bd {
-  padding: 100rpx 74rpx 50rpx;
+  padding: 74rpx 128rpx 0;
 }
 .guide-title {
   line-height: 1;
@@ -18,37 +14,20 @@
   color: rgba(27, 43, 76, 1);
 }
 .guide-intro {
+  width: 452rpx;
+  margin: 0 auto;
   line-height: 42rpx;
   color: rgba(26, 42, 75, 1);
 }
-.open-btn {
-  width: 306rpx;
-  height: 90rpx;
-  line-height: 90rpx;
-  background-color: rgba(71, 95, 253, 1);
-  color: #fff;
-  margin-top: 140rpx;
+._button {
+  width: 496rpx;
+  margin: 98rpx auto 26rpx;
 }
-.how-it-work {
-  padding: 120rpx 36rpx 0;
+.warn_info {
+  color: rgba(136, 145, 169, .9);
+  text-align: center;
 }
-.how-it-work .tit {
-  color: rgba(136, 145, 169, 1);
-  margin-bottom: 58rpx;
-}
-.guide-item {
-  margin-bottom: 76rpx;
-  justify-content: space-around;
-}
-.guide-item .txt {
-  margin-left: 84rpx;
-}
-.step-num {
-  color: rgba(136, 145, 169, 1);
-  line-height: 1;
-  margin-bottom: 20rpx;
-  font-weight: 600;
-}
-.intro {
-  line-height: 42rpx;
+.page__ft {
+  margin-top: 56rpx;
+  padding: 0 60rpx 86rpx;
 }

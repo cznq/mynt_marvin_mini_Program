@@ -8,7 +8,6 @@ page, .page {
 .page__bd {
   padding: 74rpx 150rpx 0;
 }
-
 .guide-title {
   line-height: 1;
   margin-bottom: 30rpx;
@@ -18,16 +17,15 @@ page, .page {
   line-height: 42rpx;
   color: rgba(26, 42, 75, 1);
 }
-
 .status {
   margin-top: 124rpx;
-  color: rgba(78, 221, 122, 1);
+  color: rgba(78, 221, 122, .5);
 }
 .page__ft {
-  margin-top: 88rpx;
+  margin-top: 108rpx;
   width: 100%;
 }
 ._back_function {
   font-size: 22rpx;
-  color: rgba(0, 123, 255, 1);
+  color: rgba(0, 123, 255, .9);
 }

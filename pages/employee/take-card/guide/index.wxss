@@ -48,7 +48,7 @@
   margin-left: 60rpx;
 }
 .step-num {
-  color: rgba(136, 145, 169, 1);
+  color: rgba(136, 145, 169, .6);
   line-height: 1;
   margin-bottom: 20rpx;
   font-weight: 600;

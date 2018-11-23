@@ -1,11 +1,12 @@
-// pages/invite-visitor/start/index.js
+// pages/invite-visitor/guide/index.js
 Page({
 
   /**
    * 页面的初始数据
+   * inviteAuth   tried 试用；closed 试用结束；opened 开通；
    */
   data: {
-
+    inviteAuth: 'closed'
   },
 
   /**

@@ -1,0 +1,27 @@
+@import "../public/style.wxss";
+.page {
+  background-color: rgba(0, 123, 255, 1);
+}
+.page_hd {
+  padding: 22rpx 60rpx 40rpx;
+
+}
+.icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background-color: #fff;
+  vertical-align: top;
+}
+.icon-jieshouyaoqingchenggong {
+  color: #7be994;
+  font-size: 82rpx;
+  line-height: 82rpx;
+}
+.page_bd {
+  padding-bottom: 48rpx;
+}
+.company-info::before,
+.company-info::after {
+  background-color: rgba(0, 123, 255, 1);
+}

@@ -1,4 +1,4 @@
-// pages/invite-visitor/start/index.js
+// pages/invite-visitor/receive/index.js
 Page({
 
   /**
