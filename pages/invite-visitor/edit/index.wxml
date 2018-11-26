@@ -25,8 +25,11 @@
       </view>
 
       <view class="_fontw600 _font38 sec_title">详细信息</view>
-      <view class="label _font32">邀请事由</view>
-      <textarea class="weui-textarea _font24" name="visit_intro" maxlength="800" id="i2" bindinput="checkForm" value="请描述邀请访客到访的具体事由和到访的要求" placeholder-class="placeholder-input" auto-height="true"></textarea>
+      <view class="_flex _flex_item_center _flex_space_between">
+        <view class="label _font32 cause">邀请事由</view>
+        <view class="edit" bindtap="openEdit">编辑</view>
+      </view>
+      <textarea class="weui-textarea _font24" name="visit_intro" maxlength="800" id="i2" bindinput="checkForm" placeholder="请描述邀请访客到访的具体事由和到访的要求" placeholder-class="textarea_placeholder-input" auto-height="true" focus="{{edit==''?true:false}}" disabled="{{edit}}"></textarea>
       <view class="_fixed form_submit {{isIphoneX?'iphonex':''}}">
         <button form-type="submit" class="_button" id="inviteBtn">预览邀请函</button>
       </view>
@@ -36,11 +39,8 @@
 <view class="timePicker" wx:if="{{pickerShow}}">
   <view class="titleBar _flex _flex_item_center _flex_space_around"><view bindtap="closePicker">取消</view><view class="_fontw600 _txt_gray">请选择时间</view><view bindtap="closePicker">确认</view></view>
   <picker-view indicator-style="height: 40px;" value="{{now_datetime}}" bindchange="selectInviteTime">
-    <picker-view-column>
-      <view wx:for="{{timePicker.months}}" wx:key="" style="line-height: 40px">{{item}}月</view>
-    </picker-view-column>
-    <picker-view-column>
-      <view wx:for="{{timePicker.days}}" wx:key="" style="line-height: 40px">{{item}}日</view>
+    <picker-view-column class="first">
+      <view wx:for="{{timePicker.days}}" wx:key="" style="line-height: 40px">{{item}}</view>
     </picker-view-column>
     <picker-view-column>
       <view wx:for="{{timePicker.hours}}" wx:key="" style="line-height: 40px">{{item}}</view>

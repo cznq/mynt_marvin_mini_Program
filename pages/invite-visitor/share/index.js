@@ -76,7 +76,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.mapCtx = wx.createMapContext('myMap');
+    this.mapCtx = wx.createMapContext('address-map');
     this.mapCtx.moveToLocation();
   },
 
@@ -94,7 +94,7 @@ Page({
   onShareAppMessage: function (res) {
     return {
       title: '您收到访问邀请啦！',
-      path: '/pages/invite-receive/invite-receive?invitation_id=' + this.data.invitation_id,
+      path: '/pages/invite-visitor/receive/index?invitation_id=' + this.data.invitation_id,
       success: function (res) {
         // 转发成功
         wx.navigateBack({

@@ -1,2 +1,1 @@
-<!--pages/invite-visitor/receive/index.wxml-->
-<text>pages/invite-visitor/receive/index.wxml</text>
+<web-view bindmessage="getReadyParam" src="{{web_url}}/invite/receive?vip={{vip}}&invitation_id={{invitation_id}}&timestamp={{timestamp}}"></web-view>

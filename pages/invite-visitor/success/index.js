@@ -107,6 +107,15 @@ Page({
   },
 
   /**
+   * 如何试用邀请函
+   */
+  viewGuide: function () {
+    wx.navigateTo({
+      url: '/pages/invite-visitor/guide/index'
+    })
+  },
+
+  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {

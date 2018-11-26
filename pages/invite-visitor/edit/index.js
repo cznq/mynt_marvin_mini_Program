@@ -1,22 +1,10 @@
 const app = getApp();
 const date = new Date()
-const month = date.getMonth();
-const day = date.getDate()-1;
-const hour = date.getHours()-1;
-const minute = date.getMinutes()-1;
-
-const months = []
+const hour = date.getHours();
+const minute = date.getMinutes();
 const days = []
 const hours = []
 const minutes = []
-
-for (let i = 1; i <= 12; i++) {
-  months.push(i)
-}
-
-for (let i = 1; i <= 31; i++) {
-  days.push(i)
-}
 
 for (let i = 1; i <= 24; i++) {
   if (i < 10) {
@@ -25,7 +13,7 @@ for (let i = 1; i <= 24; i++) {
   hours.push(i)
 }
 
-for (let i = 1; i <= 60; i++) {
+for (let i = 0; i < 60; i++) {
   if (i < 10) {
     i = '0' + i;
   }
@@ -34,7 +22,52 @@ for (let i = 1; i <= 60; i++) {
 hour < 10?('0'+hour):hour
 minute < 10 ? ('0' + minute):hour
 
-console.log(month+' '+day+' '+hour+' '+minute);
+function daysInMonth(month, year) {
+  return new Date(year, month + 1, 0).getDate();
+}
+function contains(arrays, obj) {
+  var i = arrays.length;
+  while (i--) {
+    if (arrays[i] === obj) {
+      return i;
+    }
+  }
+  return false;
+}
+
+let weeks = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+const today = (date.getMonth() + 1) + '月' + date.getDate() + '日' + ' ' + weeks[date.getDay()];
+
+let year = new Date().getFullYear();
+let daystr = '';
+for (let month = 0; month <= 11; month++) {
+  // 每个月的第一天
+  let firstDay = new Date(year, month, 1);
+  let dayInMonth = daysInMonth(month, year);
+  // 每个月的最后一天
+  let lastDay = new Date(year, month, dayInMonth);
+  // 第一天星期几(0-6)
+  let weekday = firstDay.getDay();
+  // 最后一天星期几
+  let lastDayWeekDay = lastDay.getDay();
+  // 每一个都是从1号开始
+  let date = 1;
+
+  for (; date <= dayInMonth; date++) {
+    daystr += (month + 1) + '月' + date + '日' + ' ' + weeks[weekday];
+    if (daystr == today) {
+      daystr = '今天';
+    }
+    weekday++
+    days.push(daystr);
+    daystr = '';
+    if (weekday % 7 == 0) {
+      weekday = 0;
+    }
+  }
+}
+const daysAt = contains(days, '今天');
+
 Page({
 
     /**
@@ -42,7 +75,6 @@ Page({
      */
     data: {
       timePicker: {
-        months: months,
         days: days,
         minutes: minutes,
         hours: hours
@@ -52,14 +84,15 @@ Page({
       latitude: null,
       longitude: null,
       cmpinfo: null,
-      now_datetime: [month, day, hour, minute],
+      now_datetime: [daysAt, hour-1, minute],
       formready: false,
       invite_time: '',
-      visit_intro: "",
-      mark: "",
+      visit_intro: '',
+      mark: '',
       input1: false,
       input2: false,
-      pickerShow: false
+      pickerShow: false,
+      edit: 'disabled'
   },
 
     /**
@@ -179,7 +212,7 @@ Page({
         console.log(res);
         if (res.data.result.invitation_id) {
           wx.redirectTo({
-            url: '/pages/invite-share/invite-share?invitation_id=' + res.data.result.invitation_id,
+            url: '/pages/invite-visitor/share/index?invitation_id=' + res.data.result.invitation_id,
           })
         } else {
           wx.showModal({
@@ -194,23 +227,38 @@ Page({
     })
   },
 
+  /**
+   * 编辑按钮
+   */
+  openEdit: function () {
+    this.setData({
+      edit: ''
+    });
+  },
+
   closePicker: function () {
     this.setData({
-      pickerShow: false
+      pickerShow: false,
     })
   },
 
   chooseTime: function (e) {
     this.setData({
-      pickerShow: true
+      pickerShow: true,
+      invite_time: today + ' ' + hour + ':' + minute
     })
   },
 
   selectInviteTime: function (e) {
     const val = e.detail.value
-    console.log(val);
+    if (this.data.timePicker.days[val[0]] == '今天') {
+      var todayDate = today;
+    } else {
+      var todayDate = this.data.timePicker.days[val[0]]
+    }
+    
     this.setData({
-      invite_time: this.data.timePicker.months[val[0]] + '-' + this.data.timePicker.days[val[1]] + ' ' + this.data.timePicker.hours[val[2]] + ':' + this.data.timePicker.minutes[val[3]]
+      invite_time: todayDate + ' ' + this.data.timePicker.hours[val[1]] + ':' + this.data.timePicker.minutes[val[2]]
     })
   },
 

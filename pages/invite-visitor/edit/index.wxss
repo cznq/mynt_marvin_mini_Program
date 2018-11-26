@@ -20,9 +20,20 @@ page {
 .sec_title {
   margin-bottom: 50rpx;
 }
-
 .label, .placeholder-input {
   color: rgba(26, 42, 75, .3);
+}
+.cause {
+  color: rgba(26, 42, 75, 1);
+}
+.textarea_placeholder-input {
+  color: rgba(26, 42, 75, 1);
+}
+.edit {
+  color: rgba(0, 123, 255, 1);
+}
+.weui-textarea {
+  margin-top: 14rpx;
 }
 .weui-input {
   padding: 10rpx 0 0;
@@ -71,4 +82,8 @@ page {
   box-sizing: border-box;
   height: 420rpx;
   font-size: 42rpx;
+}
+picker-view-column.first {
+  flex: 2;
+  text-align: right;
 }
