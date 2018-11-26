@@ -1,39 +1,31 @@
 /* pages/invite-visitor/guide/index.wxss */
 .page_hd {
-  height: 580rpx;
-  background: url(https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/invite_visitor%402x.png) no-repeat center center;
+  height: 380rpx;
+  background: url(https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/invitation%402x.png) no-repeat center center;
   background-size: contain;
 }
 .page_bd {
-  padding: 74rpx 80rpx 0;
+  padding: 78rpx 114rpx 0 80rpx;
 }
 .tit {
-  margin-bottom: 20rpx;
+  margin-bottom: 60rpx;
   line-height: 1;
   color: #1A2A4B;
 }
-.intro {
-  line-height: 46rpx;
-  color: #1A2A4B;
+.page_step_list{
+  display: flex;
+  margin-bottom: 80rpx;
+  align-items: center;
+  text-align: left;
 }
-._button {
-  width: 496rpx;
-  height: 90rpx;
-  line-height: 90rpx;
-  margin: 96rpx auto 26rpx;
+.page_step_list .page_step_lbox{
+  width: 270rpx;
+  height: 270rpx;
 }
-.voice {
-  width: 505rpx;
-  margin: 0 auto;
-  color: #8891A9;
-  line-height: 36rpx;
+.page_step_list .page_step_lbox image{
+  width: 270rpx;
+  height: 270rpx;
 }
-.close {
-  background: -webkit-linear-gradient( left, #E9C395, #D9A76B);
-  background: linear-gradient( left, #E9C395, #D9A76B);
-}
-.close image {
-  width: 44rpx;
-  height: 38rpx;
-  margin-right: 10rpx;
+.page_step_list .page_step_text{
+  padding-left: 34rpx;
 }
