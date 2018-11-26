@@ -67,7 +67,7 @@
           <view class='_txt_blue_c _font32 _f_right' bindtap='showintroduction'>编辑</view>简介</view>
         <input class='input_text _font24 _txt_darkgrey' name="" value='完善您的企业简介，便于访客更好的认识您的企业' disabled='false' placeholder=''></input>
       </view>
-      <textarea wx:if="{{introduction==false? false : true}}" class='text_a' placeholder-class='input_text_phc _font24 text_a' cursor-spacing="100rpx" name="introduction" placeholder="MYNTAI（小觅智能）2014年7月成立于美国硅谷。专注立体视觉技术整体解决方案，是行业领先的视觉定位导航VPS核心技术提供商...">{{cd.introduction}}</textarea>
+      <textarea wx:if="{{introduction==false? false : true}}" class='text_a' placeholder-class='input_text_phc _font24 text_a' cursor-spacing="100rpx" name="introduction" placeholder="MYNTAI（小觅智能）2014年7月成立于美国硅谷。专注立体视觉技术整体解决方案，是行业领先的视觉定位导航VPS核心技术提供商..." value='{{cd.introduction}}'></textarea>
     </view>
 
     <cover-view class='_fixed footer covview {{isiphoneX ? "footer_x" : ""}}'>

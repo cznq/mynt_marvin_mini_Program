@@ -10,7 +10,7 @@
           <image class='logo' wx:if="{{cd.logo}}" src='{{cd.logo}}' mode="{{mode}}"></image>
           <view class='t1 _ellipsis'>{{cd.company_name}}</view>
           <view class='t2 _ellipsis'>{{cd.company_short_name}}</view>
-          <view class='vipicon _absolute'></view>
+          <view class='vipicon _absolute' wx:if="{{cd.service_suite==1}}"></view>
         </view>
         <view class='bottom'>
           <view class='c c1'>
@@ -52,7 +52,7 @@
     </view>
     <view class="adrim">
       <import src="../../templates/vipAd/vipAd.wxml" />
-      <template is="vipAd" data="{{text: 'forbar'}}" />
+      <template is="vipAd" wx:if="{{cd.service_suite==0}}"/>
     </view>
   </view>
 </view>

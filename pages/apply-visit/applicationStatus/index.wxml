@@ -1,6 +1,39 @@
 <!--pages/apply-visit/applicationStatus/index.wxml-->
 <import src="../../../templates/companyPages/companyPages.wxml" />
 <view class='headerCon' style="background:{{background_color}}">
+  <!-- <view class='submitApplications'>
+    <view class='pubLayout'>
+      <view class="icon iconfont icon-shenqingtijiao"></view>
+      <view class='title'>您的申请已提交</view>
+      <view class='con'>申请通过后，将会发送消息到您的微信，请在服务通知中查看。</view>
+    </view>
+
+    <view class='bottom'>
+      <view class='telphone'>
+        <view class="icon iconfont icon-lianxiqiantai"></view>联系前台</view>
+      <view class='hint'>若长时间无人通过，可拨打前台电话咨询</view>
+    </view>
+  </view> -->
+  <!-- <view class='pass'>
+    <view class='pubLayout'>
+      <view class="icon iconfont icon-shenqingtongguo"></view>
+      <view class='title'>申请已通过，请前往取卡</view>
+      <view class='con'>公司已通过您的申请，请前往机器人处取卡</view>
+    </view>
+    <view class='cardPrompt'>
+      <view class='t1'>前往机器人取卡</view>
+      <view class='c1'>公司已通过了您的访问申请，请前往机器人处取卡。</view>
+      <image src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/take_card_graphic@2x.png'></image>
+    </view>
+  </view> -->
+
+  <view class='refuse'>
+    <view class='pubLayout'>
+      <view class="icon iconfont icon-shenqingbeijujue"></view>
+      <view class='title'>公司拒绝了您的申请</view>
+      <view class='con'>欢迎下次光临！</view>
+    </view>
+  </view>
 </view>
 <template is="companyPages" data="{{cd:cd}}" />
 <view class='_fixed footer f_follow'>

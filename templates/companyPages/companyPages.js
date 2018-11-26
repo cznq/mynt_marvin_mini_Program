@@ -19,7 +19,7 @@ function pubData(_this, app, service, method,parameter,cb){
       console.log(res);
       if (res.data.sub_code == 0) {
         // res.data.result.address = '';
-        res.data.result.background_url = 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/111.jpg';
+        res.data.result.background_url = 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/icon_yaoqingma.png';
         res.data.result.introduction = 'MYNTAI（小觅智能）2014年7月成立于美国硅谷，专注立体视觉技术整体解决方案，是行业领先的视觉定位导航VPS核心技MYNTAI（小觅智能）2014年7月成立于美国硅谷，专注立体视觉技术整体解决方案，是行业领先的视觉定位导航VPS核心技MYNTAI（小觅智能）2014年7月成立于美国硅谷，专注立体视觉技术整体解决方案，是行业领先的视觉定位导航VPS核心技';
         res.data.result.product_urls = ["http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/111.jpg"];
         // res.data.result.floor = '';
@@ -28,6 +28,7 @@ function pubData(_this, app, service, method,parameter,cb){
         // res.data.result.room = '';
         // res.data.result.phone = '';
         // res.data.result.website = '';
+        res.data.result.review_status = 2
 
         //简介展开数据
         if (res.data.result.introduction.length >= 68) {
