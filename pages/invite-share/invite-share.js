@@ -1,5 +1,4 @@
-// pages/invite/invite.js
-var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
+
 const app = getApp();
 Page({
 
@@ -34,6 +33,9 @@ Page({
 
   },
 
+  /**
+   * 获取邀请信息
+   */
   getInitation: function () {
     var that = this;
     console.log(that);
@@ -47,8 +49,8 @@ Page({
       params: {
         service: 'visitor',
         method: 'get_invitation_info',
-        union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
           invitation_id: that.data.invitation_id
         })
       },
@@ -59,35 +61,12 @@ Page({
           invitation: invitation,
           appointment_time: app.Util.formatTime(appointment_time)
         })
-        that.generateMap();
+        app.Util.generateMap(that, res.data.result.company.address);
       },
       fail: res => {
         that.setData({
           error: "没有获取到邀请信息"
         })
-      }
-    })
-  },
-
-  generateMap: function () {
-    var that = this;
-    var qqmapsdk = new QQMapWX({
-      key: 'CGVBZ-S2KHV-3CBPC-UP4JI-4N55F-7VBFU'
-    });
-    qqmapsdk.geocoder({
-      address: that.data.invitation.company.address,
-      success: function (res) {
-        that.setData({
-          latitude: res.result.location.lat,
-          longitude: res.result.location.lng
-        })
-
-      },
-      fail: function (res) {
-        console.log(res);
-      },
-      complete: function (res) {
-        console.log(res);
       }
     })
   },

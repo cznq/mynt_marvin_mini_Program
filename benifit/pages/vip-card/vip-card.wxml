@@ -1,0 +1,187 @@
+<!--pages/benifit-card/benifit-card.wxml-->
+<view class="page">
+  <view class="page__hd">
+    <view class="card-wrapper vip-card-wrapper" wx:if="{{is_vip}}">
+      <view class="card-content">
+        <view class="vip-card-top">
+          <view class="name"><text>协</text>{{employeeInfo.name}}</view>
+          <image class="avatar" src="{{employeeInfo.avatar}}" mode="widthFix"></image>
+        </view>
+        <view class="vip-card-middle">
+          <view class="company-name">{{employeeInfo.company_name}}</view>
+          <view class="company-address">{{employeeInfo.company_address}}</view>
+        </view>
+        <view class="bar">
+          <view class="bar-bg" style="background: url(https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/benifit/mynt_vip_bg.png) no-repeat right top;background-size:310rpx 66rpx;">
+            <view class="id-num">ID: {{employeeInfo.employee_card_id}}</view>
+            <view class="expire-time">有效期: {{employeeInfo.expire}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="card-wrapper" wx:elif="{{is_vip == false}}">
+      <view class="card-content">
+        <view class="card-main">
+          <view class="name">小觅VIP卡</view>
+          <view class="info">您的企业尚未开通企业协议卡，在合约商户消费并出示该卡可享商户协议价。</view>
+        </view>
+        <view class="bar"></view>
+      </view>
+    </view>          
+  </view>
+  <view class="page__bd">
+    <view class="vip-fun-intro">
+      <view class="title">VIP卡特权</view>
+      <view class="subtitle">独享企业协议商户超低协议价</view>
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="icon">
+            <image src="../../images/agreement@2x.png" mode="widthFix"></image>
+          </view>
+          <view class="textintro">享协议商户最低5折协议价</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="icon">
+            <image src="../../images/hotel@2x.png" mode="widthFix"></image>
+          </view>
+          <view class="textintro">周边星级酒店协议入住</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="icon">
+            <image src="../../images/welfare@2x.png" mode="widthFix"></image>
+          </view>
+          <view class="textintro">专属员工福利</view>
+        </view>
+      </view>
+      <view class="vip-area" wx:if="{{is_vip}}">
+        <button bindtap="redirectMall" data-tabselected="food" data-selectedtype="0">前往协议商户</button>
+        <view class="tips">您的企业已为您开通企业协议卡，在合约商户消费并出示该卡可享商户协议价。</view>
+      </view>
+      <view class="contact-admin" wx:else>
+        <view class="tit">请联系管理员开通</view>
+        <view class="tips">如需开通请联系楼宇管理员，以公司为单位开通后，公司员工在合约商户消费可享商户协议价。</view>
+      </view>
+    </view>
+
+    <!-- 周边热门 -->    
+    <view class="round-hot">
+      <!-- 热门餐饮 -->
+      <view class="hot-restaurant hot-area" wx:if="{{hotDinnerCommerce}}">
+        <view class="top-bar">
+          <view class="hot-title">周边热门<text>协议餐饮</text></view>
+          <view class="view-all" bindtap="redirectMall" data-tabselected="food" data-selectedtype="0">查看全部</view>
+        </view>
+        <view class="shop-list">
+        <scroll-view scroll-x style="white-space:nowrap;" bindscroll="" class="crouse-pics">
+         <block wx:for="{{hotDinnerCommerce}}" wx:key="">
+          <view class="shop-wrapper" bindtap="redirectCommerce" data-commerceid="{{item.commerce_id}}" data-commercetype='0'>
+            <view class="head-pic">
+              <image src="{{item.commerce_homepage_url}}" mode="aspectFill"></image>
+            </view>
+            <view class="shop-name">{{item.commerce_name}}</view>
+            <view class="star-part">
+              <block wx:for="{{5}}" wx:key="" wx:for-item="num">
+                <image class="star" src="../../images/{{num <= item.score-1 ? 'love@2x.png' : 'love_gray@2x.png'}}" data-rate="{{item}}" bindtap="rateChange"></image>
+              </block>
+            </view>
+            <view class="tags">
+              <view class="tag-name">{{item.business_projects}}</view>
+              <view class="distance"></view>
+            </view>
+            <view class="discount">
+              <view class="price-wrapper">
+                <image src="../../images/shape@2x.png"></image>协议价
+              </view>
+              <view class="price-protocol">{{item.agreement_price}}</view>
+            </view>
+          </view>
+          </block>
+        </scroll-view>
+        </view>
+      </view>
+
+      <!-- 热门酒店 -->
+      <view class="hot-restaurant hot-area" wx:if="{{hotHotelCommerce}}">
+        <view class="top-bar">
+          <view class="hot-title">周边热门<text>协议酒店</text></view>
+          <view class="view-all" bindtap="redirectMall" data-tabselected="hotel" data-selectedtype="2">查看全部</view>
+        </view>
+        <view class="shop-list">
+        <scroll-view scroll-x style="white-space:nowrap;" bindscroll="" class="crouse-pics">
+        <block wx:for="{{hotHotelCommerce}}" wx:key="">
+          <view class="shop-wrapper" bindtap="redirectCommerce" data-commerceid="{{item.commerce_id}}" data-commercetype='2'>
+            <view class="head-pic">
+              <image src="{{item.commerce_homepage_url}}" mode="aspectFill"></image>
+            </view>
+            <view class="shop-name">{{item.commerce_name}}</view>
+            <view class="star-part">
+              <block wx:for="{{5}}" wx:key="" wx:for-item="num">
+                <image class="star" src="../../images/{{num <= item.score-1 ? 'love@2x.png' : 'love_gray@2x.png'}}"></image>
+              </block>
+            </view>
+            <view class="tags">
+              <view class="tag-name">{{item.business_projects}}</view>
+              <view class="distance"></view>
+            </view>
+            <view class="discount hotel-discount">
+              <view class="price-wrapper">
+                <image src="../../images/shape@2x.png"></image>协议价
+              </view>
+              <view class="price-protocol hotel-price">
+            
+                <image src="../../images/num/num_yb.png"></image>
+                <block wx:for="{{item.agreement_price}}" wx:for-item="imgnum" wx:key="">
+                  <image src="../../images/num/num_y{{imgnum}}.png"></image>
+                </block>
+                
+              </view>
+            </view>
+          </view>
+        </block>
+        </scroll-view>
+        </view>
+      </view>
+      <!-- 热门娱乐 -->
+      <view class="hot-restaurant hot-area" wx:if="{{hotEnterCommerce}}">
+        <view class="top-bar">
+          <view class="hot-title">周边热门<text>协议娱乐</text></view>
+          <view class="view-all" bindtap="redirectMall" data-tabselected="entertainment" data-selectedtype="1">查看全部</view>
+        </view>
+        <view class="shop-list">
+        <scroll-view scroll-x style="white-space:nowrap;" bindscroll="" class="crouse-pics">
+        <block wx:for="{{hotEnterCommerce}}" wx:key="">
+          <view class="shop-wrapper" bindtap="redirectCommerce" data-commerceid="{{item.commerce_id}}" data-commercetype='1'>
+            <view class="head-pic">
+              <image src="{{item.commerce_homepage_url}}" mode="aspectFill"></image>
+            </view>
+            <view class="shop-name">{{item.commerce_name}}</view>
+            <view class="star-part">
+              <block wx:for="{{5}}" wx:key="" wx:for-item="num">
+                <image class="star" src="../../images/{{num <= item.score-1 ? 'love@2x.png' : 'love_gray@2x.png'}}"></image>
+              </block>
+            </view>
+            <view class="tags">
+              <view class="tag-name">{{item.business_projects}}</view>
+              <view class="distance"></view>
+            </view>
+            <view class="discount">
+              <view class="price-wrapper">
+                <image src="../../images/shape@2x.png"></image>协议价
+              </view>
+              <view class="price-protocol">{{item.agreement_price}}</view>
+            </view>
+          </view>
+        </block>
+        </scroll-view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+    
+  <view class="page__ft">
+   
+  </view>
+  
+</view>
+

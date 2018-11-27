@@ -61,10 +61,10 @@
           </map>
         </view>
     </view>
-    <view class="page__ft j_bottom">
+    <cover-view class="page__ft j_bottom">
         <button open-type="share" class="weui-btn weui-btn_primary" id="inviteBtn">
         <image src="../../images/wechat-icon.png" style="width:30px;height:23px;display:inline-block;vertical-align:middle;margin-right:15px;"></image>分享给微信好友</button>
-    </view>
+    </cover-view>
 
 </view>
 </block>

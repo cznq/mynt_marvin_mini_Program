@@ -1,4 +1,4 @@
-// pages/invite-apply-notice/invite-apply-notice.js
+
 var app = getApp()
 Page({
 
@@ -144,6 +144,9 @@ Page({
     }
   },
 
+  /**
+   * 获取申请信息
+   */
   getApplyInfo: function () {
     var that = this;
     if (that.data.visit_apply_id == undefined) {
@@ -157,13 +160,19 @@ Page({
       params: {
         service: 'visitor',
         method: 'get_visit_apply_info',
-        union_id: unionId,
         data: JSON.stringify({
+          union_id: unionId,
           visit_apply_id: that.data.visit_apply_id,
         })
       },
       success: res => {
-        console.log(res.data.result);
+        if (res.data.sub_code == 500025) {
+          wx.showToast({
+            title: '邀请不存在',
+            icon: 'none'
+          })
+          return ;
+        }
         that.getApplyStatus(res.data.result.status, res.data.result.company.company_short_name);
         if (res.data.result.company.video_url !== "") {
           that.setData({
@@ -180,12 +189,18 @@ Page({
     })
   },
 
+  /**
+   * 拨打联系电话
+   */
   makePhoneCall(e) {
     wx.makePhoneCall({
       phoneNumber: e.target.id
     })
   },
 
+  /**
+   * 长按识别二维码
+   */
   identifyQrcode() {
     wx.previewImage({
       current: '', 

@@ -1,0 +1,28 @@
+<view class='_content _top_gradient2 addcompany-confirm'>
+  <view class="_flex step">
+    <view class='cur'></view>
+    <view class='cur'></view>
+    <view class='cur'></view>
+    <view></view>
+  </view>
+  <view class='mainTitle'>{{mainTitle}}</view>
+  <view class='_fixed footer'>
+    <button class="_button" bindtap="next">{{button_text}}</button>
+  </view>
+</view>
+
+<view class='c_block _relative'>
+  <view class='img'>
+    <image mode='aspectFill' src='{{cd.background_url}}'></image>
+  </view>
+  <view class='c_logo _absolute'>
+    <image mode='aspectFill' src='{{cd.logo}}'></image>
+  </view>
+  <view class='t1 _font46 _txt_center'>{{cd.company_short_name}}</view>
+  <view class='t2 _font24 _txt_darkgrey _txt_center _fontw300 introduction'>{{cd.company_name}}</view>
+  <view class='t3 _font24 _txt_darkgrey _txt_center _fontw300'>{{cd.address}}{{cd.floor}}{{cd.room}}室</view>
+</view>
+<import src="../../../../templates/showToast/showToast.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />
+<import src="../../../../templates/login.wxml" />
+<template is="login" data="{{showLoginModal: showLoginModal}}"></template>

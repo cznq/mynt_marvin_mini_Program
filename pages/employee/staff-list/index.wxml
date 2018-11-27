@@ -1,0 +1,78 @@
+<import src="../../../templates/showToast/showToast.wxml" /> 
+<import src="../../../templates/showMenu/showMenu.wxml" />
+<import src="../../../templates/noneData/noneData.wxml" /> 
+
+<block wx:if="{{!noneStaff}}">
+<view class="page">
+  <view class="page__hd _flex _flex_space_between _flex_item_center">
+      <text class="_font60 _fontw700">员工列表</text>
+      <view class="iconfont icon-tianjiayuangong" bindtap="inviteStaff"></view>
+  </view>
+  <view class="page__bd">
+
+    <button class="new-staff-btn _flex _flex_justify_center  _flex_item_center _fontw500" 
+    bindtap="newStaff" wx:if="{{staffList.apply_number}}">新员工<view class="_num_info">{{staffList.apply_number}}</view></button>
+    <block>
+      <view class="staff_list">
+      <!-- 管理员列表 -->
+      <view class="admin-list">  
+        <block wx:for="{{staffList.employee}}" wx:key="">
+        <view class="_list_item _flex _flex_space_between _role_admin" wx:if="{{item.role == 3}}">
+          <view class="_lft _flex _flex_item_center">
+            <view class="_family_name">{{item.first_name}}</view>
+            <view class="_name _fontw500">{{item.employee_name}}</view>
+          </view>
+          <view class="_rgt _flex _flex_item_center">
+            <view class="iconfont icon-qiantai admin"></view>
+          </view>
+        </view>
+        </block>
+      </view>
+      <!-- 前台列表 -->
+      <view class="front-list">
+        <block wx:for="{{staffList.employee}}" wx:key="">
+          <view class="_list_item _flex _flex_space_between _role_front" wx:if="{{item.role == 2}}">
+            <view class="_lft _flex _flex_item_center">
+              <view class="_family_name">{{item.first_name}}</view>
+              <view class="_name _fontw500">{{item.employee_name}}</view>
+            </view>
+            <view class="_rgt _flex _flex_item_center">
+              <!--<image class="vip-icon" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/vip%402x.png"></image>-->
+              <view class="iconfont icon-qiantai"></view>
+              <view class="handle_btn" bindtap="editEmp" data-unionid='{{item.union_id}}' data-name='{{item.employee_name}}'><view class="dot"></view><view class="dot"></view><view class="dot"></view></view>
+            </view>
+          </view>
+        </block>
+        
+      </view>
+      <!-- 员工列表 -->
+      <view class="staff-list">
+      <block wx:for="{{staffList.employee}}" wx:key="">
+        <view class="_list_item _flex _flex_space_between _role_staff" wx:if="{{item.role == 1}}">
+          <view class="_lft _flex _flex_item_center">
+            <view class="_family_name">{{item.first_name}}</view>
+            <view class="_name _fontw500">{{item.employee_name}}</view>
+          </view>
+          <view class="_rgt _flex _flex_item_center">
+            <view class="handle_btn" bindtap="editEmp" data-unionid='{{item.union_id}}' data-name='{{item.employee_name}}'><view class="dot"></view><view class="dot"></view><view class="dot"></view></view>
+          </view>
+        </view>
+      </block>
+        
+      </view>
+
+      </view>
+    </block>
+    
+  </view>
+</view>
+
+</block>
+
+<block wx:else>
+  <template is="noneDataPage" data="{{noneData: noneData}}" />
+</block>
+
+
+<template is="showMenu" data="{{showMenu: showMenu}}" /> 
+<template is="showToast" data="{{showToast: showToast}}" />

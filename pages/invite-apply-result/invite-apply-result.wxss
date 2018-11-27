@@ -163,6 +163,7 @@
 .crouse-pics image {
   margin-right: 10px;
   height: 282rpx;
+  vertical-align: top;
 }
 .vedioWrapper {
   margin-right: 58rpx;
@@ -204,12 +205,9 @@
   background: #fff;
 }
 .wechat {
-  width: 240rpx;
+  padding: 0 30rpx;
   margin: 0 auto;
   font-size: 28rpx;
   text-align: center;
   color: rgba(0,0,0,.5);
-}
-.wechat image {
-  width: 192rpx;
 }

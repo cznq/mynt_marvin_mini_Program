@@ -52,13 +52,13 @@
       <view class="company-intro">
       {{applyInfo.company.introduction}}
       </view>
-      <view class="address">
+      <view class="address" wx:if="{{applyInfo.company.room !== ''}}">
         <text>门牌号：</text>{{applyInfo.company.room}}
       </view>
-      <view class="address">
+      <view class="address" wx:if="{{applyInfo.company.phone !== ''}}">
         <text>电话：</text>{{applyInfo.company.phone}}
       </view>
-      <view class="address">
+      <view class="address" wx:if="{{applyInfo.company.website !== ''}}">
         <text>网址：</text>{{applyInfo.company.website}}
       </view>
     </view>
@@ -74,7 +74,7 @@
         <block wx:else>
           <scroll-view scroll-x style="white-space:nowrap;" bindscroll="scroll" class="crouse-pics">
             <block wx:for="{{applyInfo.company.product_pic_urls}}" wx:for-index="idx" wx:for-item="item" wx:key="product_pic_url">
-              <image src="{{item}}" bindload="imageLoad" style="width:{{imgwidth}}rpx; height:{{imgheight }}rpx;"></image>
+              <image src="{{item}}" bindload="imageLoad" style="" mode='widthFix'></image>
             </block>
           </scroll-view>
         </block>
@@ -90,9 +90,7 @@
   <view class="little-pannel"></view>
   <view class="page__ft">
     <view class="wechat">
-      <image src="../../images/qrcode.png" mode="widthFix" bindtap="identifyQrcode"></image>
-      <view>长按识别关注</view>
-      <view>小觅智能楼宇服务</view>
+      <official-account></official-account>
     </view>
   </view>
   -->

@@ -1,0 +1,10 @@
+@import "../../../templates/showToast/showToast.wxss";
+/* 清除浮动  */
+._clearfloat{zoom:1}
+._clearfloat:after{display:block;clear:both;content:"";visibility:hidden;height:0}
+.z_warp{padding:20rpx;background:linear-gradient(0deg,rgba(255,255,255,1),rgba(252,252,252,1));}
+.z_pop{padding-bottom:50rpx;}
+.z_title{font-weight: 400;margin-bottom:20rpx;font-size:32rpx;color:#1A2A4B;}
+.z_f{background:#ffa800;font-size:20rpx;font-weight: 300;padding:0 10rpx;text-align: center;float:left;margin-left:10rpx;color:#fff;}
+.z_demotoast image{width: 374rpx;}
+.z_demotoast{float:left;background: #ccc;padding:30rpx;border:1rpx solid #fafafa;}

@@ -1,0 +1,61 @@
+
+<view class="page">
+  
+  <view class="page__bd">
+    <view class="company-card _txt_center">
+      <image class='logo' src='{{companyInfo.logo}}'></image>
+      <view class="_short_name _fontw700">{{companyInfo.company_short_name}}</view>
+      <view class="_company_name">{{companyInfo.company_name}}</view>
+      <button class="invite_btn _flex _flex_item_center _flex_justify_center" open-type="share">
+        <text class="iconfont icon-weixin"></text>通过微信邀请
+      </button>
+      <view class="share-info">点击邀请按钮将链接发送给同事，以此方式邀请同事加入你的公司。</view>
+    </view>
+    <view class="invite-method _txt_center">
+      <view class="title _font28 _fontw500">其他邀请同事加入公司的方式</view>
+      <view class="invite-by">
+        <view class="invite-wrap invite-by-qrcode" bindtap="inviteOpen" data-method='qrcode'>
+          <view class="iconfont icon-tianjiayuangong_erweima"></view>
+          <view class="method-name">二维码邀请</view>
+        </view>
+        <view class="invite-wrap invite-by-code" bindtap="inviteOpen" data-method='code'>
+          <view class="iconfont icon-tianjiayuangong_yaoqingma"></view>
+          <view class="method-name">公司码邀请</view>
+        </view>
+      </view>
+      <view class="invite-intro _font24 _fontw300">将二维码或公司码出示给你的同事，同事在加入公司选项中输入对应的码即可快速申请加入你的公司。</view>
+    </view>
+  </view>
+  <canvas canvas-id="inviteCanvas" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px;"></canvas>
+  <block wx:if="{{inviteModal.showModal? inviteModal.showModal: false}}">
+    <view class="modal-bg" bindtap="closeModal"></view>
+    <view class="invite-modal">
+        <view class="modal-header _txt_center">
+          <image class='logo' src='{{companyInfo.logo}}'></image>
+          <view class="_short_name _fontw700">{{companyInfo.company_short_name}}</view>
+          <view class="_company_name">{{companyInfo.company_name}}</view>
+
+        </view>
+        <view class="modal-body">
+          <view class="invite-method-part">
+            <view class="qrcode" wx:if="{{inviteModal.inviteType == 'qrcode'}}">
+              <image class="qrcode-img" src='{{companyInfo.company_qrcode_url}}'></image>
+              <view class="tips _font24">扫描二维申请加入公司</view>
+            </view>
+            <view class="code" wx:if="{{inviteModal.inviteType == 'code'}}">
+              <view class="tit">邀请码</view>
+              <button>{{companyInfo.company_code}}</button>
+              <view class="tips _font24">使用邀请码申请加入公司</view>
+            </view>
+          </view>
+
+          <view class="invite-btn-area">
+            <button wx:if="{{inviteModal.inviteType == 'code'}}" bindtap="copyInviteCode" data-code="{{companyInfo.company_code}}">复制邀请码</button>
+            <button class="save" bindtap="getInviteCodePhoto" wx:if="{{inviteModal.inviteType == 'code'}}">保存到手机，分享给好友</button>
+            <button class="save" bindtap="getInviteQrcodePhoto" wx:if="{{inviteModal.inviteType == 'qrcode'}}">保存到手机，分享给好友</button>
+          </view>
+        </view>
+    </view>
+  </block>
+  
+</view>

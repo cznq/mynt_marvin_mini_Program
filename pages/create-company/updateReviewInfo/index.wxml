@@ -1,0 +1,93 @@
+<view class='_content company-data'>
+  <view class="_flex step">
+    <view class='cur'></view>
+    <view class='cur'></view>
+    <view class='cur'></view>
+    <view class='cur'></view>
+  </view>
+  <view class='mainTitle'>
+    <text class='_f_right _font32 _fontw300 _txt_blue' bindtap='examples'>示例 ></text>{{mainTitle}}</view>
+  <view class='hint'>
+    <text class='_font24 _fontw300'>{{hint}}</text>
+  </view>
+  <view class='upload-block up_logo'>
+    <view class='_font32'>公司LOGO</view>
+    <view class='up_pub' wx:if="{{cd.logo !== ''}}">
+      <image mode="{{mode}}" src='{{cd.logo}}'></image>
+      <view class='clearpic _position' bindtap='bindclearpic' data-key='logo'>×</view>
+    </view>
+    <view class='up_pub' bindtap='uploadimages' data-key='logo' wx:else>
+      <view class='up_con'>
+        <view class='up_dot'><view class="iconfont icon-tianjia"></view></view>
+        <view class='up_text _fontw300'>图片</view>
+      </view>
+    </view>
+    <view class='up_hint _font22 _fontw300 _txt_darkgrey '>建议尺寸：1:1</view>
+  </view>
+  <view class='upload-block up_propaganda'>
+    <view class='_font32'>宣传背景图</view>
+    <view class='up_pub' wx:if="{{cd.background_url !== ''}}">
+      <image mode="{{mode}}" src='{{cd.background_url}}'></image>
+      <view class='clearpic _position' bindtap='bindclearpic' data-key='background_url'>×</view>
+    </view>
+    <view class='up_pub' bindtap='uploadimages' data-key='background_url' wx:else>
+      <view class='up_con'>
+        <view class='up_dot'><view class="iconfont icon-tianjia"></view></view>
+        <view class='up_text _fontw300'>图片</view>
+      </view>
+    </view>
+    <view class='up_hint _font22 _fontw300 _txt_darkgrey'>建议尺寸：1920*1080</view>
+  </view>
+  <view class='upload-block up_broadcast'>
+    <view class='_font32'>轮播图</view>
+    <view class='_clearfloat'>
+      <view class='up_pub' wx:key="unique" wx:for-index="idx" wx:for="{{cd.product_urls}}">
+        <view class='showpic'>
+          <image mode="{{mode}}" src='{{item}}'></image>
+          <view class='clearpic _position' bindtap='bindclearpic' data-key='{{idx}}'>×</view>
+        </view>
+      </view>
+      <view class='up_pub' bindtap='uploadimages' data-num="6" data-key='product_urls' wx:if="{{isSowingMapUp==false? false : true}}">
+        <view class='up_con'>
+          <view class='up_dot'><view class="iconfont icon-tianjia"></view></view>
+          <view class='up_text _fontw300'>图片</view>
+        </view>
+      </view>
+    </view>
+    <view class='up_hint _font22 _fontw300 _txt_darkgrey '>建议尺寸：1920*1080,最多6张</view>
+  </view>
+  <view class='upload-block up_video'>
+    <view class='_font32'>宣传视频
+      <view class='vip'>
+        <view class='vip_arrow'></view>
+        <view class='vip_text'>VIP专享</view>
+      </view>
+    </view>
+    <view class='up_pub' wx:if="{{cd.video_url !== ''}}">
+      <video class='video' id="myVideo" src="{{cd.video_url}}">
+      </video>
+      <cover-view class="clearpic clearvideo _position" bindtap="bindclearpic" data-key='video_url'>
+      <cover-image class="cha" src="http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/cha.png" />
+      </cover-view>
+    </view>
+    <!--   -->
+    <view class='up_pub' bindtap='uploadvideo' wx:else>
+      <view class='up_con'>
+        <view class='up_dot'><view class="iconfont icon-tianjia"></view></view>
+        <view class='up_text _fontw300'>视频</view>
+      </view>
+    </view>
+    <view class='up_hint _font22 _fontw300 _txt_darkgrey'>
+      <text>宣传视频与轮播图共用机器人端同个展示位，可选择播放\n建议尺寸：1920*1080</text>
+    </view>
+  </view>
+
+  <cover-view class='_fixed footer covview'>
+    <button class="_button" bindtap="submit">{{button_text}}</button>
+  </cover-view>
+  <cover-view class='_fixed footer covview' wx:if="{{isvideoshow==false? false : true}}">
+    <button class="_button" bindtap="submit">{{button_text}}</button>
+  </cover-view>
+</view>
+<import src="../../../templates/showToast/showToast.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />

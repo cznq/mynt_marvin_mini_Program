@@ -6,7 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    xy_session: null,
     company_id: null,
     visitorInfo: null,
     noteCount: 0,
@@ -33,8 +32,8 @@ Page({
         params: {
           service: 'visitor',
           method: 'visit_apply',
-          union_id: wx.getStorageSync('xy_session'),
           data: JSON.stringify({
+            union_id: wx.getStorageSync('xy_session'),
             form_id: form_id,
             visit_company_id: company_id,
             visitor_name: visitor_name,
@@ -47,25 +46,25 @@ Page({
         success: res => {
           if (res.data.sub_code == 0) {
             if (that.data.visitorInfo == null) {
-              that.getVisitorinfo().then(function(){
-                if (that.data.visitorInfo.input_pic_url !== null && that.data.visitorInfo.input_pic_url !== "") {
+              that.getVisitorInfo().then(function(){
+                if (!app.Util.checkEmpty(that.data.visitorInfo.input_pic_url)) {
                   wx.redirectTo({
                     url: '/pages/invite-apply-result/invite-apply-result?visit_apply_id=' + res.data.result.visit_apply_id + '&company_id=' + that.data.company_id,
                   })
                 } else {
                   wx.redirectTo({
-                    url: '/pages/invite-accept/invite-accept?visit_apply_id=' + res.data.result.visit_apply_id + '&company_id=' + that.data.company_id,
+                    url: '/pages/collect-info/face/index?visit_apply_id=' + res.data.result.visit_apply_id + '&company_id=' + that.data.company_id,
                   })
                 }
               })
             } else {
-              if (that.data.visitorInfo.input_pic_url !== null && that.data.visitorInfo.input_pic_url !== "") {
+              if (!app.Util.checkEmpty(that.data.visitorInfo.input_pic_url)) {
                 wx.redirectTo({
                   url: '/pages/invite-apply-result/invite-apply-result?visit_apply_id=' + res.data.result.visit_apply_id + '&company_id=' + that.data.company_id,
                 })
               } else {
                 wx.redirectTo({
-                  url: '/pages/invite-accept/invite-accept?visit_apply_id=' + res.data.result.visit_apply_id + '&company_id=' + that.data.company_id,
+                  url: '/pages/collect-info/face/index?visit_apply_id=' + res.data.result.visit_apply_id + '&company_id=' + that.data.company_id,
                 })
               }
             }
@@ -80,6 +79,9 @@ Page({
     }
   },
 
+  /**
+   * 统计输入字数
+   */
   countFontNum: function(e) {
     var that = this;
     that.setData({
@@ -87,8 +89,10 @@ Page({
     })
   },
 
-  getVisitorinfo: function () {
-    console.log("userinfo");
+  /**
+   * 获取访客信息
+   */
+  getVisitorInfo: function () {
     var that = this;
     return new Promise(function (resolve, reject) {
       if (!that.data.visitorInfo) {
@@ -98,8 +102,8 @@ Page({
           params: {
             service: 'visitor',
             method: 'get_visitor_info',
-            union_id: unionId,
             data: JSON.stringify({
+              union_id: unionId,
               visit_company_id: that.data.company_id
             })
           },
@@ -117,6 +121,9 @@ Page({
     })
   },
 
+  /**
+   * 检测提交数据合法性
+   */
   checkParam(form_id, visitor_name, phone, id_number, note, company_id) {
     var idcard_reg = app.Util.checkID(id_number) || app.Util.checkPassport(id_number);
     if (visitor_name == "") {
@@ -155,8 +162,8 @@ Page({
       params: {
         service: 'visitor',
         method: 'save_qr_code_key',
-        union_id: unionId,
         data: JSON.stringify({
+          union_id: unionId,
           qr_code_key: qr_code_key
         })
       },
@@ -178,7 +185,7 @@ Page({
               that.setData({
                 showLoginModal: false
               })
-              app.authorizeLogin(res.encryptedData, res.iv, () => {that.getVisitorinfo()});
+              app.authorizeLogin(res.encryptedData, res.iv, () => {that.getVisitorInfo()});
             }
           })
         }
@@ -192,41 +199,33 @@ Page({
   onLoad: function (options) {
     var that = this;
     var scene_str = decodeURIComponent(options.scene);
-    if (scene_str !== undefined) { 
+    if (scene_str !== 'undefined' && scene_str !== undefined) { 
       var company_id = scene_str.split('_')[0];
       var qr_code_key = scene_str.split('_')[1];
+    } else {
+      wx.showToast({
+        title: '识别二维码出错，请重新扫码',
+      })
+      app.myLog("扫码二维码出错", "申请发卡扫码二维码未识别公司ID");
     }
     wx.removeStorageSync('xy_session');
-    console.log("Company id" + company_id + "key" + qr_code_key);
+    app.myLog('申请发卡：', "公司ID:" + company_id + " Key:" + qr_code_key);
     that.updateQrcodeStatus(qr_code_key);
     that.setData({ company_id: company_id })
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
-        console.log(wx.getStorageSync('xy_session'));
-        if (wx.getStorageSync('xy_session') == null || wx.getStorageSync('xy_session') == "") {
+        //console.log(wx.getStorageSync('xy_session'));
+        if (!(app.checkSession())) {
           that.setData({
             showLoginModal: true
           })
         } else {
-          that.setData({
-            xy_session: wx.getStorageSync('xy_session')
-          })
-          that.getVisitorinfo();
+          that.getVisitorInfo();
         }
       })
     } else {
-      that.setData({
-        xy_session: wx.getStorageSync('xy_session')
-      })
-      that.getVisitorinfo();
+      that.getVisitorInfo();
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-   
   }
 
 })
