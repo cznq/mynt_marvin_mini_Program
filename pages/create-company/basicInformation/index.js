@@ -7,11 +7,14 @@ Page({
     mainTitle: '企业基础信息',
     button_text: '保存',
     moreAlias: false,
-    introduction:false,
+    isintroduction1: true,
+    isintroduction2: false,
     cd: {}
   },
   onLoad: function(options) {
     var _this = this;
+
+    
     _this.data.CstateCode = options.CstateCode;
     if (options.CstateCode == 1) {
       wx.setNavigationBarTitle({
@@ -23,7 +26,6 @@ Page({
       })
     }
     app.Util.checkcanIUse('cover-view'); //检测组件兼容性 础库 1.4.0 开始支持
-
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
@@ -75,7 +77,6 @@ Page({
       phone = e.detail.value.phone,
       website = e.detail.value.website,
       introduction = e.detail.value.introduction;
-
     if (company_short_name.length == 0) {
       _this.Toast('公司简介填写不完整')
       return false
@@ -105,7 +106,7 @@ Page({
         success: res => {
           console.log(res);
           if (res.data.sub_code == 0) {
-            wx.navigateTo({
+            wx.navigateBack({
               url: '../guide/index?CstateCode=' + _this.data.CstateCode,
             })
           } else {
@@ -125,7 +126,7 @@ Page({
       });
     }
   },
-  Toast:function(text){
+  Toast: function(text) {
     toast.showToast(this, {
       toastStyle: 'toast',
       title: text,
@@ -133,9 +134,18 @@ Page({
       mask: false
     });
   },
-  showintroduction:function(){
-    this.setData({
-      introduction:true
-    })
+  showintroduction: function() {
+    var _this = this;
+    if (_this.data.isintroduction1 == false) {
+      _this.setData({
+        isintroduction1: true,
+        isintroduction2: false
+      })
+    } else {
+      _this.setData({
+        isintroduction1: false,
+        isintroduction2: true
+      })
+    }
   }
 })

@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 36,
+			"current": 8,
 			"list": [
 				{
 					"id": 0,
@@ -89,10 +89,11 @@
 					"scene": "1011"
 				},
 				{
-					"id": -1,
+					"id": 8,
 					"name": "商城首页",
-					"pathName": "page/benifit/pages/mall-home/mall-home",
-					"query": ""
+					"pathName": "benifit/pages/mall-home/mall-home",
+					"query": "",
+					"scene": "1044"
 				},
 				{
 					"id": 9,

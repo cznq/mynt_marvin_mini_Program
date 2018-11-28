@@ -2,13 +2,18 @@
 var app = getApp();
 Page({
   data: {
-    CstateCode:1,
-    cd:{},
-    button_text:'上传信息，试用企业主页'
+    CstateCode: 1,
+    cd: {},
+    button_text: '',
+    imageUrl: app.globalData.BASE_IMG_URl+'company_homepage@2x.png'
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     var _this = this;
-    _this.data.CstateCode = options.CstateCode;
+    //_this.data.CstateCode = options.CstateCode;
+    _this.setData({
+      button_text: options.button_text
+    })
+    _this.data.button_text = options.button_text;
     if (options.CstateCode == 1) {
       wx.setNavigationBarTitle({
         title: '创建公司'
@@ -18,44 +23,7 @@ Page({
         title: '编辑企业信息'
       })
     }
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'company',
-        method: 'get_company_service_status',
-        data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session'),
-          service_key:"COMPANY_INTRODUCE_MEDIA"
-        })
-      },
-      success: res => {
-        console.log(res);
-        if (res.data.sub_code == 0) {
-          switch (res.data.result.service_status) {
-            case 0:
-              wx.navigateTo({
-                url: '/pages/invite-visitor/start/index',
-              })
-              break;
-            case 1:
-              _this.setData({
-                button_text: '立即上传'
-              })
-              break;
-            default:
-              _this.setData({
-                button_text: '立即上传上传信息，试用企业主页'
-              })
-          }
-          
-        } else {
-          console.log(res.data.sub_msg);
-        }
-      },
-      fail: res => {
-        console.log('fail');
-      }
-    })
+   
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
@@ -81,9 +49,9 @@ Page({
       }
     })
   },
-  next:function(){
+  next: function() {
     var _this = this;
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../vipInformation/index?CstateCode=' + _this.data.CstateCode,
     })
   }

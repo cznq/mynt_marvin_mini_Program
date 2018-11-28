@@ -3,21 +3,21 @@ var app = getApp();
 Page({
   data: {
     isiphoneX: app.globalData.isIphoneX,
-    button_text:"完成并预览",
-    CstateCode:1,
-    cd:{}
+    button_text: "完成并预览",
+    CstateCode: 1,
+    cd: {}
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     var _this = this;
     _this.data.CstateCode = options.CstateCode;
-    if (options.CstateCode == 1){
+    if (options.CstateCode == 1) {
       wx.setNavigationBarTitle({
         title: '创建公司'
       })
       _this.setData({
-        button_text:'完成并预览'
+        button_text: '完成并预览'
       })
-    } else if (options.CstateCode == 2){
+    } else if (options.CstateCode == 2) {
       wx.setNavigationBarTitle({
         title: '编辑企业信息'
       })
@@ -50,29 +50,68 @@ Page({
     })
   },
   //编辑基础信息
-  basicInformation:function(){
+  basicInformation: function() {
     var _this = this;
     wx.navigateTo({
       url: '../basicInformation/index?CstateCode= ' + _this.data.CstateCode,
     })
   },
   //编辑vip信息
-  guideVip:function(){
+  guideVip: function() {
     var _this = this;
-    wx.navigateTo({
-      url: '../guideVip/index?CstateCode= ' + _this.data.CstateCode,
+
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_company_service_status',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+          service_key: "COMPANY_INTRODUCE_MEDIA"
+        })
+      },
+      success: res => {
+        console.log(res);
+        if (res.data.sub_code == 0) {
+         
+          switch (res.data.result.service_status) {
+            case 0:
+              wx.navigateTo({
+                url: '/pages/invite-visitor/start/index',
+              })
+              break;
+            case 1:
+              wx.navigateTo({
+                url: '../guideVip/index?CstateCode= ' + _this.data.CstateCode +'&button_text=立即上传',
+              })
+              break;
+            default:
+              wx.navigateTo({
+                url: '../guideVip/index?CstateCode= ' + _this.data.CstateCode + '&button_text=立即上传，试用企业主页',
+              })
+          }
+        } else {
+          console.log(res.data.sub_msg);
+        }
+      },
+      fail: res => {
+        console.log('fail');
+      }
     })
+
+
+    
   },
-  next:function(){
+  next: function() {
     var _this = this;
-    if (_this.data.CstateCode == 1){
+    if (_this.data.CstateCode == 1) {
       //创建公司
       wx.navigateTo({
         url: '../companyPages/index?CstateCode= ' + _this.data.CstateCode,
       })
-    } else if(_this.data.CstateCode == 2){
+    } else if (_this.data.CstateCode == 2) {
       //编辑公司
-      wx.navigateTo({
+      wx.navigateBack({
         url: '../editCompanyPages/index?CstateCode= ' + _this.data.CstateCode,
       })
     }

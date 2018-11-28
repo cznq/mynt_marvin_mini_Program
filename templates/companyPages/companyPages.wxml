@@ -1,7 +1,5 @@
 <template name="companyPages">
   <image wx:if="{{cd.background_url}}" class='background_url' mode="aspectFill" src='{{cd.background_url}}'></image>
-
-
   <view class='companyPages _relative'>
     <view class='header'>
       <image class='logo _absolute {{!cd.background_url ? "topnone" : ""}}' mode="aspectFill" src='{{cd.logo}}' wx:if="{{cd.logo}}"></image>
@@ -50,11 +48,11 @@
     </scroll-view>
   </view>
   <view class='companyPages downpadd'>
-  <view class='h3 _txt_gray _font38' wx:if='{{cd.video_url}}'>宣传视频</view>
-  <view class='blockCon video' wx:if='{{cd.video_url}}'>
-    <video class='video' id="myVideo" src="{{cd.video_url}}">
+    <view class='h3 _txt_gray _font38' wx:if='{{cd.video_url}}'>宣传视频</view>
+    <view class='blockCon video' wx:if='{{cd.video_url}}'>
+      <video class='video' id="myVideo" src="{{cd.video_url}}">
       </video>
-  </view>
+    </view>
     <view class='h3 _txt_gray _font38'>详细信息</view>
     <view class='introCon blockCon'>
       <view class='tr _clearfloat' wx:if="{{cd.address}}">
@@ -70,7 +68,5 @@
         <text>公司网址</text> {{cd.website}}
       </view>
     </view>
-
   </view>
-
 </template>

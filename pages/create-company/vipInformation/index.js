@@ -10,7 +10,8 @@ Page({
     isSowingMapUp: false,
     mode: 'aspectFill',
     isvideoshow:false,
-    CstateCode: 1
+    CstateCode: 1,
+    imageUrlCha: app.globalData.BASE_IMG_URl+'cha.png'
   },
   next: function () {
     wx.navigateTo({
@@ -30,8 +31,6 @@ Page({
       })
     }
     app.Util.checkcanIUse('cover-view'); //检测组件兼容性 础库 1.4.0 开始支持
-  
-    
     //请求数据
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
@@ -66,14 +65,11 @@ Page({
         console.log('fail');
       }
     })
-
-    
   },
   //删除图片
   bindclearpic: function (e) {
     var _this = this;
     var c_key = e.currentTarget.dataset.key; //获取对象
-
     if (typeof c_key == 'number') {
       //轮播图
       _this.data.cd.product_urls.splice(c_key, 1);
@@ -98,7 +94,6 @@ Page({
     var _this = this;
     var c_key = e.currentTarget.dataset.key; //获取栏目
     var name = 'cd.' + c_key; //拼接对象
-
     /** 选择图片参数 */
     var chooseImage_count = 1;
     if (c_key == 'product_urls') {
@@ -106,7 +101,6 @@ Page({
     }
     var chooseImage_sizeType = ['original', 'compressed'];
     var chooseImage_sourceType = ['album', 'camera'];
-
     /** 上传到oss服务器参数 */
     var uposs_url = app.globalData.BASE_API_URL;
     var uposs_service = 'company';
@@ -172,7 +166,7 @@ Page({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'company',
-        method: 'update',
+        method: 'update_company_multimedia',
         data: JSON.stringify({
           union_id: wx.getStorageSync('xy_session'),
           logo: _this.data.cd.logo,
@@ -186,7 +180,7 @@ Page({
         console.log(res);
         if (res.data.sub_code == 0) {
           console.log('数据成功');
-          wx.reLaunch({
+          wx.navigateBack({
             url: '../guide/index?CstateCode=' + _this.data.CstateCode,
           })
         } else {

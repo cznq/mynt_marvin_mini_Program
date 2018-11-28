@@ -2,8 +2,8 @@
   <view class='mainTitle'>{{mainTitle}}</view>
   <view class='examples'>
   <view class='line'>
-  <image src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/examples_1.png'></image>
+  <image src='{{imageUrlArr[0]}}'></image>
   </view>
-  <image src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/examples_2.png'></image></view>
+  <image src='{{imageUrlArr[1]}}'></image></view>
 
 </view>

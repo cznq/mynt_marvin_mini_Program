@@ -1,6 +1,3 @@
-<!--web view-->
-<!-- <web-view wx:if="{{iswebview==false? false : true}}" src="{{web_url}}/home?timestamp={{timestamp}}"></web-view> -->
-
 <!-- 管理中心 -->
 <view wx:if="{{ismanage==false? false : true}}">
   <view class='manage'>
@@ -35,7 +32,6 @@
           <image class="m{{idx+1}}" src='{{item.pic}}'></image>
           {{item.name}}
         </view>
-
       </view>
       <view class='title'>企业服务</view>
       <view class='content _clearfloat service'>
@@ -45,14 +41,12 @@
             <view class='t1'>{{item.text1}}</view>
             <view class='t2'>{{item.text2}}</view>
           </view>
-
-
         </view>
       </view>
     </view>
     <view class="adrim">
       <import src="../../templates/vipAd/vipAd.wxml" />
-      <template is="vipAd" wx:if="{{cd.service_suite==0}}"/>
+      <template is="vipAd" wx:if="{{cd.service_suite==0}}" />
     </view>
   </view>
 </view>
