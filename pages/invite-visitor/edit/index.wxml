@@ -13,11 +13,11 @@
 
       <view class="_fontw600 _font38 sec_title">基础信息</view>
       <view class="label _font24">访客姓名</view>
-      <input class="weui-input _font36" name="visitor_name" id="i1" bindinput="checkForm" placeholder="请输入您邀请访客的姓名" placeholder-class="placeholder-input"></input>
+      <input class="weui-input _font36" name="visitor_name" id="visitorName" bindinput="checkForm" placeholder="请输入您邀请访客的姓名" placeholder-class="placeholder-input"></input>
 
       <view class="label _font24">预约到访时间</view>
       <view class="invite_time _relative">
-        <input class="weui-input _font36" name="visit_time" value="{{invite_time}}" bindinput="checkForm" placeholder="请选择您希望访客到访的时间" placeholder-class="placeholder-input" disabled></input>
+        <input class="weui-input _font36" name="visit_time" value="{{visit_time_str}}" id="visitTime" placeholder="请选择您希望访客到访的时间" placeholder-class="placeholder-input" disabled></input>
         
         <view class="timeBtn _absolute" bindtap="chooseTime">
           <text class="iconfont icon-yaoqingshijian"></text>
@@ -29,7 +29,7 @@
         <view class="label _font32 cause">邀请事由</view>
         <view class="edit" bindtap="openEdit">编辑</view>
       </view>
-      <textarea class="weui-textarea _font24" name="visit_intro" maxlength="800" id="i2" bindinput="checkForm" placeholder="请描述邀请访客到访的具体事由和到访的要求" placeholder-class="textarea_placeholder-input" auto-height="true" focus="{{edit==''?true:false}}" disabled="{{edit}}"></textarea>
+      <textarea class="weui-textarea _font24" name="visit_intro" maxlength="800" id="visitIntro" bindinput="checkForm" placeholder="请描述邀请访客到访的具体事由和到访的要求" placeholder-class="textarea_placeholder-input" auto-height="true" focus="{{edit==''?true:false}}" disabled="{{edit}}"></textarea>
       <view class="_fixed form_submit {{isIphoneX?'iphonex':''}}">
         <button form-type="submit" class="_button" id="inviteBtn">预览邀请函</button>
       </view>

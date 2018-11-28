@@ -12,7 +12,7 @@ Page({
     longitude: null,
     invitation_id: null,
     invitation: null,
-    appointment_time: null,
+    appointment_time: '',
     error: ""
   },
 
@@ -39,7 +39,6 @@ Page({
    */
   getInitation: function () {
     var that = this;
-    console.log(that);
     if (that.data.invitation_id == undefined) {
       that.setData({
         error: "没有获取到邀请信息"

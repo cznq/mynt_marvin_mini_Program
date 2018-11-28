@@ -5,9 +5,9 @@
     <view class="_fontw600 _font44 tit">发微信邀请访客，全程省心</view>
     <view class=" _font32 intro">访客全程由小觅机器人代替您接待上楼，智能高效、简单省心。</view>
     
-    <button class="_button _font34" wx:if="{{inviteAuth == 'tried'}}" bindtap="goToInvite">试用邀请功能</button>
-    <button class="_button _font34" wx:elif="{{inviteAuth == 'opened'}}" bindtap="goToInvite">开始邀请</button>
-    <button class="_button close _font34 _flex _flex_item_center _flex_justify_center" wx:else>
+    <button class="_button _font34" wx:if="{{serviceStatus == 'tried'}}" bindtap="goToInvite">试用邀请功能</button>
+    <button class="_button _font34" wx:elif="{{serviceStatus == 'opened'}}" bindtap="goToInvite">开始邀请</button>
+    <button class="_button close _font34 _flex _flex_item_center _flex_justify_center" bindtap="viewBusinessService" wx:else>
 
     <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/diamond%402x.png"></image>
     了解小觅商业服务套件</button>
@@ -17,7 +17,7 @@
 
   </view>
 
-  <view class="page_ft" wx:if="{{inviteAuth == 'tried'}}">
+  <view class="page_ft" wx:if="{{serviceStatus == 'tried'}}" bindtap="viewBusinessService">
     <import src="../../../templates/vipAd/vipAd.wxml" />
     <template is="vipAd" data="{{text: 'forbar'}}" />
   </view>

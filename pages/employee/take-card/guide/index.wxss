@@ -1,5 +1,3 @@
-@import "../../../../templates/showToast/showToast.wxss";
-
 .page__hd {
   background-color: #e3e9ee;
   height: auto;

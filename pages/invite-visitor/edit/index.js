@@ -1,7 +1,5 @@
 const app = getApp();
 const date = new Date()
-const hour = date.getHours();
-const minute = date.getMinutes();
 const days = []
 const hours = []
 const minutes = []
@@ -19,8 +17,6 @@ for (let i = 0; i < 60; i++) {
   }
   minutes.push(i)
 }
-hour < 10?('0'+hour):hour
-minute < 10 ? ('0' + minute):hour
 
 function daysInMonth(month, year) {
   return new Date(year, month + 1, 0).getDate();
@@ -80,17 +76,14 @@ Page({
         hours: hours
       },
       isIphoneX: app.globalData.isIphoneX,
-      invite_auth: null,
-      latitude: null,
-      longitude: null,
-      cmpinfo: null,
-      now_datetime: [daysAt, hour-1, minute],
-      formready: false,
-      invite_time: '',
-      visit_intro: '',
-      mark: '',
-      input1: false,
-      input2: false,
+      now_datetime: [],
+      formData: {
+        visitor_name: '',
+        visit_time: '',
+        visit_intro: ''
+      },
+      visit_time_str: '',
+      formReady: false,
       pickerShow: false,
       edit: 'disabled'
   },
@@ -99,132 +92,93 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-    var that = this;
-    that.setData({
-      date: app.Util.getDate(),
-      time: app.Util.getTime()
-    })
-
-  },
+ 
+    },
 
   /**
    * 判断是否员工
    */
   setDataRequest: function () {
-    var that = this;
-    that.setData({
-      invite_auth: wx.getStorageSync('invite_auth')
-    })
-    if (that.data.invite_auth == true) {
-      that.getCompany();
-    } else {
+    if (wx.getStorageSync('invite_auth') !== true) {
       wx.redirectTo({
         url: '/pages/manage/manage',
       })
-    }
-  },
-
-  /**
-   * 获取公司信息
-   */
-  getCompany: function () {
-    var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'company',
-        method: 'get_info',
-        data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session')
-        })
-      },
-      success: res => {
-        console.log(res);
-        if (res.data.result) {
-          that.setData({
-            cmpinfo: res.data.result
-          })
-        }
-        app.Util.generateMap(that, res.data.result.address);
-      }
-    })
+    } 
   },
 
   checkForm: function (e) {
-    var val = app.Util.filterEmoji(e.detail.value);
-    if (e.detail.value !== '' && e.currentTarget.id == 'i1') {
+    if (e.currentTarget.id == 'visitorName') {
       this.setData({
-        input1: true
+        'formData.visitor_name': e.detail.value
       });
     }
-    if (e.detail.value !== '' && e.currentTarget.id == 'i2') {
+    if (e.currentTarget.id == 'visitIntro') {
       this.setData({
-        input2: true,
-        visit_intro: e.detail.value
+        'formData.visit_intro': e.detail.value
       });
     }
-    if (e.detail.value !== '' && e.currentTarget.id == 'i3') {
-      this.setData({
-        mark: e.detail.value
-      });
-    }
-    if (this.data.input1 && this.data.input2) {
-      this.setData({
-        formready: true
-      });
-    }
-    return val;
   },
 
+  checkParam(visitor_name, visit_time, visit_intro) {
+    if (visitor_name == "") {
+      wx.showToast({
+        title: '请输入您邀请的访客姓名',
+        icon: 'none'
+      })
+      return false;
+    } else if (visit_time == "") {
+      wx.showToast({
+        title: '请选择访客到访时间',
+        icon: 'none'
+      })
+      return false;
+    } else if (visit_intro == "") {
+      wx.showToast({
+        title: '请描述邀请访客到访的具体事由和到访的要求',
+        icon: 'none'
+      })
+      return false;
+    }
+    return true;
+  },
   /**
    * 提交表单
-   * param: visitor_name, mark, visit_intro, appointment_time
+   * param: visitor_name, visit_intro, appointment_time
    */
   inviteSubmit: function (e) {
-    var visit_time = this.data.date + ' ' + this.data.time;
-    var visitor_name = e.detail.value.visitor_name;
-    var mark = app.Util.decodeTextAreaString(this.data.mark);
-    var visit_intro = app.Util.decodeTextAreaString(this.data.visit_intro);
-    var appointment_time = app.Util.datetoTime(visit_time);
-    if (visitor_name == "" || visit_intro == "") {
-      wx.showModal({
-        content: '请填写被邀请人或邀请说明',
-        showCancel: false,
-        success: function (res) { }
+    var visitor_name = this.data.formData.visitor_name;
+    var visit_intro = app.Util.decodeTextAreaString(this.data.formData.visit_intro);
+    var appointment_time = app.Util.datetoTime(this.data.formData.visit_time);
+    if (this.checkParam(visitor_name, visit_intro, appointment_time)) {
+      app.Util.network.POST({
+        url: app.globalData.BASE_API_URL,
+        params: {
+          service: 'visitor',
+          method: 'invite',
+          data: JSON.stringify({
+            union_id: wx.getStorageSync('xy_session'),
+            visitor_name: visitor_name,
+            invitation_type: 0,
+            introduction: visit_intro,
+            appointment_time: appointment_time
+          })
+        },
+        success: res => {
+          console.log(res);
+          if (res.data.result.invitation_id) {
+            wx.redirectTo({
+              url: '/pages/invite-visitor/share/index?invitation_id=' + res.data.result.invitation_id,
+            })
+          } else {
+            wx.showModal({
+              content: '提交失败',
+              showCancel: false,
+              success: function (res) {}
+            })
+          }
+        },
       })
-      return;
     }
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'visitor',
-        method: 'invite',
-        data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session'),
-          visitor_name: visitor_name,
-          invitation_type: 0,
-          introduction: visit_intro,
-          note: mark,
-          appointment_time: appointment_time
-        })
-      },
-      success: res => {
-        console.log(res);
-        if (res.data.result.invitation_id) {
-          wx.redirectTo({
-            url: '/pages/invite-visitor/share/index?invitation_id=' + res.data.result.invitation_id,
-          })
-        } else {
-          wx.showModal({
-            content: '提交失败',
-            showCancel: false,
-            success: function (res) {
-
-            }
-          })
-        }
-      },
-    })
   },
 
   /**
@@ -243,9 +197,15 @@ Page({
   },
 
   chooseTime: function (e) {
+    var date = new Date();
+    var hour = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+    var minute = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+    
     this.setData({
+      now_datetime: [daysAt, date.getHours() - 1, date.getMinutes()],
       pickerShow: true,
-      invite_time: today + ' ' + hour + ':' + minute
+      visit_time_str: today + ' ' + hour + ':' + minute,
+      'formData.visit_time': year + '-' + app.Util.strToDate(today + ' ' + hour + ':' + minute)
     })
   },
 
@@ -256,27 +216,12 @@ Page({
     } else {
       var todayDate = this.data.timePicker.days[val[0]]
     }
-    
     this.setData({
-      invite_time: todayDate + ' ' + this.data.timePicker.hours[val[1]] + ':' + this.data.timePicker.minutes[val[2]]
+      visit_time_str: todayDate + ' ' + this.data.timePicker.hours[val[1]] + ':' + this.data.timePicker.minutes[val[2]],
+      'formData.visit_time': year + '-' + app.Util.strToDate(todayDate + ' ' + this.data.timePicker.hours[val[1]] + ':' + this.data.timePicker.minutes[val[2]])
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    this.mapCtx = wx.createMapContext('myMap');
-    this.mapCtx.moveToLocation();
-  },
-
-  openLocation: function () {
-    wx.openLocation({
-      latitude: this.data.latitude,
-      longitude: this.data.longitude,
-      scale: 28
-    })
-  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -291,25 +236,6 @@ Page({
     } else {
       that.setDataRequest();
     }
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    wx.removeStorageSync('xy_session');
-    var that = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        that.setDataRequest();
-      })
-    } else {
-      that.setDataRequest();
-    }
-  },
-
-  onHide: function () {
-    //wx.removeStorageSync('xy_session');
   }
 
 })

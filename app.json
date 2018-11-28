@@ -6,6 +6,7 @@
     "pages/collect-info/identity/index",
     "pages/collect-info/confirm/index",
     "pages/employee/homepage/index",
+    "pages/employee/edit-name/index",
     "pages/employee/take-card/open/index",
     "pages/employee/take-card/success/index",
     "pages/employee/take-card/guide/index",
@@ -30,6 +31,7 @@
     "pages/employee/join-company/choiceJoin/index",
     "pages/employee/join-company/confirmCompanyInformation/index",
     "pages/company/unattended-setting/index",
+    "pages/company/introduction/index",
     "pages/company/webview/index",
     "pages/demo/iconfont/index",
     "pages/invite/invite",
@@ -52,8 +54,8 @@
 
     "pages/apply-visit/noAppointment/index",
     "pages/apply-visit/reasonsVisiting/index",
-    "pages/apply-visit/applicationStatus/index"
-    
+    "pages/apply-visit/applicationStatus/index",
+    "pages/e-card/detail/index"
 
   ],
   "subPackages": [

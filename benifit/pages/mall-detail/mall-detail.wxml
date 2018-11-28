@@ -65,7 +65,8 @@
           <text>商务宴请</text>
         </view>
         <view class="disBtn">
-          <button bindtap="makePhoneCall" data-phone="{{commerceDetail.phone}}">协议咨询</button>
+          <button open-type="contact" show-message-card="true" session-from="shop-order-detail" send-message-title="{{commerceDetail.name}} - {{item.bed_introduce}}" wx:if="{{is_vip}}">协议咨询</button>
+          <button bindtap="cardTopay" wx:else>协议咨询</button>
         </view>
       </view>
       <!-- 餐饮和娱乐协议优惠列表 -->

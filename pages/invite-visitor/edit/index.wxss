@@ -87,3 +87,6 @@ picker-view-column.first {
   flex: 2;
   text-align: right;
 }
+._button[disabled] {
+  background: rgba(0, 123, 255, .6);
+}

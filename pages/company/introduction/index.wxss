@@ -1,0 +1,6 @@
+
+@import "../../../templates/companyPages/companyPages.wxss";
+
+.downpadd {
+  padding-bottom: 40rpx!important;
+}

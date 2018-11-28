@@ -309,7 +309,7 @@ Page({
   takeCard: function() {
     var _this = this;
     wx.navigateTo({
-      url: '../employee/take-card/guide/index?company_id=' + _this.data.cd.company_id
+      url: '../employee/take-card/open/index?company_id=' + _this.data.cd.company_id
     })
   }
 })

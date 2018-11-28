@@ -1,66 +1,69 @@
-// pages/collect-info/guide/index.js
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    empInfo: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function (res) {
+        that.getEmployeeInfo();
+      })
+    } else {
+      that.getEmployeeInfo();
+    }
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+ * 获取员工信息
+ */
+  getEmployeeInfo: function () {
+    var that = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_employee_info',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session')
+        })
+      },
+      success: res => {
+        if (res.data.result) {
+          that.setData({
+            empInfo: res.data.result
+          })
+          
+        }
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  startRecodeInfo: function () {
+    var that = this;
+  
+    if (app.Util.checkEmpty(that.data.empInfo.id_number)) {
+      wx.navigateTo({
+        url: '/pages/collect-info/identity/index',
+      })
+    }
+    if (app.Util.checkEmpty(that.data.empInfo.input_pic_url) ) {
+      wx.navigateTo({
+        url: '/pages/collect-info/face/index',
+      })
+    }
+    
   }
+
+
+
 })

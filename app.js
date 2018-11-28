@@ -7,6 +7,7 @@ const Promise = require('utils/promise.js');
 var fundebug = require('utils/fundebug.0.9.0.min.js');
 // 配置项
 fundebug.init({
+  // 950ab8d47c6dbb69527a604ee684c588369af4dd554cc59fa38e1e4aa5b763ac
   apikey: "f7a08bd4f8006965ba11314b2571777ea295a98e84766ade31bdb5c272b87428",
   silent: false
 })
@@ -19,11 +20,11 @@ App({
     BASE_IMG_URl:'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/',
     BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
     WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
-    //BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
-    BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
+    BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
+    //BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
     //BENIFIT_API_URL: 'https://marvin-benifit-api-test.slightech.com/mini_program/api',
     //WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com',
-    //BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/',//开发环境
+    BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/',//开发环境
     //BENIFIT_API_URL: 'http://192.168.1.204:10004/mini_program/api',//员工福利开发环境
   },
   
@@ -33,7 +34,7 @@ App({
     wx.getSystemInfo({
       success(res) {
         wx.setStorage({
-          key: 'sysinfo',
+          key: 'sysinfo', 
           data: res,
         })
         if (res.model.search('iPhone X') != -1) {
@@ -164,6 +165,65 @@ App({
       fail: res => {
         console.log('获取用户登录态失败！' + res.errMsg);
       }
-    }) 
+    })
+
+  },
+
+  /**
+   * 查看服务状态开启
+   * serviceStatus   状态，0：关闭，1：开通，2：试用
+   * param: service 
+   * EMPLOYEE_TAKE_CARD     员工取卡
+   * SHOW_AD_AFTER_TAKE_CARD     取卡后播放广告
+   * ATTEND_FUNCTION     无人值守
+   * INVITE_VISITOR     邀请访客
+   * EMPLOYEE_BENIFIT     周边福利
+   * COMPANY_INTRODUCE_MEDIA     公司图文视频介绍
+   */
+  getServiceStatus(_this, service, callback = function () { }) {
+    var that = this;
+    that.Util.network.POST({
+      url: that.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_company_service_status',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+          service_key: 'service'
+        })
+      },
+      success: res => {
+        console.log(res.data.result);
+        if (res.data.result.service_status == 0) {
+          _this.setData({
+            serviceStatus: 'closed'
+          })
+        }
+        if (res.data.result.service_status == 1) {
+          _this.setData({
+            serviceStatus: 'opened'
+          })
+        }
+        if (res.data.result.service_status == 2) {
+          _this.setData({
+            serviceStatus: 'tried'
+          })
+        }
+        callback();
+      },
+      fail: res => {
+        console.log('获取服务失败')
+      }
+    })
+  },
+
+  /**
+  * 了解小觅商业服务套件
+  */
+  viewBusinessService() {
+    wx.navigateTo({
+      url: '/pages/',
+    })
   }
+
 })
