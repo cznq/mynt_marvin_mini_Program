@@ -26,6 +26,12 @@
   width: 270rpx;
   height: 270rpx;
 }
+._txt_darkgrey {
+  color: rgba(136, 145, 169, .6)!important;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 20rpx;
+}
 .page_step_list .page_step_text{
   padding-left: 34rpx;
 }

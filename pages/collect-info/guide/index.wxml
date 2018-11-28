@@ -5,9 +5,9 @@
     <view class="_font32">首先，我们需要获取您的个人信息，以便我们进行安全和身份验证，另一方面让大厅服务机器人能够认识您并更好的为您提供服务。</view>
   </view>
 
-  <view class='_fixed page__ft  _txt_center'>
+  <view class="_fixed page__ft  _txt_center ">
     <view class="_font24 invoice"><text class="iconfont icon-dunpai"></text>请放心我们不会向任何第三方透露您的身份信息。</view>
-    <button class="_button next_btn _font32" bindtap="startRecodeFace">开始录入</button>
+    <button class="_button next_btn _font32" bindtap="startRecodeInfo">开始录入</button>
   </view>
    
  

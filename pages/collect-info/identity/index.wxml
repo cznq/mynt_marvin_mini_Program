@@ -22,7 +22,8 @@
       <input class="input_text {{(inputError.id_number)?'error':''}}" name="id_number" type="idcard" bindinput="checkForm" bindblur="loseFocus" value='{{formData.id_number}}' placeholder='请输入正确的身份证号或护照号' placeholder-class='input_text_phc' id='i2'></input><icon type="clear" size="16" wx:if="{{formData.id_number}}" catchtap="clearInput" id="b2"></icon>
     </view>
 
-    <view class='_fixed footer'>
+    <view class="_fixed footer {{isIphoneX?'iphonex':''}}">
+      <view class="_font24 invoice"><text class="iconfont icon-dunpai"></text>请放心我们不会向任何第三方透露您的身份信息。</view>
       <button class="_button _font32" formType="submit" disabled="{{(formData.phone && formData.id_number)?'':'disabled'}}" form-type="submit">下一步</button>
     </view>
   </form>

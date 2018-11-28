@@ -6,12 +6,12 @@
       <view class="_font44 _fontw600">{{empInfo.name}}</view>
     </view>
     <view class="_edit _flex _flex_justify_bottom">
-      <button><text class="iconfont icon-yuangongzhuye_bianji"></text></button>
+      <button bindtap="editName"><text class="iconfont icon-yuangongzhuye_bianji"></text></button>
     </view>
   </view>
 
   <view class="page__bd">
-    <view class="identify _flex _flex_justify_center _flex_space_between">
+    <view class="identify _flex _flex_justify_center _flex_space_between" wx:if="{{empInfo.input_pic_url !==''}}">
       <view class="idcard">
         <view class="_font24 _gray">证件号</view>
         <view class="_font32 _gray">{{empInfo.fuzz_id_number}}</view>
@@ -21,8 +21,12 @@
         <view class="_font32 _dark_gray">{{empInfo.phone}}</view>
       </view>
     </view>
-    <view class="_menu_card _font34 _flex _flex_item_center _flex_space_between" bindtap="resetFace">
+    <view class="_menu_card _menu_card_hm _font34 _flex _flex_item_center _flex_space_between" bindtap="resetFace" wx:if="{{empInfo.input_pic_url !==''}}">
       <view class="_flex _flex_item_center"><text class="iconfont icon-yuangonglururenlian"></text><text>重设人脸信息</text></view>
+      <view><text class="iconfont icon-jiantou"></text></view>
+    </view>
+    <view class="_menu_card _font34 _flex _flex_item_center _flex_space_between" bindtap="recodeFace" wx:else>
+      <view class="_flex _flex_item_center"><text class="iconfont icon-yuangonglururenlian"></text><text>录入人脸信息</text></view>
       <view><text class="iconfont icon-jiantou"></text></view>
     </view>
 

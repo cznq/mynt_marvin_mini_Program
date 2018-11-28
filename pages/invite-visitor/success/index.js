@@ -76,7 +76,7 @@ Page({
         }
         that.setData({
           invitation: res.data.result,
-          appointment_time: app.Util.formatTime(res.data.result.appointment_time)
+          appointment_time: app.Util.formatTime(res.data.result.appointment_time + 8 * 3600)
         })
         app.Util.generateMap(that, res.data.result.company.address);
 

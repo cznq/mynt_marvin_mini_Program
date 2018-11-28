@@ -5,11 +5,14 @@ Page({
 
   /**
    * 页面的初始数据
+   * cardType   card门卡, e-card电子门卡
+   * serviceStatus  tried 试用；closed 关闭；opened 开通；
    */
   data: {
     company_id: null,
     empInfo: null,
-    opened: false
+    serviceStatus: 'closed',
+    cardType: 'e-card'
   },
 
   /**
@@ -41,11 +44,13 @@ Page({
           that.setData({
             empInfo: res.data.result
           })
-          if (!app.Util.checkEmpty(that.data.empInfo.input_pic_url) && !app.Util.checkEmpty(that.data.empInfo.id_number)) {
-            that.setData({
-              opened: true
+          if (that.data.serviceStatus !== 'closed' && !app.Util.checkEmpty(that.data.empInfo.input_pic_url) && !app.Util.checkEmpty(that.data.empInfo.id_number)) {
+            wx.navigateTo({
+              url: '../success/index',
             })
           }
+        } else {
+          
         }
       }
     })
@@ -54,48 +59,10 @@ Page({
   /**
    * 开启快捷取卡
    */
-  openFunction: function () {
-    var self = this;
-    toast.showToast(this, {
-      toastStyle: 'toast6',
-      title: '您还没有人脸信息，无法开启员工取卡，请前往录入。',
-      mask: true,
-      isSure: true,
-      sureText: '前往录入',
-      isClose: true,
-      closeText: '取消'
-    });
-  },
-
-  /**
-   * 取消 开启快捷取卡
-   */
-  bindToastClose: function () {
-    toast.hideToast();
-  },
-
-  /**
-   * 确定 开启快捷取卡
-   */
-  bindToastSure: function () {
-    var _this = this;
-    toast.hideToast(_this, {
-      cb: function () {
-        if (app.Util.checkEmpty(_this.data.empInfo.id_number)) {
-          wx.navigateTo({
-            url: '/pages/collect-info/identity/index?company_id=' + _this.data.company_id
-          })
-        } else if (app.Util.checkEmpty(_this.data.empInfo.input_pic_url)) {
-          wx.redirectTo({
-            url: '/pages/collect-info/face/index?company_id=' + _this.data.company_id
-          })
-        } else {
-          wx.redirectTo({
-            url: '/pages/employee/take-card/success/index?company_id=' + _this.data.company_id
-          })
-        }
-      }
-    });
+  openTakeCard: function () {
+    wx.navigateTo({
+      url: '/pages/collect-info/guide/index?company_id=' + this.data.company_id
+    })
   },
 
   /**
@@ -105,12 +72,20 @@ Page({
     var that = this;
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
-        that.getEmployeeInfo();
+        app.getServiceStatus(that, 'EMPLOYEE_TAKE_CARD', that.getEmployeeInfo());
+  
       })
     } else {
-      that.getEmployeeInfo();
+      app.getServiceStatus(that, 'EMPLOYEE_TAKE_CARD', that.getEmployeeInfo());
     }
   },
+
+  /**
+  * 了解小觅商业服务套件
+  */
+  viewBusinessService() {
+    app.viewBusinessService();
+  }
 
 
 })

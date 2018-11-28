@@ -100,14 +100,28 @@ Page({
     })
   },
 
+  recodeFace: function () {
+    wx.navigateTo({
+      url: '/pages/collect-info/identity/index?company_id=' + this.data.cmpInfo.company_id,
+    })
+  },
+
   /**
    * 查看公司信息
    */
   reviewCompany: function () {
     wx.navigateTo({
-      url: '/pages/company',
+      url: '/pages/company/introduction/index',
+    })
+  },
+
+  /**
+   * 修改名字
+   */
+  editName: function () {
+    wx.navigateTo({
+      url: '/pages/employee/edit-name/index',
     })
   }
-
 
 })

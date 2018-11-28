@@ -13,6 +13,7 @@ Page({
    */
 
   data: {
+    isIphoneX: app.globalData.isIphoneX,
     invitation_id: null,
     vip: null,
     company_id: null,
@@ -36,7 +37,7 @@ Page({
       company_id: options.company_id,
       invitation_id: options.invitation_id
     })
-    this.showInfo('#ib2', '录入信息后可以让机器人认出你，并为您提供快捷取卡等服务，同时也是员工身份的证明');
+    this.showInfo('#ib2', '请确保使用您本人的证件号，我们会将它作为重置您人脸信息的凭证。');
   },
 
   /**

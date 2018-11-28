@@ -40,9 +40,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
       success: res => {
         if(res.data.sub_code !== 0) {
           app.myLog("请求错误返回", JSON.stringify(res.data));
-        } else {
-          app.myLog("请求成功返回", JSON.stringify(res.data));
-        }
+        } 
         wx.hideLoading();
         if (requestHandler.success) requestHandler.success(res);
       },
@@ -157,7 +155,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
       return true
     }
   }
-
+  
   function getDate() {
     var myDate = new Date();
     var year = myDate.getFullYear();    
@@ -191,21 +189,37 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     date.setTime((fmt - 8 * 3600) * 1000);
     var y = date.getFullYear();
     var m = date.getMonth() + 1;
-    m = m < 10 ? ('0' + m) : m;
     var d = date.getDate();
-    d = d < 10 ? ('0' + d) : d;
     var h = date.getHours();
     h = h < 10 ? ('0' + h) : h;
     var minute = date.getMinutes();
-    var second = date.getSeconds();
     minute = minute < 10 ? ('0' + minute) : minute;
-    second = second < 10 ? ('0' + second) : second;
-    return y + '-' + m + '-' + d + ' ' + h + ':' + minute;
+    var weekDay = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+    var myDate = new Date(Date.parse(y + '/' + m + '/' + d));
+    
+    return m + '月' + d + '日' + ' ' + weekDay[myDate.getDay()] + ' ' + h + ':' + minute;
   } 
 
+  // 2018-09-11 11:30 转化时间戳 1542369600
   function datetoTime(strtime) {
     var date = new Date(strtime.replace(/-/g, '/')).getTime(); 
     return date / 1000;
+  }
+
+  // datestr: 11月28日 周三 12:30 转化为 2018-02-22 10:23  
+  function strToDate(datestr) {
+    var month = datestr.substr(0, datestr.indexOf('月'));
+    var day = datestr.substr(datestr.indexOf('月') + 1, datestr.indexOf('日') - datestr.indexOf('月') - 1);
+    var time = datestr.substr(datestr.indexOf('周') + 3, 5);
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
+    return month + '-' + day + ' ' + time;
+  }
+
+  function dateToStr(str) {
+    var weekDay = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+    var myDate = new Date(Date.parse(str));
+    return weekDay[myDate.getDay()];    // 星期六
   }
 
   function decodeTextAreaString(str) {
@@ -422,6 +436,8 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   module.exports.setClipboard = setClipboard;
   module.exports.getDate = getDate;
   module.exports.getTime = getTime;
+  module.exports.strToDate = strToDate;
+  module.exports.dateToStr = dateToStr;
   module.exports.formatTime = formatTime;
   module.exports.checkID = checkID;
   module.exports.checkPassport = checkPassport;

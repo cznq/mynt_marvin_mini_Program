@@ -38,6 +38,5 @@
   margin-right: 10rpx;
 }
 .page_ft {
-  padding: 0 60rpx;
-  margin-top: 56rpx;
+  padding: 56rpx 60rpx;
 }
