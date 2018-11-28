@@ -4,7 +4,8 @@ Page({
   data: {
     isiphoneX: app.globalData.isIphoneX,
     button_text:"完成并预览",
-    CstateCode:1
+    CstateCode:1,
+    cd:{}
   },
   onLoad: function (options) {
     var _this = this;
@@ -24,6 +25,29 @@ Page({
         button_text: '完成'
       })
     }
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_info',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session')
+        })
+      },
+      success: res => {
+        console.log(res);
+        if (res.data.sub_code == 0) {
+          _this.setData({
+            cd: res.data.result
+          })
+        } else {
+          console.log(res.data.sub_msg);
+        }
+      },
+      fail: res => {
+        console.log('fail');
+      }
+    })
   },
   //编辑基础信息
   basicInformation:function(){

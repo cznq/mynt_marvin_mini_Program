@@ -11,7 +11,7 @@ Page({
   onLoad: function (options) {
     var _this = this;
 
-    var a = 2;
+    var a = 3;
 
     switch (a) {
       case 1:

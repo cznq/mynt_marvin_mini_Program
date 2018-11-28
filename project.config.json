@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 38,
+			"current": 36,
 			"list": [
 				{
 					"id": 0,
@@ -255,16 +255,16 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 35,
 					"name": "未预约访客",
 					"pathName": "pages/apply-visit/noAppointment/index",
-					"query": ""
+					"query": "company_code=QdALXlMg"
 				},
 				{
-					"id": -1,
+					"id": 36,
 					"name": "到访事由",
 					"pathName": "pages/apply-visit/reasonsVisiting/index",
-					"query": "",
+					"query": "company_id=1&is_force_visitor_input_info=0&take_card_ways=0",
 					"scene": "1044"
 				},
 				{

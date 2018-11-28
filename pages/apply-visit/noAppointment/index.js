@@ -9,10 +9,10 @@ Page({
   },
   onLoad: function (options) {
     var _this = this;
-    
+    _this.data.company_code= options.company_code;
  
     //请求数据
-    companyPage.cd(_this, app, "company", "get_info", wx.getStorageSync('xy_session'),function(){
+    companyPage.cd(_this, app, "company", "get_company_info",options.company_code,function(){
       wx.setNavigationBarTitle({
         title: _this.data.cd.company_short_name
       })
@@ -37,8 +37,9 @@ Page({
     }
   },
   next: function () {
+    var _this = this;
     wx.reLaunch({
-      url: '../reasonsVisiting/index',
+      url: '../reasonsVisiting/index?company_id=' + _this.data.cd.company_id + '&is_force_visitor_input_info=' + _this.data.cd.is_force_visitor_input_info + '&take_card_ways=' + _this.data.cd.take_card_ways
     })
   }
 })

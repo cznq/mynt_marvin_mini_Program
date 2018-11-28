@@ -1,5 +1,5 @@
 /* pages/apply-visit/reasonsVisiting/index.wxss */
-
+@import "../../../templates/showToast/showToast.wxss";
 .step view {
   width: 50%;
 }

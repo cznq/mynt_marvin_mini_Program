@@ -1,4 +1,20 @@
 /* pages/apply-visit/applicationStatus/index.wxss */
 @import "../../../templates/companyPages/companyPages.wxss";
 .f_follow{border-top:0;padding:0;}
-.headerCon{height:500rpx;}
+.headerCon{padding:50rpx 40rpx 0  40rpx;color:#fff;}
+.pubLayout{border-bottom: 1rpx solid #2e90fa;padding-bottom:69rpx;}
+.pubLayout .iconfont{width:56rpx;height: 59rpx;font-size:56rpx;line-height: 56rpx;float:left;margin:0 28rpx 100rpx 0;}
+.pubLayout .icon-shenqingtongguo{width:58rpx;height:58rpx;font-size:58rpx;line-height: 58rpx;}
+.pubLayout .title{font-size:44rpx;line-height: 44rpx;padding-bottom:18rpx;}
+.pubLayout .con{font-size:26rpx;line-height:34rpx;}
+.telphone{width:284rpx;height: 76rpx;border-radius: 38rpx;border:1rpx solid #fff;line-height:76rpx;font-size:32rpx;margin:43rpx auto 22rpx auto;}
+.icon-lianxiqiantai{float: left;width: 34rpx;height: 34rpx;margin:22rpx 13rpx 0 53rpx;font-size:34rpx;line-height: 34rpx;}
+.submitApplications{padding-bottom:40rpx;}
+.submitApplications .hint{color:rgba(255,255,255,1);font-size: 24rpx;text-align: center;}
+.pass{padding-bottom: 40rpx;}
+.pass .pubLayout{border-bottom:0;}
+.pass .cardPrompt{background: #fff;height: 430rpx;border-radius: 14rpx;color:#000;text-align:center;padding-top:60rpx;}
+.t1{font-size:40rpx;line-height: 40rpx;}
+.c1{color:#18181C;font-size:26rpx;line-height: 26rpx;padding:22rpx 0 46rpx 0;}
+.cardPrompt image{width:546rpx;height: 258rpx;margin:0 auto;display: block;}
+.refuse .pubLayout{border-bottom:0;}

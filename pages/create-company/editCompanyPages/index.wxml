@@ -2,6 +2,6 @@
 <import src="../../../templates/companyPages/companyPages.wxml" />
 <template is="companyPages" data="{{cd:cd}}" />
 <view class='_fixed footer {{isiphoneX ? "footer_x" : ""}}'>
-  <view class='hint'>企业展示信息部分内容不合规，未通过审核，请重新编辑</view>
+  <view class='hint' wx:if="{{cd.review_status==2}}">企业展示信息部分内容不合规，未通过审核，请重新编辑</view>
   <button class="_button" bindtap="next" formType="submit">{{button_text}}</button>
 </view>

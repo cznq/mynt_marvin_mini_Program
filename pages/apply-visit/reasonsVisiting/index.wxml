@@ -15,7 +15,7 @@
       <view>
         <text class='_font34 _txt_gray'>到访事由（选填）</text>
       </view>
-      <textarea class='textarea_text' placeholder-class='textarea_text_phc' placeholder='请在这里描述您的到访事由，以便公司前台确认您的身份和到访意图。'>
+      <textarea class='textarea_text' placeholder-class='textarea_text_phc' name="reason" placeholder='请在这里描述您的到访事由，以便公司前台确认您的身份和到访意图。'>
       
       </textarea>
     </view>
@@ -25,3 +25,5 @@
   </view>
   </form>
 </view>
+<import src="../../../templates/showToast/showToast.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />
