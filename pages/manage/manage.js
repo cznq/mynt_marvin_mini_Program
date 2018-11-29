@@ -2,6 +2,7 @@ var app = getApp()
 Page({
   data: {
     isiphoneX: app.globalData.isIphoneX,
+    showLoginModal:false,
     indicatorDots: true, //是否显示面板指示点
     indicatorColor: "#8891A9", //指示点颜色
     indicatorActiveColor: "#007BFF", //当前选中的指示点颜色
@@ -93,19 +94,60 @@ Page({
       isShow: true
     }]
   },
+  bindGetUserInfo: function () {
+    var that = this;
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function (res) {
+              console.log(res);
+              that.setData({
+                showLoginModal: false
+              })
+              app.authorizeLogin(res.encryptedData, res.iv, () => {
+                var union_id = wx.getStorageSync('xy_session');
+                that.get_review_status(that, union_id);
+              });
+            }
+          })
+        }
+      }
+    })
+  },
   onLoad: function(options) {
     var _this = this;
 
     //检测登陆
+    // if (!(app.checkSession())) {
+    //   app.checkLogin().then(function(res) {
+    //     var union_id = wx.getStorageSync('xy_session');
+    //     _this.get_review_status(_this, union_id);
+    //   })
+    // } else {
+    //   var union_id = wx.getStorageSync('xy_session');
+    //   _this.get_review_status(_this, union_id);
+    // }
+
     if (!(app.checkSession())) {
-      app.checkLogin().then(function(res) {
-        var union_id = wx.getStorageSync('xy_session');
-        _this.get_review_status(_this, union_id);
+      app.checkLogin().then(function (res) {
+        if (!(app.checkSession())) {
+          _this.setData({
+            showLoginModal: true
+          })
+        } else {
+          var union_id = wx.getStorageSync('xy_session');
+          _this.get_review_status(_this, union_id);
+        }
       })
     } else {
       var union_id = wx.getStorageSync('xy_session');
       _this.get_review_status(_this, union_id);
     }
+
+
+
     _this.data.islock = false;
   },
   onShow:function(){
