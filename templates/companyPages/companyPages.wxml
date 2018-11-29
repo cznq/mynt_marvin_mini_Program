@@ -9,10 +9,10 @@
             <form>
               <button open-type="share" class='share icon iconfont icon-fenxiang' bindtap="share"></button>
             </form>
-            {{cd.company_name}}
+            {{cd.company_short_name}}
             <view class='vipicon'></view>
           </view>
-          <view class='t2'>{{cd.company_short_name}}</view>
+          <view class='t2'>{{cd.company_name}}</view>
           <image class='_absolute vip' src='{{vipImg}}'></image>
         </view>
         <view class='bottom _clearfloat'>

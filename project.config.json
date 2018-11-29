@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": 37,
 			"list": [
 				{
 					"id": 0,
@@ -259,20 +259,21 @@
 					"id": 35,
 					"name": "未预约访客",
 					"pathName": "pages/apply-visit/noAppointment/index",
-					"query": "company_code=QdALXlMg"
+					"query": "scene=2BNT2BNT_12111698705bff9d3bc14b8",
+					"scene": "1011"
 				},
 				{
 					"id": 36,
 					"name": "到访事由",
 					"pathName": "pages/apply-visit/reasonsVisiting/index",
-					"query": "company_id=1&is_force_visitor_input_info=0&take_card_ways=0",
+					"query": "company_id=1&is_force_visitor_input_info=1&take_card_ways=0",
 					"scene": "1044"
 				},
 				{
-					"id": -1,
+					"id": 37,
 					"name": "未预约访客状态",
 					"pathName": "pages/apply-visit/applicationStatus/index",
-					"query": "",
+					"query": "visit_apply_id=43",
 					"scene": "1044"
 				},
 				{
