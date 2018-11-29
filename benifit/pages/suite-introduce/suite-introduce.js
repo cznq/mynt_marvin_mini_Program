@@ -69,13 +69,28 @@ Page({
   },
   getSuiteInfos: function() {
     var that = this;
-    that.setData({
-      'service_suite': '0',
-      'origin_price':'1980',
-      'now_price': '198',
-      'phone' :'02566693872'
-    });
-    console.log(123);
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_service_pack_html_info',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session')
+        })
+      },
+      success: res => {
+        console.log(res);
+        if (res.data.result) {
+            that.setData({
+              phone: res.data.result.phone,
+              service_suite: res.data.service_suite,
+              cost_price: res.data.result.cost_price,
+              current_price: res.data.result.current_price,
+              image: res.data.result.image,
+            })
+        }
+      }
+    })
   },
   makePhoneCall: function (e) {
     wx.makePhoneCall({

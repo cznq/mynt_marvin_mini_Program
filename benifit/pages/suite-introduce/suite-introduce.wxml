@@ -1,12 +1,7 @@
 <!--pages/suite-introduce/suite-introduce.wxml-->
 <view class='page'>
   <view class='page__hd'></view>
-  <view class='page__cont'>
-    <block wx:for="{{5}}" wx:key="" wx:for-item="num">
-      <view class='image__view'>
-        <image src="https://slightech-marvin.oss-cn-hangzhou.aliyuncs.com/production/company/191/product_pic_urls/66f6e7ed14c959707b403c0e8c50af9f.jpg"></image>
-      </view>
-    </block>
+  <view class='page__cont'><image  wx:for="{{image}}" wx:key="" wx:for-item="item" src="{{item}}" mode='widthFix'></image>
   </view>
   <view class='page__ft is_buy' wx:if="{{service_suite==1}}">
     <view class='info'>
@@ -18,7 +13,7 @@
       </view>
     </view>
     <view class='consult'>
-      <button bindtap="makePhoneCall" data-phone="010222556645">联系客服</button>
+      <button open-type="contact" show-message-card="true" session-from="shop-order-detail" send-message-title="商务套件咨询">联系客服</button>
     </view>
   </view>
   <view class='page__ft' wx:else>
@@ -27,12 +22,12 @@
         小觅楼宇商业服务套餐
       </view>
       <view class='info__ft'>
-        <text class='text__hd'>￥198</text>
-        <text class='text__blur' style='padding-left:14rpx;'>价值1980</text>
+        <text class='text__hd'>￥{{current_price}}</text>
+        <text class='text__blur' style='padding-left:14rpx;'>价值{{cost_price}}</text>
       </view>
     </view>
     <view class='consult'>
-      <button bindtap="makePhoneCall" data-phone="010222556645">立即咨询</button>
+      <button bindtap="makePhoneCall" data-phone="{{phone}}">立即咨询</button>
     </view>
   </view>
 </view>
