@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 37,
+			"current": 40,
 			"list": [
 				{
 					"id": 0,
@@ -282,6 +282,20 @@
 					"pathName": "pages/invite-visitor/guide/index",
 					"query": "scene=17_234324",
 					"scene": "1011"
+				},
+				{
+					"id": 39,
+					"name": "线下二维码_协议商户前台",
+					"pathName": "benifit/pages/vip-card/vip-card",
+					"query": "",
+					"scene": "1044"
+				},
+				{
+					"id": -1,
+					"name": "线下二维码_扫码买单",
+					"pathName": "benifit/pages/scan-pay/scan-pay",
+					"query": "",
+					"scene": "1044"
 				}
 			]
 		}

@@ -263,6 +263,7 @@ Page({
   },
   //加入公司
   joinCompany: function() {
+    var _this = this;
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
         if (!(app.checkSession())) {
@@ -284,6 +285,7 @@ Page({
   },
   //创建公司
   createCompany: function() {
+    var _this = this;
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
         if (!(app.checkSession())) {

@@ -1,0 +1,53 @@
+<!--pages/scan-pay/scan-pay.wxml-->
+<view class="page">
+
+    <view class="card-wrapper vip-card-wrapper">
+      <view class="card-content">
+        <view class="vip-card-top">
+          <view class="name"><text>协</text>王小姐{{employeeInfo.name}}</view>
+          <!-- {{employeeInfo.avatar}} -->
+          <image class="avatar" src="http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/111.jpg" ></image>
+        </view>
+        <view class="vip-card-middle">
+          <view class="company-name">轻客智能科技有限公司{{employeeInfo.company_name}}</view>
+          <view class="company-address">国际世纪城,北京大厦,C1座{{employeeInfo.company_address}}</view>
+        </view>
+        <view class="bar">
+        <view class='backfont'>员工福利卡</view>
+          
+            <view class="id-num">ID: 5326681200{{employeeInfo.employee_card_id}}</view>
+            <view class="expire-time">有效期: 2019.8.10{{employeeInfo.expire}}</view>
+          
+        </view>
+      </view>
+    </view>
+
+    <view class='subtit'>
+      <view class='line'></view>
+      <view class='text'>您是福利员工卡会员,享受以下优惠</view>
+    </view>
+
+    <view class='discountBlock'>
+    <image class='logo' src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/111.jpg'></image>
+      <view class='name'>
+        太湖码头酒家
+      </view>
+      <view class='hr'>
+        <view class='pay'>协议买单</view>
+        <view class='t1'>满35元减18元</view>
+        <view class='hint'>周一至周五可用 | 部分商品可用</view>
+      </view>
+      <view class='hr'>
+        <view class='pay'>协议买单</view>
+        <view class='t1'>满35元减18元</view>
+        <view class='hint'>周一至周五可用 | 部分商品可用</view>
+      </view>
+      <view class='hr'>
+        <view class='pay'>协议买单</view>
+        <view class='t1'>满35元减18元</view>
+        <view class='hint'>周一至周五可用 | 部分商品可用</view>
+      </view>
+
+
+    </view>
+</view>

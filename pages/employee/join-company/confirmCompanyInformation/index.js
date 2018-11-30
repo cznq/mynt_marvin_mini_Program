@@ -21,7 +21,7 @@ Page({
                 showLoginModal: false
               })
               app.authorizeLogin(res.encryptedData, res.iv, () => {
-                _this.get_info();
+                that.get_info();
               });
             }
           })
@@ -35,7 +35,7 @@ Page({
     if (!(app.checkSession())) {
       app.checkLogin().then(function(res) {
         if (!(app.checkSession())) {
-          that.setData({
+          _this.setData({
             showLoginModal: true
           })
         } else {
@@ -124,7 +124,7 @@ Page({
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
         if (!(app.checkSession())) {
-          that.setData({
+          _this.setData({
             showLoginModal: true
           })
         } else {

@@ -62,7 +62,6 @@
         <view class="tips">如需开通请联系楼宇管理员，以公司为单位开通后，公司员工在合约商户消费可享商户协议价。</view>
       </view>
     </view>
-
     <!-- 周边热门 -->    
     <view class="round-hot">
       <!-- 热门餐饮 -->
@@ -99,7 +98,6 @@
         </scroll-view>
         </view>
       </view>
-
       <!-- 热门酒店 -->
       <view class="hot-restaurant hot-area" wx:if="{{hotHotelCommerce}}">
         <view class="top-bar">
@@ -175,7 +173,6 @@
         </scroll-view>
         </view>
       </view>
-
     </view>
   </view>
     
@@ -184,4 +181,3 @@
   </view>
   
 </view>
-

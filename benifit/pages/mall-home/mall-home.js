@@ -1,7 +1,6 @@
 // pages/benifit-card/benifit-card.js
 const app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -31,11 +30,11 @@ Page({
       id: 'hotel',
       title: '酒店'
     },
-      {
-        typeid: 3,
-        id: 'business',
-        title: '商务宴请'
-      }
+    {
+      typeid: 3,
+      id: 'business',
+      title: '商务宴请'
+    }
     ],
     tabFixed: false,
     showVipCardTips: true,
@@ -43,7 +42,6 @@ Page({
     employeeInfo: null,
     taboffsetTop: null
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -64,7 +62,6 @@ Page({
     }
     self.getOffsetTop();
   },
-
   /**
    * 获取tab 距离上面的距离
    */
@@ -80,7 +77,6 @@ Page({
       })
     })
   },
-
   /**
    * 获取员工信息
    */
@@ -109,14 +105,13 @@ Page({
       }
     })
   },
-
   /**
    * 监听滚动，tab置顶
    */
   onPageScroll: function (e) {
     console.log(e.scrollTop);
     var that = this;
-    
+
     if (e.scrollTop < that.data.taboffsetTop) {
       that.setData({
         tabFixed: false
@@ -125,9 +120,8 @@ Page({
       that.setData({
         tabFixed: true
       });
-    }    
+    }
   },
-
   /**
    * 切换Tab
    */
@@ -137,7 +131,6 @@ Page({
     this.setData({ tabSelected: selectedId, selectedType: typedId });
     this.getCommerceList(typedId);
   },
-
   /**
    * 头部轮播图跳转
    */
@@ -147,7 +140,6 @@ Page({
       url: link,
     })
   },
-
   /**
    * 点击VIP卡片
    */
@@ -156,7 +148,6 @@ Page({
       url: '/benifit/pages/vip-card/vip-card'
     })
   },
-
   /**
    * 获取首页的商家列表
    */
@@ -189,19 +180,17 @@ Page({
         } else {
           that.setData({
             shopList: null
-          })  
+          })
         }
       }
     })
   },
-
   transData(preData) {
     for (var i = 0; i < preData.length; i++) {
       preData[i].agreement_price = String(preData[i].agreement_price).split('');
     }
     return preData;
   },
-
   /**
  * 跳转到商家详情
  */
@@ -212,7 +201,6 @@ Page({
       url: '/benifit/pages/mall-detail/mall-detail?commerce_id=' + commerce_id + '&commerce_type=' + commerce_type,
     })
   },
-
   /**
    * 检测是否第一次进来
    */
@@ -224,21 +212,18 @@ Page({
         showVipCardTips: false
       });
     }
-    
-  },
 
+  },
   onReady: function () {
     wx.setStorage({
       key: 'firstComeIn',
       data: 'true'
     })
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
     this.checkShowTip();
   },
-
 })

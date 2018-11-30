@@ -1,0 +1,123 @@
+/* pages/scan-pay/scan-pay.wxss */
+
+page {
+  background: #f5f5f5;
+}
+.page{padding-bottom:30rpx;}
+.card-wrapper {
+  padding: 40rpx 60rpx 0;
+}
+
+.card-content {
+  border: 1px solid #efefef;
+  text-align: center;
+  border-radius: 20rpx;
+  background: #fff;
+  height: 394rpx;
+  overflow: hidden;
+}
+
+.vip-card-top {
+  padding: 31rpx 45rpx 0 31rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.vip-card-top .name text {
+  background: rgba(224, 181, 127, 1);
+  color: #fff;
+  font-size: 22rpx;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 15rpx;
+  vertical-align: top;
+  margin-top: 5rpx;
+  line-height: 32rpx;
+  width: 32rpx;
+  display: inline-block;
+}
+
+.vip-card-top .name {
+  font-size: 36rpx;
+  margin-top: 14rpx;
+  font-weight: bolder;
+  line-height: 36rpx;
+  color: #1a2a4b;
+}
+
+.vip-card-top .avatar {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 70rpx;
+  overflow: hidden;
+  margin-top: 6rpx;
+}
+
+.vip-card-middle {
+  text-align: left;
+  padding: 52rpx 30rpx 48rpx 28rpx;
+  color: #1a2a4b;
+}
+
+.vip-card-middle .company-name {
+  font-size: 22rpx;
+}
+
+.vip-card-middle .company-address {
+  margin-top: 20rpx;
+  font-size: 36rpx;
+  line-height: 36rpx;
+  font-weight: 300;
+}
+
+.vip-card-wrapper .card-content .bar {
+  background: -webkit-linear-gradient(left, rgba(233, 195, 149, 1), rgba(217, 167, 107, 1));
+  background: linear-gradient(left, rgba(233, 195, 149, 1), rgba(217, 167, 107, 1));
+  color: #fff;
+  font-size: 22rpx;
+  height: 99rpx;
+  line-height: 99rpx;
+  position: relative;
+}
+
+.backfont {
+  position: absolute;
+  right: 16rpx;
+  top: 0;
+  height: 99rpx;
+  font-size: 68rpx;
+  color: #e2b988;
+  font-weight: bolder;
+}
+
+.card-content .bar .id-num {
+  background: #eacaa2;
+  float: left;
+  margin: 26rpx 0 0 32rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  padding: 0 16rpx;
+}
+
+.card-content .bar .expire-time {
+  position: absolute;
+  right: 45rpx;
+  top: 0;
+  float: right;
+  font-weight: bold;
+  z-index: 10;
+}
+/*--卡片---*/
+.subtit{position:relative;padding: 40rpx 60rpx 174rpx 60rpx;text-align: center; }
+.subtit .line{background: #e3e4e5;line-height: 1rpx;height: 1rpx;position: absolute;top:68rpx; left: 60rpx;width:630rpx;}
+.subtit .text{background: #f5f5f5;color:#9DA1AA;font-size:24rpx;line-height: 24rpx;position: absolute;left:50%;top:57rpx;width: 384rpx;height: 26rpx;margin-left:-192rpx;}
+
+.discountBlock{position:relative;background: #fff;border-radius: 8rpx;width:690rpx;margin:0 auto;}
+.discountBlock .logo{width:145rpx;height:145rpx;border-radius: 4rpx;position:absolute;left:50%;top:0;margin-left:-72.5rpx;margin-top:-72.5rpx;}
+.discountBlock .name{font-size:32rpx;line-height: 32rpx;padding-top:93rpx;text-align:center;padding-bottom:55rpx;}
+
+.hr{border-bottom:1rpx dashed #D8E3F0;padding:40rpx 40rpx 32rpx 40rpx;}
+.hr .t1{font-size:38rpx;color:#1A2A4B;line-height: 38rpx;padding-bottom:19rpx;}
+.hr .hint{font-size:24rpx;color:#9397A2;line-height:24rpx;}
+.hr .pay{float:right;width:136rpx;height:48rpx;background: #FF6900;color:#fff;border-radius: 8rpx;font-size:24rpx;line-height:48rpx;text-align: center;margin-top:17rpx;}

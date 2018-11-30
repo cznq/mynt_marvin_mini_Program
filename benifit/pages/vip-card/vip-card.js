@@ -1,7 +1,6 @@
 // pages/benifit-card/benifit-card.js
 const app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -13,7 +12,6 @@ Page({
     hotHotelCommerce: null,
     hotEnterCommerce: null
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -32,10 +30,9 @@ Page({
       that.getEmployeeInfo();
       for (let index in commerceData) {
         that.getHotCommerce(index);
-      };  
+      };
     }
   },
-
   /**
    * 获取员工信息
    */
@@ -73,12 +70,11 @@ Page({
       }
     })
   },
-
   /**
    * 获取热门商家列表
    */
   getHotCommerce(typeId) {
-    var that = this; 
+    var that = this;
     app.Util.network.POST({
       url: app.globalData.BENIFIT_API_URL,
       params: {
@@ -108,14 +104,12 @@ Page({
       }
     })
   },
-
   transData(preData) {
     for (var i = 0; i < preData.length; i++) {
       preData[i].agreement_price = String(preData[i].agreement_price).split('');
     }
     return preData;
   },
-
   /**
    * 跳转到商家详情
    */
@@ -126,7 +120,6 @@ Page({
       url: '/benifit/pages/mall-detail/mall-detail?commerce_id=' + commerce_id + '&commerce_type=' + commerce_type,
     })
   },
-
   /**
    * 跳转到商城首页
    */
@@ -139,5 +132,4 @@ Page({
       url: '/benifit/pages/mall-home/mall-home?tabSelected=' + tabSelected + '&selectedType=' + selectedType,
     })
   }
-
 })

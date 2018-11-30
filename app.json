@@ -63,6 +63,7 @@
       "root": "benifit",
       "name": "Benifit",
       "pages": [
+        "pages/scan-pay/scan-pay",
         "pages/vip-card/vip-card",
         "pages/mall-home/mall-home",
         "pages/mall-detail/mall-detail",
