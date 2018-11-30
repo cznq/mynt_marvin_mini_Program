@@ -10,7 +10,7 @@
   <form bindsubmit='editSubmit'>
     <view class="inputWrapper" id="inputRow">
       <block wx:for="{{Length}}" wx:key="item"> 
-        <input class="iptbox {{inputValue.length==index?'active':''}}" value="{{inputValue.length>=index+1?inputValue[index]:''}}" disabled catchtap='Tap'></input> 
+        <input class="iptbox {{inputValue.length==index?'active':''}}" value="{{inputValue.length>=index+1?inputValue[index]:''}}" disabled catchtap='Tap' type="idcard"></input> 
       </block>
     </view>
     <input name="idnum" type="idcard" class='ipt' focus="{{isFocus}}" bindinput="Focus"></input> 

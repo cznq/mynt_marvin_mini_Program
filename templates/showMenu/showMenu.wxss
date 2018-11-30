@@ -1,4 +1,36 @@
 /*showToast*/
-.menu-bg {position: fixed;top: 0;bottom: 0;z-index: 900;left: 0;right: 0;background:#818181;opacity:0.4;}
-.menu{position: fixed;display: inline-block;border-radius: 10rpx;text-align: left;box-shadow: 1px 1px 1px #ccc;right: 60rpx;z-index: 901;color:#1B2B4C;background: #fff;padding: 15rpx 26rpx;width: auto;}
-.menu-list {line-height: 1;font-size: 24rpx;color:#FD4747;margin:15rpx 0;}
+
+.menu-bg {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 900;
+  left: 0;
+  right: 0;
+  background: #818181;
+  opacity: 0.4;
+  overflow: hidden;
+  height: 100vh;
+  width: 100%;
+}
+
+.menu {
+  position: fixed;
+  display: inline-block;
+  border-radius: 10rpx;
+  text-align: left;
+  box-shadow: 1px 1px 1px #ccc;
+  right: 60rpx;
+  z-index: 901;
+  color: #1b2b4c;
+  background: #fff;
+  padding: 15rpx 26rpx;
+  width: auto;
+}
+
+.menu-list {
+  line-height: 1;
+  font-size: 24rpx;
+  color: #fd4747;
+  margin: 15rpx 0;
+}

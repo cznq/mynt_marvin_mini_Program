@@ -4,7 +4,7 @@
     "pages/collect-info/guide/index",
     "pages/collect-info/face/index",
     "pages/collect-info/identity/index",
-    "pages/collect-info/confirm/index",
+    "pages/collect-info/confirmIdentity/index",
     "pages/employee/homepage/index",
     "pages/employee/edit-name/index",
     "pages/employee/take-card/open/index",

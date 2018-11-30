@@ -1,6 +1,6 @@
 <template name="showMenu">
     <block wx:if="{{showMenu.isShow? showMenu.isShow: false}}">
-        <view class="menu-bg" wx:if="{{showMenu.mask==false? false : true}}" bindtap='hideToastMenu'></view>
+        <view class="menu-bg" wx:if="{{showMenu.mask==false? false : true}}" bindtap='hideToastMenu' catchtouchmove="preventTouchMove"></view>
         <view class="menu" style="{{showMenu.isLeft?'left':'right'}}:{{showMenu.lrPos}}; top:{{showMenu.topPos}}">  
           <view class='menu-list' wx:for="{{showMenu.menuList}}" wx:key='' wx:for-item="item" bindtap="{{showMenu.bindFun}}">{{item}}</view>
         </view>

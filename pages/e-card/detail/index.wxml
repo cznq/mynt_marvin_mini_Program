@@ -3,20 +3,18 @@
   
   </view>
 
-  
-
-
   <view class="page_bd">
     <view class="card-wrapper">
       <view class="card-info _txt_center">
-        <image class="_logo" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/diamond%402x.png"></image>
+        <image class="_logo" src="{{cmpInfo.logo}}"></image>
         <view class="_name _font44 _fontw600 _flex _flex_justify_center _flex_item_center">
           <text>员工电梯卡</text>
         </view>
         <view class="_short_name _font24">对准电梯扫码口扫描二维码上楼</view>
         
           <view class="e-card-qrcode">
-            <image src='https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/sample-qrcode.png'></image>
+            <image src="{{floor_qrcode_url}}" wx:if="{{floor_qrcode_url}}"></image>
+            <view class="error _font28 _txt_center" wx:else>获取二维码失败</view>
           </view>
           <view class="_font24 qr-intro">该码实时更新，请勿泄露。</view>
         
@@ -26,18 +24,18 @@
         
         <view class=" _address _flex _flex_item_center ">
           <view class="int-item-name _font24">公司地址</view>
-          <view class="_font28 int-item-info">北京市朝阳区158号科技园E2栋</view>
+          <view class="_font28 int-item-info">{{cmpInfo.address}}</view>
         </view>
         <view class=" _address _flex _flex_item_center  ">
           <view class="int-item-name _font24">详细地址</view>
-          <view class="_font28 int-item-info">12层 1506室</view>
+          <view class="_font28 int-item-info">{{cmpInfo.floor}}层 {{cmpInfo.room}}室</view>
         </view>
         <view class="company-card _flex _flex_item_center _flex_space_between" bindtap="companyIntro">
           <view class="_flex _flex_item_center _flex_space_between">
               <image src='https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/diamond%402x.png'></image>
                <view>
-                <view class="_name _fontw600 _font36">轻客智能科技</view>
-                <view class="_short_name _font24">轻客智能科技</view>
+                <view class="_name _fontw600 _font36">{{cmpInfo.company_short_name}}</view>
+                <view class="_short_name _font24">{{cmpInfo.company_name}}</view>
               </view>
             </view>
 

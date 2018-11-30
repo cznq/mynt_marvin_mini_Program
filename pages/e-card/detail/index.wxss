@@ -44,10 +44,12 @@
   color: rgba(136, 145, 169, 1);
   margin-top: 16rpx;
 }
-.e-card-qrcode image {
+.e-card-qrcode image,
+.error {
   width: 366rpx;
   height: 366rpx;
-  margin-top: 32rpx;
+  line-height: 366rpx;
+  margin: 32rpx auto 0;
 }
 .qr-intro {
   color: rgba(136, 145, 169, .6);

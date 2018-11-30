@@ -23,12 +23,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
-       this.getStaffList();
+        that.getStaffList();
       })
     } else {
-     this.getStaffList();
+      that.getStaffList();
     }
   },
 
@@ -118,13 +119,15 @@ Page({
    */
   editEmp: function (e) {
     console.log(e);
+    console.log(e.target.offsetTop);
+
     this.setData({ 
       'editData.union_id': e.currentTarget.dataset.unionid,
       'editData.employee_name': e.currentTarget.dataset.name
     });
     menu.showMenu(this, {
       menuList: ['从列表删除'],
-      topPos: e.target.offsetTop + 30 + 'px',
+      topPos: e.touches[0].clientY + 20 + 'px',
       lrPos: 60 + 'rpx',
       isLeft: false,
       mask: true,
@@ -174,10 +177,7 @@ Page({
     menu.hideMenu();
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+  preventTouchMove: function () {
 
   },
 

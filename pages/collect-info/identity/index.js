@@ -4,19 +4,18 @@ Page({
 
   /**
    * 录入身份信息公共页面
-   * 邀请流程，员工快捷取卡
+   * 邀请流程，员工快捷取卡，员工信息修改，申请发卡，协议商户
    * Param: 
-   * invitation_id   邀请id
-   * vip   是否VIP邀请
-   * company_id   公司id
-   * 
+   *   source (来源) | params (参数)                               | callback（回调）
+   *   invite       | form_id                                     | /pages/invite-visitor/success/index?invitation_id
+   *   takeCard     | card_type                                   | /pages/employee/take-card/success/index 或者  /pages/e-card/detail/index
+   *   editInfo     |                                             | /pages/employee/homepage/index
+   *   applyVisit   |  company_id, form_id, visitor_name, note    | /pages/apply-visit/applicationStatus/index?visit_apply_id
+   *   benifit      |  commerce_id                                | /benifit/pages/vip-card/vip-card
    */
 
   data: {
     isIphoneX: app.globalData.isIphoneX,
-    invitation_id: null,
-    vip: null,
-    company_id: null,
     formData: {
       phone: null,
       id_number: null
@@ -33,9 +32,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      vip: options.vip,
-      company_id: options.company_id,
-      invitation_id: options.invitation_id
+     
     })
     this.showInfo('#ib2', '请确保使用您本人的证件号，我们会将它作为重置您人脸信息的凭证。');
   },
@@ -96,6 +93,15 @@ Page({
       var method = 'bind';
     }
     if (this.checkParam(phone, id_number)) {
+
+      //app.idInformationSubmit(service, method, id_type, phone, id_number, callback = function () { })
+
+      wx.redirectTo({
+        url: '/pages/collect-info/face/index?source=' + this.data.invitation_id + '&company_id=' + this.data.company_id + '&vip=' + this.data.vip,
+      })
+
+
+
       app.Util.network.POST({
         url: app.globalData.BASE_API_URL,
         params: {
@@ -122,6 +128,8 @@ Page({
           }
         }
       })
+
+
     }
 
   },
@@ -211,78 +219,6 @@ Page({
         errorData: null
       })
     }
-  },
-
-  /**
-   * 输入框失去焦点，清除按钮消失
-   */
-  loseFocus: function () {
-
-  },
-
-  /**
-   * 获取访客信息
-   */
-  getVisitorInfo: function () {
-    var that = this;
-    var unionId = wx.getStorageSync('xy_session');
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'visitor',
-        method: 'get_visitor_info',
-        data: JSON.stringify({
-          union_id: unionId
-        })
-      },
-      success: res => {
-        if (res.data.sub_code == 100013) {
-          wx.showToast({
-            title: res.data.sub_msg,
-            icon: 'none'
-          })
-          return false;
-        }
-        if (res.data.result && !app.Util.checkEmpty(res.data.result.id_number)) {
-          wx.redirectTo({
-            url: '/pages/collect-info/face/index?invitation_id=' + that.data.invitation_id + '&company_id=' + this.data.company_id + '&vip=' + that.data.vip,
-          })
-        }
-
-      }
-    })
-  },
-
-  /**
-   * 获取员工信息
-   */
-  getEmployeeInfo: function () {
-    var that = this;
-    var unionId = wx.getStorageSync('xy_session');
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'company',
-        method: 'get_employee_info',
-        data: JSON.stringify({
-          union_id: unionId,
-        })
-      },
-      success: res => {
-        if (res.data.sub_code == 100013) {
-          wx.showToast({
-            title: res.data.sub_msg,
-            icon: 'none'
-          })
-          return false;
-        }
-        if (!app.Util.checkEmpty(res.data.result.id_number)) {
-          wx.redirectTo({
-            url: '/pages/collect-info/face/index?invitation_id=' + that.data.invitation_id + '&company_id=' + this.data.company_id + '&vip=' + that.data.vip,
-          })
-        }
-      }
-    })
   },
 
   getStaffInfo: function () {

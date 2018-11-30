@@ -3,12 +3,13 @@ const Promise = require('utils/promise.js');
  * Fundebug 打印日志
  * 其它页面引用  app.globalData.fundebug.notify("TEST", "Hello, Fundebug!");
  * 抛出的错误对象   app.globalData.fundebug.notifyError(new Error("TEST"));
+ * 
  */
 var fundebug = require('utils/fundebug.0.9.0.min.js');
 // 配置项
 fundebug.init({
-  // 950ab8d47c6dbb69527a604ee684c588369af4dd554cc59fa38e1e4aa5b763ac
-  apikey: "f7a08bd4f8006965ba11314b2571777ea295a98e84766ade31bdb5c272b87428",
+  //apikey: "950ab8d47c6dbb69527a604ee684c588369af4dd554cc59fa38e1e4aa5b763ac",  //正式环境
+  apikey: "f7a08bd4f8006965ba11314b2571777ea295a98e84766ade31bdb5c272b87428",  //测试环境
   silent: false
 })
 
@@ -224,7 +225,109 @@ App({
     wx.navigateTo({
       url: '/pages/',
     })
+  },
+
+  /**
+   * 身份信息提交
+   * param: id_type, phone, id_number
+   */
+  idInformationSubmit(service, method, id_type, phone, id_number, callback = function () {}) {
+    var that = this;
+    that.Util.network.POST({
+      url: that.globalData.BASE_API_URL,
+      params: {
+        service: service,
+        method: method,
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+          id_type: id_type,
+          phone: phone,
+          id_number: id_number
+        })
+      },
+      success: res => {
+        if (res.data.sub_code == 0) {
+          callback();
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '提交身份信息失败'
+          })
+        }
+      }
+    })
+
+  },
+
+  /**
+   * 申请信息提交
+   * param: 
+   */
+  applySubmit(company_id, form_id, visitor_name, note, id_type, phone, id_number, callback = function () {}) {
+    var that = this;
+    that.Util.network.POST({
+      url: that.globalData.BASE_API_URL,
+      params: {
+        service: 'visitor',
+        method: 'visit_apply',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+          form_id: form_id,
+          visit_company_id: company_id,
+          visitor_name: visitor_name,
+          id_type: id_type,
+          phone: phone,
+          id_number: id_number,
+          note: note
+        })
+      },
+      success: res => {
+        if (res.data.sub_code == 0) {
+          callback(res.data.result.visit_apply_id);
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.sub_msg
+          })
+        }
+      }
+    })
+    
+  },
+
+  /**
+   * 检测是否录入身份和人脸信息
+   * param:  personType (employee 员工, visitor 访客)
+   */
+  checkRecodeFace(personType, callback = function () {}) {
+    var that = this;
+    if (personType == 'employee') {
+      var service = 'company', method = 'get_employee_info';
+    } else if (personType == 'visitor') {
+      var service = 'visitor', method = 'get_visitor_info';
+    } else {
+      return false;
+    }
+    that.Util.network.POST({
+      url: that.globalData.BASE_API_URL,
+      params: {
+        service: service,
+        method: method,
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session')
+        })
+      },
+      success: res => {
+        console.log(res.data);
+        if (res.data.result.input_pic_url !== '') {
+          callback();
+        } else {
+          return false;
+        }
+      }
+    })
   }
+
   
 
 })

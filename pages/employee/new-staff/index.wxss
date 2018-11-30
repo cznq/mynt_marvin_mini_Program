@@ -12,7 +12,7 @@ page {
   font-size: 52rpx;
 }
 .page__bd {
-  padding: 0 60rpx;
+  padding: 0 60rpx 30rpx;
   background: #F9FAFB;
 }
 .staff-list {
@@ -20,6 +20,13 @@ page {
 }
 ._list_item {
   padding: 30rpx 0 30rpx;
+}
+._list_item ._name {
+  flex-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 376rpx;
 }
 ._family_name {
   background-color: #6092FE;

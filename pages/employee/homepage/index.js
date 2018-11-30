@@ -96,7 +96,7 @@ Page({
    */
   resetFace: function () {
     wx.navigateTo({
-      url: '/pages/collect-info/confirm/index',
+      url: '/pages/collect-info/confirmIdentity/index',
     })
   },
 

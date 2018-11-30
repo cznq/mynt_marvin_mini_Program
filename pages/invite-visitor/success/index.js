@@ -16,7 +16,6 @@ Page({
     company_id: null,
     continuevideo: false,
     appointment_time: null,
-    role: null,
     error: ""
   },
 
@@ -28,12 +27,6 @@ Page({
       invitation_id: options.invitation_id,
       company_id: options.company_id,
       vip: options.vip
-    })
-  },
-
-  goShot: function () {
-    wx.navigateTo({
-      url: '/pages/collect-info/face/index?vip=' + this.data.vip + '&invitation_id=' + '&company_id=' + this.data.company_id,
     })
   },
 
@@ -56,24 +49,6 @@ Page({
         })
       },
       success: res => {
-        if (app.Util.checkEmpty(res.data.result.visitor.input_pic_url)) {
-          that.setData({
-            continuevideo: true
-          })
-        }
-        if (res.data.result.role == 3) {
-          that.setData({
-            role: "管理员"
-          })
-        } else if (res.data.result.role == 2) {
-          that.setData({
-            role: "前台"
-          })
-        } else if (res.data.result.role == 1) {
-          that.setData({
-            role: "普通员工"
-          })
-        }
         that.setData({
           invitation: res.data.result,
           appointment_time: app.Util.formatTime(res.data.result.appointment_time + 8 * 3600)
