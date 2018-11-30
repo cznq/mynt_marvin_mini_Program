@@ -6,7 +6,7 @@ Page({
     button_text: '下一步',
     hint: '二维码与邀请码来自于企业内部人员的分享,可\n向企业员工或管理员索要',
     company_code: '',
-    showLoginModal:false
+    showLoginModal: false
   },
   bindGetUserInfo: function () {
     var that = this;
@@ -21,6 +21,7 @@ Page({
                 showLoginModal: false
               })
               app.authorizeLogin(res.encryptedData, res.iv, () => {
+                _this.get_info();
               });
             }
           })
@@ -28,24 +29,32 @@ Page({
       }
     })
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
     var _this = this;
     //检测登陆
     if (!(app.checkSession())) {
-      app.checkLogin().then(function(res) {
+      app.checkLogin().then(function (res) {
         if (!(app.checkSession())) {
           that.setData({
             showLoginModal: true
           })
         } else {
+          _this.get_info();
         }
       })
+    } else {
+      _this.get_info();
     }
     if (!options.company_code) {
       _this.data.company_code = decodeURIComponent(options.scene);
     } else {
       _this.data.company_code = options.company_code;
     }
+
+
+  },
+  get_info: function () {
+    var _this = this;
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
@@ -88,7 +97,7 @@ Page({
                     title: res.data.sub_msg,
                     duration: 1000,
                     mask: false,
-                    cb: function() {
+                    cb: function () {
                       wx.reLaunch({
                         url: '../choiceJoin/index',
                       })
@@ -109,12 +118,26 @@ Page({
         console.log('fail');
       }
     })
-
   },
-  next: function() {
+  next: function () {
     var _this = this;
-    wx.navigateTo({
-      url: '../enterRealName/index?company_code=' + _this.data.company_code
-    })
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function (res) {
+        if (!(app.checkSession())) {
+          that.setData({
+            showLoginModal: true
+          })
+        } else {
+          wx.navigateTo({
+            url: '../enterRealName/index?company_code=' + _this.data.company_code
+          })
+        }
+      })
+    } else {
+      wx.navigateTo({
+        url: '../enterRealName/index?company_code=' + _this.data.company_code
+      })
+    }
+
   }
 })
