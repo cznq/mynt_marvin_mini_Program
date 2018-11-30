@@ -1,20 +1,23 @@
 <!--pages/apply-visit/applicationStatus/index.wxml-->
 <import src="../../../templates/companyPages/companyPages.wxml" />
+
+<!-- 申请已提交 -->
 <view class='headerCon' style="background:{{background_color}}">
-  <!-- <view class='submitApplications'>
+  <view class='submitApplications' wx:if="{{c_status == 0}}">
     <view class='pubLayout'>
       <view class="icon iconfont icon-shenqingtijiao"></view>
-      <view class='title'>您的申请已提交</view>
-      <view class='con'>申请通过后，将会发送消息到您的微信，请在服务通知中查看。</view>
+      <view class='title'>{{submitApplications_title}}</view>
+      <view class='con'>{{submitApplications_hint}}</view>
     </view>
-
     <view class='bottom'>
-      <view class='telphone'>
+      <view class='telphone' bindtap='makePhone'>
         <view class="icon iconfont icon-lianxiqiantai"></view>联系前台</view>
       <view class='hint'>若长时间无人通过，可拨打前台电话咨询</view>
     </view>
-  </view> -->
-  <!-- <view class='pass'>
+  </view>
+
+  <!-- 申请已通过 -->
+  <view class='pass'  wx:if="{{c_status == 1||c_status == 2}}">
     <view class='pubLayout'>
       <view class="icon iconfont icon-shenqingtongguo"></view>
       <view class='title'>申请已通过，请前往取卡</view>
@@ -22,12 +25,12 @@
     </view>
     <view class='cardPrompt'>
       <view class='t1'>前往机器人取卡</view>
-      <view class='c1'>公司已通过了您的访问申请，请前往机器人处取卡。</view>
+      <view class='ct1'>公司已通过了您的访问申请，请前往机器人处取卡。</view>
       <image src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/take_card_graphic@2x.png'></image>
     </view>
-  </view> -->
-
-  <view class='refuse'>
+  </view>
+  <!-- 申请已拒绝 -->
+  <view class='refuse' wx:if="{{c_status == 3}}">
     <view class='pubLayout'>
       <view class="icon iconfont icon-shenqingbeijujue"></view>
       <view class='title'>公司拒绝了您的申请</view>

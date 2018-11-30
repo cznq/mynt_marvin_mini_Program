@@ -15,6 +15,6 @@
 .pass .pubLayout{border-bottom:0;}
 .pass .cardPrompt{background: #fff;height: 430rpx;border-radius: 14rpx;color:#000;text-align:center;padding-top:60rpx;}
 .t1{font-size:40rpx;line-height: 40rpx;}
-.c1{color:#18181C;font-size:26rpx;line-height: 26rpx;padding:22rpx 0 46rpx 0;}
+.ct1{color:#18181C;font-size:26rpx;line-height: 26rpx;padding:22rpx 0 46rpx 0;}
 .cardPrompt image{width:546rpx;height: 258rpx;margin:0 auto;display: block;}
 .refuse .pubLayout{border-bottom:0;}

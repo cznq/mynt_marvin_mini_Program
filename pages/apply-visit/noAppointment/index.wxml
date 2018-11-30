@@ -4,3 +4,5 @@
 <view class='_fixed footer {{isiphoneX ? "footer_x" : ""}}'>
   <button class="_button" bindtap="next" formType="submit">{{button_text}}</button>
 </view>
+<import src="../../../templates/login.wxml" />
+<template is="login" data="{{showLoginModal: showLoginModal}}"></template>

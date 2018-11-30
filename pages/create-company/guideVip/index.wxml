@@ -1,4 +1,4 @@
-<image src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/company_homepage@2x.png' class='exploded'></image>
+<image src='{{imageUrl}}' class='exploded'></image>
 <view class="_content guidevip _txt_center">
   <view class='_font44 title'>生成企业主页，形象多端曝光</view>
   <view class='_txt_gray _fontw300 con'>
@@ -9,5 +9,5 @@
     <text>上传完成后我们会为您生成手机端和机器人端的\n企业主页，您可以随时预览和更改上传的内容。</text>
   </view>
   <import src="../../../templates/vipAd/vipAd.wxml" />
-  <template is="vipAd" wx:if="{{cd.service_suite==0}}"/>
+  <template is="vipAd" wx:if="{{cd.service_suite==0}}" />
 </view>

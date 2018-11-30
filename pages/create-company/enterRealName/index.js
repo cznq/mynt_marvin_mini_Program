@@ -42,11 +42,22 @@ Page({
         success: res => {
           console.log(res);
           if (res.data.sub_code == 0){
-             wx.navigateTo({
+            wx.redirectTo({
                url: '../guide/index?CstateCode= ' + _this.data.CstateCode,
             })
           } else {
             console.log(res.data.sub_msg);
+            toast.showToast(this, {
+              toastStyle: 'toast',
+              title: res.data.sub_msg,
+              duration: 2000,
+              mask: false,
+              cb: function () {
+                _this.setData({
+                  isfocus: true
+                })
+              }
+            });
           }
         },
         fail: res => {

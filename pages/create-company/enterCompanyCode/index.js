@@ -47,7 +47,7 @@ Page({
         success: res => {
           console.log(res);
           if (res.data.sub_code == 0) {
-            wx.navigateTo({
+            wx.redirectTo({
               url: '../enterRealName/index?company_verify_code=' + company_verify_code,
             })
           } else {

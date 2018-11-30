@@ -4,12 +4,12 @@
 <view class='_content reasonsVisiting'>
   <view class='recodeTitle _fontw600 _font48;'>填写到访事由</view>
   <view class='recodeIntro'>请填写您的姓名与到访事由，以便公司前台确认您的身份和到访意图。</view>
-  <form bindsubmit='editSubmit'>
+  <form bindsubmit='editSubmit' report-submit="{{true}}">
     <view class='input_block'>
       <view>
         <text class='_font34 _txt_gray'>姓名</text>
       </view>
-      <input class="input_text" type="number" name="name"  placeholder-class='input_text_phc' placeholder='请输入您的姓名'></input>
+      <input class="input_text" name="name"  placeholder-class='input_text_phc' placeholder='请输入您的姓名'></input>
     </view>
     <view class='input_block'>
       <view>
