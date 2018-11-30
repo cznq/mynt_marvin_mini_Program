@@ -64,7 +64,6 @@ Page({
     //检测登陆
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
-        //console.log(wx.getStorageSync('xy_session'));
         if (!(app.checkSession())) {
           _this.setData({
             showLoginModal: true
@@ -101,8 +100,23 @@ Page({
   },
   next: function() {
     var _this = this;
-    wx.navigateTo({
-      url: '../reasonsVisiting/index?company_id=' + _this.data.cd.company_id + '&is_force_visitor_input_info=' + _this.data.cd.is_force_visitor_input_info + '&take_card_ways=' + _this.data.cd.take_card_ways + '&company_code=' + _this.data.company_code,
-    })
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function (res) {
+        if (!(app.checkSession())) {
+          _this.setData({
+            showLoginModal: true
+          })
+        }else{
+          wx.navigateTo({
+            url: '../reasonsVisiting/index?company_id=' + _this.data.cd.company_id + '&is_force_visitor_input_info=' + _this.data.cd.is_force_visitor_input_info + '&take_card_ways=' + _this.data.cd.take_card_ways + '&company_code=' + _this.data.company_code,
+          })
+        }
+      })
+    }else{
+      wx.navigateTo({
+        url: '../reasonsVisiting/index?company_id=' + _this.data.cd.company_id + '&is_force_visitor_input_info=' + _this.data.cd.is_force_visitor_input_info + '&take_card_ways=' + _this.data.cd.take_card_ways + '&company_code=' + _this.data.company_code,
+      })
+    }
+    
   }
 })

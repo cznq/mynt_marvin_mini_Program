@@ -1,5 +1,5 @@
 <template name="vipAd">
-<navigator url="/benifit/pages/mall-home/mall-home">
+<navigator url="/benifit/pages/vip-card/vip-card">
   <view class="vipAd _relative">
     小觅商业服务套件
     <view class="introduce">开启楼宇服务新模式 <text class="_txt_blue_c">了解更多</text></view>
