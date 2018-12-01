@@ -92,9 +92,15 @@ Page({
         })
       } else {
         console.log('需要身份，跳转到录入人脸流程');
-        // wx.navigateTo({
-        //   url: '/pages/collect-info/identity/index?visitor_name=' + visitor_name + '&note=' + note,
-        // })
+        var params = JSON.stringify({
+          visit_company_id: _this.data.company_id,
+          visitor_name: e.detail.value.name,
+          note: e.detail.value.reason,
+          form_id: e.detail.formId
+        })
+        wx.navigateTo({
+          url: '/pages/collect-info/identity/index?source=applyVisit&params=' + params,
+        })
       }
     } else {
       toast.showToast(this, {

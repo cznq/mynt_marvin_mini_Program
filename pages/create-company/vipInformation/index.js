@@ -3,6 +3,7 @@ var toast = require('../../../templates/showToast/showToast');
 var md5 = require('../../../utils/md5.js');
 Page({
   data: {
+    isiphoneX: app.globalData.isIphoneX,
     mainTitle: '企业展示信息',
     button_text: '保存',
     hint: '以下资料需经过楼宇管理员审核，严禁上传色情、\n暴力、血腥、骇人或政治相关内容的图片',
@@ -10,13 +11,8 @@ Page({
     isSowingMapUp: false,
     mode: 'aspectFill',
     isvideoshow:false,
-    CstateCode: 1,
+    CstateCode: null,
     imageUrlCha: app.globalData.BASE_IMG_URl+'cha.png'
-  },
-  next: function () {
-    wx.navigateTo({
-      url: '../success/index',
-    })
   },
   onLoad: function (options) {
     var _this = this;
@@ -181,7 +177,7 @@ Page({
         if (res.data.sub_code == 0) {
           console.log('数据成功');
           wx.navigateBack({
-            url: '../guide/index?CstateCode=' + _this.data.CstateCode,
+            url: '/pages/create-company/guide/index?CstateCode=' + _this.data.CstateCode,
           })
         } else {
           console.log(res.data.sub_msg);

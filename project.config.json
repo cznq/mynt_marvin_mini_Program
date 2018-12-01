@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 40,
+			"current": 30,
 			"list": [
 				{
 					"id": 0,
@@ -229,7 +229,8 @@
 					"id": 30,
 					"name": "创建-vip信息",
 					"pathName": "pages/create-company/vipInformation/index",
-					"query": "CstateCode=2"
+					"query": "CstateCode=2",
+					"scene": "1044"
 				},
 				{
 					"id": 31,
