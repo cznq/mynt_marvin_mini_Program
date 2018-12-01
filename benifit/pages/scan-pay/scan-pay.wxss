@@ -3,7 +3,11 @@
 page {
   background: #f5f5f5;
 }
-.page{padding-bottom:30rpx;}
+
+.page {
+  padding-bottom: 30rpx;
+}
+
 .card-wrapper {
   padding: 40rpx 60rpx 0;
 }
@@ -13,7 +17,6 @@ page {
   text-align: center;
   border-radius: 20rpx;
   background: #fff;
-  height: 394rpx;
   overflow: hidden;
 }
 
@@ -67,7 +70,7 @@ page {
 .vip-card-middle .company-address {
   margin-top: 20rpx;
   font-size: 36rpx;
-  line-height: 36rpx;
+  line-height: 45rpx;
   font-weight: 300;
 }
 
@@ -108,16 +111,230 @@ page {
   font-weight: bold;
   z-index: 10;
 }
+
 /*--卡片---*/
-.subtit{position:relative;padding: 40rpx 60rpx 174rpx 60rpx;text-align: center; }
-.subtit .line{background: #e3e4e5;line-height: 1rpx;height: 1rpx;position: absolute;top:68rpx; left: 60rpx;width:630rpx;}
-.subtit .text{background: #f5f5f5;color:#9DA1AA;font-size:24rpx;line-height: 24rpx;position: absolute;left:50%;top:57rpx;width: 384rpx;height: 26rpx;margin-left:-192rpx;}
 
-.discountBlock{position:relative;background: #fff;border-radius: 8rpx;width:690rpx;margin:0 auto;}
-.discountBlock .logo{width:145rpx;height:145rpx;border-radius: 4rpx;position:absolute;left:50%;top:0;margin-left:-72.5rpx;margin-top:-72.5rpx;}
-.discountBlock .name{font-size:32rpx;line-height: 32rpx;padding-top:93rpx;text-align:center;padding-bottom:55rpx;}
+.subtit {
+  position: relative;
+  padding: 40rpx 60rpx 174rpx 60rpx;
+  text-align: center;
+}
 
-.hr{border-bottom:1rpx dashed #D8E3F0;padding:40rpx 40rpx 32rpx 40rpx;}
-.hr .t1{font-size:38rpx;color:#1A2A4B;line-height: 38rpx;padding-bottom:19rpx;}
-.hr .hint{font-size:24rpx;color:#9397A2;line-height:24rpx;}
-.hr .pay{float:right;width:136rpx;height:48rpx;background: #FF6900;color:#fff;border-radius: 8rpx;font-size:24rpx;line-height:48rpx;text-align: center;margin-top:17rpx;}
+.subtit .line {
+  background: #e3e4e5;
+  line-height: 1rpx;
+  height: 1rpx;
+  position: absolute;
+  top: 68rpx;
+  left: 60rpx;
+  width: 630rpx;
+}
+
+.subtit .text {
+  background: #f5f5f5;
+  color: #9da1aa;
+  font-size: 24rpx;
+  line-height: 24rpx;
+  position: absolute;
+  left: 50%;
+  top: 57rpx;
+  width: 384rpx;
+  height: 26rpx;
+  margin-left: -192rpx;
+}
+
+.discountBlock {
+  position: relative;
+  background: #fff;
+  border-radius: 8rpx;
+  width: 690rpx;
+  margin: 0 auto;
+}
+
+.discountBlock .logo {
+  width: 145rpx;
+  height: 145rpx;
+  border-radius: 4rpx;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin-left: -72.5rpx;
+  margin-top: -72.5rpx;
+}
+
+.discountBlock .name {
+  font-size: 32rpx;
+  line-height: 32rpx;
+  padding-top: 93rpx;
+  text-align: center;
+  padding-bottom: 55rpx;
+}
+
+.hr {
+  border-bottom: 1rpx dashed #d8e3f0;
+  padding: 40rpx 40rpx 32rpx 40rpx;
+}
+
+.hr .t1 {
+  font-size: 38rpx;
+  color: #1a2a4b;
+  line-height: 38rpx;
+  padding-bottom: 19rpx;
+}
+
+.hr .hint {
+  font-size: 24rpx;
+  color: #9397a2;
+  line-height: 24rpx;
+}
+
+.hr .pay {
+  float: right;
+  width: 136rpx;
+  height: 48rpx;
+  background: #ff6900;
+  color: #fff;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  line-height: 48rpx;
+  text-align: center;
+  margin-top: 17rpx;
+}
+
+/* dialog */
+
+.weui-mask {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.weui-dialog {
+  position: fixed;
+  z-index: 5000;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  text-align: center;
+  overflow: hidden;
+}
+
+.weui-dialog__title {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 22rpx;
+}
+
+.weui-dialog .shop-pic {
+  width: 144rpx;
+  height: 144rpx;
+  margin: 50rpx auto 0;
+}
+
+.weui-dialog .shop-pic image {
+  width: 145rpx;
+  height: 145rpx;
+}
+
+.weui-dialog .shop-name {
+  color: #fff;
+  font-size: 38rpx;
+  line-height: 1.2;
+  margin-top: 20rpx;
+}
+
+.discount-info {
+  margin: 0 30rpx;
+  background-color: rgba(247, 244, 237, 1);
+  padding: 50rpx 0;
+  border-left-bottom-radius: 15rpx;
+  border-right-bottom-radius: 15rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.discount-info::before, .discount-info::after {
+  content: '';
+  width: 32rpx;
+  height: 32rpx;
+  display: block;
+  position: absolute;
+  top: 70rpx;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 16rpx;
+}
+
+.discount-info::before {
+  left: -16rpx;
+}
+
+.discount-info::after {
+  right: -16rpx;
+}
+
+.discount-info .coupon {
+  font-size: 32rpx;
+  color: rgba(26, 42, 75, 1);
+}
+
+.discount-info .limit {
+  font-size: 22rpx;
+  color: rgba(136, 145, 169, 1);
+}
+
+.weui-dialog__ft {
+  margin-top: 108rpx;
+}
+
+.weui-dialog__btn {
+  background-color: transparent;
+  color: #fff;
+}
+
+.weui-dialog__btn image {
+  width: 62rpx;
+  height: 30rpx;
+}
+
+.vertical-middle {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.itemWrap .disText image {
+  width: 36rpx;
+  height: 32rpx;
+  margin-right: 20rpx;
+  vertical-align: middle;
+}
+
+.itemWrap .disText text {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: rgba(191, 165, 113, 1);
+}
+
+.card-main {
+  padding: 108rpx 96rpx 108rpx;
+}
+
+.card-main .name {
+  color: rgba(195, 201, 208, 0.3);
+  font-weight: 700;
+  font-size: 60rpx;
+  line-height: 1;
+  margin-bottom: 20rpx;
+}
+
+.card-main .info {
+  color: rgba(136, 145, 169, 1);
+  font-size: 22rpx;
+  font-weight: 300;
+}

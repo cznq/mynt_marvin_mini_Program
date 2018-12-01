@@ -291,10 +291,17 @@
 					"scene": "1044"
 				},
 				{
-					"id": -1,
+					"id": 40,
 					"name": "线下二维码_扫码买单",
 					"pathName": "benifit/pages/scan-pay/scan-pay",
-					"query": "",
+					"query": "commerce_id=1&type=0",
+					"scene": "1044"
+				},
+				{
+					"id": 41,
+					"name": "线下二维码_商品详情",
+					"pathName": "benifit/pages/mall-detail/mall-detail",
+					"query": "commerce_id=2&commerce_type=0",
 					"scene": "1044"
 				}
 			]

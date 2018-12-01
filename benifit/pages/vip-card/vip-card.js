@@ -15,12 +15,12 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     wx.removeStorageSync('xy_session');
     var that = this;
     var commerceData = that.data.commerceData;
     if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
+      app.checkLogin().then(function(res) {
         that.getEmployeeInfo();
         for (let index in commerceData) {
           that.getHotCommerce(index);
@@ -39,37 +39,66 @@ Page({
   getEmployeeInfo() {
     var that = this;
     app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
+      url: app.globalData.BASE_API_URL,
       params: {
         service: 'company',
-        method: 'get_employee_info',
-        union_id: wx.getStorageSync('xy_session'),
-        data: JSON.stringify({})
+        method: 'get_company_service_status',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+          service_key: 'EMPLOYEE_BENIFIT'
+        })
       },
       success: res => {
         console.log(res);
-        if (res.data.result) {
-          if (res.data.result.has_employee_benefit == 1) {
-            that.setData({ is_vip: true })
-            wx.setBackgroundColor({
-              backgroundColor: '#404452', // 窗口的背景色为白色
-            })
-            wx.setNavigationBarColor({
-              frontColor: '#ffffff',
-              backgroundColor: '#404452'
+        //res.data.result.service_status=0;
+        if (res.data.result){
+          if (res.data.result.service_status !== 0) {
+            console.log('kaitong');
+            app.Util.network.POST({
+              url: app.globalData.BENIFIT_API_URL,
+              params: {
+                service: 'company',
+                method: 'get_employee_info',
+                union_id: wx.getStorageSync('xy_session'),
+                data: JSON.stringify({})
+              },
+              success: res => {
+                console.log(res);
+                if (res.data.result) {
+                  that.setData({
+                    is_vip: true
+                  })
+                  wx.setBackgroundColor({
+                    backgroundColor: '#404452', // 窗口的背景色为白色
+                  })
+                  wx.setNavigationBarColor({
+                    frontColor: '#ffffff',
+                    backgroundColor: '#404452'
+                  })
+                  that.setData({
+                    employeeInfo: res.data.result
+                  })
+                } else {
+                  that.setData({
+                    is_vip: false
+                  })
+                }
+              }
             })
           } else {
-            that.setData({ is_vip: false })
+            that.setData({
+              is_vip: false
+            })
           }
+        }else{
           that.setData({
-            employeeInfo: res.data.result
+            is_vip: false
           })
-        } else {
-          that.setData({ is_vip: false })
         }
       }
     })
   },
+
   /**
    * 获取热门商家列表
    */
@@ -113,7 +142,7 @@ Page({
   /**
    * 跳转到商家详情
    */
-  redirectCommerce: function (e) {
+  redirectCommerce: function(e) {
     var commerce_id = e.currentTarget.dataset.commerceid;
     var commerce_type = e.currentTarget.dataset.commercetype;
     wx.navigateTo({
@@ -123,7 +152,7 @@ Page({
   /**
    * 跳转到商城首页
    */
-  redirectMall: function (e) {
+  redirectMall: function(e) {
     console.log(e);
     var tabSelected = e.currentTarget.dataset.tabselected;
     var selectedType = e.currentTarget.dataset.selectedtype;
