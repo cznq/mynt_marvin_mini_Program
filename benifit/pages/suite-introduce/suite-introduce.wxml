@@ -3,7 +3,7 @@
   <view class='page__hd'></view>
   <view class='page__cont'><image  wx:for="{{image}}" wx:key="" wx:for-item="item" src="{{item}}" mode='widthFix'></image>
   </view>
-  <view class='page__ft is_buy' wx:if="{{service_suite==1}}">
+  <view class='page__ft is_buy {{isiphoneX ? "footer_x" : ""}}' wx:if="{{service_suite==1}}">
     <view class='info'>
       <view class='info__top'>
         小觅楼宇商业服务套餐
@@ -16,7 +16,7 @@
       <button open-type="contact" show-message-card="true" session-from="shop-order-detail" send-message-title="商务套件咨询">联系客服</button>
     </view>
   </view>
-  <view class='page__ft' wx:else>
+  <view class='page__ft {{isiphoneX ? "footer_x" : ""}}' wx:else>
     <view class='info'>
       <view class='info__top'>
         小觅楼宇商业服务套餐
