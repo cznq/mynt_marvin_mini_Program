@@ -7,8 +7,7 @@ Page({
   data: {
     invitation_id: null,
     floor_qrcode_url: null,
-    cmpInfo: null,
-    
+    cmpInfo: null
   },
 
   /**

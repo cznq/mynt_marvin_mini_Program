@@ -225,7 +225,7 @@ App({
   */
   viewBusinessService() {
     wx.navigateTo({
-      url: '/pages/company/introduction/index',
+      url: '/benifit/pages/suite-introduce/suite-introduce',
     })
   },
 
