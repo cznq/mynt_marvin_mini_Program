@@ -9,7 +9,8 @@ Page({
     isFocus: true,   
     inputValue: "",
     errorData: null,
-    empInfo: null
+    empInfo: null,
+    options: {}
   },
 
   /**
@@ -17,6 +18,9 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    that.data.options.source = options.source;
+    that.data.options.params = options.params;
+
     that.showInfo('#inputRow', '请输入您录入人脸时填写的身份证后六位。');
     
     if (!(app.checkSession())) {
@@ -51,13 +55,12 @@ Page({
   /** 监听输入事件 */
   Focus(e) {
     var that = this;
-    console.log(e.detail.value);
     var inputValue = e.detail.value;
     that.setData({
       inputValue: inputValue,
     })
     if (inputValue.length == that.data.Length) {
-      console.log(inputValue.length);
+      //console.log(inputValue.length);
       that.checkIdentity(inputValue);
     }
   },
@@ -74,7 +77,7 @@ Page({
     }
     if (idnum == id_number_last_six) {
       wx.redirectTo({
-        url: '/pages/collect-info/identity/index',
+        url: '/pages/collect-info/face/index?source=' + this.data.options.source + '&params=' + this.data.options.params + '&idInfo={}',
       })
     } else {
       wx.showToast({
@@ -107,7 +110,6 @@ Page({
         })
       },
       success: res => {
-        console.log(res);
         if(res.data.result) {
           that.setData({
             empInfo: res.data.result

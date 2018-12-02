@@ -15,38 +15,24 @@ Page({
    */
 
   data: {
-    options: null
+    options: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
-    this.data.options = options;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        app.checkRecodeFace('employee', function () {
-          wx.navigateTo({
-            url: '/pages/collect-info/identity/index?' + options
-          })
-        });
-      })
-    } else {
-      app.checkRecodeFace('employee', function () {
-        wx.navigateTo({
-          url: '/pages/collect-info/identity/index?' + options
-        })
-      });
-    }
+    this.data.options.source = options.source;
+    this.data.options.params = options.params;
+    
   },
 
   startRecodeInfo: function () {
     wx.navigateTo({
-      url: '/pages/collect-info/identity/index?' + this.data.options
+      url: '/pages/collect-info/identity/index?source=' + this.data.options.source + '&params=' + this.data.options.params
     })
-    
   }
+
 
 
 

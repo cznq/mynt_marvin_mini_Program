@@ -24,16 +24,18 @@ Page({
       phone: false,
       id_number: false
     },
-    errorData: null
+    errorData: null,
+    options: {},
+    cardType: 0 //0 大陆身份证 1 护照
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-     
-    })
+    console.log(options);
+    this.data.options.source = options.source;
+    this.data.options.params = options.params;
     this.showInfo('#ib2', '请确保使用您本人的证件号，我们会将它作为重置您人脸信息的凭证。');
   },
 
@@ -78,57 +80,36 @@ Page({
     })
   },
 
+  changCardType: function (e) {
+    console.log(e.currentTarget.dataset.idtype);
+    this.setData({
+      cardType: e.currentTarget.dataset.idtype
+    })
+  },
+
   editSubmit: function (e) {
-    var id_type = 0;
+    var id_type = this.data.cardType;
     var phone = e.detail.value.phone;
     var id_number = e.detail.value.id_number;
-    if (app.Util.checkPassport(id_number)) {
-      var id_type = 1;
-    }
-    if (isNaN(this.data.invitation_id)) {
+    if (this.data.options.source == 'takeCard' || this.data.options.source == 'editInfo' || this.data.options.source == 'benifit') {
       var service = 'company';
       var method = 'update_employee';
-    } else {
+    } else if (this.data.options.source == 'applyVisit' || this.data.options.source == 'invite') {
       var service = 'visitor';
       var method = 'bind';
     }
     if (this.checkParam(phone, id_number)) {
 
-      //app.idInformationSubmit(service, method, id_type, phone, id_number, callback = function () { })
-
-      wx.redirectTo({
-        url: '/pages/collect-info/face/index?source=' + this.data.invitation_id + '&company_id=' + this.data.company_id + '&vip=' + this.data.vip,
+      var idInfo = JSON.stringify({
+        service: service,
+        method: method,
+        id_type: id_type,
+        phone: phone,
+        id_number: id_number
       })
-
-
-
-      app.Util.network.POST({
-        url: app.globalData.BASE_API_URL,
-        params: {
-          service: service,
-          method: method,
-          data: JSON.stringify({
-            union_id: wx.getStorageSync('xy_session'),
-            id_type: id_type,
-            phone: phone,
-            id_number: id_number
-          })
-        },
-        success: res => {
-          if (res.data.sub_code == 0) {
-            wx.redirectTo({
-              url: '/pages/collect-info/face/index?invitation_id=' + this.data.invitation_id + '&company_id=' + this.data.company_id + '&vip=' + this.data.vip,
-            })
-          } else {
-            app.globalData.fundebug.notify("提交身份信息", res.data.error_msg);
-            wx.showModal({
-              content: res.data.error_msg,
-              showCancel: false
-            })
-          }
-        }
+      wx.navigateTo({
+        url: '/pages/collect-info/face/index?source=' + this.data.options.source + '&params=' + this.data.options.params + '&idInfo=' + idInfo 
       })
-
 
     }
 
@@ -221,27 +202,10 @@ Page({
     }
   },
 
-  getStaffInfo: function () {
-    if (this.data.invitation_id !== null && this.data.invitation_id !== undefined && this.data.invitation_id !== "undefined") {
-      this.getVisitorInfo();
-    } else {
-      this.getEmployeeInfo();
-    }
-  },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function (options) {
-    
-    var that = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        that.getStaffInfo();
-      })
-    } else {
-      that.getStaffInfo();
-    }
 
   }
 

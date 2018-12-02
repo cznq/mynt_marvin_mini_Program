@@ -25,7 +25,7 @@ App({
     //BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
     //BENIFIT_API_URL: 'https://marvin-benifit-api-test.slightech.com/mini_program/api',
     //WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com',
-    BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/',//开发环境
+    //BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/',//开发环境
     //BENIFIT_API_URL: 'http://192.168.1.204:10004/mini_program/api',//员工福利开发环境
   },
   
@@ -190,7 +190,7 @@ App({
         method: 'get_company_service_status',
         data: JSON.stringify({
           union_id: wx.getStorageSync('xy_session'),
-          service_key: 'service'
+          service_key: service
         })
       },
       success: res => {
@@ -223,7 +223,16 @@ App({
   */
   viewBusinessService() {
     wx.navigateTo({
-      url: '/pages/',
+      url: '/pages/company/introduction/index',
+    })
+  },
+
+  /**
+   * 查看公司介绍页
+   */
+  viewCompanyInfo() {
+    wx.navigateTo({
+      url: '/pages/company/introduction/index',
     })
   },
 
@@ -261,9 +270,9 @@ App({
 
   /**
    * 申请信息提交
-   * param: 
+   * param: company_id, form_id, visitor_name, note, id_type, phone, id_number
    */
-  applySubmit(company_id, form_id, visitor_name, note, id_type, phone, id_number, callback = function () {}) {
+  applySubmit(company_id, form_id, visitor_name, note, id_type, phone, id_number, callback = function (visit_apply_id) {}) {
     var that = this;
     that.Util.network.POST({
       url: that.globalData.BASE_API_URL,
@@ -296,10 +305,37 @@ App({
   },
 
   /**
+   * 接受邀请
+   * Param: invitation_id
+   */
+  receiveSubmit(invitation_id, formId, callback = function () {}) {
+    var that = this;
+    that.Util.network.POST({
+      url: that.globalData.BASE_API_URL,
+      params: {
+        service: 'visitor',
+        method: 'accept_invitation',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+          invitation_id: invitation_id,
+          form_id: formId
+        })
+      },
+      success: res => {
+        console.log(res);
+        callback();
+      },
+      fail: res => {
+
+      }
+    })
+  },
+
+  /**
    * 检测是否录入身份和人脸信息
    * param:  personType (employee 员工, visitor 访客)
    */
-  checkRecodeFace(personType, callback = function () {}) {
+  checkHasRecodeFace(personType) {
     var that = this;
     if (personType == 'employee') {
       var service = 'company', method = 'get_employee_info';
@@ -320,7 +356,7 @@ App({
       success: res => {
         console.log(res.data);
         if (res.data.result.input_pic_url !== '') {
-          callback();
+          return true;
         } else {
           return false;
         }

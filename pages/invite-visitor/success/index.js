@@ -6,28 +6,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-    visitor: null,
     latitude: null,
     longitude: null,
-    address: null,
     invitation_id: null,
-    vip: null,
     invitation: null,
-    company_id: null,
-    continuevideo: false,
-    appointment_time: null,
-    error: ""
+    appointment_time: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      invitation_id: options.invitation_id,
-      company_id: options.company_id,
-      vip: options.vip
-    })
+    var that = this;
+    that.data.invitation_id = options.invitation_id;
+    
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function (res) {
+        that.getInitation();
+      })
+    } else {
+      that.getInitation();
+    }
   },
 
   getInitation: function () {
@@ -94,22 +93,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        that.getInitation();
-      })
-    } else {
-      that.getInitation();
-    }
+    
 
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    app.onLaunch();
   }
 
 })

@@ -23,6 +23,7 @@ Page({
       that.getEmployeeInfo();
       that.getCompany();
     }
+    
   },
 
   /**
@@ -41,7 +42,6 @@ Page({
         })
       },
       success: res => {
-        console.log(res);
         if (res.data.result) {
           res.data.result.fuzz_id_number = that.fuzzIdNumber(res.data.result.id_number);
           that.setData({
@@ -67,7 +67,6 @@ Page({
         })
       },
       success: res => {
-        console.log(res);
         if (res.data.result) {
           that.setData({
             cmpInfo: res.data.result
@@ -86,7 +85,6 @@ Page({
       return '';
     } else {
       var newid = id_number.substr(0, 2) + '*'.repeat(id_number.length-4) + id_number.substr(id_number.length-2, 2);
-      console.log(newid);
       return newid;
     }
   },
@@ -95,14 +93,22 @@ Page({
    * 重置人脸信息
    */
   resetFace: function () {
+    var source = 'reRecodeFace';
+    var params = JSON.stringify({
+      company_id: this.data.cmpInfo.company_id
+    })
     wx.navigateTo({
-      url: '/pages/collect-info/confirmIdentity/index',
+      url: '/pages/collect-info/confirmIdentity/index?source=' + source + '&params=' + params,
     })
   },
 
   recodeFace: function () {
+    var source = 'editInfo',
+    params = JSON.stringify({
+      company_id: this.data.cmpInfo.company_id
+    })
     wx.navigateTo({
-      url: '/pages/collect-info/identity/index?company_id=' + this.data.cmpInfo.company_id,
+      url: '/pages/collect-info/identity/index?source=' + source + '&params=' + params,
     })
   },
 

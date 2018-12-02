@@ -28,6 +28,21 @@ icon {
   right: 0;
   z-index: 100;
 }
+._card_button {
+  font-size: 30rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  display: inline-block;
+  width: auto;
+  margin-right: 12rpx;
+  padding: 0 16rpx;
+  background: transparent;
+  border: 2rpx solid rgba(238, 238, 238, 1);
+}
+._card_button.on {
+  color: #fff;
+  background: rgba(26, 42, 75, 1);
+}
 .step {
   padding-top:30rpx;
 }

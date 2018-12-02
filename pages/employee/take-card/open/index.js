@@ -9,8 +9,7 @@ Page({
    * serviceStatus  tried 试用；closed 关闭；opened 开通；
    */
   data: {
-    company_id: null,
-    empInfo: null,
+    cmpInfo: null,
     serviceStatus: 'closed',
     cardType: 'e-card'
   },
@@ -19,11 +18,47 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      company_id: options.company_id
-    })
+    var that = this;
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function (res) {
+        app.getServiceStatus(that, 'EMPLOYEE_TAKE_CARD', that.getCompany());
+
+      })
+    } else {
+      app.getServiceStatus(that, 'EMPLOYEE_TAKE_CARD', that.getCompany());
+    }
   },
 
+  getCompany: function () {
+    var that = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_info',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session')
+        })
+      },
+      success: res => {
+        if (res.data.result) {
+          that.setData({
+            cmpInfo: res.data.result
+          })
+          if (res.data.result.take_card_ways == 0) {
+            that.setData({
+              cardType: 'card'
+            })
+          } else if (res.data.result.take_card_ways == 1) {
+            that.setData({
+              cardType: 'e-card'
+            })
+          } 
+        }
+
+      }
+    })
+  },
   /**
    * 获取员工信息
    */
@@ -61,23 +96,8 @@ Page({
    */
   openTakeCard: function () {
     wx.navigateTo({
-      url: '/pages/collect-info/guide/index?company_id=' + this.data.company_id
+      url: '/pages/collect-info/guide/index?company_id=' + this.data.cmpInfo.company_id
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    var that = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        app.getServiceStatus(that, 'EMPLOYEE_TAKE_CARD', that.getEmployeeInfo());
-  
-      })
-    } else {
-      app.getServiceStatus(that, 'EMPLOYEE_TAKE_CARD', that.getEmployeeInfo());
-    }
   },
 
   /**
