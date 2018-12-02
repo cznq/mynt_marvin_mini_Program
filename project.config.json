@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 37,
+			"current": 30,
 			"list": [
 				{
 					"id": 0,
@@ -229,7 +229,8 @@
 					"id": 30,
 					"name": "创建-vip信息",
 					"pathName": "pages/create-company/vipInformation/index",
-					"query": "CstateCode=2"
+					"query": "CstateCode=2",
+					"scene": "1044"
 				},
 				{
 					"id": 31,
@@ -282,6 +283,27 @@
 					"pathName": "pages/invite-visitor/guide/index",
 					"query": "scene=17_234324",
 					"scene": "1011"
+				},
+				{
+					"id": 39,
+					"name": "线下二维码_协议商户前台",
+					"pathName": "benifit/pages/vip-card/vip-card",
+					"query": "",
+					"scene": "1044"
+				},
+				{
+					"id": 40,
+					"name": "线下二维码_扫码买单",
+					"pathName": "benifit/pages/scan-pay/scan-pay",
+					"query": "commerce_id=1&type=0",
+					"scene": "1044"
+				},
+				{
+					"id": 41,
+					"name": "线下二维码_商品详情",
+					"pathName": "benifit/pages/mall-detail/mall-detail",
+					"query": "commerce_id=2&commerce_type=0",
+					"scene": "1044"
 				}
 			]
 		}

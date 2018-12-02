@@ -100,6 +100,7 @@ Page({
         })
         wx.navigateTo({
          url: '/pages/collect-info/identity/index?source=applyVisit&params=' + params,
+
         })
       }
     } else {

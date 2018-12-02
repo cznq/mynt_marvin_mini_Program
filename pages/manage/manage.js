@@ -118,18 +118,6 @@ Page({
   },
   onLoad: function(options) {
     var _this = this;
-
-    //检测登陆
-    // if (!(app.checkSession())) {
-    //   app.checkLogin().then(function(res) {
-    //     var union_id = wx.getStorageSync('xy_session');
-    //     _this.get_review_status(_this, union_id);
-    //   })
-    // } else {
-    //   var union_id = wx.getStorageSync('xy_session');
-    //   _this.get_review_status(_this, union_id);
-    // }
-
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
         if (!(app.checkSession())) {
@@ -145,9 +133,6 @@ Page({
       var union_id = wx.getStorageSync('xy_session');
       _this.get_review_status(_this, union_id);
     }
-
-
-
     _this.data.islock = false;
   },
   onShow:function(){
@@ -157,6 +142,9 @@ Page({
       _this.get_review_status(_this, union_id);
     }
     _this.data.islock = true;
+    _this.setData({
+      timestamp: Date.parse(new Date())
+    })
   },
   //获取用户状态
   get_review_status: function(_this, union_id) {
@@ -275,15 +263,47 @@ Page({
   },
   //加入公司
   joinCompany: function() {
-    wx.navigateTo({
-      url: '../employee/join-company/choiceJoin/index'
-    })
+    var _this = this;
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function (res) {
+        if (!(app.checkSession())) {
+          _this.setData({
+            showLoginModal: true
+          })
+        } else {
+          wx.navigateTo({
+            url: '../employee/join-company/choiceJoin/index'
+          })
+        }
+      })
+    } else {
+      wx.navigateTo({
+        url: '../employee/join-company/choiceJoin/index'
+      })
+    }
+    
   },
   //创建公司
   createCompany: function() {
-    wx.navigateTo({
-      url: '../create-company/enterCompanyCode/index',
-    })
+    var _this = this;
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function (res) {
+        if (!(app.checkSession())) {
+          _this.setData({
+            showLoginModal: true
+          })
+        } else {
+          wx.navigateTo({
+            url: '../create-company/enterCompanyCode/index',
+          })
+        }
+      })
+    } else {
+      wx.navigateTo({
+        url: '../create-company/enterCompanyCode/index',
+      })
+    }
+    
   },
   //取消申请
   withdraw: function() {

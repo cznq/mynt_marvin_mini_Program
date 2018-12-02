@@ -1,4 +1,4 @@
-// pages/benifit-card/benifit-card.js
+// pages/mall-home/mall-home.js
 const app = getApp();
 Page({
 

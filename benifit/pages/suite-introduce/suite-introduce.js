@@ -8,6 +8,7 @@ Page({
    */
   data: {
     service_suite: 0,
+    isiphoneX: app.globalData.isIphoneX,
     union_id: wx.getStorageSync('xy_session')
   },
 
