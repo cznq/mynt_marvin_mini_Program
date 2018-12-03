@@ -17,59 +17,48 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   function request(method, requestHandler) {
 
     var app = getApp();
-    if (!(app.checkSession())) {
-      var pages = getCurrentPages();
-      console.log('+++++'+pages.length);
-      var currentPage = pages[pages.length - 1] //获取当前页面的对象
-      var url = JSON.stringify(currentPage.route) //获取当前页面url
-      var opt = JSON.stringify(currentPage.options) //获取url中所带的参数
-      wx.navigateTo({
-        url: '/pages/login/index?route=' + url + '&opt=' + opt,
-      })
-    } else {
-      wx.showLoading({
-        title: '正在加载',
-        mask: true
-      })
-      requestHandler.params.app_id = '65effd5a42fd1870b2c7c5343640e9a8'; //接口需要的第三方App_id
-      requestHandler.params.timestamp = Math.round(new Date().getTime() / 1000 - 28800);
-      requestHandler.params.sign_type = 'MD5';
-      var stringA = 'app_id=' + requestHandler.params.app_id + '&data=' + requestHandler.params.data + '&method=' + requestHandler.params.method + '&service=' + requestHandler.params.service + '&timestamp=' + requestHandler.params.timestamp;
-      requestHandler.params.sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
-      //打印参数
-
-
-      wx.request({
-        url: requestHandler.url,
-        data: requestHandler.params,
-        method: method, // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        success: res => {
-          if (res.data.sub_code !== 0) {
-            app.myLog("请求参数", JSON.stringify(requestHandler.params));
-            app.myLog("返回错误码" + res.statusCode, JSON.stringify(res.data));
-          }
-          wx.hideLoading();
-          if (requestHandler.success) requestHandler.success(res);
-        },
-        fail: (res) => {
-          app.myLog("请求错误", JSON.stringify(res));
-          wx.hideLoading();
-          wx.showToast({
-            title: '加载失败，请尝试刷新',
-            icon: 'none'
-          })
-          if (requestHandler.fail) requestHandler.fail();
-        },
-        complete: () => {
-          wx.stopPullDownRefresh();
-          if (requestHandler.complete) requestHandler.complete();
-        }
-      })
-    }
     
+    wx.showLoading({
+      title: '正在加载',
+      mask: true
+    })
+    requestHandler.params.app_id = '65effd5a42fd1870b2c7c5343640e9a8'; //接口需要的第三方App_id
+    requestHandler.params.timestamp = Math.round(new Date().getTime() / 1000 - 28800);
+    requestHandler.params.sign_type = 'MD5';
+    var stringA = 'app_id=' + requestHandler.params.app_id + '&data=' + requestHandler.params.data + '&method=' + requestHandler.params.method + '&service=' + requestHandler.params.service + '&timestamp=' + requestHandler.params.timestamp;
+    requestHandler.params.sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
+    //打印参数
+
+
+    wx.request({
+      url: requestHandler.url,
+      data: requestHandler.params,
+      method: method, // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: res => {
+        if (res.data.sub_code !== 0) {
+          app.myLog("请求参数", JSON.stringify(requestHandler.params));
+          app.myLog("返回错误码" + res.statusCode, JSON.stringify(res.data));
+        }
+        wx.hideLoading();
+        if (requestHandler.success) requestHandler.success(res);
+      },
+      fail: (res) => {
+        app.myLog("请求错误", JSON.stringify(res));
+        wx.hideLoading();
+        wx.showToast({
+          title: '加载失败，请尝试刷新',
+          icon: 'none'
+        })
+        if (requestHandler.fail) requestHandler.fail();
+      },
+      complete: () => {
+        wx.stopPullDownRefresh();
+        if (requestHandler.complete) requestHandler.complete();
+      }
+    })
   }
 
   //根据地址获取经纬度

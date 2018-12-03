@@ -119,8 +119,9 @@ Page({
       }
     })
   },
-  next: function () {
+  receiveSubmit: function () {
     var _this = this;
+    var form_id = e.detail.formId;
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
         if (!(app.checkSession())) {
@@ -129,13 +130,13 @@ Page({
           })
         } else {
           wx.navigateTo({
-            url: '../enterRealName/index?company_code=' + _this.data.company_code
+            url: '../enterRealName/index?company_code=' + _this.data.company_code + '&form_id=' + form_id
           })
         }
       })
     } else {
       wx.navigateTo({
-        url: '../enterRealName/index?company_code=' + _this.data.company_code
+        url: '../enterRealName/index?company_code=' + _this.data.company_code + '&form_id=' + form_id
       })
     }
 
