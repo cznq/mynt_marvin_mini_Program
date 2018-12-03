@@ -28,18 +28,50 @@ icon {
   right: 0;
   z-index: 100;
 }
+._card_button {
+  font-size: 30rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  display: inline-block;
+  width: auto;
+  margin-right: 12rpx;
+  padding: 0 16rpx;
+  background: transparent;
+  border: 2rpx solid rgba(238, 238, 238, 1);
+}
+._card_button.on {
+  color: #fff;
+  background: rgba(26, 42, 75, 1);
+}
 .step {
   padding-top:30rpx;
 }
+.invoice {
+  margin-bottom: 30rpx;
+  line-height: 28rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid rgba(220, 220, 220, .5);
+}
+
+.icon-dunpai {
+  color: rgba(77, 219, 120, 1);
+  font-size: 28rpx;
+  margin-right: 16rpx;
+}
 .footer {
-  height:209rpx;
   background: #ccc;
   left:0;
   bottom:0;
   width:100%;
-  padding-top:30rpx;
-  background: linear-gradient(to bottom,#fafbfb 0%,#fcfdfd 60%,#fcfdfd 60%,#fcfdfd 100%);
-  border-top:1rpx solid #eeeeee;
+  padding-top: 0;
+  background: rgba(253, 254, 254, .96);
+  border-top:1rpx solid rgba(220, 220, 220, .5);
+}
+.footer.iphonex {
+  padding-bottom: 110rpx;
 }
 .footer button {
   background: #007bff;

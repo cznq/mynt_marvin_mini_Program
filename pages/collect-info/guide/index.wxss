@@ -1,0 +1,28 @@
+/* pages/collect-info/guide/index.wxss */
+
+.page__bd {
+  margin: 218rpx 84rpx 0;
+}
+
+.icon-yuangonglururenlian {
+  color: #007bff;
+  font-size: 144rpx;
+}
+.invoice {
+  margin-bottom: 58rpx;
+  line-height: 28rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page__ft {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30rpx 0 110rpx;
+}
+.icon-dunpai {
+  color: rgba(77, 219, 120, 1);
+  font-size: 28rpx;
+  margin-right: 16rpx;
+}

@@ -1,0 +1,37 @@
+<view class="page">
+  <view class="page_hd"></view>
+
+  <view class="page_bd _txt_center">
+    <view class="_fontw600 _font44 tit">邀请函使用流程</view>
+    <view class="page_step _txt_gray">
+      <view class="page_step_list">
+        <view class="page_step_lbox">
+          <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/invitation_step_one%402x.png"></image>
+        </view>
+        <view class="page_step_text">
+          <view class="_font38 _txt_darkgrey">第一步</view>
+          <view class="_font28">在写字楼大厅找到并 唤醒小觅机器人。</view>
+        </view>
+      </view>
+      <view class="page_step_list">
+        <view class="page_step_lbox">
+          <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/invitation_step_two%402x.png"></image>
+        </view>
+        <view class="page_step_text">
+          <view class="_font38 _txt_darkgrey">第二步</view>
+          <view class="_font28">机器人会自动检测到 您的预约信息并给您 发电梯卡。</view>
+        </view>
+      </view>
+      <view class="page_step_list">
+        <view class="page_step_lbox">
+          <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/invitation_step_three%402x.png"></image>
+        </view>
+        <view class="page_step_text">
+          <view class="_font38 _txt_darkgrey">第三步</view>
+          <view class="_font28">取出电梯卡并在电梯刷卡上楼。</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

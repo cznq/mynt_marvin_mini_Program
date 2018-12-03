@@ -1,0 +1,47 @@
+@import "../public/style.wxss";
+.page {
+  background-color: rgba(0, 123, 255, 1);
+}
+.page_hd {
+  padding: 22rpx 60rpx 20rpx;
+  flex-direction: column;
+  color: #fff;
+  line-height: 1;
+}
+.page_hd .wel-tit {
+  margin: 32rpx 0 26rpx;
+}
+.page_hd .wel-intro {
+  color: rgba(255, 255, 255, .6);
+}
+.page_hd button {
+  background-color: transparent;
+  border: 2rpx solid rgba(255, 255, 255, .2);
+  color: #fff;
+  border-radius: 40rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 24rpx;
+  width: 340rpx;
+  margin-top: 52rpx;
+  font-weight: 600;
+}
+.page_bd {
+  padding-bottom: 48rpx;
+}
+.company-info::before,
+.company-info::after {
+  background-color: rgba(0, 123, 255, 1);
+}
+
+.receive_submit {
+  background-color: rgba(253, 254, 254, .96);
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30rpx 60rpx;
+}
+.receive_submit.iphonex {
+  padding-bottom: 110rpx;
+}

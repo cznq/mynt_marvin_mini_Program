@@ -17,7 +17,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   function request(method, requestHandler) {
 
     var app = getApp();
-
+    
     wx.showLoading({
       title: '正在加载',
       mask: true
@@ -28,7 +28,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     var stringA = 'app_id=' + requestHandler.params.app_id + '&data=' + requestHandler.params.data + '&method=' + requestHandler.params.method + '&service=' + requestHandler.params.service + '&timestamp=' + requestHandler.params.timestamp;
     requestHandler.params.sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
     //打印参数
-    app.myLog("请求参数", JSON.stringify(requestHandler.params));
+
 
     wx.request({
       url: requestHandler.url,
@@ -38,16 +38,14 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: res => {
-        if(res.data.sub_code !== 0) {
-          app.myLog("请求错误返回", JSON.stringify(res.data));
-        } else {
-          app.myLog("请求成功返回", JSON.stringify(res.data));
+        if (res.data.sub_code !== 0) {
+          app.myLog("请求参数", JSON.stringify(requestHandler.params));
+          app.myLog("返回错误码" + res.statusCode, JSON.stringify(res.data));
         }
         wx.hideLoading();
         if (requestHandler.success) requestHandler.success(res);
       },
       fail: (res) => {
-        console.log(res);
         app.myLog("请求错误", JSON.stringify(res));
         wx.hideLoading();
         wx.showToast({
@@ -66,10 +64,13 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   //根据地址获取经纬度
   function generateMap(_this, address) {
     var app = getApp();
-
     var qqmapsdk = new QQMapWX({
       key: 'CGVBZ-S2KHV-3CBPC-UP4JI-4N55F-7VBFU'
     });
+    if (address == undefined) {
+      return false;
+      app.myLog("根据地址获取经纬度: ", "没有传入地址");
+    }
     qqmapsdk.geocoder({
       address: address,
       success: function (res) {
@@ -154,7 +155,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
       return true
     }
   }
-
+  
   function getDate() {
     var myDate = new Date();
     var year = myDate.getFullYear();    
@@ -188,21 +189,37 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     date.setTime((fmt - 8 * 3600) * 1000);
     var y = date.getFullYear();
     var m = date.getMonth() + 1;
-    m = m < 10 ? ('0' + m) : m;
     var d = date.getDate();
-    d = d < 10 ? ('0' + d) : d;
     var h = date.getHours();
     h = h < 10 ? ('0' + h) : h;
     var minute = date.getMinutes();
-    var second = date.getSeconds();
     minute = minute < 10 ? ('0' + minute) : minute;
-    second = second < 10 ? ('0' + second) : second;
-    return y + '-' + m + '-' + d + ' ' + h + ':' + minute;
+    var weekDay = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+    var myDate = new Date(Date.parse(y + '/' + m + '/' + d));
+    
+    return m + '月' + d + '日' + ' ' + weekDay[myDate.getDay()] + ' ' + h + ':' + minute;
   } 
 
+  // 2018-09-11 11:30 转化时间戳 1542369600
   function datetoTime(strtime) {
     var date = new Date(strtime.replace(/-/g, '/')).getTime(); 
     return date / 1000;
+  }
+
+  // datestr: 11月28日 周三 12:30 转化为 2018-02-22 10:23  
+  function strToDate(datestr) {
+    var month = datestr.substr(0, datestr.indexOf('月'));
+    var day = datestr.substr(datestr.indexOf('月') + 1, datestr.indexOf('日') - datestr.indexOf('月') - 1);
+    var time = datestr.substr(datestr.indexOf('周') + 3, 5);
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
+    return month + '-' + day + ' ' + time;
+  }
+
+  function dateToStr(str) {
+    var weekDay = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+    var myDate = new Date(Date.parse(str));
+    return weekDay[myDate.getDay()];    // 星期六
   }
 
   function decodeTextAreaString(str) {
@@ -419,6 +436,8 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   module.exports.setClipboard = setClipboard;
   module.exports.getDate = getDate;
   module.exports.getTime = getTime;
+  module.exports.strToDate = strToDate;
+  module.exports.dateToStr = dateToStr;
   module.exports.formatTime = formatTime;
   module.exports.checkID = checkID;
   module.exports.checkPassport = checkPassport;

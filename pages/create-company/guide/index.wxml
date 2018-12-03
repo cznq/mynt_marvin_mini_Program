@@ -1,0 +1,18 @@
+<view class="_content guide">
+  <view class='step'>第一步</view>
+  <view class='_txt_gray title'>企业基础信息</view>
+  <view class='_txt_gray _fontw300 con'>完善您企业的名称、简介、地址和联系方式，方便访客在机器人处找到您的企业。</view>
+  <view class='_txt_blue_c _font32 button' bindtap='basicInformation'>编辑</view>
+  <view class='line'></view>
+  <view class='step'>第二步（选填）</view>
+  <view class='_txt_gray title'>企业展示信息</view>
+  <view class='_fontw300 errorhint' wx:if="{{cd.review_status==2}}">企业展示信息部分内容不合规，未通过审核，请重新编辑</view>
+  <view class='_txt_gray _fontw300 con'>添加企业宣传图片和视频，生成企业主页，让您的企业在各种端都获得更好形象展现。</view>
+  <view class='_txt_darkgrey _fontw300 viptext'>
+    <view class='vipicon'></view>该功能仅对已开通小觅商业服务套件的企业开放。</view>
+  <view class='_txt_blue_c _font32 button' bindtap='guideVip'>编辑</view>
+  <view class='line'></view>
+  <view class='_fixed footer {{isiphoneX ? "footer_x" : ""}}'>
+    <button class="_button" bindtap="next" formType="submit">{{button_text}}</button>
+  </view>
+</view>

@@ -1,0 +1,4 @@
+@import "../public/style.wxss";
+.page {
+  background-color: rgba(249, 250, 251, 1);
+}

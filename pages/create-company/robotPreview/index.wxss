@@ -1,0 +1,3 @@
+.robotPreview{padding:0 40rpx;color:#1A2A4B;text-align: center;}
+.zs{width:670rpx;height:410rpx;margin-top:50rpx;}
+.rt{font-weight: 600;}

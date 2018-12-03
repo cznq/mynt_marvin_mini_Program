@@ -1,0 +1,81 @@
+/* pages/suite-introduce/suite-introduce.wxss */
+
+.page {
+  width: 750rpx;
+  background: rgba(255, 255, 255, 1);
+}
+
+.page__hd {
+  padding: 20rpx 40rpx 0;
+  height: 64rpx;
+  background-color: #03428f;
+}
+
+.page__ft {
+  width: 750rpx;
+  height: 140rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px -4rpx 10rpx 0rpx rgba(0, 0, 0, 0.04);
+  display: flex;
+}
+
+.page .page__cont image{
+  width:100%;
+  height: 100%;
+  display:block;
+  background-repeat: no-repeat;
+}
+
+.page__ft .info {
+  width: 447rpx;
+}
+.page__ft .consult {
+  width: 303rpx;
+  padding: 31rpx 20rpx 0 8rpx;
+}
+
+.page__ft .consult button {
+  background-color:#0084FF;
+  color:#ffffff;
+  font-size:32rpx;
+  font-weight: 500;
+}
+
+.page__ft .info .info__top {
+  width: 447rpx;
+  padding: 21rpx 0 0 61rpx;
+  font-size: 28rpx;
+  font-family: NotoSansHans-Medium;
+  font-weight: 500;
+  color: #333333;
+}
+
+.page__ft .info .info__ft {
+  width: 447rpx;
+  height: 27rpx;
+  font-size: 28rpx;
+  font-family: NotoSansHans-Medium;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  padding: 0 0 0 69rpx;
+}
+
+.page__ft .info .info__ft .text__hd {
+  font-size: 50rpx;
+  font-family: NotoSansHans-Regular;
+  font-weight: 400;
+  color: #333333;
+}
+
+.page__ft .info .info__ft .text__blur {
+  font-size: 30rpx;
+  font-family: NotoSansHans-Medium;
+  font-weight: 500;
+  color: #999999;
+}
+
+.is_buy{
+  width:100%;
+  position: fixed;
+  bottom:0;
+}

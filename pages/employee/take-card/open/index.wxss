@@ -1,0 +1,46 @@
+page, .page {
+  
+}
+.page__hd image {
+  width: 100%;
+  vertical-align: bottom;
+}
+.page__bd {
+  padding: 74rpx 108rpx 0;
+}
+.guide-title {
+  line-height: 1;
+  margin-bottom: 30rpx;
+  color: rgba(27, 43, 76, 1);
+}
+.guide-intro {
+  width: 452rpx;
+  margin: 0 auto;
+  line-height: 42rpx;
+  color: rgba(26, 42, 75, 1);
+}
+._button {
+  width: 496rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin: 98rpx auto 26rpx;
+}
+.close {
+  background: -webkit-linear-gradient( left, #E9C395, #D9A76B);
+  background: linear-gradient( left, #E9C395, #D9A76B);
+}
+.close image {
+  width: 44rpx;
+  height: 38rpx;
+  margin-right: 10rpx;
+}
+.warn_info {
+  color: rgba(136, 145, 169, .9);
+  text-align: center;
+  width: 496rpx;
+  margin: 0 auto;
+}
+.page__ft {
+  margin-top: 56rpx;
+  padding: 0 60rpx 86rpx;
+}

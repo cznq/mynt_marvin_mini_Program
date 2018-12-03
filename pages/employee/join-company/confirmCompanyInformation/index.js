@@ -42,7 +42,7 @@ Page({
           _this.get_info();
         }
       })
-    } else {
+    }else{
       _this.get_info();
     }
     if (!options.company_code) {
@@ -51,9 +51,9 @@ Page({
       _this.data.company_code = options.company_code;
     }
 
-
   },
   get_info: function () {
+
     var _this = this;
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
@@ -119,8 +119,11 @@ Page({
       }
     })
   },
-  next: function () {
+
+  receiveSubmit: function (e) {
     var _this = this;
+    var form_id = e.detail.formId;
+    console.log(form_id)
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
         if (!(app.checkSession())) {
@@ -129,13 +132,15 @@ Page({
           })
         } else {
           wx.navigateTo({
-            url: '../enterRealName/index?company_code=' + _this.data.company_code
+            url: '../enterRealName/index?company_code=' + _this.data.company_code + '&form_id=' + form_id
+
           })
         }
       })
     } else {
       wx.navigateTo({
-        url: '../enterRealName/index?company_code=' + _this.data.company_code
+        url: '../enterRealName/index?company_code=' + _this.data.company_code + '&form_id=' + form_id
+
       })
     }
 

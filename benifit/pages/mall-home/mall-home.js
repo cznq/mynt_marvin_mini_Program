@@ -1,4 +1,4 @@
-// pages/benifit-card/benifit-card.js
+// pages/mall-home/mall-home.js
 const app = getApp();
 Page({
 
@@ -30,7 +30,13 @@ Page({
       typeid: 2,
       id: 'hotel',
       title: '酒店'
-    }],
+    },
+      {
+        typeid: 3,
+        id: 'business',
+        title: '商务宴请'
+      }
+    ],
     tabFixed: false,
     showVipCardTips: true,
     is_vip: false,

@@ -6,9 +6,11 @@
     <view></view>
   </view>
   <view class='mainTitle'>{{mainTitle}}</view>
+  <form bindsubmit="receiveSubmit" report-submit="true">
   <view class='_fixed footer'>
-    <button class="_button" bindtap="next">{{button_text}}</button>
+    <button form-type="submit" class="_button">{{button_text}}</button>
   </view>
+  </form>
 </view>
 
 <view class='c_block _relative'>

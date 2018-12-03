@@ -7,7 +7,7 @@ Page({
     codevalue: '',
     isfocus: true
   },
-  companyCode: function(e) {
+  companyCode: function (e) {
     var _this = this;
     var company_code = e.detail.value.replace(/\s/ig, '');
     //判断公司码不能为汉字
@@ -20,7 +20,7 @@ Page({
         title: '你输入的码有误,请重新输入',
         duration: 2000,
         mask: false,
-        cb: function() {
+        cb: function () {
           _this.setData({
             codevalue: '',
             isfocus: true
@@ -56,7 +56,7 @@ Page({
               title: '你输入的码有误,请重新输入',
               duration: 2000,
               mask: false,
-              cb: function() {
+              cb: function () {
                 _this.setData({
                   codevalue: '',
                   isfocus: true

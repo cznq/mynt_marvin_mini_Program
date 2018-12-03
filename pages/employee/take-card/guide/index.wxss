@@ -1,5 +1,3 @@
-@import "../../../../templates/showToast/showToast.wxss";
-
 .page__hd {
   background-color: #e3e9ee;
   height: auto;
@@ -10,11 +8,10 @@
   vertical-align: bottom;
 }
 .page__bd {
-  padding: 100rpx 74rpx 50rpx;
+  padding: 80rpx 86rpx 50rpx;
 }
 .guide-title {
   line-height: 1;
-  margin-bottom: 30rpx;
   color: rgba(27, 43, 76, 1);
 }
 .guide-intro {
@@ -30,21 +27,26 @@
   margin-top: 140rpx;
 }
 .how-it-work {
-  padding: 120rpx 36rpx 0;
+  padding: 70rpx 0 0;
 }
 .how-it-work .tit {
   color: rgba(136, 145, 169, 1);
   margin-bottom: 58rpx;
 }
 .guide-item {
-  margin-bottom: 76rpx;
-  justify-content: space-around;
+  margin-bottom: 136rpx;
+}
+.guide-item:last-child {
+  margin-bottom: 36rpx;
+}
+.photo image {
+  width: 240rpx;
 }
 .guide-item .txt {
-  margin-left: 84rpx;
+  margin-left: 60rpx;
 }
 .step-num {
-  color: rgba(136, 145, 169, 1);
+  color: rgba(136, 145, 169, .6);
   line-height: 1;
   margin-bottom: 20rpx;
   font-weight: 600;

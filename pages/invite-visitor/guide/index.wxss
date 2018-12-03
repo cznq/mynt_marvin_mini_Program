@@ -1,0 +1,37 @@
+/* pages/invite-visitor/guide/index.wxss */
+.page_hd {
+  height: 380rpx;
+  background: url(https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/invitation%402x.png) no-repeat center center;
+  background-size: contain;
+}
+.page_bd {
+  padding: 78rpx 114rpx 0 80rpx;
+}
+.tit {
+  margin-bottom: 60rpx;
+  line-height: 1;
+  color: #1A2A4B;
+}
+.page_step_list{
+  display: flex;
+  margin-bottom: 80rpx;
+  align-items: center;
+  text-align: left;
+}
+.page_step_list .page_step_lbox{
+  width: 270rpx;
+  height: 270rpx;
+}
+.page_step_list .page_step_lbox image{
+  width: 270rpx;
+  height: 270rpx;
+}
+._txt_darkgrey {
+  color: rgba(136, 145, 169, .6)!important;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 20rpx;
+}
+.page_step_list .page_step_text{
+  padding-left: 34rpx;
+}

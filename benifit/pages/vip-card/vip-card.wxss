@@ -5,14 +5,13 @@
   max-height: 480rpx;
 }
 .card-wrapper {
-  padding: 60rpx 60rpx 0;
+  padding: 50rpx 60rpx 0;
   background-color: #f5f5f6;
   border-bottom: 12rpx solid #CFD4D9;
   box-sizing: content-box;
 }
 .card-content {
   border: 1px solid #dfe0e5;
-  border-bottom: none;
   border-bottom: 0;
   text-align: center;
   border-top-left-radius: 30rpx;
@@ -33,11 +32,12 @@
   font-weight: 700;
   font-size: 60rpx;
   line-height: 1;
-  margin-bottom: 28rpx;
+  margin-bottom: 20rpx;
 }
 .card-main .info {
   color: rgba(136, 145, 169, 1);
   font-size: 22rpx;
+  font-weight: 300;
 }
 .card-content .bar {
   background: -webkit-linear-gradient( left, rgba(243, 245, 246, 1), rgba(227, 229, 231, 1));
@@ -213,7 +213,7 @@
   line-height: 34rpx;
 }
 .contact-admin {
-  margin-top: 94rpx;
+  margin-top: 54rpx;
 }
 .contact-admin .tit {
   font-size: 32rpx;

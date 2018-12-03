@@ -1,10 +1,10 @@
 <view class='_content _top_gradient2 company-code'>
-  <view class="_flex step">
+  <!-- <view class="_flex step">
     <view class='cur'></view>
     <view></view>
     <view></view>
     <view></view>
-  </view>
+  </view> -->
   <view class='mainTitle'>{{mainTitle}}</view>
   <input class='inp' bindinput='companyCode' maxlength='8' confirm-hold="true" focus="true" value='{{codevalue}}' focus="{{isfocus}}"></input>
   <view class='hint _font22 _txt_darkgrey _fontw300'><text>{{hint}}</text></view>

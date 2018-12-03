@@ -1,0 +1,58 @@
+<!--pages/invite-visitor/edit/index.wxml-->
+<view class="page">
+  <view class="page_hd">
+    <view class="_flex step">
+      <view class='cur'></view>
+      <view></view>
+    </view>
+    <view class="_fontw600 head_title">编辑邀请函</view>
+  </view>
+
+  <view class="page_bd">
+    <form bindsubmit="inviteSubmit">
+
+      <view class="_fontw600 _font38 sec_title">基础信息</view>
+      <view class="label _font24">访客姓名</view>
+      <input class="weui-input _font36" name="visitor_name" id="visitorName" bindinput="checkForm" placeholder="请输入您邀请访客的姓名" placeholder-class="placeholder-input"></input>
+
+      <view class="label _font24">预约到访时间</view>
+      <view class="invite_time _relative">
+        <input class="weui-input _font36" name="visit_time" value="{{visit_time_str}}" id="visitTime" placeholder="请选择您希望访客到访的时间" placeholder-class="placeholder-input" disabled></input>
+        
+        <view class="timeBtn _absolute" bindtap="chooseTime">
+          <text class="iconfont icon-yaoqingshijian"></text>
+        </view>
+      </view>
+
+      <view class="_fontw600 _font38 sec_title">详细信息</view>
+      <view class="_flex _flex_item_center _flex_space_between">
+        <view class="label _font32 cause">邀请事由</view>
+        <view class="edit" bindtap="openEdit">编辑</view>
+      </view>
+      <textarea class="weui-textarea _font24" name="visit_intro" maxlength="800" id="visitIntro" bindinput="checkForm" placeholder="请描述邀请访客到访的具体事由和到访的要求" placeholder-class="textarea_placeholder-input" auto-height="true" focus="{{edit==''?true:false}}" disabled="{{edit}}"></textarea>
+      <view class="_fixed form_submit {{isIphoneX?'iphonex':''}}">
+        <button form-type="submit" class="_button" id="inviteBtn">预览邀请函</button>
+      </view>
+    </form>
+  </view>
+
+<view class="timePicker" wx:if="{{pickerShow}}">
+  <view class="titleBar _flex _flex_item_center _flex_space_around"><view bindtap="closePicker">取消</view><view class="_fontw600 _txt_gray">请选择时间</view><view bindtap="closePicker">确认</view></view>
+  <picker-view indicator-style="height: 40px;" value="{{now_datetime}}" bindchange="selectInviteTime">
+    <picker-view-column class="first">
+      <view wx:for="{{timePicker.days}}" wx:key="" style="line-height: 40px">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{timePicker.hours}}" wx:key="" style="line-height: 40px">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{timePicker.minutes}}" wx:key="" style="line-height: 40px">{{item}}</view>
+    </picker-view-column>
+  </picker-view>
+</view>
+
+  <view class="page_ft">
+
+  </view>
+
+</view>
