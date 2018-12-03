@@ -15,6 +15,8 @@ Page({
   onLoad: function (options) {
     this.data.route = options.route
     this.data.opt = options.opt
+    console.log(JSON.parse(this.data.route));
+    console.log(JSON.parse(this.data.opt));
   },
 
   bindGetUserInfo: function () {

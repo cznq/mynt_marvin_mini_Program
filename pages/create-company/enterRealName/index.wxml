@@ -1,10 +1,6 @@
-<view class='_content _top_gradient2 company-code'>
-  <!-- <view class="_flex step">
-    <view class='cur'></view>
-    <view class='cur'></view>
-    <view></view>
-    <view></view>
-  </view> -->
+<web-view src="{{web_url}}/employee/join?company_code={{company_code}}&CstateCode={{CstateCode}}"></web-view>
+
+<!-- <view class='_content _top_gradient2 company-code'>
   <view class='mainTitle'>{{mainTitle}}</view>
   <form bindsubmit='formSubmit'>
     <input class='inp' maxlength='8' name="realName" focus="{{isfocus}}"></input>
@@ -14,4 +10,4 @@
   </form>
 </view>
 <import src="../../../templates/showToast/showToast.wxml" />
-<template is="showToast" data="{{showToast: showToast}}" />
+<template is="showToast" data="{{showToast: showToast}}" /> -->
