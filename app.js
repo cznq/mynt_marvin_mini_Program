@@ -18,7 +18,8 @@ App({
     fundebug: fundebug,
     open_id_type: 1,
     isIphoneX: false,
-    //BASE_IMG_URl:'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/',
+    BASE_IMG_URl:'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/',
+    
     //BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
     //WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
     //BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
@@ -26,7 +27,7 @@ App({
     BENIFIT_API_URL: 'https://marvin-benifit-api-test.slightech.com/mini_program/api',
     WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com',
 
-    BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/',//开发环境
+    //BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/',//开发环境
     //BENIFIT_API_URL: 'http://192.168.1.204:10004/mini_program/api',//员工福利开发环境
 
   },
@@ -158,10 +159,11 @@ App({
                 wx.setStorageSync('avatar', res.data.result.avatar);
                 callback();
               } else {
-                wx.showModal({
-                  content: '授权登录失败',
-                  showCancel: false
+                wx.showToast({
+                  icon: 'none',
+                  title: '授权登录失败'
                 })
+              
               }
             },
             fail: res => {

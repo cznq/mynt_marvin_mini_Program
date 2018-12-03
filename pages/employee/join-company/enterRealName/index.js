@@ -14,7 +14,7 @@ Page({
     var _this = this;
     //_this.data.company_code = options.company_code;
     _this.setData({
-      company_code: options.company_verify_code,
+      company_code: options.company_code,
       form_id: options.form_id
     })
     //检测登陆

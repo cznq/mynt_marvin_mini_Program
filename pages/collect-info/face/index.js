@@ -32,6 +32,7 @@ Page({
     that.data.options.idInfo = JSON.parse(options.idInfo);
 
     if (app.Util.checkcanIUse('camera')) {
+      app.myLog('相机检测', '相机组件检测通过');
       that.setData({
         ctx: wx.createCameraContext()
       }) 
@@ -100,6 +101,7 @@ Page({
     var k = 0;
     int = setInterval(function () {
       if (that.data.face == true && k > 2) {
+        app.myLog('开始拍照', k);
         that.takePhoto(that.data.ctx);
       }
       k++;

@@ -32,9 +32,11 @@ Page({
                 showLoginModal: false
               })
               app.authorizeLogin(res.encryptedData, res.iv, () => {
-                wx.redirectTo({
-                  url: that.data.route + '&opt=' + opt,
+                wx.showToast({
+                  icon: 'none',
+                  title: '登录成功'
                 })
+                wx.navigateBack()
                 
               });
             }

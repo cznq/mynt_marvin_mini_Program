@@ -119,9 +119,10 @@ Page({
       }
     })
   },
-  receiveSubmit: function () {
+  receiveSubmit: function (e) {
     var _this = this;
     var form_id = e.detail.formId;
+    console.log(form_id)
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
         if (!(app.checkSession())) {
