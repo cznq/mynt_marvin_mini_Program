@@ -1,0 +1,8 @@
+<view class="modal-dialog">
+  <view class="modal-content">
+    <text class="_font32 _login_info">点击登录，体验更多服务</text>
+  </view>
+  <view class="modal-footer">
+    <button class="btn-confirm" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">登录</button>
+  </view>
+</view>

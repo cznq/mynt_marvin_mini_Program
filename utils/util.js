@@ -28,7 +28,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     var stringA = 'app_id=' + requestHandler.params.app_id + '&data=' + requestHandler.params.data + '&method=' + requestHandler.params.method + '&service=' + requestHandler.params.service + '&timestamp=' + requestHandler.params.timestamp;
     requestHandler.params.sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
     //打印参数
-    app.myLog("请求参数", JSON.stringify(requestHandler.params));
+    
 
     wx.request({
       url: requestHandler.url,
@@ -39,13 +39,13 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
       },
       success: res => {
         if(res.data.sub_code !== 0) {
-          app.myLog("请求错误返回", JSON.stringify(res.data));
+          app.myLog("请求参数", JSON.stringify(requestHandler.params));
+          app.myLog("返回错误码" + res.statusCode, JSON.stringify(res.data));
         } 
         wx.hideLoading();
         if (requestHandler.success) requestHandler.success(res);
       },
       fail: (res) => {
-        console.log(res);
         app.myLog("请求错误", JSON.stringify(res));
         wx.hideLoading();
         wx.showToast({

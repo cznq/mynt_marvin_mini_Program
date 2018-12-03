@@ -1,0 +1,18 @@
+/* pages/login/index.wxss */
+.modal-dialog {
+  background-color: #fff;
+}
+.modal-content {
+  border-bottom: none;
+  padding: 24rpx 0 42rpx 0
+}
+._login_info {
+  color: rgba(136, 145, 169, 1);
+}
+.btn-confirm {
+  background-color: rgba(13, 182, 0, 1);
+  height: 76rpx;
+  line-height: 76rpx;
+  width: 254rpx;
+  color: #fff;
+}
