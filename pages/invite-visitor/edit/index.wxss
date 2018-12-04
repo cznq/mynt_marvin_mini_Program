@@ -29,6 +29,9 @@ page {
 .textarea_placeholder-input {
   color: rgba(26, 42, 75, 1);
 }
+.textarea_placeholder-input.plin{
+  color: rgba(26, 42, 75, .3);
+}
 .edit {
   color: rgba(0, 123, 255, 1);
 }

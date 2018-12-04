@@ -29,7 +29,7 @@
         <view class="label _font32 cause">邀请事由</view>
         <view class="edit" bindtap="openEdit">编辑</view>
       </view>
-      <textarea class="weui-textarea _font24" name="visit_intro" maxlength="800" id="visitIntro" bindinput="checkForm" placeholder="请描述邀请访客到访的具体事由和到访的要求" placeholder-class="textarea_placeholder-input" auto-height="true" focus="{{edit==''?true:false}}" disabled="{{edit}}"></textarea>
+      <textarea class="weui-textarea _font24" name="visit_intro" maxlength="800" id="visitIntro" bindinput="checkForm" placeholder="请描述邀请访客到访的具体事由和到访的要求" placeholder-class="textarea_placeholder-input {{edit==''?'plin':''}}" auto-height="true" focus="{{edit==''?true:false}}" disabled="{{edit}}"></textarea>
       <view class="_fixed form_submit {{isIphoneX?'iphonex':''}}">
         <button form-type="submit" class="_button" id="inviteBtn">预览邀请函</button>
       </view>
