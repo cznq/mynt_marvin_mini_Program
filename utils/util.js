@@ -13,20 +13,17 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   function POST(requestHandler) {
     checkRequest('POST', requestHandler)
   }
-
+  //检测是否已登陆
   function checkRequest(method, requestHandler){
     var app = getApp();
     if (requestHandler.params.ischeck == true){
       request(method, requestHandler, app)
     }else{
-      console.log('other');
       if (!(app.checkSession())) {
         var pages = getCurrentPages();
-        console.log('+++++' + pages.length);
         var currentPage = pages[pages.length - 1] //获取当前页面的对象
         var url = currentPage.route; //获取当前页面url
         var opt = JSON.stringify(currentPage.options) //获取url中所带的参数
-        console.log(opt);
         wx.navigateTo({
         url: '/pages/login/index?route=' + url + '&opt=' + opt,
         })
@@ -34,14 +31,9 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         request(method, requestHandler, app)
       }
     }
-    //request(method, requestHandler, app)
   }
-
-
+  //请求接口
   function request(method, requestHandler, app) {
-
-    
-    
     wx.showLoading({
       title: '正在加载',
       mask: true
@@ -52,7 +44,6 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     var stringA = 'app_id=' + requestHandler.params.app_id + '&data=' + requestHandler.params.data + '&method=' + requestHandler.params.method + '&service=' + requestHandler.params.service + '&timestamp=' + requestHandler.params.timestamp;
     requestHandler.params.sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
     //打印参数
-
 
     wx.request({
       url: requestHandler.url,

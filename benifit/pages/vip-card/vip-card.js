@@ -19,19 +19,10 @@ Page({
     wx.removeStorageSync('xy_session');
     var that = this;
     var commerceData = that.data.commerceData;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function(res) {
-        that.getEmployeeInfo();
-        for (let index in commerceData) {
-          that.getHotCommerce(index);
-        };
-      })
-    } else {
-      that.getEmployeeInfo();
-      for (let index in commerceData) {
-        that.getHotCommerce(index);
-      };
-    }
+    that.getEmployeeInfo();
+    for (let index in commerceData) {
+      that.getHotCommerce(index);
+    };
   },
   /**
    * 获取员工信息

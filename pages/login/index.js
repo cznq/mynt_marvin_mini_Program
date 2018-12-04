@@ -5,7 +5,7 @@ Page({
     url:'',
     timer: '',
     countDownNum: '3',
-    isxxclogin:false,
+    isxxclogin: false,
     isgzhlogin:false
   },
   onLoad: function(options) {
@@ -37,7 +37,6 @@ Page({
         }
       })
     } else {
-      console.log('-----' + _this.data.url);
       _this.setData({
         isxcxlogin: false,
         isgzhlogin: true
@@ -59,7 +58,7 @@ Page({
                 showLoginModal: false
               })
               app.authorizeLogin(res.encryptedData, res.iv, () => {
-                wx.redirectTo({
+                wx.reLaunch({
                   url: _this.data.url,
                 })
               });
@@ -81,11 +80,18 @@ Page({
         })
         if (countDownNum == 0) {
           clearInterval(_this.data.timer);
-          wx.redirectTo({
+          wx.reLaunch({
             url: _this.data.url,
           })
         }
       }, 1000)
+    })
+  },
+  //手动返回
+  goback:function(){
+    var _this = this;
+    wx.reLaunch({
+      url: _this.data.url,
     })
   }
 })

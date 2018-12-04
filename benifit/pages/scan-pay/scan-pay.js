@@ -19,17 +19,9 @@ Page({
     var that = this;
     var commerce_id = options.commerce_id;
     var type = options.type;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function(res) {
-        that.getEmployeeInfo();
-        that.getCommerceInfo(commerce_id);
-        that.getCommerceDiscount(commerce_id, type);
-      })
-    } else {
-      that.getEmployeeInfo();
-      that.getCommerceInfo(commerce_id);
-      that.getCommerceDiscount(commerce_id, type);
-    }
+    that.getEmployeeInfo();
+    that.getCommerceInfo(commerce_id);
+    that.getCommerceDiscount(commerce_id, type);
   },
   /**
    * 获取指定商家信息

@@ -29,25 +29,25 @@ Page({
       }
     })
   },
-  bindGetUserInfo: function () {
-    var _this = this;
-    wx.getSetting({
-      success: function (res) {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: function (res) {
-              console.log(res);
-              _this.setData({
-                showLoginModal: false
-              })
-              app.authorizeLogin(res.encryptedData, res.iv, () => {});
-            }
-          })
-        }
-      }
-    })
-  },
+  // bindGetUserInfo: function () {
+  //   var _this = this;
+  //   wx.getSetting({
+  //     success: function (res) {
+  //       if (res.authSetting['scope.userInfo']) {
+  //         // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+  //         wx.getUserInfo({
+  //           success: function (res) {
+  //             console.log(res);
+  //             _this.setData({
+  //               showLoginModal: false
+  //             })
+  //             app.authorizeLogin(res.encryptedData, res.iv, () => {});
+  //           }
+  //         })
+  //       }
+  //     }
+  //   })
+  // },
   onLoad: function(options) {
     var _this = this;
     var scene_str = decodeURIComponent(options.scene);
@@ -62,15 +62,15 @@ Page({
       app.myLog("扫码二维码出错", "申请发卡扫码二维码未识别公司ID");
     }
     //检测登陆
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        if (!(app.checkSession())) {
-          _this.setData({
-            showLoginModal: true
-          })
-        }
-      })
-    }
+    // if (!(app.checkSession())) {
+    //   app.checkLogin().then(function (res) {
+    //     if (!(app.checkSession())) {
+    //       _this.setData({
+    //         showLoginModal: true
+    //       })
+    //     }
+    //   })
+    // }
     //机器人端二维码消失
     _this.updateQrcodeStatus(_this.data.qr_code_key);
 

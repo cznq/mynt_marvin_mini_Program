@@ -118,21 +118,23 @@ Page({
   },
   onLoad: function(options) {
     var _this = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        if (!(app.checkSession())) {
-          _this.setData({
-            showLoginModal: true
-          })
-        } else {
-          var union_id = wx.getStorageSync('xy_session');
-          _this.get_review_status(_this, union_id);
-        }
-      })
-    } else {
-      var union_id = wx.getStorageSync('xy_session');
-      _this.get_review_status(_this, union_id);
-    }
+    var union_id = wx.getStorageSync('xy_session');
+    _this.get_review_status(_this, union_id);
+    // if (!(app.checkSession())) {
+    //   app.checkLogin().then(function (res) {
+    //     if (!(app.checkSession())) {
+    //       _this.setData({
+    //         showLoginModal: true
+    //       })
+    //     } else {
+    //       var union_id = wx.getStorageSync('xy_session');
+    //       _this.get_review_status(_this, union_id);
+    //     }
+    //   })
+    // } else {
+    //   var union_id = wx.getStorageSync('xy_session');
+    //   _this.get_review_status(_this, union_id);
+    // }
     _this.data.islock = false;
   },
   onShow:function(){
@@ -148,7 +150,7 @@ Page({
   },
   //获取用户状态
   get_review_status: function(_this, union_id) {
-    if (union_id !== '') {
+
       app.Util.network.POST({
         url: app.globalData.BASE_API_URL,
         params: {
@@ -253,56 +255,21 @@ Page({
           console.log('fail');
         }
       })
-    } else {
-      wx.showToast({
-        title: '授权失败，请从新登陆',
-        icon: 'none',
-        duration: 10000
-      })
-    }
   },
   //加入公司
   joinCompany: function() {
     var _this = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        if (!(app.checkSession())) {
-          _this.setData({
-            showLoginModal: true
-          })
-        } else {
-          wx.navigateTo({
-            url: '../employee/join-company/choiceJoin/index'
-          })
-        }
-      })
-    } else {
-      wx.navigateTo({
-        url: '../employee/join-company/choiceJoin/index'
-      })
-    }
+    wx.navigateTo({
+      url: '../employee/join-company/choiceJoin/index'
+    })
     
   },
   //创建公司
   createCompany: function() {
     var _this = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        if (!(app.checkSession())) {
-          _this.setData({
-            showLoginModal: true
-          })
-        } else {
-          wx.navigateTo({
-            url: '../create-company/enterCompanyCode/index',
-          })
-        }
-      })
-    } else {
-      wx.navigateTo({
-        url: '../create-company/enterCompanyCode/index',
-      })
-    }
+    wx.navigateTo({
+      url: '../create-company/enterCompanyCode/index',
+    })
     
   },
   //取消申请
