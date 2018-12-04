@@ -68,13 +68,13 @@ Page({
       pic: app.globalData.BASE_IMG_URl + 'manage/m5.png',
       name: 'VIP列表',
       bindtap: '',
-      isShow: true
+      isShow: false
     }, {
       url: '',
       pic: app.globalData.BASE_IMG_URl + 'manage/m6.png',
       name: '前台列表',
       bindtap: '',
-      isShow: true
+      isShow: false
     }],
     service: [{
       url: '',
