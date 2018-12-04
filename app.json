@@ -34,6 +34,7 @@
     "pages/company/introduction/index",
     "pages/company/webview/index",
     "pages/demo/iconfont/index",
+
     "pages/invite/invite",
     "pages/invite-share/invite-share",
     "pages/invite-receive/invite-receive",
@@ -43,6 +44,7 @@
     "pages/vip-index/vip-index",
     "pages/vip-invite/vip-invite",
     "pages/vip-share/vip-share",
+    
     "pages/demo/showToastDemo/index",
     "pages/invite-visitor/start/index",
     "pages/invite-visitor/guide/index",

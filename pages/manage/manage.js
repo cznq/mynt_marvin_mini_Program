@@ -118,8 +118,8 @@ Page({
   },
   onLoad: function(options) {
     var _this = this;
-    var union_id = wx.getStorageSync('xy_session');
-    _this.get_review_status(_this, union_id);
+    _this.get_review_status(_this);
+
     // if (!(app.checkSession())) {
     //   app.checkLogin().then(function (res) {
     //     if (!(app.checkSession())) {
@@ -140,8 +140,8 @@ Page({
   onShow:function(){
     var _this = this;
     if(_this.data.islock){
-      var union_id = wx.getStorageSync('xy_session');
-      _this.get_review_status(_this, union_id);
+      
+      //_this.get_review_status(_this);
     }
     _this.data.islock = true;
     _this.setData({
@@ -149,19 +149,18 @@ Page({
     })
   },
   //获取用户状态
-  get_review_status: function(_this, union_id) {
-
+  get_review_status: function(_this) {
+    
       app.Util.network.POST({
         url: app.globalData.BASE_API_URL,
         params: {
           service: 'company',
           method: 'get_review_status',
           data: JSON.stringify({
-            union_id: union_id
+            union_id: wx.getStorageSync('xy_session')
           })
         },
         success: res => {
-          console.log(res);
           var resdata = res.data.result;
           if (res.data.sub_code == 0) {
             if (resdata.employee_status === 0) {

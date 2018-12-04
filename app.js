@@ -44,6 +44,7 @@ App({
         }
       }
     })
+    
   },         
 
   /**
@@ -92,7 +93,6 @@ App({
                 success: res => {
                   console.log(res.data);
                   if (res.data.sub_code == 0) {
-                    that.globalData.invite_auth = true;
                     wx.setStorageSync('xy_session', res.data.result.union_id);
                     wx.setStorageSync('open_id', res.data.result.open_id);
                     wx.setStorageSync('nickname', res.data.result.nickname);
@@ -107,15 +107,13 @@ App({
                     } 
                     resolve(res);
                   } else {
-                    // wx.navigateTo({
-                    //   url: '/pages/login/index',
-                    // })
+                    reject('error');
                   }
                   
                 },
                 fail: res => {
                   fundebug.notify("登录失败", res.sub_msg)
-                  console.log('fail');
+                  reject('error');
                 }
               });
 
@@ -128,6 +126,73 @@ App({
       }
     })
   },
+
+  /**
+   * checkLogin
+   */
+  checkWxLogin(callback) {
+    var that = this;
+    if (that.checkSession()) {
+      callback();
+    } else {
+      wx.login({
+        success: res => {
+          if (res.code) {
+            console.log("-----login-----");
+            that.thirdLogin(res.code, null, null, callback);
+          } else {
+            fundebug.notify("微信登录失败", res.errMsg)
+            
+          }
+        }
+      })
+    }
+    
+  },
+
+  /**
+   * 第三方服务器登录
+   * Param: code 必填, encryptedData 选填, iv 选填
+   */
+  thirdLogin(code, encryptedData, iv, callback) {
+    var that = this;
+    that.Util.network.POST({
+      url: that.globalData.BASE_API_URL,
+      params: {
+        service: 'oauth',
+        method: 'login',
+        data: JSON.stringify({
+          code: code,
+          encrypted_data: encryptedData,
+          iv: iv
+        })
+      },
+      success: res => {
+        if (res.data.sub_code == 0) {
+          wx.setStorageSync('xy_session', res.data.result.union_id);
+          wx.setStorageSync('open_id', res.data.result.open_id);
+          wx.setStorageSync('nickname', res.data.result.nickname);
+          wx.setStorageSync('avatar', res.data.result.avatar);
+          wx.setStorageSync('invite_auth', false);
+          if (res.data.result.role !== 0) {
+            wx.setStorageSync('invite_auth', true);
+          }
+          
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '授权登录失败'
+          })
+        }
+        callback();
+      },
+      fail: res => {
+        callback();
+        console.log('fail');
+      }
+    })
+  },
+
 
   /**
    * 授权登录，弹出授权框

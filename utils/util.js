@@ -16,20 +16,23 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   //检测是否已登陆
   function checkRequest(method, requestHandler){
     var app = getApp();
+
     if (requestHandler.params.method == 'login'){
       request(method, requestHandler, app)
-    }else{
+    } else {
+     
       if (!(app.checkSession())) {
         var pages = getCurrentPages();
         var currentPage = pages[pages.length - 1] //获取当前页面的对象
         var url = currentPage.route; //获取当前页面url
         var opt = JSON.stringify(currentPage.options) //获取url中所带的参数
         wx.navigateTo({
-        url: '/pages/login/index?route=' + url + '&opt=' + opt,
+          url: '/pages/login/index?route=' + url + '&opt=' + opt,
         })
       } else {
         request(method, requestHandler, app)
       }
+              
     }
   }
   //请求接口
@@ -99,7 +102,8 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
       fail: function (res) {
         app.myLog("根据地址获取经纬度: ", " 地址："+address + '返回：' + JSON.stringify(res));
         wx.showToast({
-          title: '获取经纬度失败',
+          icon: 'none',
+          title: '获取经纬度失败'
         })
       },
       complete: function (res) {
@@ -212,7 +216,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     var weekDay = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
     var myDate = new Date(Date.parse(y + '/' + m + '/' + d));
     
-    return m + '月' + d + '日' + ' ' + weekDay[myDate.getDay()] + ' ' + h + ':' + minute;
+    return m + '月' + d + '日' + '，' + weekDay[myDate.getDay()] + '，' + h + ':' + minute;
   } 
 
   // 2018-09-11 11:30 转化时间戳 1542369600
