@@ -28,7 +28,7 @@
 
     <view class="_fixed footer {{isIphoneX?'iphonex':''}}">
       <view class="_font24 invoice"><text class="iconfont icon-dunpai"></text>请放心我们不会向任何第三方透露您的身份信息。</view>
-      <button class="_button _font32" formType="submit" disabled="{{(formData.phone && formData.id_number)?'':'disabled'}}" form-type="submit">下一步</button>
+      <button class="_button _font32" disabled="{{(formData.phone && formData.id_number)?'':'disabled'}}" form-type="submit">下一步</button>
     </view>
   </form>
 </view>

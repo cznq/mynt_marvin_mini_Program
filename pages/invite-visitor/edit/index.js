@@ -149,7 +149,7 @@ Page({
     var visitor_name = this.data.formData.visitor_name;
     var visit_intro = app.Util.decodeTextAreaString(this.data.formData.visit_intro);
     var appointment_time = app.Util.datetoTime(this.data.formData.visit_time);
-    if (this.checkParam(visitor_name, visit_intro, appointment_time)) {
+    if (this.checkParam(visitor_name, appointment_time, visit_intro)) {
       app.Util.network.POST({
         url: app.globalData.BASE_API_URL,
         params: {
