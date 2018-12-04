@@ -87,8 +87,7 @@ App({
                   method: 'login',
                   data: JSON.stringify({
                     code: res.code
-                  }),
-                  ischeck: true
+                  })
                 },
                 success: res => {
                   console.log(res.data);
@@ -148,8 +147,7 @@ App({
                 code: res.code,
                 encrypted_data: encryptedData,
                 iv: iv
-              }),
-              ischeck: true
+              })
             },
             success: res => {
               if (res.data.sub_code == 0) {

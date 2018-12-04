@@ -16,7 +16,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   //检测是否已登陆
   function checkRequest(method, requestHandler){
     var app = getApp();
-    if (requestHandler.params.ischeck == true){
+    if (requestHandler.params.method == 'login'){
       request(method, requestHandler, app)
     }else{
       if (!(app.checkSession())) {

@@ -19,13 +19,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        that.getEmployeeInfo();
-      })
-    } else {
-      that.getEmployeeInfo();
-    }
+    that.getEmployeeInfo();
   },
 
   editSubmit: function (e) {

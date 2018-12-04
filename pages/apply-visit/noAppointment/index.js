@@ -29,25 +29,6 @@ Page({
       }
     })
   },
-  // bindGetUserInfo: function () {
-  //   var _this = this;
-  //   wx.getSetting({
-  //     success: function (res) {
-  //       if (res.authSetting['scope.userInfo']) {
-  //         // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-  //         wx.getUserInfo({
-  //           success: function (res) {
-  //             console.log(res);
-  //             _this.setData({
-  //               showLoginModal: false
-  //             })
-  //             app.authorizeLogin(res.encryptedData, res.iv, () => {});
-  //           }
-  //         })
-  //       }
-  //     }
-  //   })
-  // },
   onLoad: function(options) {
     var _this = this;
     var scene_str = decodeURIComponent(options.scene);
@@ -61,16 +42,6 @@ Page({
       })
       app.myLog("扫码二维码出错", "申请发卡扫码二维码未识别公司ID");
     }
-    //检测登陆
-    // if (!(app.checkSession())) {
-    //   app.checkLogin().then(function (res) {
-    //     if (!(app.checkSession())) {
-    //       _this.setData({
-    //         showLoginModal: true
-    //       })
-    //     }
-    //   })
-    // }
     //机器人端二维码消失
     _this.updateQrcodeStatus(_this.data.qr_code_key);
 
@@ -100,23 +71,9 @@ Page({
   },
   next: function() {
     var _this = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        if (!(app.checkSession())) {
-          _this.setData({
-            showLoginModal: true
-          })
-        }else{
-          wx.navigateTo({
-            url: '../reasonsVisiting/index?company_id=' + _this.data.cd.company_id + '&is_force_visitor_input_info=' + _this.data.cd.is_force_visitor_input_info + '&take_card_ways=' + _this.data.cd.take_card_ways + '&company_code=' + _this.data.company_code,
-          })
-        }
-      })
-    }else{
-      wx.navigateTo({
-        url: '../reasonsVisiting/index?company_id=' + _this.data.cd.company_id + '&is_force_visitor_input_info=' + _this.data.cd.is_force_visitor_input_info + '&take_card_ways=' + _this.data.cd.take_card_ways + '&company_code=' + _this.data.company_code,
-      })
-    }
+    wx.navigateTo({
+      url: '../reasonsVisiting/index?company_id=' + _this.data.cd.company_id + '&is_force_visitor_input_info=' + _this.data.cd.is_force_visitor_input_info + '&take_card_ways=' + _this.data.cd.take_card_ways + '&company_code=' + _this.data.company_code,
+    })
     
   }
 })
