@@ -14,7 +14,7 @@
         <text class='_font24 _txt_darkgrey _fontw300'>公司简称</text>
         <text class='_font22 _txt_darkgrey _fontw300'>(必填)</text>
       </view>
-      <input class='input_text' name="company_short_name" value='{{cd.company_short_name}}' placeholder='显示在机器人端公司主页，最多8个字' placeholder-class='input_text_phc' maxlength='8'></input>
+      <input class='input_text' name="company_short_name" value='{{cd.company_short_name}}' placeholder='显示在机器人端公司主页，最多8个字' placeholder-class='input_text_phc' maxlength='8' disabled='false' ></input>
     </view>
     <view class='input_block'>
       <view class='st'>
@@ -38,7 +38,8 @@
       <view class='st'>
         <text class='_font24 _txt_darkgrey _fontw300'>公司地址</text>
       </view>
-      <input class='input_text dis_b_n pj9' disabled='false' name="address" value='{{cd.address}}'></input>
+      <input class='input_text dis_b_n pj9 disnone' disabled='false' name="address" value='电饭锅的口感和电饭锅地方个电饭锅地方给对方个电饭锅电饭锅梵蒂冈地方给对方给对方公司{{cd.address}}'></input>
+      <view class='input_text dis_b_n pj9 viewshow'>{{cd.address}}</view>
     </view>
     <view class='input_block'>
       <view class='st'>
