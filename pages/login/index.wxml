@@ -7,4 +7,3 @@
     <button class="btn-confirm" wx:if="{{isgzhlogin}}">登陆成功 {{countDownNum}}</button>
   </view>
 </view>
-

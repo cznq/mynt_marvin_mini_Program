@@ -6,7 +6,7 @@ Page({
     button_text: '下一步',
     hint: '二维码与邀请码来自于企业内部人员的分享,可\n向企业员工或管理员索要',
     company_code: '',
-    showLoginModal:false
+    showLoginModal: false
   },
   bindGetUserInfo: function () {
     var that = this;
@@ -29,11 +29,11 @@ Page({
       }
     })
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
     var _this = this;
     //检测登陆
     if (!(app.checkSession())) {
-      app.checkLogin().then(function(res) {
+      app.checkLogin().then(function (res) {
         if (!(app.checkSession())) {
           _this.setData({
             showLoginModal: true
@@ -50,10 +50,10 @@ Page({
     } else {
       _this.data.company_code = options.company_code;
     }
-    
 
   },
-  get_info:function(){
+  get_info: function () {
+
     var _this = this;
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
@@ -119,9 +119,11 @@ Page({
       }
     })
   },
-  receiveSubmit: function () {
+
+  receiveSubmit: function (e) {
     var _this = this;
     var form_id = e.detail.formId;
+    console.log(form_id)
     if (!(app.checkSession())) {
       app.checkLogin().then(function (res) {
         if (!(app.checkSession())) {
@@ -131,12 +133,14 @@ Page({
         } else {
           wx.navigateTo({
             url: '../enterRealName/index?company_code=' + _this.data.company_code + '&form_id=' + form_id
+
           })
         }
       })
     } else {
       wx.navigateTo({
         url: '../enterRealName/index?company_code=' + _this.data.company_code + '&form_id=' + form_id
+
       })
     }
 
