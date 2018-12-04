@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 30,
+			"current": 42,
 			"list": [
 				{
 					"id": 0,
@@ -306,10 +306,10 @@
 					"scene": "1044"
 				},
 				{
-					"id": -1,
+					"id": 42,
 					"name": "login",
 					"pathName": "pages/login/index",
-					"query": "",
+					"query": "route=/dddf/dfg&opt=555",
 					"scene": "1044"
 				}
 			]

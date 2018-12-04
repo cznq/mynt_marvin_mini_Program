@@ -1,41 +1,67 @@
 const app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    route: '',
-    opt: ''
+    text: '',
+    url:'',
+    timer: '',
+    countDownNum: '3',
+    isxxclogin:false,
+    isgzhlogin:false
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    this.data.route = options.route
-    this.data.opt = options.opt
-    console.log(JSON.parse(this.data.route));
-    console.log(JSON.parse(this.data.opt));
+  onLoad: function(options) {
+    var _this = this;
+    var opts = JSON.parse(options.opt);
+    
+    //拼接url的参数
+    var urlWithArgs = '/'+options.route + '?'
+    for (var key in opts) {
+      var value = opts[key]
+      urlWithArgs += key + '=' + value + '&'
+    }
+    _this.data.url = urlWithArgs;
+    
+    //检测登陆
+    if (!(app.checkSession())) {
+      app.checkLogin().then(function(res) {
+        if (!(app.checkSession())) {
+          _this.setData({
+            isxcxlogin: true,
+            isgzhlogin: false
+          })
+        } else {
+          _this.setData({
+            isxcxlogin: false,
+            isgzhlogin:true
+          })
+          _this.countDown();
+        }
+      })
+    } else {
+      console.log('-----' + _this.data.url);
+      _this.setData({
+        isxcxlogin: false,
+        isgzhlogin: true
+      })
+      _this.countDown();
+    }
   },
-
-  bindGetUserInfo: function () {
-    var that = this;
+  //小程序授权登陆
+  bindGetUserInfo: function() {
+    var _this = this;
     wx.getSetting({
-      success: function (res) {
+      success: function(res) {
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
-            success: function (res) {
+            success: function(res) {
               console.log(res);
-              that.setData({
+              _this.setData({
                 showLoginModal: false
               })
               app.authorizeLogin(res.encryptedData, res.iv, () => {
                 wx.redirectTo({
-                  url: that.data.route + '&opt=' + opt,
+                  url: _this.data.url,
                 })
-                
               });
             }
           })
@@ -43,18 +69,23 @@ Page({
       }
     })
   },
-
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    if (app.checkSession()) {
-      wx.redirectTo({
-        url: this.data.route + '&opt=' + opt,
-      })
-    }
+  //倒计时跳转
+  countDown: function () {
+    let _this = this;
+    let countDownNum = _this.data.countDownNum;
+    _this.setData({
+      timer: setInterval(function () {
+        countDownNum--;
+        _this.setData({
+          countDownNum: countDownNum
+        })
+        if (countDownNum == 0) {
+          clearInterval(_this.data.timer);
+          wx.redirectTo({
+            url: _this.data.url,
+          })
+        }
+      }, 1000)
+    })
   }
-
-
 })

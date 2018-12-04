@@ -7,16 +7,40 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
   // GET请求
   function GET(requestHandler) {
-    request('GET', requestHandler)
+    checkRequest('GET', requestHandler)
   }
   // POST请求
   function POST(requestHandler) {
-    request('POST', requestHandler)
+    checkRequest('POST', requestHandler)
   }
 
-  function request(method, requestHandler) {
-
+  function checkRequest(method, requestHandler){
     var app = getApp();
+    if (requestHandler.params.ischeck == true){
+      request(method, requestHandler, app)
+    }else{
+      console.log('other');
+      if (!(app.checkSession())) {
+        var pages = getCurrentPages();
+        console.log('+++++' + pages.length);
+        var currentPage = pages[pages.length - 1] //获取当前页面的对象
+        var url = currentPage.route; //获取当前页面url
+        var opt = JSON.stringify(currentPage.options) //获取url中所带的参数
+        console.log(opt);
+        wx.navigateTo({
+        url: '/pages/login/index?route=' + url + '&opt=' + opt,
+        })
+      } else {
+        request(method, requestHandler, app)
+      }
+    }
+    //request(method, requestHandler, app)
+  }
+
+
+  function request(method, requestHandler, app) {
+
+    
     
     wx.showLoading({
       title: '正在加载',
