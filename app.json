@@ -80,7 +80,7 @@
     "navigationBarTextStyle": "black"
   },
   "networkTimeout": {
-    "request": 50000,
+    "request": 10000,
     "connectSocket": 50000,
     "uploadFile": 50000,
     "downloadFile": 50000

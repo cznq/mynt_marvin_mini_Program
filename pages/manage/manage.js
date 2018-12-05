@@ -2,7 +2,7 @@ var app = getApp()
 Page({
   data: {
     isiphoneX: app.globalData.isIphoneX,
-    showLoginModal:false,
+    showLoginModal: false,
     indicatorDots: true, //是否显示面板指示点
     indicatorColor: "#8891A9", //指示点颜色
     indicatorActiveColor: "#007BFF", //当前选中的指示点颜色
@@ -14,7 +14,7 @@ Page({
     isexamine: false, //审核中
     ismanage: false, //管理中心
     islock: true,
-    role:'',
+    role: '',
     headlinesT1: "欢迎使用",
     headlinesT2: "小觅楼宇服务",
     copy: '我的公司还未入驻小觅楼宇服务，点击 ',
@@ -99,9 +99,9 @@ Page({
     _this.get_review_status(_this);
     _this.data.islock = false;
   },
-  onShow:function(){
+  onShow: function() {
     var _this = this;
-    if(_this.data.islock){
+    if (_this.data.islock) {
       _this.get_review_status(_this);
     }
     _this.data.islock = true;
@@ -111,109 +111,142 @@ Page({
   },
   //获取用户状态
   get_review_status: function(_this) {
-      app.Util.network.POST({
-        url: app.globalData.BASE_API_URL,
-        params: {
-          service: 'company',
-          method: 'get_review_status',
-          data: JSON.stringify({
-            union_id: wx.getStorageSync('xy_session')
-          })
-        },
-        success: res => {
-          var resdata = res.data.result;
-          if (res.data.sub_code == 0) {
-            if (resdata.employee_status === 0) {
-              console.log('管理中心');
-              _this.data.role = resdata.role;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_review_status',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session')
+        })
+      },
+      success: res => {
+        var resdata = res.data.result;
+        if (res.data.sub_code == 0) {
+          if (resdata.employee_status === 0) {
+            console.log('管理中心');
+            _this.data.role = resdata.role;
+            _this.setData({
+              islogin: false,
+              isexamine: false,
+              ismanage: true
+            })
+            /* ----- 企业应用显示权限 ----- */
+            if (resdata.role == 1) {
+              //普通员工
               _this.setData({
-                islogin: false,
-                isexamine: false,
-                ismanage: true 
+                'application[4].isShow': false, //vip列表
+                'application[5].isShow': false //前台列表
               })
-              /* ----- 企业应用显示权限 ----- */
-              if (resdata.role == 1) {
-                //普通员工
-                _this.setData({
-                  'application[4].isShow': false, //vip列表
-                  'application[5].isShow': false //前台列表
-                })
+            }
+            if (resdata.role == 2) {
+              //前台
+              _this.setData({
+                'application[5].isShow': false //前台列表
+              })
+            }
+
+            wx.setNavigationBarTitle({
+              title: '企业管理'
+            })
+            wx.setNavigationBarColor({
+              frontColor: '#ffffff',
+              backgroundColor: '#092344',
+              animation: {
+                duration: 400,
+                timingFunc: 'easeIn'
               }
-              if (resdata.role == 2) {
-                //前台
-                _this.setData({
-                  'application[5].isShow': false //前台列表
+            })
+            //请求企业信息
+            app.Util.network.POST({
+              url: app.globalData.BASE_API_URL,
+              params: {
+                service: 'company',
+                method: 'get_info',
+                data: JSON.stringify({
+                  union_id: wx.getStorageSync('xy_session')
                 })
-              }
-              
-              wx.setNavigationBarTitle({
-                title: '企业管理'
-              })
-              wx.setNavigationBarColor({
-                frontColor: '#ffffff',
-                backgroundColor: '#092344',
-                animation: {
-                  duration: 400,
-                  timingFunc: 'easeIn'
-                }
-              })
-              //请求企业信息
-              app.Util.network.POST({
-                url: app.globalData.BASE_API_URL,
-                params: {
-                  service: 'company',
-                  method: 'get_info',
-                  data: JSON.stringify({
-                    union_id: wx.getStorageSync('xy_session')
+              },
+              success: res => {
+                console.log(res);
+                if (res.data.sub_code == 0) {
+                  _this.setData({
+                    cd: res.data.result
                   })
-                },
-                success: res => {
-                  console.log(res);
-                  if (res.data.sub_code == 0) {
+                  //企业服务自动值守
+                  if (_this.data.cd.service_suite == 0 || _this.data.role == 1) {
                     _this.setData({
-                      cd: res.data.result
+                      'service[0].isShow': false
                     })
-                    //企业服务自动值守
-                    if (_this.data.cd.service_suite == 0 || _this.data.role == 1) {
+                  } else {
+                    if (res.data.result.attend_status == 1) {
                       _this.setData({
-                        'service[0].isShow': false
+                        'service[0].text2': '已开启>'
                       })
                     }
-                  } else {
-                    console.log(res.data.sub_msg);
                   }
-                },
-                fail: res => {
-                  console.log('fail');
+                } else {
+                  console.log(res.data.sub_msg);
                 }
-              })
-            }
-            if (resdata.employee_status === 2) {
-              console.log('审核中页面');
-              _this.setData({
-                islogin: false,
-                isexamine: true,
-                ismanage: false,
-                company_name: resdata.company_name,
-                name: resdata.name
-              })
-            }
-            if (resdata.employee_status === "" || resdata.employee_status === 1 || resdata.employee_status === 3 || resdata.employee_status === 4) {
-              console.log('创建&&加入公司首页');
-              _this.setData({
-                islogin: true,
-                isexamine: false,
-                ismanage: false,
-              })
-            }
-          } else {
-            console.log(res.data.sub_msg);
+              },
+              fail: res => {
+                console.log('fail');
+              }
+            })
+            //请求员工取卡是否开启
+            app.Util.network.POST({
+              url: app.globalData.BASE_API_URL,
+              params: {
+                service: 'company',
+                method: 'get_employee_info',
+                data: JSON.stringify({
+                  union_id: wx.getStorageSync('xy_session')
+                })
+              },
+              success: res => {
+                console.log(res);
+                if (res.data.sub_code == 0) {
+                  if (res.data.result.input_pic_url !==""){
+                    _this.setData({
+                      'service[1].text2': '已开启>'
+                    })
+                  }
+                } else {
+                  console.log(res.data.sub_msg);
+                }
+              },
+              fail: res => {
+                console.log('fail');
+              }
+            })
+            
           }
-        },
-        fail: res => {
-          console.log('fail');
+          if (resdata.employee_status === 2) {
+            console.log('审核中页面');
+            _this.setData({
+              islogin: false,
+              isexamine: true,
+              ismanage: false,
+              company_name: resdata.company_name,
+              name: resdata.name
+            })
+          }
+          if (resdata.employee_status === "" || resdata.employee_status === 1 || resdata.employee_status === 3 || resdata.employee_status === 4) {
+            console.log('创建&&加入公司首页');
+            _this.setData({
+              islogin: true,
+              isexamine: false,
+              ismanage: false,
+            })
+          }
+        } else {
+          console.log(res.data.sub_msg);
         }
-      })
+      },
+      fail: res => {
+        console.log('fail');
+      }
+    })
   },
   //加入公司
   joinCompany: function() {
@@ -221,7 +254,7 @@ Page({
     wx.navigateTo({
       url: '../employee/join-company/choiceJoin/index'
     })
-    
+
   },
   //创建公司
   createCompany: function() {
@@ -229,7 +262,7 @@ Page({
     wx.navigateTo({
       url: '../create-company/enterCompanyCode/index',
     })
-    
+
   },
   //取消申请
   withdraw: function() {
