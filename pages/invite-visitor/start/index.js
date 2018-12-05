@@ -15,13 +15,8 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        app.getServiceStatus(that, 'INVITE_VISITOR');
-      })
-    } else {
-      app.getServiceStatus(that, 'INVITE_VISITOR');
-    }
+    app.getServiceStatus(that, 'INVITE_VISITOR');
+    
   },
 
   goToInvite: function () {

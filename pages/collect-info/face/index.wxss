@@ -103,12 +103,11 @@ canvas {
   width: 300px;
 }
 .footer {
-  background: #ccc;
+  background: rgba(253, 254, 254, .96);
   left:0;
   bottom:0;
   width:100%;
   padding:30rpx 0;
-  background: linear-gradient(to bottom,#fafbfb 0%,#fcfdfd 60%,#fcfdfd 60%,#fcfdfd 100%);
   border-top:1rpx solid #eeeeee;
   z-index: 101;
 }

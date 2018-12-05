@@ -22,14 +22,8 @@ Page({
     that.data.options.params = options.params;
 
     that.showInfo('#inputRow', '请输入您录入人脸时填写的身份证后六位。');
-    
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        that.getEmployeeInfo();
-      })
-    } else {
-      that.getEmployeeInfo();
-    }
+    that.getEmployeeInfo();
+      
   },
 
   /**

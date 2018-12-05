@@ -83,14 +83,7 @@ Page({
   },
 
   onShow: function () {
-    var that = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        that.getInitation();
-      })
-    } else {
-      that.getInitation();
-    }
+    this.getInitation();
 
   }
 

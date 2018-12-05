@@ -172,26 +172,6 @@ Page({
       }
     })
   },
-
-  bindGetUserInfo: function() {
-    var that = this;
-    wx.getSetting({
-      success: function (res) {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: function (res) {
-              console.log(res);
-              that.setData({
-                showLoginModal: false
-              })
-              app.authorizeLogin(res.encryptedData, res.iv, () => {that.getVisitorInfo()});
-            }
-          })
-        }
-      }
-    })
-  },
   
   /**
    * 生命周期函数--监听页面加载
@@ -212,20 +192,9 @@ Page({
     app.myLog('申请发卡：', "公司ID:" + company_id + " Key:" + qr_code_key);
     that.updateQrcodeStatus(qr_code_key);
     that.setData({ company_id: company_id })
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        //console.log(wx.getStorageSync('xy_session'));
-        if (!(app.checkSession())) {
-          that.setData({
-            showLoginModal: true
-          })
-        } else {
-          that.getVisitorInfo();
-        }
-      })
-    } else {
-      that.getVisitorInfo();
-    }
+    
+    that.getVisitorInfo();
+    
   }
 
 })

@@ -44,15 +44,10 @@ Page({
       commerce_id: options.commerce_id,
       commerce_type: options.commerce_type
     })
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        that.getEmployeeInfo();
-        that.getDetailInfo(that.data.commerce_id);
-      })
-    } else {
-      that.getDetailInfo(that.data.commerce_id);
-      that.getEmployeeInfo();
-    }
+    
+    that.getDetailInfo(that.data.commerce_id);
+    that.getEmployeeInfo();
+    
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
