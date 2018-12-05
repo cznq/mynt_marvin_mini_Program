@@ -16,14 +16,15 @@ Page({
     editData: {
       union_id: null,
       employee_name: null
-    }
+    },
+    role: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getStaffList();
+    this.getEmployeeInfo();
   },
 
   /**
@@ -53,6 +54,30 @@ Page({
             staffList: res.data.result
           })
         }
+        
+      }
+    })
+  },
+
+  getEmployeeInfo() {
+    var that = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_employee_info',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session')
+        })
+      },
+      success: res => {
+        if (res.data.result) {
+          that.setData({
+            role: res.data.result.role
+          })
+        }
+      },
+      fail: res => {
         
       }
     })

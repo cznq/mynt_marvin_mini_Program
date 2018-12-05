@@ -37,6 +37,11 @@ Page({
         })
       },
       success: res => {
+        if (res.data.sub_msg == '没找到对应的职员') {
+          wx.redirectTo({
+            url: '/pages/manage/manage',
+          })
+        }
         if (res.data.result) {
           res.data.result.fuzz_id_number = that.fuzzIdNumber(res.data.result.id_number);
           that.setData({

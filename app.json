@@ -32,6 +32,7 @@
     "pages/employee/join-company/confirmCompanyInformation/index",
     "pages/company/unattended-setting/index",
     "pages/company/introduction/index",
+    "pages/company/otherCompany/index",
     "pages/company/webview/index",
     "pages/demo/iconfont/index",
 

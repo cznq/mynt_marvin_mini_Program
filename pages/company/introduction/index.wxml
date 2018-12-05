@@ -1,3 +1,4 @@
 
 <import src="../../../templates/companyPages/companyPages.wxml" />
 <template is="companyPages" data="{{cd:cd}}" />
+<view class="edit" wx:if="{{quitBtn}}"><button class="_button _font24" bindtap="quitCompany">退出企业</button></view>

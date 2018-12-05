@@ -4,14 +4,14 @@ var companyPage = require('../../../templates/companyPages/companyPages');
 Page({
   data: {
     isiphoneX: app.globalData.isIphoneX,
-    cd: {},
-    quitBtn: false
+    cd: {}
   },
   onLoad: function (options) {
     var _this = this;
+    _this.data.company_code = options.company_code;
     
     //请求数据
-    companyPage.cd(_this, app, "company", "get_info", wx.getStorageSync('xy_session'));
+    companyPage.cd(_this, app, "company", "get_company_info", options.company_code);
 
     var pages = getCurrentPages();
     var prevPage = pages[pages.length - 2].route;
