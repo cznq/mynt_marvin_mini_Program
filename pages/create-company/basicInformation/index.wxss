@@ -10,5 +10,5 @@
 .jjs{line-height:34rpx;padding-top:39rpx;}
 ._font24{font-size:24rpx;padding-bottom:20rpx;}
 .text_a{line-height:40rpx;padding:10rpx 0;height:148rpx;}
-.viewshow{line-height: 40rpx;padding-top:12rpx;}
+.viewshow{line-height: 40rpx;padding-top:12rpx;height: auto;}
 .disnone{display:none;}
