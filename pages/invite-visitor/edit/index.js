@@ -150,33 +150,13 @@ Page({
     var visit_intro = app.Util.decodeTextAreaString(this.data.formData.visit_intro);
     var appointment_time = app.Util.datetoTime(this.data.formData.visit_time);
     if (this.checkParam(visitor_name, appointment_time, visit_intro)) {
-      app.Util.network.POST({
-        url: app.globalData.BASE_API_URL,
-        params: {
-          service: 'visitor',
-          method: 'invite',
-          data: JSON.stringify({
-            union_id: wx.getStorageSync('xy_session'),
-            visitor_name: visitor_name,
-            invitation_type: 0,
-            introduction: visit_intro,
-            appointment_time: appointment_time
-          })
-        },
-        success: res => {
-          console.log(res);
-          if (res.data.result.invitation_id) {
-            wx.redirectTo({
-              url: '/pages/invite-visitor/share/index?invitation_id=' + res.data.result.invitation_id,
-            })
-          } else {
-            wx.showModal({
-              content: '提交失败',
-              showCancel: false,
-              success: function (res) {}
-            })
-          }
-        },
+      var params = JSON.stringify({
+        visitor_name: visitor_name,
+        visit_intro: visit_intro,
+        appointment_time: appointment_time
+      })
+      wx.navigateTo({
+        url: '/pages/invite-visitor/share/index?params=' + params,
       })
     }
   },
@@ -222,12 +202,10 @@ Page({
     })
   },
 
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.removeStorageSync('xy_session');
     this.setDataRequest();
     
   }

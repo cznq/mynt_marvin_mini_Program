@@ -235,9 +235,16 @@ Page({
             that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, function () {
               app.idInformationSubmit(that.data.options.idInfo.service, that.data.options.idInfo.method, that.data.options.idInfo.id_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_number, function () {
                 wx.hideLoading();
-                wx.redirectTo({
-                  url: '/pages/employee/take-card/success/index?company_id=' + that.data.options.params.company_id,
-                })
+                if (that.data.options.params.card_type == 'card') {
+                  wx.redirectTo({
+                    url: '/pages/employee/take-card/success/index?company_id=' + that.data.options.params.company_id,
+                  })
+                } else {
+                  wx.redirectTo({
+                    url: '/pages/e-card/detail/index'
+                  })
+                }
+                
               })
             });
             

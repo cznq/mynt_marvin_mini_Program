@@ -10,60 +10,106 @@ Page({
     isIphoneX: app.globalData.isIphoneX,
     latitude: null,
     longitude: null,
-    invitation_id: null,
-    invitation: null,
     appointment_time: '',
-    error: ""
+    inviteInfo: {},
+    companyInfo: null,
+    empInfo: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    that.setData({
-      invitation_id: options.invitation_id
+    var params = JSON.parse(options.params);
+    this.setData({
+      inviteInfo: params,
+      appointment_time: app.Util.formatTime(params.appointment_time)
     })
-   
-    that.getInitation();
-
+    this.getCompanyInfo();
+    this.getEmployeeInfo();
   },
 
   /**
-   * 获取邀请信息
+   * 获取员工信息
    */
-  getInitation: function () {
+  getEmployeeInfo: function () {
     var that = this;
-    if (that.data.invitation_id == undefined) {
-      that.setData({
-        error: "没有获取到邀请信息"
-      })
-    }
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_employee_info',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+        })
+      },
+      success: res => {
+        if (res.data.result) {
+          that.setData({
+            empInfo: res.data.result
+          });
+        }
+
+      }
+    })
+  },
+
+  getCompanyInfo: function () {
+
+    var that = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_info',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session')
+        })
+      },
+      success: res => {
+        console.log(res.data);
+        if (res.data.result) {
+          that.setData({
+            companyInfo: res.data.result
+          })
+        }
+        app.Util.generateMap(that, res.data.result.address);
+      }
+    })
+  },
+
+  /**
+   * 提交表单
+   * param: visitor_name, visit_intro, appointment_time
+   */
+  inviteSubmit: function (visitor_name, visit_intro, appointment_time, callback) {
+    
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'visitor',
-        method: 'get_invitation_info',
+        method: 'invite',
         data: JSON.stringify({
           union_id: wx.getStorageSync('xy_session'),
-          invitation_id: that.data.invitation_id
+          visitor_name: visitor_name,
+          invitation_type: 0,
+          introduction: visit_intro,
+          appointment_time: appointment_time
         })
       },
       success: res => {
-        var invitation = res.data.result;
-        var appointment_time = invitation.appointment_time + 8 * 3600;
-        that.setData({
-          invitation: invitation,
-          appointment_time: app.Util.formatTime(appointment_time)
-        })
-        app.Util.generateMap(that, res.data.result.company.address);
+        console.log(res);
+        if (res.data.result.invitation_id) {
+          callback(res.data.result.invitation_id);
+        } else {
+          wx.showToast({
+            title: '提交失败',
+            icon: 'none'
+          })
+        }
       },
-      fail: res => {
-        that.setData({
-          error: "没有获取到邀请信息"
-        })
-      }
     })
+    
   },
 
   /**
@@ -82,22 +128,53 @@ Page({
     })
   },
 
+  backAction: function () {
+    wx.navigateBack()
+  },
+
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function (res) {
-    return {
-      title: '您收到访问邀请啦！',
-      path: '/pages/invite-visitor/receive/index?invitation_id=' + this.data.invitation_id,
-      success: function (res) {
-        // 转发成功
-        wx.navigateBack({
-          delta: 1
+    var that = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'visitor',
+        method: 'invite',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+          visitor_name: that.data.inviteInfo.visitor_name,
+          invitation_type: 0,
+          introduction: that.data.inviteInfo.visit_intro,
+          appointment_time: that.data.inviteInfo.appointment_time
         })
       },
-      fail: function (res) {
-        // 转发失败
-      }
-    }
+      success: res => {
+        console.log(res);
+        if (res.data.result.invitation_id) {
+          
+          return {
+            title: '您收到访问邀请啦！',
+            path: '/pages/invite-visitor/receive/index?invitation_id=' + res.data.result.invitation_id,
+            success: function (res) {
+              // 转发成功
+              wx.showToast({
+                title: '分享成功',
+              })
+            },
+            fail: function (res) {
+              // 转发失败
+            }
+          }
+        } else {
+          wx.showToast({
+            title: '分享失败',
+            icon: 'none'
+          })
+        }
+      },
+    })
+    
   }
 })

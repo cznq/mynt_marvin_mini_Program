@@ -1,6 +1,9 @@
 .page_bd {
   padding-top: 100rpx;
 }
+.page_bd.noLogo {
+  padding-top: 50rpx;
+}
 .invite-wrapper {
   background-color: #fff;
   margin: 0 40rpx;
@@ -11,6 +14,7 @@
 .company-info {
   line-height: 1;
   padding-bottom: 64rpx;
+  padding-top: 50rpx;
   border-bottom: 2rpx solid rgba(220, 220, 220, .5)
 }
 .company-info::before,
@@ -21,7 +25,7 @@
   border-radius: 50%;
   background-color: RGBA(240, 241, 242, 1);
   position: absolute;
-  top: 210rpx;
+  top: 180rpx;
 }
 .company-info::before {
   left: -18rpx; 
@@ -33,11 +37,11 @@
   width: 100rpx;
   height: 100rpx;
   border-radius: 10rpx;
-  margin-top: -50rpx;
+  margin-top: -150rpx;
+  margin-bottom: 26rpx;
 }
 .company-info ._name {
   color: rgba(26, 42, 75, 1);
-  margin-top: 26rpx;
 }
 .company-info ._short_name {
   color: rgba(136, 145, 169, 1);

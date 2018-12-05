@@ -58,14 +58,13 @@ Page({
    */
   getEmployeeInfo: function () {
     var that = this;
-    var unionId = wx.getStorageSync('xy_session');
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'company',
         method: 'get_employee_info',
         data: JSON.stringify({
-          union_id: unionId
+          union_id: wx.getStorageSync('xy_session')
         })
       },
       success: res => {
@@ -89,9 +88,13 @@ Page({
    * 开启快捷取卡
    */
   openTakeCard: function () {
-    wx.navigateTo({
-      url: '/pages/collect-info/guide/index?company_id=' + this.data.cmpInfo.company_id
+    var parmas = JSON.stringify({
+      company_id: this.data.cmpInfo.company_id,
+      card_type: this.data.cardType
     })
+    wx.navigateTo({
+      url: '/pages/collect-info/guide/index?source=takeCard&params=' + parmas
+    })    
   },
 
   /**

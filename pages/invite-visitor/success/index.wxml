@@ -6,10 +6,10 @@
     <button bindtap="viewGuide">如何使用我的邀请函</button>
   </view>
 
-  <view class="page_bd">
+  <view class="page_bd {{invitation.company.company_logo?'':'noLogo'}}">
     <view class="invite-wrapper">
       <view class="company-info _txt_center">
-        <image class="_logo" src="{{invitation.company.company_logo}}"></image>
+        <image class="_logo" src="{{invitation.company.company_logo}}" wx:if="{{invitation.company.company_logo}}"></image>
         <view class="_name _font44 _fontw600 _flex _flex_justify_center _flex_item_center">
           <text>{{invitation.company.company_name}}</text>
           <text class="iconfont icon-jiantou"></text>
