@@ -94,54 +94,15 @@ Page({
       isShow: true
     }]
   },
-  bindGetUserInfo: function () {
-    var that = this;
-    wx.getSetting({
-      success: function (res) {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: function (res) {
-              console.log(res);
-              that.setData({
-                showLoginModal: false
-              })
-              app.authorizeLogin(res.encryptedData, res.iv, () => {
-                var union_id = wx.getStorageSync('xy_session');
-                that.get_review_status(that, union_id);
-              });
-            }
-          })
-        }
-      }
-    })
-  },
   onLoad: function(options) {
     var _this = this;
     _this.get_review_status(_this);
-
-    // if (!(app.checkSession())) {
-    //   app.checkLogin().then(function (res) {
-    //     if (!(app.checkSession())) {
-    //       _this.setData({
-    //         showLoginModal: true
-    //       })
-    //     } else {
-    //       var union_id = wx.getStorageSync('xy_session');
-    //       _this.get_review_status(_this, union_id);
-    //     }
-    //   })
-    // } else {
-    //   var union_id = wx.getStorageSync('xy_session');
-    //   _this.get_review_status(_this, union_id);
-    // }
     _this.data.islock = false;
   },
   onShow:function(){
     var _this = this;
     if(_this.data.islock){
-      
-      //_this.get_review_status(_this);
+      _this.get_review_status(_this);
     }
     _this.data.islock = true;
     _this.setData({
@@ -150,7 +111,6 @@ Page({
   },
   //获取用户状态
   get_review_status: function(_this) {
-    
       app.Util.network.POST({
         url: app.globalData.BASE_API_URL,
         params: {

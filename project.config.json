@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 42,
+			"current": 28,
 			"list": [
 				{
 					"id": 0,
@@ -217,7 +217,8 @@
 					"id": 28,
 					"name": "创建-vip引导",
 					"pathName": "pages/create-company/guideVip/index",
-					"query": "CstateCode=2"
+					"query": "CstateCode=2&service_status=1",
+					"scene": "1044"
 				},
 				{
 					"id": 29,

@@ -6,9 +6,9 @@
       <view class='rim'>
         <view class='_relative top'>
           <view class='t1'>
-            <form>
+            <!-- <form>
               <button open-type="share" class='share icon iconfont icon-fenxiang' bindtap="share"></button>
-            </form>
+            </form> -->
             {{cd.company_short_name}}
             <view class='vipicon'></view>
           </view>
@@ -26,7 +26,7 @@
           </view>
           <view class='c c3'>
             <view class='name'>位置</view>
-            <view class='con addressw'>{{cd.address}}方法</view>
+            <view class='con addressw _ellipsis'>{{cd.address}}</view>
           </view>
         </view>
       </view>

@@ -20,7 +20,7 @@
           </view>
           <view class='c c3'>
             <view class='name'>位置</view>
-            <view class='con addressw'>{{cd.address}}方法</view>
+            <view class='con addressw _ellipsis'>{{cd.address}}</view>
           </view>
         </view>
       </view>

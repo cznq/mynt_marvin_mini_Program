@@ -6,3 +6,6 @@
 .con{font-size:30rpx;line-height:36rpx;}
 ._button{width:495rpx;margin-top:106rpx;height: 90rpx;line-height: 90rpx;}
 .isj{padding:26rpx 0 57rpx 0;line-height:30rpx;}
+._buttonColor{background:linear-gradient(90deg,rgba(233,195,149,1),rgba(217,167,107,1));
+border-radius:10px;}
+._buttonColor .vipicon{width:44rpx;height: 38rpx;float:left;margin:27rpx 0 0 5rpx;}

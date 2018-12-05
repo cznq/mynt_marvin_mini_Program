@@ -25,9 +25,9 @@ background: linear-gradient(to bottom,#ffffff 0%,#ffffff 3%,#f3f3f3 97%,#f3f3f3 
 .header .t2{font-size:24rpx;color:#8891A9;}
 .header .bottom{padding:20rpx 0 0 30rpx;}
 .header .bottom .c{float: left;}
-.header .bottom .c1{width:270rpx;}
+.header .bottom .c1{width:250rpx;}
 .header .bottom .c2{width:160rpx;}
-.header .bottom .c3{width:170rpx;}
+.header .bottom .c3{width:190rpx;}
 .header .bottom .name{font-size:20rpx;line-height:30rpx;color:#8891A9;}
 .header .bottom .con{font-size:28rpx;font-weight: 400;}
 
@@ -50,7 +50,7 @@ background: linear-gradient(to bottom,#ffffff 0%,#ffffff 3%,#f3f3f3 97%,#f3f3f3 
 .adrim {
     padding: 60rpx;
 }
-.addressw{width:180rpx; overflow-y: hidden;height:48rpx;}
+.addressw{width:200rpx; overflow-y: hidden;height:48rpx;}
 /* 审核中 */
 .s_hint .text {color: #3ed26b;}
 .company-sh {background: #fff;}

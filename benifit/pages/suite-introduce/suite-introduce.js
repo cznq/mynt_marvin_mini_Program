@@ -84,7 +84,7 @@ Page({
         if (res.data.result) {
             that.setData({
               phone: res.data.result.phone,
-              service_suite: res.data.service_suite,
+              service_suite: res.data.result.service_suite,
               cost_price: res.data.result.cost_price,
               current_price: res.data.result.current_price,
               image: res.data.result.image,
