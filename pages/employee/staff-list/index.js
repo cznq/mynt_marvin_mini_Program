@@ -17,7 +17,8 @@ Page({
       union_id: null,
       employee_name: null
     },
-    role: ''
+    role: '',
+    scrollTop: 0
   },
 
   /**
@@ -132,20 +133,24 @@ Page({
     })
   },
 
+  onPageScroll: function (e) {
+    console.log(e.scrollTop);
+    this.data.scrollTop = e.scrollTop;
+  },
   /**
    * 员工列表点击编辑
    */
   editEmp: function (e) {
     console.log(e);
     console.log(e.target.offsetTop);
-
+    console.log(e.detail.y);
     this.setData({ 
       'editData.union_id': e.currentTarget.dataset.unionid,
       'editData.employee_name': e.currentTarget.dataset.name
     });
     menu.showMenu(this, {
       menuList: ['从列表删除'],
-      topPos: e.touches[0].clientY + 20 + 'px',
+      topPos: (e.currentTarget.offsetTop - this.data.scrollTop) + 32 + 'px',
       lrPos: 60 + 'rpx',
       isLeft: false,
       mask: true,

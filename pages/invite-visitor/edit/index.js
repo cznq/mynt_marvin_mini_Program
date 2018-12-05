@@ -4,7 +4,7 @@ const days = []
 const hours = []
 const minutes = []
 
-for (let i = 1; i <= 24; i++) {
+for (let i = 0; i <= 23; i++) {
   if (i < 10) {
     i = '0' + i;
   }
@@ -103,6 +103,7 @@ Page({
       wx.redirectTo({
         url: '/pages/manage/manage',
       })
+
     } 
   },
 
@@ -180,17 +181,23 @@ Page({
     var date = new Date();
     var hour = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
     var minute = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
-    
+   
+    if (this.data.visit_time_str=='') {
+      this.setData({
+        now_datetime: [daysAt, date.getHours(), date.getMinutes()],
+        visit_time_str: today + ' ' + hour + ':' + minute,
+        'formData.visit_time': year + '-' + app.Util.strToDate(today + ' ' + hour + ':' + minute)
+      })
+    } 
     this.setData({
-      now_datetime: [daysAt, date.getHours() - 1, date.getMinutes()],
-      pickerShow: true,
-      visit_time_str: today + ' ' + hour + ':' + minute,
-      'formData.visit_time': year + '-' + app.Util.strToDate(today + ' ' + hour + ':' + minute)
+      pickerShow: true
     })
+    
   },
 
   selectInviteTime: function (e) {
     const val = e.detail.value
+    console.log(val);
     if (this.data.timePicker.days[val[0]] == '今天') {
       var todayDate = today;
     } else {
