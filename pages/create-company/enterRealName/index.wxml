@@ -1,4 +1,4 @@
-<web-view src="https://marvin-official-account-dev.slightech.com/admin/become?company_code={{company_code}}&CstateCode={{CstateCode}}"></web-view>
+<web-view src="{{web_url}}/admin/become?company_code={{company_code}}&CstateCode={{CstateCode}}"></web-view>
 
 <!-- <view class='_content _top_gradient2 company-code'>
   <view class='mainTitle'>{{mainTitle}}</view>

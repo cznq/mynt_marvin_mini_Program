@@ -1,4 +1,4 @@
-<web-view src="https://marvin-official-account-dev.slightech.com/employee/join?company_code={{company_code}}&CstateCode={{CstateCode}}&form_id={{form_id}}"></web-view>
+<web-view src="{{web_url}}/employee/join?company_code={{company_code}}&CstateCode={{CstateCode}}&form_id={{form_id}}"></web-view>
 <!-- <view class='_content _top_gradient2 company-code'>
   <view class="_flex step">
     <view class='cur'></view>
