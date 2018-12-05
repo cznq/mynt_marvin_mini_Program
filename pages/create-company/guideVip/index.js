@@ -5,11 +5,17 @@ Page({
     CstateCode: 1,
     cd: {},
     button_text: '',
+    isvip_button:false,
     imageUrl: app.globalData.BASE_IMG_URl+'company_homepage@2x.png'
   },
   onLoad: function(options) {
     var _this = this;
     //_this.data.CstateCode = options.CstateCode;
+    if (options.service_status==0){
+      _this.setData({
+        isvip_button: true
+      })
+    }
     _this.setData({
       button_text: options.button_text
     })
@@ -53,6 +59,11 @@ Page({
     var _this = this;
     wx.redirectTo({
       url: '../vipInformation/index?CstateCode=' + _this.data.CstateCode,
+    })
+  },
+  next2:function(){
+    wx.navigateTo({
+      url: '/benifit/pages/suite-introduce/suite-introduce',
     })
   }
 })

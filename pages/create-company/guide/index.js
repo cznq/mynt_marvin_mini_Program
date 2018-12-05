@@ -77,17 +77,18 @@ Page({
           switch (res.data.result.service_status) {
             case 0:
               wx.navigateTo({
-                url: '/pages/invite-visitor/start/index',
+                // url: '/pages/invite-visitor/start/index',
+                url: '../guideVip/index?CstateCode= ' + _this.data.CstateCode + '&service_status=' + res.data.result.service_status+'&button_text=了解小觅商业服务套件',
               })
               break;
             case 1:
               wx.navigateTo({
-                url: '../guideVip/index?CstateCode= ' + _this.data.CstateCode +'&button_text=立即上传',
+                url: '../guideVip/index?CstateCode= ' + _this.data.CstateCode + '&service_status=' + res.data.result.service_status +'&button_text=立即上传',
               })
               break;
             default:
               wx.navigateTo({
-                url: '../guideVip/index?CstateCode= ' + _this.data.CstateCode + '&button_text=立即上传，试用企业主页',
+                url: '../guideVip/index?CstateCode= ' + _this.data.CstateCode + '&service_status=' + res.data.result.service_status + '&button_text=立即上传，试用企业主页',
               })
           }
         } else {

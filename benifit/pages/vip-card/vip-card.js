@@ -16,7 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    wx.removeStorageSync('xy_session');
+    //wx.removeStorageSync('xy_session');
     var that = this;
     var commerceData = that.data.commerceData;
     that.getEmployeeInfo();
