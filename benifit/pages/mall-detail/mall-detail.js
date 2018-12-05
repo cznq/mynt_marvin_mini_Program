@@ -44,8 +44,10 @@ Page({
       commerce_id: options.commerce_id,
       commerce_type: options.commerce_type
     })
-    that.getEmployeeInfo();
+    
     that.getDetailInfo(that.data.commerce_id);
+    that.getEmployeeInfo();
+    
     wx.getSystemInfo({
       success: function (res) {
         that.setData({

@@ -19,14 +19,8 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        app.getServiceStatus(that, 'EMPLOYEE_TAKE_CARD', that.getCompany());
-
-      })
-    } else {
-      app.getServiceStatus(that, 'EMPLOYEE_TAKE_CARD', that.getCompany());
-    }
+    app.getServiceStatus(that, 'EMPLOYEE_TAKE_CARD', that.getCompany());
+    
   },
 
   getCompany: function () {

@@ -23,13 +23,8 @@ Page({
     that.setData({
       invitation_id: options.invitation_id
     })
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        that.getInitation();
-      })
-    } else {
-      that.getInitation();
-    }
+    
+    that.getInitation();
 
   },
 

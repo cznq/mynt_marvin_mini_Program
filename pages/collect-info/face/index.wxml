@@ -4,14 +4,11 @@
     <view class="cameraErrorText _txt_center">
       <text>{{cameraErrorText}}</text>
     </view>
-    <camera device-position="front" flash="off" binderror="cameraError" style="width: 100%; height: 750rpx;overflow:hidden;position:relative;">
+    <camera device-position="front" flash="off" binderror="cameraError" style="width: 100%; height: {{showButton?'950':'750'}}rpx;overflow:hidden;position:relative;">
       
-      <cover-image class="circle" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/face-recode-cover.png?t=1"></cover-image>
+      <cover-image class="circle" mode="widthFix" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/face-recode-cover.png"></cover-image>
 
-     
-
-    </camera>
-     <cover-view class="coverview" wx:if="{{showButton}}">
+      <cover-view class="coverview" wx:if="{{showButton}}">
 
         <cover-view class='_content collect-information'>
           <cover-view class="_flex step">
@@ -26,6 +23,7 @@
         </cover-view>
       </cover-view>
 
+    </camera>
 
     <cover-view class="camera-bottom-text" wx:if="{{!showButton}}">
       <cover-image class="face-pic" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/face_shibie.png" mode='widthFix'></cover-image>

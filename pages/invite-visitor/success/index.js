@@ -17,16 +17,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    that.data.invitation_id = options.invitation_id;
+    this.data.invitation_id = options.invitation_id;
+    this.getInitation();
     
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        that.getInitation();
-      })
-    } else {
-      that.getInitation();
-    }
   },
 
   getInitation: function () {

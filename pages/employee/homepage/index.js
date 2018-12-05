@@ -14,15 +14,10 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        that.getEmployeeInfo();
-        that.getCompany();
-      })
-    } else {
-      that.getEmployeeInfo();
-      that.getCompany();
-    }
+   
+    that.getEmployeeInfo();
+    that.getCompany();
+    
     
   },
 

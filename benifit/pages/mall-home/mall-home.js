@@ -53,15 +53,10 @@ Page({
       this.setData({ tabSelected: options.tabSelected, selectedType: options.selectedType });
     }
     var self = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        self.getCommerceList(self.data.selectedType);
-        self.getEmployeeInfo();
-      })
-    } else {
-      self.getCommerceList(self.data.selectedType);
-      self.getEmployeeInfo();
-    }
+    
+    self.getCommerceList(self.data.selectedType);
+    self.getEmployeeInfo();
+    
     self.getOffsetTop();
   },
 

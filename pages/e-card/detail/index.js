@@ -16,15 +16,10 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.data.invitation_id = options.invitation_id;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        that.getFloorQrcode();
-        that.getCompany();
-      })
-    } else {
-      that.getFloorQrcode();
-      that.getCompany();
-    }
+    
+    that.getFloorQrcode();
+    that.getCompany();
+    
   },
 
   getFloorQrcode(invitation_id) {
