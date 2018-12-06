@@ -10,6 +10,7 @@ Page({
       inviteType: 'code',
     },
     companyInfo: null,
+    empInfo: null,
     canvasWidth: 375,
     canvasHeight: 667
   },
@@ -18,16 +19,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
     this.getCompanyInfo();
-    
-    wx.getSystemInfo({
-      success: (res) => {
-        console.log(res, "=====")
-        //app.myLog('notify', "获取SystemInfo:", res.errMsg);
-      }
-    })
-
+    this.getEmployeeInfo();
   },
 
   /**
@@ -54,6 +47,31 @@ Page({
           })
         }
        
+      }
+    })
+  },
+
+  /**
+   * 获取员工信息
+   */
+  getEmployeeInfo: function () {
+    var that = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_employee_info',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+        })
+      },
+      success: res => {
+        if (res.data.result) {
+          that.setData({
+            empInfo: res.data.result
+          });
+        }
+
       }
     })
   },
@@ -369,7 +387,7 @@ Page({
   */
   onShareAppMessage: function (res) {
     return {
-      title: this.data.companyInfo.company_short_name + '给您发送了一个邀请，期待您的到访！',
+      title: this.data.empInfo.name + '邀请你加入' + this.data.companyInfo.company_short_name,
       path: '/pages/employee/join-company/confirmCompanyInformation/index?company_code=' + this.data.companyInfo.company_code,
       success: function (res) {},
       fail: function (res) {}

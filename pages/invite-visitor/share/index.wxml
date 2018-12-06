@@ -17,7 +17,9 @@
       <view class="invite-info">
         <view class="_sec">
           <view class="int-title _font38 _fontw600">尊敬的{{inviteInfo.visitor_name}}：</view>
-          <view class="_font28 int-intro">{{inviteInfo.visit_intro}}</view>
+          <view class="_font28 int-intro">
+          <rich-text nodes="{{inviteInfo.visit_intro}}" bindtap="tap"></rich-text>
+          </view>
         </view>
         <view class="_sec">
           <view class="int-item-name _font24">预约到访时间</view>

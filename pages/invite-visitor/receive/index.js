@@ -78,13 +78,8 @@ Page({
     
   },
 
-  viewCompanyInfo() {
-    app.viewCompanyInfo();
-  },
-
   onShow: function () {
     this.getInitation();
-
   }
 
 })
