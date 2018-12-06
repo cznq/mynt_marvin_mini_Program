@@ -1,6 +1,6 @@
 <!--pages/create-company/companyPages/index.wxml-->
 <import src="../../../templates/companyPages/companyPages.wxml" />
 <template is="companyPages" data="{{cd:cd}}" />
-<view class='_fixed footer {{isiphoneX ? "footer_x" : ""}}'>
+<cover-view class='_fixed footer covview {{isiphoneX ? "footer_x" : ""}}'>
   <button class="_button" bindtap="next" formType="submit">{{button_text}}</button>
-</view>
+</cover-view>

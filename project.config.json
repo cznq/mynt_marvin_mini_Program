@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 28,
+			"current": 35,
 			"list": [
 				{
 					"id": 0,
@@ -261,7 +261,7 @@
 					"id": 35,
 					"name": "未预约访客",
 					"pathName": "pages/apply-visit/noAppointment/index",
-					"query": "scene=2BNT2BNT_12111698705bff9d3bc14b8",
+					"query": "scene=6302A5B7_12111698705bff9d3bc14b8",
 					"scene": "1011"
 				},
 				{
