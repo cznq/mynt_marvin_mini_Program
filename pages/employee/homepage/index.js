@@ -128,6 +128,12 @@ Page({
     wx.navigateTo({
       url: '/pages/employee/edit-name/index',
     })
+  },
+
+  editPhone: function () {
+    wx.navigateTo({
+      url: '/pages/employee/edit-phone/index',
+    })
   }
 
 })

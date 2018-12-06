@@ -7,7 +7,7 @@
       <view>
         <text class='_font24 _txt_darkgrey'>姓名</text>
       </view>
-      <input class="input_text {{inputError.phone?'error':''}}" type="text" name="name" value='{{formData.name}}' bindinput="checkForm" bindblur="loseFocus" placeholder-class='input_text_phc' placeholder='请输入姓名' id='i1'></input>
+      <input class="input_text {{inputError.name?'error':''}}" type="text" name="name" value='{{formData.name}}' bindinput="checkForm" placeholder-class='input_text_phc' placeholder='请输入姓名' id='i1'></input>
       <icon type="clear" size="16" wx:if="{{formData.name}}" catchtap="clearInput" id="b1"></icon>
     </view>
     

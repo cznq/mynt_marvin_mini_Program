@@ -1,0 +1,38 @@
+
+._content {
+  background: #fff!important;
+}
+.collect-information {
+  padding-top:90rpx;
+}
+
+.input_block {
+  padding-bottom: 25rpx;
+  position: relative;
+}
+icon {
+  position: absolute;
+  bottom: 50rpx;
+  right: 0;
+  z-index: 100;
+}
+
+.footer {
+  background: #ccc;
+  left:0;
+  bottom:0;
+  width:100%;
+  padding-top: 30rpx;
+  background: rgba(253, 254, 254, .96);
+  border-top:1rpx solid rgba(220, 220, 220, .5);
+}
+.footer.iphonex {
+  padding-bottom: 110rpx;
+}
+.footer button {
+  background: #007bff;
+  color: #fff!important;
+}
+.footer button[disabled] {
+  background: rgba(0, 123, 255, .2);
+}

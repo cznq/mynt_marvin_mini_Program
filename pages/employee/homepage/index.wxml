@@ -11,15 +11,18 @@
   </view>
 
   <view class="page__bd">
-    <view class="identify _flex _flex_justify_center _flex_space_between" wx:if="{{empInfo.input_pic_url !==''}}">
+    <view class="identify _flex _flex_justify_center _flex_space_between" wx:if="{{empInfo.id_number !==''}}">
       <view class="idcard">
         <view class="_font24 _gray">证件号</view>
         <view class="_font32 _gray">{{empInfo.fuzz_id_number}}</view>
       </view>
-      <view class="phone">
-        <view class="_font24 _gray">手机号</view>
-        <view class="_font32 _dark_gray">{{empInfo.phone}}</view>
+      <view class="phone _flex _flex_justify_center _flex_space_between" bindtap="editPhone">
+        <view><view class="_font24 _gray">手机号</view>
+          <view class="_font32 _dark_gray">{{empInfo.phone}}</view>
+        </view>
+        <view><text class="iconfont icon-jiantou"></text></view>
       </view>
+       
     </view>
     <view class="_menu_card _menu_card_hm _font34 _flex _flex_item_center _flex_space_between" bindtap="resetFace" wx:if="{{empInfo.input_pic_url !==''}}">
       <view class="_flex _flex_item_center"><text class="iconfont icon-yuangonglururenlian"></text><text>重设人脸信息</text></view>
