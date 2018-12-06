@@ -407,7 +407,7 @@ App({
    * 检测是否录入身份和人脸信息
    * param:  personType (employee 员工, visitor 访客)
    */
-  checkHasRecodeFace(personType) {
+  checkHasRecodeFace(personType, callback) {
     var that = this;
     if (personType == 'employee') {
       var service = 'company', method = 'get_employee_info';
@@ -426,12 +426,11 @@ App({
         })
       },
       success: res => {
-        console.log(res.data);
-        if (res.data.result.input_pic_url !== '') {
-          return true;
-        } else {
-          return false;
-        }
+        console.log(res);
+        callback(res.data.result.input_pic_url);
+      },
+      fail: res => {
+   
       }
     })
   }
