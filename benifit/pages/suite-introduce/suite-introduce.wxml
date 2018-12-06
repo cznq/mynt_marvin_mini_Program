@@ -13,7 +13,7 @@
       </view>
     </view>
     <view class='consult'>
-      <button open-type="contact" show-message-card="true" session-from="shop-order-detail" send-message-title="商务套件咨询">联系客服</button>
+      <button bindtap="makePhoneCall" data-phone="{{phone}}">联系客服</button>
     </view>
   </view>
   <view class='page__ft {{isiphoneX ? "footer_x" : ""}}' wx:else>
