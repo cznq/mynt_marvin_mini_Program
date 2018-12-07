@@ -7,7 +7,6 @@
         <image src="../../images/icon_card@2x.png" bindtap="backVipCard"></image>
         <view class="vip-card-info" wx:if="{{showVipCardTips}}">你的协议卡在这</view>
       </view>
-
     </view>
     <view class="home-slide">
       <swiper indicator-dots="{{slide_data.indicatorDots}}" autoplay="{{slide_data.autoplay}}" interval="{{slide_data.interval}}" duration="{{slide_data.duration}}">
@@ -59,12 +58,8 @@
           </view>
         </view>
       </block>
-
-
     </view>
   </view>
   <view class="page__ft">
-
   </view>
-
 </view>
