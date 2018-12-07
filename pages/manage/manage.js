@@ -204,10 +204,16 @@ Page({
               success: res => {
                 console.log(res);
                 if (res.data.sub_code == 0) {
-                  if (res.data.result.input_pic_url !==""){
+                  if (res.data.result.input_pic_url !== '' && _this.data.cd.take_card_ways==0){
+                    
                     _this.setData({
                       'service[1].text2': '已开启>',
                       'service[1].url': '../employee/take-card/success/index?company_id=' + _this.data.cd.company_id
+                    })
+                  } else if (res.data.result.input_pic_url !== '' && _this.data.cd.take_card_ways == 1) {
+                    _this.setData({
+                      'service[1].text2': '已开启>',
+                      'service[1].url': '/pages/e-card/detail/index'
                     })
                   } else {
                     _this.setData({
