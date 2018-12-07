@@ -52,7 +52,7 @@ App({
    */       
   myLog(tit, cont) {
     var sysinfo = wx.getStorageSync('sysinfo');
-    fundebug.notify(tit, cont + '--' + JSON.stringify(sysinfo));
+    fundebug.notify(tit, cont + '\n\n基础信息：\n' + JSON.stringify(sysinfo));
   },
   
   Util: require('utils/util.js'),
@@ -407,7 +407,7 @@ App({
    * 检测是否录入身份和人脸信息
    * param:  personType (employee 员工, visitor 访客)
    */
-  checkHasRecodeFace(personType) {
+  checkHasRecodeFace(personType, callback) {
     var that = this;
     if (personType == 'employee') {
       var service = 'company', method = 'get_employee_info';
@@ -426,12 +426,16 @@ App({
         })
       },
       success: res => {
-        console.log(res.data);
-        if (res.data.result.input_pic_url !== '') {
-          return true;
-        } else {
-          return false;
+        console.log(res);
+        if (res.data.result) {
+          callback(res.data.result.input_pic_url);
+        } else if (res.data.sub_msg =='访客不存在') {
+          callback('');
         }
+        
+      },
+      fail: res => {
+   
       }
     })
   }

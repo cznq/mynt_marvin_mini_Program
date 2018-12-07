@@ -77,7 +77,7 @@ Page({
       isShow: false
     }],
     service: [{
-      url: '',
+      url: '../company/unattended-setting/index',
       pic: app.globalData.BASE_IMG_URl + 'manage/m7.png',
       text1: '自动值守',
       text2: '未开启 >',
@@ -105,9 +105,7 @@ Page({
       _this.get_review_status(_this);
     }
     _this.data.islock = true;
-    _this.setData({
-      timestamp: Date.parse(new Date())
-    })
+   
   },
   //获取用户状态
   get_review_status: function(_this) {
@@ -206,9 +204,20 @@ Page({
               success: res => {
                 console.log(res);
                 if (res.data.sub_code == 0) {
-                  if (res.data.result.input_pic_url !==""){
+                  if (res.data.result.input_pic_url !== '' && _this.data.cd.take_card_ways==0){
+                    
                     _this.setData({
-                      'service[1].text2': '已开启>'
+                      'service[1].text2': '已开启>',
+                      'service[1].url': '../employee/take-card/success/index?company_id=' + _this.data.cd.company_id
+                    })
+                  } else if (res.data.result.input_pic_url !== '' && _this.data.cd.take_card_ways == 1) {
+                    _this.setData({
+                      'service[1].text2': '已开启>',
+                      'service[1].url': '/pages/e-card/detail/index'
+                    })
+                  } else {
+                    _this.setData({
+                      'service[1].url': '../employee/take-card/open/index?company_id=' + _this.data.cd.company_id
                     })
                   }
                 } else {
@@ -322,15 +331,16 @@ Page({
   },
   //管理中心-企业服务-自动值守
   unattendedSetting: function() {
+    var _this = this;
     wx.navigateTo({
-      url: '../company/unattended-setting/index'
+      url: _this.data.service[0].url
     })
   },
   //管理中心-企业服务-员工取卡
   takeCard: function() {
     var _this = this;
     wx.navigateTo({
-      url: '../employee/take-card/open/index?company_id=' + _this.data.cd.company_id
+      url: _this.data.service[1].url
     })
   }
 })

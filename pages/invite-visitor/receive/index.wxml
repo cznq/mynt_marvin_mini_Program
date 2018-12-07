@@ -1,4 +1,4 @@
-<view class="page" style="padding-bottom:{{isIphoneX?'240':'160'}}rpx">
+<view class="page" style="padding-bottom:{{isIphoneX?'240':'160'}}rpx" wx:if="{{invitation}}">
   <view class="page_hd _flex _flex_item_center _flex_justify_center">
    
     <view class="_font48 _fontw600 wel-tit">尊敬的访客，您好。</view>
