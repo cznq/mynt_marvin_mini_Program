@@ -3,7 +3,7 @@ var toast = require('../../../templates/showToast/showToast');
 Page({
   data: {
     mainTitle: '输入公司码',
-    hint: '公司码需向楼宇管理申领\n服务热线：0510-88877799',
+    hint: '公司码需向楼宇管理申领\n服务热线：0571-82617637',
     codevalue: '',
     isfocus: true
   },

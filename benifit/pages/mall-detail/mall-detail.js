@@ -39,15 +39,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this; 
+    var that = this;
     that.setData({
       commerce_id: options.commerce_id,
       commerce_type: options.commerce_type
     })
-    
+
     that.getDetailInfo(that.data.commerce_id);
     that.getEmployeeInfo();
-    
+
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -55,7 +55,7 @@ Page({
         })
       }
     })
-  
+
   },
 
   /**
@@ -64,29 +64,56 @@ Page({
   getEmployeeInfo() {
     var that = this;
     app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
+      url: app.globalData.BASE_API_URL,
       params: {
         service: 'company',
-        method: 'get_employee_info',
-        union_id: wx.getStorageSync('xy_session'),
-        data: JSON.stringify({})
+        method: 'get_company_service_status',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+          service_key: 'EMPLOYEE_BENIFIT'
+        })
       },
       success: res => {
-        //console.log(res.data.result);
         if (res.data.result) {
-          if (res.data.result.has_employee_benefit == 1) {
+          if (res.data.result.service_status !== 0) {
+            app.Util.network.POST({
+              url: app.globalData.BENIFIT_API_URL,
+              params: {
+                service: 'company',
+                method: 'get_employee_info',
+                union_id: wx.getStorageSync('xy_session'),
+                data: JSON.stringify({})
+              },
+              success: res => {
+                if (res.data.result) {
+                  that.setData({
+                    is_vip: true
+                  })
+                } else {
+                  that.setData({
+                    is_vip: false
+                  })
+                }
+                that.setData({
+                  employeeInfo: res.data.result
+                })
+              }
+            })
+          } else {
             that.setData({
-              is_vip: true,
-              employeeInfo: res.data.result
+              is_vip: false
             })
           }
+        } else {
           that.setData({
-            employeeInfo: res.data.result
+            is_vip: false
           })
         }
       }
     })
   },
+
+
 
   /**
    * 获取商家详情
@@ -126,25 +153,25 @@ Page({
       }
     })
   },
-  
+
   /**
-  * 用来判断一个时间是不是在某个时间段内
-  * beginTime 开始时间 
-  * endTime 结束时间 
-  */
+   * 用来判断一个时间是不是在某个时间段内
+   * beginTime 开始时间 
+   * endTime 结束时间 
+   */
   onBusiness(businessHours) {
     if (businessHours == null) {
       this.setData({
         businessStatus: "营业中"
       })
-      return ;
+      return;
     }
-    for (var i=0; i<businessHours.length; i++) {
+    for (var i = 0; i < businessHours.length; i++) {
       var hour = new Date().getHours();
       var min = new Date().getMinutes();
 
       var varTime = hour + ':' + min;
-      
+
       var strb = businessHours[i].start.split(":");
       if (strb.length != 2) {
         return false;
@@ -166,7 +193,7 @@ Page({
       e.setMinutes(stre[1]);
       v.setHours(strv[0]);
       v.setMinutes(strv[1]);
-      
+
       if ((v.getTime() - b.getTime() >= 0 && (e.getTime() - v.getTime()) >= 0)) {
         this.setData({
           businessStatus: "营业中"
@@ -178,7 +205,7 @@ Page({
         })
       }
     }
-    
+
   },
 
 
@@ -237,7 +264,7 @@ Page({
     })
   },
 
-  gotoView: function(e) {
+  gotoView: function (e) {
     this.setData({
       viewID: e.currentTarget.dataset.partid
     })
@@ -264,7 +291,7 @@ Page({
       wx.navigateTo({
         url: '/benifit/pages/vip-card/vip-card'
       })
-      return ;
+      return;
     }
     this.setData({
       showVipCard: true,
@@ -322,12 +349,12 @@ Page({
    * 打开地图服务
    */
 
-  openMap: function () { 
+  openMap: function () {
     wx.openLocation({
       latitude: this.data.latitude,
       longitude: this.data.longitude,
       scale: 28
-    })    
+    })
   },
 
   /**
@@ -345,7 +372,7 @@ Page({
         title: '你还不是VIP，不能评论'
       })
     }
-    
+
   },
 
   /**

@@ -1,6 +1,5 @@
-
 @import "../../../templates/companyPages/companyPages.wxss";
-
+@import "../../../templates/showToast/showToast.wxss";
 .downpadd {
   padding-bottom: 40rpx!important;
 }
