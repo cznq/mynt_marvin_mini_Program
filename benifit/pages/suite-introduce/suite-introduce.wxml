@@ -1,9 +1,10 @@
 <!--pages/suite-introduce/suite-introduce.wxml-->
 <view class='page'>
   <view class='page__hd'></view>
-  <view class='page__cont'><image  wx:for="{{image}}" wx:key="" wx:for-item="item" src="{{item}}" mode='widthFix'></image>
+  <view class='page__cont'>
+    <image wx:for="{{image}}" wx:key="" wx:for-item="item" src="{{item}}" mode='widthFix'></image>
   </view>
-  <view class='page__ft is_buy {{isiphoneX ? "footer_x" : ""}}' wx:if="{{service_suite==1}}">
+  <view class='page__ft {{isiphoneX ? "footer_x" : ""}}' wx:if="{{service_suite==1}}">
     <view class='info'>
       <view class='info__top'>
         小觅楼宇商业服务套餐
