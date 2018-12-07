@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 35,
+			"current": 43,
 			"list": [
 				{
 					"id": 0,
@@ -312,6 +312,13 @@
 					"pathName": "pages/login/index",
 					"query": "route=/dddf/dfg&opt=555",
 					"scene": "1044"
+				},
+				{
+					"id": -1,
+					"name": "公司",
+					"pathName": "pages/company/introduction/index",
+					"query": "scene=6302A5B7_12111698705bff9d3bc14b8",
+					"scene": "1011"
 				}
 			]
 		}
