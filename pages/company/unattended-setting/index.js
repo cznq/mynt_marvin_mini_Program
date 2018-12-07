@@ -12,13 +12,14 @@ Page({
     explain: '无人值守功能已开启,请留意您的访客',
     isShow: true,
     isChecked: true,
-    union_id: wx.getStorageSync('xy_session')
+    union_id: wx.getStorageSync('xy_session'),
+    cd: {},
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     var that = this;
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
@@ -26,17 +27,31 @@ Page({
         service: 'company',
         method: 'get_info',
         data: JSON.stringify({
-          union_id: that.data.union_id
+          union_id: wx.getStorageSync('xy_session')
         })
       },
       success: res => {
-        var resdata = res.data.result;
-        // resdata.attend_status = 0;
-        if (resdata) {
+        console.log(res);
+        if (res.data.sub_code == 0) {
           that.setData({
-            isChecked: resdata.attend_status == 1 ? true : false,
-            isShow: resdata.attend_status == 1 ? false : true
+            cd: res.data.result
           })
+          //企业服务自动值守
+          if (that.data.cd.service_suite == 0 || _this.data.role == 1) {
+            that.setData({
+              isChecked: false,
+              isShow: false
+            })
+          } else {
+            if (res.data.result.attend_status == 1) {
+              that.setData({
+                isChecked: true,
+                isShow: true
+              })
+            }
+          }
+        } else {
+          console.log(res.data.sub_msg);
         }
       },
       fail: res => {
@@ -48,11 +63,11 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
-  bindSwitchChange: function(e) {
+  bindSwitchChange: function (e) {
     if (e.detail.value) {
       toast.showToast(this, {
         toastStyle: 'toast4',
@@ -75,7 +90,7 @@ Page({
 
   },
 
-  bindToastSure: function(value) {
+  bindToastSure: function (value) {
     var that = this;
     that.postRequestOwn(1);
     that.setData({
@@ -85,7 +100,7 @@ Page({
     toast.hideToast();
   },
 
-  bindToastClose: function() {
+  bindToastClose: function () {
     var that = this;
     that.setData({
       isChecked: false,
@@ -94,7 +109,7 @@ Page({
     toast.hideToast();
   },
 
-  postRequestOwn: function(attend_status) {
+  postRequestOwn: function (attend_status) {
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
@@ -105,7 +120,9 @@ Page({
           attend_status: attend_status
         })
       },
-      success: res => {},
+      success: res => {
+        console.log(res);
+      },
       fail: res => {
         console.log('fail');
       }
