@@ -25,6 +25,10 @@
   border-radius: 50%;
   background-color: RGBA(240, 241, 242, 1);
   position: absolute;
+  top: 210rpx;
+}
+.noLogo .company-info::before,
+.noLogo .company-info::after {
   top: 180rpx;
 }
 .company-info::before {
