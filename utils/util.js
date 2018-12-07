@@ -57,14 +57,13 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
       },
       success: res => {
         if (res.data.sub_code !== 0) {
-          app.myLog("请求参数", JSON.stringify(requestHandler.params));
-          app.myLog("返回错误码" + res.statusCode, JSON.stringify(res.data));
+          app.myLog("请求成功错误", 'union_id:' + wx.getStorageSync('xy_session') + '\nopen_id:' + wx.getStorageSync('open_id') + '\n\n请求参数：\n' + JSON.stringify(requestHandler.params) + '\n\n接口返回信息：\n' + JSON.stringify(res))
         }
         wx.hideLoading();
         if (requestHandler.success) requestHandler.success(res);
       },
       fail: (res) => {
-        app.myLog("请求错误", JSON.stringify(res));
+        app.myLog("请求错误", 'union_id:' + wx.getStorageSync('xy_session') + '\nopen_id:' + wx.getStorageSync('open_id') + '\n\n请求参数：\n' + JSON.stringify(requestHandler.params) + '\n\n接口返回信息：\n' + JSON.stringify(res))
         wx.hideLoading();
         wx.showToast({
           title: '加载失败，请尝试刷新',

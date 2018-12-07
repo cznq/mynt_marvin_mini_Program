@@ -52,7 +52,7 @@ App({
    */       
   myLog(tit, cont) {
     var sysinfo = wx.getStorageSync('sysinfo');
-    fundebug.notify(tit, cont + '--' + JSON.stringify(sysinfo));
+    fundebug.notify(tit, cont + '\n\n基础信息：\n' + JSON.stringify(sysinfo));
   },
   
   Util: require('utils/util.js'),
