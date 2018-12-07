@@ -36,7 +36,7 @@ Page({
       that.setData({
         ctx: wx.createCameraContext()
       }) 
-      that.openCameraAuth();
+      
     }
     app.Util.checkcanIUse('cover-view');
   },
@@ -138,16 +138,19 @@ Page({
   /**
    * 上传图片
    */
-  uploadCanvasImg(canvasImg, company_id, op_type, user_type, callback = function () {}) {
+  uploadCanvasImg(canvasImg, company_id, op_type, user_type, phone, id_type, id_number, callback = function () {}) {
     var that = this;
-    var service = 'visitor';
     var data = JSON.stringify({
       union_id: wx.getStorageSync('xy_session'),
       company_id: company_id,
       op_type: op_type,
-      user_type: user_type
+      user_type: user_type,
+      phone: phone,
+      id_type: id_type,
+      id_number: id_number
     });
     console.log(data);
+    var service = 'visitor';
     var method = 'upload_face_pic';
     var app_id = '65effd5a42fd1870b2c7c5343640e9a8';
     var timestamp = Math.round(new Date().getTime() / 1000 - 28800);
@@ -209,9 +212,8 @@ Page({
           
           if (that.data.options.source == 'invite') {
             var op_type = 0, user_type = 0;
-            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, function () {
+            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
               app.receiveSubmit(that.data.options.params.invitation_id, that.data.options.params.form_id, function () {
-                app.idInformationSubmit(that.data.options.idInfo.service, that.data.options.idInfo.method, that.data.options.idInfo.id_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_number, function () { })
                 wx.hideLoading();
                 wx.redirectTo({
                   url: '/pages/invite-visitor/success/index?invitation_id=' + that.data.options.params.invitation_id,
@@ -221,8 +223,8 @@ Page({
             
           } else if (that.data.options.source == 'applyVisit') {
             var op_type = 0, user_type = 0;
-            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, function () {
-              app.applySubmit(that.data.options.params.visit_company_id, that.data.options.params.form_id, that.data.options.params.visitor_name, that.data.options.params.note, that.data.options.idInfo.id_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_number, function (visit_apply_id) {
+            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
+              app.applySubmit(that.data.options.params.visit_company_id, that.data.options.params.form_id, that.data.options.params.visitor_name, that.data.options.params.note, function (visit_apply_id) {
                 wx.hideLoading();
                 wx.redirectTo({
                   url: '/pages/apply-visit/applicationStatus/index?visit_apply_id=' + visit_apply_id,
@@ -232,38 +234,33 @@ Page({
            
           } else if (that.data.options.source == 'takeCard') {
             var op_type = 0, user_type = 2;
-            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, function () {
-              app.idInformationSubmit(that.data.options.idInfo.service, that.data.options.idInfo.method, that.data.options.idInfo.id_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_number, function () {
-                wx.hideLoading();
-                if (that.data.options.params.card_type == 'card') {
-                  wx.redirectTo({
-                    url: '/pages/employee/take-card/success/index?company_id=' + that.data.options.params.company_id,
-                  })
-                } else {
-                  wx.redirectTo({
-                    url: '/pages/e-card/detail/index'
-                  })
-                }
+            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {              
+              wx.hideLoading();
+              if (that.data.options.params.card_type == 'card') {
+                wx.redirectTo({
+                  url: '/pages/employee/take-card/success/index?company_id=' + that.data.options.params.company_id,
+                })
+              } else {
+                wx.redirectTo({
+                  url: '/pages/e-card/detail/index'
+                })
+              }
                 
-              })
             });
             
-
           } else if (that.data.options.source == 'editInfo') {
             var op_type = 0, user_type = 2;
-            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, function () {
-              app.idInformationSubmit(that.data.options.idInfo.service, that.data.options.idInfo.method, that.data.options.idInfo.id_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_number, function () {
-                wx.hideLoading();
-                wx.redirectTo({
-                  url: '/pages/employee/homepage/index',
-                })
+            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
+              wx.hideLoading();
+              wx.redirectTo({
+                url: '/pages/employee/homepage/index',
               })
               
             });
             
           } else if (that.data.options.source == 'reRecodeFace') {
             var op_type = 1, user_type = 2;
-            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, function () {
+            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
               wx.hideLoading();
               wx.redirectTo({
                 url: '/pages/employee/homepage/index',
@@ -271,7 +268,6 @@ Page({
             });
           }
 
-          
 
         }, fail: function (e) {
           that.getCanvasImg(tempFilePath);
@@ -282,7 +278,7 @@ Page({
 
 
   onShow: function () {
-    
+    this.openCameraAuth();
   },
 
   /**

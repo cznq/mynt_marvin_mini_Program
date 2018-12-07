@@ -91,18 +91,9 @@ Page({
     var id_type = this.data.cardType;
     var phone = e.detail.value.phone;
     var id_number = e.detail.value.id_number;
-    if (this.data.options.source == 'takeCard' || this.data.options.source == 'editInfo' || this.data.options.source == 'benifit') {
-      var service = 'company';
-      var method = 'update_employee';
-    } else if (this.data.options.source == 'applyVisit' || this.data.options.source == 'invite') {
-      var service = 'visitor';
-      var method = 'bind';
-    }
+    
     if (this.checkParam(phone, id_number)) {
-
       var idInfo = JSON.stringify({
-        service: service,
-        method: method,
         id_type: id_type,
         phone: phone,
         id_number: id_number
