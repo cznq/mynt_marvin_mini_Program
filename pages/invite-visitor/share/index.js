@@ -23,7 +23,7 @@ Page({
     var params = JSON.parse(options.params);
     this.setData({
       inviteInfo: params,
-      appointment_time: app.Util.formatTime(params.appointment_time)
+      appointment_time: app.Util.formatTime(params.appointment_time + 8 * 3600)
     })
     this.getCompanyInfo();
     

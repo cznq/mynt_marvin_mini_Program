@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 35,
+			"current": 6,
 			"list": [
 				{
 					"id": 0,
@@ -42,8 +42,8 @@
 				{
 					"id": 1,
 					"name": "接受邀请",
-					"pathName": "pages/invite-receive/invite-receive",
-					"query": "invitation_id=265",
+					"pathName": "pages/invite-visitor/receive/index",
+					"query": "invitation_id=65",
 					"scene": "1044"
 				},
 				{
@@ -63,7 +63,7 @@
 				{
 					"id": 4,
 					"name": "邀请",
-					"pathName": "pages/invite/invite",
+					"pathName": "pages/invite-visitor/edit/index",
 					"query": "",
 					"scene": "1044"
 				},
@@ -77,8 +77,8 @@
 				{
 					"id": 6,
 					"name": "录入人脸",
-					"pathName": "pages/collect-info/identity/index",
-					"query": "company_id=17",
+					"pathName": "pages/collect-info/face/index",
+					"query": "source='{}'&params='{}'idInfo='{}'",
 					"scene": "1044"
 				},
 				{
@@ -308,16 +308,16 @@
 				},
 				{
 					"id": 42,
-					"name": "login",
-					"pathName": "pages/login/index",
-					"query": "route=/dddf/dfg&opt=555",
+					"name": "个人中心",
+					"pathName": "pages/employee/homepage/index",
+					"query": "",
 					"scene": "1044"
 				},
 				{
-					"id": -1,
+					"id": 43,
 					"name": "公司",
-					"pathName": "pages/company/introduction/index",
-					"query": "scene=6302A5B7_12111698705bff9d3bc14b8",
+					"pathName": "pages/collect-info/face/index",
+					"query": "",
 					"scene": "1011"
 				}
 			]

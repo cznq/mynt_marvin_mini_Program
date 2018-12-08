@@ -394,8 +394,15 @@ App({
         })
       },
       success: res => {
-        console.log(res);
-        callback();
+        if (res.data.sub_code==0) {
+          callback();
+        } else {
+          wx.showToast({
+            title: res.data.sub_msg,
+            icon: 'none'
+          })
+        }
+        
       },
       fail: res => {
 

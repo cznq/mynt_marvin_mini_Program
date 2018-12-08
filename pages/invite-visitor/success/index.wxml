@@ -1,6 +1,6 @@
 <view class="page">
   <view class="page_hd _flex _flex_item_center _flex_justify_center">
-    <image style="width:80rpx" mode="widthFix" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/accept_Invitation_success%403x.png"></image>
+    <image style="width:80rpx;height:80rpx" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/accept_Invitation_success%403x.png"></image>
     <view class="_font48 _fontw600 wel-tit">真诚期待您的光临。</view>
     <view class="_font28 wel-intro">您已成功接受邀请，请留意到访时间。</view>
     <button bindtap="viewGuide">如何使用我的邀请函</button>
