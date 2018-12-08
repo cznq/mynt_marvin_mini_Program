@@ -25,7 +25,7 @@ App({
     BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
     BENIFIT_API_URL: 'https://marvin-benifit-api-test.slightech.com/mini_program/api',
     WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com',
-    BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/',//开发环境
+    //BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/',//开发环境
     //BENIFIT_API_URL: 'http://192.168.1.204:10004/mini_program/api',//员工福利开发环境
 
   },
@@ -344,7 +344,7 @@ App({
    * 申请信息提交
    * param: company_id, form_id, visitor_name, note, id_type, phone, id_number
    */
-  applySubmit(company_id, form_id, visitor_name, note, id_type, phone, id_number, callback = function (visit_apply_id) {}) {
+  applySubmit(company_id, form_id, visitor_name, note, callback = function () { }) {
     var that = this;
     that.Util.network.POST({
       url: that.globalData.BASE_API_URL,
@@ -356,14 +356,12 @@ App({
           form_id: form_id,
           visit_company_id: company_id,
           visitor_name: visitor_name,
-          id_type: id_type,
-          phone: phone,
-          id_number: id_number,
           note: note
         })
       },
       success: res => {
         if (res.data.sub_code == 0) {
+          console.log(res.data.result.visit_apply_id);
           callback(res.data.result.visit_apply_id);
         } else {
           wx.showToast({

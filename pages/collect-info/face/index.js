@@ -235,7 +235,7 @@ Page({
             
           } else if (that.data.options.source == 'applyVisit') {
             var op_type = 0, user_type = 0;
-            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
+            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.visit_company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
               app.applySubmit(that.data.options.params.visit_company_id, that.data.options.params.form_id, that.data.options.params.visitor_name, that.data.options.params.note, function (visit_apply_id) {
                 wx.hideLoading();
                 wx.redirectTo({

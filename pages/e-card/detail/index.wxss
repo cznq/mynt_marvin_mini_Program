@@ -73,7 +73,8 @@
   margin-top: 34rpx;
 }
 .int-item-name {
-  margin-right: 32rpx;
+  margin-right: 30rpx;
+  min-width: 100rpx;
   color: rgba(136, 145, 169, 1);
 }
 .int-item-info {
