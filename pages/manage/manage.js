@@ -181,6 +181,10 @@ Page({
                       _this.setData({
                         'service[0].text2': '已开启>'
                       })
+                    }else{
+                      _this.setData({
+                        'service[0].text2': '未开启>'
+                      })
                     }
                   }
                 } else {
