@@ -19,7 +19,7 @@
       <view>
         <text class='_font24 _txt_darkgrey'>证件号</text>
       </view>
-      <view>
+      <view class="_info_btn">
         <button class="_card_button {{cardType==0?'on':''}}" bindtap="changCardType" data-idtype="0">大陆身份证</button>
         <button class="_card_button {{cardType==1?'on':''}}" bindtap="changCardType" data-idtype="1">护照</button>
       </view>

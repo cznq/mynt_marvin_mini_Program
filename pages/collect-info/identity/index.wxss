@@ -28,6 +28,11 @@ icon {
   right: 0;
   z-index: 100;
 }
+._info_btn {
+  height: 66rpx;
+  margin-bottom: 32rpx;
+  margin-top: 20rpx;
+}
 ._card_button {
   font-size: 30rpx;
   height: 66rpx;
