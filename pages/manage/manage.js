@@ -92,7 +92,8 @@ Page({
       backgroundColor: '#F0FAF7',
       bindtap: 'takeCard',
       isShow: true
-    }]
+    }],
+    server_input_pic_url: ''
   },
   onLoad: function(options) {
     var _this = this;
@@ -105,7 +106,7 @@ Page({
       _this.get_review_status(_this);
     }
     _this.data.islock = true;
-   
+
   },
   //获取用户状态
   get_review_status: function(_this) {
@@ -181,7 +182,7 @@ Page({
                       _this.setData({
                         'service[0].text2': '已开启>'
                       })
-                    }else{
+                    } else {
                       _this.setData({
                         'service[0].text2': '未开启>'
                       })
@@ -208,22 +209,55 @@ Page({
               success: res => {
                 console.log(res);
                 if (res.data.sub_code == 0) {
-                  if (res.data.result.input_pic_url !== '' && _this.data.cd.take_card_ways==0){
-                    
-                    _this.setData({
-                      'service[1].text2': '已开启>',
-                      'service[1].url': '../employee/take-card/success/index?company_id=' + _this.data.cd.company_id
-                    })
-                  } else if (res.data.result.input_pic_url !== '' && _this.data.cd.take_card_ways == 1) {
-                    _this.setData({
-                      'service[1].text2': '已开启>',
-                      'service[1].url': '/pages/e-card/detail/index'
-                    })
-                  } else {
-                    _this.setData({
-                      'service[1].url': '../employee/take-card/open/index?company_id=' + _this.data.cd.company_id
-                    })
-                  }
+                  _this.data.input_pic_url = res.data.result.input_pic_url;
+                  //请求
+                  app.Util.network.POST({
+                    url: app.globalData.BASE_API_URL,
+                    params: {
+                      service: 'company',
+                      method: 'get_company_service_status',
+                      data: JSON.stringify({
+                        union_id: wx.getStorageSync('xy_session'),
+                        service_key: 'EMPLOYEE_TAKE_CARD'
+                      })
+                    },
+                    success: res => {
+                      console.log(res);
+                      if (res.data.sub_code == 0) {
+                        if (res.data.result.service_status == 1 || res.data.result.service_status == 2) {
+                          if (_this.data.input_pic_url !== '' && _this.data.cd.take_card_ways == 0) {
+
+                            _this.setData({
+                              'service[1].text2': '已开启>',
+                              'service[1].url': '../employee/take-card/success/index?company_id=' + _this.data.cd.company_id
+                            })
+                          } else if (_this.data.input_pic_url !== '' && _this.data.cd.take_card_ways == 1) {
+                            _this.setData({
+                              'service[1].text2': '已开启>',
+                              'service[1].url': '/pages/e-card/detail/index'
+                            })
+                          } else {
+                            _this.setData({
+                              'service[1].url': '../employee/take-card/open/index?company_id=' + _this.data.cd.company_id
+                            })
+                          }
+
+                        } else {
+                          console.log('未开启');
+                        }
+
+
+                      } else {
+                        console.log(res.data.sub_msg);
+                      }
+                    },
+                    fail: res => {
+                      console.log('fail');
+                    }
+                  })
+
+
+
                 } else {
                   console.log(res.data.sub_msg);
                 }
@@ -232,7 +266,7 @@ Page({
                 console.log('fail');
               }
             })
-            
+
           }
           if (resdata.employee_status === 2) {
             console.log('审核中页面');
