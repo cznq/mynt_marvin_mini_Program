@@ -20,7 +20,7 @@ Page({
   editSubmit: function(e) {
     var _this = this;
     var visitor_name = e.detail.value.name;
-    var note=e.detail.value.reason;
+    var note = e.detail.value.reason;
 
     if (e.detail.value.name !== '') {
       //不需要身份直接跳转
@@ -96,12 +96,13 @@ Page({
           visit_company_id: _this.data.company_id,
           visitor_name: e.detail.value.name,
           note: e.detail.value.reason,
-          form_id: e.detail.formId
+          form_id: e.detail.formId,
+          card_type: _this.data.take_card_ways
         })
         wx.navigateTo({
-         url: '/pages/collect-info/identity/index?source=applyVisit&params=' + params,
-
+          url: '/pages/collect-info/identity/index?source=applyVisit&params=' + params
         })
+          
       }
     } else {
       toast.showToast(this, {
