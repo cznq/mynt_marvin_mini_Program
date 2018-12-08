@@ -9,7 +9,8 @@ Page({
     isIphoneX: app.globalData.isIphoneX,
     latitude: null,
     longitude: null,
-    invitation_id: null    
+    invitation_id: null,
+    visit_company_id: null    
   },
 
   /**
@@ -72,7 +73,7 @@ Page({
       form_id: e.detail.formId,
       company_id: that.data.invitation.company.company_id
     }
-    app.checkHasRecodeFace('visitor', function(res){
+    app.checkHasRecodeFace('visitor', that.data.invitation.company.company_id, function(res){
       if (res == '') {
         wx.navigateTo({
           url: '/pages/collect-info/guide/index?source=invite&params=' + JSON.stringify(params),

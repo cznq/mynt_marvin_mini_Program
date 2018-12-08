@@ -20,7 +20,7 @@ Page({
   editSubmit: function(e) {
     var _this = this;
     var visitor_name = e.detail.value.name;
-    var note=e.detail.value.reason;
+    var note = e.detail.value.reason;
 
     if (e.detail.value.name !== '') {
       //不需要身份直接跳转
@@ -53,16 +53,10 @@ Page({
                 },
                 success: res => {
                   if (res.data.sub_code == 0) {
-                    if (_this.data.take_card_ways == 0 && res.data.result.status == 1 || res.data.result.status == 2) {
-                      //电子卡审核通过状态
-                      wx.navigateTo({
-                        url: '/pages/e-card/detail/index',
-                      })
-                    } else {
-                      wx.navigateTo({
-                        url: '/pages/apply-visit/applicationStatus/index?visit_apply_id=' + visit_apply_id,
-                      })
-                    }
+                    wx.navigateTo({
+                      url: '/pages/apply-visit/applicationStatus/index?visit_apply_id=' + visit_apply_id,
+                    })
+                    
                   } else {
                     console.log(res.data.sub_msg);
                   }
@@ -92,16 +86,34 @@ Page({
         })
       } else {
         console.log('需要身份，跳转到录入人脸流程');
-        var params = JSON.stringify({
-          visit_company_id: _this.data.company_id,
-          visitor_name: e.detail.value.name,
-          note: e.detail.value.reason,
-          form_id: e.detail.formId
-        })
-        wx.navigateTo({
-         url: '/pages/collect-info/identity/index?source=applyVisit&params=' + params,
 
-        })
+        app.checkHasRecodeFace('visitor', _this.data.company_id, function (res) {
+          if (res == '') {
+            console.log('还没录入身份信息，跳转到录入人脸流程');
+            var params = JSON.stringify({
+              visit_company_id: _this.data.company_id,
+              visitor_name: e.detail.value.name,
+              note: e.detail.value.reason,
+              form_id: e.detail.formId,
+              card_type: _this.data.take_card_ways
+            })
+            wx.navigateTo({
+              url: '/pages/collect-info/identity/index?source=applyVisit&params=' + params
+            })
+          } else {
+
+            app.applySubmit(_this.data.company_id, e.detail.formId, e.detail.value.name, e.detail.value.reason, function (visit_apply_id) {
+              wx.redirectTo({
+                url: '/pages/apply-visit/applicationStatus/index?visit_apply_id=' + visit_apply_id,
+              })
+            }) 
+
+          
+          }
+
+        }) 
+
+          
       }
     } else {
       toast.showToast(this, {

@@ -22,25 +22,27 @@
 
       <view class="company-info">
         
-        <view class=" _address _flex _flex_item_center ">
+        <view class=" _address _flex ">
           <view class="int-item-name _font24">公司地址</view>
           <view class="_font28 int-item-info">{{cmpInfo.address}}</view>
         </view>
-        <view class=" _address _flex _flex_item_center  ">
+        <view class=" _address _flex ">
           <view class="int-item-name _font24">详细地址</view>
           <view class="_font28 int-item-info">{{cmpInfo.floor}}层 {{cmpInfo.room}}室</view>
         </view>
-        <view class="company-card _flex _flex_item_center _flex_space_between" bindtap="companyIntro">
+        <navigator url="/pages/company/otherCompany/index?company_code={{cmpInfo.company_code}}" hover-class="none">
+        <view class="company-card _flex _flex_item_center _flex_space_between">
           <view class="_flex _flex_item_center _flex_space_between">
-              <image src='https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/diamond%402x.png'></image>
-               <view>
-                <view class="_name _fontw600 _font36">{{cmpInfo.company_short_name}}</view>
-                <view class="_short_name _font24">{{cmpInfo.company_name}}</view>
-              </view>
+            <image src='https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/diamond%402x.png'></image>
+              <view>
+              <view class="_name _fontw600 _font36">{{cmpInfo.company_short_name}}</view>
+              <view class="_short_name _font24">{{cmpInfo.company_name}}</view>
             </view>
+          </view>
 
           <view><text class="iconfont icon-jiantou"></text></view>
         </view>
+        </navigator>
       </view>
 
     </view>
