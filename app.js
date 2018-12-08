@@ -344,7 +344,7 @@ App({
    * 申请信息提交
    * param: company_id, form_id, visitor_name, note, id_type, phone, id_number
    */
-  applySubmit(company_id, form_id, visitor_name, note, id_type, phone, id_number, callback = function (visit_apply_id) {}) {
+  applySubmit(company_id, form_id, visitor_name, note, callback = function () { }) {
     var that = this;
     that.Util.network.POST({
       url: that.globalData.BASE_API_URL,
@@ -356,14 +356,12 @@ App({
           form_id: form_id,
           visit_company_id: company_id,
           visitor_name: visitor_name,
-          id_type: id_type,
-          phone: phone,
-          id_number: id_number,
           note: note
         })
       },
       success: res => {
         if (res.data.sub_code == 0) {
+          console.log(res.data.result.visit_apply_id);
           callback(res.data.result.visit_apply_id);
         } else {
           wx.showToast({
@@ -414,7 +412,7 @@ App({
    * 检测是否录入身份和人脸信息
    * param:  personType (employee 员工, visitor 访客)
    */
-  checkHasRecodeFace(personType, callback) {
+  checkHasRecodeFace(personType, visit_company_id, callback) {
     var that = this;
     if (personType == 'employee') {
       var service = 'company', method = 'get_employee_info';
@@ -429,7 +427,8 @@ App({
         service: service,
         method: method,
         data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session')
+          union_id: wx.getStorageSync('xy_session'),
+          visit_company_id: visit_company_id
         })
       },
       success: res => {

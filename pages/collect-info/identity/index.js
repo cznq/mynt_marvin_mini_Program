@@ -88,21 +88,21 @@ Page({
   },
 
   editSubmit: function (e) {
-    var id_type = this.data.cardType;
+    var that = this;
+    var id_type = that.data.cardType;
     var phone = e.detail.value.phone;
     var id_number = e.detail.value.id_number;
     
-    if (this.checkParam(phone, id_number)) {
+    that.checkParam(phone, id_number, function(){
       var idInfo = JSON.stringify({
         id_type: id_type,
         phone: phone,
         id_number: id_number
       })
       wx.navigateTo({
-        url: '/pages/collect-info/face/index?source=' + this.data.options.source + '&params=' + this.data.options.params + '&idInfo=' + idInfo 
+        url: '/pages/collect-info/face/index?source=' + that.data.options.source + '&params=' + that.data.options.params + '&idInfo=' + idInfo
       })
-
-    }
+    }) 
 
   },
 
@@ -144,24 +144,26 @@ Page({
   /**
    * 检测提交参数
    */
-  checkParam(phone, id_number) {
+  checkParam(phone, id_number, callback) {
+    var that = this
     var idcard_reg = app.Util.checkID(id_number) || app.Util.checkPassport(id_number);
-    if (app.Util.checkPhone(phone) === false) {
-      this.setData({
+    var phone_reg = app.Util.checkPhone(phone);
+
+    if (phone_reg === false) {
+      that.setData({
         'inputError.phone': true,
         'inputError.id_number': false
       });
-      this.showError('#ib1', '请输入正确的手机号');
-      return false;
+      that.showError('#ib1', '请输入正确的手机号');
     } else if (idcard_reg === false) {
-      this.setData({
+      that.setData({
         'inputError.phone': false,
         'inputError.id_number': true
       });
-      this.showError('#ib2', '请输入有效的证件号');
-      return false;
+      that.showError('#ib2', '请输入有效的证件号');
+    } else if (idcard_reg && phone_reg) {
+      callback();
     }
-    return true;
   },
 
   /**
