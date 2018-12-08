@@ -90,6 +90,7 @@ Page({
   //手动返回
   goback:function(){
     var _this = this;
+    clearInterval(_this.data.timer);
     wx.reLaunch({
       url: _this.data.url,
     })

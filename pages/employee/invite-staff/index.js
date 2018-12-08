@@ -21,8 +21,27 @@ Page({
   onLoad: function (options) {
     this.getCompanyInfo();
     this.getEmployeeInfo();
+    
   },
-
+  openConfirm: function () {
+    wx.showModal({
+      content: '检测到您没打开保存到相册权限，是否去设置打开？',
+      confirmText: "确认",
+      cancelText: "取消",
+      success: function (res) {
+        console.log(res);
+        //点击“确认”时打开设置页面
+        if (res.confirm) {
+          console.log('用户点击确认')
+          wx.openSetting({
+            success: (res) => {}
+          })
+        } else {
+          console.log('用户点击取消')
+        }
+      }
+    });
+  },
   /**
    * 获取公司信息
    * Param: company_id (公司id)
@@ -130,7 +149,14 @@ Page({
       canvasId: 'inviteCanvas',
       quality: 1,
       success: function success(res) {
-        //console.log(res.tempFilePath);
+        //判断是否获得了用户保存到相册授权
+        wx.getSetting({
+          success: (res) => {
+            if (res.authSetting['scope.writePhotosAlbum']==false){
+              self.openConfirm();
+            }
+          }
+        })
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath,
           success(result) {
@@ -139,6 +165,9 @@ Page({
               icon: 'success',
               duration: 1000
             });
+          },
+          fail: function () {
+            console.log('保存不成功');
           }
         })
       },
