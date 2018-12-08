@@ -21,7 +21,8 @@ Page({
     face: true,
     ctx: {},
     showButton: true,
-    cameraErrorText: ""
+    cameraErrorText: "",
+    isCameraAuth:true
   },
 
   onLoad: function (options) {
@@ -42,10 +43,12 @@ Page({
   },
 
   cameraError: function () {
+    var that = this;
     app.myLog('取消打开摄像头授权', '你已经取消了人脸录入的授权');
     this.setData({
-      cameraErrorText: "你已经取消了人脸录入的授权"
+      cameraErrorText: "\n\n你已经取消了人脸录入的授权,\n点击下一步重新授权"
     });
+    that.data.isCameraAuth = false;
   },
 
   openCameraAuth: function () {
@@ -69,6 +72,7 @@ Page({
                       that.setData({
                         cameraErrorText: "已经授权，请关闭小程序重新打开"
                       });
+                      that.data.isCameraAuth=true;
                       wx.navigateBack();
                     } else {
                       wx.showToast({
@@ -76,12 +80,17 @@ Page({
                         icon: 'success',
                         duration: 1000
                       })
+                      that.data.isCameraAuth = false;
                     }
                   }
                 })
               }
             }
           })
+        }else{
+          if (res.authSetting['scope.camera'] !== undefined){
+            that.data.isCameraAuth = true;
+          }
         }
       }
     })
@@ -94,18 +103,21 @@ Page({
   startRecodeFace: function () {
     var that = this;
     var int;
-    that.setData({
-      showButton: false,
-      tips_title: "请将人脸放入框内"
-    })
-    var k = 0;
-    int = setInterval(function () {
-      if (that.data.face == true && k > 2) {
-        app.myLog('开始拍照', k);
-        that.takePhoto(that.data.ctx);
-      }
-      k++;
-    }, 1000);
+    this.openCameraAuth();
+    if (that.data.isCameraAuth==true){
+      that.setData({
+        showButton: false,
+        tips_title: "请将人脸放入框内"
+      })
+      var k = 0;
+      int = setInterval(function () {
+        if (that.data.face == true && k > 2) {
+          app.myLog('开始拍照', k);
+          that.takePhoto(that.data.ctx);
+        }
+        k++;
+      }, 1000);
+    }
 
   },
 
