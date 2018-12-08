@@ -414,7 +414,7 @@ App({
    * 检测是否录入身份和人脸信息
    * param:  personType (employee 员工, visitor 访客)
    */
-  checkHasRecodeFace(personType, callback) {
+  checkHasRecodeFace(personType, visit_company_id, callback) {
     var that = this;
     if (personType == 'employee') {
       var service = 'company', method = 'get_employee_info';
@@ -429,7 +429,8 @@ App({
         service: service,
         method: method,
         data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session')
+          union_id: wx.getStorageSync('xy_session'),
+          visit_company_id: visit_company_id
         })
       },
       success: res => {
