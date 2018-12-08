@@ -13,7 +13,7 @@
             <view class='vipicon'></view>
           </view>
           <view class='t2'>{{cd.company_name}}</view>
-          <image class='_absolute vip' src='{{vipImg}}'></image>
+          <!-- <image class='_absolute vip' src='{{vipImg}}'></image> -->
         </view>
         <view class='bottom _clearfloat'>
           <view class='c c1'>
