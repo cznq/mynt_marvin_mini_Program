@@ -45,7 +45,36 @@ App({
       }
     })
     
-  },         
+  },    
+
+  onShow: function () {
+    const updateManager = wx.getUpdateManager()
+    updateManager.onCheckForUpdate(function (res) {
+      // 请求完新版本信息的回调
+      console.log('小程序版本更新提示：' + res.hasUpdate)
+    })
+    updateManager.onUpdateReady(function () {
+      wx.showModal({
+        title: '更新提示',
+        content: '新版本已经准备好，是否重启应用？',
+        success: function (res) {
+          if (res.confirm) {
+            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+            updateManager.applyUpdate()
+          }
+        }
+      })
+    })
+    updateManager.onUpdateFailed(function () {
+      // 新的版本下载失败
+      wx.showModal({
+        title: '更新提示',
+        content: '新版本下载失败',
+        showCancel: false
+      })
+    })
+    
+  },     
 
   /**
    * 自定义日志函数
@@ -74,7 +103,7 @@ App({
   checkWxLogin(callback) {
     var that = this;
     if (that.checkSession()) {
-      console.log("---通过登录检测---");
+      //console.log("---通过登录检测---");
       callback();
     } else {
       wx.login({
@@ -180,17 +209,20 @@ App({
         if (res.data.result) {
           if (res.data.result.service_status == 0) {
             _this.setData({
-              serviceStatus: 'closed'
+              serviceStatus: 'closed',
+              limitCount: res.data.result.limit_count
             })
           }
           if (res.data.result.service_status == 1) {
             _this.setData({
-              serviceStatus: 'opened'
+              serviceStatus: 'opened',
+              limitCount: res.data.result.limit_count
             })
           }
           if (res.data.result.service_status == 2) {
             _this.setData({
-              serviceStatus: 'tried'
+              serviceStatus: 'tried',
+              limitCount: res.data.result.limit_count
             })
           }
           callback();
@@ -273,7 +305,7 @@ App({
       },
       success: res => {
         if (res.data.sub_code == 0) {
-          console.log(res.data.result.visit_apply_id);
+          //console.log(res.data.result.visit_apply_id);
           callback(res.data.result.visit_apply_id);
         } else {
           wx.showToast({
