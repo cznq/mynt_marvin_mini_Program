@@ -5,13 +5,12 @@ Page({
 
   /**
    * 页面的初始数据
-   * cardType   card门卡, e-card电子门卡
+   * cardType   0实体门卡, 1电子门卡
    * serviceStatus  tried 试用；closed 关闭；opened 开通；
    */
   data: {
     cmpInfo: null,
-    serviceStatus: 'closed',
-    cardType: 'e-card'
+    serviceStatus: 'closed'
   },
 
   /**
@@ -39,15 +38,6 @@ Page({
           that.setData({
             cmpInfo: res.data.result
           })
-          if (res.data.result.take_card_ways == 0) {
-            that.setData({
-              cardType: 'card'
-            })
-          } else if (res.data.result.take_card_ways == 1) {
-            that.setData({
-              cardType: 'e-card'
-            })
-          } 
         }
 
       }
@@ -90,7 +80,7 @@ Page({
   openTakeCard: function () {
     var parmas = JSON.stringify({
       company_id: this.data.cmpInfo.company_id,
-      card_type: this.data.cardType
+      card_type: this.data.cmpInfo.take_card_ways
     })
     wx.navigateTo({
       url: '/pages/collect-info/guide/index?source=takeCard&params=' + parmas

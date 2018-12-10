@@ -7,9 +7,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-        title: '无人值守',
+        title: '自动值守',
         introduce: '如果您无法及时处理访客申请，或您希望访客无需通过申请即可取卡，请开启此功能',
-        explain: '无人值守功能已开启,请留意您的访客',
+        explain: '自动值守功能已开启,请留意您的访客',
         isShow: true,
         isChecked: true,
         union_id: wx.getStorageSync('xy_session'),

@@ -20,23 +20,34 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     if (requestHandler.params.method == 'login'){
       request(method, requestHandler, app)
     } else {
-     
+    
+      app.checkWxLogin(function(){
+        request(method, requestHandler, app)
+      })
+
+    /*
       if (!(app.checkSession())) {
         var pages = getCurrentPages();
-        var currentPage = pages[pages.length - 1] //获取当前页面的对象
-        var url = currentPage.route; //获取当前页面url
-        var opt = JSON.stringify(currentPage.options) //获取url中所带的参数
+        var currentPage = pages[pages.length - 1] 
+        var url = currentPage.route; 
+        var opt = JSON.stringify(currentPage.options) 
         wx.redirectTo({
           url: '/pages/login/index?route=' + url + '&opt=' + opt,
         })
       } else {
         request(method, requestHandler, app)
       }
+    */
               
     }
   }
   //请求接口
   function request(method, requestHandler, app) {
+    
+    var dataJson = JSON.parse(requestHandler.params.data);
+    dataJson.union_id = wx.getStorageSync('xy_session');
+
+    requestHandler.params.data = JSON.stringify(dataJson);
     wx.showLoading({
       title: '正在加载',
       mask: true
