@@ -245,7 +245,7 @@ Page({
                         } else {
                           console.log('未开启');
                           _this.setData({
-                            'service[1].url': '/benifit/pages/suite-introduce/suite-introduce'
+                            'service[1].url': '../employee/take-card/open/index?company_id=' + _this.data.cd.company_id
                           })
                         }
 
