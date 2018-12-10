@@ -114,13 +114,9 @@ App({
           wx.setStorageSync('open_id', res.data.result.open_id);
           wx.setStorageSync('nickname', res.data.result.nickname);
           wx.setStorageSync('avatar', res.data.result.avatar);
-          wx.setStorageSync('invite_auth', false);
-          if (res.data.result.role !== 0) {
-            wx.setStorageSync('invite_auth', true);
-          }
           callback();
         } else {
-          console.log("跳转到登录页面");
+          that.myLog("进入授权登录页面", "跳转到登录页面");
           var pages = getCurrentPages();
           var currentPage = pages[pages.length - 1]
           var url = currentPage.route;
@@ -181,23 +177,24 @@ App({
         })
       },
       success: res => {
-        console.log(res.data.result);
-        if (res.data.result.service_status == 0) {
-          _this.setData({
-            serviceStatus: 'closed'
-          })
+        if (res.data.result) {
+          if (res.data.result.service_status == 0) {
+            _this.setData({
+              serviceStatus: 'closed'
+            })
+          }
+          if (res.data.result.service_status == 1) {
+            _this.setData({
+              serviceStatus: 'opened'
+            })
+          }
+          if (res.data.result.service_status == 2) {
+            _this.setData({
+              serviceStatus: 'tried'
+            })
+          }
+          callback();
         }
-        if (res.data.result.service_status == 1) {
-          _this.setData({
-            serviceStatus: 'opened'
-          })
-        }
-        if (res.data.result.service_status == 2) {
-          _this.setData({
-            serviceStatus: 'tried'
-          })
-        }
-        callback();
       },
       fail: res => {
         console.log('获取服务失败')

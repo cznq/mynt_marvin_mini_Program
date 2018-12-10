@@ -244,6 +244,9 @@ Page({
 
                         } else {
                           console.log('未开启');
+                          _this.setData({
+                            'service[1].url': '/benifit/pages/suite-introduce/suite-introduce'
+                          })
                         }
 
 
