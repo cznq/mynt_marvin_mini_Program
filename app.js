@@ -45,7 +45,36 @@ App({
       }
     })
     
-  },         
+  },    
+
+  onShow: function () {
+    const updateManager = wx.getUpdateManager()
+    updateManager.onCheckForUpdate(function (res) {
+      // 请求完新版本信息的回调
+      console.log('小程序版本更新提示：' + res.hasUpdate)
+    })
+    updateManager.onUpdateReady(function () {
+      wx.showModal({
+        title: '更新提示',
+        content: '新版本已经准备好，是否重启应用？',
+        success: function (res) {
+          if (res.confirm) {
+            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+            updateManager.applyUpdate()
+          }
+        }
+      })
+    })
+    updateManager.onUpdateFailed(function () {
+      // 新的版本下载失败
+      wx.showModal({
+        title: '更新提示',
+        content: '新版本下载失败',
+        showCancel: false
+      })
+    })
+    
+  },     
 
   /**
    * 自定义日志函数
@@ -69,80 +98,20 @@ App({
   },
 
   /**
-   * 静默登录
-   */
-  checkLogin() {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      if (that.checkSession()) {
-        resolve();
-      } else {
-        wx.login({
-          success: res => {
-            if (res.code) {
-              console.log("-----login-----");
-              that.Util.network.POST({
-                url: that.globalData.BASE_API_URL,
-                params: {
-                  service: 'oauth',
-                  method: 'login',
-                  data: JSON.stringify({
-                    code: res.code
-                  })
-                },
-                success: res => {
-                  console.log(res.data);
-                  if (res.data.sub_code == 0) {
-                    wx.setStorageSync('xy_session', res.data.result.union_id);
-                    wx.setStorageSync('open_id', res.data.result.open_id);
-                    wx.setStorageSync('nickname', res.data.result.nickname);
-                    wx.setStorageSync('avatar', res.data.result.avatar);
-                    wx.setStorageSync('invite_auth', false);
-                    wx.setStorageSync('inviteVip_auth', false);
-                    if (res.data.result.role !== 0) {
-                      wx.setStorageSync('invite_auth', true);
-                    } 
-                    if (res.data.result.role == 3) {
-                      wx.setStorageSync('inviteVip_auth', true);
-                    } 
-                    resolve(res);
-                  } else {
-                    reject('error');
-                  }
-                  
-                },
-                fail: res => {
-                  fundebug.notify("登录失败", res.sub_msg)
-                  reject('error');
-                }
-              });
-
-            } else {
-              fundebug.notify("微信登录失败", res.errMsg)
-              reject('error');
-            }
-          }
-        })
-      }
-    })
-  },
-
-  /**
-   * checkLogin
+   * 检测微信登录
    */
   checkWxLogin(callback) {
     var that = this;
     if (that.checkSession()) {
+      //console.log("---通过登录检测---");
       callback();
     } else {
       wx.login({
         success: res => {
           if (res.code) {
-            console.log("-----login-----");
             that.thirdLogin(res.code, null, null, callback);
           } else {
-            fundebug.notify("微信登录失败", res.errMsg)
-            
+            that.myLog("微信登录失败", res.errMsg)
           }
         }
       })
@@ -168,23 +137,24 @@ App({
         })
       },
       success: res => {
+        console.log('res');
         if (res.data.sub_code == 0) {
           wx.setStorageSync('xy_session', res.data.result.union_id);
           wx.setStorageSync('open_id', res.data.result.open_id);
           wx.setStorageSync('nickname', res.data.result.nickname);
           wx.setStorageSync('avatar', res.data.result.avatar);
-          wx.setStorageSync('invite_auth', false);
-          if (res.data.result.role !== 0) {
-            wx.setStorageSync('invite_auth', true);
-          }
-          
+          callback();
         } else {
-          wx.showToast({
-            icon: 'none',
-            title: '授权登录失败'
+          that.myLog("进入授权登录页面", "跳转到登录页面");
+          var pages = getCurrentPages();
+          var currentPage = pages[pages.length - 1]
+          var url = currentPage.route;
+          var opt = JSON.stringify(currentPage.options)
+          wx.redirectTo({
+            url: '/pages/login/index?route=' + url + '&opt=' + opt,
           })
         }
-        callback();
+        
       },
       fail: res => {
         callback();
@@ -202,37 +172,7 @@ App({
     wx.login({
       success: res => {
         if (res.code) {
-          //console.log(res.code + "--" + encryptedData + "--" + iv);
-          that.Util.network.POST({
-            url: that.globalData.BASE_API_URL,
-            params: {
-              service: 'oauth',
-              method: 'login',
-              data: JSON.stringify({
-                code: res.code,
-                encrypted_data: encryptedData,
-                iv: iv
-              })
-            },
-            success: res => {
-              if (res.data.sub_code == 0) {
-                wx.setStorageSync('xy_session', res.data.result.union_id);
-                wx.setStorageSync('nickname', res.data.result.nickname);
-                wx.setStorageSync('open_id', res.data.result.open_id);
-                wx.setStorageSync('avatar', res.data.result.avatar);
-                callback();
-              } else {
-                wx.showToast({
-                  icon: 'none',
-                  title: '授权登录失败'
-                })
-              
-              }
-            },
-            fail: res => {
-              console.log('fail');
-            }
-          });
+          that.thirdLogin(res.code, encryptedData, iv, callback);
         }
       },
       fail: res => {
@@ -266,23 +206,27 @@ App({
         })
       },
       success: res => {
-        console.log(res.data.result);
-        if (res.data.result.service_status == 0) {
-          _this.setData({
-            serviceStatus: 'closed'
-          })
+        if (res.data.result) {
+          if (res.data.result.service_status == 0) {
+            _this.setData({
+              serviceStatus: 'closed',
+              limitCount: res.data.result.limit_count
+            })
+          }
+          if (res.data.result.service_status == 1) {
+            _this.setData({
+              serviceStatus: 'opened',
+              limitCount: res.data.result.limit_count
+            })
+          }
+          if (res.data.result.service_status == 2) {
+            _this.setData({
+              serviceStatus: 'tried',
+              limitCount: res.data.result.limit_count
+            })
+          }
+          callback();
         }
-        if (res.data.result.service_status == 1) {
-          _this.setData({
-            serviceStatus: 'opened'
-          })
-        }
-        if (res.data.result.service_status == 2) {
-          _this.setData({
-            serviceStatus: 'tried'
-          })
-        }
-        callback();
       },
       fail: res => {
         console.log('获取服务失败')
@@ -361,7 +305,7 @@ App({
       },
       success: res => {
         if (res.data.sub_code == 0) {
-          console.log(res.data.result.visit_apply_id);
+          //console.log(res.data.result.visit_apply_id);
           callback(res.data.result.visit_apply_id);
         } else {
           wx.showToast({

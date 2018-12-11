@@ -88,24 +88,13 @@ Page({
       edit: 'disabled'
   },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function (options) {
- 
-    },
-
   /**
-   * 判断是否员工
+   * 生命周期函数--监听页面加载
    */
-  setDataRequest: function () {
-    if (wx.getStorageSync('invite_auth') !== true) {
-      wx.redirectTo({
-        url: '/pages/manage/manage',
-      })
+  onLoad: function (options) {
 
-    } 
   },
+
 
   checkForm: function (e) {
     if (e.currentTarget.id == 'visitorName') {
@@ -207,14 +196,6 @@ Page({
       visit_time_str: todayDate + ' ' + this.data.timePicker.hours[val[1]] + ':' + this.data.timePicker.minutes[val[2]],
       'formData.visit_time': year + '-' + app.Util.strToDate(todayDate + ' ' + this.data.timePicker.hours[val[1]] + ':' + this.data.timePicker.minutes[val[2]])
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    this.setDataRequest();
-    
   }
 
 })

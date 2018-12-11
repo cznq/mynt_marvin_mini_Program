@@ -244,6 +244,9 @@ Page({
 
                         } else {
                           console.log('未开启');
+                          _this.setData({
+                            'service[1].url': '../employee/take-card/open/index?company_id=' + _this.data.cd.company_id
+                          })
                         }
 
 

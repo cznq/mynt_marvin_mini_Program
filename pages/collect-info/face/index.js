@@ -248,7 +248,7 @@ Page({
             var op_type = 0, user_type = 2;
             that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {              
               wx.hideLoading();
-              if (that.data.options.params.card_type == 1) {
+              if (that.data.options.params.card_type == 0) {
                 wx.redirectTo({
                   url: '/pages/employee/take-card/success/index?company_id=' + that.data.options.params.company_id,
                 })
