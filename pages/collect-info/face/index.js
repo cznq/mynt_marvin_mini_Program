@@ -4,48 +4,51 @@ Page({
 
   /**
    * 录入人脸信息公共页面
-   * 邀请流程，申请发卡流程，员工快捷取卡
+   * 邀请流程，员工快捷取卡，员工信息录入, 员工人脸修改，申请发卡，协议商户
    * Param: 
-   * invitation_id   邀请id
-   * vip   是否VIP邀请
-   * company_id   公司id
+   *   source (来源) | params (参数)                               | callback（回调）
+   *   invite       | form_id                                     | /pages/invite-visitor/success/index?invitation_id
+   *   takeCard     | card_type                                   | /pages/employee/take-card/success/index 或者  /pages/e-card/detail/index
+   *   editInfo     | company_id                                  | /pages/employee/homepage/index
+   *   reRecodeFace | company_id                                  | /pages/employee/homepage/index
+   *   applyVisit   | company_id, form_id, visitor_name, note     | /pages/apply-visit/applicationStatus/index?visit_apply_id
+   *   benifit      | commerce_id                                 | /benifit/pages/vip-card/vip-card
    */
 
   data: {
-    invitation_id: null,
-    visit_apply_id: null,
-    company_id: null,
-    vip: null,
+    isIphoneX: app.globalData.isIphoneX,
+    options: {},
     face: true,
     ctx: {},
     showButton: true,
-    cameraErrorText: ""
+    cameraErrorText: "",
+    isCameraAuth:true
   },
 
   onLoad: function (options) {
+    //console.log(options);
     var that = this;
-    if (options.vip !== "yes") { options.vip = null }
-    that.setData({
-      vip: options.vip,
-      company_id: options.company_id,
-      invitation_id: options.invitation_id,
-      visit_apply_id: options.visit_apply_id
-    });
+    that.data.options.source = options.source;
+    that.data.options.params = JSON.parse(options.params);
+    that.data.options.idInfo = JSON.parse(options.idInfo);
+
     if (app.Util.checkcanIUse('camera')) {
+      app.myLog('相机检测', '相机组件检测通过');
       that.setData({
         ctx: wx.createCameraContext()
       }) 
-      that.openCameraAuth();
+      
     }
     app.Util.checkcanIUse('cover-view');
   },
 
   cameraError: function () {
+    var that = this;
     app.myLog('取消打开摄像头授权', '你已经取消了人脸录入的授权');
     this.setData({
-      cameraErrorText: "你已经取消了人脸录入的授权"
+      cameraErrorText: "\n\n你已经取消了人脸录入的授权,\n点击下一步重新授权"
     });
-    wx.navigateBack({});
+    that.data.isCameraAuth = false;
   },
 
   openCameraAuth: function () {
@@ -69,72 +72,30 @@ Page({
                       that.setData({
                         cameraErrorText: "已经授权，请关闭小程序重新打开"
                       });
-                      wx.redirectTo({
-                        url: '/pages/collect-info/face/index?invitation_id=' + that.data.invitation_id + '&visit_apply_id=' + that.data.visit_apply_id + '&company_id=' + that.data.company_id + '&vip=' + that.data.vip,
-                      })
+                      that.data.isCameraAuth=true;
+                      wx.navigateBack();
                     } else {
                       wx.showToast({
                         title: '授权失败',
                         icon: 'success',
                         duration: 1000
                       })
+                      that.data.isCameraAuth = false;
                     }
                   }
                 })
               }
             }
           })
-        }
-      }
-    })
-  },
-
-  getVisitorInfo: function () {
-    var that = this;
-    var unionId = wx.getStorageSync('xy_session');
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'visitor',
-        method: 'get_visitor_info',
-        data: JSON.stringify({
-          union_id: unionId
-        })
-      },
-      success: res => {
-        if (res.data.result) {
-          if (!app.Util.checkEmpty(res.data.result.input_pic_url)) {
-            that.finishRecordFace();
+        }else{
+          if (res.authSetting['scope.camera'] !== undefined){
+            that.data.isCameraAuth = true;
           }
         }
       }
     })
   },
 
-  /**
-   * 获取员工信息页面
-   */
-  getEmployeeInfo: function () {
-    var that = this;
-    var unionId = wx.getStorageSync('xy_session');
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'company',
-        method: 'get_employee_info',
-        data: JSON.stringify({
-          union_id: unionId
-        })
-      },
-      success: res => {
-        if (res.data.result) {
-          if (!app.Util.checkEmpty(res.data.result.input_pic_url)) {
-            that.finishRecordFace();
-          }
-        }
-      }
-    })
-  },
 
   /**
    * 开始录入
@@ -142,17 +103,21 @@ Page({
   startRecodeFace: function () {
     var that = this;
     var int;
-    that.setData({
-      showButton: false,
-      tips_title: "请将人脸放入框内"
-    })
-    var k = 0;
-    int = setInterval(function () {
-      if (that.data.face == true && k > 2) {
-        that.takePhoto(that.data.ctx);
-      }
-      k++;
-    }, 1000);
+    this.openCameraAuth();
+    if (that.data.isCameraAuth==true){
+      that.setData({
+        showButton: false,
+        tips_title: "请将人脸放入框内"
+      })
+      var k = 0;
+      int = setInterval(function () {
+        if (that.data.face == true && k > 2) {
+          app.myLog('开始拍照', k);
+          that.takePhoto(that.data.ctx);
+        }
+        k++;
+      }, 1000);
+    }
 
   },
 
@@ -185,13 +150,19 @@ Page({
   /**
    * 上传图片
    */
-  uploadCanvasImg: function (canvasImg) {
+  uploadCanvasImg(canvasImg, company_id, op_type, user_type, phone, id_type, id_number, callback = function () {}) {
     var that = this;
-    var service = 'visitor';
     var data = JSON.stringify({
       union_id: wx.getStorageSync('xy_session'),
-      company_id: that.data.company_id
+      company_id: company_id,
+      op_type: op_type,
+      user_type: user_type,
+      phone: phone,
+      id_type: id_type,
+      id_number: id_number
     });
+    console.log(data);
+    var service = 'visitor';
     var method = 'upload_face_pic';
     var app_id = '65effd5a42fd1870b2c7c5343640e9a8';
     var timestamp = Math.round(new Date().getTime() / 1000 - 28800);
@@ -217,10 +188,12 @@ Page({
       },
       success: function (res) {
         var data = JSON.parse(res.data);
+        console.log(data);
         app.myLog('上传人脸图片', JSON.stringify(data));
         if (data.sub_code == 0) {
+          console.log('++++++++++++' + data.sub_code + '+++++++++' + data.sub_code);
           wx.showLoading({ title: '人脸上传中' });
-          that.finishRecordFace();
+          callback();
         } else {
           that.setData({
             face: true
@@ -247,7 +220,67 @@ Page({
         quality: 1,
         canvasId: 'attendCanvasId',
         success: function success(res) {
-          that.uploadCanvasImg(res.tempFilePath);
+          // invite,takeCard,editInfo,applyVisit,benifit
+          
+          if (that.data.options.source == 'invite') {
+            var op_type = 0, user_type = 0;
+            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
+              app.receiveSubmit(that.data.options.params.invitation_id, that.data.options.params.form_id, function () {
+                wx.hideLoading();
+                wx.redirectTo({
+                  url: '/pages/invite-visitor/success/index?invitation_id=' + that.data.options.params.invitation_id,
+                })
+              }) 
+            });
+            
+          } else if (that.data.options.source == 'applyVisit') {
+            var op_type = 0, user_type = 0;
+            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.visit_company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
+              app.applySubmit(that.data.options.params.visit_company_id, that.data.options.params.form_id, that.data.options.params.visitor_name, that.data.options.params.note, function (visit_apply_id) {
+                wx.hideLoading();
+                wx.redirectTo({
+                  url: '/pages/apply-visit/applicationStatus/index?visit_apply_id=' + visit_apply_id,
+                })
+              }) 
+            });
+           
+          } else if (that.data.options.source == 'takeCard') {
+            var op_type = 0, user_type = 2;
+            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {              
+              wx.hideLoading();
+              if (that.data.options.params.card_type == 0) {
+                wx.redirectTo({
+                  url: '/pages/employee/take-card/success/index?company_id=' + that.data.options.params.company_id,
+                })
+              } else {
+                wx.redirectTo({
+                  url: '/pages/e-card/detail/index'
+                })
+              }
+                
+            });
+            
+          } else if (that.data.options.source == 'editInfo') {
+            var op_type = 0, user_type = 2;
+            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
+              wx.hideLoading();
+              wx.redirectTo({
+                url: '/pages/employee/homepage/index',
+              })
+              
+            });
+            
+          } else if (that.data.options.source == 'reRecodeFace') {
+            var op_type = 1, user_type = 2;
+            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
+              wx.hideLoading();
+              wx.redirectTo({
+                url: '/pages/employee/homepage/index',
+              })
+            });
+          }
+
+
         }, fail: function (e) {
           that.getCanvasImg(tempFilePath);
         }
@@ -255,53 +288,9 @@ Page({
     });
   },
 
-  /**
-   * 结束录入人脸
-   * 邀请流程跳转到invite-success
-   * 发卡申请跳转到 invite-apply-result
-   * 员工快捷取卡跳转到 take-card/success/index
-   */
-  finishRecordFace: function () {
-    var that = this;
-    wx.hideLoading();
-    if (app.Util.checkNumber(that.data.invitation_id)) {
-      wx.redirectTo({
-        url: '/pages/invite-success/invite-success?vip=' + that.data.vip + '&invitation_id=' + that.data.invitation_id + '&company_id=' + that.data.company_id,
-      })
-    } else if (app.Util.checkNumber(that.data.visit_apply_id)) {
-      wx.redirectTo({
-        url: '/pages/invite-apply-result/invite-apply-result?visit_apply_id=' + that.data.visit_apply_id,
-      })
-    } else {
-      wx.redirectTo({
-        url: '/pages/employee/take-card/success/index?company_id=' + that.data.company_id,
-      })
-    }
-  },
-
-  /**
-   * 判断是Visitor还是Employee
-   */
-  getStaffInfo: function () {
-    if (this.data.invitation_id !== null && this.data.invitation_id !== undefined && this.data.invitation_id !== "undefined") {
-      this.getVisitorInfo();
-    } else if (this.data.visit_apply_id !== null && this.data.visit_apply_id !== undefined && this.data.visit_apply_id !== "undefined") {
-      this.getVisitorInfo();
-    } else {
-      this.getEmployeeInfo();
-    }
-  },
 
   onShow: function () {
-    var that = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        that.getStaffInfo();
-      })
-    } else {
-      that.getStaffInfo();
-      
-    }
+    this.openCameraAuth();
   },
 
   /**

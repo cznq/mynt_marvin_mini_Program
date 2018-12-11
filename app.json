@@ -1,8 +1,14 @@
 {
   "pages": [
     "pages/manage/manage",
+    "pages/collect-info/guide/index",
     "pages/collect-info/face/index",
     "pages/collect-info/identity/index",
+    "pages/collect-info/confirmIdentity/index",
+    "pages/employee/homepage/index",
+    "pages/employee/edit-name/index",
+    "pages/employee/edit-phone/index",
+    "pages/employee/take-card/open/index",
     "pages/employee/take-card/success/index",
     "pages/employee/take-card/guide/index",
     "pages/employee/staff-list/index",
@@ -14,32 +20,55 @@
     "pages/create-company/createSuccess/index",
     "pages/create-company/examples/index",
     "pages/create-company/updateReviewInfo/index",
+    "pages/create-company/guide/index",
+    "pages/create-company/guideVip/index",
+    "pages/create-company/basicInformation/index",
+    "pages/create-company/vipInformation/index",
+    "pages/create-company/companyPages/index",
+    "pages/create-company/robotPreview/index",
+    "pages/create-company/editCompanyPages/index",
     "pages/employee/join-company/enterRealName/index",
     "pages/employee/join-company/invitationCode/index",
     "pages/employee/join-company/choiceJoin/index",
     "pages/employee/join-company/confirmCompanyInformation/index",
     "pages/company/unattended-setting/index",
+    "pages/company/introduction/index",
+    "pages/company/otherCompany/index",
+    "pages/company/webview/index",
     "pages/demo/iconfont/index",
+
     "pages/invite/invite",
     "pages/invite-share/invite-share",
     "pages/invite-receive/invite-receive",
     "pages/invite-success/invite-success",
     "pages/invite-apply/invite-apply",
     "pages/invite-apply-result/invite-apply-result",
-    "pages/vip-index/vip-index",
-    "pages/vip-invite/vip-invite",
-    "pages/vip-share/vip-share",
-    "pages/demo/showToastDemo/index"
+    
+    "pages/demo/showToastDemo/index",
+    "pages/invite-visitor/start/index",
+    "pages/invite-visitor/guide/index",
+    "pages/invite-visitor/edit/index",
+    "pages/invite-visitor/share/index",
+    "pages/invite-visitor/receive/index",
+    "pages/invite-visitor/success/index",
+    "pages/apply-visit/noAppointment/index",
+    "pages/apply-visit/reasonsVisiting/index",
+    "pages/apply-visit/applicationStatus/index",
+    "pages/e-card/detail/index",
+    "pages/login/index"
+
   ],
   "subPackages": [
     {
       "root": "benifit",
       "name": "Benifit",
       "pages": [
+        "pages/scan-pay/scan-pay",
         "pages/vip-card/vip-card",
         "pages/mall-home/mall-home",
         "pages/mall-detail/mall-detail",
-        "pages/mall-comment/mall-comment"
+        "pages/mall-comment/mall-comment",
+        "pages/suite-introduce/suite-introduce"
       ]
     }
   ],
@@ -50,7 +79,7 @@
     "navigationBarTextStyle": "black"
   },
   "networkTimeout": {
-    "request": 50000,
+    "request": 10000,
     "connectSocket": 50000,
     "uploadFile": 50000,
     "downloadFile": 50000

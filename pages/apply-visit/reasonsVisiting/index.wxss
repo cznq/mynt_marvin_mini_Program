@@ -1,0 +1,48 @@
+/* pages/apply-visit/reasonsVisiting/index.wxss */
+@import "../../../templates/showToast/showToast.wxss";
+
+.recodeTitle {
+  padding-bottom: 20rpx;
+  padding-top: 60rpx;
+  line-height: 1.2;
+  color: #1a2a4b;
+}
+
+.recodeIntro {
+  font-size: 30rpx;
+  color: #1a2a4b;
+  font-weight: 400;
+  margin-bottom: 80rpx;
+}
+
+.input_block {
+  padding-bottom: 25rpx;
+  position: relative;
+}
+
+icon {
+  position: absolute;
+  bottom: 50rpx;
+  right: 0;
+  z-index: 100;
+}
+
+.textarea_text {
+  width: 570rpx;
+  height: 230rpx;
+  background: #f5f6f9;
+  border: 1rpx solid #ededed;
+  border-radius: 10rpx;
+  padding: 30rpx;
+  line-height: 40rpx;
+  font-size: 32rpx;
+  margin-top: 10rpx;
+}
+
+.textarea_text_phc {
+  font-size: 28rpx;
+  line-height: 35rpx;
+  color: #d1d4db;
+  font-weight: 300;
+}
+.pt{top:40%;}

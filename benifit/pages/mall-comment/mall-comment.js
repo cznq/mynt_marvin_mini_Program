@@ -27,13 +27,6 @@ Page({
       commerce_id: options.commerce_id
     })
     
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        console.log();
-      })
-    } else {
-      
-    }
   },
 
   // 图片选择

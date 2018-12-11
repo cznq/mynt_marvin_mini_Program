@@ -1,0 +1,78 @@
+/* pages/employee/homepage/index.wxss */
+page {
+  background-color: rgba(249, 250, 251, 1);
+}
+.page__hd {
+  background-color: #009CFF;
+  height: 290rpx;
+  padding: 40rpx 60rpx 38rpx 64rpx;
+  box-sizing: border-box;
+  color: #fff;
+}
+._info image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+}
+._edit {
+  align-items: flex-end;
+}
+.icon-yuangongzhuye_bianji {
+  font-size: 28rpx;
+  color: #fff;
+  line-height: 60rpx; 
+}
+._edit button {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  background-color: rgba(242, 243, 246, .2);
+  margin-bottom: 30rpx;
+  display: flex;
+  justify-content: center;
+}
+.identify {
+  padding: 54rpx 60rpx;
+  background-color: #fff;
+  line-height: 1.2;
+}
+.identify .idcard {
+  width: 50%;
+  padding-right: 32rpx;
+  border-right: 2rpx solid rgba(220, 220, 220, .5);
+}
+.identify .phone {
+  width: 50%;
+  padding-left: 32rpx;
+}
+._gray {
+  color: rgba(136, 145, 169, 1);
+}
+._dark_gray {
+  color: rgba(26, 42, 75, 1);
+}
+._menu_card_hm {
+    margin-top: 60rpx;
+}
+._menu_card {
+  height: 110rpx;
+  background-color: #fff;
+  margin-bottom: 30rpx;
+  padding: 0 60rpx 0 68rpx;
+  align-items: center;
+  line-height: 1;
+} 
+.icon-suoshuqiye,
+.icon-yuangonglururenlian {
+  color: rgba(0, 123, 255, 1);
+  font-size: 44rpx;
+  margin-right: 24rpx;
+}
+.icon-jiantou {
+  color: rgba(124, 130, 157, .3);
+  font-size: 20rpx;
+}
+._short {
+  color: rgba(136, 145, 169, 1);
+  margin-right: 30rpx;
+}

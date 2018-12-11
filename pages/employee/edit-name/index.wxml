@@ -1,0 +1,20 @@
+<import src="../../../templates/inputError/inputError.wxml" /> 
+<view class="page">
+<view class='_content collect-information'>
+  
+  <form bindsubmit='editSubmit'>
+    <view class='input_block' id='ib1'>
+      <view>
+        <text class='_font24 _txt_darkgrey'>姓名</text>
+      </view>
+      <input class="input_text {{inputError.name?'error':''}}" type="text" name="name" value='{{formData.name}}' bindinput="checkForm" placeholder-class='input_text_phc' placeholder='请输入姓名' id='i1'></input>
+      <icon type="clear" size="16" wx:if="{{formData.name}}" catchtap="clearInput" id="b1"></icon>
+    </view>
+    
+    <view class="_fixed footer {{isIphoneX?'iphonex':''}}">
+      <button class="_button _font32" formType="submit" disabled="{{formData.name?'':'disabled'}}" form-type="submit">保存</button>
+    </view>
+  </form>
+</view>
+</view>
+<template is="inputError" data="{{errorData: errorData}}" />

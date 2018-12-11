@@ -6,12 +6,12 @@
 <view class="page">
   <view class="page__hd _flex _flex_space_between _flex_item_center">
       <text class="_font60 _fontw700">员工列表</text>
-      <view class="iconfont icon-tianjiayuangong" bindtap="inviteStaff"></view>
+      <view class="iconfont icon-tianjiayuangong" bindtap="inviteStaff" wx:if="{{role == 3}}"></view>
   </view>
   <view class="page__bd">
 
     <button class="new-staff-btn _flex _flex_justify_center  _flex_item_center _fontw500" 
-    bindtap="newStaff" wx:if="{{staffList.apply_number}}">新员工<view class="_num_info">{{staffList.apply_number}}</view></button>
+    bindtap="newStaff" wx:if="{{staffList.apply_number && role==3}}">新员工<view class="_num_info">{{staffList.apply_number}}</view></button>
     <block>
       <view class="staff_list">
       <!-- 管理员列表 -->
@@ -39,7 +39,7 @@
             <view class="_rgt _flex _flex_item_center">
               <!--<image class="vip-icon" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/vip%402x.png"></image>-->
               <view class="iconfont icon-qiantai"></view>
-              <view class="handle_btn" bindtap="editEmp" data-unionid='{{item.union_id}}' data-name='{{item.employee_name}}'><view class="dot"></view><view class="dot"></view><view class="dot"></view></view>
+              <view class="handle_btn" bindtap="editEmp" data-unionid='{{item.union_id}}' data-name='{{item.employee_name}}' wx:if="{{role==3}}"><view class="dot"></view><view class="dot"></view><view class="dot"></view></view>
             </view>
           </view>
         </block>
@@ -54,7 +54,7 @@
             <view class="_name _fontw500">{{item.employee_name}}</view>
           </view>
           <view class="_rgt _flex _flex_item_center">
-            <view class="handle_btn" bindtap="editEmp" data-unionid='{{item.union_id}}' data-name='{{item.employee_name}}'><view class="dot"></view><view class="dot"></view><view class="dot"></view></view>
+            <view class="handle_btn" bindtap="editEmp" data-unionid='{{item.union_id}}' data-name='{{item.employee_name}}' wx:if="{{role==3}}"><view class="dot"></view><view class="dot"></view><view class="dot"></view></view>
           </view>
         </view>
       </block>

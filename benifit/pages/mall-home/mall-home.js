@@ -1,4 +1,4 @@
-// pages/benifit-card/benifit-card.js
+// pages/mall-home/mall-home.js
 const app = getApp();
 Page({
 
@@ -30,7 +30,13 @@ Page({
       typeid: 2,
       id: 'hotel',
       title: '酒店'
-    }],
+    },
+    {
+      typeid: 3,
+      id: 'business',
+      title: '商务宴请'
+    }
+    ],
     tabFixed: false,
     showVipCardTips: true,
     is_vip: false,
@@ -47,15 +53,10 @@ Page({
       this.setData({ tabSelected: options.tabSelected, selectedType: options.selectedType });
     }
     var self = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        self.getCommerceList(self.data.selectedType);
-        self.getEmployeeInfo();
-      })
-    } else {
-      self.getCommerceList(self.data.selectedType);
-      self.getEmployeeInfo();
-    }
+
+    self.getCommerceList(self.data.selectedType);
+    self.getEmployeeInfo();
+
     self.getOffsetTop();
   },
 
@@ -81,28 +82,54 @@ Page({
   getEmployeeInfo() {
     var that = this;
     app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
+      url: app.globalData.BASE_API_URL,
       params: {
         service: 'company',
-        method: 'get_employee_info',
-        union_id: wx.getStorageSync('xy_session'),
-        data: JSON.stringify({})
+        method: 'get_company_service_status',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+          service_key: 'EMPLOYEE_BENIFIT'
+        })
       },
       success: res => {
         if (res.data.result) {
-          if (res.data.result.has_employee_benefit == 1) {
+          if (res.data.result.service_status !== 0) {
+            console.log('kaitong');
+            app.Util.network.POST({
+              url: app.globalData.BENIFIT_API_URL,
+              params: {
+                service: 'company',
+                method: 'get_employee_info',
+                union_id: wx.getStorageSync('xy_session'),
+                data: JSON.stringify({})
+              },
+              success: res => {
+                console.log(res);
+                if (res.data.result) {
+                  that.setData({
+                    is_vip: true
+                  })
+                } else {
+                  that.setData({
+                    is_vip: false
+                  })
+                }
+              }
+            })
+          } else {
             that.setData({
-              is_vip: true,
-              employeeInfo: res.data.result
+              is_vip: false
             })
           }
+        } else {
           that.setData({
-            employeeInfo: res.data.result
+            is_vip: false
           })
         }
       }
     })
   },
+
 
   /**
    * 监听滚动，tab置顶
@@ -110,7 +137,7 @@ Page({
   onPageScroll: function (e) {
     console.log(e.scrollTop);
     var that = this;
-    
+
     if (e.scrollTop < that.data.taboffsetTop) {
       that.setData({
         tabFixed: false
@@ -119,7 +146,7 @@ Page({
       that.setData({
         tabFixed: true
       });
-    }    
+    }
   },
 
   /**
@@ -183,7 +210,7 @@ Page({
         } else {
           that.setData({
             shopList: null
-          })  
+          })
         }
       }
     })
@@ -197,8 +224,8 @@ Page({
   },
 
   /**
- * 跳转到商家详情
- */
+   * 跳转到商家详情
+   */
   redirectCommerce: function (e) {
     var commerce_id = e.currentTarget.dataset.commerceid;
     var commerce_type = e.currentTarget.dataset.commercetype;
@@ -218,7 +245,7 @@ Page({
         showVipCardTips: false
       });
     }
-    
+
   },
 
   onReady: function () {

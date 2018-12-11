@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.3.2",
 	"appid": "wx36410b03870f2336",
-	"projectname": "%E5%B0%8F%E8%A7%85%E6%99%BA%E8%83%BD%E6%A5%BC%E5%AE%87%E6%9C%8D%E5%8A%A1%E6%B5%8B%E8%AF%95",
+	"projectname": "555%E5%B0%8F%E8%A7%85%E6%99%BA%E8%83%BD%E6%A5%BC%E5%AE%87%E6%9C%8D%E5%8A%A1%E6%B5%8B%E8%AF%95555555",
 	"scripts": {},
 	"condition": {
 		"search": {
@@ -42,8 +42,8 @@
 				{
 					"id": 1,
 					"name": "接受邀请",
-					"pathName": "pages/invite-receive/invite-receive",
-					"query": "invitation_id=265",
+					"pathName": "pages/invite-visitor/receive/index",
+					"query": "invitation_id=65",
 					"scene": "1044"
 				},
 				{
@@ -63,7 +63,7 @@
 				{
 					"id": 4,
 					"name": "邀请",
-					"pathName": "pages/invite/invite",
+					"pathName": "pages/invite-visitor/edit/index",
 					"query": "",
 					"scene": "1044"
 				},
@@ -78,13 +78,13 @@
 					"id": 6,
 					"name": "录入人脸",
 					"pathName": "pages/collect-info/face/index",
-					"query": "company_id=17",
+					"query": "source='{}'&params='{}'idInfo='{}'",
 					"scene": "1044"
 				},
 				{
-					"id": 7,
+					"id": -1,
 					"name": "小觅VIP卡",
-					"pathName": "benifit/pages/vip-card/vip-card",
+					"pathName": "page/benifit/pages/vip-card/vip-card",
 					"query": "",
 					"scene": "1011"
 				},
@@ -93,7 +93,7 @@
 					"name": "商城首页",
 					"pathName": "benifit/pages/mall-home/mall-home",
 					"query": "",
-					"scene": "1011"
+					"scene": "1044"
 				},
 				{
 					"id": 9,
@@ -134,7 +134,7 @@
 					"query": ""
 				},
 				{
-					"id": 15,
+					"id": -1,
 					"name": "员工列表",
 					"pathName": "pages/employee/staff-list/index",
 					"query": "company_code=GERW1XWQ",
@@ -191,21 +191,134 @@
 				},
 				{
 					"id": 24,
-					"name": "加入1-输入邀请码第",
-					"pathName": "pages/employee/join-company/invitationCode/index",
+					"name": "manage",
+					"pathName": "pages/manage/manage",
 					"query": ""
 				},
 				{
 					"id": 25,
-					"name": "创建2-输入真实姓名",
+					"name": "创建-输入公司码",
+					"pathName": "pages/create-company/enterCompanyCode/index",
+					"query": ""
+				},
+				{
+					"id": 26,
+					"name": "创建-输入真实姓名",
 					"pathName": "pages/create-company/enterRealName/index",
 					"query": "company_verify_code=EBFCZPKM"
 				},
 				{
-					"id": -1,
-					"name": "collect-info/face",
-					"pathName": "pages/collect-info/face/index",
+					"id": 27,
+					"name": "创建-引导",
+					"pathName": "pages/create-company/guide/index",
+					"query": "CstateCode=2"
+				},
+				{
+					"id": 28,
+					"name": "创建-vip引导",
+					"pathName": "pages/create-company/guideVip/index",
+					"query": "CstateCode=2&service_status=1",
+					"scene": "1044"
+				},
+				{
+					"id": 29,
+					"name": "创建-基础信息",
+					"pathName": "pages/create-company/basicInformation/index",
+					"query": "CstateCode=1"
+				},
+				{
+					"id": 30,
+					"name": "创建-vip信息",
+					"pathName": "pages/create-company/vipInformation/index",
+					"query": "CstateCode=2&fff=11&u=4333",
+					"scene": "1044"
+				},
+				{
+					"id": 31,
+					"name": "创建-企业主页",
+					"pathName": "pages/create-company/companyPages/index",
+					"query": "CstateCode=1"
+				},
+				{
+					"id": 32,
+					"name": "加入公司-机器人预览",
+					"pathName": "pages/create-company/robotPreview/index",
+					"query": "CstateCode=1"
+				},
+				{
+					"id": 33,
+					"name": "编辑公司-企业主页",
+					"pathName": "pages/create-company/editCompanyPages/index",
+					"query": "CstateCode=2"
+				},
+				{
+					"id": 34,
+					"name": "webview",
+					"pathName": "pages/company/webview/index",
 					"query": ""
+				},
+				{
+					"id": 35,
+					"name": "未预约访客",
+					"pathName": "pages/apply-visit/noAppointment/index",
+					"query": "scene=2BNT2BNT_12111698705bff9d3bc14b8",
+					"scene": "1011"
+				},
+				{
+					"id": 36,
+					"name": "到访事由",
+					"pathName": "pages/apply-visit/reasonsVisiting/index",
+					"query": "company_id=1&is_force_visitor_input_info=1&take_card_ways=0",
+					"scene": "1044"
+				},
+				{
+					"id": 37,
+					"name": "未预约访客状态",
+					"pathName": "pages/apply-visit/applicationStatus/index",
+					"query": "visit_apply_id=43",
+					"scene": "1044"
+				},
+				{
+					"id": 38,
+					"name": "邀请函",
+					"pathName": "pages/invite-visitor/guide/index",
+					"query": "scene=17_234324",
+					"scene": "1011"
+				},
+				{
+					"id": 39,
+					"name": "线下二维码_协议商户前台",
+					"pathName": "benifit/pages/vip-card/vip-card",
+					"query": "",
+					"scene": "1044"
+				},
+				{
+					"id": 40,
+					"name": "线下二维码_扫码买单",
+					"pathName": "benifit/pages/scan-pay/scan-pay",
+					"query": "commerce_id=1&type=0",
+					"scene": "1044"
+				},
+				{
+					"id": 41,
+					"name": "线下二维码_商品详情",
+					"pathName": "benifit/pages/mall-detail/mall-detail",
+					"query": "commerce_id=2&commerce_type=0",
+					"scene": "1044"
+				},
+				{
+					"id": 42,
+					"name": "个人中心",
+					"pathName": "pages/employee/homepage/index",
+					"query": "",
+					"scene": "1044"
+				},
+				{
+					"id": 43,
+					"name": "公司",
+					"pathName": "pages/collect-info/face/index",
+					"query": "",
+					"scene": "1011"
 				}
 			]
 		}

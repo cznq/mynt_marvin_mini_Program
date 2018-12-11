@@ -221,14 +221,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        that.getApplyInfo();
-      })
-    } else {
-      that.getApplyInfo();
-    }
+    
+    this.getApplyInfo();
+    
   }
 
 })

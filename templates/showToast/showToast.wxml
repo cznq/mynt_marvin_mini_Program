@@ -8,16 +8,16 @@
 	})	 -->
 <template name="showToast">
     <block wx:if="{{showToast.isShow? showToast.isShow: false}}">
-        <view class="toast-bg" wx:if="{{showToast.mask==false? false : true}}"></view>
-        <view class="toastPubStyle {{showToast.toastStyle}}">
-            <image class="toast-pic" src="{{showToast.pic}}" mode="scaleToFill" wx:if="{{showToast.pic}}" />
-            <view class='toast-b-con'>
-              <view class='arrow' wx:if="{{showToast.isArrow==false? false : true}}"></view>
-              <view class="toast-title">{{showToast.title}}</view>
-              <view class="toast-introduce" wx:if="{{showToast.introduce}}">{{showToast.introduce}}</view>
-              <view class='toast-close' bindtap="bindToastClose" wx:if="{{showToast.isClose==false? false : true}}">{{showToast.closeText}}</view>
-              <view class='toast-sure' bindtap="bindToastSure" wx:if="{{showToast.isSure==false? false : true}}">{{showToast.sureText}}</view>
-            </view>
-        </view>
+        <cover-view class="toast-bg" wx:if="{{showToast.mask==false? false : true}}"></cover-view>
+        <cover-view class="toastPubStyle {{showToast.toastStyle}}">
+            <cover-image class="toast-pic" src="{{showToast.pic}}" mode="scaleToFill" wx:if="{{showToast.pic}}" />
+            <cover-view class='toast-b-con'>
+              <cover-view class='arrow' wx:if="{{showToast.isArrow==false? false : true}}"></cover-view>
+              <cover-view class="toast-title">{{showToast.title}}</cover-view>
+              <cover-view class="toast-introduce" wx:if="{{showToast.introduce}}">{{showToast.introduce}}</cover-view>
+              <cover-view class='toast-close' bindtap="bindToastClose" wx:if="{{showToast.isClose==false? false : true}}">{{showToast.closeText}}</cover-view>
+              <cover-view class='toast-sure' bindtap="bindToastSure" wx:if="{{showToast.isSure==false? false : true}}">{{showToast.sureText}}</cover-view>
+            </cover-view>
+        </cover-view>
     </block>
 </template>

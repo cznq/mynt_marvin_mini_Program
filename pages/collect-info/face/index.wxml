@@ -4,9 +4,9 @@
     <view class="cameraErrorText _txt_center">
       <text>{{cameraErrorText}}</text>
     </view>
-    <camera device-position="front" flash="off" binderror="cameraError" style="width: 100%; height: 750rpx;overflow:hidden;position:relative;">
+    <camera device-position="front" flash="off" binderror="cameraError" style="width: 100%; height: {{showButton?'950':'750'}}rpx;overflow:hidden;position:relative;">
       
-      <cover-image class="circle" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/face-recode-cover.png?t=1"></cover-image>
+      <cover-image class="circle" mode="widthFix" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/face-recode-cover.png"></cover-image>
 
       <cover-view class="coverview" wx:if="{{showButton}}">
 
@@ -19,22 +19,25 @@
           <cover-view class="recodeIntro">我们即将采集您的人脸信息，以便机器人能够快速认出您，并为您提供相应的服务。</cover-view>
           
           <cover-image class="face-pic" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/face_shibie.png" mode='widthFix'></cover-image>
-         
+          <cover-view class="warm _font32 _txt_center">请将手机置于人脸前方，点击开始录入。</cover-view>
         </cover-view>
       </cover-view>
 
     </camera>
+
     <cover-view class="camera-bottom-text" wx:if="{{!showButton}}">
-      <cover-view class="_txt_center txt bottom-txt _font32">请将人脸置于圆形选框内，并保持一段时间。</cover-view>
-      <cover-view class="_txt_center">
-        <cover-image class="face-pic" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/face_shibie.png" mode='widthFix'></cover-image>
+      <cover-image class="face-pic" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/face_shibie.png" mode='widthFix'></cover-image>
+      <cover-view class="progress-bar">
+        <cover-view class="progress"></cover-view>
       </cover-view>
+
+      <cover-view class="_txt_center txt bottom-txt _font32">正在采集人脸，请将人脸置于圆形选框内，并保持一段时间...</cover-view>
     </cover-view>
     
   </view>
-  <view class='_fixed footer _flex _flex_justify_center _flex_space_around' wx:if="{{showButton}}">
+  <cover-view class="_fixed footer _flex _flex_justify_center _flex_space_around {{isIphoneX?'iphonex':''}}" wx:if="{{showButton}}">
       <button class="_button back_btn _font32" bindtap="backAction">返回</button>
       <button class="_button next_btn _font32" bindtap="startRecodeFace">下一步</button>
-    </view>
+    </cover-view>
   <canvas canvas-id='attendCanvasId'></canvas>
 </view>

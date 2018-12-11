@@ -16,20 +16,16 @@ Page({
     editData: {
       union_id: null,
       employee_name: null
-    }
+    },
+    role: '',
+    scrollTop: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-       this.getStaffList();
-      })
-    } else {
-     this.getStaffList();
-    }
+    this.getEmployeeInfo();
   },
 
   /**
@@ -59,6 +55,30 @@ Page({
             staffList: res.data.result
           })
         }
+        
+      }
+    })
+  },
+
+  getEmployeeInfo() {
+    var that = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_employee_info',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session')
+        })
+      },
+      success: res => {
+        if (res.data.result) {
+          that.setData({
+            role: res.data.result.role
+          })
+        }
+      },
+      fail: res => {
         
       }
     })
@@ -113,18 +133,24 @@ Page({
     })
   },
 
+  onPageScroll: function (e) {
+    console.log(e.scrollTop);
+    this.data.scrollTop = e.scrollTop;
+  },
   /**
    * 员工列表点击编辑
    */
   editEmp: function (e) {
     console.log(e);
+    console.log(e.target.offsetTop);
+    console.log(e.detail.y);
     this.setData({ 
       'editData.union_id': e.currentTarget.dataset.unionid,
       'editData.employee_name': e.currentTarget.dataset.name
     });
     menu.showMenu(this, {
       menuList: ['从列表删除'],
-      topPos: e.target.offsetTop + 30 + 'px',
+      topPos: (e.currentTarget.offsetTop - this.data.scrollTop) + 32 + 'px',
       lrPos: 60 + 'rpx',
       isLeft: false,
       mask: true,
@@ -174,10 +200,7 @@ Page({
     menu.hideMenu();
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+  preventTouchMove: function () {
 
   },
 

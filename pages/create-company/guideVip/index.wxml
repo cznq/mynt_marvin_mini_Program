@@ -1,0 +1,16 @@
+<image src='{{imageUrl}}' class='exploded'></image>
+<view class="_content guidevip _txt_center">
+  <view class='_font44 title'>生成企业主页，形象多端曝光</view>
+  <view class='_txt_gray _fontw300 con'>
+    <text>添加企业宣传图片和视频，生成企业主页，\n多端曝光，提升企业形象。</text>
+  </view>
+  <button class="_button _buttonColor" bindtap="next2" formType="submit" wx:if="{{isvip_button}}"><text class='vipicon'></text>{{button_text}}</button>
+  <button class="_button" bindtap="next" formType="submit" wx:else>{{button_text}}</button>
+
+  <view class="_font24 _txt_darkgrey isj" >
+    <text wx:if="{{isvip_button}}">点击了解小觅商业服务套件，获得完整楼宇服\n务功能，助推企业商业发展。</text>
+    <text wx:else>上传完成后我们会为您生成手机端和机器人端的\n企业主页，您可以随时预览和更改上传的内容。</text>
+  </view>
+  <import src="../../../templates/vipAd/vipAd.wxml" />
+  <template is="vipAd" wx:if="{{cd.service_suite==0}}" />
+</view>

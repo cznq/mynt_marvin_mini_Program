@@ -1,0 +1,71 @@
+<view class="page">
+  <view class="page_hd">
+  
+  </view>
+
+  <view class="page_bd">
+    <view class="card-wrapper">
+      <view class="card-info _txt_center">
+        <image class="_logo" src="{{cmpInfo.logo}}"></image>
+        <view class="_name _font44 _fontw600 _flex _flex_justify_center _flex_item_center">
+          <text>员工电梯卡</text>
+        </view>
+        <view class="_short_name _font24">对准电梯扫码口扫描二维码上楼</view>
+        
+          <view class="e-card-qrcode">
+            <image src="{{floor_qrcode_url}}" wx:if="{{floor_qrcode_url}}"></image>
+            <view class="error _font28 _txt_center" wx:else>获取二维码失败</view>
+          </view>
+          <view class="_font24 qr-intro">该码实时更新，请勿泄露。</view>
+        
+      </view>
+
+      <view class="company-info">
+        
+        <view class=" _address _flex ">
+          <view class="int-item-name _font24">公司地址</view>
+          <view class="_font28 int-item-info">{{cmpInfo.address}}</view>
+        </view>
+        <view class=" _address _flex ">
+          <view class="int-item-name _font24">详细地址</view>
+          <view class="_font28 int-item-info">{{cmpInfo.floor}}层 {{cmpInfo.room}}室</view>
+        </view>
+        <navigator url="/pages/company/otherCompany/index?company_code={{cmpInfo.company_code}}" hover-class="none">
+        <view class="company-card _flex _flex_item_center _flex_space_between">
+          <view class="_flex _flex_item_center _flex_space_between">
+            <image src='https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/diamond%402x.png'></image>
+              <view>
+              <view class="_name _fontw600 _font36">{{cmpInfo.company_short_name}}</view>
+              <view class="_short_name _font24">{{cmpInfo.company_name}}</view>
+            </view>
+          </view>
+
+          <view><text class="iconfont icon-jiantou"></text></view>
+        </view>
+        </navigator>
+      </view>
+
+    </view>
+
+    <view class="page_ft">
+      <view class="_sec">
+          <view class="int-item-name _font38 know-list-title _fontw600">到访须知</view>
+          <view class="know-list _flex "><text class="_num">1.</text> <text>到达办公楼后，在大厅找到并唤醒服务机器人，机器人会主动将电梯卡发给您，无需登记直接刷卡上楼。</text></view>
+          <view class="know-list _flex"><text class="_num">2.</text> <text>如需了解要拜访的企业，可以点击邀请函的企业名或底部按钮进入企业主页了解企业详细信息。</text></view>
+
+        </view>
+
+        <view class="_ft_logo _txt_center">
+          <image style="width:224rpx" mode='widthFix' src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/white_logo%402x.png"></image>
+        </view>
+    </view>
+
+    
+
+
+
+  </view>
+
+  
+
+</view>

@@ -3,7 +3,7 @@
   
   <view class="page__bd">
     <view class="company-card _txt_center">
-      <image class='logo' src='{{companyInfo.logo}}'></image>
+      <image class='logo' src='{{companyInfo.logo}}' wx:if="{{companyInfo.logo}}"></image>
       <view class="_short_name _fontw700">{{companyInfo.company_short_name}}</view>
       <view class="_company_name">{{companyInfo.company_name}}</view>
       <button class="invite_btn _flex _flex_item_center _flex_justify_center" open-type="share">

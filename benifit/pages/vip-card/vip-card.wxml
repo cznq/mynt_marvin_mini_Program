@@ -5,7 +5,7 @@
       <view class="card-content">
         <view class="vip-card-top">
           <view class="name"><text>协</text>{{employeeInfo.name}}</view>
-          <image class="avatar" src="{{employeeInfo.avatar}}" mode="widthFix"></image>
+          <image class="avatar" src="{{employeeInfo.input_pic_url}}" mode="widthFix"></image>
         </view>
         <view class="vip-card-middle">
           <view class="company-name">{{employeeInfo.company_name}}</view>
@@ -22,8 +22,8 @@
     <view class="card-wrapper" wx:elif="{{is_vip == false}}">
       <view class="card-content">
         <view class="card-main">
-          <view class="name">小觅VIP卡</view>
-          <view class="info">您的企业尚未开通企业协议卡，在合约商户消费并出示该卡可享商户协议价。</view>
+          <view class="name">员工福利卡</view>
+          <view class="info">您的企业尚未开通员工福利卡，在合约商户消费并出示该卡可享商户协议价。</view>
         </view>
         <view class="bar"></view>
       </view>
@@ -31,7 +31,7 @@
   </view>
   <view class="page__bd">
     <view class="vip-fun-intro">
-      <view class="title">VIP卡特权</view>
+      <view class="title">福利卡特权</view>
       <view class="subtitle">独享企业协议商户超低协议价</view>
       <view class="weui-flex">
         <view class="weui-flex__item">
@@ -59,10 +59,9 @@
       </view>
       <view class="contact-admin" wx:else>
         <view class="tit">请联系管理员开通</view>
-        <view class="tips">如需开通请联系楼宇管理员，以公司为单位开通后，公司员工在合约商户消费可享商户协议价。</view>
+        <view class="tips"><text>如需开通请联系楼宇管理员，以公司为单位开通后，公\n司员工在合约商户消费可享商户协议价。</text></view>
       </view>
     </view>
-
     <!-- 周边热门 -->    
     <view class="round-hot">
       <!-- 热门餐饮 -->
@@ -99,7 +98,6 @@
         </scroll-view>
         </view>
       </view>
-
       <!-- 热门酒店 -->
       <view class="hot-restaurant hot-area" wx:if="{{hotHotelCommerce}}">
         <view class="top-bar">
@@ -175,7 +173,6 @@
         </scroll-view>
         </view>
       </view>
-
     </view>
   </view>
     
@@ -184,4 +181,3 @@
   </view>
   
 </view>
-

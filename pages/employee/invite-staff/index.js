@@ -10,6 +10,7 @@ Page({
       inviteType: 'code',
     },
     companyInfo: null,
+    empInfo: null,
     canvasWidth: 375,
     canvasHeight: 667
   },
@@ -18,23 +19,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        this.getCompanyInfo();
-      })
-    } else {
-      this.getCompanyInfo();
-    }
-
-    wx.getSystemInfo({
-      success: (res) => {
-        console.log(res, "=====")
-        //app.myLog('notify', "获取SystemInfo:", res.errMsg);
-      }
-    })
-
+    this.getCompanyInfo();
+    this.getEmployeeInfo();
+    
   },
-
+  openConfirm: function () {
+    wx.showModal({
+      content: '检测到您没打开保存到相册权限，是否去设置打开？',
+      confirmText: "确认",
+      cancelText: "取消",
+      success: function (res) {
+        console.log(res);
+        //点击“确认”时打开设置页面
+        if (res.confirm) {
+          console.log('用户点击确认')
+          wx.openSetting({
+            success: (res) => {}
+          })
+        } else {
+          console.log('用户点击取消')
+        }
+      }
+    });
+  },
   /**
    * 获取公司信息
    * Param: company_id (公司id)
@@ -59,6 +66,31 @@ Page({
           })
         }
        
+      }
+    })
+  },
+
+  /**
+   * 获取员工信息
+   */
+  getEmployeeInfo: function () {
+    var that = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_employee_info',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+        })
+      },
+      success: res => {
+        if (res.data.result) {
+          that.setData({
+            empInfo: res.data.result
+          });
+        }
+
       }
     })
   },
@@ -117,7 +149,14 @@ Page({
       canvasId: 'inviteCanvas',
       quality: 1,
       success: function success(res) {
-        //console.log(res.tempFilePath);
+        //判断是否获得了用户保存到相册授权
+        wx.getSetting({
+          success: (res) => {
+            if (res.authSetting['scope.writePhotosAlbum']==false){
+              self.openConfirm();
+            }
+          }
+        })
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath,
           success(result) {
@@ -126,6 +165,9 @@ Page({
               icon: 'success',
               duration: 1000
             });
+          },
+          fail: function () {
+            console.log('保存不成功');
           }
         })
       },
@@ -374,7 +416,7 @@ Page({
   */
   onShareAppMessage: function (res) {
     return {
-      title: this.data.companyInfo.company_short_name + '给您发送了一个邀请，期待您的到访！',
+      title: this.data.empInfo.name + '邀请你加入' + this.data.companyInfo.company_short_name,
       path: '/pages/employee/join-company/confirmCompanyInformation/index?company_code=' + this.data.companyInfo.company_code,
       success: function (res) {},
       fail: function (res) {}

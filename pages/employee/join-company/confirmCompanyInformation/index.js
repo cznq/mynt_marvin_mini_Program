@@ -8,52 +8,19 @@ Page({
     company_code: '',
     showLoginModal: false
   },
-  bindGetUserInfo: function () {
-    var that = this;
-    wx.getSetting({
-      success: function (res) {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: function (res) {
-              console.log(res);
-              that.setData({
-                showLoginModal: false
-              })
-              app.authorizeLogin(res.encryptedData, res.iv, () => {
-                that.get_info();
-              });
-            }
-          })
-        }
-      }
-    })
-  },
   onLoad: function (options) {
     var _this = this;
     //检测登陆
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        if (!(app.checkSession())) {
-          _this.setData({
-            showLoginModal: true
-          })
-        } else {
-          _this.get_info();
-        }
-      })
-    } else {
-      _this.get_info();
-    }
+    _this.get_info();
     if (!options.company_code) {
       _this.data.company_code = decodeURIComponent(options.scene);
     } else {
       _this.data.company_code = options.company_code;
     }
 
-
   },
   get_info: function () {
+
     var _this = this;
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
@@ -119,25 +86,12 @@ Page({
       }
     })
   },
-  next: function () {
-    var _this = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        if (!(app.checkSession())) {
-          _this.setData({
-            showLoginModal: true
-          })
-        } else {
-          wx.navigateTo({
-            url: '../enterRealName/index?company_code=' + _this.data.company_code
-          })
-        }
-      })
-    } else {
-      wx.navigateTo({
-        url: '../enterRealName/index?company_code=' + _this.data.company_code
-      })
-    }
 
+  receiveSubmit: function (e) {
+    var _this = this;
+    var form_id = e.detail.formId;
+    wx.navigateTo({
+      url: '../enterRealName/index?company_code=' + _this.data.company_code + '&form_id=' + form_id
+    })
   }
 })

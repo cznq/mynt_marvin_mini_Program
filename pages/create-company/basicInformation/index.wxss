@@ -1,0 +1,14 @@
+@import "../public/style.wxss";
+@import "../../../templates/showToast/showToast.wxss";
+.basicInformation{background: #F9FAFB;padding-bottom:300rpx;}
+.subTitle{padding:68rpx 0 2rpx 0;}
+.input_text{line-height:22rpx;padding-top:0;padding-bottom:35rpx;}
+.st{line-height:24rpx;padding-bottom:8rpx;padding-top:40rpx;}
+.st2{padding-top:22rpx;}
+.dis_b_n{border-bottom: 0;}
+.pj9{padding-bottom:26rpx;}
+.jjs{line-height:34rpx;padding-top:39rpx;}
+._font24{font-size:24rpx;padding-bottom:20rpx;}
+.text_a{line-height:40rpx;padding:10rpx 0;height:148rpx;}
+.viewshow{line-height: 40rpx;padding-top:12rpx;height: auto;}
+.disnone{display:none;}

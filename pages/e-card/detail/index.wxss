@@ -1,0 +1,140 @@
+/* pages/e-card/detail/index.wxss */
+.page {
+  background-color: rgba(135, 145, 168, 1);
+  padding: 132rpx 40rpx 0;
+}
+.card-wrapper {
+  background-color: #fff;
+  border-radius: 10rpx;
+  position: relative;
+}
+.card-info {
+  line-height: 1;
+  height: 660rpx;
+  border-bottom: 2rpx solid rgba(202, 202, 202, .5);
+}
+.card-info::before,
+.card-info::after {
+  content: '';
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  background-color: rgba(135, 145, 168, 1);
+  position: absolute;
+  top: 642rpx;
+  box-sizing: border-box;
+}
+.card-info::before {
+  left: -18rpx; 
+}
+.card-info::after {
+  right: -18rpx; 
+}
+.card-info ._logo {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 10rpx;
+  margin-top: -50rpx;
+}
+._name {
+  color: rgba(26, 42, 75, 1);
+  margin-top: 26rpx;
+}
+._short_name {
+  color: rgba(136, 145, 169, 1);
+  margin-top: 16rpx;
+}
+.e-card-qrcode image,
+.error {
+  width: 366rpx;
+  height: 366rpx;
+  line-height: 366rpx;
+  margin: 32rpx auto 0;
+}
+.qr-intro {
+  color: rgba(136, 145, 169, .6);
+  margin-top: 10rpx;
+}
+
+.company-info {
+  padding: 58rpx 40rpx 64rpx;
+
+}
+.company-info ._address {
+  line-height: 1;
+  margin-bottom: 32rpx;
+}
+.int-title {
+  line-height: 1;
+}
+.int-intro {
+  color: rgba(26, 42, 75, 1);
+  line-height: 42rpx;
+  margin-top: 34rpx;
+}
+.int-item-name {
+  margin-right: 30rpx;
+  min-width: 100rpx;
+  color: rgba(136, 145, 169, 1);
+}
+.int-item-info {
+  color: rgba(34, 49, 81, 1);
+}
+.company-card {
+  background-color: rgba(243, 245, 251, 1);
+  border-radius: 10rpx;
+  padding: 28rpx 36rpx 28rpx 28rpx;
+}
+.company-card image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+.company-card ._name {
+  margin-top: 0;
+  line-height: 1.2;
+}
+.company-card ._short_name {
+  margin-top: 10rpx;
+  line-height: 1;
+}
+
+.icon-jiantou {
+  color: rgba(124, 130, 157, .3);
+  font-size: 22rpx;
+  margin-left: 16rpx;
+}
+._sec {
+  border-bottom: 2rpx solid rgba(202, 202, 202, .5);
+  padding-bottom: 50rpx;
+}
+.page_ft {
+  margin-top: 64rpx;
+}
+.know-list-title {
+  color: #fff;
+  margin-bottom: 20rpx;
+}
+.know-list {
+  color: rgba(255, 255, 255, .6);
+  font-size: 26rpx;
+  line-height: 40rpx;
+}
+.know-list ._num {
+  color: #fff;
+  margin-right: 10rpx;
+}
+._ft_logo {
+  padding: 64rpx 0;
+}
+.footer {
+  background: #ccc;
+  left:0;
+  bottom:0;
+  width:100%;
+  padding:30rpx 0;
+  background: rgba(253, 254, 254, .96);
+  border-top:1rpx solid #eeeeee;
+  z-index: 101;
+}

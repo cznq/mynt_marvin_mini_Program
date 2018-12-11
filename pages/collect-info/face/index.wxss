@@ -7,6 +7,7 @@ page,
 }
 .coverview {
   position: absolute;
+  top: 0;
   z-index: 100;
   background: #fff;
   width: 100%;
@@ -14,7 +15,7 @@ page,
 }
 .camera-bottom-text {
   position: absolute;
-  top: 680rpx;
+  top: 660rpx;
   left: 88rpx;
   right: 88rpx;
 }
@@ -32,7 +33,6 @@ page,
 .step .cur{background: #007bff;}
 
 .collect-information {
-  padding-bottom:300rpx;
   position: relative;
 }
 .recodeTitle {
@@ -54,7 +54,7 @@ page,
   white-space: pre-wrap;
 }
 .bottom-txt {
-  width: 372rpx;
+  width: 516rpx;
   margin: 10rpx auto;
   text-align: center;
 }
@@ -63,10 +63,37 @@ page,
 }
 .face-pic {
   width: 172rpx;
-  margin: 67rpx auto 0;
+  margin: 47rpx auto 48rpx;
+}
+.warm {
+  color: rgba(26, 42, 75, 1);
+  width: 360rpx;
+  line-height: 48rpx;
+  margin: 54rpx auto 0;
+  white-space: pre-wrap;
 }
 .collect-information .face-pic {
   margin: 200rpx auto 0;
+}
+.progress-bar {
+  width: 360rpx;
+  margin: 0 auto 46rpx;
+  height: 6rpx;
+  background-color: rgba(241, 243, 245, 1);
+}
+.progress {
+  background-color: rgba(0, 123, 255, 1);
+  height: 6rpx;
+  width: 0rpx;
+  animation: bianchang 5s infinite;
+}
+@-webkit-keyframes bianchang {
+  0% { width: 0; }
+  100% { width: 360rpx; }
+}
+@keyframes bianchang {
+  0% { width: 0; }
+  100% { width: 360rpx; }
 }
 canvas {
   position: absolute;
@@ -76,14 +103,16 @@ canvas {
   width: 300px;
 }
 .footer {
-  height:240rpx;
-  background: #ccc;
+  background: rgba(253, 254, 254, .96);
   left:0;
   bottom:0;
   width:100%;
-  padding-top:30rpx;
-  background: linear-gradient(to bottom,#fafbfb 0%,#fcfdfd 60%,#fcfdfd 60%,#fcfdfd 100%);
+  padding:30rpx 0;
   border-top:1rpx solid #eeeeee;
+  z-index: 101;
+}
+.footer.iphonex {
+  padding-bottom: 110rpx;
 }
 .footer button {
   background: #007bff;

@@ -1,0 +1,34 @@
+<!--pages/suite-introduce/suite-introduce.wxml-->
+<view class='page'>
+  <view class='page__hd'></view>
+  <view class='page__cont'>
+    <image wx:for="{{image}}" wx:key="" wx:for-item="item" src="{{item}}" mode='widthFix'></image>
+  </view>
+  <view class='page__ft {{isiphoneX ? "footer_x" : ""}}' wx:if="{{service_suite==1}}">
+    <view class='info'>
+      <view class='info__top'>
+        小觅楼宇商业服务套餐
+      </view>
+      <view class='info__ft'>
+        <text class='text__blur'>已购买</text>
+      </view>
+    </view>
+    <view class='consult'>
+      <button bindtap="makePhoneCall" data-phone="{{phone}}">联系客服</button>
+    </view>
+  </view>
+  <view class='page__ft {{isiphoneX ? "footer_x" : ""}}' wx:else>
+    <view class='info'>
+      <view class='info__top _fontw600'>
+        小觅楼宇商业服务套餐
+      </view>
+      <view class='info__ft'>
+        <text class='text__hd _fontw600'>￥{{current_price}}</text>
+        <text class='text__blur' style='padding-left:14rpx;'>价值{{cost_price}}</text>
+      </view>
+    </view>
+    <view class='consult'>
+      <button bindtap="makePhoneCall" data-phone="{{phone}}">立即咨询</button>
+    </view>
+  </view>
+</view>

@@ -147,6 +147,7 @@
 ._txt_lightgray { color: #babfc9 !important; }/*浅灰色 输入框提示*/
 ._txt_lightgray2 { color: #b8bdcb !important; } /* 淡灰色 层级表现*/
 ._txt_blue { color: #475ffd !important; } /* 蓝色 主题色 强调色*/
+._txt_blue_c {color: #007BFF !important;}
 ._txt_lightblue { color: #6092fe !important; } /* 淡蓝色 普通员工头像*/
 ._txt_green{ color: #0cce15 !important; } /* 绿色 微信颜色*/
 ._txt_lightgreen { color: #64db89 !important; } /* 浅绿色 正面信息*/
@@ -160,6 +161,7 @@
 ._font24{font-size:24rpx;}
 ._font28{font-size:28rpx;}
 ._font32{font-size:32rpx;}
+._font34{font-size: 34rpx;}
 ._font36{font-size:36rpx;}
 ._font38{font-size:38rpx;}
 ._font44{font-size:44rpx;}
@@ -285,7 +287,20 @@ input:-webkit-input-placeholder {
 ._family_name {width: 70rpx;height: 70rpx;margin-right: 30rpx;color: #fff;border-radius: 35rpx;text-align: center;line-height: 70rpx;font-size: 28rpx;}
 ._family_name.dark {opacity: .5}
 /* 输入框错误提示 */
-.errorwrap {position: absolute;left: 50%;margin-left: -283rpx;z-index:99;width: 566rpx;}
-.errorwrap .arrow {border-width: 0 22rpx 22rpx;border-style: solid;border-color: transparent transparent rgba(252, 252, 252, 1);position: absolute;left: 50%;margin-left: -11rpx;top: -18rpx;}
+.errorwrap {position: absolute;left: 60rpx;z-index:99;width: 566rpx;}
+.errorwrap .arrow {border-width: 0 22rpx 22rpx;border-style: solid;border-color: transparent transparent rgba(252, 252, 252, 1);position: absolute;left: 28rpx;top: -18rpx;}
 .errorwrap view {border-radius: 10rpx;}
 .errorwrap text {padding: 30rpx 30rpx;border-radius: 10rpx;display: inline-block;}
+
+/*vipAd*/
+.vipAd {border: 1rpx solid #eeeeee;border-radius: 8rpx;height: 76rpx;text-align:left;padding: 32rpx 44rpx;line-height: 40rpx;font-size:34rpx;font-weight: bold;}
+.vipAd .introduce {font-size: 24rpx;line-height: 24rpx;padding-top: 12rpx;color: #8891A9;font-weight: 400;}
+.vipicon{width:34rpx;height:30rpx;background: url(http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/diamond@2x.png) no-repeat;background-size: 100%;display:inline-block;}
+.vipAd .vipicon{width:76rpx;height: 66rpx;right: 44rpx;top:37rpx;}
+
+/*底部button*/
+.footer{left:0;bottom:0;width:100%;padding:30rpx 0;background: linear-gradient(to bottom,#fafbfb 0%,#fcfdfd 60%,#fcfdfd 60%,#fcfdfd 100%);border-top:1rpx solid #eeeeee;}
+.footer_x{padding-bottom:109rpx;}
+.inp{width:500rpx;height: 100rpx;border-bottom: 1rpx solid #4f5c74;margin:111rpx auto 0 auto;font-size:46rpx;text-align: center; }
+.covview{background: #fafbfb;}
+

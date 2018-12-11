@@ -14,7 +14,7 @@ page {
   font-size: 52rpx;
 }
 .page__bd {
-  padding: 0 60rpx 54rpx;
+  padding: 0 60rpx 84rpx;
   background: #F9FAFB;
 }
 .new-staff-btn {
@@ -39,6 +39,13 @@ page {
 }
 ._list_item._role_staff {
   padding: 30rpx 0;
+}
+._list_item ._name {
+  flex-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 376rpx;
 }
 .handle_btn {
   width: 46rpx;

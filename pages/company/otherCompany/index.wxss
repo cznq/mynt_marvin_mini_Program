@@ -1,0 +1,17 @@
+
+@import "../../../templates/companyPages/companyPages.wxss";
+
+.downpadd {
+  padding-bottom: 40rpx!important;
+}
+.introCon.blockCon {
+  border-bottom: 0;
+}
+._button {
+  background-color: transparent;
+  color: rgba(253, 71, 71, 1);
+  border: 2rpx solid #eeeeee;
+}
+.edit {
+  padding-bottom: 100rpx;
+}

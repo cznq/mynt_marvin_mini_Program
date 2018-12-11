@@ -1,16 +1,13 @@
 page, .page {
   height: 100%;
-  background: -webkit-linear-gradient( top, rgba(231, 235, 239, 1), rgba(255, 255, 255, 1));
-  background: linear-gradient( top, rgba(231, 235, 239, 1), rgba(255, 255, 255, 1));
 }
 .page__hd image {
   width: 100%;
   vertical-align: bottom;
 }
 .page__bd {
-  padding: 156rpx 74rpx 100rpx;
+  padding: 74rpx 150rpx 0;
 }
-
 .guide-title {
   line-height: 1;
   margin-bottom: 30rpx;
@@ -20,16 +17,15 @@ page, .page {
   line-height: 42rpx;
   color: rgba(26, 42, 75, 1);
 }
-
 .status {
-  margin-top: 144rpx;
-  color: rgba(78, 221, 122, 1);
+  margin-top: 124rpx;
+  color: rgba(78, 221, 122, .5);
 }
 .page__ft {
-  bottom: 110rpx;
+  margin-top: 108rpx;
   width: 100%;
 }
 ._back_function {
   font-size: 22rpx;
-  color: rgba(71, 95, 253, 1);
+  color: rgba(0, 123, 255, .9);
 }

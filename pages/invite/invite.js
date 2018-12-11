@@ -185,13 +185,8 @@ Page({
   onShow: function () {
     wx.removeStorageSync('xy_session');
     var that = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        that.setDataRequest();
-      })
-    } else {
-      that.setDataRequest();
-    }
+    that.setDataRequest();
+    
   },
 
   /**
@@ -200,13 +195,8 @@ Page({
   onPullDownRefresh: function () {
     wx.removeStorageSync('xy_session');
     var that = this;
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) {
-        that.setDataRequest();
-      })
-    } else {
-      that.setDataRequest();
-    }
+    that.setDataRequest();
+    
   },
 
   onHide: function() {
