@@ -7,7 +7,8 @@ Page({
   data: {
     invitation_id: null,
     floor_qrcode_url: null,
-    cmpInfo: null
+    cmpInfo: null,
+    avatar: wx.getStorageSync('avatar')
   },
 
   /**
@@ -16,8 +17,6 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.data.invitation_id = options.invitation_id;
-    
-    that.getFloorQrcode();
     that.getCompany();
     
   },
@@ -75,7 +74,7 @@ Page({
             cmpInfo: res.data.result
           })
         }
-
+        that.getFloorQrcode(that.data.invitation_id);
       }
     })
   },

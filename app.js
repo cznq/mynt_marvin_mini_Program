@@ -18,7 +18,7 @@ App({
     fundebug: fundebug,
     open_id_type: 1,
     isIphoneX: false,
-    BASE_IMG_URl: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/',
+    BASE_IMG_URl: 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/',
     //BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
     //WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
     //BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
@@ -48,31 +48,34 @@ App({
   },    
 
   onShow: function () {
-    const updateManager = wx.getUpdateManager()
-    updateManager.onCheckForUpdate(function (res) {
-      // 请求完新版本信息的回调
-      console.log('小程序版本更新提示：' + res.hasUpdate)
-    })
-    updateManager.onUpdateReady(function () {
-      wx.showModal({
-        title: '更新提示',
-        content: '新版本已经准备好，是否重启应用？',
-        success: function (res) {
-          if (res.confirm) {
-            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
-            updateManager.applyUpdate()
+    if (wx.getUpdateManager) {
+      const updateManager = wx.getUpdateManager()
+      updateManager.onCheckForUpdate(function (res) {
+        // 请求完新版本信息的回调
+        console.log('小程序版本更新提示：' + res.hasUpdate)
+      })
+      updateManager.onUpdateReady(function () {
+        wx.showModal({
+          title: '更新提示',
+          content: '新版本已经准备好，是否重启应用？',
+          success: function (res) {
+            if (res.confirm) {
+              // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+              updateManager.applyUpdate()
+            }
           }
-        }
+        })
       })
-    })
-    updateManager.onUpdateFailed(function () {
-      // 新的版本下载失败
-      wx.showModal({
-        title: '更新提示',
-        content: '新版本下载失败',
-        showCancel: false
+      updateManager.onUpdateFailed(function () {
+        // 新的版本下载失败
+        wx.showModal({
+          title: '更新提示',
+          content: '新版本下载失败',
+          showCancel: false
+        })
       })
-    })
+    }
+    
     
   },     
 

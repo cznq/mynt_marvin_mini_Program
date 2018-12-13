@@ -93,7 +93,8 @@ Page({
       bindtap: 'takeCard',
       isShow: true
     }],
-    server_input_pic_url: ''
+    server_input_pic_url: '',
+    serviceStatus: ''
   },
   onLoad: function(options) {
     var _this = this;
@@ -156,120 +157,10 @@ Page({
                 timingFunc: 'easeIn'
               }
             })
-            //请求企业信息
-            app.Util.network.POST({
-              url: app.globalData.BASE_API_URL,
-              params: {
-                service: 'company',
-                method: 'get_info',
-                data: JSON.stringify({
-                  union_id: wx.getStorageSync('xy_session')
-                })
-              },
-              success: res => {
-                console.log(res);
-                if (res.data.sub_code == 0) {
-                  _this.setData({
-                    cd: res.data.result
-                  })
-                  //企业服务自动值守
-                  if (_this.data.cd.service_suite == 0 || _this.data.role == 1) {
-                    _this.setData({
-                      'service[0].isShow': false
-                    })
-                  } else {
-                    if (res.data.result.attend_status == 1) {
-                      _this.setData({
-                        'service[0].text2': '已开启>'
-                      })
-                    } else {
-                      _this.setData({
-                        'service[0].text2': '未开启>'
-                      })
-                    }
-                  }
-                } else {
-                  console.log(res.data.sub_msg);
-                }
-              },
-              fail: res => {
-                console.log('fail');
-              }
-            })
-            //请求员工取卡是否开启
-            app.Util.network.POST({
-              url: app.globalData.BASE_API_URL,
-              params: {
-                service: 'company',
-                method: 'get_employee_info',
-                data: JSON.stringify({
-                  union_id: wx.getStorageSync('xy_session')
-                })
-              },
-              success: res => {
-                console.log(res);
-                if (res.data.sub_code == 0) {
-                  _this.data.input_pic_url = res.data.result.input_pic_url;
-                  //请求
-                  app.Util.network.POST({
-                    url: app.globalData.BASE_API_URL,
-                    params: {
-                      service: 'company',
-                      method: 'get_company_service_status',
-                      data: JSON.stringify({
-                        union_id: wx.getStorageSync('xy_session'),
-                        service_key: 'EMPLOYEE_TAKE_CARD'
-                      })
-                    },
-                    success: res => {
-                      console.log(res);
-                      if (res.data.sub_code == 0) {
-                        if (res.data.result.service_status == 1 || res.data.result.service_status == 2) {
-                          if (_this.data.input_pic_url !== '' && _this.data.cd.take_card_ways == 0) {
-
-                            _this.setData({
-                              'service[1].text2': '已开启>',
-                              'service[1].url': '../employee/take-card/success/index?company_id=' + _this.data.cd.company_id
-                            })
-                          } else if (_this.data.input_pic_url !== '' && _this.data.cd.take_card_ways == 1) {
-                            _this.setData({
-                              'service[1].text2': '已开启>',
-                              'service[1].url': '/pages/e-card/detail/index'
-                            })
-                          } else {
-                            _this.setData({
-                              'service[1].url': '../employee/take-card/open/index?company_id=' + _this.data.cd.company_id
-                            })
-                          }
-
-                        } else {
-                          console.log('未开启');
-                          _this.setData({
-                            'service[1].url': '../employee/take-card/open/index?company_id=' + _this.data.cd.company_id
-                          })
-                        }
-
-
-                      } else {
-                        console.log(res.data.sub_msg);
-                      }
-                    },
-                    fail: res => {
-                      console.log('fail');
-                    }
-                  })
-
-
-
-                } else {
-                  console.log(res.data.sub_msg);
-                }
-              },
-              fail: res => {
-                console.log('fail');
-              }
-            })
-
+            //获取企业信息+自动值守
+            _this.get_info();
+            //管理中心-企业服务-员工取卡
+            _this.get_employeeCardAcquisition();
           }
           if (resdata.employee_status === 2) {
             console.log('审核中页面');
@@ -383,5 +274,131 @@ Page({
     wx.navigateTo({
       url: _this.data.service[1].url
     })
+  },
+  //管理中心-企业服务-自动值守
+  get_info:function(){
+    var _this = this;
+    //请求企业信息
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_info',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session')
+        })
+      },
+      success: res => {
+        console.log(res);
+        if (res.data.sub_code == 0) {
+          _this.setData({
+            cd: res.data.result
+          })
+          var attend_status = res.data.result.attend_status;
+          app.getServiceStatus(_this, 'ATTEND_FUNCTION', function(){
+           //服务判断
+            if (_this.data.serviceStatus=='closed'){
+              _this.setData({
+                'service[0].isShow': false
+              })
+            }else{
+              //角色判断
+              if (_this.data.role == 1) {
+                _this.setData({
+                  'service[0].isShow': false
+                })
+              } else {
+                //是否开启判断
+                if (attend_status == 1) {
+                  _this.setData({
+                    'service[0].text2': '已开启>'
+                  })
+                } else {
+                  _this.setData({
+                    'service[0].text2': '未开启>'
+                  })
+                }
+              }
+            }
+          });
+        } else {
+          console.log(res.data.sub_msg);
+        }
+      },
+      fail: res => {
+        console.log('fail');
+      }
+    })
+  },
+  //管理中心-企业服务-员工取卡-是否开启
+  get_employeeCardAcquisition:function(){
+    var _this = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_employee_info',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session')
+        })
+      },
+      success: res => {
+        console.log(res);
+        if (res.data.sub_code == 0) {
+          _this.data.input_pic_url = res.data.result.input_pic_url;
+          //请求
+          app.Util.network.POST({
+            url: app.globalData.BASE_API_URL,
+            params: {
+              service: 'company',
+              method: 'get_company_service_status',
+              data: JSON.stringify({
+                union_id: wx.getStorageSync('xy_session'),
+                service_key: 'EMPLOYEE_TAKE_CARD'
+              })
+            },
+            success: res => {
+              console.log(res);
+              if (res.data.sub_code == 0) {
+                if (res.data.result.service_status == 1 || res.data.result.service_status == 2) {
+                  if (_this.data.input_pic_url !== '' && _this.data.cd.take_card_ways == 0) {
+                    _this.setData({
+                      'service[1].text2': '已开启>',
+                      'service[1].url': '../employee/take-card/success/index?company_id=' + _this.data.cd.company_id
+                    })
+                  } else if (_this.data.input_pic_url !== '' && _this.data.cd.take_card_ways == 1) {
+                    _this.setData({
+                      'service[1].text2': '已开启>',
+                      'service[1].url': '/pages/e-card/detail/index'
+                    })
+                  } else {
+                    _this.setData({
+                      'service[1].url': '../employee/take-card/open/index?company_id=' + _this.data.cd.company_id
+                    })
+                  }
+
+                } else {
+                  console.log('未开启');
+                  _this.setData({
+                    'service[1].url': '../employee/take-card/open/index?company_id=' + _this.data.cd.company_id
+                  })
+                }
+              } else {
+                console.log(res.data.sub_msg);
+              }
+            },
+            fail: res => {
+              console.log('fail');
+            }
+          })
+        } else {
+          console.log(res.data.sub_msg);
+        }
+      },
+      fail: res => {
+        console.log('fail');
+      }
+    })
   }
+
 })

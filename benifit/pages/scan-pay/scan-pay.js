@@ -19,6 +19,11 @@ Page({
     var that = this;
     var commerce_id = options.commerce_id;
     var type = options.type;
+    if (type != 0 && type != 1) {
+      wx.redirectTo({
+        url: '/benifit/pages/mall-detail/mall-detail?commerce_id=' + commerce_id + '&commerce_type=' + type
+      });
+    }
     that.getEmployeeInfo();
     that.getCommerceInfo(commerce_id);
     that.getCommerceDiscount(commerce_id, type);
