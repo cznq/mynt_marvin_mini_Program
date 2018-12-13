@@ -1,8 +1,14 @@
 <!--pages/apply-visit/noAppointment/index.wxml-->
 <import src="../../../templates/companyPages/companyPages.wxml" />
 <template is="companyPages" data="{{cd:cd}}" />
-<cover-view class='_fixed footer covview {{isiphoneX ? "footer_x" : ""}}'>
+
+<view class='_fixed footer covview {{isiphoneX ? "footer_x" : ""}}' wx:if="{{version}}">
   <button class="_button" bindtap="next" formType="submit">{{button_text}}</button>
-</cover-view>
+</view>
+<view wx:else>
+  <cover-view class='_fixed footer covview {{isiphoneX ? "footer_x" : ""}}'>
+    <button class="_button" bindtap="next" formType="submit">{{button_text}}</button>
+  </cover-view>
+</view>
 <import src="../../../templates/login.wxml" />
 <template is="login" data="{{showLoginModal: showLoginModal}}"></template>
