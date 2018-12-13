@@ -45,7 +45,7 @@ App({
 
         var version = res.SDKVersion;
         version = version.replace(/\./g, "")
-        if (parseInt(version) <= 199) {// 小于1.2.0的版本
+        if (parseInt(version) <= 199) {
           console.log('小于199');
           that.globalData.version = true
         }
