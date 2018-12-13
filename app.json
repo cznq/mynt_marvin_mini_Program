@@ -36,13 +36,6 @@
     "pages/company/otherCompany/index",
     "pages/company/webview/index",
     "pages/demo/iconfont/index",
-
-    "pages/invite/invite",
-    "pages/invite-share/invite-share",
-    "pages/invite-receive/invite-receive",
-    "pages/invite-success/invite-success",
-    "pages/invite-apply/invite-apply",
-    "pages/invite-apply-result/invite-apply-result",
     
     "pages/demo/showToastDemo/index",
     "pages/invite-visitor/start/index",
