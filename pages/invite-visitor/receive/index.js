@@ -7,6 +7,7 @@ Page({
    */
   data: {
     isIphoneX: app.globalData.isIphoneX,
+    version: app.globalData.version,
     latitude: null,
     longitude: null,
     invitation_id: null,

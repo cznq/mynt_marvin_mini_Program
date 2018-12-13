@@ -2,12 +2,12 @@
 <import src="../../../templates/companyPages/companyPages.wxml" />
 <template is="companyPages" data="{{cd:cd}}" />
 
-<view class='_fixed footer covview {{isiphoneX ? "footer_x" : ""}}' wx:if="{{version}}">
+<view class='_fixed footer {{isiphoneX ? "footer_x" : ""}}' wx:if="{{version}}">
   <button class="_button" bindtap="next" formType="submit">{{button_text}}</button>
 </view>
 <view wx:else>
   <cover-view class='_fixed footer covview {{isiphoneX ? "footer_x" : ""}}'>
-    <button class="_button" bindtap="next" formType="submit">{{button_text}}</button>
+    <button class="_button" bindtap="next" formType="submit">{{button_text}}</button>·
   </cover-view>
 </view>
 <import src="../../../templates/login.wxml" />

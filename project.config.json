@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 43,
 			"list": [
 				{
 					"id": 0,
@@ -316,8 +316,8 @@
 				{
 					"id": 43,
 					"name": "公司",
-					"pathName": "pages/collect-info/face/index",
-					"query": "",
+					"pathName": "pages/invite-visitor/receive/index",
+					"query": "invitation_id=AUNQAUNQ",
 					"scene": "1011"
 				}
 			]
