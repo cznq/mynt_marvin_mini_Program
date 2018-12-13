@@ -4,6 +4,7 @@ var companyPage = require('../../../templates/companyPages/companyPages');
 Page({
   data: {
     isiphoneX: app.globalData.isIphoneX,
+    version: app.globalData.version,
     cd: {},
     company_code:'',
     qr_code_key:'',
