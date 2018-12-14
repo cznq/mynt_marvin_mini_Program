@@ -12,15 +12,15 @@
         <view class='bottom'>
           <view class='c c1'>
             <view class='name'>联系方式</view>
-            <view class='con _txt_blue_c'>{{cd.phone}}</view>
+            <view class='con _txt_blue_c'>{{cd.phone?cd.phone:' _'}}</view>
           </view>
           <view class='c c2'>
             <view class='name'>行业</view>
-            <view class='con'></view>
+            <view class='con'>{{' _'}}</view>
           </view>
           <view class='c c3'>
             <view class='name'>位置</view>
-            <view class='con addressw _ellipsis'>{{cd.area}}</view>
+            <view class='con addressw _ellipsis'>{{cd.area?cd.area:' _'}}</view>
           </view>
         </view>
       </view>
