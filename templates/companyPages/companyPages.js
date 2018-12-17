@@ -24,10 +24,13 @@ function pubData(_this, app, service, method,parameter,cb){
           res.data.result.introduction = res.data.result.introduction.substr(0, 68) + '...';
           res.data.result.introductionAll_button = true;
         }
+
+        //机器人预览 管理员
+        res.data.result.isrobotReview = _this.data.isrobotReview;
+
         _this.setData({
           cd: res.data.result
         })
-
         cb && typeof cb == 'function' && cb(); //如果有成功的回调则执行  
         
       } else {
@@ -55,7 +58,7 @@ function robotPreview(){
 //分享
 function shareMessage(_this){
   var title = _this.data.cd.company_short_name + '的公司主页';
-  var path = '';
+  var path = '/pages/company/otherCompany/index?company_code=' + _this.data.cd.company_code;
   var imageUrl = '';
   return [title,path, imageUrl];
 }

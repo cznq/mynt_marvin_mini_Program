@@ -6,9 +6,11 @@
   <button class="_button" bindtap="next" formType="submit">{{button_text}}</button>
 </view>
 <view wx:else>
+  <view wx:if="{{isCoverView}}">
   <cover-view class='_fixed footer covview {{isiphoneX ? "footer_x" : ""}}'>
-    <button class="_button" bindtap="next" formType="submit">{{button_text}}</button>·
+    <button class="_button" bindtap="next" formType="submit">{{button_text}}</button>
   </cover-view>
+  </view>
 </view>
 <import src="../../../templates/login.wxml" />
 <template is="login" data="{{showLoginModal: showLoginModal}}"></template>

@@ -94,7 +94,8 @@ Page({
       isShow: true
     }],
     server_input_pic_url: '',
-    serviceStatus: ''
+    serviceStatus: '',
+    isSwiperText:[true,false,false]//轮播文案
   },
   onLoad: function(options) {
     var _this = this;
@@ -274,6 +275,22 @@ Page({
     wx.navigateTo({
       url: _this.data.service[1].url
     })
+  },
+  //轮播图文案信息
+  intervalChange:function(e){
+    console.log(e.detail);
+    var _this = this;
+    for (var key in _this.data.isSwiperText) {
+      if (key == e.detail.current){
+        _this.setData({
+          ["isSwiperText[" + e.detail.current + "]"]: true
+        })
+      }else{
+        _this.setData({
+          ["isSwiperText[" + key+ "]"]: false
+        })
+      }
+    }
   },
   //管理中心-企业服务-自动值守
   get_info:function(){
