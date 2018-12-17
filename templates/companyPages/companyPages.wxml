@@ -38,7 +38,7 @@
     </view>
     <view wx:else class="introductionCon blockCon _txt_gray _font28">暂无</view>
     <view class='h3 _txt_gray _font38' wx:if='{{cd.product_urls[0]==""?false:true}}'>
-      <view class='_txt_blue_c _font28 _f_right' bindtap="robotPreview" wx:if="{{cd.isrobotReview}}">机器人端预览</view>产品及服务</view>
+      <view class='_txt_blue_c _font28 _f_right' bindtap="robotPreview" wx:if="{{cd.isRobotReview}}">机器人端预览</view>产品及服务</view>
   </view>
   <view class='imagearr blockCon' wx:if='{{cd.product_urls[0]==""?false:true}}'>
     <scroll-view class="scrollView" scroll-x="true" style="width: 100%">
