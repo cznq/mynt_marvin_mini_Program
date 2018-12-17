@@ -25,8 +25,9 @@
 .scrollView-item image{width: 630rpx;height: 354rpx;border-radius: 10rpx;}
 
 .introCon {line-height: 28rpx;}
-.introCon .tr {font-size: 28rpx;line-height:36rpx;color: #223151;padding:21rpx 0 0 0;}
+.introCon .tr {font-size: 28rpx;line-height:36rpx;color: #223151;padding:21rpx 0 0 0;overflow: hidden;}
 .introCon .tr text{font-size:24rpx;color:#8891A9;float: left;padding-right: 35rpx;margin-bottom:38rpx;}
+.introCon .tr view{width:495rpx;margin-bottom:38rpx;}
 .downpadd{padding-bottom:240rpx;}
 /* .gsm{width:495rpx;display: inline-block;vertical-align: top;}
 .vipicon{display:inline-block;}*/

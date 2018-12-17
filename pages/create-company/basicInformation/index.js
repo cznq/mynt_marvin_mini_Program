@@ -12,9 +12,7 @@ Page({
     cd: {}
   },
   onLoad: function(options) {
-    var _this = this;
-
-    
+    var _this = this;    
     _this.data.CstateCode = options.CstateCode;
     if (options.CstateCode == 1) {
       wx.setNavigationBarTitle({
@@ -77,12 +75,17 @@ Page({
       phone = e.detail.value.phone,
       website = e.detail.value.website,
       introduction = e.detail.value.introduction;
+      phone = e.detail.value.phone;
     if (company_short_name.length == 0) {
       _this.Toast('公司简介填写不完整')
       return false
     }
     if (room.length == 0) {
       _this.Toast('门牌号填写不完整')
+      return false
+    }
+    if (phone.length == 0) {
+      _this.Toast('联系方式填写不完整')
       return false
     }
     if (company_name !== '' && company_short_name !== '' && room !== '') {
@@ -100,7 +103,8 @@ Page({
             introduction: introduction,
             address: address,
             floor: floor,
-            room: room
+            room: room,
+            phone:phone
           })
         },
         success: res => {
