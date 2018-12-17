@@ -27,31 +27,7 @@ function pubData(_this, app, service, method, parameter, cb) {
         }
         if (par == 'union_id') {
           //机器人预览 管理员
-          app.Util.network.POST({
-            url: app.globalData.BASE_API_URL,
-            params: {
-              service: 'company',
-              method: 'get_employee_info',
-              data: JSON.stringify({
-                union_id: wx.getStorageSync('xy_session'),
-              })
-            },
-            success: res1 => {
-              if (res1.data.sub_code == 0) {
-                if (res1.data.result.role == 3) {
-                  res.data.result.isRobotReview = true;
-                  _this.setData({
-                    cd: res.data.result
-                  });
-                }
-              } else {
-                console.log(res1.data.sub_msg);
-              }
-            },
-            fail: res1 => {
-              console.log('fail');
-            }
-          });
+          setAdminRobotReview(app, _this, res);
 
         } else {
           res.data.result.isRobotReview = false;
@@ -68,6 +44,34 @@ function pubData(_this, app, service, method, parameter, cb) {
       console.log('fail');
     }
   })
+}
+// 如果有union_id则判断是否是管理员来判断是否显示机器人预览
+function setAdminRobotReview(app, _this, res) {
+  app.Util.network.POST({
+    url: app.globalData.BASE_API_URL,
+    params: {
+      service: 'company',
+      method: 'get_employee_info',
+      data: JSON.stringify({
+        union_id: wx.getStorageSync('xy_session'),
+      })
+    },
+    success: res1 => {
+      if (res1.data.sub_code == 0) {
+        if (res1.data.result.role == 3) {
+          res.data.result.isRobotReview = true;
+          _this.setData({
+            cd: res.data.result
+          });
+        }
+      } else {
+        console.log(res1.data.sub_msg);
+      }
+    },
+    fail: res1 => {
+      console.log('fail');
+    }
+  });
 }
 //简介展开
 function introductionAll(_this) {

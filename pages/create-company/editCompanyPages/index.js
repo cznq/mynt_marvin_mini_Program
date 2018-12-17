@@ -10,11 +10,32 @@ Page({
     islock: true,
     role: true,
     isCoverView: true,//视频全屏cover-view隐藏
-    isrobotReview:true
   },
   onShow: function() {
     console.log('onshow');
     var _this = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_employee_info',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+        })
+      },
+      success: res => {
+        if (res.data.sub_code == 0) {
+          if (res.data.result.role == 3) {
+            _this.data.isRobotReview = true;
+          }
+        } else {
+          console.log(res.data.sub_msg);
+        }
+      },
+      fail: res => {
+        console.log('fail');
+      }
+    });
     if (_this.data.islock) {
       companyPage.cd(_this, app, "company", "get_info", wx.getStorageSync('xy_session'));
     }
@@ -23,14 +44,11 @@ Page({
   onLoad: function(options) {
     var _this = this;
     _this.data.islock = false;
-    
-    console.log(options.role);
     if (options.role == 1) {
       _this.setData({
         role: false
       })
     }
-    console.log(_this.data.role);
     wx.setNavigationBarTitle({
       title: '编辑企业信息'
     })
