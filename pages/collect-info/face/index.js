@@ -106,8 +106,7 @@ Page({
     this.openCameraAuth();
     if (that.data.isCameraAuth==true){
       that.setData({
-        showButton: false,
-        tips_title: "请将人脸放入框内"
+        showButton: false
       })
       var k = 0;
       int = setInterval(function () {

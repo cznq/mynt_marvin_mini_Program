@@ -61,8 +61,13 @@ for (let month = 0; month <= 11; month++) {
       weekday = 0;
     }
   }
+  
 }
-const daysAt = contains(days, '今天');
+var daysAt = contains(days, '今天');
+//返回从今天以后的日期
+days.splice(0, daysAt);
+daysAt = 0;
+console.log(days);
 
 Page({
 
@@ -76,23 +81,23 @@ Page({
         hours: hours
       },
       isIphoneX: app.globalData.isIphoneX,
-      now_datetime: [],
       formData: {
         visitor_name: '',
         visit_time: '',
+        visit_time_str: '',
         visit_intro: ''
       },
+      now_datetime: [],
       visit_time_str: '',
       formReady: false,
-      pickerShow: false,
-      edit: 'disabled'
+      pickerShow: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+     
   },
 
 
@@ -152,18 +157,27 @@ Page({
     }
   },
 
-  /**
-   * 编辑按钮
-   */
-  openEdit: function () {
-    this.setData({
-      edit: ''
-    });
-  },
 
-  closePicker: function () {
+  cancelPicker: function () {
     this.setData({
       pickerShow: false,
+    })
+  },
+
+  confirmPicker: function () {
+    var date = new Date();
+    var hour = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+    var minute = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+
+    if (this.data.visit_time_str == '') {
+      this.setData({
+        visit_time_str: today + ' ' + hour + ':' + minute,
+        'formData.visit_time': year + '-' + app.Util.strToDate(today + ' ' + hour + ':' + minute)
+      })
+    } 
+    this.setData({
+      pickerShow: false,
+      'formData.visit_time_str': this.data.visit_time_str
     })
   },
 
@@ -171,18 +185,15 @@ Page({
     var date = new Date();
     var hour = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
     var minute = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
-   
-    if (this.data.visit_time_str=='') {
+
+    if (this.data.visit_time_str == '') {
       this.setData({
-        now_datetime: [daysAt, date.getHours(), date.getMinutes()],
-        visit_time_str: today + ' ' + hour + ':' + minute,
-        'formData.visit_time': year + '-' + app.Util.strToDate(today + ' ' + hour + ':' + minute)
+        now_datetime: [daysAt, date.getHours(), date.getMinutes()]
       })
-    } 
+    }
     this.setData({
       pickerShow: true
     })
-    
   },
 
   selectInviteTime: function (e) {
@@ -194,6 +205,7 @@ Page({
       var todayDate = this.data.timePicker.days[val[0]]
     }
     this.setData({
+      now_datetime: [val[0], val[1], val[2]],
       visit_time_str: todayDate + ' ' + this.data.timePicker.hours[val[1]] + ':' + this.data.timePicker.minutes[val[2]],
       'formData.visit_time': year + '-' + app.Util.strToDate(todayDate + ' ' + this.data.timePicker.hours[val[1]] + ':' + this.data.timePicker.minutes[val[2]])
     })
