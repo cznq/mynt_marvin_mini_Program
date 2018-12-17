@@ -35,9 +35,9 @@
     </cover-view>
     
   </view>
-  <cover-view class="_fixed footer _flex _flex_justify_center _flex_space_around {{isIphoneX?'iphonex':''}}" wx:if="{{showButton}}">
+  <view class="_fixed footer _flex _flex_justify_center _flex_space_around {{isIphoneX?'iphonex':''}}" wx:if="{{showButton}}">
       <button class="_button back_btn _font32" bindtap="backAction">返回</button>
       <button class="_button next_btn _font32" bindtap="startRecodeFace">下一步</button>
-    </cover-view>
+    </view>
   <canvas canvas-id='attendCanvasId'></canvas>
 </view>

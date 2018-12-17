@@ -6,9 +6,9 @@
       <view class='rim'>
         <view class='_relative top'>
           <view class='t1'>
-            <!-- <form>
+            <form>
               <button open-type="share" class='share icon iconfont icon-fenxiang' bindtap="share"></button>
-            </form> -->
+            </form>
             {{cd.company_short_name}}
             <view class='vipicon'></view>
           </view>
@@ -38,7 +38,7 @@
     </view>
     <view wx:else class="introductionCon blockCon _txt_gray _font28">暂无</view>
     <view class='h3 _txt_gray _font38' wx:if='{{cd.product_urls[0]==""?false:true}}'>
-      <view class='_txt_blue_c _font28 _f_right' bindtap="robotPreview">机器人端预览</view>产品及服务</view>
+      <view class='_txt_blue_c _font28 _f_right' bindtap="robotPreview" wx:if="{{cd.isRobotReview}}">机器人端预览</view>产品及服务</view>
   </view>
   <view class='imagearr blockCon' wx:if='{{cd.product_urls[0]==""?false:true}}'>
     <scroll-view class="scrollView" scroll-x="true" style="width: 100%">
@@ -50,19 +50,22 @@
   <view class='companyPages downpadd'>
     <view class='h3 _txt_gray _font38' wx:if='{{cd.video_url}}'>宣传视频</view>
     <view class='blockCon video' wx:if='{{cd.video_url}}'>
-      <video class='video' id="myVideo" src="{{cd.video_url}}">
+      <video class='video' id="myVideo" bindfullscreenchange="fullScreen" src="{{cd.video_url}}">
       </video>
     </view>
     <view class='h3 _txt_gray _font38'>详细信息</view>
     <view class='introCon blockCon'>
       <view class='tr _clearfloat' wx:if="{{cd.address}}">
-        <text>公司位置</text> {{cd.address}}
+        <text>公司位置</text>
+        <view class='_f_left'>{{cd.address}}</view>
       </view>
       <view class='tr _clearfloat' wx:if="{{cd.floor=='' && cd.room==''?false:true}}">
-        <text>详细地址</text> {{cd.floor?cd.floor+'层':''}} {{cd.room?cd.room+'室':''}}
+        <text>详细地址</text>
+        <view class='_f_left'>{{cd.floor?cd.floor+'层':''}} {{cd.room?cd.room+'室':''}}</view>
       </view>
       <view class='tr _clearfloat' wx:if="{{cd.phone}}">
-        <text>联系方式</text> {{cd.phone}}
+        <text>联系方式</text>
+        <view class='_f_left'>{{cd.phone}}</view>
       </view>
       <view class='tr _clearfloat' wx:if="{{cd.website}}">
         <text>公司网址</text> {{cd.website}}

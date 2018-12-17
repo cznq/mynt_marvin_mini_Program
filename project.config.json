@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.3.2",
+	"libVersion": "1.9.94",
 	"appid": "wx36410b03870f2336",
 	"projectname": "555%E5%B0%8F%E8%A7%85%E6%99%BA%E8%83%BD%E6%A5%BC%E5%AE%87%E6%9C%8D%E5%8A%A1%E6%B5%8B%E8%AF%95555555",
 	"scripts": {},
@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 43,
 			"list": [
 				{
 					"id": 0,
@@ -261,7 +261,7 @@
 					"id": 35,
 					"name": "未预约访客",
 					"pathName": "pages/apply-visit/noAppointment/index",
-					"query": "scene=2BNT2BNT_12111698705bff9d3bc14b8",
+					"query": "scene=AUNQAUNQ_12111698705bff9d3bc14b8",
 					"scene": "1011"
 				},
 				{
@@ -316,8 +316,8 @@
 				{
 					"id": 43,
 					"name": "公司",
-					"pathName": "pages/collect-info/face/index",
-					"query": "",
+					"pathName": "pages/company/introduction/index",
+					"query": "company_code=AUNQAUNQ",
 					"scene": "1011"
 				}
 			]

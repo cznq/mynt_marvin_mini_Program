@@ -6,7 +6,7 @@ page, .page {
   vertical-align: bottom;
 }
 .page__bd {
-  padding: 74rpx 108rpx 0;
+  padding: 74rpx 100rpx 0;
 }
 .guide-title {
   line-height: 1;
@@ -14,7 +14,7 @@ page, .page {
   color: rgba(27, 43, 76, 1);
 }
 .guide-intro {
-  width: 452rpx;
+  width: 458rpx;
   margin: 0 auto;
   line-height: 42rpx;
   color: rgba(26, 42, 75, 1);
