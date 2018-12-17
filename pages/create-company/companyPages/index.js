@@ -11,31 +11,6 @@ Page({
   },
   onLoad: function (options) {
     var _this = this;
-    console.log(wx.getStorageSync('xy_session'));
-    app.Util.network.POST({
-      url:app.globalData.BASE_API_URL,
-      params: {
-        service: 'company',
-        method: 'get_employee_info',
-        data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session'),
-        })
-      },
-      success: res => {
-        console.log(res);
-        if (res.data.sub_code == 0) {
-          console.log('数据成功');
-          if (res.data.result.role == 3) {
-            _this.data.isrobotReview = true;
-          }
-        } else {
-          console.log(res.data.sub_msg);
-        }
-      },
-      fail: res => {
-        console.log('fail');
-      }
-    }),
     wx.setNavigationBarTitle({
       title: '创建公司'
     })
