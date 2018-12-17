@@ -6,23 +6,14 @@ Page({
     isiphoneX: app.globalData.isIphoneX,
     //CstateCode: 1,
     cd:{},
-    button_text:'确认创建公司'
+    button_text:'确认创建公司',
+    isCoverView:true,//视频全屏cover-view隐藏
   },
   onLoad: function (options) {
     var _this = this;
     wx.setNavigationBarTitle({
       title: '创建公司'
     })
-    // _this.data.CstateCode = options.CstateCode;
-    // if (options.CstateCode == 1) {
-    //   wx.setNavigationBarTitle({
-    //     title: '创建公司'
-    //   })
-    // } else if (options.CstateCode == 2) {
-    //   wx.setNavigationBarTitle({
-    //     title: '编辑企业信息'
-    //   })
-    // }
     //请求数据
     companyPage.cd(_this, app, "company", "get_info", wx.getStorageSync('xy_session'));
   },
@@ -33,6 +24,19 @@ Page({
   //简介展开功能
   introductionAll:function(){
     companyPage.introductionAll(this);
+  },
+  //视频全屏cover-view隐藏
+  fullScreen: function (e){
+    var _this = this;
+    if (e.detail.fullScreen){
+      _this.setData({
+        isCoverView:false
+      })
+    }else{
+      _this.setData({
+        isCoverView: true
+      })
+    }
   },
   //分享
   onShareAppMessage: function (res) {

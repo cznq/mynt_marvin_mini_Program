@@ -1,9 +1,9 @@
 <view class="page" style="padding-bottom:{{isIphoneX?'240':'160'}}rpx" wx:if="{{invitation}}">
   <view class="page_hd _flex _flex_item_center _flex_justify_center">
-   
+
     <view class="_font48 _fontw600 wel-tit">尊敬的访客，您好。</view>
     <view class="_font28 wel-intro">您有一个新的邀请，等待您的接受。</view>
-    
+
   </view>
 
   <view class="page_bd {{invitation.company.company_logo?'':'noLogo'}}">
@@ -11,10 +11,10 @@
       <view class="company-info _txt_center">
         <image class="_logo" src="{{invitation.company.company_logo}}" wx:if="{{invitation.company.company_logo}}"></image>
         <navigator url="/pages/company/otherCompany/index?company_code={{invitation.company.company_code}}" hover-class="none">
-        <view class="_name _font44 _fontw600 _flex _flex_justify_center _flex_item_center">
-          <text>{{invitation.company.company_short_name}}</text>
-          <text class="iconfont icon-jiantou"></text>
-        </view>
+          <view class="_name _font44 _fontw600 _flex _flex_justify_center _flex_item_center">
+            <text>{{invitation.company.company_short_name}}</text>
+            <text class="iconfont icon-jiantou"></text>
+          </view>
         </navigator>
         <view class="_short_name _font24">{{invitation.company.company_name}}</view>
       </view>
@@ -37,39 +37,45 @@
         <view class="_sec">
           <view class="int-item-name _font24">公司地址</view>
           <view class="_font32 int-item-info">{{invitation.company.address}}</view>
+          <map id="address-map" latitude="{{latitude}}" longitude="{{longitude}}" show-location>
+            <cover-image src="../../../images/map-cover.png" bindtap="openLocation"></cover-image>
+          </map>
         </view>
 
         <view class="_sec">
           <view class="int-item-name _font24">详细地址</view>
           <view class="_font32 int-item-info">{{invitation.company.company_floor}}层 {{invitation.company.company_room}}室</view>
-          <map id="address-map" latitude="{{latitude}}" longitude="{{longitude}}" show-location>
-            <cover-image src="../../../images/map-cover.png" bindtap="openLocation"></cover-image>
-          </map>
+          
         </view>
         <view class="_sec">
           <view class="int-item-name _font38 know-list-title _fontw600">到访须知</view>
-          <view class="know-list _flex "><text class="_num">1.</text> <text>到达办公楼后，在大厅找到并唤醒服务机器人，机器人会主动将电梯卡发给您，无需登记直接刷卡上楼。</text></view>
-          <view class="know-list _flex"><text class="_num">2.</text> <text>如需了解要拜访的企业，可以点击邀请函的企业名或底部按钮进入企业主页了解企业详细信息。</text></view>
+          <view class="know-list _flex ">
+            <text class="_num">1.</text>
+            <text>到达办公楼后，在大厅找到并唤醒服务机器人，机器人会主动将电梯卡发给您，无需登记直接刷卡上楼。</text>
+          </view>
+          <view class="know-list _flex">
+            <text class="_num">2.</text>
+            <text>如需了解要拜访的企业，可以点击邀请函的企业名或底部按钮进入企业主页了解企业详细信息。</text>
+          </view>
 
         </view>
 
         <view class="_ft_logo _txt_center">
           <image style="width:224rpx" mode='widthFix' src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/foot_mynt_logo%402x.png"></image>
         </view>
-
       </view>
-
     </view>
-
   </view>
   <view class="page_ft">
-  <form bindsubmit="receiveSubmit" report-submit="true">
-    <cover-view class="_fixed receive_submit {{isIphoneX?'iphonex':''}}">
-        
-      <button form-type="submit" class="_button" id="inviteBtn">接受邀请</button>
-        
-    </cover-view>
-  </form>
+    <form bindsubmit="receiveSubmit" report-submit="true">
+      <view class="_fixed receive_submit {{isIphoneX?'iphonex':''}}" wx:if="{{version}}">
+        <button form-type="submit" class="_button" id="inviteBtn">接受邀请</button>
+      </view>
+      <view wx:else>
+        <cover-view class="_fixed receive_submit {{isIphoneX?'iphonex':''}}">
+          <button form-type="submit" class="_button" id="inviteBtn">接受邀请</button>
+        </cover-view>
+      </view>
+    </form>
   </view>
-
 </view>

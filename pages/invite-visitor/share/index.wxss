@@ -2,3 +2,11 @@
 .page {
   background-color: rgba(249, 250, 251, 1);
 }
+.icon-weixin {
+  vertical-align: middle;
+  display: inline-block;
+}
+.share_btn {
+  border: 2rpx solid rgba(12, 206, 21, 1);
+}
+

@@ -4,11 +4,13 @@ var companyPage = require('../../../templates/companyPages/companyPages');
 Page({
   data: {
     isiphoneX: app.globalData.isIphoneX,
+    version: app.globalData.version,
     cd: {},
     company_code:'',
     qr_code_key:'',
     button_text: '申请访问该企业',
-    showLoginModal: false
+    showLoginModal: false,
+    isCoverView: true//视频全屏cover-view隐藏
   },
   //机器人端二维码隐藏
   updateQrcodeStatus(qr_code_key) {
@@ -67,6 +69,19 @@ Page({
       title: message[0],
       path: message[1],
       imageUrl: message[2],
+    }
+  },
+  //视频全屏cover-view隐藏
+  fullScreen: function (e) {
+    var _this = this;
+    if (e.detail.fullScreen) {
+      _this.setData({
+        isCoverView: false
+      })
+    } else {
+      _this.setData({
+        isCoverView: true
+      })
     }
   },
   next: function() {

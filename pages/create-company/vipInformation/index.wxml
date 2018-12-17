@@ -50,7 +50,7 @@
   </view>
   <view class='upload-block up_broadcast'>
     <view class='_font32'>
-      <view class='up_hint _font22 _fontw300 _txt_darkgrey '>建议比例：16:9,最多6张</view>轮播图</view>
+      <view class='up_hint _font22 _fontw300 _txt_darkgrey _f_right'>建议比例：16:9,最多6张</view>轮播图</view>
     <view class='_clearfloat'>
       <view class='up_pub' wx:key="unique" wx:for-index="idx" wx:for="{{cd.product_urls}}">
         <view class='showpic'>
