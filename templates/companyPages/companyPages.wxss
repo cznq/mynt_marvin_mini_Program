@@ -1,3 +1,4 @@
+page{background: #ffffff;}
 .background_url{width:750rpx;height: 300rpx;}
 .logo{left:60rpx;top: -67rpx;width:100rpx;height: 100rpx;border-radius: 10rpx;background: #ccc;}
 .topnone{position:initial;margin-bottom:-49rpx;}
