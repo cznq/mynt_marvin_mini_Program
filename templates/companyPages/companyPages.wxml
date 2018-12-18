@@ -36,7 +36,7 @@
       <view id="fatherCon" class="{{cd.isEllipsis==true?'t_ellipsis':''}}">
         <view id='sonCon'>
           {{cd.introduction}}
-          <text class='_txt_blue_c zk' class="jjdw {{cd.isEllipsis?'jjdwzk':'jjdwsq'}}" bindtap="introductionAll">{{cd.isEllipsis?"展开":"收起"}}</text>
+          <text class='_txt_blue_c zk' class="jjdw {{cd.isEllipsis?'jjdwzk':'jjdwsq'}}" wx:if="{{cd.isEllipsisbutton}}" bindtap="introductionAll">{{cd.isEllipsis?"展开":"收起"}}</text>
         </view>
       </view>
     </view>
