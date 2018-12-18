@@ -30,7 +30,10 @@ function pubData(_this, app, service, method, parameter, cb) {
           cd: res.data.result
         });
         //简介展开收起功能
-        introductionSwitch(_this);
+        console.log();
+        if (res.data.result.introduction.length !=0){
+          introductionSwitch(_this);
+        }
         //机器人预览 管理员
         if (par == 'union_id') {   
           setAdminRobotReview(app, _this);
