@@ -102,7 +102,7 @@ Page({
     var btDis = wx.getStorageSync('sysinfo').windowHeight;
     console.log(btDis);
     if (btDis - e.currentTarget.offsetTop < 80) {
-      var topPos = (e.currentTarget.offsetTop - this.data.scrollTop) - 72 + 'px';
+      var topPos = (e.currentTarget.offsetTop - this.data.scrollTop) - 82 + 'px';
     } else {
       var topPos = (e.currentTarget.offsetTop - this.data.scrollTop) + 32 + 'px';
     }

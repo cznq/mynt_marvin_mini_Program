@@ -10,7 +10,7 @@ Page({
     qr_code_key:'',
     button_text: '申请访问该企业',
     showLoginModal: false,
-    isCoverView: true//视频全屏cover-view隐藏
+    isCoverView: false//视频全屏cover-view隐藏
   },
   //机器人端二维码隐藏
   updateQrcodeStatus(qr_code_key) {
@@ -53,6 +53,11 @@ Page({
         title: _this.data.cd.company_short_name
       })
     });
+    setTimeout(function () {
+      _this.setData({
+        isCoverView: true
+      })
+    }, 1000);
   },
   //机器人端预览
   robotPreview: function() {

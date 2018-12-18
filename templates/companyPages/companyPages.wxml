@@ -18,11 +18,11 @@
         <view class='bottom _clearfloat'>
           <view class='c c1'>
             <view class='name'>联系方式</view>
-            <view class='con _txt_blue_c'>{{cd.phone}}</view>
+            <view class='con _txt_blue_c'>{{cd.phone==''?'—':cd.phone}}</view>
           </view>
           <view class='c c2'>
             <view class='name'>行业</view>
-            <view class='con'></view>
+            <view class='con'>—</view>
           </view>
           <view class='c c3'>
             <view class='name'>位置</view>
@@ -32,9 +32,13 @@
       </view>
     </view>
     <view class='h3 _txt_gray _font38'>简介</view>
-    <view class='introductionCon blockCon _txt_gray _font28' wx:if="{{cd.introduction}}">
-      {{cd.introduction}}
-      <text class='_txt_blue_c zk' wx:if="{{cd.introductionAll_button}}" bindtap="introductionAll">展开</text>
+    <view class='jjdwp introductionCon blockCon _txt_gray _font28' wx:if="{{cd.introduction}}">
+      <view id="fatherCon" class="{{cd.isEllipsis==true?'t_ellipsis':''}}">
+        <view id='sonCon'>
+          {{cd.introduction}}
+          <text class='_txt_blue_c zk' class="jjdw {{cd.isEllipsis?'jjdwzk':'jjdwsq'}}" wx:if="{{cd.isEllipsisbutton}}" bindtap="introductionAll">{{cd.isEllipsis?"展开":"收起"}}</text>
+        </view>
+      </view>
     </view>
     <view wx:else class="introductionCon blockCon _txt_gray _font28">暂无</view>
     <view class='h3 _txt_gray _font38' wx:if='{{cd.product_urls[0]==""?false:true}}'>
