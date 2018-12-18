@@ -53,4 +53,4 @@ background: linear-gradient(to bottom,#ffffff 0%,#ffffff 3%,#f3f3f3 97%,#f3f3f3 
 /* 审核中 */
 .s_hint .text {color: #3ed26b;}
 .company-sh {background: #fff;}
-
+.zwc{height: 180rpx;overflow: hidden;}
