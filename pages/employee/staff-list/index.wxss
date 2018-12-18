@@ -51,6 +51,7 @@ page {
   width: 46rpx;
   height: 46rpx;
   padding: 0 8rpx;
+  margin-left: 28rpx;
   border-radius: 24rpx;
   box-sizing: border-box;
   border: 1px solid rgba(0,0,0,.1);
@@ -79,7 +80,7 @@ page {
 .icon-qiantai {
   color: #F9922F;
   font-size: 36rpx;
-  margin: 0 28rpx 0 10rpx; 
+  margin: 0 0 0 10rpx; 
 }
 .icon-qiantai.admin {
   color: #484F62;

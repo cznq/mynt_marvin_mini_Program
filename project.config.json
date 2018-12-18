@@ -316,8 +316,8 @@
 				{
 					"id": 43,
 					"name": "公司",
-					"pathName": "pages/company/introduction/index",
-					"query": "company_code=AUNQAUNQ",
+					"pathName": "pages/company/otherCompany/index",
+					"query": "company_code=6E433337",
 					"scene": "1011"
 				}
 			]

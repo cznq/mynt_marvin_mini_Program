@@ -69,8 +69,12 @@
   <block wx:else>
   <cover-view class="_fixed footer _flex _flex_justify_center _flex_space_around {{isIphoneX?'iphonex':''}}">
     <button class="_button back_btn _font32" bindtap="backAction">返回</button>
-    <button class="_button share_btn _font32 " open-type="share">发送微信邀请</button>
-    
+    <button class="_button share_btn _font32 " open-type="share">
+        <cover-view class="share-box">
+          <cover-image class="footer-img" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/share-wechat-icon%402x.png"></cover-image>
+          <cover-view class="footer-text">发送微信邀请</cover-view>
+        </cover-view>
+    </button>
   </cover-view>
     
   </block>

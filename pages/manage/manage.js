@@ -278,7 +278,6 @@ Page({
   },
   //轮播图文案信息
   intervalChange:function(e){
-    console.log(e.detail);
     var _this = this;
     for (var key in _this.data.isSwiperText) {
       if (key == e.detail.current){
