@@ -1,23 +1,23 @@
 const app = getApp();
 const date = new Date()
 const days = []
+const daysAlias = []
 const hours = []
 const minutes = []
 
 for (let i = 0; i <= 23; i++) {
-  if (i < 10) {
-    i = '0' + i;
-  }
-  hours.push(i)
+  hours.push(lessTen(i))
 }
 
 for (let i = 0; i < 60; i++) {
-  if (i < 10) {
-    i = '0' + i;
-  }
-  minutes.push(i)
+  minutes.push(lessTen(i))
 }
-
+function lessTen(t) {
+  if (t < 10) {
+    return '0' + t;
+  } 
+  return t;
+}
 function daysInMonth(month, year) {
   return new Date(year, month + 1, 0).getDate();
 }
@@ -32,42 +32,55 @@ function contains(arrays, obj) {
 }
 
 let weeks = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
-const today = (date.getMonth() + 1) + '月' + date.getDate() + '日' + ' ' + weeks[date.getDay()];
-
 let year = new Date().getFullYear();
-let daystr = '';
-for (let month = 0; month <= 11; month++) {
-  // 每个月的第一天
-  let firstDay = new Date(year, month, 1);
-  let dayInMonth = daysInMonth(month, year);
-  // 每个月的最后一天
-  let lastDay = new Date(year, month, dayInMonth);
-  // 第一天星期几(0-6)
-  let weekday = firstDay.getDay();
-  // 最后一天星期几
-  let lastDayWeekDay = lastDay.getDay();
-  // 每一个都是从1号开始
-  let date = 1;
+const today = (date.getMonth() + 1) + '月' + date.getDate() + '日' + ' ' + weeks[date.getDay()];
+const todayFmt = year + '-' + lessTen(date.getMonth() + 1) + '-' + lessTen(date.getDate())
 
-  for (; date <= dayInMonth; date++) {
-    daystr += (month + 1) + '月' + date + '日' + ' ' + weeks[weekday];
-    if (daystr == today) {
-      daystr = '今天';
-    }
-    weekday++
-    days.push(daystr);
-    daystr = '';
-    if (weekday % 7 == 0) {
-      weekday = 0;
+
+returnFullDate(year);
+returnFullDate(new Date().getFullYear() + 1);
+
+function returnFullDate(year) {
+  
+  let daystr = '';
+  let dayFmtstr = '';
+  for (let month = 0; month <= 11; month++) {
+    // 每个月的第一天
+    let firstDay = new Date(year, month, 1);
+    let dayInMonth = daysInMonth(month, year);
+    // 每个月的最后一天
+    let lastDay = new Date(year, month, dayInMonth);
+    // 第一天星期几(0-6)
+    let weekday = firstDay.getDay();
+    // 最后一天星期几
+    let lastDayWeekDay = lastDay.getDay();
+    // 每一个都是从1号开始
+    let date = 1;
+
+    for (; date <= dayInMonth; date++) {
+      daystr += (month + 1) + '月' + date + '日' + ' ' + weeks[weekday];
+      dayFmtstr += year + '-' + lessTen(month + 1) + '-' + lessTen(date);
+      if (todayFmt == dayFmtstr) {
+        daystr = '今天';
+      }
+      weekday++
+      days.push(daystr);
+      daysAlias.push(dayFmtstr)
+      daystr = ''; dayFmtstr = '';
+      if (weekday % 7 == 0) {
+        weekday = 0;
+      }
     }
   }
-  
 }
-var daysAt = contains(days, '今天');
+
+var daysAt = contains(days, '今天'); 
 //返回从今天以后的日期
-days.splice(0, daysAt);
+var newDays = days.slice(daysAt, daysAt + 30);
+var newdaysAlias = daysAlias.slice(daysAt, daysAt + 30);
 daysAt = 0;
-console.log(days);
+console.log(newDays);
+console.log(newdaysAlias);
 
 Page({
 
@@ -76,7 +89,8 @@ Page({
      */
     data: {
       timePicker: {
-        days: days,
+        days: newDays,
+        daysAlias: newdaysAlias,
         minutes: minutes,
         hours: hours
       },
@@ -207,7 +221,7 @@ Page({
     this.setData({
       now_datetime: [val[0], val[1], val[2]],
       visit_time_str: todayDate + ' ' + this.data.timePicker.hours[val[1]] + ':' + this.data.timePicker.minutes[val[2]],
-      'formData.visit_time': year + '-' + app.Util.strToDate(todayDate + ' ' + this.data.timePicker.hours[val[1]] + ':' + this.data.timePicker.minutes[val[2]])
+      'formData.visit_time': this.data.timePicker.daysAlias[val[0]] + ' ' + this.data.timePicker.hours[val[1]] + ':' + this.data.timePicker.minutes[val[2]]
     })
   }
 
