@@ -34,6 +34,6 @@
 .video video{width:630rpx;height:354rpx;border-radius: 10rpx;}
 .t_ellipsis{display: -webkit-box;word-break: break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 3;height: 132rpx;overflow: hidden;}
 .jjdwp{position: relative;}
-.jjdw{background: #fff;color:#007BFF;  background:linear-gradient(to right,transparent 5%,#fff 30%,#fff 100%);}
-.jjdwzk{position: absolute;right:0;bottom: 44rpx;padding:0 20rpx 0 50rpx;}
+.jjdw{background: #fff;color:#007BFF;}
+.jjdwzk{position: absolute;right:0;bottom: 44rpx;padding:0 10rpx 0 20rpx;background:linear-gradient(to right,#ffffff 5%,#fff 30%,#ffffff 65%);border-radius: 5rpx;}
 .jjdwsq{display: inline-block;}

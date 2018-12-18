@@ -24,6 +24,7 @@ function pubData(_this, app, service, method, parameter, cb) {
         //   res.data.result.introduction = res.data.result.introduction.substr(0, 68) + '...';
         //   res.data.result.introductionAll_button = true;
         // }
+        
         res.data.result.isRobotReview = false;
         _this.setData({
           cd: res.data.result
