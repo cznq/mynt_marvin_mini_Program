@@ -1,4 +1,3 @@
-
 .background_url{width:750rpx;height: 300rpx;}
 .logo{left:60rpx;top: -67rpx;width:100rpx;height: 100rpx;border-radius: 10rpx;background: #ccc;}
 .topnone{position:initial;margin-bottom:-49rpx;}
@@ -23,7 +22,6 @@
 .scrollView{white-space: nowrap;}
 .scrollView-item{display: inline-block;width: 630rpx;height: 354rpx;margin-right: 20rpx;}
 .scrollView-item image{width: 630rpx;height: 354rpx;border-radius: 10rpx;}
-
 .introCon {line-height: 28rpx;}
 .introCon .tr {font-size: 28rpx;line-height:36rpx;color: #223151;padding:21rpx 0 0 0;overflow: hidden;}
 .introCon .tr text{font-size:24rpx;color:#8891A9;float: left;padding-right: 35rpx;margin-bottom:38rpx;}
@@ -34,3 +32,8 @@
 .addressw{width:200rpx; overflow-y: hidden;height:48rpx;}
 .zk{padding-left:35rpx;}
 .video video{width:630rpx;height:354rpx;border-radius: 10rpx;}
+.t_ellipsis{display: -webkit-box;word-break: break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 3;height: 132rpx;overflow: hidden;}
+.jjdwp{position: relative;}
+.jjdw{background: #fff;color:#007BFF;  background:linear-gradient(to right,transparent 5%,#fff 30%,#fff 100%);}
+.jjdwzk{position: absolute;right:0;bottom: 44rpx;padding:0 20rpx 0 50rpx;}
+.jjdwsq{display: inline-block;}
