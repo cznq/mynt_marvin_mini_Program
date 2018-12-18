@@ -7,7 +7,7 @@ Page({
     //CstateCode: 1,
     cd:{},
     button_text:'确认创建公司',
-    isCoverView:true,//视频全屏cover-view隐藏
+    isCoverView:false,//视频全屏cover-view隐藏
   },
   onLoad: function (options) {
     var _this = this;
@@ -16,6 +16,12 @@ Page({
     })
     //请求数据
     companyPage.cd(_this, app, "company", "get_info", wx.getStorageSync('xy_session'));
+
+    setTimeout(function () {
+      _this.setData({
+        isCoverView: true
+      })
+    }, 1000);
   },
   //机器人端预览
   robotPreview:function(){
