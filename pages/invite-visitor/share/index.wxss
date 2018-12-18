@@ -5,3 +5,17 @@
 .icon-weixin {
   vertical-align: middle;
 }
+._button.share_btn::after{
+  border: none;
+}
+.share-box{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 442rpx;
+}
+.footer-img{
+  width: 44rpx;
+  height: 44rpx;
+  margin-right: 12rpx;
+}
