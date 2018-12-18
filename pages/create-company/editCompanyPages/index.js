@@ -8,7 +8,8 @@ Page({
     cd: {},
     button_text: '编辑企业信息',
     islock: true,
-    role: true
+    role: true,
+    isCoverView: false,//视频全屏cover-view隐藏
   },
   onShow: function() {
     console.log('onshow');
@@ -21,18 +22,22 @@ Page({
   onLoad: function(options) {
     var _this = this;
     _this.data.islock = false;
-    console.log(options.role);
     if (options.role == 1) {
       _this.setData({
         role: false
       })
     }
-    console.log(_this.data.role);
     wx.setNavigationBarTitle({
       title: '编辑企业信息'
     })
     //请求数据
     companyPage.cd(_this, app, "company", "get_info", wx.getStorageSync('xy_session'));
+    
+    setTimeout(function () {
+      _this.setData({
+        isCoverView: true
+      })
+    }, 1000);
   },
   //机器人端预览
   robotPreview: function() {
@@ -49,6 +54,19 @@ Page({
       title: message[0],
       path: message[1],
       imageUrl: message[2],
+    }
+  },
+  //视频全屏cover-view隐藏
+  fullScreen: function (e) {
+    var _this = this;
+    if (e.detail.fullScreen) {
+      _this.setData({
+        isCoverView: false
+      })
+    } else {
+      _this.setData({
+        isCoverView: true
+      })
     }
   },
   //编辑企业信息

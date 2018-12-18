@@ -77,7 +77,7 @@ Page({
                     } else {
                       wx.showToast({
                         title: '授权失败',
-                        icon: 'success',
+                        icon: 'none',
                         duration: 1000
                       })
                       that.data.isCameraAuth = false;
@@ -103,11 +103,10 @@ Page({
   startRecodeFace: function () {
     var that = this;
     var int;
-    this.openCameraAuth();
+    that.openCameraAuth();
     if (that.data.isCameraAuth==true){
       that.setData({
-        showButton: false,
-        tips_title: "请将人脸放入框内"
+        showButton: false
       })
       var k = 0;
       int = setInterval(function () {
@@ -140,8 +139,7 @@ Page({
         app.myLog("录入人脸失败", "相机拍照失败");
         wx.showToast({
           title: '录入人脸失败',
-          icon: 'none',
-          duration: 1000
+          icon: 'none'
         })
       }
     })

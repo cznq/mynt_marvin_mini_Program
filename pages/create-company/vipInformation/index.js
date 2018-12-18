@@ -12,6 +12,7 @@ Page({
     mode: 'aspectFill',
     isvideoshow:false,
     CstateCode: null,
+    isCoverView: false,//视频全屏cover-view隐藏
     imageUrlCha: app.globalData.BASE_IMG_URl+'cha.png'
   },
   onLoad: function (options) {
@@ -61,6 +62,12 @@ Page({
         console.log('fail');
       }
     })
+
+    setTimeout(function () {
+      _this.setData({
+        isCoverView: true
+      })
+    }, 1000);
   },
   //删除图片
   bindclearpic: function (e) {
@@ -195,5 +202,19 @@ Page({
       duration: 1500,
       mask: false
     });
+  },
+  //视频全屏cover-view隐藏
+  fullScreen: function (e) {
+    console.log(e.detail.fullScreen);
+    var _this = this;
+    if (e.detail.fullScreen) {
+      _this.setData({
+        isCoverView: false
+      })
+    } else {
+      _this.setData({
+        isCoverView: true
+      })
+    }
   }
 })

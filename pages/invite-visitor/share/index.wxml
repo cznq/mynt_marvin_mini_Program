@@ -32,14 +32,15 @@
         <view class="_sec">
           <view class="int-item-name _font24">公司地址</view>
           <view class="_font32 int-item-info">{{companyInfo.address}}</view>
+          <map id="address-map" latitude="{{latitude}}" longitude="{{longitude}}" show-location>
+            <cover-image src="../../../images/map-cover.png" bindtap="openLocation"></cover-image>
+          </map>
         </view>
 
         <view class="_sec">
           <view class="int-item-name _font24">详细地址</view>
           <view class="_font32 int-item-info">{{companyInfo.floor}}层 {{companyInfo.room}}室</view>
-          <map id="address-map" latitude="{{latitude}}" longitude="{{longitude}}" show-location>
-            <cover-image src="../../../images/map-cover.png" bindtap="openLocation"></cover-image>
-          </map>
+          
         </view>
         <view class="_sec">
           <view class="int-item-name _font38 know-list-title _fontw600">到访须知</view>

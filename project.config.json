@@ -261,7 +261,7 @@
 					"id": 35,
 					"name": "未预约访客",
 					"pathName": "pages/apply-visit/noAppointment/index",
-					"query": "scene=2BNT2BNT_12111698705bff9d3bc14b8",
+					"query": "scene=AUNQAUNQ_12111698705bff9d3bc14b8",
 					"scene": "1011"
 				},
 				{
@@ -316,8 +316,8 @@
 				{
 					"id": 43,
 					"name": "公司",
-					"pathName": "pages/invite-visitor/receive/index",
-					"query": "invitation_id=AUNQAUNQ",
+					"pathName": "pages/company/otherCompany/index",
+					"query": "company_code=AUNQAUNQ",
 					"scene": "1011"
 				}
 			]
