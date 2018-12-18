@@ -1,7 +1,7 @@
 /*showToast*/
 .toast-bg {position: fixed;top: 0;bottom: 0;z-index: 900;left: 0;right: 0;background:#818181;opacity:0.4;}
 .toastPubStyle{position: fixed;display: inline-block;border-radius: 10rpx;text-align: center;box-shadow: 1px 1px 1px #ccc;top: 50%;left: 50%;z-index: 901;transform: translate(-50%, -50%);color:#1B2B4C;background: #fff;padding: 70rpx 60rpx 30rpx 60rpx;width: 470rpx;}
-.toast-title{font-size:32rpx;font-weight: 400;}
+.toast-title{font-size:32rpx;font-weight: 400;white-space: pre-wrap;}
 .toast-introduce{font-size:24rpx;font-weight: 350;padding:18rpx 0 65rpx 0;white-space: pre-wrap;}
 .toast-close{float:left;width:172rpx;font-size: 24rpx;height:66rpx;line-height:66rpx;}
 .toast-sure{font-size: 24rpx;height:66rpx;border:1rpx solid #e5e5e5;border-radius:5px;line-height:66rpx;float: left;width:293rpx;}
