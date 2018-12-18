@@ -316,7 +316,7 @@
 				{
 					"id": 43,
 					"name": "公司",
-					"pathName": "pages/company/introduction/index",
+					"pathName": "pages/company/otherCompany/index",
 					"query": "company_code=AUNQAUNQ",
 					"scene": "1011"
 				}
