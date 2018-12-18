@@ -66,10 +66,12 @@
         </swiper-item>
       </block>
     </swiper>
-    <view wx:for="{{imgUrls}}" wx:key="" class='copywriting' wx:if="{{isSwiperText[index]==false?false:true}}">
-      <view class='title _fontw600'>{{item.title}}</view>
-      <view class='content'>
-        <text>{{item.content}}</text>
+    <view class='zwc'>
+      <view wx:for="{{imgUrls}}" wx:key="" class='copywriting' wx:if="{{isSwiperText[index]==false?false:true}}">
+        <view class='title _fontw600'>{{item.title}}</view>
+        <view class='content'>
+          <text>{{item.content}}</text>
+        </view>
       </view>
     </view>
     <view class='footer_s {{isiphoneX ? "footer_x" : ""}}'>
