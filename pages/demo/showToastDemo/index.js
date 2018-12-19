@@ -28,7 +28,7 @@ Page({
     toast.showToast(this, {
       toastStyle: 'toast',
       title: '你输入的码有误,请重新输入',
-      duration: 1500,
+      duration: 100500,
       mask:false
     });
   },
