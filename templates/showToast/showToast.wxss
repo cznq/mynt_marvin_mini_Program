@@ -16,9 +16,9 @@
 .toast4 .toast-title{font-weight: 400;}
 .toast4 .toast-introduce{font-weight: 300;}
 .toast5{padding-top:100rpx;}
-.toast5 .toast-title{margin-bottom:100rpx;}
+.toast5 .toast-title{margin-bottom:100rpx;white-space: pre-wrap;}
 .toast6{padding-top:130rpx;}
-.toast6 .toast-title{margin-bottom:130rpx;}
+.toast6 .toast-title{margin-bottom:130rpx;white-space: pre-wrap;}
 .toast7{padding:0 0 30rpx 0;width:590rpx;}
 .toast7 .toast-b-con{padding:0 60rpx;white-space: pre-wrap;}
 .toast7 .toast-pic {width: 590rpx;border-top-left-radius: 10rpx;border-top-right-radius: 10rpx;}
