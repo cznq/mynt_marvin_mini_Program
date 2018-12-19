@@ -11,7 +11,7 @@
   </view>
 
   <view class="page__bd">
-    <view class="identify _flex _flex_justify_center _flex_space_between" wx:if="{{empInfo.id_number !==''}}">
+    <view class="identify _flex _flex_justify_center _flex_space_between" wx:if="{{empInfo && empInfo.id_number !==''}}">
       <view class="idcard">
         <view class="_font24 _gray">证件号</view>
         <view class="_font32 _gray">{{empInfo.fuzz_id_number}}</view>

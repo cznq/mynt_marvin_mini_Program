@@ -41,3 +41,6 @@
     </view>
   <canvas canvas-id='attendCanvasId'></canvas>
 </view>
+
+<import src="../../../templates/showToast/showToast.wxml" /> 
+<template is="showToast" data="{{showToast: showToast}}" /> 
