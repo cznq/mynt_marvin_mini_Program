@@ -14,7 +14,7 @@
         <text class='_font24 _txt_darkgrey _fontw300'>公司简称</text>
         <text class='_font22 _txt_darkgrey _fontw300'>(必填)</text>
       </view>
-      <input class='input_text' name="company_short_name" value='{{cd.company_short_name}}' placeholder='显示在机器人端公司主页，最多8个字' placeholder-class='input_text_phc' maxlength='8' disabled='false' ></input>
+      <input class='input_text' name="company_short_name" value='{{cd.company_short_name}}' placeholder='显示在机器人端公司主页，最多8个字' placeholder-class='input_text_phc' maxlength='8' disabled='false'></input>
     </view>
     <view class='input_block'>
       <view class='st'>
@@ -60,9 +60,10 @@
       <view hidden="{{isintroduction1? false : true}}" bindtap='showintroduction'>
         <view class=' _txt_gray _font34 jjs'>
           <view class='_font24 _f_right _txt_darkgrey'>不超过150字</view>简介</view>
-        <view class='input_text _font24 _txt_darkgrey jianjie'>{{cd.introduction==''?'完善您的企业简介，便于访客更好的认识您的企业':cd.introduction}}</view>
+        <view class='input_text _font24 _txt_darkgrey jianjie' wx:if="{{cd.introduction==''}}">完善您的企业简介，便于访客更好的认识您的企业</view>
+        <view class='input_text text_a zsnr' wx:else>{{cd.introduction}}</view>
       </view>
-      <textarea hidden="{{isintroduction2? false : true}}" class='text_a' placeholder-class='input_text_phc _font24 text_a' cursor-spacing="100rpx" name="introduction" placeholder="MYNTAI（小觅智能）2014年7月成立于美国硅谷。专注立体视觉技术整体解决方案，是行业领先的视觉定位导航VPS核心技术提供商..." value='{{cd.introduction}}'></textarea>
+      <textarea hidden="{{isintroduction2? false : true}}" class='text_a' focus="true" placeholder-class='input_text_phc _font24 text_a' cursor-spacing="100rpx" name="introduction" placeholder="MYNTAI（小觅智能）2014年7月成立于美国硅谷。专注立体视觉技术整体解决方案，是行业领先的视觉定位导航VPS核心技术提供商..." value='{{cd.introduction}}'></textarea>
     </view>
     <cover-view class='_fixed footer covview {{isiphoneX ? "footer_x" : ""}}'>
       <button class="_button" formType="submit">{{button_text}}</button>
