@@ -117,12 +117,11 @@ Page({
           that.takePhoto(that.data.ctx);
         }
         if (k > 15) {
-          toast.showToast(that, {
-            toastStyle: 'toast',
-            title: '请求超时',
-            duration: 1500,
-            mask: false
-          });
+          wx.showToast({
+            title: '录入人脸请求超时',
+            icon: 'none'
+          })
+        
           console.log('请求超时');
           clearInterval(int);
           that.setData({ showButton: true })

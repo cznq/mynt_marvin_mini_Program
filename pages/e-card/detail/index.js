@@ -8,7 +8,10 @@ Page({
     invitation_id: null,
     floor_qrcode_url: null,
     cmpInfo: null,
-    avatar: wx.getStorageSync('avatar')
+    title: '员工电梯卡',
+    qrcode_tips: '该码实时更新，请勿泄露。',
+    avatar: wx.getStorageSync('avatar'),
+    error_msg: null
   },
 
   /**
@@ -16,12 +19,18 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    that.data.invitation_id = options.invitation_id;
-    that.getCompany();
+    
+    if (options.invitation_id) {
+      that.data.invitation_id = options.invitation_id;
+      that.setData({
+        title: '访客电梯卡',
+        qrcode_tips: '该码30分钟内有效，请勿泄露。'
+      })
+    } 
     
   },
 
-  getFloorQrcode(invitation_id) {
+  getFloorQrcode() {
     var that = this;
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
@@ -30,20 +39,20 @@ Page({
         method: 'get_floor_qrcode',
         data: JSON.stringify({
           union_id: wx.getStorageSync('xy_session'),
-          invitation_id: invitation_id
+          invitation_id: that.data.invitation_id
         })
       },
       success: res => {
         console.log(res.data);
         if (res.data.result) {
-          this.setData({
+          that.setData({
             floor_qrcode_url: res.data.result.qrcode_url
           })
         } else {
-          wx.showToast({
-            icon: 'none',
-            title: res.data.sub_msg,
+          that.setData({
+            error_msg: res.data.sub_msg,
           })
+          
         }
         
       },
@@ -51,6 +60,13 @@ Page({
         
       }
     });
+  },
+
+  /**
+   * 刷新二维码
+   */
+  refreshQrcode() {
+    this.getFloorQrcode();
   },
 
   /**
@@ -74,16 +90,58 @@ Page({
             cmpInfo: res.data.result
           })
         }
-        that.getFloorQrcode(that.data.invitation_id);
+        that.getFloorQrcode();
       }
     })
   },
 
   /**
+   * 获取邀请信息
+   */
+  getInitation: function () {
+    var that = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'visitor',
+        method: 'get_invitation_info',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+          invitation_id: that.data.invitation_id
+        })
+      },
+      success: res => {
+        if (res.data.result) {
+          that.getFloorQrcode();
+          that.setData({
+            'cmpInfo.address': res.data.result.company.address,
+            'cmpInfo.floor': res.data.result.company.company_floor,
+            'cmpInfo.room': res.data.result.company.company_room,
+            'cmpInfo.company_code': res.data.result.company.company_code,
+            'cmpInfo.logo': res.data.result.company.company_logo,
+            'cmpInfo.company_name': res.data.result.company.company_name,
+            'cmpInfo.company_short_name': res.data.result.company.company_short_name,
+            'cmpInfo.logo': res.data.result.company.company_logo,
+            avatar: res.data.result.visitor.input_pic_url
+          })
+        }
+       
+      },
+      fail: res => {
+      
+      }
+    })
+  },
+  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
 
+    if (this.data.invitation_id) {
+      this.getInitation();
+    } else {
+      this.getCompany();
+    }
   }
 
 })
