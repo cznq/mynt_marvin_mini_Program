@@ -1,3 +1,4 @@
+<wxs src="../../../wxs/subutil.wxs" module="tools" />
 <view class='_content guide  basicInformation'>
   <view class='_txt_gray title step_title _fontw700'>{{mainTitle}}</view>
   <view class='_txt_gray _fontw300 con'>完善您企业的名称、简介、地址和联系方式，方便访客在机器人处找到您的企业。</view>
@@ -45,7 +46,7 @@
       <view class='st'>
         <text class='_font24 _txt_darkgrey _fontw300'>楼层信息</text>
       </view>
-      <input class='input_text dis_b_n pj9' disabled='false' name="floor" value='{{cd.floor}}层'></input>
+      <input class='input_text dis_b_n pj9' disabled='false' name="floor" value='{{tools.removeFloor(cd.floor)}}层'></input>
       <view class='st'>
         <text class='_font24 _txt_darkgrey _fontw300'>门牌号（必填）</text>
       </view>
