@@ -64,9 +64,17 @@
       </view>
       <textarea hidden="{{isintroduction2? false : true}}" class='text_a' placeholder-class='input_text_phc _font24 text_a' cursor-spacing="100rpx" name="introduction" placeholder="MYNTAI（小觅智能）2014年7月成立于美国硅谷。专注立体视觉技术整体解决方案，是行业领先的视觉定位导航VPS核心技术提供商..." value='{{cd.introduction}}'></textarea>
     </view>
-    <cover-view class='_fixed footer covview {{isiphoneX ? "footer_x" : ""}}'>
+    <block wx:if="{{version}}">
+     <view class='_fixed footer covview {{isiphoneX ? "footer_x" : ""}}'>
+      <button class="_button" formType="submit">{{button_text}}</button>
+    </view>
+    </block>
+    <block wx:else>
+     <cover-view class='_fixed footer covview {{isiphoneX ? "footer_x" : ""}}'>
       <button class="_button" formType="submit">{{button_text}}</button>
     </cover-view>
+    </block>
+   
   </form>
 </view>
 <import src="../../../templates/showToast/showToast.wxml" />

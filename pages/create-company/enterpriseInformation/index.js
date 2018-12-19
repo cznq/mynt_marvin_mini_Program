@@ -2,6 +2,8 @@ var app = getApp();
 var toast = require('../../../templates/showToast/showToast');
 Page({
   data: {
+    isiphoneX: app.globalData.isIphoneX,
+    version: app.globalData.version,
     mainTitle: '填写企业信息',
     button_text: '下一步',
     moreAlias: false,

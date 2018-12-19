@@ -79,8 +79,6 @@ var daysAt = contains(days, '今天');
 var newDays = days.slice(daysAt, daysAt + 30);
 var newdaysAlias = daysAlias.slice(daysAt, daysAt + 30);
 daysAt = 0;
-console.log(newDays);
-console.log(newdaysAlias);
 
 Page({
 
