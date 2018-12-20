@@ -1,3 +1,4 @@
+var app = getApp();
 var toast = require('../../../templates/showToast/showToast');
 
 Page({
@@ -6,14 +7,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showLogin: false
+    showLogin: false,
+    //version: app.globalData.version
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var _this = this;
+    //console.log(_this.data.version)
   },
   bindToastOpen8: function () {
     toast.showToast(this, {

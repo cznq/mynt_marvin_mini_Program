@@ -14,6 +14,8 @@ isArrow: input错误提示小箭头
 cb:       1500毫秒自动隐藏后接口调用成功的回调函数 选填 
  */
 function showToast(_this, obj) {
+  var app = getApp();
+
   if (typeof obj == 'object') {
     if (!obj.isClose || typeof obj.isClose != 'boolean') {
       obj.isClose = false;
@@ -30,6 +32,9 @@ function showToast(_this, obj) {
     if (!obj.isArrow || typeof obj.isArrow != 'boolean') {
       obj.isArrow = false;
     }
+
+    console.log(app.globalData.version);
+    obj.version = app.globalData.version;
 
     obj.title = obj.title || "服务器繁忙，稍后再试";
     if (!obj.duration || typeof obj.duration != 'number') {
