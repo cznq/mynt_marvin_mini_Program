@@ -15,7 +15,6 @@ Page({
   onLoad: function(options) {
     var _this = this;
     var view_web_url = _this.data.web_url + '/admin/become?company_code=' + options.company_verify_code + ' &CstateCode=' + _this.data.CstateCode;
-    console.log(view_web_url);
     _this.setData({
       view_web_url: view_web_url
     })
