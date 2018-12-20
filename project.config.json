@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 43,
+			"current": 26,
 			"list": [
 				{
 					"id": 0,
@@ -205,7 +205,7 @@
 					"id": 26,
 					"name": "创建-输入真实姓名",
 					"pathName": "pages/create-company/enterRealName/index",
-					"query": "company_verify_code=EBFCZPKM"
+					"query": "company_code=EBFCZPKM&CstateCode=1"
 				},
 				{
 					"id": 27,
