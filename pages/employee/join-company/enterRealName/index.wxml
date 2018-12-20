@@ -1,2 +1,1 @@
-<!-- <web-view src="{{view_web_url}}"></web-view> -->
-{{form_id}}
+<web-view src="{{view_web_url}}"></web-view>
