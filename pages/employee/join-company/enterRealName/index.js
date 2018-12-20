@@ -14,8 +14,10 @@ Page({
   onLoad: function (options) {
     var _this = this;
     var view_web_url = _this.data.web_url + '/employee/join?company_code =' + options.company_code + '&CstateCode=2&form_id=' + options.form_id;
+    console.log(view_web_url);
     _this.setData({
-      view_web_url: view_web_url
+      view_web_url: view_web_url,
+      form_id: options.form_id
     })
   }
 })
