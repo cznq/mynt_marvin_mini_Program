@@ -10,7 +10,7 @@ Page({
     cmpInfo: null,
     title: '员工电梯卡',
     qrcode_tips: '该码实时更新，请勿泄露。',
-    avatar: wx.getStorageSync('avatar'),
+    avatar: '',
     error_msg: null
   },
 
@@ -91,12 +91,29 @@ Page({
         })
       },
       success: res => {
-        console.log(res);
         if (res.data.result) {
           that.setData({
             cmpInfo: res.data.result
           })
         }
+        app.Util.network.POST({
+          url: app.globalData.BASE_API_URL,
+          params: {
+            service: 'company',
+            method: 'get_employee_info',
+            data: JSON.stringify({
+              union_id: wx.getStorageSync('xy_session'),
+            })
+          },
+          success: res => {
+            if (res.data.result) {
+              that.setData({
+                avatar: res.data.result.input_pic_url
+              });
+            }
+          }
+        })
+
         that.getFloorQrcode();
       }
     })
