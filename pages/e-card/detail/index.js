@@ -26,7 +26,14 @@ Page({
         title: '访客电梯卡',
         qrcode_tips: '该码30分钟内有效，请勿泄露。'
       })
-    } 
+      wx.setNavigationBarTitle({
+        title: '访客电梯卡',
+      })
+    } else {
+      wx.setNavigationBarTitle({
+        title: '员工电梯卡'
+      })
+    }
     
   },
 

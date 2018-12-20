@@ -109,9 +109,11 @@ Page({
                 that.setData({
                   is_vip: true
                 })
-                wx.setBackgroundColor({
-                  backgroundColor: '#404452', // 窗口的背景色为白色
-                })
+                if (wx.setBackgroundColor) {
+                  wx.setBackgroundColor({
+                    backgroundColor: '#404452', // 窗口的背景色为白色
+                  })
+                }
                 wx.setNavigationBarColor({
                   frontColor: '#ffffff',
                   backgroundColor: '#404452'
