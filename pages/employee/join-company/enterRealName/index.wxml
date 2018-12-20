@@ -1,18 +1,1 @@
-<web-view src="{{web_url}}/employee/join?company_code={{company_code}}&CstateCode={{CstateCode}}&form_id={{form_id}}"></web-view>
-<!-- <view class='_content _top_gradient2 company-code'>
-  <view class="_flex step">
-    <view class='cur'></view>
-    <view class='cur'></view>
-    <view class='cur'></view>
-    <view class='cur'></view>
-  </view>
-  <view class='mainTitle'>{{mainTitle}}</view>
-  <form bindsubmit='formSubmit'  report-submit="{{true}}">
-  <input class='inp' maxlength='8' name="realName" bindinput='companyCode' focus="{{isfocus}}"></input>
-  <view class='_fixed footer'>
-    <button  class="_button" bindtap="next" formType="submit">{{button_text}}</button>
-  </view>
-  </form>
-</view>
-<import src="../../../../templates/showToast/showToast.wxml" /> 
-<template is="showToast" data="{{showToast: showToast}}" />  -->
+<web-view src="{{view_web_url}}"></web-view>

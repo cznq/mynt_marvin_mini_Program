@@ -8,14 +8,14 @@ Page({
     codevalue: '',
     isfocus: true,
     company_code :null,
-    form_id:null
-
+    form_id:null,
+    view_web_url:''
   },
   onLoad: function (options) {
     var _this = this;
+    var view_web_url = _this.data.web_url + '/employee/join?company_code =' + options.company_code + '&CstateCode=2&form_id=' + options.form_id;
     _this.setData({
-      company_code: options.company_code,
-      form_id: options.form_id
+      view_web_url: view_web_url
     })
   }
 })

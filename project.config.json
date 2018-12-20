@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 26,
+			"current": 23,
 			"list": [
 				{
 					"id": 0,
@@ -187,7 +187,7 @@
 					"id": 23,
 					"name": "加入3-输入真实姓名",
 					"pathName": "pages/employee/join-company/enterRealName/index",
-					"query": "company_code=76537C43"
+					"query": "company_code=76537C43&CstateCode=2"
 				},
 				{
 					"id": 24,
