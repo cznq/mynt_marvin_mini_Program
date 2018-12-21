@@ -3,6 +3,7 @@ var toast = require('../../../templates/showToast/showToast');
 Page({
   data: {
     isiphoneX: app.globalData.isIphoneX,
+    version: app.globalData.version,
     CstateCode: 1,
     mainTitle: '企业基础信息',
     button_text: '保存',

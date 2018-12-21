@@ -13,3 +13,4 @@
 .viewshow{line-height: 40rpx;padding-top:12rpx;height: auto;}
 .disnone{display:none;}
 .jianjie{line-height:32rpx;padding-top:10rpx;}
+.zsnr{height: auto;padding-bottom:30rpx;}

@@ -1,4 +1,5 @@
 var md5 = require('../../../utils/md5.js');
+var toast = require('../../../templates/showToast/showToast');
 var app = getApp()
 Page({
 
@@ -40,6 +41,7 @@ Page({
       
     }
     app.Util.checkcanIUse('cover-view');
+    
   },
 
   cameraError: function () {
@@ -113,6 +115,16 @@ Page({
         if (that.data.face == true && k > 2) {
           app.myLog('开始拍照', k);
           that.takePhoto(that.data.ctx);
+        }
+        if (k > 15) {
+          wx.showToast({
+            title: '录入人脸请求超时',
+            icon: 'none'
+          })
+        
+          console.log('请求超时');
+          clearInterval(int);
+          that.setData({ showButton: true })
         }
         k++;
       }, 1000);

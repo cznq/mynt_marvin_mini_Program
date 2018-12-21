@@ -1,3 +1,4 @@
+<wxs src="../../../wxs/subutil.wxs" module="tools" />
 <view class="page">
   <view class="page_hd"></view>
 
@@ -39,7 +40,7 @@
 
         <view class="_sec">
           <view class="int-item-name _font24">详细地址</view>
-          <view class="_font32 int-item-info">{{companyInfo.floor}}层 {{companyInfo.room}}室</view>
+          <view class="_font32 int-item-info">{{tools.removeFloor(companyInfo.floor)}}层 {{companyInfo.room}}室</view>
           
         </view>
         <view class="_sec">

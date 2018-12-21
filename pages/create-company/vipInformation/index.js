@@ -4,6 +4,7 @@ var md5 = require('../../../utils/md5.js');
 Page({
   data: {
     isiphoneX: app.globalData.isIphoneX,
+    version: app.globalData.version,
     mainTitle: '企业展示信息',
     button_text: '保存',
     hint: '以下资料需经过楼宇管理员审核，严禁上传色情、\n暴力、血腥、骇人或政治相关内容的图片',
