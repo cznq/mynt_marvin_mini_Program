@@ -27,6 +27,7 @@ Page({
     that.getEmployeeInfo();
     that.getCommerceInfo(commerce_id);
     that.getCommerceDiscount(commerce_id, type);
+    that.sendScanRecord(commerce_id);
   },
   /**
    * 获取指定商家信息
@@ -77,6 +78,25 @@ Page({
     })
   },
   /**
+   * 扫码后发送请求记录扫码次数
+   */
+  sendScanRecord(commerce_id) {
+    app.Util.network.POST({
+      url: app.globalData.BENIFIT_API_URL,
+      params: {
+        service: 'commerce',
+        method: 'scavenger_user_records',
+        union_id: wx.getStorageSync('xy_session'),
+        data: JSON.stringify({
+          "commerce_id": commerce_id
+        })
+      },
+      success: res => {
+        console.log(res);
+      }
+    })
+  },
+  /**
    * 获取员工信息
    */
   getEmployeeInfo() {
@@ -109,13 +129,17 @@ Page({
                 that.setData({
                   is_vip: true
                 })
-                wx.setBackgroundColor({
-                  backgroundColor: '#404452', // 窗口的背景色为白色
-                })
-                wx.setNavigationBarColor({
-                  frontColor: '#ffffff',
-                  backgroundColor: '#404452'
-                })
+                if (wx.setBackgroundColor) {
+                  wx.setBackgroundColor({
+                    backgroundColor: '#404452', // 窗口的背景色为白色
+                  })
+                }
+                if (wx.setNavigationBarColor) {
+                  wx.setNavigationBarColor({
+                    frontColor: '#ffffff',
+                    backgroundColor: '#404452'
+                  })
+                }
                 that.setData({
                   employeeInfo: res.data.result
                 })

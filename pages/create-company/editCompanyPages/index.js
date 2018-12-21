@@ -4,6 +4,7 @@ var companyPage = require('../../../templates/companyPages/companyPages');
 Page({
   data: {
     isiphoneX: app.globalData.isIphoneX,
+    version: app.globalData.version,
     CstateCode: 2,
     cd: {},
     button_text: '编辑企业信息',

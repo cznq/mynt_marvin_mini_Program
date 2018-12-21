@@ -1,3 +1,4 @@
+<wxs src="../../../wxs/subutil.wxs" module="tools" />
 <view class="page">
   <view class="page_hd _flex _flex_item_center _flex_justify_center">
     <image style="width:80rpx;height:80rpx" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/accept_Invitation_success%403x.png"></image>
@@ -44,7 +45,7 @@
 
         <view class="_sec">
           <view class="int-item-name _font24">详细地址</view>
-          <view class="_font32 int-item-info">{{invitation.company.company_floor}}层 {{invitation.company.company_room}}室</view>
+          <view class="_font32 int-item-info">{{tools.removeFloor(invitation.company.company_floor)}}层 {{invitation.company.company_room}}室</view>
           
         </view>
         <view class="_sec">

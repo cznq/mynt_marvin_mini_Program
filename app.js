@@ -48,6 +48,8 @@ App({
         if (parseInt(version) <= 199) {
           console.log('小于199');
           that.globalData.version = true
+        }else{
+          that.globalData.version = false
         }
       }
     })

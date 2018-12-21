@@ -1,3 +1,4 @@
+<wxs src="../../../wxs/subutil.wxs" module="tools" />
 <view class='_content company-information'>
   <view class="_flex step">
     <view class='cur'></view>
@@ -51,7 +52,7 @@
         <text class='_font22 _txt_darkgrey _fontw300'>(必填)</text>
       </view>
       <view class='detailedAddress _clearfloat'>
-        <input class='input_text input_dis' disabled='false' name="floor" value='{{cd.floor}}层'></input>
+        <input class='input_text input_dis' disabled='false' name="floor" value='{{tools.removeFloor(cd.floor)}}层'></input>
         <input class='input_text' name="room" value='{{cd.room}}' placeholder='请输入' maxlength='6' placeholder-class='input_text_phc'></input>
         <input class='input_text input_dis input_s' disabled='false' value='室'></input>
       </view>
@@ -75,9 +76,18 @@
       </view>
       <input class='input_text' placeholder-class='input_text_phc' name="introduction" maxlength='50' value='{{cd.introduction}}' placeholder='用于机器人端对外展示，最多50字'></input>
     </view>
-    <cover-view class='_fixed footer covview'>
+    <block wx:if="{{version}}">
+    <view class='_fixed footer covview {{isiphoneX ? "footer_x" : ""}}'>
+      <button class="_button" formType="submit">{{button_text}}</button>
+    </view>
+    </block>
+    <block wx:else>
+    <cover-view class='_fixed footer covview {{isiphoneX ? "footer_x" : ""}}'>
       <button class="_button" formType="submit">{{button_text}}</button>
     </cover-view>
+    
+    </block>
+
   </form>
 </view>
 <import src="../../../templates/showToast/showToast.wxml" />

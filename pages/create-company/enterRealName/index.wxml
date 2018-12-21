@@ -1,13 +1,1 @@
-<web-view src="{{web_url}}/admin/become?company_code={{company_code}}&CstateCode={{CstateCode}}"></web-view>
-
-<!-- <view class='_content _top_gradient2 company-code'>
-  <view class='mainTitle'>{{mainTitle}}</view>
-  <form bindsubmit='formSubmit'>
-    <input class='inp' maxlength='8' name="realName" focus="{{isfocus}}"></input>
-    <view class='_fixed footer {{isiphoneX ? "footer_x" : ""}}'>
-      <button class="_button" bindtap="next" formType="submit">{{button_text}}</button>
-    </view>
-  </form>
-</view>
-<import src="../../../templates/showToast/showToast.wxml" />
-<template is="showToast" data="{{showToast: showToast}}" /> -->
+<web-view src="{{view_web_url}}"></web-view>

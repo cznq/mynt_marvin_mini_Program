@@ -1,3 +1,4 @@
+<wxs src="../../../wxs/subutil.wxs" module="tools" />
 <view class='_content guide  basicInformation'>
   <view class='_txt_gray title step_title _fontw700'>{{mainTitle}}</view>
   <view class='_txt_gray _fontw300 con'>完善您企业的名称、简介、地址和联系方式，方便访客在机器人处找到您的企业。</view>
@@ -14,7 +15,7 @@
         <text class='_font24 _txt_darkgrey _fontw300'>公司简称</text>
         <text class='_font22 _txt_darkgrey _fontw300'>(必填)</text>
       </view>
-      <input class='input_text' name="company_short_name" value='{{cd.company_short_name}}' placeholder='显示在机器人端公司主页，最多8个字' placeholder-class='input_text_phc' maxlength='8' disabled='false' ></input>
+      <input class='input_text' name="company_short_name" value='{{cd.company_short_name}}' placeholder='显示在机器人端公司主页，最多8个字' placeholder-class='input_text_phc' maxlength='8' disabled='false'></input>
     </view>
     <view class='input_block'>
       <view class='st'>
@@ -38,14 +39,14 @@
       <view class='st'>
         <text class='_font24 _txt_darkgrey _fontw300'>公司地址</text>
       </view>
-      <input class='input_text dis_b_n pj9 disnone' disabled='false' name="address" value='电饭锅的口感和电饭锅地方个电饭锅地方给对方个电饭锅电饭锅梵蒂冈地方给对方给对方公司{{cd.address}}'></input>
+      <input class='input_text dis_b_n pj9 disnone' disabled='false' name="address" value='{{cd.address}}'></input>
       <view class='input_text dis_b_n pj9 viewshow'>{{cd.address}}</view>
     </view>
     <view class='input_block'>
       <view class='st'>
         <text class='_font24 _txt_darkgrey _fontw300'>楼层信息</text>
       </view>
-      <input class='input_text dis_b_n pj9' disabled='false' name="floor" value='{{cd.floor}}层'></input>
+      <input class='input_text dis_b_n pj9' disabled='false' name="floor" value='{{tools.removeFloor(cd.floor)}}层'></input>
       <view class='st'>
         <text class='_font24 _txt_darkgrey _fontw300'>门牌号（必填）</text>
       </view>
@@ -60,13 +61,22 @@
       <view hidden="{{isintroduction1? false : true}}" bindtap='showintroduction'>
         <view class=' _txt_gray _font34 jjs'>
           <view class='_font24 _f_right _txt_darkgrey'>不超过150字</view>简介</view>
-        <view class='input_text _font24 _txt_darkgrey jianjie'>{{cd.introduction==''?'完善您的企业简介，便于访客更好的认识您的企业':cd.introduction}}</view>
+        <view class='input_text _font24 _txt_darkgrey jianjie' wx:if="{{cd.introduction==''}}">完善您的企业简介，便于访客更好的认识您的企业</view>
+        <view class='input_text text_a zsnr' wx:else>{{cd.introduction}}</view>
       </view>
-      <textarea hidden="{{isintroduction2? false : true}}" class='text_a' placeholder-class='input_text_phc _font24 text_a' cursor-spacing="100rpx" name="introduction" placeholder="MYNTAI（小觅智能）2014年7月成立于美国硅谷。专注立体视觉技术整体解决方案，是行业领先的视觉定位导航VPS核心技术提供商..." value='{{cd.introduction}}'></textarea>
+      <textarea hidden="{{isintroduction2? false : true}}" class='text_a' focus="true" placeholder-class='input_text_phc _font24 text_a' cursor-spacing="100rpx" name="introduction" placeholder="MYNTAI（小觅智能）2014年7月成立于美国硅谷。专注立体视觉技术整体解决方案，是行业领先的视觉定位导航VPS核心技术提供商..." value='{{cd.introduction}}'></textarea>
     </view>
-    <cover-view class='_fixed footer covview {{isiphoneX ? "footer_x" : ""}}'>
+    <block wx:if="{{version}}">
+     <view class='_fixed footer covview {{isiphoneX ? "footer_x" : ""}}'>
+      <button class="_button" formType="submit">{{button_text}}</button>
+    </view>
+    </block>
+    <block wx:else>
+     <cover-view class='_fixed footer covview {{isiphoneX ? "footer_x" : ""}}'>
       <button class="_button" formType="submit">{{button_text}}</button>
     </cover-view>
+    </block>
+   
   </form>
 </view>
 <import src="../../../templates/showToast/showToast.wxml" />
