@@ -14,6 +14,7 @@ Page({
   },
   onLoad: function(options) {
     var _this = this;
+    app.Util.checkcanIUse('web-view');
     var view_web_url = _this.data.web_url + '/admin/become?company_code=' + options.company_verify_code + ' &CstateCode=' + _this.data.CstateCode;
     _this.setData({
       view_web_url: view_web_url

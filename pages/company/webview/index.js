@@ -8,8 +8,7 @@ Page({
     page_url: ''
   },
   onLoad: function (options) {
-    console.log(options.page);
-
+    app.Util.checkcanIUse('web-view');
     var _this = this;
     _this.setData({
       page_url: _this.data.web_url + '/' + options.page + '/record'

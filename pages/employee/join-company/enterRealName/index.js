@@ -13,6 +13,7 @@ Page({
   },
   onLoad: function (options) {
     var _this = this;
+    app.Util.checkcanIUse('web-view');
     var view_web_url = _this.data.web_url + '/employee/join?company_code=' + options.company_code + '&CstateCode=2&form_id=' + options.form_id;
     _this.setData({
       view_web_url: view_web_url
