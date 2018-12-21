@@ -153,13 +153,12 @@ Page({
    * param: visitor_name, visit_intro, appointment_time
    */
   inviteSubmit: function (e) {
-    console.log(this.data.formData.visit_time);
-    var visitor_name = this.data.formData.visitor_name;
+    console.log(e);
     var visit_intro = app.Util.decodeTextAreaString(this.data.formData.visit_intro);
     var appointment_time = app.Util.datetoTime(this.data.formData.visit_time);
-    if (this.checkParam(visitor_name, this.data.formData.visit_time, visit_intro)) {
+    if (this.checkParam(e.detail.value.visitor_name, this.data.formData.visit_time, visit_intro)) {
       var params = JSON.stringify({
-        visitor_name: visitor_name,
+        visitor_name: e.detail.value.visitor_name,
         visit_intro: visit_intro,
         appointment_time: appointment_time
       })

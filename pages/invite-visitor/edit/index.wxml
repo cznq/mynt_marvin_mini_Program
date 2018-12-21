@@ -13,7 +13,7 @@
 
       <view class="_fontw600 _font38 sec_title">基础信息</view>
       <view class="label _font24">访客姓名</view>
-      <input class="weui-input _font36" name="visitor_name" id="visitorName" bindinput="checkForm" placeholder="请输入您邀请访客的姓名" placeholder-class="placeholder-input"></input>
+      <input class="weui-input _font36" name="visitor_name" id="visitorName" bindinput="checkForm" placeholder="请输入您邀请访客的姓名" placeholder-class="placeholder-input" confirm-type="done"></input>
 
       <view class="label _font24">预约到访时间</view>
       <view class="invite_time _relative">
