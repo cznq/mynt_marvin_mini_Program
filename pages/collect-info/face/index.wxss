@@ -1,3 +1,4 @@
+@import "../../../templates/showToast/showToast.wxss";
 page, 
 .page {
   width: 100%;
@@ -85,7 +86,7 @@ page,
   background-color: rgba(0, 123, 255, 1);
   height: 6rpx;
   width: 0rpx;
-  animation: bianchang 5s infinite;
+  animation: bianchang 30s infinite;
 }
 @-webkit-keyframes bianchang {
   0% { width: 0; }

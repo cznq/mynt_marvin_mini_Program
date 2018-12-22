@@ -4,12 +4,14 @@ Page({
   data: {
     timestamp: null,
     web_url: app.globalData.WEB_VIEW_URL,
-    route:''
+    route:'',
+    page_url: ''
   },
   onLoad: function (options) {
+    app.Util.checkcanIUse('web-view');
     var _this = this;
     _this.setData({
-      route: options.page
+      page_url: _this.data.web_url + '/' + options.page + '/record'
     })
   }
 })

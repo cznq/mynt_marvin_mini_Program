@@ -31,6 +31,10 @@ function showToast(_this, obj) {
       obj.isArrow = false;
     }
 
+    //判断微信版本 小于1.9.9显示view标签模式
+    var app = getApp();
+    obj.version = app.globalData.version;
+
     obj.title = obj.title || "服务器繁忙，稍后再试";
     if (!obj.duration || typeof obj.duration != 'number') {
       obj.duration = 10000;

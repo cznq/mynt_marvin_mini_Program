@@ -42,6 +42,15 @@ App({
         if (res.model.search('iPhone X') != -1) {
           that.globalData.isIphoneX = true
         }
+
+        var version = res.SDKVersion;
+        version = version.replace(/\./g, "")
+        if (parseInt(version) <= 199) {
+          console.log('小于199');
+          that.globalData.version = true
+        }else{
+          that.globalData.version = false
+        }
       }
     })
     

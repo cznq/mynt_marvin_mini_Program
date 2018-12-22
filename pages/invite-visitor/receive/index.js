@@ -7,6 +7,7 @@ Page({
    */
   data: {
     isIphoneX: app.globalData.isIphoneX,
+    version: app.globalData.version,
     latitude: null,
     longitude: null,
     invitation_id: null,
@@ -44,6 +45,10 @@ Page({
             title: '没有获取到邀请信息',
             icon: 'none'
           })
+        }
+        //更改邀请函阅读状态
+        if (res.data.result.read_status==0) {
+          that.changeReadStatus();
         }
         if (res.data.result.visitor.visitor_id !== 0) {
           wx.redirectTo({
@@ -89,6 +94,24 @@ Page({
     }) 
     
 
+  },
+  //更改邀请函阅读状态
+  changeReadStatus() {
+    var that = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'visitor',
+        method: 'update_Invitation',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+          invitation_id: that.data.invitation_id,
+          read_status: 1
+        })
+      },
+      success: res => {},
+      fail: res => {}
+    })
   },
 
   onShow: function () {

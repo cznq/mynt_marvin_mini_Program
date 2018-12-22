@@ -4,6 +4,7 @@ var md5 = require('../../../utils/md5.js');
 Page({
   data: {
     isiphoneX: app.globalData.isIphoneX,
+    version: app.globalData.version,
     mainTitle: '企业展示信息',
     button_text: '保存',
     hint: '以下资料需经过楼宇管理员审核，严禁上传色情、\n暴力、血腥、骇人或政治相关内容的图片',
@@ -12,6 +13,7 @@ Page({
     mode: 'aspectFill',
     isvideoshow:false,
     CstateCode: null,
+    isCoverView: false,//视频全屏cover-view隐藏
     imageUrlCha: app.globalData.BASE_IMG_URl+'cha.png'
   },
   onLoad: function (options) {
@@ -61,6 +63,12 @@ Page({
         console.log('fail');
       }
     })
+
+    setTimeout(function () {
+      _this.setData({
+        isCoverView: true
+      })
+    }, 1000);
   },
   //删除图片
   bindclearpic: function (e) {
@@ -195,5 +203,19 @@ Page({
       duration: 1500,
       mask: false
     });
+  },
+  //视频全屏cover-view隐藏
+  fullScreen: function (e) {
+    console.log(e.detail.fullScreen);
+    var _this = this;
+    if (e.detail.fullScreen) {
+      _this.setData({
+        isCoverView: false
+      })
+    } else {
+      _this.setData({
+        isCoverView: true
+      })
+    }
   }
 })

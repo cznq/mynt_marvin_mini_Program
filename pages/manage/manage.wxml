@@ -12,15 +12,15 @@
         <view class='bottom'>
           <view class='c c1'>
             <view class='name'>联系方式</view>
-            <view class='con _txt_blue_c'>{{cd.phone}}</view>
+            <view class='con _txt_blue_c'>{{cd.phone?cd.phone:' —'}}</view>
           </view>
           <view class='c c2'>
             <view class='name'>行业</view>
-            <view class='con'></view>
+            <view class='con'>{{'—'}}</view>
           </view>
           <view class='c c3'>
             <view class='name'>位置</view>
-            <view class='con addressw _ellipsis'>{{cd.area}}</view>
+            <view class='con addressw _ellipsis'>{{cd.area?cd.area:' _'}}</view>
           </view>
         </view>
       </view>
@@ -59,19 +59,21 @@
       <view>{{headlinesT1}}</view>
       <view class='t2'>{{headlinesT2}}</view>
     </view>
-    <swiper class='swiper-box' indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
+    <swiper class='swiper-box' indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" current = "{{current}}" bindchange="intervalChange">
       <block wx:for="{{imgUrls}}" wx:key="">
         <swiper-item>
           <image src="{{item.url}}" class="slide-image" />
-          <view class='copywriting'>
-            <view class='title _fontw600'>{{item.title}}</view>
-            <view class='content'>
-              <text>{{item.content}}</text>
-            </view>
-          </view>
         </swiper-item>
       </block>
     </swiper>
+    <view class='zwc'>
+      <view wx:for="{{imgUrls}}" wx:key="" class='copywriting' wx:if="{{isSwiperText[index]==false?false:true}}">
+        <view class='title _fontw600'>{{item.title}}</view>
+        <view class='content'>
+          <text>{{item.content}}</text>
+        </view>
+      </view>
+    </view>
     <view class='footer_s {{isiphoneX ? "footer_x" : ""}}'>
       <button class="_button" bindtap="joinCompany">{{button_text}}</button>
       <view class='copy'>

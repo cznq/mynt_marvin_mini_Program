@@ -1,3 +1,5 @@
+<wxs src="../../../wxs/subutil.wxs" module="tools" />
+
 <view class="page">
   <view class="page_hd">
   
@@ -8,15 +10,15 @@
       <view class="card-info _txt_center">
         <image class="_logo" src="{{avatar}}"></image>
         <view class="_name _font44 _fontw600 _flex _flex_justify_center _flex_item_center">
-          <text>员工电梯卡</text>
+          <text>{{title}}</text>
         </view>
         <view class="_short_name _font24">对准电梯扫码口扫描二维码上楼</view>
         
           <view class="e-card-qrcode">
-            <image src="{{floor_qrcode_url}}" wx:if="{{floor_qrcode_url}}"></image>
-            <view class="error _font28 _txt_center" wx:else>获取二维码失败</view>
+            <image src="{{floor_qrcode_url}}" wx:if="{{!error_msg}}"></image>
+            <view class="error _font28 _txt_center" wx:else><text>{{error_msg}}</text></view>
           </view>
-          <view class="_font24 qr-intro">该码实时更新，请勿泄露。</view>
+          <view class="_font24 qr-intro"><text>{{qrcode_tips}}</text><text class="refreshBtn" bindtap="refreshQrcode">点击刷新</text></view>
         
       </view>
 
@@ -28,7 +30,7 @@
         </view>
         <view class=" _address _flex ">
           <view class="int-item-name _font24">详细地址</view>
-          <view class="_font28 int-item-info">{{cmpInfo.floor}}层 {{cmpInfo.room}}室</view>
+          <view class="_font28 int-item-info">{{tools.removeFloor(cmpInfo.floor)}}层 {{cmpInfo.room}}室</view>
         </view>
         <navigator url="/pages/company/otherCompany/index?company_code={{cmpInfo.company_code}}" hover-class="none">
         <view class="company-card _flex _flex_item_center _flex_space_between">
@@ -49,9 +51,9 @@
 
     <view class="page_ft">
       <view class="_sec">
-          <view class="int-item-name _font38 know-list-title _fontw600">到访须知</view>
-          <view class="know-list _flex "><text class="_num">1.</text> <text>到达办公楼后，在大厅找到并唤醒服务机器人，机器人会主动将电梯卡发给您，无需登记直接刷卡上楼。</text></view>
-          <view class="know-list _flex"><text class="_num">2.</text> <text>如需了解要拜访的企业，可以点击邀请函的企业名或底部按钮进入企业主页了解企业详细信息。</text></view>
+          <view class="int-item-name _font38 know-list-title _fontw600">使用须知</view>
+          <view class="know-list _flex "><text class="_num">1.</text> <text>该页面可以在小觅智能楼宇服务微信公众号 - 我的 - 员工电梯码中找到。</text></view>
+          <view class="know-list _flex"><text class="_num">2.</text> <text>使用时将该页面对准电梯内的二维码识别区，电梯会激活您公司的楼层。</text></view>
 
         </view>
 

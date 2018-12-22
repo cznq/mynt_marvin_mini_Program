@@ -8,7 +8,9 @@
 .dis_b_n{border-bottom: 0;}
 .pj9{padding-bottom:26rpx;}
 .jjs{line-height:34rpx;padding-top:39rpx;}
-._font24{font-size:24rpx;padding-bottom:20rpx;}
+._font24{font-size:24rpx;height: auto;}
 .text_a{line-height:40rpx;padding:10rpx 0;height:148rpx;}
 .viewshow{line-height: 40rpx;padding-top:12rpx;height: auto;}
 .disnone{display:none;}
+.jianjie{line-height:32rpx;padding-top:10rpx;}
+.zsnr{height: auto;padding-bottom:30rpx;}

@@ -29,8 +29,8 @@
 }
 
 .menu-list {
-  line-height: 1;
-  font-size: 24rpx;
+  line-height: 1.4;
+  font-size: 28rpx;
   color: #fd4747;
-  margin: 15rpx 0;
+  margin: 10rpx 0;
 }

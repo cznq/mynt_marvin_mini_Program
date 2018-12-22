@@ -1,0 +1,11 @@
+var removeFloor = function (floor) {
+  
+  if (floor.indexOf('层' !== -1)) {
+    floor = floor.replace('层', '');
+    return floor;
+  } else {
+    return floor;
+  }
+}
+
+module.exports.removeFloor = removeFloor;

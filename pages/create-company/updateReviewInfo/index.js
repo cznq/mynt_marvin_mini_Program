@@ -3,6 +3,8 @@ var toast = require('../../../templates/showToast/showToast');
 var md5 = require('../../../utils/md5.js');
 Page({
   data: {
+    version: app.globalData.version,
+    isiphoneX: app.globalData.isIphoneX,
     mainTitle: '上传企业资料',
     button_text: '提交',
     hint: '以下资料需经过楼宇管理员审核，严禁上传色情、\n暴力、血腥、骇人或政治相关内容的图片',
