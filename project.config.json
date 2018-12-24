@@ -30,13 +30,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 23,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "申请发卡",
-					"pathName": "pages/invite-apply/invite-apply",
-					"query": "scene=17_234324",
+					"pathName": "pages/apply-visit/noAppointment/index",
+					"query": "scene=3UE83UE8_234324",
 					"scene": "1011"
 				},
 				{
