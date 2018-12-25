@@ -8,7 +8,8 @@ Page({
     company_id: '',//公司id
     company_code:'',//公司码
     is_force_visitor_input_info: '', //是否需要身份信息，0：否，1：是
-    take_card_ways: '' //刷卡方式，0:电子卡,1:实体卡
+    take_card_ways: '', //刷卡方式，0:电子卡,1:实体卡
+    disabled: false
   },
   onLoad: function(options) {
     var _this = this;
@@ -21,6 +22,18 @@ Page({
     var _this = this;
     var visitor_name = e.detail.value.name;
     var note = e.detail.value.reason;
+
+    if (_this.data.disabled==false){
+      _this.setData({
+        disabled:true
+      })
+    }
+
+    setTimeout(function(){
+      _this.setData({
+        disabled: false
+      })
+    },2000)
 
     if (e.detail.value.name !== '') {
       //不需要身份直接跳转
