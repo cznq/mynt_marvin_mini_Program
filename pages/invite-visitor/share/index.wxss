@@ -19,3 +19,6 @@
   height: 44rpx;
   margin-right: 12rpx;
 }
+.footer button[disabled] {
+  background: rgba(12, 206, 21, .2)
+}

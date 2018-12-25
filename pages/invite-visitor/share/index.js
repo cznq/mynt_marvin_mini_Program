@@ -14,7 +14,8 @@ Page({
     appointment_time: '',
     inviteInfo: {},
     companyInfo: null,
-    empInfo: null
+    empInfo: null,
+    shareBtn: true
   },
 
   /**
@@ -50,6 +51,7 @@ Page({
             empInfo: res.data.result
           });
         }
+        //提交邀请函
         app.Util.network.POST({
           url: app.globalData.BASE_API_URL,
           params: {
@@ -66,11 +68,12 @@ Page({
           success: res => {
             if (res.data.result.invitation_id) {
               that.setData({
-                invitation_id: res.data.result.invitation_id
+                invitation_id: res.data.result.invitation_id,
+                shareBtn: false
               })
             } else {
               wx.showToast({
-                title: '邀请失败',
+                title: '邀请提交失败',
                 icon: 'none'
               })
             }
@@ -104,40 +107,6 @@ Page({
         app.Util.generateMap(that, res.data.result.address);
       }
     })
-  },
-
-  /**
-   * 提交表单
-   * param: visitor_name, visit_intro, appointment_time
-   */
-  inviteSubmit: function (visitor_name, visit_intro, appointment_time, callback) {
-    
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'visitor',
-        method: 'invite',
-        data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session'),
-          visitor_name: visitor_name,
-          invitation_type: 0,
-          introduction: visit_intro,
-          appointment_time: appointment_time
-        })
-      },
-      success: res => {
-        console.log(res);
-        if (res.data.result.invitation_id) {
-          callback(res.data.result.invitation_id);
-        } else {
-          wx.showToast({
-            title: '提交失败',
-            icon: 'none'
-          })
-        }
-      },
-    })
-    
   },
 
   /**
