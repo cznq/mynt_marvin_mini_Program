@@ -8,7 +8,7 @@
 	})	 -->
 <template name="showToast">
   <block wx:if="{{showToast.isShow? showToast.isShow: false}}">
-    <view wx:if="{{showToast.version}}">
+    <block wx:if="{{showToast.version}}">
       <!-- 小与1.99版本 -->
       <view class="toast-bg" wx:if="{{showToast.mask==false? false : true}}"></view>
       <view class="toastPubStyle {{showToast.toastStyle}}">
@@ -21,8 +21,8 @@
           <view class='toast-sure' bindtap="bindToastSure" wx:if="{{showToast.isSure==false? false : true}}">{{showToast.sureText}}</view>
         </view>
       </view>
-    </view>
-    <cover-view wx:else>
+    </block>
+    <block wx:else>
       <!-- 大于1.99版本 -->
       <cover-view class="toast-bg" wx:if="{{showToast.mask==false? false : true}}"></cover-view>
       <cover-view class="toastPubStyle {{showToast.toastStyle}}">
@@ -35,6 +35,6 @@
           <cover-view class='toast-sure' bindtap="bindToastSure" wx:if="{{showToast.isSure==false? false : true}}">{{showToast.sureText}}</cover-view>
         </cover-view>
       </cover-view>
-    </cover-view>
+    </block>
   </block>
 </template>

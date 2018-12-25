@@ -114,7 +114,7 @@ Page({
       int = setInterval(function () {
         if (that.data.face == true && k > 2) {
           app.myLog('开始拍照', k);
-          that.takePhoto(that.data.ctx);
+          that.takePhoto(that.data.ctx, int);
         }
         if (k > 15) {
           wx.showToast({
@@ -135,7 +135,7 @@ Page({
   /**
    * 相机拍照
    */
-  takePhoto: function (ctx) {
+  takePhoto: function (ctx, timer) {
     app.myLog('调用相机拍照事件：', JSON.stringify(ctx));
     var that = this;
     ctx.takePhoto({
@@ -145,7 +145,7 @@ Page({
         that.setData({
           face: false
         })
-        that.getCanvasImg(res.tempImagePath);
+        that.getCanvasImg(res.tempImagePath, timer);
       },
       fail: function () {
         app.myLog("录入人脸失败", "相机拍照失败");
@@ -160,7 +160,7 @@ Page({
   /**
    * 上传图片
    */
-  uploadCanvasImg(canvasImg, company_id, op_type, user_type, phone, id_type, id_number, callback = function () {}) {
+  uploadCanvasImg(canvasImg, timer, company_id, op_type, user_type, phone, id_type, id_number, callback = function () {}) {
     var that = this;
     var data = JSON.stringify({
       union_id: wx.getStorageSync('xy_session'),
@@ -203,6 +203,7 @@ Page({
         if (data.sub_code == 0) {
           console.log('++++++++++++' + data.sub_code + '+++++++++' + data.sub_code);
           wx.showLoading({ title: '人脸上传中' });
+          clearInterval(timer);
           callback();
         } else {
           that.setData({
@@ -219,7 +220,7 @@ Page({
   /**
    * Canvas画图，压缩并获取图片
    */
-  getCanvasImg: function (tempFilePath) {
+  getCanvasImg: function (tempFilePath, timer) {
     var that = this;
     const ctxv = wx.createCanvasContext('attendCanvasId');
     ctxv.drawImage(tempFilePath, 0, 0, 300, 300);
@@ -234,7 +235,7 @@ Page({
           
           if (that.data.options.source == 'invite') {
             var op_type = 0, user_type = 0;
-            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
+            that.uploadCanvasImg(res.tempFilePath, timer, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
               app.receiveSubmit(that.data.options.params.invitation_id, that.data.options.params.form_id, function () {
                 wx.hideLoading();
                 wx.redirectTo({
@@ -245,7 +246,7 @@ Page({
             
           } else if (that.data.options.source == 'applyVisit') {
             var op_type = 0, user_type = 0;
-            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.visit_company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
+            that.uploadCanvasImg(res.tempFilePath, timer, that.data.options.params.visit_company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
               app.applySubmit(that.data.options.params.visit_company_id, that.data.options.params.form_id, that.data.options.params.visitor_name, that.data.options.params.note, function (visit_apply_id) {
                 wx.hideLoading();
                 wx.redirectTo({
@@ -256,7 +257,7 @@ Page({
            
           } else if (that.data.options.source == 'takeCard') {
             var op_type = 0, user_type = 2;
-            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {              
+            that.uploadCanvasImg(res.tempFilePath, timer, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {              
               wx.hideLoading();
               if (that.data.options.params.card_type == 0) {
                 wx.redirectTo({
@@ -272,7 +273,7 @@ Page({
             
           } else if (that.data.options.source == 'editInfo') {
             var op_type = 0, user_type = 2;
-            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
+            that.uploadCanvasImg(res.tempFilePath, timer, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
               wx.hideLoading();
               wx.redirectTo({
                 url: '/pages/employee/homepage/index',
@@ -282,7 +283,7 @@ Page({
             
           } else if (that.data.options.source == 'reRecodeFace') {
             var op_type = 1, user_type = 2;
-            that.uploadCanvasImg(res.tempFilePath, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
+            that.uploadCanvasImg(res.tempFilePath, timer, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
               wx.hideLoading();
               wx.redirectTo({
                 url: '/pages/employee/homepage/index',
