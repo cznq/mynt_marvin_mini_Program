@@ -5,11 +5,17 @@ Page({
     isiphoneX: app.globalData.isIphoneX,
     button_text: "完成并预览",
     CstateCode: 1,
-    cd: {}
+    cd: {},
+    company_name:'',
+    company_short_name:''
   },
   onLoad: function(options) {
     var _this = this;
     _this.data.CstateCode = options.CstateCode;
+    _this.setData({
+      company_name: options.company_name,
+      company_short_name: options.company_short_name
+    })
     if (options.CstateCode == 1) {
       wx.setNavigationBarTitle({
         title: '创建公司'
