@@ -1,1 +1,44 @@
-<web-view src="{{view_web_url}}"></web-view>
+<!-- <view class='_content _top_gradient2 company-code'>
+  <view class='mainTitle'>{{mainTitle}}</view>
+  <form bindsubmit='formSubmit'>
+    <input class='inp' maxlength='8' name="realName" focus="{{isfocus}}"></input>
+    <view class='_fixed footer {{isiphoneX ? "footer_x" : ""}}'>
+      <button class="_button" bindtap="next" formType="submit">{{button_text}}</button>
+    </view>
+  </form>
+</view>
+<import src="../../../templates/showToast/showToast.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" /> -->
+<!--pages/apply-visit/reasonsVisiting/index.wxml-->
+<import src="../../../templates/inputError/inputError.wxml" />
+
+<view class='_content _top_gradient2 enterRealName'>
+  <view class='Name_header'>
+    <view class='recodeTitle _fontw600 _font60 _txt_center'>轻客智能科技</view>
+    <view class='recodeIntro _txt_center'>轻客智能科技（江苏）有限公司</view>
+  </view>
+  <view class='Name_content'>
+  <form bindsubmit='editSubmit' report-submit="{{true}}">
+    <view class='input_block'>
+      <view>
+        <text class='_font34 _txt_gray'>真实姓名</text>
+      </view>
+      <input class="input_text" name="name" placeholder-class='input_text_phc' placeholder='请输入您的姓名'></input>
+    </view>
+    <!-- <view class='input_block'>
+      <view>
+        <text class='_font34 _txt_gray'>到访事由（选填）</text>
+      </view>
+      <textarea class='textarea_text' placeholder-class='textarea_text_phc' name="reason" placeholder='请在这里描述您的到访事由，以便公司前台确认您的身份和到访意图。'>
+      
+      </textarea>
+    </view> -->
+
+    <view class='_fixed footer {{isiphoneX ? "footer_x" : ""}}'>
+      <button class="_button" bindtap="next" formType="submit" disabled="{{disabled}}">{{button_text}}</button>
+    </view>
+  </form>
+  </view>
+</view>
+<import src="../../../templates/showToast/showToast.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />

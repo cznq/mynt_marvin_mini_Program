@@ -2,10 +2,8 @@
 @import "../../../templates/showToast/showToast.wxss";
 
 page {
-  background: #f9fafb;
+  background: #FCFCFC;
 }
 
-.hint {
-  width: 277rpx;
-  margin: 139rpx auto 0 auto;
-}
+
+
