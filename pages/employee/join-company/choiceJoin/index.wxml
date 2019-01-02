@@ -1,22 +1,16 @@
 <view class='_content _top_gradient2'>
-  <view class="_flex step">
-    <view class='cur'></view>
-    <view></view>
-    <view></view>
-    <view></view>
-  </view>
-  <view class='mainTitle'>{{mainTitle}}</view>
-  <view class='c_block _relative' bindtap='bindcode'>
-    <view class="c_dot iconfont icon-jiantou"></view>
-    输入邀请码
-    <image src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/icon_yaoqingma.png' class="_absolute"></image>
-  </view>
-  <view class='c_block _relative' bindtap='bindscan'>
-    <view class="c_dot iconfont icon-jiantou"></view>
-    扫描二维码
-    <image src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/icon_erweima.png' class="_absolute"></image>
-  </view>
-  <view class='hint _font22 _txt_darkgrey _fontw300'>
-    <text>{{hint}}</text>
-  </view>
+    <view class='mainTitle'>{{mainTitle}}</view>
+    <view class='c_block _relative' bindtap='bindcode'>
+        <view class="c_dot iconfont icon-jiantou"></view>
+        输入邀请码
+        <image src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/icon_yaoqingma.png' class="_absolute"></image>
+    </view>
+    <view class='c_block _relative' bindtap='bindscan'>
+        <view class="c_dot iconfont icon-jiantou"></view>
+        扫描二维码
+        <image src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/icon_erweima.png' class="_absolute"></image>
+    </view>
+    <view class='hint _font22 _txt_darkgrey _fontw300'>
+        <text>{{hint}}</text>
+    </view>
 </view>

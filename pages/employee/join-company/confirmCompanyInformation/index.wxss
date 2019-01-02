@@ -2,60 +2,53 @@
 @import "../../../../templates/showToast/showToast.wxss";
 
 page {
-  background: #f9fafb;
+    background: #F9FAFB;
 }
 
-.addcompany-confirm {
-  padding-bottom: 41rpx;
+.enterRealName {
+    width: 670rpx;
+    height: auto;
+    border-radius: 10rpx;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0rpx 6rpx 20rpx 0rpx rgba(41, 56, 86, 0.04);
+    margin: 0 auto;
 }
 
-.c_block {
-  width: 680rpx;
-  height: 540rpx;
-  border-radius: 20rpx;
-  background: #fff;
-  margin: 0 auto;
+.enterRealName .Name_header .recodeTitle {
+    padding-top: 100rpx;
 }
 
-.c_block .img {
-  height: 228rpx;
-  overflow: hidden;
+.Name_content .input_block .textarea_text {
+    width: 500rpx;
 }
 
-.c_block .img image {
-  width: 100%;
-  height: 100%;
-  border-top-left-radius: 20rpx;
-  border-top-right-radius: 20rpx;
+.cview_logo {
+    margin-top: 114rpx;
 }
+
+.cview_no_logo {
+    margin-top: 60rpx;
+}
+
 
 .c_logo {
-  width: 123rpx;
-  height: 123rpx;
-  border-radius: 10rpx;
-  left: 50%;
-  margin-left: -61rpx;
-  top: 168rpx;
-  background: #fff;
-  border: 1rpx solid #ddd;
+    width: 123rpx;
+    height: 123rpx;
+    border-radius: 10rpx;
+    left: 50%;
+    margin-left: -61rpx;
+    top: 50rpx;
+    background: #fff;
+    border: 1rpx solid #ddd;
 }
 
 .c_logo image {
-  width: 100%;
-  height: 100%;
-  border-radius: 10rpx;
+    width: 100%;
+    height: 100%;
+    border-radius: 10rpx;
 }
 
-.t1 {
-  padding: 93rpx 0 3rpx 0;
-}
-
-.t2 {
-  padding-bottom: 25rpx;
-  border-bottom: 1rpx solid #f0f0f0;
-  margin-bottom: 20rpx;
-}
-
-.introduction {
-  padding: 0 20rpx 30rpx 20rpx;
+.input_block ._button {
+    width: 560rpx;
+    margin: 40rpx 0 15rpx 0;
 }

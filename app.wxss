@@ -870,3 +870,10 @@ input:-webkit-input-placeholder {
     height: 50rpx;
     padding: 64rpx 0;
 }
+
+.mynt_logo_white {
+    background: url("https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/white_logo%402x.png") no-repeat center center;
+    background-size: 280rpx;
+    height: 50rpx;
+    padding: 64rpx 0;
+}
