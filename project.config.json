@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 26,
+			"current": 43,
 			"list": [
 				{
 					"id": 0,
@@ -315,9 +315,9 @@
 				},
 				{
 					"id": 43,
-					"name": "公司",
-					"pathName": "pages/company/otherCompany/index",
-					"query": "company_code=6E433337",
+					"name": "检测是否登陆公众号",
+					"pathName": "pages/checkfollow/index",
+					"query": "",
 					"scene": "1011"
 				}
 			]

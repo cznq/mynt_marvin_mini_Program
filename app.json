@@ -48,7 +48,8 @@
     "pages/apply-visit/reasonsVisiting/index",
     "pages/apply-visit/applicationStatus/index",
     "pages/e-card/detail/index",
-    "pages/login/index"
+    "pages/login/index",
+    "pages/checkfollow/index"
 
   ],
   "subPackages": [
