@@ -23,7 +23,7 @@ page {
 }
 
 .cview_logo_invite {
-    height: 300rpx;
+    height: 200rpx;
 }
 
 .cview_logo {
@@ -31,11 +31,11 @@ page {
 }
 
 .cview_invite {
-    height: 226rpx;
+    height: 126rpx;
 }
 
 .cview_no_logo_invite {
-    height: 176rpx;
+    height: 76rpx;
 }
 
 .c_logo_invite {
@@ -44,7 +44,7 @@ page {
     border-radius: 10rpx;
     left: 50%;
     margin-left: -61rpx;
-    top: 253rpx;
+    top: 183rpx;
     background: #fff;
     border: 1rpx solid #ddd;
 }
@@ -59,6 +59,40 @@ page {
     background: #fff;
     border: 1rpx solid #ddd;
 }
+
+/*邀请信息*/
+._cview_show {
+    width: 650rpx;
+    margin: 46rpx 50rpx 0 50rpx;
+}
+
+._cview_show .invite_info {
+    float: left;
+}
+
+._cview_show .invite_icon {
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 60rpx;
+    background-color: #6092FE;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 60rpx;
+    font-size: 24rpx;
+    font-weight: 400;
+}
+
+._cview_show .invite_text {
+    height: 60rpx;
+    line-height: 60rpx;
+    margin-left: 19rpx;
+    width: 248rpx;
+    font-size: 36rpx;
+    font-weight: 500;
+    color: #1A2A4B;
+}
+
+
 
 .c_logo image,
 .c_logo_invite image {
