@@ -1,9 +1,14 @@
 <import src="../../../templates/inputError/inputError.wxml" />
-<view class='cview_logo' wx:if="{{cd.logo}}"></view>
-<view class='cview_no_logo' wx:else></view>
+<view class="cview_logo_invite" wx:if="{{cd.logo && invite_info}}"></view>
+<view class="cview_logo" wx:elif="{{cd.logo}}"></view>
+<view class="cview_invite" wx:elif="{{invite_info}}"></view>
+<view class="cview_no_logo_invite" wx:else></view>
 <view class='_content _top_gradient2 enterRealName'>
     <view class='Name_header'>
-        <view class='c_logo _absolute' wx:if="{{cd.logo}}">
+        <view class="c_logo_invite _absolute" wx:if="{{cd.logo && invite_info}}">
+            <image mode='aspectFill' src='{{cd.logo}}'></image>
+        </view>
+        <view class="c_logo _absolute" wx:elif="{{cd.logo}}">
             <image mode='aspectFill' src='{{cd.logo}}'></image>
         </view>
         <view class='recodeTitle _fontw600 _font60 _txt_center'>轻客智能科技</view>

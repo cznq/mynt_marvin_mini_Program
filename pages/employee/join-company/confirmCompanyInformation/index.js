@@ -6,7 +6,8 @@ Page({
         button_text: '提交申请',
         hint: '二维码与邀请码来自于企业内部人员的分享,可\n向企业员工或管理员索要',
         company_code: '',
-        showLoginModal: false
+        showLoginModal: false,
+        invite_info: false
     },
     onLoad: function(options) {
         var _this = this;
