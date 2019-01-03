@@ -2,14 +2,33 @@
 <view wx:if="{{ismanage==false? false : true}}">
   <view class='manage'>
     <view class='header'>
-      <view class='rim'>
+
         <view class='_relative top'>
           <image class='logo' wx:if="{{cd.logo}}" src='{{cd.logo}}' mode="{{mode}}"></image>
           <view class='t1 _ellipsis _fontw600'>{{cd.company_short_name}}</view>
           <view class='t2 _ellipsis'>{{cd.company_name}}</view>
           <view class='vipicon _absolute' wx:if="{{cd.service_suite==1}}"></view>
         </view>
-        <view class='bottom'>
+
+         
+
+
+        <swiper class='manage-swiper-box' indicator-dots="true" indicator-color="#cccccc" indicator-active-color="#999999" autoplay="true" interval="100000" duration="500" circular="true" current = "{{current}}" bindchange="swiperChange" previous-margin = "20rpx" next-margin="20rpx">
+      <block wx:for="{{imgurl_manage}}" wx:key="">
+        <swiper-item class="{{index == swiperCurrent ? ' active1' : ''}}">
+          <image src="{{item.url}}" class="slide-image1" />
+        </swiper-item>
+      </block>
+    </swiper>
+
+<view class="dots">
+    <block wx:for="{{imgurl_manage}}" wx:key="unique">
+      <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+    </block>
+  </view>
+
+
+        <!-- <view class='bottom'>
           <view class='c c1'>
             <view class='name'>联系方式</view>
             <view class='con _txt_blue_c'>{{cd.phone?cd.phone:' —'}}</view>
@@ -22,8 +41,8 @@
             <view class='name'>位置</view>
             <view class='con addressw _ellipsis'>{{cd.area?cd.area:' _'}}</view>
           </view>
-        </view>
-      </view>
+        </view> -->
+
     </view>
     <view class='section'>
       <view class='title'>企业应用</view>
@@ -33,7 +52,7 @@
           {{item.name}}
         </view>
       </view>
-      <view class='title'>企业服务</view>
+      <!-- <view class='title'>企业服务</view>
       <view class='content _clearfloat service'>
         <view class='block' wx:for="{{service}}" wx:for-index="idx" wx:key="key" style='background:{{item.backgroundColor}}' bindtap="{{item.bindtap}}" wx:if="{{item.isShow}}">
           <image class='s{{idx+1}}' src='{{item.pic}}'></image>
@@ -42,7 +61,7 @@
             <view class='t2'>{{item.text2}}</view>
           </view>
         </view>
-      </view>
+      </view> -->
     </view>
     <view class="adrim">
       <import src="../../templates/vipAd/vipAd.wxml" />
@@ -85,7 +104,7 @@
 </view>
 
 <!-- 审核中 -->
-<view wx:if="{{isexamine==false? false : true}}">
+<!-- <view wx:if="{{isexamine==false? false : true}}">
   <view class='s_hint _top_gradient3'>
     <view class='icon-cjcg _relative'>
       <view class="iconfont icon-chuangjiangongsichenggong3 _absolute"></view>
@@ -111,6 +130,6 @@
       <button class="_button _button_white" bindtap="withdraw">{{button_text_qx}}</button>
     </view>
   </view>
-</view>
+</view> -->
 <import src="../../templates/login.wxml" />
 <template is="login" data="{{showLoginModal: showLoginModal}}"></template>
