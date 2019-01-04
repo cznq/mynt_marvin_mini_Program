@@ -2,6 +2,7 @@ var app = getApp()
 Page({
   data: {
     isiphoneX: app.globalData.isIphoneX,
+    swiperCurrent: 0,
     showLoginModal: false,
     indicatorDots: true, //是否显示面板指示点
     indicatorColor: "#8891A9", //指示点颜色
@@ -11,7 +12,7 @@ Page({
     duration: 500, //滑动动画时长
     circular: true, //是否采用衔接滑动
     islogin: false, //创建公司&&加入公司首页
-    isexamine: false, //审核中
+    //isexamine: false, //审核中
     ismanage: false, //管理中心
     islock: true,
     role: '',
@@ -23,6 +24,23 @@ Page({
     button_text_qx: '取消申请',
     mode: 'aspectFill', //manage logo展示效果
     cd: {},
+    imgurl_manage:[
+      {
+        url: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/test1.png',
+        title: '',
+        bindtap: ''
+      },
+      {
+        url: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/test1.png',
+        title: '',
+        bindtap: ''
+      },
+      {
+        url: 'http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/test1.png',
+        title: '',
+        bindtap: ''
+      }
+    ],
     imgUrls: [{
         url: app.globalData.BASE_IMG_URl + 'welcome_one@2x.png',
         title: '优享智能服务',
@@ -76,6 +94,7 @@ Page({
       bindtap: '',
       isShow: false
     }],
+    /*
     service: [{
       url: '../company/unattended-setting/index',
       pic: app.globalData.BASE_IMG_URl + 'manage/m7.png',
@@ -93,22 +112,31 @@ Page({
       bindtap: 'takeCard',
       isShow: true
     }],
+    */
     server_input_pic_url: '',
     serviceStatus: '',
     isSwiperText:[true,false,false]//轮播文案
   },
   onLoad: function(options) {
     var _this = this;
-    _this.get_review_status(_this);
+    _this.get_review_status(_this);//获取用户状态
     _this.data.islock = false;
   },
   onShow: function() {
     var _this = this;
     if (_this.data.islock) {
-      _this.get_review_status(_this);
+      _this.get_review_status(_this);//获取用户状态
     }
     _this.data.islock = true;
 
+  },
+  swiperChange: function (e) {
+
+    this.setData({
+
+      swiperCurrent: e.detail.current  // current 改变时会触发 change 事件
+
+    })
   },
   //获取用户状态
   get_review_status: function(_this) {
@@ -129,7 +157,7 @@ Page({
             _this.data.role = resdata.role;
             _this.setData({
               islogin: false,
-              isexamine: false,
+              //isexamine: false,
               ismanage: true
             })
             /* ----- 企业应用显示权限 ----- */
@@ -147,6 +175,7 @@ Page({
               })
             }
 
+            /*
             wx.setNavigationBarTitle({
               title: '企业管理'
             })
@@ -158,26 +187,29 @@ Page({
                 timingFunc: 'easeIn'
               }
             })
-            //获取企业信息+自动值守
+            */
+
+            //获取企业信息
             _this.get_info();
             //管理中心-企业服务-员工取卡
-            _this.get_employeeCardAcquisition();
+            //_this.get_employeeCardAcquisition();
           }
+          /*
           if (resdata.employee_status === 2) {
             console.log('审核中页面');
             _this.setData({
               islogin: false,
-              isexamine: true,
+              //isexamine: true,
               ismanage: false,
               company_name: resdata.company_name,
               name: resdata.name
             })
-          }
+          }*/
           if (resdata.employee_status === "" || resdata.employee_status === 1 || resdata.employee_status === 3 || resdata.employee_status === 4) {
             console.log('创建&&加入公司首页');
             _this.setData({
               islogin: true,
-              isexamine: false,
+              //isexamine: false,
               ismanage: false,
             })
           }
@@ -207,6 +239,7 @@ Page({
 
   },
   //取消申请
+  /*
   withdraw: function() {
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
@@ -237,6 +270,8 @@ Page({
       }
     })
   },
+  */
+
   //管理中心-企业应用-公司信息
   editCompanyPages: function() {
     var _this = this;
@@ -263,6 +298,7 @@ Page({
     })
   },
   //管理中心-企业服务-自动值守
+  /*
   unattendedSetting: function() {
     var _this = this;
     wx.navigateTo({
@@ -276,6 +312,7 @@ Page({
       url: _this.data.service[1].url
     })
   },
+  */
   //轮播图文案信息
   intervalChange:function(e){
     var _this = this;
@@ -292,6 +329,7 @@ Page({
     }
   },
   //管理中心-企业服务-自动值守
+
   get_info:function(){
     var _this = this;
     //请求企业信息
@@ -310,6 +348,7 @@ Page({
           _this.setData({
             cd: res.data.result
           })
+          /*
           var attend_status = res.data.result.attend_status;
           app.getServiceStatus(_this, 'ATTEND_FUNCTION', function(){
            //服务判断
@@ -337,6 +376,7 @@ Page({
               }
             }
           });
+          */
         } else {
           console.log(res.data.sub_msg);
         }
@@ -346,7 +386,9 @@ Page({
       }
     })
   },
+
   //管理中心-企业服务-员工取卡-是否开启
+  /*
   get_employeeCardAcquisition:function(){
     var _this = this;
     app.Util.network.POST({
@@ -416,5 +458,6 @@ Page({
       }
     })
   }
+  */
 
 })

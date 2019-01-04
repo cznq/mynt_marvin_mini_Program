@@ -1,3 +1,7 @@
+<view class='Name_header _top_gradient2'>
+    <view class='recodeTitle _fontw600 _font60 _txt_center'>{{company_name}}</view>
+    <view class='recodeIntro _txt_center'>{{company_short_name}}</view>
+  </view>
 <view class="_content guide">
   <view class='step'>第一步</view>
   <view class='_txt_gray title'>企业基础信息</view>

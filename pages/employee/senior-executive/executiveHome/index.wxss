@@ -1,0 +1,60 @@
+/* pages/employee/executiveHome/index.wxss */
+page{
+    color: #1A2A4B;
+}
+.title{
+    line-height: 1;
+}
+.banner {
+    height: 580rpx;
+    width: 750rpx;
+}
+.banner .banner_pic{
+    width: 750rpx;
+}
+.intro{
+    padding: 0 60rpx;
+}
+.intro .top_info{
+    padding: 74rpx 34rpx 100rpx;
+}
+.intro .top_info .tit{
+    line-height: 1;
+    margin-bottom: 20rpx;
+}
+.boss_service_item{
+    padding-top: 40rpx;
+}
+._lft{
+    width: 120rpx;
+    height: 120rpx;
+    background-color: #F8F8F8;
+    border-radius: 100%;
+}
+._lft .icon{
+    width: 70rpx;
+    height: 70rpx;
+    margin: 25rpx;
+}
+._rgt{
+    padding: 0 30rpx 0 50rpx;
+}
+.add_executive,
+.learn_vip{
+    width: 496rpx;
+    margin: 108rpx auto 60rpx;
+}
+.add_executive button{
+    background-color: #007BFF;
+    color: #fff;
+    height: 90rpx;
+    width: 496rpx;
+}
+.learn_vip .vipicon{
+    margin-right: 16rpx;
+}
+.learn_vip ._btn{
+    background: linear-gradient(to right, #E9C395 , #D9A76B);
+    background: -webkit-linear-gradient(to right, #E9C395 , #D9A76B); 
+    color: #fff;
+}

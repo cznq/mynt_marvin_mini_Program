@@ -1,0 +1,10 @@
+/* pages/checkfollow/index.wxss */
+@import "../create-company/public/style.wxss";
+@import "../../templates/showToast/showToast.wxss";
+/*page{background: #f9fafb;}*/
+.checkfollow{padding-top:60rpx;}
+.image{margin:0 auto;display: block;}
+.radio{color:#1A2A4B;font-size:24rpx;padding-left:163rpx;padding-bottom:32rpx;display:block;font-weight: 300;}
+radio {transform:scale(0.6);margin:0 -14rpx 0 0; vertical-align:2rpx;}
+button[disabled]{background:rgba(0,123,255,0.2) !important;
+color:#ffffff !important;}

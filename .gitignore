@@ -2,3 +2,6 @@ node_modules/*
 .DS_Store
 
 package-lock.json
+jsconfig.json
+.vscode/settings.json
+typings/wx.d.ts

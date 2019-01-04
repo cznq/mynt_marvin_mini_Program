@@ -40,7 +40,6 @@
     "pages/company/otherCompany/index",
     "pages/company/webview/index",
     "pages/demo/iconfont/index",
-    
     "pages/demo/showToastDemo/index",
     "pages/invite-visitor/start/index",
     "pages/invite-visitor/guide/index",
@@ -52,7 +51,15 @@
     "pages/apply-visit/reasonsVisiting/index",
     "pages/apply-visit/applicationStatus/index",
     "pages/e-card/detail/index",
-    "pages/login/index"
+    "pages/login/index",
+    "pages/employee/senior-executive/executiveHome/index",
+    "pages/employee/senior-executive/bossList/index",
+    "pages/employee/senior-executive/fillName/index",
+    "pages/employee/senior-executive/bossShare/index",
+    "pages/employee/senior-executive/receive/index",
+    "pages/employee/senior-executive/success/index",
+    "pages/employee/senior-executive/addBoss/index",
+    "pages/checkfollow/index"
 
   ],
   "subPackages": [
@@ -65,8 +72,7 @@
         "pages/mall-home/mall-home",
         "pages/mall-detail/mall-detail",
         "pages/mall-comment/mall-comment",
-        "pages/suite-introduce/suite-introduce",
-        "pages/web-pay/index"
+        "pages/suite-introduce/suite-introduce"
       ]
     }
   ],

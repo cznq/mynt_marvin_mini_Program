@@ -76,6 +76,12 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
       fail: (res) => {
         app.myLog("请求错误", 'union_id:' + wx.getStorageSync('xy_session') + '\nopen_id:' + wx.getStorageSync('open_id') + '\n\n请求参数：\n' + JSON.stringify(requestHandler.params) + '\n\n接口返回信息：\n' + JSON.stringify(res))
         wx.hideLoading();
+        //未关注公众号跳转
+        if (res.return_code == 'NO_FOLLOW'){
+          wx.redirectTo({
+            url: '/pages/checkfollow/index.wxml',
+          })
+        }
         wx.showToast({
           title: '加载失败，请尝试刷新',
           icon: 'none'
