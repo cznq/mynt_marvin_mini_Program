@@ -122,6 +122,6 @@
       <button class="_button _button_white" bindtap="withdraw">{{button_text_qx}}</button>
     </view>
   </view>
-</view> -->
-<import src="../../templates/login.wxml" />
-<template is="login" data="{{showLoginModal: showLoginModal}}"></template>
+
+</view>
+

@@ -1,0 +1,26 @@
+<!--pages/employee/senior-executive/bossList/index.wxml-->
+<view class="page" style="padding-bottom:{{isIphoneX?'240':'160'}}rpx">
+    <view class="page__hd">
+        <text class="_font60 _fontw700">高管列表</text>
+    </view>
+    <view class="boss-list">  
+        <block wx:for="{{staffList.employee}}" wx:key="">
+            <!-- 先用role=2实现一下 -->
+            <view class="_list_item _flex _flex_space_between" wx:if="{{item.role == 2}}">
+                <view class="_lft _flex _flex_item_center">
+                    <view class="_family_name">{{item.first_name}}</view>
+                    <view class="_name _fontw500 _font34">{{item.employee_name}}</view>
+                </view>
+                <view class="_rgt _flex _flex_item_center">
+                    <text class="_font24 _txt_darkgrey">待激活</text>
+                </view>
+            </view>
+        </block>
+    </view>
+    <cover-view class="_fixed footer _boss {{isIphoneX?'iphonex':''}}">
+        <cover-view  class="_font24 _txt_darkgre tip">您目前还可以设置{{bossNum}}位高管</cover-view >
+        <cover-view class="_footer_btn">
+            <button class="_font32 _fontw500 _border_radius10" bindtap="goSelect" disabled="{{btnShow}}">添加高管</button>
+        </cover-view>
+    </cover-view>
+</view>

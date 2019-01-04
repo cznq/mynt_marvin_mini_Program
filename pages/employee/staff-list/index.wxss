@@ -1,6 +1,7 @@
 @import "../../../templates/showMenu/showMenu.wxss";
 @import "../../../templates/showToast/showToast.wxss";
 @import "../../../templates/noneData/noneData.wxss";
+@import "../public/style.wxss";
 
 page {
   background: #F9FAFB;
@@ -13,17 +14,25 @@ page {
 .iconfont.icon-tianjiayuangong {
   font-size: 52rpx;
 }
-.page__bd {
-  padding: 0 60rpx 84rpx;
-  background: #F9FAFB;
+.search { margin-top: 15px; }
+
+.setBar { background-color: #fff;padding: 0 60rpx;margin-top:30rpx;}
+.setBar ._list_item {
+  padding: 42rpx 0;
+  border-bottom:2rpx solid rgba(0,0,0,.1);
 }
-.new-staff-btn {
-  background: transparent;
-  border: 1px solid rgba(0,0,0,.1);
-  margin-top: 54rpx;
+.setBar navigator:last-child ._list_item {
+  border-bottom: none;
 }
+.setBar .iconfont { margin-right: 42rpx; font-size: 42rpx; }
+
 ._num_info {
   margin: 0 18rpx;
+}
+.staff_list {
+  background: #fff;
+  padding: 0 60rpx 24rpx;
+  margin-top: 30rpx;
 }
 .staff-list {
   padding-top: 30rpx;

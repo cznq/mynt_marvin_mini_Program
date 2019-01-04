@@ -108,8 +108,6 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     qqmapsdk.geocoder({
       address: address,
       success: function (res) {
-        console.log(res.result);
-        app.myLog("根据地址获取经纬度: ", " 地址：" + address + '返回：' + JSON.stringify(res.result));
         _this.setData({
           latitude: res.result.location.lat,
           longitude: res.result.location.lng

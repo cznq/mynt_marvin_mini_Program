@@ -4,23 +4,59 @@
 
 <block wx:if="{{!noneStaff}}">
 <view class="page">
-  <view class="page__hd _flex _flex_space_between _flex_item_center">
+  <view class="page__hd">
+    <view class="_flex _flex_space_between _flex_item_center">
       <text class="_font60 _fontw700">员工列表</text>
-    <navigator url="/pages/employee/invite-staff/index" hover-class="none" wx:if="{{role == 3}}">
-      <view class="iconfont icon-tianjiayuangong"></view>
-    </navigator>
+      <navigator url="/pages/employee/invite-staff/index" hover-class="none" wx:if="{{role == 3}}">
+        <view class="iconfont icon-tianjiayuangong"></view>
+      </navigator>
+    </view>
+    <!-- 搜索栏开始 -->
+    <form bindsubmit="searchSubmit">
+      <view class="search">
+        <input class="search-input _font24" type="text" name="search" placeholder="搜索" confirm-type="search" placeholder-class="search-placeholder" value="{{search}}" bindconfirm="searchSubmit" bindinput="searchInput"></input>
+        <button wx:if="{{clearSearchShow}}" class="btn clear-btn" bindtap="clearSearch"></button>
+        <button class="btn search-btn" form-type="submit"></button>
+      </view>
+    </form>
+    <!-- 搜索栏目结束 -->
   </view>
   <view class="page__bd">
-    <navigator url="/pages/employee/new-staff/index" hover-class="none" wx:if="{{staffList.apply_number && role==3}}">
-      <button class="new-staff-btn _flex _flex_justify_center  _flex_item_center _fontw500" >新员工<view class="_num_info">{{staffList.apply_number}}</view></button>
-    </navigator>
-
+    <view class="setBar">
+      <navigator url="/pages/employee/new-staff/index" hover-class="none" wx:if="{{staffList.apply_number && role==3}}">
+        <view class="_list_item _flex _flex_space_between">
+          <view class="_lft _flex _flex_item_center">
+            <view class="iconfont icon-qiantai"></view>
+            <view class="_name _fontw500">新员工</view>
+          </view>
+          <view class="_rgt _flex _flex_item_center">
+            <view class="_num_info">{{staffList.apply_number}}</view>
+          </view>
+        </view>
+      </navigator>
+      <navigator url="/pages/employee/new-staff/index" hover-class="none" wx:if="{{staffList.apply_number && role==3}}">
+        <view class="_list_item _flex _flex_space_between">
+          <view class="_lft _flex _flex_item_center">
+            <view class="iconfont icon-qiantai"></view>
+            <view class="_name _fontw500">管理员设置</view>
+          </view>
+        </view>
+      </navigator>
+      <navigator url="/pages/employee/new-staff/index" hover-class="none" wx:if="{{staffList.apply_number && role==3}}">
+        <view class="_list_item _flex _flex_space_between">
+          <view class="_lft _flex _flex_item_center">
+            <view class="iconfont icon-qiantai"></view>
+            <view class="_name _fontw500">老板设置</view>
+          </view>
+        </view>
+      </navigator>
+    </view>
     <block>
       <view class="staff_list">
       <!-- 管理员列表 -->
       <view class="admin-list">  
         <block wx:for="{{staffList.employee}}" wx:key="">
-        <view class="_list_item _flex _flex_space_between _role_admin" wx:if="{{item.role == 3}}">
+        <view class="_list_item _flex _flex_space_between _role_admin" wx:if="{{item.role == 3}}" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
           <view class="_lft _flex _flex_item_center">
             <view class="_family_name">{{item.first_name}}</view>
             <view class="_name _fontw500">{{item.employee_name}}</view>
@@ -34,7 +70,7 @@
       <!-- 前台列表 -->
       <view class="front-list">
         <block wx:for="{{staffList.employee}}" wx:key="">
-          <view class="_list_item _flex _flex_space_between _role_front" wx:if="{{item.role == 2}}">
+          <view class="_list_item _flex _flex_space_between _role_front" wx:if="{{item.role == 2}}" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
             <view class="_lft _flex _flex_item_center">
               <view class="_family_name">{{item.first_name}}</view>
               <view class="_name _fontw500">{{item.employee_name}}</view>
@@ -51,7 +87,7 @@
       <!-- 员工列表 -->
       <view class="staff-list">
       <block wx:for="{{staffList.employee}}" wx:key="">
-        <view class="_list_item _flex _flex_space_between _role_staff" wx:if="{{item.role == 1}}">
+        <view class="_list_item _flex _flex_space_between _role_staff" wx:if="{{item.role == 1}}" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
           <view class="_lft _flex _flex_item_center">
             <view class="_family_name">{{item.first_name}}</view>
             <view class="_name _fontw500">{{item.employee_name}}</view>
