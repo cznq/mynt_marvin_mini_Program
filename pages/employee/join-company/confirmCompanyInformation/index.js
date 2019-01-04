@@ -21,7 +21,6 @@ Page({
 
     },
     get_info: function() {
-
         var _this = this;
         app.Util.network.POST({
             url: app.globalData.BASE_API_URL,
@@ -93,7 +92,7 @@ Page({
         var _this = this;
         var form_id = e.detail.formId;
         wx.navigateTo({
-            url: '../enterRealName/index?company_code=' + _this.data.company_code + '&form_id=' + form_id
+            url: '../applyJoinResult/index?company_code=' + _this.data.company_code + '&form_id=' + form_id
         })
     }
 })
