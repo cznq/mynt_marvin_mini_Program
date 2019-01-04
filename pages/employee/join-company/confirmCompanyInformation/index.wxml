@@ -1,4 +1,4 @@
-<import src="../../../templates/inputError/inputError.wxml" />
+<import src="../../../../templates/inputError/inputError.wxml" />
 <view class="cview_logo_invite _cview_show _clearfloat" wx:if="{{cd.logo && invite_info}}">
     <view class="invite_info invite_icon _txtcenter">苏</view>
     <text class="invite_info invite_text">苏图邀请您加入</text>
@@ -42,5 +42,5 @@
     </view>
     <view class="mynt_logo_gray"></view>
 </view>
-<import src="../../../templates/showToast/showToast.wxml" />
+<import src="../../../../templates/showToast/showToast.wxml" />
 <template is="showToast" data="{{showToast: showToast}}" />
