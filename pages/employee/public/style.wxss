@@ -1,0 +1,64 @@
+/** 搜索框 **/
+.search-input {
+  background-color: rgba(136, 145, 169, 0.11);
+  border-radius: 10rpx;
+  padding: 0 30rpx;
+  height: 56rpx;
+}
+.search-placeholder {
+  color: rgba(136, 145, 169, .3);
+}
+/**  员工详情页 **/
+
+.avatar {
+  width: 170rpx;
+  height: 170rpx;
+  border-radius: 50%;
+  margin-top: -85rpx;
+  color: #fff;
+  line-height: 170rpx;
+  text-align: center;
+  box-shadow: 6rpx 0 92rpx rgba(43, 51, 72, 0.12);
+}
+.avatar.leader {
+  background-color: rgba(249, 146, 47, 1);
+}
+.avatar.admin {
+  background-color: rgba(72, 79, 98, 1);
+}
+.avatar.employee {
+  background-color: rgba(96, 146, 254, 1);
+}
+._flex {
+  flex-direction: column;
+}
+._name {
+  line-height: 1;
+  margin-top: 40rpx;
+}
+._role {
+  color: rgba(136, 145, 169, 1);
+  border-radius: 6rpx;
+  border: 2rpx solid rgba(0, 0, 0, 0.1);
+  margin-top: 20rpx;
+  padding: 14rpx 20rpx 12rpx 20rpx;
+}
+.list-info {
+  padding: 0 60rpx;
+}
+.label {
+  color: rgba(136, 145, 169, 1);
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.info-value {
+  font-size: 32rpx;
+  color: rgba(26, 42, 75, 1);
+  line-height: 1;
+  margin-top: 24rpx;
+  padding-bottom: 38rpx;
+  border-bottom: 2rpx solid rgba(220, 220, 220, .5);
+}
+.list-item {
+  padding-top: 40rpx;
+}

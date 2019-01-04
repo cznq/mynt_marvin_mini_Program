@@ -14,6 +14,10 @@
     "pages/employee/staff-list/index",
     "pages/employee/invite-staff/index",
     "pages/employee/new-staff/index",
+    "pages/employee/staff-info/index",
+    "pages/employee/staff-apply/index",
+    "pages/employee/admin-list/index",
+
     "pages/create-company/enterpriseInformation/index",
     "pages/create-company/enterCompanyCode/index",
     "pages/create-company/enterRealName/index",
@@ -61,7 +65,8 @@
         "pages/mall-home/mall-home",
         "pages/mall-detail/mall-detail",
         "pages/mall-comment/mall-comment",
-        "pages/suite-introduce/suite-introduce"
+        "pages/suite-introduce/suite-introduce",
+        "pages/web-pay/index"
       ]
     }
   ],

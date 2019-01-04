@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 43,
 			"list": [
 				{
 					"id": 0,
@@ -315,9 +315,16 @@
 				},
 				{
 					"id": 43,
-					"name": "公司",
-					"pathName": "pages/company/otherCompany/index",
-					"query": "company_code=6E433337",
+					"name": "员工详情页",
+					"pathName": "pages/employee/admin-list/index",
+					"query": "",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "员工福利",
+					"pathName": "benifit/pages/suite-introduce/suite-introduce",
+					"query": "",
 					"scene": "1011"
 				}
 			]

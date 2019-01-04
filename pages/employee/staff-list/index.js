@@ -215,6 +215,13 @@ Page({
 
   onShow: function () {
     this.getStaffList();
+  },
+
+  viewPerInfo(e) {
+    var unionId = e.currentTarget.dataset.unionid;
+    wx.navigateTo({
+      url: '../staff-info/index?union_id=' + unionId,
+    })
   }
 
 })

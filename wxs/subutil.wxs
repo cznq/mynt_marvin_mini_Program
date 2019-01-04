@@ -8,4 +8,25 @@ var removeFloor = function (floor) {
   }
 }
 
+var transRoleName = function (role) {
+  if (role == 1) {
+    return '员工';
+  } else if (role == 2) {
+    return '前台';
+  } else if (role == 3) {
+    return '管理员';
+  }
+}
+
+var transRoleClassName = function (role) {
+  if (role == 1) {
+    return 'employee';
+  } else if (role == 2) {
+    return 'leader';
+  } else if (role == 3) {
+    return 'admin';
+  }
+}
+module.exports.transRoleClassName = transRoleClassName;
 module.exports.removeFloor = removeFloor;
+module.exports.transRoleName = transRoleName;
