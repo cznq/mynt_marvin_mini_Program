@@ -2,60 +2,106 @@
 @import "../../../../templates/showToast/showToast.wxss";
 
 page {
-  background: #f9fafb;
+    background: #F9FAFB;
 }
 
-.addcompany-confirm {
-  padding-bottom: 41rpx;
+.enterRealName {
+    width: 670rpx;
+    height: auto;
+    border-radius: 10rpx;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0rpx 6rpx 20rpx 0rpx rgba(41, 56, 86, 0.04);
+    margin: 0 auto;
 }
 
-.c_block {
-  width: 680rpx;
-  height: 540rpx;
-  border-radius: 20rpx;
-  background: #fff;
-  margin: 0 auto;
+.enterRealName .Name_header .recodeTitle {
+    padding-top: 100rpx;
 }
 
-.c_block .img {
-  height: 228rpx;
-  overflow: hidden;
+.Name_content .input_block .textarea_text {
+    width: 500rpx;
 }
 
-.c_block .img image {
-  width: 100%;
-  height: 100%;
-  border-top-left-radius: 20rpx;
-  border-top-right-radius: 20rpx;
+.cview_logo_invite {
+    height: 200rpx;
+}
+
+.cview_logo {
+    height: 140rpx;
+}
+
+.cview_invite {
+    height: 126rpx;
+}
+
+.cview_no_logo_invite {
+    height: 76rpx;
+}
+
+.c_logo_invite {
+    width: 123rpx;
+    height: 123rpx;
+    border-radius: 10rpx;
+    left: 50%;
+    margin-left: -61rpx;
+    top: 183rpx;
+    background: #fff;
+    border: 1rpx solid #ddd;
 }
 
 .c_logo {
-  width: 123rpx;
-  height: 123rpx;
-  border-radius: 10rpx;
-  left: 50%;
-  margin-left: -61rpx;
-  top: 168rpx;
-  background: #fff;
-  border: 1rpx solid #ddd;
+    width: 123rpx;
+    height: 123rpx;
+    border-radius: 10rpx;
+    left: 50%;
+    margin-left: -61rpx;
+    top: 87rpx;
+    background: #fff;
+    border: 1rpx solid #ddd;
 }
 
-.c_logo image {
-  width: 100%;
-  height: 100%;
-  border-radius: 10rpx;
+/*邀请信息*/
+._cview_show {
+    width: 650rpx;
+    margin: 46rpx 50rpx 0 50rpx;
 }
 
-.t1 {
-  padding: 93rpx 0 3rpx 0;
+._cview_show .invite_info {
+    float: left;
 }
 
-.t2 {
-  padding-bottom: 25rpx;
-  border-bottom: 1rpx solid #f0f0f0;
-  margin-bottom: 20rpx;
+._cview_show .invite_icon {
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 60rpx;
+    background-color: #6092FE;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 60rpx;
+    font-size: 24rpx;
+    font-weight: 400;
 }
 
-.introduction {
-  padding: 0 20rpx 30rpx 20rpx;
+._cview_show .invite_text {
+    height: 60rpx;
+    line-height: 60rpx;
+    margin-left: 19rpx;
+    width: 248rpx;
+    font-size: 36rpx;
+    font-weight: 500;
+    color: #1A2A4B;
+}
+
+
+
+.c_logo image,
+.c_logo_invite image {
+    width: 100%;
+    height: 100%;
+    border-radius: 10rpx;
+}
+
+.input_block ._button {
+    width: 560rpx;
+    margin: 40rpx 0 15rpx 0;
 }

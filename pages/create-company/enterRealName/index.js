@@ -7,23 +7,24 @@ Page({
     button_text: '下一步',
     isfocus: true,
     CstateCode: 1,//1为创建 2为编辑
-    company_verify_code: ''
+    company_verify_code: '',
+    company_name:'',
+    company_short_name:''
   },
   onLoad: function (options) {
     var _this = this;
     _this.data.company_verify_code = options.company_verify_code;
-
-    //检测登陆
-    if (!(app.checkSession())) {
-      app.checkLogin().then(function (res) { })
-    }
-
+    _this.setData({
+      company_name:options.company_name,
+      company_short_name:options.company_short_name
+    })
+   
   },
   //提交数据
   formSubmit: function (e) {
     var _this = this;
     //获取真实姓名
-    var realName = e.detail.value.realName;
+    var realName = e.detail.value.name;
     if (realName !== '') {
       app.Util.network.POST({
         url: app.globalData.BASE_API_URL,
@@ -43,7 +44,7 @@ Page({
           console.log(res);
           if (res.data.sub_code == 0) {
             wx.redirectTo({
-              url: '../guide/index?CstateCode= ' + _this.data.CstateCode,
+              url: '../guide/index?CstateCode= ' + _this.data.CstateCode + '&company_name=' + _this.data.company_name + '&company_short_name=' + _this.data.company_short_name
             })
           } else {
             console.log(res.data.sub_msg);

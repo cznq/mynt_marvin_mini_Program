@@ -54,7 +54,7 @@ icon {
 
 .textarea_text {
   width: 570rpx;
-  height: 230rpx;
+  height: 170rpx;
   background: #f5f6f9;
   border: 1rpx solid #ededed;
   border-radius: 10rpx;

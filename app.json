@@ -54,7 +54,9 @@
     "pages/employee/senior-executive/bossShare/index",
     "pages/employee/senior-executive/receive/index",
     "pages/employee/senior-executive/success/index",
-    "pages/employee/senior-executive/addBoss/index"
+    "pages/employee/senior-executive/addBoss/index",
+    "pages/checkfollow/index"
+
   ],
   "subPackages": [
     {
