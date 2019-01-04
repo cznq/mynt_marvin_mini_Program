@@ -1,0 +1,43 @@
+<!--pages/employee/staff-apply/index.wxml-->
+<import src="../../../templates/showToast/showToast.wxml" /> 
+<wxs src="../../../wxs/subutil.wxs" module="tools" />
+
+<view class="page">
+  <view class="page__hd _txt_center _font28">
+    <view class=" _apply_title">申请加入贵公司</view>
+    <view class="_status _fontw600 refuse">已通过</view>
+  </view>
+  <view class="page__bd">
+    <view class="_flex _flex_item_center _flex_justify_center">
+      <view class="avatar {{tools.transRoleClassName(empInfo.role)}} _font68">Ti</view>   
+      <view class="_font36 _name _fontw600">{{empInfo.name}}</view> 
+    </view>
+    <view class="list-info">
+      <view class="list-item">
+        <view class="label">申请加入</view>
+        <view class="info-value">{{compInfo.company_name}}</view>
+      </view>
+      <view class="list-item">
+        <view class="label">姓名</view>
+        <view class="info-value">{{empInfo.name}}</view>
+      </view>
+      <view class="list-item">
+        <view class="label">申请理由</view>
+        <view class="info-value">{{tools.transRoleName(empInfo.role)}}</view>
+      </view>
+    </view>
+    
+  </view>
+
+  <view class="page_ft _fixed {{isIphoneX?'iphonex':''}}">
+    <form bindsubmit="receiveSubmit" report-submit="true">
+      <view class="_flex _flex_space_between">
+        <button form-type="submit" class="_button _refuse" id="inviteBtn">拒绝</button>
+        <button form-type="submit" class="_button" id="inviteBtn">同意</button>
+      </view>
+    </form>
+  </view>
+</view>
+
+<template is="showToast" data="{{showToast: showToast}}" />
+

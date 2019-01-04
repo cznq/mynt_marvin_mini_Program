@@ -7,7 +7,7 @@ Page({
         hint: '二维码与邀请码来自于企业内部人员的分享,可\n向企业员工或管理员索要',
         company_code: '',
         showLoginModal: false,
-        invite_info: false
+        invite_info: true
     },
     onLoad: function(options) {
         var _this = this;
@@ -21,7 +21,6 @@ Page({
 
     },
     get_info: function() {
-
         var _this = this;
         app.Util.network.POST({
             url: app.globalData.BASE_API_URL,
@@ -93,7 +92,7 @@ Page({
         var _this = this;
         var form_id = e.detail.formId;
         wx.navigateTo({
-            url: '../enterRealName/index?company_code=' + _this.data.company_code + '&form_id=' + form_id
+            url: '../applyJoinResult/index?company_code=' + _this.data.company_code + '&form_id=' + form_id
         })
     }
 })

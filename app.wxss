@@ -2,131 +2,11 @@
 @import 'weui.wxss';
 @import "templates/iconfont/iconfont.wxss";
 
-.container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 200rpx 0;
-    box-sizing: border-box;
-}
-
-#myMap {
-    width: 100%;
-    height: 420rpx;
-}
-
-.map-cover {
-    height: 150px;
-    width: 100%;
-    background-color: transparent;
-}
-
-.weui-form-preview.last:after {
-    border: none;
-}
-
-.blank-page {
-    text-align: center;
-    padding-top: 250px;
-    color: #acacac;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-/*
- * Login
- */
-
-.modal-mask {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: #000;
-    opacity: 0.6;
-    overflow: hidden;
-    z-index: 9000;
-    color: #fff;
-}
-
-.modal-dialog {
-    width: 540rpx;
-    overflow: hidden;
-    position: fixed;
-    top: 50%;
-    left: 0;
-    z-index: 9999;
-    background: #f9f9f9;
-    margin: -180rpx 105rpx;
-    border-radius: 20rpx;
-}
-
-.modal-title {
-    font-size: 36rpx;
-    color: #030303;
-    text-align: center;
-    width: 70rpx;
-    height: 70rpx;
-    margin: 0 auto;
-    margin-top: 16rpx;
-    background: #10aeff;
-    border-radius: 50%;
-}
-
-.modal-title text {
-    font-size: 26rpx;
-    line-height: 70rpx;
-    text-align: center;
-    color: #fff;
-    width: 70rpx;
-    height: 70rpx;
-}
-
-.modal-content {
-    margin: 0 auto;
-    padding: 24rpx 0 30rpx 0;
-    border-bottom: 1px solid #d8d5d5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content text {
-    font-size: 30rpx;
-    color: #353535;
-}
-
-.modal-footer {
-    display: flex;
-    height: 100rpx;
-    font-size: 30rpx;
-    line-height: 100rpx;
-}
-
-.btn-confirm {
-    width: 100%;
-    color: #38f;
-    text-align: center;
-    border-top: none;
-}
-
-.btn-confirm:after,
-.btn-confirm:after {
-    border: none;
-}
-
-/* switch 样式*/
-
-/*swtich背景色*/
-
-.wx-switch-input {
-    background: rgba(78, 222, 122, 1) !important;
-}
-
-/**app.wxss**/
+.container {height: 100%;display: flex;flex-direction: column;align-items: center;justify-content: space-between;padding: 200rpx 0;box-sizing: border-box;} 
+#myMap { width: 100%;height: 420rpx; }
+.map-cover { height: 150px;width: 100%;background-color: transparent;}
+.weui-form-preview.last:after {border:none;}
+.blank-page {text-align: center;padding-top: 250px;color: #acacac;font-weight: bold;font-size: 18px;}
 
 /* margin  */
 
@@ -792,7 +672,7 @@ input:-webkit-input-placeholder {
     border-radius: 8rpx;
     height: 76rpx;
     text-align: left;
-    padding: 32rpx 44rpx;
+    padding: 20rpx 44rpx;
     line-height: 40rpx;
     font-size: 34rpx;
     font-weight: bold;
@@ -813,11 +693,12 @@ input:-webkit-input-placeholder {
     background-size: 100%;
     display: inline-block;
 }
+.vipicon_gray{background: url(http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/diamond_gray.png) no-repeat;background-size: 100%;}
 
 .vipAd .vipicon {
-    width: 76rpx;
-    height: 66rpx;
-    right: 44rpx;
+    width: 50rpx;
+    height: 44rpx;
+    right: 20rpx;
     top: 37rpx;
 }
 

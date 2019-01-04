@@ -2,66 +2,47 @@
 <view wx:if="{{ismanage==false? false : true}}">
   <view class='manage'>
     <view class='header'>
-
-        <view class='_relative top'>
-          <image class='logo' wx:if="{{cd.logo}}" src='{{cd.logo}}' mode="{{mode}}"></image>
-          <view class='t1 _ellipsis _fontw600'>{{cd.company_short_name}}</view>
-          <view class='t2 _ellipsis'>{{cd.company_name}}</view>
-          <view class='vipicon _absolute' wx:if="{{cd.service_suite==1}}"></view>
+      <view class='_relative top'>
+        <image class='logo' wx:if="{{cd.logo}}" src='{{cd.logo}}' mode="{{mode}}"></image>
+        <view class='t1 _ellipsis _fontw600'>{{cd.company_short_name}}</view>
+        <view class='t2 _ellipsis'>{{cd.company_name}}</view>
+        <view class='vipicon _absolute' wx:if="{{cd.service_suite==1}}"></view>
+        <view wx:else class='vipicon vipicon_gray  _absolute '>
         </view>
-
-         
-
-
-        <swiper class='manage-swiper-box' indicator-dots="true" indicator-color="#cccccc" indicator-active-color="#999999" autoplay="true" interval="100000" duration="500" circular="true" current = "{{current}}" bindchange="swiperChange" previous-margin = "20rpx" next-margin="20rpx">
-      <block wx:for="{{imgurl_manage}}" wx:key="">
-        <swiper-item class="{{index == swiperCurrent ? ' active1' : ''}}">
-          <image src="{{item.url}}" class="slide-image1" />
-        </swiper-item>
-      </block>
-    </swiper>
-
-<view class="dots">
-    <block wx:for="{{imgurl_manage}}" wx:key="unique">
-      <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
-    </block>
-  </view>
-
-
-        <!-- <view class='bottom'>
-          <view class='c c1'>
-            <view class='name'>联系方式</view>
-            <view class='con _txt_blue_c'>{{cd.phone?cd.phone:' —'}}</view>
-          </view>
-          <view class='c c2'>
-            <view class='name'>行业</view>
-            <view class='con'>{{'—'}}</view>
-          </view>
-          <view class='c c3'>
-            <view class='name'>位置</view>
-            <view class='con addressw _ellipsis'>{{cd.area?cd.area:' _'}}</view>
-          </view>
-        </view> -->
-
+      </view>
+      <swiper class='manage-swiper-box' autoplay="true" interval="3000" duration="500" circular="true" bindchange="swiperChange" previous-margin="20rpx" next-margin="20rpx">
+        <block wx:for="{{imgurl_manage}}" wx:key="">
+          <swiper-item class="{{index == swiperCurrent ? ' active1' : ''}}">
+            <navigator url="{{item.link_url}}">
+              <image src="{{item.image_url}}" class="slide-image1" />
+            </navigator>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="dots">
+        <block wx:for="{{imgurl_manage}}" wx:key="unique">
+          <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+        </block>
+      </view>
     </view>
     <view class='section'>
-      <view class='title'>企业应用</view>
+      <view class='mod _clearfloat'>
+        <view class='home_invitation' bindtap='inviteVisitor'>
+          <image src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/icon_home_invitation@2x.png'></image>
+          邀请访客
+        </view>
+        <view class='home_welfare' bindtap='suiteIntroduce'>
+          <image src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/icon_home_welfare@2x.png'></image>
+          员工福利
+        </view>
+      </view>
       <view class='content _clearfloat application'>
         <view wx:for="{{application}}" wx:for-index="idx" wx:key="key" class='block' bindtap="{{item.bindtap}}" wx:if="{{item.isShow}}">
           <image class="m{{idx+1}}" src='{{item.pic}}'></image>
+          <view class='news' wx:if="{{item.news}}">{{cd.apply_number}}</view>
           {{item.name}}
         </view>
       </view>
-      <!-- <view class='title'>企业服务</view>
-      <view class='content _clearfloat service'>
-        <view class='block' wx:for="{{service}}" wx:for-index="idx" wx:key="key" style='background:{{item.backgroundColor}}' bindtap="{{item.bindtap}}" wx:if="{{item.isShow}}">
-          <image class='s{{idx+1}}' src='{{item.pic}}'></image>
-          <view class='con'>
-            <view class='t1'>{{item.text1}}</view>
-            <view class='t2'>{{item.text2}}</view>
-          </view>
-        </view>
-      </view> -->
     </view>
     <view class="adrim">
       <import src="../../templates/vipAd/vipAd.wxml" />
@@ -69,8 +50,6 @@
     </view>
   </view>
 </view>
-
-
 <!--登陆页面-->
 <view wx:if="{{islogin==false? false : true}}">
   <view class='login'>
@@ -78,7 +57,8 @@
       <view>{{headlinesT1}}</view>
       <view class='t2'>{{headlinesT2}}</view>
     </view>
-    <swiper class='swiper-box' indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" current = "{{current}}" bindchange="intervalChange">
+    <swiper class='swiper-box' indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" current="{{current}}"
+      bindchange="intervalChange">
       <block wx:for="{{imgUrls}}" wx:key="">
         <swiper-item>
           <image src="{{item.url}}" class="slide-image" />
@@ -102,34 +82,3 @@
     </view>
   </view>
 </view>
-
-<!-- 审核中 -->
-<!-- <view wx:if="{{isexamine==false? false : true}}">
-  <view class='s_hint _top_gradient3'>
-    <view class='icon-cjcg _relative'>
-      <view class="iconfont icon-chuangjiangongsichenggong3 _absolute"></view>
-      <view class="iconfont icon-chuangjiangongsichenggong2 _absolute"></view>
-      <view class="iconfont icon-dengdaitongguo _absolute"></view>
-    </view>
-    <view class='_font32 text _txt_lightblue'>申请已提交，等待企业通过...</view>
-  </view>
-  <view class='_content company-sh'>
-    <view class='input_block '>
-      <view>
-        <text class='_font24 _txt_darkgrey'>申请人</text>
-      </view>
-      <input class='input_text' disabled='false ' value='{{name}}'></input>
-    </view>
-    <view class='input_block'>
-      <view>
-        <text class='_font24 _txt_darkgrey'>申请加入</text>
-      </view>
-      <input class='input_text' disabled='false ' value='{{company_name}}'></input>
-    </view>
-    <view class='_fixed footer'>
-      <button class="_button _button_white" bindtap="withdraw">{{button_text_qx}}</button>
-    </view>
-  </view>
-</view> -->
-<import src="../../templates/login.wxml" />
-<template is="login" data="{{showLoginModal: showLoginModal}}"></template>

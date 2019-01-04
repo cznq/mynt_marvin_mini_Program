@@ -1,0 +1,74 @@
+.content {
+    width: 750rpx;
+    height: 1624rpx;
+    background: #FFFFFF;
+}
+
+/*申请成功*/
+
+.content .applySuccessImg {
+    width: 750rpx;
+    height: auto;
+    display: flex;
+    padding-top: 140rpx;
+    align-items: center;
+}
+
+.content .applySuccessImg image {
+    width: 170rpx;
+    height: 170rpx;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.content .applySuccessNotice {
+    width: 750rpx;
+    padding-top: 39rpx;
+    text-align: center;
+}
+
+.content .applySuccessNotice text {
+    height: 40rpx;
+    font-size: 36rpx;
+    font-weight: 500;
+    color: #1A2A4B;
+    line-height: 38rpx;
+}
+
+/*申请失败,已加入过其他公司*/
+.content .applyFail {
+    width: 750rpx;
+    padding-top: 276rpx;
+    height: auto;
+    text-align: center;
+}
+
+.content .applyFail .t1 {
+    width: 100%;
+    float: left;
+    height: 51rpx;
+    font-size: 54rpx;
+    font-weight: 500;
+    color: #1A2A4B
+}
+
+.content .applyFail .t2 {
+    width: 100%;
+    float: left;
+    padding-top: 32rpx;
+    padding-bottom: 92rpx;
+    height: 32rpx;
+    font-size: 34rpx;
+    font-weight: 400;
+    color: #8891A9;
+    opacity: 0.8;
+}
+
+.content .applyFail button {
+    width: 339rpx;
+    height: 90rpx;
+    font-size: 34rpx;
+    font-weight: 300;
+    background: #007BFF;
+    border-radius: 10rpx;
+}
