@@ -792,7 +792,7 @@ input:-webkit-input-placeholder {
     border-radius: 8rpx;
     height: 76rpx;
     text-align: left;
-    padding: 32rpx 44rpx;
+    padding: 20rpx 44rpx;
     line-height: 40rpx;
     font-size: 34rpx;
     font-weight: bold;
@@ -813,11 +813,12 @@ input:-webkit-input-placeholder {
     background-size: 100%;
     display: inline-block;
 }
+.vipicon_gray{background: url(http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/diamond_gray.png) no-repeat;background-size: 100%;}
 
 .vipAd .vipicon {
-    width: 76rpx;
-    height: 66rpx;
-    right: 44rpx;
+    width: 50rpx;
+    height: 44rpx;
+    right: 20rpx;
     top: 37rpx;
 }
 

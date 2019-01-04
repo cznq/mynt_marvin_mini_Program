@@ -60,59 +60,46 @@ Page({
     application: [{
       url: '',
       pic: app.globalData.BASE_IMG_URl + 'manage/m1.png',
-      name: '公司信息',
+      name: '企业信息',
       bindtap: 'editCompanyPages',
-      isShow: true
+      isShow: true,
+      news: false
     }, {
       url: '',
       pic: app.globalData.BASE_IMG_URl + 'manage/m2.png',
       name: '员工信息',
       bindtap: 'staffList',
-      isShow: true
+      isShow: true,
+      news:'2'
     }, {
       url: '',
-      pic: app.globalData.BASE_IMG_URl + 'manage/m3.png',
-      name: '访客列表',
-      bindtap: 'visitor',
-      isShow: true
+        pic: app.globalData.BASE_IMG_URl + 'manage/m4.png',
+        name: '邀请记录',
+        bindtap: 'invite',
+        isShow: true,
+        news: false
+    }, {
+        url: '',
+        pic: app.globalData.BASE_IMG_URl + 'manage/m3.png',
+        name: '访客列表',
+        bindtap: 'visitor',
+        isShow: true,
+        news: false
     }, {
       url: '',
-      pic: app.globalData.BASE_IMG_URl + 'manage/m4.png',
-      name: '邀请列表',
-      bindtap: 'invite',
-      isShow: true
-    }, {
-      url: '',
-      pic: app.globalData.BASE_IMG_URl + 'manage/m5.png',
-      name: 'VIP列表',
+      pic: app.globalData.BASE_IMG_URl + 'manage/m9.png',
+      name: '企业月报',
       bindtap: '',
-      isShow: false
+      isShow: true,
+        news: false
     }, {
       url: '',
-      pic: app.globalData.BASE_IMG_URl + 'manage/m6.png',
-      name: '前台列表',
+      pic: app.globalData.BASE_IMG_URl + 'manage/m10.png',
+      name: '邀请值守',
       bindtap: '',
-      isShow: false
+      isShow: true,
+      news: false
     }],
-    /*
-    service: [{
-      url: '../company/unattended-setting/index',
-      pic: app.globalData.BASE_IMG_URl + 'manage/m7.png',
-      text1: '自动值守',
-      text2: '未开启 >',
-      backgroundColor: '#F5F5FF',
-      bindtap: 'unattendedSetting',
-      isShow: true
-    }, {
-      url: '',
-      pic: app.globalData.BASE_IMG_URl + 'manage/m8.png',
-      text1: '员工取卡',
-      text2: '未开启 >',
-      backgroundColor: '#F0FAF7',
-      bindtap: 'takeCard',
-      isShow: true
-    }],
-    */
     server_input_pic_url: '',
     serviceStatus: '',
     isSwiperText:[true,false,false]//轮播文案
@@ -131,11 +118,9 @@ Page({
 
   },
   swiperChange: function (e) {
-
-    this.setData({
-
-      swiperCurrent: e.detail.current  // current 改变时会触发 change 事件
-
+    var _this = this;
+    _this.setData({
+      swiperCurrent: e.detail.current
     })
   },
   //获取用户状态
@@ -160,56 +145,31 @@ Page({
               //isexamine: false,
               ismanage: true
             })
-            /* ----- 企业应用显示权限 ----- */
-            if (resdata.role == 1) {
-              //普通员工
-              _this.setData({
-                'application[4].isShow': false, //vip列表
-                'application[5].isShow': false //前台列表
-              })
-            }
-            if (resdata.role == 2) {
-              //前台
-              _this.setData({
-                'application[5].isShow': false //前台列表
-              })
-            }
+            // /* ----- 企业应用显示权限 ----- */
+            // if (resdata.role == 1) {
+            //   //普通员工
+            //   _this.setData({
+            //     'application[4].isShow': false, //vip列表
+            //     'application[5].isShow': false //前台列表
+            //   })
+            // }
+            // if (resdata.role == 2) {
+            //   //前台
+            //   _this.setData({
+            //     'application[5].isShow': false //前台列表
+            //   })
+            // }
 
-            /*
-            wx.setNavigationBarTitle({
-              title: '企业管理'
-            })
-            wx.setNavigationBarColor({
-              frontColor: '#ffffff',
-              backgroundColor: '#092344',
-              animation: {
-                duration: 400,
-                timingFunc: 'easeIn'
-              }
-            })
-            */
 
             //获取企业信息
             _this.get_info();
-            //管理中心-企业服务-员工取卡
-            //_this.get_employeeCardAcquisition();
+
           }
-          /*
-          if (resdata.employee_status === 2) {
-            console.log('审核中页面');
-            _this.setData({
-              islogin: false,
-              //isexamine: true,
-              ismanage: false,
-              company_name: resdata.company_name,
-              name: resdata.name
-            })
-          }*/
+
           if (resdata.employee_status === "" || resdata.employee_status === 1 || resdata.employee_status === 3 || resdata.employee_status === 4) {
             console.log('创建&&加入公司首页');
             _this.setData({
               islogin: true,
-              //isexamine: false,
               ismanage: false,
             })
           }
@@ -344,6 +304,7 @@ Page({
       },
       success: res => {
         console.log(res);
+        res.data.result.service_suite = 0;
         if (res.data.sub_code == 0) {
           _this.setData({
             cd: res.data.result
