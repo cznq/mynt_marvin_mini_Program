@@ -4,7 +4,10 @@
     <text class="invite_info invite_text">苏图邀请您加入</text>
 </view>
 <view class="cview_logo" wx:elif="{{cd.logo}}"></view>
-<view class="cview_invite" wx:elif="{{invite_info}}"></view>
+<view class="cview_invite _cview_show" wx:elif="{{invite_info}}">
+    <view class="invite_info invite_icon _txtcenter">苏</view>
+    <text class="invite_info invite_text">苏图邀请您加入</text>
+</view>
 <view class="cview_no_logo_invite" wx:else></view>
 <view class='_content _top_gradient2 enterRealName'>
     <view class='Name_header'>
