@@ -9,14 +9,36 @@ Page({
   data: {
     isIphoneX: app.globalData.isIphoneX,
     version: app.globalData.version,
-    shareBtn: true
+    shareBtn: false,
+    companyInfo:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getCompanyInfo();
+  },
+  getCompanyInfo: function () {
+    var that = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_info',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session')
+        })
+      },
+      success: res => {
+        console.log(res.data);
+        if (res.data.result) {
+          that.setData({
+            companyInfo: res.data.result
+          })
+        }
+      }
+    })
   },
   backAction: function () {
     wx.navigateBack()
