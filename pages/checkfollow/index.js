@@ -17,6 +17,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var _this =this;
+    console.log(options)
+    //拼接url的参数
+    _this.data.url = '/' + options.route + '?' + options.opt
   },
   //单选按钮
   radioChange:function(e){
@@ -44,11 +48,9 @@ Page({
       success: res => {
         console.log(res);
         if (res.data.sub_code==0){
-          console.log(res.data.result.follow);
-          res.data.result.follow =0
           if (res.data.result.follow == 1){
-            wx.navigateBack({
-              delta: 1
+            wx.redirectTo({
+              url: _this.data.url,
             })
           }else{
             toast.showToast(this, {

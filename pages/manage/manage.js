@@ -91,7 +91,6 @@ Page({
     var _this = this;
     _this.get_review_status(_this);//获取用户状态
     _this.data.islock = false;
-    _this.get_rotation_chart(_this);//获取轮播图
   },
   onShow: function() {
     var _this = this;
@@ -142,6 +141,8 @@ Page({
             // }
             //获取企业信息
             _this.get_info();
+            //获取轮播图
+            _this.get_rotation_chart(_this);
           }
           if (resdata.employee_status === "" || resdata.employee_status === 1 || resdata.employee_status === 3 || resdata.employee_status === 4) {
             console.log('创建&&加入公司首页');
