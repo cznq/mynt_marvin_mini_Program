@@ -35,8 +35,8 @@ Page({
                 console.log(res);
                 var resdata = res.data.result;
                 if (res.data.sub_code == 0) {
-                    // if (resdata.employee_status === 2 || resdata.employee_status === 0) {
-                    if (resdata.employee_status === 10 || resdata.employee_status === 10) {
+                    if (resdata.employee_status === 2 || resdata.employee_status === 0) {
+                        // if (resdata.employee_status === 10 || resdata.employee_status === 10) {
                         wx.reLaunch({
                             url: '../../../manage/manage',
                         })
@@ -105,7 +105,7 @@ Page({
                         union_id: wx.getStorageSync('xy_session'),
                         open_id: wx.getStorageSync('open_id'),
                         name: realName,
-                        formId: formId,
+                        form_id: formId,
                         avatar: wx.getStorageSync('avatar'),
                         open_id_type: app.globalData.open_id_type,
                         application_reason: applicationReason
@@ -115,7 +115,11 @@ Page({
                     console.log(res);
                     if (res.data.sub_code == 0) {
                         wx.redirectTo({
-                            url: '../applyJoinResult/index?company_code=' + _this.data.company_code + '&result=' + false
+                            url: '../applyJoinResult/index?company_code=' + _this.data.company_code + '&result=' + true
+                        })
+                    } else if (res.data.sub_code == 100027 || res.data.sub_code == 100035) {
+                        wx.redirectTo({
+                            url: '../applyJoinResult/index?company_code=' + _this.data.company_code
                         })
                     } else {
                         console.log(res.data.sub_msg);
