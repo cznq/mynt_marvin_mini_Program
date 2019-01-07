@@ -19,7 +19,7 @@ Page({
       role: null
     },
     role: '',
-    scrollTop: 0
+    searchStaffList: []
   },
 
   /**
@@ -65,12 +65,7 @@ Page({
         })
       },
       success: res => {
-        console.log(res.data.result);
         if (res.data.result) {
-          for (var i = 0; i < res.data.result.employee.length; i++) {
-            res.data.result.employee[i].first_name = res.data.result.employee[i].employee_name.substring(0,1);
-            res.data.result.employee[i].last_name = res.data.result.employee[i].employee_name.substring(1);
-          }
           that.setData({
             staffList: res.data.result
           })
@@ -80,10 +75,6 @@ Page({
     })
   },
 
-  onPageScroll: function (e) {
-    console.log(e);
-    this.data.scrollTop = e.scrollTop;
-  },
   /**
    * 员工列表点击编辑
    */
@@ -209,9 +200,7 @@ Page({
     menu.hideMenu();
   },
 
-  preventTouchMove: function () {
-
-  },
+ 
 
   onShow: function () {
     this.getStaffList();
@@ -222,6 +211,37 @@ Page({
     wx.navigateTo({
       url: '../staff-info/index?union_id=' + unionId,
     })
+  },
+
+  searchInput: function(e) {
+    var searchValue = e.detail.value;
+    var allList = this.data.staffList.admin.concat(this.data.staffList.employee);
+    var searchResult = [];
+    if (searchValue) {
+      this.setData({
+        clearSearchShow: true,
+        searchStaffList: this.data.staffList
+      })
+    }
+    for(let i=0;i<allList.length;i++){
+      if (allList[i].employee_name.indexOf(searchValue) != -1){
+        searchResult.push(allList[i])
+      }
+    }
+    this.setData({ searchStaffList: searchResult})
+    
+  },
+
+  clearSearch: function() {
+    this.setData({ search: '', clearSearchShow: false });
+  },
+
+  inputFocus: function() {
+    this.setData({ searchModal: true })
+  },
+
+  searchCancel: function() {
+    this.setData({ searchModal: false })
   }
 
 })

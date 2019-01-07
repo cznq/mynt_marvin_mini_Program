@@ -7,7 +7,7 @@
   <view class="page__hd"></view>
   <view class="page__bd">
     <view class="_flex _flex_item_center _flex_justify_center">
-      <view class="avatar {{tools.transRoleClassName(empInfo.role)}} _font68">Ti</view>   
+      <view class="avatar {{tools.transRoleClassName(empInfo.role)}} _font68">{{tools.getFirstLetter(empInfo.name)}}</view>   
       <view class="_font36 _name _fontw600">{{empInfo.name}}</view> 
     </view>
     <view class="list-info">

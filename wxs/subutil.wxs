@@ -1,5 +1,4 @@
 var removeFloor = function (floor) {
-  
   if (floor.indexOf('层' !== -1)) {
     floor = floor.replace('层', '');
     return floor;
@@ -27,6 +26,16 @@ var transRoleClassName = function (role) {
     return 'admin';
   }
 }
+
+var getFirstLetter = function (name) {
+  if (name.length) {
+    return name.substring(0, 1)
+  } else {
+    return ''
+  }
+}
+
 module.exports.transRoleClassName = transRoleClassName;
 module.exports.removeFloor = removeFloor;
 module.exports.transRoleName = transRoleName;
+module.exports.getFirstLetter = getFirstLetter;

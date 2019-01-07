@@ -1,6 +1,7 @@
 <import src="../../../templates/showToast/showToast.wxml" /> 
 <import src="../../../templates/showMenu/showMenu.wxml" />
 <import src="../../../templates/noneData/noneData.wxml" /> 
+<wxs src="../../../wxs/subutil.wxs" module="tools" />
 
 <block wx:if="{{!noneStaff}}">
 <view class="page">
@@ -12,9 +13,9 @@
       </navigator>
     </view>
     <!-- 搜索栏开始 -->
-    <form bindsubmit="searchSubmit">
+    <form>
       <view class="search">
-        <input class="search-input _font24" type="text" name="search" placeholder="搜索" confirm-type="search" placeholder-class="search-placeholder" value="{{search}}" bindconfirm="searchSubmit" bindinput="searchInput"></input>
+        <input class="search-input _font24" type="text" name="search" placeholder="搜索" confirm-type="search" placeholder-class="search-placeholder" value="{{search}}" bindconfirm="searchSubmit" bindinput="searchInput" bindfocus="inputFocus"></input>
         <button wx:if="{{clearSearchShow}}" class="btn clear-btn" bindtap="clearSearch"></button>
         <button class="btn search-btn" form-type="submit"><text class="iconfont icon-sousuo _font48"></text></button>
       </view>
@@ -55,10 +56,10 @@
       <view class="staff_list">
       <!-- 管理员列表 -->
       <view class="admin-list">  
-        <block wx:for="{{staffList.employee}}" wx:key="">
+        <block wx:for="{{staffList.admin}}" wx:key="">
         <view class="_list_item _flex _flex_space_between _role_admin" wx:if="{{item.role == 3}}" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
           <view class="_lft _flex _flex_item_center">
-            <view class="_family_name">{{item.first_name}}</view>
+            <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
             <view class="_name _fontw500">{{item.employee_name}}</view>
           </view>
           <view class="_rgt _flex _flex_item_center">
@@ -69,10 +70,10 @@
       </view>
       <!-- 前台列表 -->
       <view class="front-list">
-        <block wx:for="{{staffList.employee}}" wx:key="">
+        <block wx:for="{{staffList.front_desk}}" wx:key="">
           <view class="_list_item _flex _flex_space_between _role_front" wx:if="{{item.role == 2}}" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
             <view class="_lft _flex _flex_item_center">
-              <view class="_family_name">{{item.first_name}}</view>
+              <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
               <view class="_name _fontw500">{{item.employee_name}}</view>
             </view>
             <view class="_rgt _flex _flex_item_center">
@@ -91,7 +92,7 @@
       <block wx:for="{{staffList.employee}}" wx:key="">
         <view class="_list_item _flex _flex_space_between _role_staff" wx:if="{{item.role == 1}}" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
           <view class="_lft _flex _flex_item_center">
-            <view class="_family_name">{{item.first_name}}</view>
+            <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
             <view class="_name _fontw500">{{item.employee_name}}</view>
           </view>
           <view class="_rgt _flex _flex_item_center">
@@ -115,7 +116,26 @@
 <block wx:else>
   <template is="noneDataPage" data="{{noneData: noneData}}" />
 </block>
-
+<view class="search-page" wx:if="{{searchModal}}">
+  <form bindsubmit="searchSubmit">
+    <view class="search">
+      <input class="search-input _font24" type="text" name="search" placeholder="搜索" confirm-type="search" placeholder-class="search-placeholder" value="{{search}}" bindconfirm="searchSubmit" bindinput="searchInput" focus='true'></input>
+      <button wx:if="{{clearSearchShow}}" class="btn clear-btn" bindtap="clearSearch"><text class="iconfont icon-cha1"></text></button>
+      <button class="btn cancel-btn _font28" bindtap="searchCancel">取消</button>
+    </view>
+  </form>
+  <block wx:for="{{searchStaffList}}" wx:key="">
+    <view class="_list_item _flex _flex_space_between _role_admin" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
+      <view class="_lft _flex _flex_item_center">
+        <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
+        <view class="_name _fontw500">{{item.employee_name}}</view>
+      </view>
+      <view class="_rgt _flex _flex_item_center">
+        <view class="iconfont icon-icon_guanliyuan admin _font36"></view>
+      </view>
+    </view>
+  </block>
+</view>
 
 <template is="showMenu" data="{{showMenu: showMenu}}" /> 
 <template is="showToast" data="{{showToast: showToast}}" />

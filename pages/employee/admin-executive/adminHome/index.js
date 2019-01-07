@@ -14,7 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //options.union_id
+    console.log(options.union_id)
     var that = this;
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
@@ -22,7 +22,8 @@ Page({
         service: 'company',
         method: 'get_employee_info',
         data: JSON.stringify({
-          union_id: options.union_id,
+          union_id: wx.getStorageSync('xy_session'),
+          employee_union_id: options.union_id
         })
       },
       success: res => {
