@@ -4,28 +4,28 @@
         <view class="_font48 _fontw600 wel-tit">尊敬的高管，您好。</view>
         <view class="_font28 wel-intro">您有一个新的邀请，等待您的接受。</view>
     </view>
-    <view class="page_bd">
+    <view class="page_bd {{invitation.company.company_logo?'':'noLogo'}}">
         <view class="invite-wrapper _receive">
             <view class="company-info _txt_center">
-                <image class="_logo" src="/images/employee.png"></image>
-                <navigator url="" hover-class="none">
+                <image class="_logo" src="{{invitation.company.company_logo}}" wx:if="{{invitation.company.company_logo}}"></image>
+                <navigator url="/pages/company/otherCompany/index?company_code={{invitation.company.company_code}}" hover-class="none">
                     <view class="_name _font44 _fontw600 _flex _flex_justify_center _flex_item_center">
-                      <text>轻客智能科技</text>
+                      <text>{{invitation.company.company_short_name}}</text>
                       <text class="iconfont icon-jiantou"></text>
                     </view>
                 </navigator>
-                <view class="_short_name _font24">轻客智能科技（江苏）有限公司</view>
+                <view class="_short_name _font24">{{invitation.company.company_name}}</view>
             </view>
             <view class="invite-info">
                 <view class="_sec">
-                    <view class="int-title _font38 _fontw600">尊敬的刘总：</view>
+                    <view class="int-title _font38 _fontw600">尊敬的{{invitation.visitor.visitor_name}}：</view>
                     <view class="_font28 int-intro">
                     <rich-text nodes="很荣幸邀请您成为我司的VIP，您可以享受我们的以下企业特权，烦请点击下方按钮接受邀请并开始享受特权。" bindtap="tap"></rich-text>
                     </view>
                 </view>
                 <view class="_sec">
                     <view class="int-item-name _font24">邀请人</view>
-                    <view class="_font32 int-item-info">王先生</view>
+                    <view class="_font32 int-item-info">{{invitation.employee_name}}</view>
                 </view>
             </view>
         </view>
@@ -53,7 +53,7 @@
     </view>
     <view class="page_ft">
         <form bindsubmit="receiveSubmit" report-submit="true">
-            <view class="footer _fixed receive_submit {{isIphoneX?'iphonex':''}}" wx:if="{{!version}}">
+            <view class="footer _fixed receive_submit {{isIphoneX?'iphonex':''}}" wx:if="{{version}}">
                 <button form-type="submit" class="_button" id="inviteBtn">接受邀请</button>
             </view>
             <view wx:else>
