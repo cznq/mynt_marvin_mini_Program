@@ -7,11 +7,33 @@ Page({
         hint: '二维码与邀请码来自于企业内部人员的分享,可\n向企业员工或管理员索要',
         company_code: '',
         showLoginModal: false,
-        invite_info: true
+        invite_info: false,
     },
     onLoad: function(options) {
         var _this = this;
         //检测登陆
+        if (options.invitation_id) {
+            app.Util.network.POST({
+                url: app.globalData.BASE_API_URL,
+                params: {
+                    service: 'visitor',
+                    method: 'get_invitation_info',
+                    data: JSON.stringify({
+                        union_id: wx.getStorageSync('xy_session')
+                    })
+                },
+                success: res => {
+                    if (res.data.sub_code == 0) {
+                        var resdata = res.data.result;
+                        _this.setData({
+                            invite_info: true,
+                            invite_person: resdata.employee_name,
+                            invite_person_first: resdata.employee_name.substring(0, 1)
+                        })
+                    }
+                }
+            });
+        }
         _this.get_info();
         if (!options.company_code) {
             _this.data.company_code = decodeURIComponent(options.scene);
@@ -35,7 +57,7 @@ Page({
                 console.log(res);
                 var resdata = res.data.result;
                 if (res.data.sub_code == 0) {
-                    if (resdata.role === 3) {
+                    if (resdata.role == 3) {
                         wx.reLaunch({
                             url: '../../../manage/manage',
                         })
