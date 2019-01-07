@@ -7,11 +7,34 @@ Page({
         hint: '二维码与邀请码来自于企业内部人员的分享,可\n向企业员工或管理员索要',
         company_code: '',
         showLoginModal: false,
-        invite_info: true
+        invite_info: false,
     },
     onLoad: function(options) {
         var _this = this;
-        //检测登陆
+        //判断是否有邀请
+        if (options.invitation_id) {
+            app.Util.network.POST({
+                url: app.globalData.BASE_API_URL,
+                params: {
+                    service: 'company',
+                    method: 'get_role_invitation_info',
+                    data: JSON.stringify({
+                        union_id: wx.getStorageSync('xy_session'),
+                        invitation_type: 1
+                    })
+                },
+                success: res => {
+                    if (res.data.sub_code == 0) {
+                        var resdata = res.data.result;
+                        _this.setData({
+                            invite_info: true,
+                            invite_person: resdata.inviter_name,
+                            invite_person_first: resdata.inviter_name.substring(0, 1)
+                        })
+                    }
+                }
+            });
+        }
         _this.get_info();
         if (!options.company_code) {
             _this.data.company_code = decodeURIComponent(options.scene);
@@ -26,7 +49,7 @@ Page({
             url: app.globalData.BASE_API_URL,
             params: {
                 service: 'company',
-                method: 'get_review_status',
+                method: 'get_employee_info',
                 data: JSON.stringify({
                     union_id: wx.getStorageSync('xy_session')
                 })
@@ -35,8 +58,7 @@ Page({
                 console.log(res);
                 var resdata = res.data.result;
                 if (res.data.sub_code == 0) {
-                    // if (resdata.employee_status === 2 || resdata.employee_status === 0) {
-                    if (resdata.employee_status === 10 || resdata.employee_status === 10) {
+                    if (resdata.role == 3) {
                         wx.reLaunch({
                             url: '../../../manage/manage',
                         })
@@ -93,7 +115,7 @@ Page({
         var realName = e.detail.value.name;
         var applicationReason = e.detail.value.reason;
         var formId = e.detail.formId;
-        var formId = '123123123dfsdf';
+        // var formId = '123123123dfsdf';
         if (realName !== '') {
             app.Util.network.POST({
                 url: app.globalData.BASE_API_URL,
@@ -105,7 +127,7 @@ Page({
                         union_id: wx.getStorageSync('xy_session'),
                         open_id: wx.getStorageSync('open_id'),
                         name: realName,
-                        formId: formId,
+                        form_id: formId,
                         avatar: wx.getStorageSync('avatar'),
                         open_id_type: app.globalData.open_id_type,
                         application_reason: applicationReason
@@ -114,8 +136,12 @@ Page({
                 success: res => {
                     console.log(res);
                     if (res.data.sub_code == 0) {
-                        wx.redirectTo({
-                            url: '../applyJoinResult/index?company_code=' + _this.data.company_code + '&result=' + false
+                        wx.reLaunch({
+                            url: '../applyJoinResult/index?company_code=' + _this.data.company_code + '&result=' + true
+                        })
+                    } else if (res.data.sub_code == 100027 || res.data.sub_code == 100035) {
+                        wx.reLaunch({
+                            url: '../applyJoinResult/index?company_code=' + _this.data.company_code
                         })
                     } else {
                         console.log(res.data.sub_msg);
@@ -124,11 +150,6 @@ Page({
                             title: res.data.sub_msg,
                             duration: 2000,
                             mask: false,
-                            cb: function() {
-                                _this.setData({
-                                    isfocus: true
-                                })
-                            }
                         });
                     }
                 },

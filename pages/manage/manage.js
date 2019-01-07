@@ -8,11 +8,10 @@ Page({
     indicatorColor: "#8891A9", //指示点颜色
     indicatorActiveColor: "#007BFF", //当前选中的指示点颜色
     autoplay: true, //是否自动切换
-    interval: 100000, //自动切换时间间隔
+    interval: 3000, //自动切换时间间隔
     duration: 500, //滑动动画时长
     circular: true, //是否采用衔接滑动
     islogin: false, //创建公司&&加入公司首页
-    //isexamine: false, //审核中
     ismanage: false, //管理中心
     islock: true,
     role: '',
@@ -92,7 +91,6 @@ Page({
     var _this = this;
     _this.get_review_status(_this);//获取用户状态
     _this.data.islock = false;
-    _this.get_rotation_chart(_this);//获取轮播图
   },
   onShow: function() {
     var _this = this;
@@ -143,6 +141,8 @@ Page({
             // }
             //获取企业信息
             _this.get_info();
+            //获取轮播图
+            _this.get_rotation_chart(_this);
           }
           if (resdata.employee_status === "" || resdata.employee_status === 1 || resdata.employee_status === 3 || resdata.employee_status === 4) {
             console.log('创建&&加入公司首页');

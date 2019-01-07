@@ -1,12 +1,12 @@
 <import src="../../../../templates/inputError/inputError.wxml" />
 <view class="cview_logo_invite _cview_show _clearfloat" wx:if="{{cd.logo && invite_info}}">
-    <view class="invite_info invite_icon _txtcenter">苏</view>
-    <text class="invite_info invite_text">苏图邀请您加入</text>
+    <view class="invite_info invite_icon _txtcenter">{{invite_person_first}}</view>
+    <text class="invite_info invite_text">{{invite_person}}邀请您加入</text>
 </view>
 <view class="cview_logo" wx:elif="{{cd.logo}}"></view>
 <view class="cview_invite _cview_show" wx:elif="{{invite_info}}">
-    <view class="invite_info invite_icon _txtcenter">苏</view>
-    <text class="invite_info invite_text">苏图邀请您加入</text>
+    <view class="invite_info invite_icon _txtcenter">{{invite_person_first}}</view>
+    <text class="invite_info invite_text">{{invite_person}}邀请您加入</text>
 </view>
 <view class="cview_no_logo_invite" wx:else></view>
 <view class='_content _top_gradient2 enterRealName'>
@@ -17,8 +17,8 @@
         <view class="c_logo _absolute" wx:elif="{{cd.logo}}">
             <image mode='aspectFill' src='{{cd.logo}}'></image>
         </view>
-        <view class='recodeTitle _fontw600 _font60 _txt_center'>轻客智能科技</view>
-        <view class='recodeIntro _txt_center'>轻客智能科技（江苏）有限公司</view>
+        <view class='recodeTitle _fontw600 _font60 _txt_center'>{{cd.company_short_name}}</view>
+        <view class='recodeIntro _txt_center'>{{cd.company_name}}</view>
     </view>
     <view class='Name_content'>
         <form bindsubmit='receiveSubmit' report-submit="true">
