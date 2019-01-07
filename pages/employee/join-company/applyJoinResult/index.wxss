@@ -65,10 +65,14 @@
 }
 
 .content .applyFail button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 339rpx;
     height: 90rpx;
     font-size: 34rpx;
     font-weight: 300;
+    color: #FFFFFF;
     background: #007BFF;
     border-radius: 10rpx;
 }
