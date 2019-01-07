@@ -17,8 +17,8 @@
         <view class="c_logo _absolute" wx:elif="{{cd.logo}}">
             <image mode='aspectFill' src='{{cd.logo}}'></image>
         </view>
-        <view class='recodeTitle _fontw600 _font60 _txt_center'>轻客智能科技</view>
-        <view class='recodeIntro _txt_center'>轻客智能科技（江苏）有限公司</view>
+        <view class='recodeTitle _fontw600 _font60 _txt_center'>{{cd.company_short_name}}</view>
+        <view class='recodeIntro _txt_center'>{{cd.company_name}}</view>
     </view>
     <view class='Name_content'>
         <form bindsubmit='receiveSubmit' report-submit="true">
