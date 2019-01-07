@@ -11,15 +11,16 @@ Page({
     },
     onLoad: function(options) {
         var _this = this;
-        //检测登陆
+        //判断是否有邀请
         if (options.invitation_id) {
             app.Util.network.POST({
                 url: app.globalData.BASE_API_URL,
                 params: {
-                    service: 'visitor',
-                    method: 'get_invitation_info',
+                    service: 'company',
+                    method: 'get_role_invitation_info',
                     data: JSON.stringify({
-                        union_id: wx.getStorageSync('xy_session')
+                        union_id: wx.getStorageSync('xy_session'),
+                        invitation_type: 1
                     })
                 },
                 success: res => {
@@ -27,8 +28,8 @@ Page({
                         var resdata = res.data.result;
                         _this.setData({
                             invite_info: true,
-                            invite_person: resdata.employee_name,
-                            invite_person_first: resdata.employee_name.substring(0, 1)
+                            invite_person: resdata.inviter_name,
+                            invite_person_first: resdata.inviter_name.substring(0, 1)
                         })
                     }
                 }
