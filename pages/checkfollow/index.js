@@ -1,11 +1,13 @@
 // pages/checkfollow/index.js
 var app = getApp();
+var toast = require('../../templates/showToast/showToast');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    isiphoneX: app.globalData.isIphoneX,
     button_text:'我已关注',
     disabled:true,
     checked:false
@@ -15,19 +17,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var _this = this;
-    //_this.data.islock = false;
   },
-  // onShow: function () {
-  //   var _this = this;
-  //   console.log(_this.data.islock);
-  //   if (_this.data.islock){
-  //     console.log('fffff');
-  //     var _this = this;
-  //     _this.getEmployeeInfo();
-  //   }
-  // },
-
+  //单选按钮
   radioChange:function(e){
     var _this = this;
     _this.setData({
@@ -36,7 +27,7 @@ Page({
     })
   },
   /**
-    * 获取员工信息
+    * 检查是否关注
     */
   getEmployeeInfo: function () {
     var _this = this;
@@ -44,8 +35,8 @@ Page({
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
-        service: 'company',
-        method: 'get_employee_info',
+        service: 'oauth',
+        method: 'check_follow',
         data: JSON.stringify({
           union_id: unionId,
         })
@@ -53,22 +44,32 @@ Page({
       success: res => {
         console.log(res);
         if (res.data.sub_code==0){
-          _this.setData({
-            disabled: false,
-            checked: true
+          console.log(res.data.result.follow);
+          res.data.result.follow =0
+          if (res.data.result.follow == 1){
+            wx.navigateBack({
+              delta: 1
+            })
+          }else{
+            toast.showToast(this, {
+              toastStyle: 'toast toast2',
+              title: '为更好使用楼宇服务\n请先关注公众号',
+              duration: 2000,
+              mask: false,
+              isArrow: true
+            });
+            _this.setData({
+              disabled: true,
+              checked: false
           })
+          }
         }
       }
     })
   },
+  //我已关注按钮
   next:function(){
     var _this = this;
     _this.getEmployeeInfo();
-  },
-  ddd:function(){
-    wx.navigateTo({
-      url: '/pages/manage/manage'
-    })
   }
-
 })
