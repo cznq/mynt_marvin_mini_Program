@@ -10,12 +10,16 @@
       <view class="staff-list">
         <block wx:for="{{newStaff}}" wx:key="">
         <view class="_list_item _flex _flex_space_between">
+          <navigator url="../staff-apply/index?uniond_id={{item.union_id}}" hover-class="none">
           <view class="_lft _flex _flex_item_center">
             <view class="_family_name {{(item.status == 2)?'dark':''}}">{{item.first_name}}</view>
             <view class="_name _fontw500">{{item.employee_name}}</view>
           </view>
+          </navigator>
           <view class="_rgt _flex _flex_item_center" wx:if="{{item.status == 0}}">
+          <!--
             <button class="btn refuse" bindtap="handleApply" data-solve='refuse' data-recordid='{{item.apply_record_id}}'>拒绝</button>
+            -->
             <button class="btn allow" bindtap="handleApply" data-solve='agree' data-recordid='{{item.apply_record_id}}'>同意</button>
           </view>
           <view class="_rgt _flex _flex_item_center" wx:elif="{{item.status == 1}}">

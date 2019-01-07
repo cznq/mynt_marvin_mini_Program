@@ -1,6 +1,4 @@
 <!--pages/checkfollow/index.wxml-->
-
-
 <view class='_content _top_gradient2 checkfollow'>
   <image src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/prompt@2x.png' mode='widthFix' class='image' bindtap='ddd'></image>
 <view class='_fixed footer {{isiphoneX ? "footer_x" : ""}}'>

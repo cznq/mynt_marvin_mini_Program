@@ -1,0 +1,10 @@
+/* pages/employee/admin-executive/adminReceive/index.wxss */
+
+@import '../../public/style.wxss';
+
+.page {
+  background-color: rgba(249, 250, 251, 1);
+}
+.page_bd {
+  padding-bottom: 100rpx;
+}

@@ -17,9 +17,9 @@ page {
   color: rgba(136, 145, 169, 1);
 }
 ._status {
-  
   margin-top: 20rpx;
 }
+._name {   margin-top: 40rpx; }
 ._status.pass {
   color: rgba(100, 219, 137, 1);
 }

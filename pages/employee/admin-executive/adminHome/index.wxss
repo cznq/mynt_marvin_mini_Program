@@ -1,0 +1,24 @@
+
+@import "../../public/style.wxss";
+
+page {
+  background: rgba(249, 250, 251, 1);
+  padding-top: 180rpx;
+}
+.page__bd {
+  background-color: #fff;
+}
+._flex { flex-direction: column; }
+._name { margin-top: 40rpx; }
+.page__ft {
+  padding: 100rpx 60rpx 0;
+}
+.page__ft button {
+  height: 90rpx;
+  line-height: 90rpx;
+  border: 2rpx solid rgba(220, 220, 220, .5);
+  background: #fff;
+  margin-bottom: 40rpx;
+  font-size: 32rpx;
+  color: rgba(26, 42, 75, 1);
+}
