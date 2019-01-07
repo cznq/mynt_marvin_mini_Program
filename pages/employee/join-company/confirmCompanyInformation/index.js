@@ -26,7 +26,7 @@ Page({
             url: app.globalData.BASE_API_URL,
             params: {
                 service: 'company',
-                method: 'get_review_status',
+                method: 'get_employee_info',
                 data: JSON.stringify({
                     union_id: wx.getStorageSync('xy_session')
                 })
@@ -35,8 +35,7 @@ Page({
                 console.log(res);
                 var resdata = res.data.result;
                 if (res.data.sub_code == 0) {
-                    // if (resdata.employee_status === 2 || resdata.employee_status === 0) {
-                    if (resdata.employee_status === 10 || resdata.employee_status === 10) {
+                    if (resdata.role === 3) {
                         wx.reLaunch({
                             url: '../../../manage/manage',
                         })
