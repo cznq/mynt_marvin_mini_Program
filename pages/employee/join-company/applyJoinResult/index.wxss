@@ -72,3 +72,18 @@
     background: #007BFF;
     border-radius: 10rpx;
 }
+
+.content .footer_view {
+    position: flex;
+    bottom: 0;
+    width: auto;
+    height: auto;
+}
+
+
+.mynt_logo_blue {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

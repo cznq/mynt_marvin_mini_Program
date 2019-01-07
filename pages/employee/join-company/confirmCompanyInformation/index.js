@@ -35,8 +35,8 @@ Page({
                 console.log(res);
                 var resdata = res.data.result;
                 if (res.data.sub_code == 0) {
-                    if (resdata.employee_status === 2 || resdata.employee_status === 0) {
-                        // if (resdata.employee_status === 10 || resdata.employee_status === 10) {
+                    // if (resdata.employee_status === 2 || resdata.employee_status === 0) {
+                    if (resdata.employee_status === 10 || resdata.employee_status === 10) {
                         wx.reLaunch({
                             url: '../../../manage/manage',
                         })
@@ -93,7 +93,7 @@ Page({
         var realName = e.detail.value.name;
         var applicationReason = e.detail.value.reason;
         var formId = e.detail.formId;
-        var formId = '123123123dfsdf';
+        // var formId = '123123123dfsdf';
         if (realName !== '') {
             app.Util.network.POST({
                 url: app.globalData.BASE_API_URL,
