@@ -1,25 +1,19 @@
-// pages/employee/senior-executive/bossShare/index.js
 
 const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    isIphoneX: app.globalData.isIphoneX,
-    version: app.globalData.version,
-    shareBtn: false,
-    companyInfo:''
+    textInfo: '很高兴邀请您成为本公司新的管理员，您将拥有我们的以下管理权力，烦请点击下方按钮接受邀请并开始使用管理权力。'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCompanyInfo();
-  },
-  getCompanyInfo: function () {
     var that = this;
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
@@ -37,11 +31,10 @@ Page({
             companyInfo: res.data.result
           })
         }
+
+
       }
     })
-  },
-  backAction: function () {
-    wx.navigateBack()
   },
 
   /**
@@ -87,23 +80,9 @@ Page({
   },
 
   /**
-  * 用户点击右上角分享
-  */
-  onShareAppMessage: function (res) {
-    var that = this;
-    return {
-      title: '给您发送了一个邀请，期待您的到访！',
-      path: '/pages/employee/senior-executive/receive/index?invitation_id=',
-      success: function (res) {
-        // 转发成功
-        wx.showToast({
-          title: '分享成功',
-        })
-      },
-      fail: function (res) {
-        // 转发失败
-      }
-    }
-    
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 })

@@ -21,7 +21,6 @@ Page({
 
     },
     get_info: function() {
-
         var _this = this;
         app.Util.network.POST({
             url: app.globalData.BASE_API_URL,
@@ -91,9 +90,68 @@ Page({
 
     receiveSubmit: function(e) {
         var _this = this;
-        var form_id = e.detail.formId;
-        wx.navigateTo({
-            url: '../enterRealName/index?company_code=' + _this.data.company_code + '&form_id=' + form_id
-        })
+        var realName = e.detail.value.name;
+        var applicationReason = e.detail.value.reason;
+        var formId = e.detail.formId;
+        // var formId = '123123123dfsdf';
+        if (realName !== '') {
+            app.Util.network.POST({
+                url: app.globalData.BASE_API_URL,
+                params: {
+                    service: 'company',
+                    method: 'apply_join',
+                    data: JSON.stringify({
+                        company_code: _this.data.company_code,
+                        union_id: wx.getStorageSync('xy_session'),
+                        open_id: wx.getStorageSync('open_id'),
+                        name: realName,
+                        form_id: formId,
+                        avatar: wx.getStorageSync('avatar'),
+                        open_id_type: app.globalData.open_id_type,
+                        application_reason: applicationReason
+                    })
+                },
+                success: res => {
+                    console.log(res);
+                    if (res.data.sub_code == 0) {
+                        wx.redirectTo({
+                            url: '../applyJoinResult/index?company_code=' + _this.data.company_code + '&result=' + true
+                        })
+                    } else if (res.data.sub_code == 100027 || res.data.sub_code == 100035) {
+                        wx.redirectTo({
+                            url: '../applyJoinResult/index?company_code=' + _this.data.company_code
+                        })
+                    } else {
+                        console.log(res.data.sub_msg);
+                        toast.showToast(this, {
+                            toastStyle: 'toast',
+                            title: res.data.sub_msg,
+                            duration: 2000,
+                            mask: false,
+                            cb: function() {
+                                _this.setData({
+                                    isfocus: true
+                                })
+                            }
+                        });
+                    }
+                },
+                fail: res => {
+                    console.log('fail');
+                }
+            })
+        } else {
+            toast.showToast(this, {
+                toastStyle: 'toast',
+                title: '姓名不能为空哦',
+                duration: 2000,
+                mask: false,
+                cb: function() {
+                    _this.setData({
+                        isfocus: true
+                    })
+                }
+            });
+        }
     }
 })

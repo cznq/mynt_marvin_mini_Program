@@ -21,7 +21,7 @@
         <view class='recodeIntro _txt_center'>轻客智能科技（江苏）有限公司</view>
     </view>
     <view class='Name_content'>
-        <form bindsubmit='editSubmit' report-submit=" {{true}}">
+        <form bindsubmit='receiveSubmit' report-submit="true">
             <view class='input_block'>
                 <view>
                     <text class='_font34 _txt_gray'>真实姓名</text>
@@ -36,7 +36,7 @@
 		      </textarea>
             </view>
             <view class='input_block footer_confirm'>
-                <button class="_button" bindtap="next" formType="submit" disabled="{{disabled}}">{{button_text}}</button>
+                <button class="_button" formType="submit" disabled="{{disabled}}">{{button_text}}</button>
             </view>
         </form>
     </view>

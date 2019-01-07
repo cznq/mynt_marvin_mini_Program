@@ -8,7 +8,7 @@
     <view class="_flex _flex_space_between _flex_item_center">
       <text class="_font60 _fontw700">员工列表</text>
       <navigator url="/pages/employee/invite-staff/index" hover-class="none" wx:if="{{role == 3}}">
-        <view class="iconfont icon-tianjiayuangong"></view>
+        <view class="iconfont icon-tianjiayuangong1"></view>
       </navigator>
     </view>
     <!-- 搜索栏开始 -->
@@ -16,17 +16,17 @@
       <view class="search">
         <input class="search-input _font24" type="text" name="search" placeholder="搜索" confirm-type="search" placeholder-class="search-placeholder" value="{{search}}" bindconfirm="searchSubmit" bindinput="searchInput"></input>
         <button wx:if="{{clearSearchShow}}" class="btn clear-btn" bindtap="clearSearch"></button>
-        <button class="btn search-btn" form-type="submit"></button>
+        <button class="btn search-btn" form-type="submit"><text class="iconfont icon-sousuo _font48"></text></button>
       </view>
     </form>
     <!-- 搜索栏目结束 -->
   </view>
   <view class="page__bd">
-    <view class="setBar">
+    <view class="setBar" wx:if="{{role == 3}}">
       <navigator url="/pages/employee/new-staff/index" hover-class="none" wx:if="{{staffList.apply_number && role==3}}">
-        <view class="_list_item _flex _flex_space_between">
+        <view class="_list_item _flex _flex_item_center _flex_space_between">
           <view class="_lft _flex _flex_item_center">
-            <view class="iconfont icon-qiantai"></view>
+            <view class="iconfont icon-icon_new _font56"></view>
             <view class="_name _fontw500">新员工</view>
           </view>
           <view class="_rgt _flex _flex_item_center">
@@ -34,18 +34,18 @@
           </view>
         </view>
       </navigator>
-      <navigator url="/pages/employee/new-staff/index" hover-class="none" wx:if="{{staffList.apply_number && role==3}}">
-        <view class="_list_item _flex _flex_space_between">
+      <navigator url="/pages/employee/admin-executive/admin-list/index" hover-class="none" wx:if="{{staffList.apply_number && role==3}}">
+        <view class="_list_item _flex _flex_item_center _flex_space_between">
           <view class="_lft _flex _flex_item_center">
-            <view class="iconfont icon-qiantai"></view>
+            <view class="iconfont icon-icon_guanliyuan _font56"></view>
             <view class="_name _fontw500">管理员设置</view>
           </view>
         </view>
       </navigator>
-      <navigator url="/pages/employee/new-staff/index" hover-class="none" wx:if="{{staffList.apply_number && role==3}}">
-        <view class="_list_item _flex _flex_space_between">
+      <navigator url="/pages/employee/senior-executive/executiveHome/index" hover-class="none" wx:if="{{staffList.apply_number && role==3}}">
+        <view class="_list_item _flex _flex_item_center _flex_space_between">
           <view class="_lft _flex _flex_item_center">
-            <view class="iconfont icon-qiantai"></view>
+            <view class="iconfont icon-icon_gaoguan _font56"></view>
             <view class="_name _fontw500">老板设置</view>
           </view>
         </view>
@@ -62,7 +62,7 @@
             <view class="_name _fontw500">{{item.employee_name}}</view>
           </view>
           <view class="_rgt _flex _flex_item_center">
-            <view class="iconfont icon-qiantai admin"></view>
+            <view class="iconfont icon-icon_guanliyuan admin _font36"></view>
           </view>
         </view>
         </block>
@@ -76,9 +76,11 @@
               <view class="_name _fontw500">{{item.employee_name}}</view>
             </view>
             <view class="_rgt _flex _flex_item_center">
-              <!--<image class="vip-icon" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/vip%402x.png"></image>-->
-              <view class="iconfont icon-qiantai"></view>
+             
+              <view class="iconfont icon-icon_gaoguan _font36"></view>
+              <!--
               <view class="handle_btn" bindtap="editEmp" data-unionid='{{item.union_id}}' data-name='{{item.employee_name}}' data-role='{{item.role}}' wx:if="{{role==3}}"><view class="dot"></view><view class="dot"></view><view class="dot"></view></view>
+              -->
             </view>
           </view>
         </block>
@@ -93,7 +95,9 @@
             <view class="_name _fontw500">{{item.employee_name}}</view>
           </view>
           <view class="_rgt _flex _flex_item_center">
+          <!--
             <view class="handle_btn" bindtap="editEmp" data-unionid='{{item.union_id}}' data-name='{{item.employee_name}}' data-role='{{item.role}}' wx:if="{{role==3}}"><view class="dot"></view><view class="dot"></view><view class="dot"></view></view>
+            -->
           </view>
         </view>
       </block>

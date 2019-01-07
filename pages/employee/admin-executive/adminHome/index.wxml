@@ -1,6 +1,7 @@
-<!--pages/employee/perInfo/index.wxml-->
-<import src="../../../templates/showToast/showToast.wxml" /> 
-<wxs src="../../../wxs/subutil.wxs" module="tools" />
+<!--pages/employee/admin-executive/adminHome/index.wxml-->
+
+<import src="../../../../templates/showToast/showToast.wxml" /> 
+<wxs src="../../../../wxs/subutil.wxs" module="tools" />
 
 <view class="page">
   <view class="page__hd"></view>
@@ -25,7 +26,15 @@
     </view>
     
   </view>
+  <view class="page__ft">
+    <view>
+      <button>重新发送邀请</button>
+      <button>删除前台(子管理员)</button>
+      <button>转让管理员</button>
+    </view>
+  </view>
 </view>
 
 
 <template is="showToast" data="{{showToast: showToast}}" />
+

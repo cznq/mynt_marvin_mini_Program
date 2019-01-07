@@ -8,3 +8,5 @@ page {
 .page__bd {
   background-color: #fff;
 }
+._flex { flex-direction: column; }
+._name { margin-top: 40rpx; }

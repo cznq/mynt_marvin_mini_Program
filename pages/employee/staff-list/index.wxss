@@ -11,7 +11,7 @@ page {
   line-height: 1;
   background: #fff;
 }
-.iconfont.icon-tianjiayuangong {
+.iconfont.icon-tianjiayuangong1 {
   font-size: 52rpx;
 }
 .search { margin-top: 15px; }
@@ -19,12 +19,12 @@ page {
 .setBar { background-color: #fff;padding: 0 60rpx;margin-top:30rpx;}
 .setBar ._list_item {
   padding: 42rpx 0;
-  border-bottom:2rpx solid rgba(0,0,0,.1);
+  border-bottom:2rpx solid rgba(220, 220, 220, .5);
 }
 .setBar navigator:last-child ._list_item {
   border-bottom: none;
 }
-.setBar .iconfont { margin-right: 42rpx; font-size: 42rpx; }
+.setBar .iconfont { margin-right: 42rpx; }
 
 ._num_info {
   margin: 0 18rpx;
@@ -41,10 +41,10 @@ page {
   padding: 60rpx 0 30rpx;
 }
 .front-list ._list_item:last-child {
-  border-bottom: 2rpx solid rgba(0,0,0,.1);
+  border-bottom: 2rpx solid rgba(220, 220, 220, .5);
 }
 .admin-list ._list_item:last-child {
-  border-bottom: 2rpx solid rgba(0,0,0,.1);
+  border-bottom: 2rpx solid rgba(220, 220, 220, .5);
 }
 ._list_item._role_staff {
   padding: 30rpx 0;
