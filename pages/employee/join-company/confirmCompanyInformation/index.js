@@ -136,11 +136,11 @@ Page({
                 success: res => {
                     console.log(res);
                     if (res.data.sub_code == 0) {
-                        wx.redirectTo({
+                        wx.reLaunch({
                             url: '../applyJoinResult/index?company_code=' + _this.data.company_code + '&result=' + true
                         })
                     } else if (res.data.sub_code == 100027 || res.data.sub_code == 100035) {
-                        wx.redirectTo({
+                        wx.reLaunch({
                             url: '../applyJoinResult/index?company_code=' + _this.data.company_code
                         })
                     } else {
@@ -150,11 +150,6 @@ Page({
                             title: res.data.sub_msg,
                             duration: 2000,
                             mask: false,
-                            cb: function() {
-                                _this.setData({
-                                    isfocus: true
-                                })
-                            }
                         });
                     }
                 },
