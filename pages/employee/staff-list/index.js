@@ -75,133 +75,6 @@ Page({
     })
   },
 
-  /**
-   * 员工列表点击编辑
-   */
-  editEmp: function (e) {
-    console.log(e.currentTarget);
-    this.setData({ 
-      'editData.union_id': e.currentTarget.dataset.unionid,
-      'editData.employee_name': e.currentTarget.dataset.name,
-      'editData.role': e.currentTarget.dataset.role
-    });
-    if (e.currentTarget.dataset.role ==2) {
-      var menuList = ['从列表删除', '取消前台'], bindFun = ['approveRemove', 'setFront']
-    } else {
-      var menuList = ['从列表删除', '设为前台'], bindFun = ['approveRemove', 'setFront']
-    }
-    var btDis = wx.getStorageSync('sysinfo').windowHeight;
-    console.log(btDis);
-    if (btDis - e.currentTarget.offsetTop < 80) {
-      var topPos = (e.currentTarget.offsetTop - this.data.scrollTop) - 82 + 'px';
-    } else {
-      var topPos = (e.currentTarget.offsetTop - this.data.scrollTop) + 32 + 'px';
-    }
-    
-    menu.showMenu(this, {
-      menuList: menuList,
-      topPos: topPos,
-      lrPos: 60 + 'rpx',
-      isLeft: false,
-      mask: true,
-      bindFun: bindFun
-    });
-  },
-
-  approveRemove: function () {
-    var self = this;
-    menu.hideMenu();
-    toast.showToast(this, {
-      toastStyle: 'toast6',
-      title: '确定要将“' + self.data.editData.employee_name + '“从团队删除吗？',
-      introduce: '',
-      mask: true,
-      isSure: true,
-      sureText: '确定',
-      isClose: true,
-      closeText: '取消'
-    });
-  },
-
-
-  /**
-   * 设置前台
-   */
-  setFront: function () {
-    var that = this;
-    var role = this.data.editData.role==2?1:2
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'company',
-        method: 'update_employee_role',
-        data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session'),
-          employee_union_id: that.data.editData.union_id,
-          role: role
-        })
-      },
-      success: res => {
-        menu.hideMenu();
-        if (res.data.sub_code == 0) {
-          that.getStaffList();
-        } else {
-          wx.showToast({
-            title: '设置前台失败'
-          })
-        }
-
-      }
-    })
-  },
-
-  /**
-   * 取消删除并关闭弹层
-   */
-  bindToastClose: function () {
-    toast.hideToast();
-  },
-
-  /**
-   * 确定删除
-   */
-  bindToastSure: function () {
-    var _this = this;
-    toast.hideToast(_this, {
-      cb: function () {
-        app.Util.network.POST({
-          url: app.globalData.BASE_API_URL,
-          params: {
-            service: 'company',
-            method: 'unbind_employee',
-            data: JSON.stringify({
-              union_id: wx.getStorageSync('xy_session'),
-              employee_union_id: _this.data.editData.union_id
-            })
-          },
-          success: res => {
-            if (res.data.sub_code == 0) {
-              _this.getStaffList();
-            } else {
-              wx.showToast({
-                title: '删除失败',
-                icon: 'none'
-              })
-            }
-
-          }
-        })
-        
-      }
-    });
-  },
-
-  hideToastMenu: function () {
-    menu.hideMenu();
-  },
-
- 
-
   onShow: function () {
     this.getStaffList();
   },
@@ -219,16 +92,18 @@ Page({
     var searchResult = [];
     if (searchValue) {
       this.setData({
-        clearSearchShow: true,
-        searchStaffList: this.data.staffList
+        clearSearchShow: true
       })
-    }
-    for(let i=0;i<allList.length;i++){
-      if (allList[i].employee_name.indexOf(searchValue) != -1){
-        searchResult.push(allList[i])
+      for (let i = 0; i < allList.length; i++) {
+        if (allList[i].employee_name.indexOf(searchValue) != -1) {
+          searchResult.push(allList[i])
+        }
       }
+      console.log(searchResult);
+      this.setData({ searchStaffList: searchResult })
+    } else {
+      this.setData({ searchStaffList: [] })
     }
-    this.setData({ searchStaffList: searchResult})
     
   },
 

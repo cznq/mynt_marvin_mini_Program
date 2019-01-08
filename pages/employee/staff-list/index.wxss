@@ -138,3 +138,6 @@ page {
 .icon-cha1 {
   color: rgba(186, 191, 201, 1);
 }
+.search-result {
+  padding: 0 60rpx;
+}
