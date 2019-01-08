@@ -125,7 +125,8 @@
     </view>
   </form>
   <block wx:for="{{searchStaffList}}" wx:key="">
-    <view class="_list_item _flex _flex_space_between _role_admin" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
+  <view class="search-result">
+    <view class="_list_item _flex _flex_space_between  {{item.role == 3?'_role_admin':'_role_staff'}}" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
       <view class="_lft _flex _flex_item_center">
         <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
         <view class="_name _fontw500">{{item.employee_name}}</view>
@@ -134,6 +135,7 @@
         <view class="iconfont icon-icon_guanliyuan admin _font36"></view>
       </view>
     </view>
+  </view>
   </block>
 </view>
 
