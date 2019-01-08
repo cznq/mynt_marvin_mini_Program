@@ -25,7 +25,7 @@
             </view>
             <view class="invite-info">
                 <view class="_sec">
-                    <view class="int-title _font38 _fontw600">尊敬的{{invitation.invitee_name}}：</view>
+                    <view class="int-title _font38 _fontw600">尊敬的{{invitation.title_name}}：</view>
                     <view class="_font28 int-intro">
                     <rich-text nodes="很荣幸邀请您成为我司的VIP，您可以享受我们的以下企业特权，烦请点击下方按钮接受邀请并开始享受特权。" bindtap="tap"></rich-text>
                     </view>

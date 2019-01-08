@@ -9,7 +9,6 @@ Page({
     isIphoneX: app.globalData.isIphoneX,
     staffList:[],
     unionId:null,
-    personType:null,
   },
 
   /**
@@ -32,9 +31,22 @@ Page({
       success: res => {
         console.log(res.data.result);
         if (res.data.result) {         
+           //所有列表
+          let { admin ,front_desk ,employee} = res.data.result;
+          let { normal} =res.data.result.front_desk;
           that.setData({
-            staffList: res.data.result
+            staffList: [...admin,...normal,...employee]
           })
+          //console.log(that.data.staffList);
+          for (var index in that.data.staffList) {
+            if(that.data.staffList[index].person_type == null){
+                that.data.staffList[index].highlight=true
+            }
+          }
+          that.setData({
+            staffList:that.data.staffList
+          })    
+          console.log(that.data.staffList);
         }
         
       }
@@ -45,18 +57,13 @@ Page({
     console.log(e)
     _this.setData({
       unionId:e.currentTarget.dataset.id,//union_id
-      personType:e.currentTarget.dataset.type
     })
-    if (_this.data.personType == 3) {
-      return false;
-    } else {
       console.log(this.data.unionId)
       setTimeout(function(){
         wx.navigateTo({
           url: '/pages/employee/senior-executive/fillName/index?unionId='+_this.data.unionId
         })  
       },1000)
-    }
 
   },
 

@@ -31,7 +31,7 @@
 <block wx:if="{{is_vip}}">
     <block wx:if="{{is_tryout}}">
         <view class="add_executive">
-            <button class="_border_radius10 _font34 _fontw500 _mb20" bindtap="goExecutive">限时免费，立即添加</button>
+            <button class="_border_radius10 _font34 _fontw500 _mb20" bindtap="goExecutive" data-limit="{{limit_count}}">限时免费，立即添加</button>
             <view class="_font24 _txt_darkgrey _txt_center">
                 编辑高管邀请函，通过微信发送给公司高管,他接受邀请后便可享受机器人提供的优质服务。 
             </view>
@@ -43,7 +43,7 @@
     </block>
     <block wx:else>
         <view class="add_executive">
-            <button class="_border_radius10 _font34 _fontw500 _mb20" bindtap="goExecutive">添加高管</button>
+            <button class="_border_radius10 _font34 _fontw500 _mb20" bindtap="goExecutive" data-limit="{{limit_count}}">添加高管</button>
             <view class="_font24 _txt_darkgrey _txt_center">编辑高管邀请函，通过微信发送给公司高管,他接受邀请后便可享受机器人提供的优质服务。</view>
         </view>
     </block>

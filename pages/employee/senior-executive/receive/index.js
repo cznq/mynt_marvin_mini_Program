@@ -37,7 +37,7 @@ Page({
         method: 'get_role_invitation_info',
         data: JSON.stringify({
           invitation_id: that.data.invitation_id,
-          invitation_type:0
+          invitation_type:0//角色邀请
         })
       },
       success: res => {
@@ -66,19 +66,20 @@ Page({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'company',
-        method: 'get_role_invitation_info',
+        method: 'give_employee_title',
         data: JSON.stringify({
-          invitation_id:that.data.invitation_id,
-          invitation_type:0 //角色邀请
+          union_id:wx.getStorageSync('xy_session'),
+          //union_id:'o3iamji3FUUaId1FKcuPyI_X3XLQ',
+          role:4, //员工角色(4:高管)
+          invitation_id:that.data.invitation_id
         })
       },
       success: res => {
         console.log(res.data);
-        if (res.data.sub_code == 0) {
-         that.setData({
+        if (res.data.sub_code == 0) {//success
+          that.setData({
             notAccepted:false,
-            invitation:res.data.result
-         })
+          });
         }      
       }
     })
