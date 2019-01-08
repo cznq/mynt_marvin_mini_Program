@@ -10,7 +10,7 @@ Page({
     version: app.globalData.version,
     staffList: null,
     leaderList:null,
-    bossNum:3,
+    limit_count:'',
     btnShow:false,
   },
 
@@ -18,6 +18,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      limit_count:options.limit_count
+    })    
+    if(this.data.limit_count == 0){
+      that.setData({
+        btnShow:true
+      })
+    } 
     this.getBossList();
   },
   /**
@@ -37,18 +45,9 @@ Page({
       success: res => {
         console.log(res.data.result);
         if(res.data.result){  
-          let length = res.data.result.leader.normal.length+  res.data.result.leader.not_active.length
           that.setData({
             leaderList:res.data.result.leader,
-            bossNum: that.data.bossNum-length
-          })     
-          if(that.data.bossNum <= 0){
-            that.setData({
-              bossNum:0,
-              btnShow:true
-            })
-          }    
-          console.log(that.data.leaderList);
+          })   
         }
       }
     })

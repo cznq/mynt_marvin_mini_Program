@@ -8,7 +8,8 @@ Page({
   data: {
     isIphoneX: app.globalData.isIphoneX,
     is_vip:true,//开通
-    is_tryout:false//试用
+    is_tryout:false,//试用
+    limit_count:''
   },
 
   /**
@@ -23,14 +24,15 @@ Page({
         method: 'get_company_service_status',
         data: JSON.stringify({
           union_id: wx.getStorageSync('xy_session'),
-          service_key: 'EMPLOYEE_BENIFIT'
+          service_key: 'COMPANY_SENIOR_EXECUTIVE'
         })
       },
       success: res => {
         if (res.data.result){
           if (res.data.result.service_status !== 0) {
             that.setData({
-              is_vip: true
+              is_vip: true,
+              limit_count:res.data.result.limit_count
             })
             if (res.data.result.service_status == 2) {
               //试用
@@ -51,9 +53,9 @@ Page({
       }
     })
   },
-  goExecutive:function () {
+  goExecutive:function (e) {
     wx.navigateTo({
-      url: '/pages/employee/senior-executive/bossList/index',
+      url: '/pages/employee/senior-executive/bossList/index?limit_count='+e.currentTarget.dataset.limit,
     })
   },
 })
