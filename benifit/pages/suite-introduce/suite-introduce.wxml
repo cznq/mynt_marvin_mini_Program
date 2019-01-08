@@ -4,31 +4,30 @@
   <view class='page__cont'>
     <image wx:for="{{image}}" wx:key="" wx:for-item="item" src="{{item}}" mode='widthFix'></image>
   </view>
-  <view class='page__ft {{isiphoneX ? "footer_x" : ""}}' wx:if="{{service_suite==1}}">
+
+
+
+  <view class='page__ft _flex _flex_space_between _flex_item_center {{isiphoneX ? "footer_x" : ""}}' >
     <view class='info'>
-      <view class='info__top'>
-        小觅楼宇商业服务套餐
-      </view>
-      <view class='info__ft'>
+      <view class='info__top'>小觅楼宇商业服务套餐</view>
+      <!--
+      <view class='info__ft' wx:if="{{service_suite==2}}">
         <text class='text__blur'>已购买</text>
       </view>
-    </view>
-    <view class='consult'>
-      <button bindtap="makePhoneCall" data-phone="{{phone}}">联系客服</button>
-    </view>
-  </view>
-  <view class='page__ft {{isiphoneX ? "footer_x" : ""}}' wx:else>
-    <view class='info'>
-      <view class='info__top _fontw600'>
-        小觅楼宇商业服务套餐
-      </view>
+      -->
       <view class='info__ft'>
-        <text class='text__hd _fontw600'>￥{{current_price}}</text>
-        <text class='text__blur' style='padding-left:14rpx;'>价值{{cost_price}}</text>
+        <text class='text__hd _fontw600'>￥{{current_price}}<text class="_font24 _fontw600"> /月</text></text>
       </view>
     </view>
-    <view class='consult'>
-      <button bindtap="makePhoneCall" data-phone="{{phone}}">立即咨询</button>
+    <view class='consult _flex _flex_item_center'>
+      <view class="contact _txt_center" bindtap="makePhoneCall" data-phone="{{phone}}">
+        <view class="iconfont icon-zixun blue"></view>
+        <view class="blue _font24">咨询</view>
+      </view>
+      <navigator url="../web-pay/web-pay" hover-class="none">
+      <button class="_font30" style="background: url(https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/buy-button%402x.png) no-repeat center 10rpx;background-size: 224rpx 134rpx;">立即付款</button>
+      </navigator>
     </view>
   </view>
+
 </view>

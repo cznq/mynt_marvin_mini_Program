@@ -49,7 +49,6 @@
     "pages/apply-visit/applicationStatus/index",
     "pages/e-card/detail/index",
     "pages/login/index"
-
   ],
   "subPackages": [
     {
@@ -61,7 +60,8 @@
         "pages/mall-home/mall-home",
         "pages/mall-detail/mall-detail",
         "pages/mall-comment/mall-comment",
-        "pages/suite-introduce/suite-introduce"
+        "pages/suite-introduce/suite-introduce",
+        "pages/web-pay/web-pay"
       ]
     }
   ],

@@ -10,12 +10,12 @@ Page({
     web_url: app.globalData.WEB_VIEW_URL,
     company_code:null,
     company_verify_code:null,
-    view_web_url:''
+    view_web_url: app.globalData.WEB_VIEW_URL
   },
   onLoad: function(options) {
     var _this = this;
     app.Util.checkcanIUse('web-view');
-    var view_web_url = _this.data.web_url + '/admin/become?company_code=' + options.company_verify_code + ' &CstateCode=' + _this.data.CstateCode;
+    var view_web_url = _this.data.web_url + '/admin/become?company_code=' + options.company_verify_code + '&CstateCode=' + _this.data.CstateCode;
     _this.setData({
       view_web_url: view_web_url
     })

@@ -9,7 +9,7 @@ Page({
     isfocus: true,
     company_code :null,
     form_id:null,
-    view_web_url:''
+    view_web_url: app.globalData.WEB_VIEW_URL
   },
   onLoad: function (options) {
     var _this = this;

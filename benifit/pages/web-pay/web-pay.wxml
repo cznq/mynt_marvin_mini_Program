@@ -1,0 +1,2 @@
+<!--pages/web-pay/web-pay.wxml-->
+<web-view src="https://spay3.swiftpass.cn/spay/merchant/scanQr?qrId=632b568b462a4185b2bba9053a0578a5"></web-view>
