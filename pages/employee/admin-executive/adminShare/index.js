@@ -17,7 +17,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    console.log(options.union_id)
     if(options.from == 'transAdmin') {
       this.setData({
         textInfo: '很高兴邀请您成为本公司新的管理员，您将拥有我们的以下管理权力，烦请点击下方按钮接受邀请并开始使用管理权力。',
@@ -64,7 +63,7 @@ Page({
                 compInfo: res.data.result
               });
             }
-            that.getInviteeInfo(options.union_id);
+            that.getInviteeInfo(options.unionId);
           }
         })
       }
@@ -76,6 +75,7 @@ Page({
    * 提价邀请信息
    */
   submitInvitation(inviter_name, invitee_union_id, invitee_name, assigned_role, invitation_type, company_id) {
+    var that = this;
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
@@ -119,6 +119,8 @@ Page({
         })
       },
       success: res => {
+        console.log('被邀请人信息');
+        console.log(res.data.result);
         if (res.data.result) {
           that.setData({
             invitee: res.data.result
@@ -134,7 +136,7 @@ Page({
    */
   onShareAppMessage: function () {
     var that = this;
-    var shareTitle = that.data.changeRole = 2 ?'成为该公司前台':'成为该公司的管理员';
+    var shareTitle = that.data.changeRole == 2 ?'成为该公司前台':'成为该公司的管理员';
     return {
       title: that.data.invitor.name + '邀请' + that.data.invitee.name + shareTitle,
       path: '/pages/employee/admin-executive/adminReceive/index?invitation_id=' + that.data.invitation_id + '&invitation_type=0',

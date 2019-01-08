@@ -99,7 +99,6 @@ Page({
           searchResult.push(allList[i])
         }
       }
-      console.log(searchResult);
       this.setData({ searchStaffList: searchResult })
     } else {
       this.setData({ clearSearchShow: true, searchStaffList: [] })

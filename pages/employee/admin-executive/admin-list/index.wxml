@@ -54,7 +54,7 @@
           </view>
         </block>
         <!--  添加子管理员 -->
-        <navigator url="/pages/employee/staff-choose-list/index" hover-class="none">
+        <navigator url="/pages/employee/staff-choose-list/index?from=inviteFront" hover-class="none">
         <view class="_list_item _flex _flex_space_between">
           <view class="_lft _flex _flex_item_center">
             <view class="add_icon iconfont icon-add_qiantai"></view>
