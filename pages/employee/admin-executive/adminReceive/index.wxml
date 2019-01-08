@@ -1,31 +1,36 @@
 <!--pages/employee/admin-executive/adminShare/index.wxml-->
 
 <view class="page">
-  <view class="page_hd"></view>
+  <view class="page_hd" wx:if="{{hasAccept}}">
+    <view class="_txt_center">
+      <view class="iconfont icon-successful"></view>
+      <view class="_font46 _fontw600 sutitle">已成为公司{{roleTitle}}</view>
+    </view>
+  </view>
 
-  <view class="page_bd {{companyInfo.logo?'':'noLogo'}}">
+  <view class="page_bd {{invitation.company_logo?'':'noLogo'}}">
     <view class="invite-wrapper">
       <view class="company-info _txt_center">
-        <image class="_logo" src="{{companyInfo.logo}}" wx:if="{{companyInfo.logo}}"></image>
-        <navigator url="/pages/company/otherCompany/index?company_code={{companyInfo.company_code}}" hover-class="none">
+        <image class="_logo" src="{{invitation.company_logo}}" wx:if="{{invitation.company_logo}}"></image>
+        <navigator url="/pages/company/otherCompany/index?company_code={{invitation.company_code}}" hover-class="none">
         <view class="_name _font44 _fontw600 _flex _flex_justify_center _flex_item_center">
-          <text>{{companyInfo.company_short_name}}</text>
+          <text>{{invitation.company_short_name}}</text>
           <text class="iconfont icon-jiantou"></text>
         </view>
          </navigator>
-        <view class="_short_name _font24">{{companyInfo.company_name}}</view>
+        <view class="_short_name _font24">{{invitation.company_name}}</view>
       </view>
 
       <view class="invite-info">
         <view class="_sec">
-          <view class="int-title _font38 _fontw600">您好，{{inviteInfo.visitor_name}}：</view>
+          <view class="int-title _font38 _fontw600">您好，{{invitation.invitee_name}}：</view>
           <view class="_font28 int-intro">
           <rich-text nodes="{{textInfo}}" bindtap="tap"></rich-text>
           </view>
         </view>
         <view class="_sec">
           <view class="int-item-name _font24">邀请人</view>
-          <view class="_font32 int-item-info">{{appointment_time}}Davys</view>
+          <view class="_font32 int-item-info">{{invitation.inviter_name}}</view>
         </view>
 
         <view class="_ft_logo _txt_center">
@@ -39,7 +44,7 @@
   </view>
   <!--  管理员权限介绍 -->
   <view class="_authIntro" style="padding-bottom: {{isIphoneX?'278':'198'}}rpx;">
-    <view class="_font32 _fontw600 _authTitle _txt_center">管理员获得以下管理权力</view>
+    <view class="_font32 _fontw600 _authTitle _txt_center">{{roleTitle}}获得以下管理权力</view>
     <view class="_authList _flex _flex_item_center">
       <view><view class="_icon"><image src='https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/icon_setup_management%402x.png' ></image></view></view>
       <view>
@@ -63,8 +68,10 @@
     </view>
   </view>
 
-  <view class="_fixed footer _flex _flex_justify_center _flex_space_around {{isIphoneX?'iphonex':''}}">
-    <button class="_button _font32" open-type="share">接受邀请</button>
+  <view class="_fixed footer _flex _flex_justify_center _flex_space_around {{isIphoneX?'iphonex':''}}" wx:if="{{!hasAccept}}">
+  <form bindsubmit="receiveInvitation">
+    <button class="_button _font32" form-type="submit">接受邀请</button>
+  </form>
   </view>
 
   

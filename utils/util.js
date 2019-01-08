@@ -24,20 +24,6 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
       app.checkWxLogin(function(){
         request(method, requestHandler, app)
       })
-
-    /*
-      if (!(app.checkSession())) {
-        var pages = getCurrentPages();
-        var currentPage = pages[pages.length - 1] 
-        var url = currentPage.route; 
-        var opt = JSON.stringify(currentPage.options) 
-        wx.redirectTo({
-          url: '/pages/login/index?route=' + url + '&opt=' + opt,
-        })
-      } else {
-        request(method, requestHandler, app)
-      }
-    */
               
     }
   }

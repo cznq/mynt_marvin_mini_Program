@@ -21,7 +21,7 @@ Page({
     if(options.from == 'transAdmin') {
       this.setData({
         textInfo: '很高兴邀请您成为本公司新的管理员，您将拥有我们的以下管理权力，烦请点击下方按钮接受邀请并开始使用管理权力。',
-        roleTitle: '前台(子管理员)',
+        roleTitle: '管理员',
         changeRole: 2,
 
       })
