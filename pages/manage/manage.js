@@ -120,39 +120,25 @@ Page({
         var resdata = res.data.result;
         if (res.data.sub_code == 0) {
           if (resdata.employee_status === 0) {
-            console.log('管理中心');
             _this.data.role = resdata.role;
             _this.setData({
               islogin: false,
               ismanage: true
             })
-            // /* ----- 企业应用显示权限 ----- */
+            //普通员工
             if (resdata.role == 1) {
-              //普通员工
               _this.setData({
                 'application[5].isShow': false //自动值守
               })
             }
-            // if (resdata.role == 2) {
-            //   //前台
-            //   _this.setData({
-            //     'application[5].isShow': false //前台列表
-            //   })
-            // }
-            //获取企业信息
-            _this.get_info();
-            //获取轮播图
-            _this.get_rotation_chart(_this);
+            _this.get_info();//获取企业信息
+            _this.get_rotation_chart(_this);//获取轮播图
           }else{
-            console.log('创建&&加入公司首页');
             _this.setData({
               islogin: true,
               ismanage: false,
             })
           }
-          // if (resdata.employee_status === "" || resdata.employee_status === 1 || resdata.employee_status === 3 || resdata.employee_status === 4) {
-            
-          // }
         } else {
           console.log(res.data.sub_msg);
         }
@@ -246,7 +232,6 @@ Page({
         isloading:false
       },
       success: res => {
-        console.log(res);
         //员工提示信息
         if (res.data.result.apply_number >0 ){
           _this.setData({
@@ -279,9 +264,7 @@ Page({
         isloading:false
       },
       success: res => {
-        console.log('get_rotation_chart',res);
         if (res.data.sub_code == 0) {
-          console.log(res.data.result)
           _this.setData({
             imgurl_manage: res.data.result
           })
