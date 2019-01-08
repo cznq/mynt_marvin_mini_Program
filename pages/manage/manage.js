@@ -143,14 +143,16 @@ Page({
             _this.get_info();
             //获取轮播图
             _this.get_rotation_chart(_this);
-          }
-          if (resdata.employee_status === "" || resdata.employee_status === 1 || resdata.employee_status === 3 || resdata.employee_status === 4) {
+          }else{
             console.log('创建&&加入公司首页');
             _this.setData({
               islogin: true,
               ismanage: false,
             })
           }
+          // if (resdata.employee_status === "" || resdata.employee_status === 1 || resdata.employee_status === 3 || resdata.employee_status === 4) {
+            
+          // }
         } else {
           console.log(res.data.sub_msg);
         }
