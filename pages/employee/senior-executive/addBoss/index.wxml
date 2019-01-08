@@ -12,7 +12,7 @@
                 <view class="_list_item _role_admin" bindtap="selectBoss" data-id="{{item.union_id}}" data-type="{{item.person_type}}">
                     <view class="_flex _flex_space_between {{item.person_type == 3 ?'disabled':''}}">
                         <view class="_lft _flex _flex_item_center">
-                            <view class="_family_name">{{tools.firstName(item.employee_name)}}</view>
+                            <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
                             <view class="_name _fontw500 _font34">{{item.employee_name}}</view>
                         </view>
                         <view class="_rgt _flex _flex_item_center">
@@ -28,7 +28,7 @@
                 <view class="_list_item _role_front" bindtap="selectBoss" data-id="{{item.union_id}}" data-type="{{item.person_type}}">
                     <view class=" _flex _flex_space_between {{item.person_type == 3 ?'disabled':''}}">
                         <view class="_lft _flex _flex_item_center">
-                            <view class="_family_name">{{tools.firstName(item.employee_name)}}</view>
+                            <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
                             <view class="_name _fontw500 _font34">{{item.employee_name}}</view>
                         </view>
                         <view class="_rgt _flex _flex_item_center">
@@ -41,7 +41,7 @@
                 <view class="_list_item _role_front" bindtap="selectBoss" data-id="{{item.union_id}}" data-type="{{item.person_type}}">
                     <view class=" _flex _flex_space_between {{item.person_type == 3 ?'disabled':''}}">
                         <view class="_lft _flex _flex_item_center">
-                            <view class="_family_name">{{tools.firstName(item.employee_name)}}</view>
+                            <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
                             <view class="_name _fontw500 _font34">{{item.employee_name}}</view>
                         </view>
                         <view class="_rgt _flex _flex_item_center">
@@ -57,7 +57,7 @@
                 <view class="_list_item _role_staff" bindtap="selectBoss" data-id="{{item.union_id}}" data-type="{{item.person_type}}">
                     <view class="_flex _flex_space_between {{item.person_type == 3 ?'disabled':''}}">
                         <view class="_lft _flex _flex_item_center">
-                            <view class="_family_name">{{tools.firstName(item.employee_name)}}</view>
+                            <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
                             <view class="_name _fontw500 _font34">{{item.employee_name}}</view>
                         </view>
                         <view class="_rgt _flex _flex_item_center">

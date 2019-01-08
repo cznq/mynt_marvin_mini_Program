@@ -23,7 +23,8 @@ Page({
         service: 'company',
         method: 'get_employee_info',
         data: JSON.stringify({
-          union_id: options.union_id,
+          union_id: wx.getStorageSync('xy_session'),
+          employee_union_id: options.union_id
         })
       },
       success: res => {

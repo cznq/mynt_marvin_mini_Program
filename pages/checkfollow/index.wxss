@@ -8,3 +8,4 @@
 radio {transform:scale(0.6);margin:0 -14rpx 0 0; vertical-align:2rpx;}
 button[disabled]{background:rgba(0,123,255,0.2) !important;
 color:#ffffff !important;}
+.toast2{top: 69%;}

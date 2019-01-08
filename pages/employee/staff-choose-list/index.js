@@ -15,9 +15,10 @@ Page({
 
   /**
    * 生命周期函数--监听页面加载
+   * options.from   transAdmin 转让管理员; inviteFront 邀请子管理员; inviteLeader 邀请高管
    */
   onLoad: function (options) {
-
+    
   },
   getStaffList:function(){
     var that = this;

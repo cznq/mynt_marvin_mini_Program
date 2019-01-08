@@ -37,10 +37,6 @@ Page({
       success: res => {
         console.log(res.data.result);
         if (res.data.result) {
-          for (var i = 0; i < res.data.result.employee.length; i++) {
-            res.data.result.employee[i].first_name = res.data.result.employee[i].employee_name.substring(0, 1);
-            res.data.result.employee[i].last_name = res.data.result.employee[i].employee_name.substring(1);
-          }
           that.setData({
             staffList: res.data.result
           })

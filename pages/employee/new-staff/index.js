@@ -29,10 +29,6 @@ Page({
       },
       success: res => {
         if (res.data.result) {
-          for (var i = 0; i < res.data.result.length; i++) {
-            res.data.result[i].first_name = res.data.result[i].employee_name.substring(0, 1);
-            res.data.result[i].last_name = res.data.result[i].employee_name.substring(1);
-          }
           _this.setData({
             newStaff: res.data.result
           }); 

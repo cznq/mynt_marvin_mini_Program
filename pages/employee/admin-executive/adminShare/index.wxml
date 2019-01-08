@@ -3,29 +3,29 @@
 <view class="page">
   <view class="page_hd"></view>
 
-  <view class="page_bd {{companyInfo.logo?'':'noLogo'}}">
+  <view class="page_bd {{compInfo.logo?'':'noLogo'}}">
     <view class="invite-wrapper">
       <view class="company-info _txt_center">
-        <image class="_logo" src="{{companyInfo.logo}}" wx:if="{{companyInfo.logo}}"></image>
-        <navigator url="/pages/company/otherCompany/index?company_code={{companyInfo.company_code}}" hover-class="none">
+        <image class="_logo" src="{{compInfo.logo}}" wx:if="{{compInfo.logo}}"></image>
+        <navigator url="/pages/company/otherCompany/index?company_code={{compInfo.company_code}}" hover-class="none">
         <view class="_name _font44 _fontw600 _flex _flex_justify_center _flex_item_center">
-          <text>{{companyInfo.company_short_name}}</text>
+          <text>{{compInfo.company_short_name}}</text>
           <text class="iconfont icon-jiantou"></text>
         </view>
          </navigator>
-        <view class="_short_name _font24">{{companyInfo.company_name}}</view>
+        <view class="_short_name _font24">{{compInfo.company_name}}</view>
       </view>
 
       <view class="invite-info">
         <view class="_sec">
-          <view class="int-title _font38 _fontw600">您好，{{inviteInfo.visitor_name}}：</view>
+          <view class="int-title _font38 _fontw600">您好，{{invitee.name}}：</view>
           <view class="_font28 int-intro">
           <rich-text nodes="{{textInfo}}" bindtap="tap"></rich-text>
           </view>
         </view>
         <view class="_sec">
           <view class="int-item-name _font24">邀请人</view>
-          <view class="_font32 int-item-info">{{appointment_time}}Davys</view>
+          <view class="_font32 int-item-info">{{invitor.name}}</view>
         </view>
 
         <view class="_ft_logo _txt_center">
@@ -39,7 +39,7 @@
   </view>
   <!--  管理员权限介绍 -->
   <view class="_authIntro" style="padding-bottom: {{isIphoneX?'278':'198'}}rpx;">
-    <view class="_font32 _fontw600 _authTitle _txt_center">管理员获得以下管理权力</view>
+    <view class="_font32 _fontw600 _authTitle _txt_center">{{roleTitle}}获得以下管理权力</view>
     <view class="_authList _flex _flex_item_center">
       <view><view class="_icon"><image src='https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/icon_setup_management%402x.png' ></image></view></view>
       <view>

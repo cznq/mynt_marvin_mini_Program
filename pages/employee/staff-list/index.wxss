@@ -56,6 +56,7 @@ page {
   white-space: nowrap;
   max-width: 376rpx;
 }
+/*
 .handle_btn {
   width: 46rpx;
   height: 46rpx;
@@ -77,6 +78,7 @@ page {
   border-radius: 6rpx;
   background-color: #000;
 }
+*/
 ._role_admin ._family_name {
   background-color: #484F62;
 }
@@ -95,7 +97,44 @@ page {
   color: #484F62;
   margin-right: 0;
 }
-.vip-icon {
-  width: 40rpx;
-  height: 40rpx;
+.search-page {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(249, 250, 251, 1);
+  top: 0;
+  z-index: 11;
+}
+.search-page .search {
+  padding: 24rpx 60rpx; 
+  margin-top: 0;
+  border-bottom: 2rpx solid rgba(220, 220, 220, .5);
+}
+.search-page .clear-btn {
+  position:absolute;
+  right: 140rpx;
+  top: 24rpx;
+  height:56rpx;
+  width:56rpx;
+  padding:0;
+  line-height:56rpx;
+  text-align:center;
+  background-color:transparent;
+}
+.search-page .search-input {
+  padding: 0 30rpx;
+  margin-right: 80rpx;
+  height: 60rpx;
+}
+.search-page .cancel-btn {
+  position: absolute;
+  right: 30rpx;
+  top: 24rpx;
+  height:56rpx;
+  background: transparent;
+  line-height:56rpx;
+  text-align:center;
+}
+.icon-cha1 {
+  color: rgba(186, 191, 201, 1);
 }
