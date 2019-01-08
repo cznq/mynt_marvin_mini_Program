@@ -7,37 +7,21 @@ Page({
    */
   data: {
     isIphoneX: app.globalData.isIphoneX,
+    version: app.globalData.version,
     staffList: null,
     leaderList:null,
     bossNum:3,
     btnShow:false,
-    bossName:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'company',
-        method: 'get_employee_info',
-        data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session'),
-        })
-      },
-      success: res => {
-        console.log(res);
-
-      }
-    })
+    this.getBossList();
   },
   /**
    * 获取员工列表数据
-   * first_name  员工列表的姓
-   * last_name 员工列表的名字
   */
   getBossList: function () {
     var that = this;
@@ -58,8 +42,9 @@ Page({
             leaderList:res.data.result.leader,
             bossNum: that.data.bossNum-length
           })     
-          if(that.data.bossNum == 0){
+          if(that.data.bossNum <= 0){
             that.setData({
+              bossNum:0,
               btnShow:true
             })
           }    
@@ -69,11 +54,10 @@ Page({
     })
   },
   onShow: function () {
-    this.getBossList();
   },
-  goSelect:function(){
+  goSelect:function(e){
     wx.navigateTo({
-      url: '/pages/employee/senior-executive/addBoss/index',
+      url: '/pages/employee/staff-choose-list/index?from='+e.currentTarget.dataset.from,
     })
-  }
+  },
 })

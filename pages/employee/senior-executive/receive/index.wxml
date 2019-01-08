@@ -1,14 +1,21 @@
 <!--pages/employee/senior-executive/receive/index.wxml-->
 <view class="page" style="padding-bottom:{{isIphoneX?'240':'160'}}rpx">
     <view class="page_hd _txt_center">
-        <view class="_font48 _fontw600 wel-tit">尊敬的高管，您好。</view>
-        <view class="_font28 wel-intro">您有一个新的邀请，等待您的接受。</view>
+        <block wx:if="{{notAccepted}}">
+            <view class="_font48 _fontw600 wel-tit">尊敬的高管，您好。</view>
+            <view class="_font28 wel-intro">您有一个新的邀请，等待您的接受。</view>
+        </block>
+        <block wx:else>
+            <image class="_success_icon" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/accept_Invitation_success%403x.png"></image>
+            <view class="_font48 _fontw600 wel-tit">恭喜您已成为我们的企业高管。</view>
+            <view class="_font28 wel-intro">您可以享受小觅楼宇服务的以下权益。</view>
+        </block>
     </view>
-    <view class="page_bd {{invitation.company.company_logo?'':'noLogo'}}">
+    <view class="page_bd {{invitation.company_logo?'':'noLogo'}}">
         <view class="invite-wrapper _receive">
             <view class="company-info _txt_center">
                 <image class="_logo" src="{{invitation.company_logo}}" wx:if="{{invitation.company_logo}}"></image>
-                <navigator url="/pages/company/otherCompany/index?company_code={{invitation.company.company_code}}" hover-class="none">
+                <navigator url="/pages/company/otherCompany/index?company_code={{invitation.company_code}}" hover-class="none">
                     <view class="_name _font44 _fontw600 _flex _flex_justify_center _flex_item_center">
                       <text>{{invitation.company_short_name}}</text>
                       <text class="iconfont icon-jiantou"></text>
@@ -51,8 +58,11 @@
             </view>
         </view>
     </view>
-    <view class="page_ft">
-        <form bindsubmit="receiveSubmit" report-submit="true">
+    <view class="_ft_logo _txt_center"  wx:if="{{!notAccepted}}">
+        <image mode='widthFix' src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/WechatIMG218.png"></image>
+    </view>
+    <view class="page_ft" wx:if="{{notAccepted}}">
+        <form bindsubmit="receiveSubmit">
             <view class="footer _fixed receive_submit {{isIphoneX?'iphonex':''}}" wx:if="{{version}}">
                 <button form-type="submit" class="_button" id="inviteBtn">接受邀请</button>
             </view>

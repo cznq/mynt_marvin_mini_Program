@@ -82,7 +82,8 @@ Page({
               invitee_name:that.data.inviterInfo.invitee_name,
               company_id:1,
               assigned_role:4,
-              invitation_type:0
+              invitation_type:0,
+              title_name:that.data.inviterInfo.bossName
             })
           },
           success: res => {

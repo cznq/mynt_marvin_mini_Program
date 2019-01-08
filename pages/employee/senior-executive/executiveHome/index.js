@@ -27,7 +27,6 @@ Page({
         })
       },
       success: res => {
-        console.log(res);
         if (res.data.result){
           if (res.data.result.service_status !== 0) {
             that.setData({

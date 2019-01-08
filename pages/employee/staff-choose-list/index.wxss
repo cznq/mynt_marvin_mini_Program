@@ -15,10 +15,12 @@ page{
 ._role_admin ._family_name{
     background-color: #484F62;
 }
-._role_boss ._family_name{
+._role_front ._family_name{
     background-color: #F9922F;
 }
-._role_boss .disabled{
+._role_admin .disabled,
+._role_front .disabled,
+._role_staff .disabled{
     opacity: .6;
 }
 ._role_staff ._family_name{

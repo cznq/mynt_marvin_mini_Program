@@ -10,7 +10,8 @@ Page({
     version: app.globalData.version,
     invitation_id: null,
     visit_company_id: null ,
-    invitation:''
+    invitation:'',
+    notAccepted:true
   },
 
   /**
@@ -59,24 +60,29 @@ Page({
       }
     })
   },
- //更改邀请函阅读状态
- changeReadStatus() {
-  var that = this;
-  app.Util.network.POST({
-    url: app.globalData.BASE_API_URL,
-    params: {
-      service: 'visitor',
-      method: 'update_Invitation',
-      data: JSON.stringify({
-        union_id: wx.getStorageSync('xy_session'),
-        invitation_id: that.data.invitation_id,
-        read_status: 1
-      })
-    },
-    success: res => {},
-    fail: res => {}
-  })
-},
+  receiveSubmit:function(){
+    var that = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_role_invitation_info',
+        data: JSON.stringify({
+          invitation_id:that.data.invitation_id,
+          invitation_type:0 //角色邀请
+        })
+      },
+      success: res => {
+        console.log(res.data);
+        if (res.data.sub_code == 0) {
+         that.setData({
+            notAccepted:false,
+            invitation:res.data.result
+         })
+        }      
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
