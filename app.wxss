@@ -238,6 +238,9 @@
     font-size: 60rpx;
 }
 
+._font68 {
+    font-size: 68rpx;
+}
 /*字体粗细*/
 
 ._fontw300 {

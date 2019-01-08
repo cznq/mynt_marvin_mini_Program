@@ -19,16 +19,17 @@ Page({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'company',
-        method: 'get_info',
+        method: 'get_role_invitation_info',
         data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session')
+          union_id: wx.getStorageSync('xy_session'),
+          invitation_id: options.invitation_id,
+          invitation_type: options.invitation_type
         })
       },
       success: res => {
-        console.log(res.data);
         if (res.data.result) {
           that.setData({
-            companyInfo: res.data.result
+            invitation: res.data.result
           })
         }
 

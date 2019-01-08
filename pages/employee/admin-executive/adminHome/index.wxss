@@ -1,4 +1,4 @@
-
+@import "../../../../templates/showToast/showToast.wxss";
 @import "../../public/style.wxss";
 
 page {

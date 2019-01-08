@@ -13,7 +13,7 @@
       <!-- 管理员列表 -->
       <view class="admin-list">
         <view class="_font28 _title">管理员</view>
-        <block wx:for="{{staffList.employee}}" wx:key="">
+        <block wx:for="{{staffList.admin}}" wx:key="">
         <view class="_list_item _flex _flex_space_between _role_admin" wx:if="{{item.role == 3}}" data-unionid='{{item.union_id}}'>
           <navigator url="/pages/employee/admin-executive/adminHome/index?union_id={{item.union_id}}" hover-class="none">
           <view class="_lft _flex _flex_item_center">
@@ -27,8 +27,21 @@
       <!-- 前台列表 -->
       <view class="front-list">
         <view class="_font28 _title">前台(子管理员)<text class="_font24 _title_info">每个企业仅可以设置3名</text></view>
-        <block wx:for="{{staffList.employee}}" wx:key="">
-          <view class="_list_item _flex _flex_space_between _role_front" wx:if="{{item.role == 2}}" data-unionid='{{item.union_id}}'>
+        <block wx:for="{{staffList.front_desk.normal}}" wx:key="">
+          <view class="_list_item _flex _flex_space_between _role_front" data-unionid='{{item.union_id}}'>
+            <navigator url="/pages/employee/admin-executive/adminHome/index?union_id={{item.union_id}}" hover-class="none">
+            <view class="_lft _flex _flex_item_center">
+              <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
+              <view class="_name _fontw500">{{item.employee_name}}</view>
+            </view>
+            </navigator>
+            <view class="_rgt _flex _flex_item_center">
+              <view class="_status _font24"></view>
+            </view>
+          </view>
+        </block>
+        <block wx:for="{{staffList.front_desk.not_active}}" wx:key="">
+          <view class="_list_item _flex _flex_space_between _role_front" data-unionid='{{item.union_id}}'>
             <navigator url="/pages/employee/admin-executive/adminHome/index?union_id={{item.union_id}}" hover-class="none">
             <view class="_lft _flex _flex_item_center">
               <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>

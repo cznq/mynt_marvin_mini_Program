@@ -70,7 +70,7 @@
       </view>
       <!-- 前台列表 -->
       <view class="front-list">
-        <block wx:for="{{staffList.front_desk}}" wx:key="">
+        <block wx:for="{{staffList.front_desk.normal}}" wx:key="">
           <view class="_list_item _flex _flex_space_between _role_front" wx:if="{{item.role == 2}}" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
             <view class="_lft _flex _flex_item_center">
               <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>

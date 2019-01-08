@@ -28,9 +28,9 @@
   </view>
   <view class="page__ft">
     <view>
-      <button>重新发送邀请</button>
-      <button>删除前台(子管理员)</button>
-      <button>转让管理员</button>
+      <button bindtap="reInviteFront" wx:if="{{empInfo.role==2}}">重新发送邀请</button>
+      <button bindtap="removeFrontDesk" wx:if="{{empInfo.role==2}}">删除前台(子管理员)</button>
+      <button bindtap="transAdmin" wx:if="{{empInfo.role==3}}">转让管理员</button>
     </view>
   </view>
 </view>
