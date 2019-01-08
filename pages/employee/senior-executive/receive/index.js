@@ -17,7 +17,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.data.invitation_id = options.invitation_id;
+    this.setData({
+      invitation_id:options.invitation_id
+    })
   },
   getInitation: function () {
     var that = this;
@@ -30,12 +32,11 @@ Page({
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
-        service: 'visitor',
-        method: 'get_invitation_info',
+        service: 'company',
+        method: 'get_role_invitation_info',
         data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session'),
-          //invitation_id: that.data.invitation_id
-          invitation_id: 65
+          invitation_id: that.data.invitation_id,
+          invitation_type:0
         })
       },
       success: res => {
@@ -45,19 +46,10 @@ Page({
             icon: 'none'
           })
         }
-        //更改邀请函阅读状态
-        if (res.data.result.read_status==0) {
-          that.changeReadStatus();
-        }
-        if (res.data.result.visitor.visitor_id !== 0) {
-          wx.redirectTo({
-            url: '/pages/employee/senior-executive/success/index?invitation_id=' + that.data.invitation_id,
-          })
-        } else {
-          that.setData({
-            invitation: res.data.result,
-          })
-        }
+        console.log(res.data.result)
+        that.setData({
+          invitation: res.data.result,
+        })
       },
       fail: res => {
         wx.showToast({

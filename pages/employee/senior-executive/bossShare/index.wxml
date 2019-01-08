@@ -14,14 +14,14 @@
             </view>
             <view class="invite-info">
                 <view class="_sec">
-                    <view class="int-title _font38 _fontw600">尊敬的刘总：</view>
+                    <view class="int-title _font38 _fontw600">尊敬的{{inviterInfo.bossName}}：</view>
                     <view class="_font28 int-intro">
                     <rich-text nodes="很荣幸邀请您成为我司的VIP，您可以享受我们的以下企业特权，烦请点击下方按钮接受邀请并开始享受特权。" bindtap="tap"></rich-text>
                     </view>
                 </view>
                 <view class="_sec">
                     <view class="int-item-name _font24">邀请人</view>
-                    <view class="_font32 int-item-info">王先生</view>
+                    <view class="_font32 int-item-info">{{empInfo.name}}</view>
                 </view>
                 <view class="_ft_logo _txt_center">
                     <image style="width:224rpx" mode='widthFix' src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/foot_mynt_logo%402x.png"></image>

@@ -18,22 +18,22 @@ Page({
   onLoad: function (options) {
     var that=this;
     that.setData({
-      employeeId:options.id
+      employeeId:options.unionId
     })
-    //console.log(that.data.employeeId)
+    console.log(that.data.employeeId)
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'company',
         method: 'get_employee_info',
         data: JSON.stringify({
-          union_id: that.data.employeeId,
+          union_id: wx.getStorageSync('xy_session'),
+          employee_union_id:that.data.employeeId
         })
       },
       success: res => {;
-        //console.log(res.data.result)
+        console.log(res.data.result)
         if (res.data.result) {
-          res.data.result.first_name = res.data.result.name.substring(0,1);
           that.setData({
             empInfo:res.data.result
           })
@@ -41,80 +41,33 @@ Page({
       }
     })
   },
-  getTitle:function(e){
+  giveTitle:function(e){
     var that = this
     that.setData({
       bossName: e.detail.value
     });
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'company',
-        method: 'give_title',
-        data: JSON.stringify({
-          union_id: that.data.employeeId,
-          title_name:that.data.bossName,
-        })
-      },
-      success: res => {
-        console.log(res.data.result)
-        if (res.data.result) {
-          
-        }
-      }
-    })
   },
   goShare:function () {
+    if (this.data.bossName == "") {
+      wx.showToast({
+        title: '请输入高管的尊称',
+        icon: 'none'
+      })
+      return false;
+    } 
+    var params = JSON.stringify({
+      invitee_union_id: this.data.employeeId,
+      invitee_name: this.data.empInfo.name,
+      bossName: this.data.bossName
+    })
     wx.navigateTo({
-      url: '/pages/employee/senior-executive/bossShare/index',
+      url: '/pages/employee/senior-executive/bossShare/index?params='+ params,
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

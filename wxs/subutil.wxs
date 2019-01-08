@@ -27,6 +27,10 @@ var transRoleClassName = function (role) {
     return 'admin';
   }
 }
+var firstName = function(name){
+  return name.substring(0,1);
+}
 module.exports.transRoleClassName = transRoleClassName;
 module.exports.removeFloor = removeFloor;
 module.exports.transRoleName = transRoleName;
+module.exports.firstName = firstName;

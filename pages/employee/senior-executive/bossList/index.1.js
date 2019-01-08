@@ -7,8 +7,7 @@ Page({
    */
   data: {
     isIphoneX: app.globalData.isIphoneX,
-    staffList: null,
-    leaderList:null,
+    staffList:[],
     bossNum:3,
     btnShow:false,
     bossName:''
@@ -52,19 +51,30 @@ Page({
       },
       success: res => {
         console.log(res.data.result);
-        if(res.data.result){  
-          let length = res.data.result.leader.normal.length+  res.data.result.leader.not_active.length
+        if (res.data.result) {
+          //所有列表
+          let { admin ,front_desk ,employee} = res.data.result;
           that.setData({
-            leaderList:res.data.result.leader,
-            bossNum: that.data.bossNum-length
-          })     
-          if(that.data.bossNum == 0){
-            that.setData({
-              btnShow:true
-            })
-          }    
-          console.log(that.data.leaderList);
+            staffList: [...admin,...front_desk,...employee]
+          })
+          console.log(that.data.staffList);
+          for (var index in that.data.staffList) {
+            if(that.data.staffList[index].person_type == 3){
+              that.setData({
+                bossNum: that.data.bossNum-1
+              })
+              if(that.data.bossNum == 0){
+                that.setData({
+                  btnShow:true
+                })
+              }
+            }
+          }
+          that.setData({
+            staffList: that.data.staffList
+          })
         }
+        
       }
     })
   },

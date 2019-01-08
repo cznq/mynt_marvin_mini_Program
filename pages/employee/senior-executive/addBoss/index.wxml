@@ -1,4 +1,5 @@
 <!--pages/employee/senior-executive/addBoss/index.wxml-->
+<wxs src="../../../../wxs/subutil.wxs" module="tools" />
 <view class="page">
     <view class="page__hd">
         <text class="_font60 _fontw700">选择一位员工</text>
@@ -6,41 +7,62 @@
     </view>
     <view class="page_bd">
         <view class="admin-list">  
-            <block wx:for="{{staffList.employee}}" wx:key="">
-                <view class="_list_item _flex _flex_space_between _role_admin" wx:if="{{item.role == 2}}">
-                    <view class="_lft _flex _flex_item_center">
-                        <view class="_family_name">{{item.first_name}}</view>
-                        <view class="_name _fontw500 _font34">{{item.employee_name}}</view>
-                    </view>
-                    <view class="_rgt _flex _flex_item_center">
-                    </view>
-                </view>
-            </block>
-        </view>
-        <view class="boss-list">  
-            <block wx:for="{{staffList.employee}}" wx:key="">
-                <view class="_list_item _flex _flex_space_between _role_boss" wx:if="{{item.role == 4}}">
-                    <view class=" {{disabled?'disabled':''}}">
+            <!-- 管理员列表 -->
+            <block wx:for="{{staffList.admin}}" wx:key="">
+                <view class="_list_item _role_admin" bindtap="selectBoss" data-id="{{item.union_id}}" data-type="{{item.person_type}}">
+                    <view class="_flex _flex_space_between {{item.person_type == 3 ?'disabled':''}}">
                         <view class="_lft _flex _flex_item_center">
-                            <view class="_family_name">{{item.first_name}}</view>
+                            <view class="_family_name">{{tools.firstName(item.employee_name)}}</view>
                             <view class="_name _fontw500 _font34">{{item.employee_name}}</view>
                         </view>
                         <view class="_rgt _flex _flex_item_center">
+                            <checkbox checked="{{item.union_id==unionId?'checked':''}}" wx:if="{{item.person_type == null}}" />
                         </view>
                     </view>
                 </view>
             </block>
         </view>
+        <!-- 前台列表 -->
+        <view class="boss-list">  
+            <block wx:for="{{staffList.front_desk.normal}}" wx:key="">
+                <view class="_list_item _role_front" bindtap="selectBoss" data-id="{{item.union_id}}" data-type="{{item.person_type}}">
+                    <view class=" _flex _flex_space_between {{item.person_type == 3 ?'disabled':''}}">
+                        <view class="_lft _flex _flex_item_center">
+                            <view class="_family_name">{{tools.firstName(item.employee_name)}}</view>
+                            <view class="_name _fontw500 _font34">{{item.employee_name}}</view>
+                        </view>
+                        <view class="_rgt _flex _flex_item_center">
+                            <checkbox checked="{{item.union_id==unionId?'checked':''}}" wx:if="{{item.person_type == null}}"/>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <block wx:for="{{staffList.front_desk.not_active}}" wx:key="">
+                <view class="_list_item _role_front" bindtap="selectBoss" data-id="{{item.union_id}}" data-type="{{item.person_type}}">
+                    <view class=" _flex _flex_space_between {{item.person_type == 3 ?'disabled':''}}">
+                        <view class="_lft _flex _flex_item_center">
+                            <view class="_family_name">{{tools.firstName(item.employee_name)}}</view>
+                            <view class="_name _fontw500 _font34">{{item.employee_name}}</view>
+                        </view>
+                        <view class="_rgt _flex _flex_item_center">
+                            <checkbox checked="{{item.union_id==unionId?'checked':''}}" wx:if="{{item.person_type == null}}"/>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </view>
+        <!-- 员工列表 -->
         <view class="staff-list">  
             <block wx:for="{{staffList.employee}}" wx:key="">
-                <!-- <view class="_list_item _flex _flex_space_between _role_staff" wx:if="{{item.role == 1}}" bindtap="selectBoss" data-id="2"> -->
-                <view class="_list_item _flex _flex_space_between _role_staff"  bindtap="selectBoss" id="{{index}}" data-id="{{item.union_id}}">
-                    <view class="_lft _flex _flex_item_center">
-                        <view class="_family_name">{{item.first_name}}</view>
-                        <view class="_name _fontw500 _font34">{{item.employee_name}}</view>
-                    </view>
-                    <view class="_rgt _flex _flex_item_center">
-                        <checkbox checked="{{index==checkId?'checked':''}}"/>
+                <view class="_list_item _role_staff" bindtap="selectBoss" data-id="{{item.union_id}}" data-type="{{item.person_type}}">
+                    <view class="_flex _flex_space_between {{item.person_type == 3 ?'disabled':''}}">
+                        <view class="_lft _flex _flex_item_center">
+                            <view class="_family_name">{{tools.firstName(item.employee_name)}}</view>
+                            <view class="_name _fontw500 _font34">{{item.employee_name}}</view>
+                        </view>
+                        <view class="_rgt _flex _flex_item_center">
+                            <checkbox checked="{{item.union_id==unionId?'checked':''}}" wx:if="{{item.person_type == null}}"/>
+                        </view>
                     </view>
                 </view>
             </block>
