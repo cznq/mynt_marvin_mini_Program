@@ -3,12 +3,12 @@
 <view class="page">
     <view class="page__hd">
         <text class="_font60 _fontw700">选择一位员工</text>
-        <view class="_font28 _txt_darkgrey">将TA指定为您公司的高管</view>
+        <view class="_font28 _txt_darkgrey">将TA指定为您公司的{{changeRole}}</view>
     </view>
     <view class="page_bd">
         <view class="staff-list">
             <block wx:for="{{staffList}}" wx:key="">
-                <view class="_list_item {{tools.transClassName(item.role)}}" bindtap="{{item.highlight?'selectBoss':''}}" data-id="{{item.union_id}}">
+                <view class="_list_item {{tools.transRoleClassName(item.role)}}" bindtap="{{item.highlight?'selectBoss':''}}" data-id="{{item.union_id}}">
                     <view class="_flex _flex_space_between {{item.highlight?'':'disabled'}}">
                         <view class="_lft _flex _flex_item_center">
                             <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>

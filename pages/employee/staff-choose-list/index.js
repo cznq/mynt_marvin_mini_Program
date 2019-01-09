@@ -9,7 +9,8 @@ Page({
     isIphoneX: app.globalData.isIphoneX,
     staffList:[],
     unionId:null,
-    from:''
+    from:'',
+    changeRole: ''
   },
 
   /**
@@ -17,9 +18,14 @@ Page({
    * options.from   transAdmin 转让管理员; inviteFront 邀请子管理员; inviteLeader 邀请高管
    */
   onLoad: function (options) {
-    this.setData({
-      from: options.from
-    })
+    this.setData({ from: options.from })
+    if (options.from =='transAdmin'){
+      this.setData({ changeRole: '管理员' })
+    } else if (options.from == 'inviteFront'){
+      this.setData({ changeRole: '前台（子管理员）' })
+    } else if (options.from == 'inviteLeader') {
+      this.setData({ changeRole: '高管' })
+    }
   },
   getStaffList:function(){
     var that = this;
@@ -68,9 +74,13 @@ Page({
           wx.navigateTo({
             url: '/pages/employee/senior-executive/fillName/index?unionId='+_this.data.unionId
           })  
-      },1000)
-    } else {
-        
+      },500)
+    } else if (_this.data.from == 'transAdmin' || _this.data.from == 'inviteFront') {
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/employee/admin-executive/adminShare/index?unionId=' + _this.data.unionId
+        })
+      }, 500)
     }
 
 

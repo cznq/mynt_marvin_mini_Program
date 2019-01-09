@@ -5,6 +5,18 @@
 .page {
   background-color: rgba(249, 250, 251, 1);
 }
+.page_hd {
+  padding: 60rpx 0 30rpx;
+}
+.icon-successful {
+  font-size: 80rpx;
+  line-height: 1;
+  color: rgba(100, 219, 137, 1);
+}
+.sutitle {
+  line-height: 1;
+  margin-top: 30rpx;
+}
 .page_bd {
   padding-bottom: 100rpx;
 }

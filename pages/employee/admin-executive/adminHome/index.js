@@ -97,7 +97,7 @@ Page({
     var _this = this;
     if (_this.data.btnType =='trans') {
       wx.navigateTo({
-        url: '../../staff-choose-list/index'
+        url: '../../staff-choose-list/index?from=transAdmin'
       })
       return ;
     } 

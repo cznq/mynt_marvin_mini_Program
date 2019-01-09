@@ -35,13 +35,13 @@
   text-align: center;
   box-shadow: 6rpx 0 92rpx rgba(43, 51, 72, 0.12);
 }
-.avatar.leader {
+.avatar._role_front {
   background-color: rgba(249, 146, 47, 1);
 }
-.avatar.admin {
+.avatar._role_admin {
   background-color: rgba(72, 79, 98, 1);
 }
-.avatar.employee {
+.avatar._role_staff {
   background-color: rgba(96, 146, 254, 1);
 }
 .icon-icon_new { color: #05d414;}

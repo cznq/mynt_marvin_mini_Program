@@ -19,11 +19,11 @@ var transRoleName = function (role) {
 
 var transRoleClassName = function (role) {
   if (role == 1) {
-    return 'employee';
+    return '_role_staff';
   } else if (role == 2) {
-    return 'leader';
+    return '_role_front';
   } else if (role == 3) {
-    return 'admin';
+    return '_role_admin';
   }
 }
 
@@ -35,18 +35,8 @@ var getFirstLetter = function (name) {
   }
 }
 
-var transClassName = function (role) {
-  if (role == 1) {
-    return '_role_staff';
-  } else if (role == 2) {
-    return '_role_front';
-  } else if (role == 3) {
-    return '_role_admin';
-  }
-}
 
 module.exports.transRoleClassName = transRoleClassName;
 module.exports.removeFloor = removeFloor;
 module.exports.transRoleName = transRoleName;
 module.exports.getFirstLetter = getFirstLetter;
-module.exports.transClassName = transClassName;
