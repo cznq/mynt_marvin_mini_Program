@@ -2,5 +2,5 @@
 @import "../../../templates/showToast/showToast.wxss";
 
 page {
-  background: #FCFCFC;
+  background: #fff;
 }
