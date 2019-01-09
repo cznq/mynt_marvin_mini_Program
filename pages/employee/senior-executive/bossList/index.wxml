@@ -5,17 +5,7 @@
         <text class="_font60 _fontw700">高管列表</text>
     </view>
     <view class="boss-list">  
-        <block wx:for="{{leaderList.normal}}" wx:key="">
-            <view class="_list_item _flex _flex_space_between">
-                <view class="_lft _flex _flex_item_center">
-                    <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
-                    <view class="_name _fontw500 _font34">{{item.employee_name}}</view>
-                </view>
-                <view class="_rgt _flex _flex_item_center">
-                </view>
-            </view>
-        </block>
-        <block wx:for="{{leaderList.not_active}}" wx:key="">
+        <block wx:for="{{leaderList}}" wx:key="">
             <view class="_list_item _flex _flex_space_between">
                 <view class="_lft _flex _flex_item_center">
                     <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>

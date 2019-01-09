@@ -51,6 +51,25 @@ Page({
         that.setData({
           invitation: res.data.result,
         })
+        //获取职员信息 判断person_type是否为高管 是=已接受
+        app.Util.network.POST({
+          url: app.globalData.BASE_API_URL,
+          params: {
+            service: 'company',
+            method: 'get_employee_info',
+            data: JSON.stringify({
+              union_id:wx.getStorageSync('xy_session'),
+            })
+          },
+          success: res => {
+            console.log(res.data.result);
+            if (res.data.result.person_type == 3) {
+              that.setData({
+                notAccepted: false,
+              })
+            }      
+          }
+        })
       },
       fail: res => {
         wx.showToast({
@@ -69,7 +88,6 @@ Page({
         method: 'give_employee_title',
         data: JSON.stringify({
           union_id:wx.getStorageSync('xy_session'),
-          //union_id:'o3iamji3FUUaId1FKcuPyI_X3XLQ',
           role:4, //员工角色(4:高管)
           invitation_id:that.data.invitation_id
         })
