@@ -62,46 +62,44 @@ Page({
                         wx.reLaunch({
                             url: '../../../manage/manage',
                         })
-                    } else {
-                        app.Util.network.POST({
-                            url: app.globalData.BASE_API_URL,
-                            params: {
-                                service: 'company',
-                                method: 'get_company_info',
-                                data: JSON.stringify({
-                                    union_id: wx.getStorageSync('xy_session'),
-                                    company_code: _this.data.company_code
-                                })
-                            },
-                            success: res => {
-                                console.log(res);
-                                if (res.data.sub_code == 0) {
-                                    console.log('数据成功');
-                                    _this.setData({
-                                        cd: res.data.result
-                                    })
-                                } else {
-                                    console.log(res.data.sub_msg);
-                                    toast.showToast(this, {
-                                        toastStyle: 'toast',
-                                        title: res.data.sub_msg,
-                                        duration: 1000,
-                                        mask: false,
-                                        cb: function() {
-                                            wx.reLaunch({
-                                                url: '../choiceJoin/index',
-                                            })
-                                        }
-                                    });
-                                }
-                            },
-                            fail: res => {
-                                console.log('fail');
-                            }
-                        })
                     }
                 } else {
-                    console.log(res.data.sub_msg);
+                    app.Util.network.POST({
+                        url: app.globalData.BASE_API_URL,
+                        params: {
+                            service: 'company',
+                            method: 'get_company_info',
+                            data: JSON.stringify({
+                                union_id: wx.getStorageSync('xy_session'),
+                                company_code: _this.data.company_code
+                            })
+                        },
+                        success: res => {
+                            console.log(res);
+                            if (res.data.sub_code == 0) {
+                                console.log('数据成功');
+                                _this.setData({
+                                    cd: res.data.result
+                                })
+                            } else {
+                                console.log(res.data.sub_msg);
+                                toast.showToast(this, {
+                                    toastStyle: 'toast',
+                                    title: res.data.sub_msg,
+                                    duration: 1000,
+                                    mask: false,
+                                    cb: function() {
+                                        wx.reLaunch({
+                                            url: '../choiceJoin/index',
+                                        })
+                                    }
+                                });
+                            }
+                        },
+                        fail: res => {
+                            console.log('fail');
+                        }
+                    })
                 }
             },
             fail: res => {
