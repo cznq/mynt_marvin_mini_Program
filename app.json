@@ -60,8 +60,7 @@
         "pages/mall-home/mall-home",
         "pages/mall-detail/mall-detail",
         "pages/mall-comment/mall-comment",
-        "pages/suite-introduce/suite-introduce",
-        "pages/web-pay/web-pay"
+        "pages/suite-introduce/suite-introduce"
       ]
     }
   ],

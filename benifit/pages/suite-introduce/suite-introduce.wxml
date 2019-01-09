@@ -24,10 +24,36 @@
         <view class="iconfont icon-zixun blue"></view>
         <view class="blue _font24">咨询</view>
       </view>
-      <navigator url="../web-pay/web-pay" hover-class="none">
-      <button class="_font30" style="background: url(https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/buy-button%402x.png) no-repeat center 10rpx;background-size: 224rpx 134rpx;">立即付款</button>
-      </navigator>
+      
+      <button class="_font30" bindtap='quickPay' style="background: url(https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/buy-button%402x.png) no-repeat center 10rpx;background-size: 224rpx 134rpx;">立即付款</button>
+      
     </view>
   </view>
+
+  <canvas canvas-id="inviteCanvas" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px;"></canvas>
+  <block wx:if="{{showModal}}">
+    <view class="modal-bg" bindtap="closeModal"></view>
+    <view class="invite-modal">
+        <view class="modal-header _txt_center">
+          <view class="_suite_title _fontw600 _font40">商业服务套件付费</view>
+          <view class="_suite_intro _font24">超值商业服务套件月费低至198元/月</view>
+
+        </view>
+        <view class="modal-body">
+          <view class="invite-method-part">
+            <view class="code"><view class="tit _font28">付费二维码</view></view>
+            <view class="qrcode" >
+              <image class="qrcode-img" src='https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/pay_qrcode.png'></image>
+              <view class="tips _font24">扫描二维码支付费用</view>
+            </view>
+           
+          </view>
+
+          <view class="invite-btn-area">
+            <button class="save" bindtap="getInviteQrcodePhoto">保存到手机</button>
+          </view>
+        </view>
+    </view>
+  </block>
 
 </view>
