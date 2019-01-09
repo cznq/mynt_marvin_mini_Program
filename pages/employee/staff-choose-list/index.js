@@ -39,22 +39,22 @@ Page({
         })
       },
       success: res => {
-        console.log(res.data.result);
+        
         if (res.data.result) {
           //所有列表
           let { admin ,front_desk ,employee} = res.data.result;
-          let { normal} =res.data.result.front_desk;
-          that.setData({
-            staffList: [...admin,...normal,...employee]
-          })
-          //console.log(that.data.staffList);
-          for (var index in that.data.staffList) {
-            if(that.data.staffList[index].person_type == null){
-                that.data.staffList[index].highlight=true
+          var staffList = [...admin, ...front_desk,...employee]
+          
+          for (var index in staffList) {
+            if(staffList[index].invite_status==0){
+              staffList.splice(index,1)
+            }
+            if(staffList[index].person_type == null){
+                staffList[index].highlight=true
             }
           }
           that.setData({
-            staffList:that.data.staffList
+            staffList: staffList
           })    
           console.log(that.data.staffList);
         }
@@ -78,7 +78,7 @@ Page({
     } else if (_this.data.from == 'transAdmin' || _this.data.from == 'inviteFront') {
       setTimeout(function () {
         wx.navigateTo({
-          url: '/pages/employee/admin-executive/adminShare/index?unionId=' + _this.data.unionId
+          url: '/pages/employee/admin-executive/adminShare/index?unionId=' + _this.data.unionId + '&from=' + _this.data.from
         })
       }, 500)
     }

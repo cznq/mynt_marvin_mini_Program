@@ -3,39 +3,41 @@
 <wxs src="../../../wxs/subutil.wxs" module="tools" />
 
 <view class="page">
-  <view class="page__hd _txt_center _font28">
-    <view class=" _apply_title">申请加入贵公司</view>
-    <view class="_status _fontw600 refuse">已通过</view>
+  <view class="page__hd _txt_center _font28 {{applyInfo.apply_status>0?'_status':''}}">
+    <block wx:if="{{applyInfo.apply_status>0}}">
+      <view class=" _apply_title">申请加入贵公司</view>
+      <view class="_status _fontw600 refuse" wx:if="{{applyInfo.apply_status==2}}">已拒绝</view>
+      <view class="_status _fontw600 pass" wx:if="{{applyInfo.apply_status==1}}">已通过</view>
+      <view class="_status _fontw600 invalid" wx:if="{{applyInfo.apply_status==3}}">已失效</view>
+    </block>
   </view>
   <view class="page__bd">
-    <view class="_flex _flex_item_center _flex_justify_center">
-      <view class="avatar {{tools.transRoleClassName(empInfo.role)}} _font68">{{tools.getFirstLetter(empInfo.name)}}</view>   
-      <view class="_font36 _name _fontw600">{{empInfo.name}}</view> 
+    <view class="_flex _flex_item_center _flex_justify_center _flex_column">
+      <view class="avatar _role_staff _font68">{{tools.getFirstLetter(applyInfo.employee_name)}}</view>   
+      <view class="_font36 _name _fontw600">{{applyInfo.employee_name}}</view> 
     </view>
     <view class="list-info">
       <view class="list-item">
         <view class="label">申请加入</view>
-        <view class="info-value">{{compInfo.company_name}}</view>
+        <view class="info-value">{{applyInfo.company_name}}</view>
       </view>
       <view class="list-item">
         <view class="label">姓名</view>
-        <view class="info-value">{{empInfo.name}}</view>
+        <view class="info-value">{{applyInfo.employee_name}}</view>
       </view>
       <view class="list-item">
         <view class="label">申请理由</view>
-        <view class="info-value">{{tools.transRoleName(empInfo.role)}}</view>
+        <view class="info-value">{{applyInfo.application_reason}}</view>
       </view>
     </view>
     
   </view>
 
-  <view class="page_ft _fixed {{isIphoneX?'iphonex':''}}">
-    <form bindsubmit="receiveSubmit" report-submit="true">
-      <view class="_flex _flex_space_between">
-        <button form-type="submit" class="_button _refuse" id="inviteBtn">拒绝</button>
-        <button form-type="submit" class="_button" id="inviteBtn">同意</button>
-      </view>
-    </form>
+  <view class="page_ft _fixed {{isIphoneX?'iphonex':''}}" wx:if="{{applyInfo.apply_status==0}}">
+    <view class="_flex _flex_space_between">
+      <button class="_button _refuse" bindtap="applyRefuse">拒绝</button>
+      <button class="_button" bindtap="applyAgree">同意</button>
+    </view>
   </view>
 </view>
 

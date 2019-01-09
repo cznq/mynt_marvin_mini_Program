@@ -21,14 +21,14 @@ Page({
       this.setData({
         textInfo: '很高兴邀请您成为本公司新的管理员，您将拥有我们的以下管理权力，烦请点击下方按钮接受邀请并开始使用管理权力。',
         roleTitle: '管理员',
-        changeRole: 2,
+        changeRole: 3,
 
       })
     } else if(options.from == 'inviteFront') {
       this.setData({
         textInfo: '很高兴邀请您成为本公司的前台(子管理员)，您将拥有我们的以下管理权力，烦请点击下方按钮接受邀请并开始使用管理权力。',
         roleTitle: '前台(子管理员)',
-        changeRole: 3
+        changeRole: 2
       })
     }
     
@@ -125,7 +125,7 @@ Page({
           that.setData({
             invitee: res.data.result
           });
-          that.submitInvitation(that.data.invitor.name, employee_union_id, res.data.result.name, 3, that.data.changeRole, that.data.compInfo.company_id);
+          that.submitInvitation(that.data.invitor.name, employee_union_id, res.data.result.name, that.data.changeRole, 0, that.data.compInfo.company_id);
         }
 
       }

@@ -35,7 +35,7 @@ Page({
         })
       },
       success: res => {
-        console.log(res.data.result);
+  
         if (res.data.result) {
           that.setData({
             staffList: res.data.result

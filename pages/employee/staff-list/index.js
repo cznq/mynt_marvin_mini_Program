@@ -13,11 +13,6 @@ Page({
       buttonText: '邀请员工',
       textInfo: '还没有任何员工，赶紧邀请加入员工'
     },
-    editData: {
-      union_id: null,
-      employee_name: null,
-      role: null
-    },
     role: '',
     searchStaffList: []
   },
@@ -82,13 +77,20 @@ Page({
   viewPerInfo(e) {
     var unionId = e.currentTarget.dataset.unionid;
     wx.navigateTo({
-      url: '../staff-info/index?union_id=' + unionId,
+      url: '../admin-executive/adminHome/index?union_id=' + unionId,
     })
   },
 
   searchInput: function(e) {
     var searchValue = e.detail.value;
-    var allList = this.data.staffList.admin.concat(this.data.staffList.employee);
+    let { admin, front_desk, employee } = this.data.staffList;
+    var allList = [...admin, ...front_desk, ...employee];
+    for (var index in allList) {
+      if (allList[index].invite_status == 0) {
+        allList.splice(index, 1)
+      }
+    }
+
     var searchResult = [];
     if (searchValue) {
       this.setData({

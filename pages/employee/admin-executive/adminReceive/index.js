@@ -19,7 +19,11 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.data.invitation_id = options.invitation_id;
-    
+    that.data.invitation_type = options.invitation_type;
+    that.getEmployeeInfo();
+  },
+  getEmployeeInfo() {
+    var that = this;
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
@@ -35,7 +39,7 @@ Page({
             role: res.data.result.role
           });
         }
-        that.getRoleInvitation(options.invitation_id, options.invitation_type);
+        that.getRoleInvitation(that.data.invitation_id, that.data.invitation_type);
       }
     })
   },
@@ -90,13 +94,15 @@ Page({
         method: 'update_employee_role',
         data: JSON.stringify({
           union_id: wx.getStorageSync('xy_session'),
+          employee_union_id: wx.getStorageSync('xy_session'),
           invitation_id: that.data.invitation_id,
           role: that.data.invitation.assigned_role
         })
       },
       success: res => {
-        if (res.data.result) {
-          that.onLoad();
+        console.log(res.data.sub_code);
+        if (res.data.sub_code ==0) {
+          that.getEmployeeInfo();
         }
 
       }

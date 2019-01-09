@@ -24,5 +24,10 @@
     </view>
     
   </view>
+  <view class="page__ft">
+    <view>
+      <button bindtap="removeFrontDesk" wx:if="{{empInfo.role==2}}">删除前台(子管理员)</button>
+    </view>
+  </view>
 </view>
 

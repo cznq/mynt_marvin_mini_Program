@@ -1,12 +1,15 @@
 /* pages/employee/staff-apply/index.wxss */
 @import "../public/style.wxss";
-
+@import "../../../templates/showToast/showToast.wxss";
 page {
   background: rgba(249, 250, 251, 1);
 }
 .page__hd {
   padding-top: 40rpx;
   line-height: 1;
+  height: 100rpx;
+}
+.page__hd._status {
   height: 210rpx;
 }
 .page__bd {
@@ -38,6 +41,9 @@ page {
 }
 ._flex {
   flex-direction: row;
+}
+._flex_column {
+  flex-direction: column;
 }
 ._button { 
   width: 300rpx;
