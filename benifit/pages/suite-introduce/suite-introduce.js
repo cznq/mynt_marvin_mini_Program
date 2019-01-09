@@ -218,7 +218,7 @@ Page({
     //分割线
     this.drawRect(ctx, 33, 182, 308, 1, '#f9f9f9');
     //公司名字
-    this.drawText(ctx, 22, '#000', 'center', '商务服务套件付费', 187, 130);
+    this.drawText(ctx, 22, '#000', 'center', '商业服务套件付费', 187, 130);
     //公司别称
     this.drawText(ctx, 12, '#8891A9', 'center', '超值商业服务套件月费低至198元/月', 187, 150);
     //二维码标题
