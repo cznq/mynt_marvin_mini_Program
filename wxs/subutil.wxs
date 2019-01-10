@@ -17,11 +17,16 @@ var transRoleName = function (role) {
   }
 }
 
-var transRoleClassName = function (role) {
-  if (role == 1) {
-    return '_role_staff';
-  } else if (role == 3 || role == 2) {
+var transRoleClassName = function (role, personType) {
+  if (role > 1) {
     return '_role_admin';
+  } else {
+    if (personType == 3) {
+      return '_role_leader';
+    } else {
+      return '_role_staff'; 
+    }
+    
   }
 }
 
