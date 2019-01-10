@@ -23,7 +23,7 @@ Page({
     button_text_qx: '取消申请',
     mode: 'aspectFill', //manage logo展示效果
     cd: {},
-    imgurl_manage:{},
+    imgurl_manage: [],
     imgUrls: [{
         url: app.globalData.BASE_IMG_URl + 'welcome_one@2x.png',
         title: '优享智能服务',
@@ -200,7 +200,7 @@ Page({
   //员工福利
   suiteIntroduce:function(){
     wx.navigateTo({
-      url: '/benifit/pages/suite-introduce/suite-introduce',
+      url: '/benifit/pages/vip-card/vip-card',
     })
   },
   //创建公司-轮播图文案信息
@@ -264,11 +264,18 @@ Page({
         isloading:false
       },
       success: res => {
-        if (res.data.sub_code == 0) {
+        if (res.data.result) {
           _this.setData({
             imgurl_manage: res.data.result
           })
         } else {
+          //默认轮播图
+          _this.setData({
+            imgurl_manage: [{
+              'image_url': 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/slide-default.png',
+              'link_url': '/benifit/pages/suite-introduce/suite-introduce'
+            }]
+          })
           console.log(res.data.sub_msg);
         }
       },

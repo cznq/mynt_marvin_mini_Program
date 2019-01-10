@@ -64,6 +64,7 @@
           </view>
           <view class="_rgt _flex _flex_item_center">
             <view class="iconfont icon-icon_guanliyuan admin _font36"></view>
+            <view class="iconfont icon-icon_gaoguan _font36" wx:if="{{item.person_type==3}}"></view>
           </view>
         </view>
         </block>
@@ -71,14 +72,14 @@
       <!-- 前台列表 -->
       <view class="front-list">
         <block wx:for="{{staffList.front_desk}}" wx:key="">
-          <view class="_list_item _flex _flex_space_between _role_front" wx:if="{{item.role == 2 && item.invite_status == 1}}" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
+          <view class="_list_item _flex _flex_space_between _role_admin" wx:if="{{item.role == 2 && item.invite_status == 1}}" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
             <view class="_lft _flex _flex_item_center">
               <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
               <view class="_name _fontw500">{{item.employee_name}}</view>
             </view>
             <view class="_rgt _flex _flex_item_center">
-             
-              <view class="iconfont icon-icon_gaoguan _font36"></view>
+              <view class="iconfont icon-icon_guanliyuan admin _font36"></view>
+              <view class="iconfont icon-icon_gaoguan _font36" wx:if="{{item.person_type==3}}"></view>
              
             </view>
           </view>
@@ -88,15 +89,13 @@
       <!-- 员工列表 -->
       <view class="staff-list">
       <block wx:for="{{staffList.employee}}" wx:key="">
-        <view class="_list_item _flex _flex_space_between _role_staff" wx:if="{{item.role == 1}}" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
+        <view class="_list_item _flex _flex_space_between {{item.person_type==3?'_role_leader':'_role_staff'}}" wx:if="{{item.role == 1}}" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
           <view class="_lft _flex _flex_item_center">
             <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
             <view class="_name _fontw500">{{item.employee_name}}</view>
           </view>
           <view class="_rgt _flex _flex_item_center">
-          <!--
-            <view class="handle_btn" bindtap="editEmp" data-unionid='{{item.union_id}}' data-name='{{item.employee_name}}' data-role='{{item.role}}' wx:if="{{role==3}}"><view class="dot"></view><view class="dot"></view><view class="dot"></view></view>
-            -->
+            <view class="iconfont icon-icon_gaoguan _font36" wx:if="{{item.person_type==3}}"></view>
           </view>
         </view>
       </block>

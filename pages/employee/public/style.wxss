@@ -35,7 +35,7 @@
   text-align: center;
   box-shadow: 6rpx 0 92rpx rgba(43, 51, 72, 0.12);
 }
-.avatar._role_front {
+.avatar._role_leader {
   background-color: rgba(249, 146, 47, 1);
 }
 .avatar._role_admin {

@@ -21,10 +21,13 @@ Page({
     this.setData({ from: options.from })
     if (options.from =='transAdmin'){
       this.setData({ changeRole: '管理员' })
+      wx.setNavigationBarTitle({ title: '管理员设置' })
     } else if (options.from == 'inviteFront'){
       this.setData({ changeRole: '前台（子管理员）' })
+      wx.setNavigationBarTitle({ title: '前台（子管理员）设置' })
     } else if (options.from == 'inviteLeader') {
       this.setData({ changeRole: '高管' })
+      wx.setNavigationBarTitle({ title: '高管设置' })
     }
   },
   getStaffList:function(){

@@ -20,9 +20,7 @@ var transRoleName = function (role) {
 var transRoleClassName = function (role) {
   if (role == 1) {
     return '_role_staff';
-  } else if (role == 2) {
-    return '_role_front';
-  } else if (role == 3) {
+  } else if (role == 3 || role == 2) {
     return '_role_admin';
   }
 }

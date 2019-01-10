@@ -8,7 +8,7 @@
     <view class="page_bd">
         <view class="staff-list">
             <block wx:for="{{staffList}}" wx:key="">
-                <view class="_list_item {{tools.transRoleClassName(item.role)}}" bindtap="{{item.highlight?'selectBoss':''}}" data-id="{{item.union_id}}">
+                <view class="_list_item {{item.role>1?'_role_admin':''}} {{item.role==1 && item.person_type==3?'_role_leader':'staff'}}" bindtap="{{item.highlight?'selectBoss':''}}" data-id="{{item.union_id}}">
                     <view class="_flex _flex_space_between {{item.highlight?'':'disabled'}}">
                         <view class="_lft _flex _flex_item_center">
                             <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
