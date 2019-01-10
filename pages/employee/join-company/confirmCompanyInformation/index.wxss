@@ -108,3 +108,10 @@ page {
     border-bottom: 0;
     margin-bottom: 0;
 }
+
+.mynt_logo_gray {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

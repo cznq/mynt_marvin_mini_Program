@@ -40,7 +40,7 @@
             </view>
         </form>
     </view>
-    <view class="mynt_logo_gray"></view>
 </view>
+<view class="mynt_logo_gray"></view>
 <import src="../../../../templates/showToast/showToast.wxml" />
 <template is="showToast" data="{{showToast: showToast}}" />
