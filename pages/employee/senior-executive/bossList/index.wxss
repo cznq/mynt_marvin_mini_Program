@@ -1,6 +1,6 @@
 /* pages/employee/senior-executive/bossList/index.wxss */
 page{
-    background-color: #fcfcfc;
+    background-color: #F7F8FA;
 }
 .page__hd{
     padding:30rpx 64rpx;

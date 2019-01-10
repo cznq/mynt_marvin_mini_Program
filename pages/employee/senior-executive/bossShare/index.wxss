@@ -1,7 +1,7 @@
 /* pages/employee/senior-executive/bossShare/index.wxss */
 @import "../public/style.wxss";
 page{
-    background-color: #fcfcfc;
+    background-color: #F7F8FA;
 }
 .page{
     padding: 0 40rpx;
