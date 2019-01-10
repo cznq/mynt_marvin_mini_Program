@@ -1,0 +1,50 @@
+/* pages/employee/senior-executive/addBoss/index.wxss */
+page{
+    background-color: #fcfcfc;
+}
+.page__hd{
+    padding: 40rpx 60rpx 60rpx;
+}
+.page__bd{
+    border-top: 1px solid rgba(220, 220, 220, .5);
+}
+._list_item{
+    padding: 30rpx 60rpx;
+    border-bottom: 1px solid rgba(220, 220, 220, .5);
+}
+._role_admin ._family_name{
+    background-color: #484F62;
+}
+._role_front ._family_name{
+    background-color: #F9922F;
+}
+._role_admin .disabled,
+._role_front .disabled,
+._role_staff .disabled{
+    opacity: .6;
+}
+._role_staff ._family_name{
+    background-color: #6092FE;
+}
+._rgt checkbox{
+    width: 50rpx;
+    height: 50rpx;
+}
+checkbox .wx-checkbox-input{
+    width: 50rpx;
+    height: 50rpx;
+    background-color: transparent;
+    border: none;
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+    content: "\e60c";
+    width: 50rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    text-align: center;
+    font-size:50rpx;
+    background: transparent;
+    color: #64db89;
+    display: block;
+    font-family:"iconfont" !important;
+}

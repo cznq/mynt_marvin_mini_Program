@@ -1,5 +1,4 @@
 var removeFloor = function (floor) {
-  
   if (floor.indexOf('层' !== -1)) {
     floor = floor.replace('层', '');
     return floor;
@@ -8,4 +7,41 @@ var removeFloor = function (floor) {
   }
 }
 
+var transRoleName = function (role) {
+  if (role == 1) {
+    return '员工';
+  } else if (role == 2) {
+    return '前台';
+  } else if (role == 3) {
+    return '管理员';
+  }
+}
+
+var transRoleClassName = function (role) {
+  if (role == 1) {
+    return '_role_staff';
+  } else if (role == 2) {
+    return '_role_front';
+  } else if (role == 3) {
+    return '_role_admin';
+  }
+}
+
+var getFirstLetter = function (name) {
+  if (name.length) {
+    return name.substring(0, 1)
+  } else {
+    return ''
+  }
+}
+
+var returnArrayLength = function (arr) {
+  console.log(arr.length);
+  return arr.length;
+}
+
+module.exports.transRoleClassName = transRoleClassName;
 module.exports.removeFloor = removeFloor;
+module.exports.transRoleName = transRoleName;
+module.exports.getFirstLetter = getFirstLetter;
+module.exports.returnArrayLength = returnArrayLength;

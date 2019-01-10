@@ -1,6 +1,7 @@
 @import "../../../templates/showMenu/showMenu.wxss";
 @import "../../../templates/showToast/showToast.wxss";
 @import "../../../templates/noneData/noneData.wxss";
+@import "../public/style.wxss";
 
 page {
   background: #F9FAFB;
@@ -10,20 +11,28 @@ page {
   line-height: 1;
   background: #fff;
 }
-.iconfont.icon-tianjiayuangong {
+.iconfont.icon-tianjiayuangong1 {
   font-size: 52rpx;
 }
-.page__bd {
-  padding: 0 60rpx 84rpx;
-  background: #F9FAFB;
+.search { margin-top: 15px; }
+
+.setBar { background-color: #fff;padding: 0 60rpx;margin-top:30rpx;}
+.setBar ._list_item {
+  padding: 42rpx 0;
+  border-bottom:2rpx solid rgba(220, 220, 220, .5);
 }
-.new-staff-btn {
-  background: transparent;
-  border: 1px solid rgba(0,0,0,.1);
-  margin-top: 54rpx;
+.setBar navigator:last-child ._list_item {
+  border-bottom: none;
 }
+.setBar .iconfont { margin-right: 42rpx; }
+
 ._num_info {
   margin: 0 18rpx;
+}
+.staff_list {
+  background: #fff;
+  padding: 0 60rpx 24rpx;
+  margin-top: 30rpx;
 }
 .staff-list {
   padding-top: 30rpx;
@@ -32,10 +41,10 @@ page {
   padding: 60rpx 0 30rpx;
 }
 .front-list ._list_item:last-child {
-  border-bottom: 2rpx solid rgba(0,0,0,.1);
+  border-bottom: 2rpx solid rgba(220, 220, 220, .5);
 }
 .admin-list ._list_item:last-child {
-  border-bottom: 2rpx solid rgba(0,0,0,.1);
+  border-bottom: 2rpx solid rgba(220, 220, 220, .5);
 }
 ._list_item._role_staff {
   padding: 30rpx 0;
@@ -47,6 +56,7 @@ page {
   white-space: nowrap;
   max-width: 376rpx;
 }
+/*
 .handle_btn {
   width: 46rpx;
   height: 46rpx;
@@ -68,6 +78,7 @@ page {
   border-radius: 6rpx;
   background-color: #000;
 }
+*/
 ._role_admin ._family_name {
   background-color: #484F62;
 }
@@ -86,7 +97,47 @@ page {
   color: #484F62;
   margin-right: 0;
 }
-.vip-icon {
-  width: 40rpx;
-  height: 40rpx;
+.search-page {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(249, 250, 251, 1);
+  top: 0;
+  z-index: 11;
+}
+.search-page .search {
+  padding: 24rpx 60rpx; 
+  margin-top: 0;
+  border-bottom: 2rpx solid rgba(220, 220, 220, .5);
+}
+.search-page .clear-btn {
+  position:absolute;
+  right: 140rpx;
+  top: 24rpx;
+  height:56rpx;
+  width:56rpx;
+  padding:0;
+  line-height:56rpx;
+  text-align:center;
+  background-color:transparent;
+}
+.search-page .search-input {
+  padding: 0 30rpx;
+  margin-right: 80rpx;
+  height: 60rpx;
+}
+.search-page .cancel-btn {
+  position: absolute;
+  right: 30rpx;
+  top: 24rpx;
+  height:56rpx;
+  background: transparent;
+  line-height:56rpx;
+  text-align:center;
+}
+.icon-cha1 {
+  color: rgba(186, 191, 201, 1);
+}
+.search-result {
+  padding: 0 60rpx;
 }

@@ -13,13 +13,8 @@ Page({
       buttonText: '邀请员工',
       textInfo: '还没有任何员工，赶紧邀请加入员工'
     },
-    editData: {
-      union_id: null,
-      employee_name: null,
-      role: null
-    },
     role: '',
-    scrollTop: 0
+    searchStaffList: []
   },
 
   /**
@@ -65,12 +60,7 @@ Page({
         })
       },
       success: res => {
-        console.log(res.data.result);
         if (res.data.result) {
-          for (var i = 0; i < res.data.result.employee.length; i++) {
-            res.data.result.employee[i].first_name = res.data.result.employee[i].employee_name.substring(0,1);
-            res.data.result.employee[i].last_name = res.data.result.employee[i].employee_name.substring(1);
-          }
           that.setData({
             staffList: res.data.result
           })
@@ -80,141 +70,54 @@ Page({
     })
   },
 
-  onPageScroll: function (e) {
-    console.log(e);
-    this.data.scrollTop = e.scrollTop;
-  },
-  /**
-   * 员工列表点击编辑
-   */
-  editEmp: function (e) {
-    console.log(e.currentTarget);
-    this.setData({ 
-      'editData.union_id': e.currentTarget.dataset.unionid,
-      'editData.employee_name': e.currentTarget.dataset.name,
-      'editData.role': e.currentTarget.dataset.role
-    });
-    if (e.currentTarget.dataset.role ==2) {
-      var menuList = ['从列表删除', '取消前台'], bindFun = ['approveRemove', 'setFront']
-    } else {
-      var menuList = ['从列表删除', '设为前台'], bindFun = ['approveRemove', 'setFront']
-    }
-    var btDis = wx.getStorageSync('sysinfo').windowHeight;
-    console.log(btDis);
-    if (btDis - e.currentTarget.offsetTop < 80) {
-      var topPos = (e.currentTarget.offsetTop - this.data.scrollTop) - 82 + 'px';
-    } else {
-      var topPos = (e.currentTarget.offsetTop - this.data.scrollTop) + 32 + 'px';
-    }
-    
-    menu.showMenu(this, {
-      menuList: menuList,
-      topPos: topPos,
-      lrPos: 60 + 'rpx',
-      isLeft: false,
-      mask: true,
-      bindFun: bindFun
-    });
+  onShow: function () {
+    this.getStaffList();
   },
 
-  approveRemove: function () {
-    var self = this;
-    menu.hideMenu();
-    toast.showToast(this, {
-      toastStyle: 'toast6',
-      title: '确定要将“' + self.data.editData.employee_name + '“从团队删除吗？',
-      introduce: '',
-      mask: true,
-      isSure: true,
-      sureText: '确定',
-      isClose: true,
-      closeText: '取消'
-    });
-  },
-
-
-  /**
-   * 设置前台
-   */
-  setFront: function () {
-    var that = this;
-    var role = this.data.editData.role==2?1:2
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'company',
-        method: 'update_employee_role',
-        data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session'),
-          employee_union_id: that.data.editData.union_id,
-          role: role
-        })
-      },
-      success: res => {
-        menu.hideMenu();
-        if (res.data.sub_code == 0) {
-          that.getStaffList();
-        } else {
-          wx.showToast({
-            title: '设置前台失败'
-          })
-        }
-
-      }
+  viewPerInfo(e) {
+    var unionId = e.currentTarget.dataset.unionid;
+    wx.navigateTo({
+      url: '../admin-executive/adminHome/index?union_id=' + unionId,
     })
   },
 
-  /**
-   * 取消删除并关闭弹层
-   */
-  bindToastClose: function () {
-    toast.hideToast();
-  },
-
-  /**
-   * 确定删除
-   */
-  bindToastSure: function () {
-    var _this = this;
-    toast.hideToast(_this, {
-      cb: function () {
-        app.Util.network.POST({
-          url: app.globalData.BASE_API_URL,
-          params: {
-            service: 'company',
-            method: 'unbind_employee',
-            data: JSON.stringify({
-              union_id: wx.getStorageSync('xy_session'),
-              employee_union_id: _this.data.editData.union_id
-            })
-          },
-          success: res => {
-            if (res.data.sub_code == 0) {
-              _this.getStaffList();
-            } else {
-              wx.showToast({
-                title: '删除失败',
-                icon: 'none'
-              })
-            }
-
-          }
-        })
-        
+  searchInput: function(e) {
+    var searchValue = e.detail.value;
+    let { admin, front_desk, employee } = this.data.staffList;
+    var allList = [...admin, ...front_desk, ...employee];
+    for (var index in allList) {
+      if (allList[index].invite_status == 0) {
+        allList.splice(index, 1)
       }
-    });
+    }
+
+    var searchResult = [];
+    if (searchValue) {
+      this.setData({
+        clearSearchShow: true
+      })
+      for (let i = 0; i < allList.length; i++) {
+        if (allList[i].employee_name.indexOf(searchValue) != -1) {
+          searchResult.push(allList[i])
+        }
+      }
+      this.setData({ searchStaffList: searchResult })
+    } else {
+      this.setData({ clearSearchShow: true, searchStaffList: [] })
+    }
+    
   },
 
-  hideToastMenu: function () {
-    menu.hideMenu();
+  clearSearch: function() {
+    this.setData({ search: '', clearSearchShow: false });
   },
 
-  preventTouchMove: function () {
-
+  inputFocus: function() {
+    this.setData({ searchModal: true })
   },
 
-  onShow: function () {
-    this.getStaffList();
+  searchCancel: function() {
+    this.setData({ searchModal: false })
   }
 
 })

@@ -9,3 +9,4 @@
 .line{height: 1rpx;background: #ededed;margin:43rpx 0 4rpx 0;clear: both;}
 .errorhint{color:#F52D2D;font-size:24rpx;line-height: 24rpx;padding-top:20rpx;}
 .viptext .vipicon{width:26rpx;height:26rpx;float: left;margin-right: 11rpx;}
+.Name_header{margin-bottom:0rpx;}

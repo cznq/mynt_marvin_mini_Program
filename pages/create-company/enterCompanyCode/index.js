@@ -48,7 +48,7 @@ Page({
           console.log(res);
           if (res.data.sub_code == 0) {
             wx.redirectTo({
-              url: '../enterRealName/index?company_verify_code=' + company_verify_code,
+              url: '../enterRealName/index?company_verify_code=' + company_verify_code + '&company_name=' + res.data.result.company_name + '&company_short_name=' + res.data.result.company_short_name,
             })
           } else {
             _this.setData({

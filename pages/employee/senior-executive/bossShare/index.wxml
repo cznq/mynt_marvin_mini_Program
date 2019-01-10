@@ -1,0 +1,49 @@
+<!--pages/employee/senior-executive/bossShare/index.wxml-->
+<view class="page" style="padding-bottom:{{isIphoneX?'240':'160'}}rpx">
+    <view class="page_bd {{companyInfo.logo?'':'noLogo'}}">
+        <view class="invite-wrapper">
+            <view class="company-info _txt_center">
+                <image class="_logo" src="{{companyInfo.logo}}" wx:if="{{companyInfo.logo}}"></image>
+                <navigator url="/pages/company/otherCompany/index?company_code={{companyInfo.company_code}}" hover-class="none">
+                    <view class="_name _font44 _fontw600 _flex _flex_justify_center _flex_item_center">
+                      <text>{{companyInfo.company_short_name}}</text>
+                      <text class="iconfont icon-jiantou"></text>
+                    </view>
+                </navigator>
+                <view class="_short_name _font24">{{companyInfo.company_name}}</view>
+            </view>
+            <view class="invite-info">
+                <view class="_sec">
+                    <view class="int-title _font38 _fontw600">尊敬的{{inviterInfo.bossName}}：</view>
+                    <view class="_font28 int-intro">
+                    <rich-text nodes="很荣幸邀请您成为我司的VIP，您可以享受我们的以下企业特权，烦请点击下方按钮接受邀请并开始享受特权。" bindtap="tap"></rich-text>
+                    </view>
+                </view>
+                <view class="_sec">
+                    <view class="int-item-name _font24">邀请人</view>
+                    <view class="_font32 int-item-info">{{empInfo.name}}</view>
+                </view>
+                <view class="_ft_logo _txt_center">
+                    <image style="width:224rpx" mode='widthFix' src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/foot_mynt_logo%402x.png"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+    <block wx:if="{{version}}">
+        <view class="_fixed footer _flex _flex_justify_center _flex_space_around {{isIphoneX?'iphonex':''}}">
+            <button class="_button back_btn _font32" bindtap="backAction">返回</button>
+            <button class="_button share_btn _font32" open-type="share"><text class="iconfont icon-weixin"></text>发送微信邀请</button>
+        </view>
+    </block>
+    <block wx:else>
+        <cover-view class="_fixed footer _flex _flex_justify_center {{isIphoneX?'iphonex':''}}">
+            <button class="_button back_btn _font32" bindtap="backAction">返回</button>
+            <button class="_button share_btn _font32 " open-type="share" disabled="{{shareBtn}}">
+                <cover-view class="share-box">
+                    <cover-image class="footer-img" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/share-wechat-icon%402x.png"></cover-image>
+                    <cover-view class="footer-text">发送微信邀请</cover-view>
+                </cover-view>
+            </button>
+        </cover-view>
+    </block>
+</view>

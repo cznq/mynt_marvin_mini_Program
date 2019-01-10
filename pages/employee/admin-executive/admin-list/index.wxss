@@ -1,0 +1,41 @@
+/* pages/employee/admin-list/index.wxss */
+@import "../../public/style.wxss";
+
+page {
+  background: #F9FAFB;
+}
+.page__hd {
+  padding: 32rpx 60rpx;
+  line-height: 1;
+  background: #fff;
+}
+.staff_list {
+  padding: 0 60rpx 24rpx;
+  margin-top: 60rpx;
+}
+._list_item {
+  padding: 0;
+}
+.admin-list ._list_item:last-child {
+  border-bottom: 2rpx solid rgba(220, 220, 220, .5);
+}
+._list_item._role_admin {
+  padding: 28rpx 0 60rpx;
+}
+._list_item._role_front {
+  padding: 30rpx 0;
+}
+._list_item ._name {
+  flex-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 376rpx;
+}
+._family_name {
+  background-color: #484F62;
+}
+._title { line-height: 1; color: rgba(26, 42, 75, 1);margin-top: 30rpx;}
+._title_info { color: rgba(136, 145, 169, 1);margin-left: 10rpx;}
+._status { color: rgba(136, 145, 169, 1);}
+.icon-add_qiantai { font-size: 70rpx;margin-right: 20rpx;color:rgba(136, 145, 169, 1);}

@@ -1,0 +1,12 @@
+/* pages/employee/perInfo/index.wxss */
+@import "../public/style.wxss";
+
+page {
+  background: rgba(249, 250, 251, 1);
+  padding-top: 180rpx;
+}
+.page__bd {
+  background-color: #fff;
+}
+._flex { flex-direction: column; }
+._name { margin-top: 40rpx; }

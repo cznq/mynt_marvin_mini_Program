@@ -14,6 +14,14 @@
     "pages/employee/staff-list/index",
     "pages/employee/invite-staff/index",
     "pages/employee/new-staff/index",
+    "pages/employee/staff-info/index",
+    "pages/employee/staff-apply/index",
+    "pages/employee/admin-executive/admin-list/index",
+    "pages/employee/admin-executive/adminHome/index",
+    "pages/employee/admin-executive/adminShare/index",
+    "pages/employee/admin-executive/adminReceive/index",
+    "pages/employee/staff-choose-list/index",
+
     "pages/create-company/enterpriseInformation/index",
     "pages/create-company/enterCompanyCode/index",
     "pages/create-company/enterRealName/index",
@@ -27,7 +35,7 @@
     "pages/create-company/companyPages/index",
     "pages/create-company/robotPreview/index",
     "pages/create-company/editCompanyPages/index",
-    "pages/employee/join-company/enterRealName/index",
+    "pages/employee/join-company/applyJoinResult/index",
     "pages/employee/join-company/invitationCode/index",
     "pages/employee/join-company/choiceJoin/index",
     "pages/employee/join-company/confirmCompanyInformation/index",
@@ -36,7 +44,6 @@
     "pages/company/otherCompany/index",
     "pages/company/webview/index",
     "pages/demo/iconfont/index",
-    
     "pages/demo/showToastDemo/index",
     "pages/invite-visitor/start/index",
     "pages/invite-visitor/guide/index",
@@ -48,7 +55,17 @@
     "pages/apply-visit/reasonsVisiting/index",
     "pages/apply-visit/applicationStatus/index",
     "pages/e-card/detail/index",
-    "pages/login/index"
+
+    "pages/login/index",
+    "pages/employee/senior-executive/executiveHome/index",
+    "pages/employee/senior-executive/bossList/index",
+    "pages/employee/senior-executive/fillName/index",
+    "pages/employee/senior-executive/bossShare/index",
+    "pages/employee/senior-executive/receive/index",
+    "pages/employee/senior-executive/success/index",
+    "pages/employee/senior-executive/addBoss/index",
+    "pages/checkfollow/index"
+
   ],
   "subPackages": [
     {

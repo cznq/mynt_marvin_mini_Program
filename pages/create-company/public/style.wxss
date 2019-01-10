@@ -15,3 +15,59 @@
 .guide .title{font-size:48rpx;line-height: 48rpx;}
 .guide .con{font-size:30rpx;line-height: 40rpx;padding:13rpx 0 0 0;}
 .guide .step_title{padding-top:55rpx;}
+
+.enterRealName{padding:0;}
+.Name_content{padding:0 60rpx;}
+.hint {
+  width: 277rpx;
+  margin: 139rpx auto 0 auto;
+}
+.Name_header{border-bottom: 1rpx solid #ededed;margin-bottom: 50rpx;}
+.recodeTitle {
+  padding-bottom: 12rpx;
+  padding-top: 70rpx;
+  line-height: 1.2;
+  color: #1a2a4b;
+}
+
+.recodeIntro {
+  font-size: 34rpx;
+  color: #8891A9;
+  font-weight: 300;
+  padding-bottom:50rpx;
+  
+}
+
+._top_gradient2{background: linear-gradient(to bottom,#f1f1f3 0%,#f9fafb 6%,#ffffff 94%,#ffffff 100%);}
+
+.input_block {
+  padding-bottom: 25rpx;
+  position: relative;
+}
+
+icon {
+  position: absolute;
+  bottom: 50rpx;
+  right: 0;
+  z-index: 100;
+}
+
+.textarea_text {
+  width: 570rpx;
+  height: 170rpx;
+  background: #f5f6f9;
+  border: 1rpx solid #ededed;
+  border-radius: 10rpx;
+  padding: 30rpx;
+  line-height: 40rpx;
+  font-size: 32rpx;
+  margin-top: 10rpx;
+}
+
+.textarea_text_phc {
+  font-size: 28rpx;
+  line-height: 35rpx;
+  color: #d1d4db;
+  font-weight: 300;
+}
+.pt{top:40%;}

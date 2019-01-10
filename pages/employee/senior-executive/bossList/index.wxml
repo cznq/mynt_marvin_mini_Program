@@ -1,0 +1,36 @@
+<!--pages/employee/senior-executive/bossList/index.wxml-->
+<wxs src="../../../../wxs/subutil.wxs" module="tools" />
+<view class="page">
+    <view class="page__hd">
+        <text class="_font60 _fontw700">高管列表</text>
+    </view>
+    <view class="boss-list">  
+        <block wx:for="{{leaderList}}" wx:key="">
+            <view class="_list_item _flex _flex_space_between">
+                <view class="_lft _flex _flex_item_center">
+                    <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
+                    <view class="_name _fontw500 _font34">{{item.employee_name}}</view>
+                </view>
+                <view class="_rgt _flex _flex_item_center">
+                    <text wx:if="{{item.invite_status == 0}}" class="_font24 _txt_darkgrey">待激活</text>
+                </view>
+            </view>
+        </block>
+    </view>
+    <block wx:if="{{version}}">
+        <view class="_fixed footer _boss {{isIphoneX?'iphonex':''}}">
+            <view  class="_font24 _txt_darkgre tip">您目前还可以设置{{limit_count}}位高管</view >
+            <view class="_footer_btn">
+                <button class="_font32 _fontw500 _border_radius10" bindtap="goSelect" data-from="inviteLeader" disabled="{{btnShow}}">添加高管</button>
+            </view>
+        </view>
+    </block>
+    <block wx:else>
+        <cover-view class="_fixed footer _boss {{isIphoneX?'iphonex':''}}">
+            <cover-view  class="_font24 _txt_darkgre tip">您目前还可以设置{{limit_count}}位高管</cover-view >
+            <cover-view class="_footer_btn">
+                <button class="_font32 _fontw500 _border_radius10" bindtap="goSelect" data-from="inviteLeader" disabled="{{btnShow}}">添加高管</button>
+            </cover-view>
+        </cover-view>
+    </block>
+</view>
