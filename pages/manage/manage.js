@@ -120,7 +120,7 @@ Page({
         var resdata = res.data.result;
         if (res.data.sub_code == 0) {
           if (resdata.employee_status === 0) {
-            _this.data.role = resdata.role;
+            _this.setData({ role: resdata.role });
             _this.setData({
               islogin: false,
               ismanage: true

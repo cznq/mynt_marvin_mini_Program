@@ -39,7 +39,7 @@
       <view class='content _clearfloat application'>
         <view wx:for="{{application}}" wx:for-index="idx" wx:key="key" class='block' bindtap="{{item.bindtap}}" wx:if="{{item.isShow}}">
           <image class="m{{idx+1}}" src='{{item.pic}}'></image>
-          <view class='news' wx:if="{{item.news}}">{{cd.apply_number}}</view>
+          <view class='news' wx:if="{{item.news && role>1}}">{{cd.apply_number}}</view>
           {{item.name}}
         </view>
       </view>
