@@ -37,12 +37,12 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onShow: function (options) {
    
     this.getNewStaff();
     
   },
-
+  
   /**
    * 处理员工申请
    * refuse 拒绝

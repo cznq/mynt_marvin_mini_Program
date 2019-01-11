@@ -21,7 +21,7 @@ page{
 ._role_admin .disabled,
 ._role_leader .disabled,
 ._role_staff .disabled{
-    opacity: .6;
+    opacity: .3;
 }
 ._role_staff ._family_name{
     background-color: #6092FE;

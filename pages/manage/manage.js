@@ -237,6 +237,10 @@ Page({
           _this.setData({
             'application[1].news': true
           })
+        } else {
+          _this.setData({
+            'application[1].news': false
+          })
         }
         if (res.data.sub_code == 0) {
           _this.setData({

@@ -48,14 +48,6 @@ Page({
           let { admin ,front_desk ,employee} = res.data.result;
           var staffList = [...admin, ...front_desk,...employee]
           
-          // for (var index in staffList) {
-          //   if(staffList[index].invite_status==0){
-          //     staffList.splice(index,1)
-          //   }
-          //   if(staffList[index].person_type == null){
-          //       staffList[index].highlight=true
-          //   }
-          // }
           that.setData({
             staffList: that.chooseStaffHighLight(staffList, that.data.from)
           })    
