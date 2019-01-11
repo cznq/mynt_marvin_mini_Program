@@ -160,11 +160,6 @@
   color: rgba(26, 42, 75, 1);
   font-weight: 600;
 }
-map {
-  height: 250rpx;
-  width: 100%;
-  margin-top: 24rpx;
-}
 .know-list-title {
   color: rgba(26, 42, 75, 1);
   margin-bottom: 20rpx;
@@ -238,4 +233,7 @@ map {
 ._itemTitle {
   margin-bottom: 20rpx;
   line-height: 1;
+}
+._font_gray {
+  color: rgba(136, 145, 169, 1);
 }

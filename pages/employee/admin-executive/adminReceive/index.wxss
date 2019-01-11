@@ -1,5 +1,5 @@
 /* pages/employee/admin-executive/adminReceive/index.wxss */
-
+@import "../../../../templates/showToast/showToast.wxss";
 @import '../../public/style.wxss';
 
 .page {

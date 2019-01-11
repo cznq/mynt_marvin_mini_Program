@@ -61,6 +61,7 @@ Page({
       },
       success: res => {
         if (res.data.result) {
+          console.log(res.data.result.employee);
           that.setData({
             staffList: res.data.result
           })
@@ -112,7 +113,7 @@ Page({
     this.setData({ search: '', clearSearchShow: false });
   },
 
-  inputFocus: function() {
+  startSearchInput: function() {
     this.setData({ searchModal: true })
   },
 

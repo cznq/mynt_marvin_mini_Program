@@ -1,6 +1,5 @@
-@import "../../../templates/showMenu/showMenu.wxss";
+
 @import "../../../templates/showToast/showToast.wxss";
-@import "../../../templates/noneData/noneData.wxss";
 @import "../public/style.wxss";
 
 page {
@@ -12,7 +11,7 @@ page {
   background: #fff;
 }
 .iconfont.icon-tianjiayuangong1 {
-  font-size: 52rpx;
+  font-size: 48rpx;
 }
 .search { margin-top: 15px; }
 
@@ -24,14 +23,14 @@ page {
 .setBar navigator:last-child ._list_item {
   border-bottom: none;
 }
-.setBar .iconfont { margin-right: 42rpx; }
+.setBar .iconfont { margin-right: 42rpx;line-height: 1; }
 
 ._num_info {
   margin: 0 18rpx;
 }
 .staff_list {
   background: #fff;
-  padding: 0 60rpx 24rpx;
+  padding: 0 60rpx;
   margin-top: 30rpx;
 }
 .staff-list {
@@ -110,6 +109,9 @@ page {
   margin-top: 0;
   border-bottom: 2rpx solid rgba(220, 220, 220, .5);
 }
+.icon-sousuo {
+  color: rgba(136, 145, 169, .3);
+}
 .search-page .clear-btn {
   position:absolute;
   right: 140rpx;
@@ -125,6 +127,7 @@ page {
   padding: 0 30rpx;
   margin-right: 80rpx;
   height: 60rpx;
+  line-height: 60rpx;
 }
 .search-page .cancel-btn {
   position: absolute;

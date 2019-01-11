@@ -15,9 +15,9 @@
     <!-- 搜索栏开始 -->
     <form>
       <view class="search">
-        <input class="search-input _font24" type="text" name="search" placeholder="搜索" confirm-type="search" placeholder-class="search-placeholder" value="{{search}}" bindconfirm="searchSubmit" bindinput="searchInput" bindfocus="inputFocus"></input>
+        <input class="search-input _font24" type="text" name="search" placeholder="搜索" placeholder-class="search-placeholder" bindtap="startSearchInput" disabled='disabled'></input>
         <button wx:if="{{clearSearchShow}}" class="btn clear-btn" bindtap="clearSearch"></button>
-        <button class="btn search-btn" form-type="submit"><text class="iconfont icon-sousuo _font48"></text></button>
+        <button class="btn search-btn" form-type="submit"><text class="iconfont icon-sousuo _font44"></text></button>
       </view>
     </form>
     <!-- 搜索栏目结束 -->
@@ -28,7 +28,7 @@
         <view class="_list_item _flex _flex_item_center _flex_space_between">
           <view class="_lft _flex _flex_item_center">
             <view class="iconfont icon-icon_new _font56"></view>
-            <view class="_name _fontw500">新员工</view>
+            <view class="_name _font36 _fontw500">新员工</view>
           </view>
           <view class="_rgt _flex _flex_item_center">
             <view class="_num_info" wx:if="{{staffList.apply_number>0}}">{{staffList.apply_number}}</view>
@@ -39,7 +39,7 @@
         <view class="_list_item _flex _flex_item_center _flex_space_between">
           <view class="_lft _flex _flex_item_center">
             <view class="iconfont icon-icon_guanliyuan _font56"></view>
-            <view class="_name _fontw500">管理员设置</view>
+            <view class="_name _font36 _fontw500">管理员设置</view>
           </view>
         </view>
       </navigator>
@@ -47,7 +47,7 @@
         <view class="_list_item _flex _flex_item_center _flex_space_between">
           <view class="_lft _flex _flex_item_center">
             <view class="iconfont icon-icon_gaoguan _font56"></view>
-            <view class="_name _fontw500">高管设置</view>
+            <view class="_name _font36 _fontw500">高管设置</view>
           </view>
         </view>
       </navigator>
@@ -55,31 +55,31 @@
     <block>
       <view class="staff_list">
       <!-- 管理员列表 -->
-      <view class="admin-list">  
+      <view class="admin-list" wx:if="{{staffList.admin.length>0}}">  
         <block wx:for="{{staffList.admin}}" wx:key="">
-        <view class="_list_item _flex _flex_space_between _role_admin" wx:if="{{item.role == 3}}" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
+        <view class="_list_item _flex _flex_space_between _role_admin" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
           <view class="_lft _flex _flex_item_center">
             <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
-            <view class="_name _fontw500">{{item.employee_name}}</view>
+            <view class="_name _font36 _fontw500">{{item.employee_name}}</view>
           </view>
           <view class="_rgt _flex _flex_item_center">
-            <view class="iconfont icon-icon_guanliyuan admin _font36"></view>
-            <view class="iconfont icon-icon_gaoguan _font36" wx:if="{{item.person_type==3}}"></view>
+            <view class="iconfont icon-icon_guanliyuan admin _font48"></view>
+            <view class="iconfont icon-icon_gaoguan _font44" wx:if="{{item.person_type==3}}"></view>
           </view>
         </view>
         </block>
       </view>
       <!-- 前台列表 -->
-      <view class="front-list">
+      <view class="front-list" wx:if="{{staffList.front_desk.length>0}}">
         <block wx:for="{{staffList.front_desk}}" wx:key="">
-          <view class="_list_item _flex _flex_space_between _role_admin" wx:if="{{item.role == 2 && item.invite_status == 1}}" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
+          <view class="_list_item _flex _flex_space_between _role_admin" wx:if="{{item.invite_status == 1}}" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
             <view class="_lft _flex _flex_item_center">
               <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
-              <view class="_name _fontw500">{{item.employee_name}}</view>
+              <view class="_name _font36 _fontw500">{{item.employee_name}}</view>
             </view>
             <view class="_rgt _flex _flex_item_center">
-              <view class="iconfont icon-icon_guanliyuan admin _font36"></view>
-              <view class="iconfont icon-icon_gaoguan _font36" wx:if="{{item.person_type==3}}"></view>
+              <view class="iconfont icon-icon_guanliyuan admin _font48"></view>
+              <view class="iconfont icon-icon_gaoguan _font44" wx:if="{{item.person_type==3}}"></view>
              
             </view>
           </view>
@@ -87,15 +87,15 @@
         
       </view>
       <!-- 员工列表 -->
-      <view class="staff-list">
+      <view class="staff-list" wx:if="{{staffList.employee.length>0}}">
       <block wx:for="{{staffList.employee}}" wx:key="">
-        <view class="_list_item _flex _flex_space_between {{item.person_type==3?'_role_leader':'_role_staff'}}" wx:if="{{item.role == 1}}" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
+        <view class="_list_item _flex _flex_space_between {{item.person_type==3?'_role_leader':'_role_staff'}}" bindtap='viewPerInfo' data-unionid='{{item.union_id}}'>
           <view class="_lft _flex _flex_item_center">
             <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
-            <view class="_name _fontw500">{{item.employee_name}}</view>
+            <view class="_name _font36 _fontw500">{{item.employee_name}}</view>
           </view>
           <view class="_rgt _flex _flex_item_center">
-            <view class="iconfont icon-icon_gaoguan _font36" wx:if="{{item.person_type==3}}"></view>
+            <view class="iconfont icon-icon_gaoguan _font44" wx:if="{{item.person_type==3}}"></view>
           </view>
         </view>
       </block>
@@ -129,7 +129,8 @@
         <view class="_name _fontw500">{{item.employee_name}}</view>
       </view>
       <view class="_rgt _flex _flex_item_center">
-        <view class="iconfont icon-icon_guanliyuan admin _font36"></view>
+        <view class="iconfont icon-icon_guanliyuan admin _font48" wx:if="{{item.role==3}}"></view>
+        <view class="iconfont icon-icon_gaoguan _font44" wx:if="{{item.person_type==3}}"></view>
       </view>
     </view>
   </view>

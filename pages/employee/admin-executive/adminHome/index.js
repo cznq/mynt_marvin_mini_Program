@@ -91,7 +91,7 @@ Page({
     var self = this;
     this.data.btnType = 'trans';
     toast.showToast(this, {
-      toastStyle: 'toast4',
+      toastStyle: 'toast8',
       title: '确定转让管理员权限吗？',
       introduce: '1、转让需要待对方确认接受后才能生效;\n2、对方确认后您将不再具备公司管理权限；\n3、请敦促对方尽快完成接受，以免造成机器人接待工作的中断。',
       mask: true,
@@ -123,6 +123,7 @@ Page({
   bindToastSure: function () {
     var _this = this;
     if (_this.data.btnType =='trans') {
+      toast.hideToast();
       wx.navigateTo({
         url: '../../staff-choose-list/index?from=transAdmin'
       })
@@ -145,10 +146,13 @@ Page({
               if (res.data.sub_code == 0) {
                 _this.getEmployeeInfo();
               } else {
-                wx.showToast({
-                  title: '删除失败',
-                  icon: 'none'
-                })
+                toast.showToast(this, {
+                  toastStyle: 'toast',
+                  title: res.data.sub_msg,
+                  duration: 2000,
+                  mask: false,
+                  cb: function () { }
+                });
               }
 
             }

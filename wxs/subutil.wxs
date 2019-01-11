@@ -11,7 +11,7 @@ var transRoleName = function (role) {
   if (role == 1) {
     return '员工';
   } else if (role == 2) {
-    return '前台';
+    return '前台（子管理员）';
   } else if (role == 3) {
     return '管理员';
   }

@@ -75,6 +75,14 @@ Page({
         if (res.data.sub_code == 0) {
           console.log(res.data);
           that.getNewStaff();
+        } else {
+          toast.showToast(this, {
+            toastStyle: 'toast',
+            title: res.data.sub_msg,
+            duration: 2000,
+            mask: false,
+            cb: function () { }
+          });
         }
 
       }

@@ -1,5 +1,5 @@
 <!--pages/employee/admin-executive/adminShare/index.wxml-->
-
+<import src="../../../../templates/showToast/showToast.wxml" />
 <view class="page">
   <view class="page_hd" wx:if="{{hasAccept}}">
     <view class="_txt_center">
@@ -49,21 +49,21 @@
       <view><view class="_icon"><image src='https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/icon_setup_management%402x.png' ></image></view></view>
       <view>
         <view class="_font32 _fontw600 _itemTitle">管理企业信息及企业服务</view>
-        <view class="_font24">在小觅楼宇服务平台中实时编辑和更新企业主页，为企业配置多项服务</view>
+        <view class="_font24 _font_gray">在小觅楼宇服务平台中实时编辑和更新企业主页，为企业配置多项服务</view>
       </view>
     </view>
     <view class="_authList _flex _flex_item_center">
       <view><view class="_icon"><image src='https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/icon_setup_visitors%402x.png' ></image></view></view>
       <view>
         <view class="_font32 _fontw600 _itemTitle">员工管理</view>
-        <view class="_font24">添加或移除你的员工，管理多项员工权益</view>
+        <view class="_font24 _font_gray">添加或移除你的员工，管理多项员工权益</view>
       </view>
     </view>
     <view class="_authList _flex _flex_item_center">
       <view><view class="_icon"><image src='https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/icon_setup_employees%402x.png' ></image></view></view>
       <view>
         <view class="_font32 _fontw600 _itemTitle">访客管理</view>
-        <view class="_font24">通过微信处理访客到访申请，访客接待简单快速</view>
+        <view class="_font24 _font_gray">通过微信处理访客到访申请，访客接待简单快速</view>
       </view>
     </view>
   </view>
@@ -77,4 +77,4 @@
   
 
 </view>
-
+<template is="showToast" data="{{showToast: showToast}}" />

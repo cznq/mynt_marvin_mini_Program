@@ -24,3 +24,4 @@
 .toast7 .toast-pic {width: 590rpx;border-top-left-radius: 10rpx;border-top-right-radius: 10rpx;}
 .errorwrap{background: #fbd7d7;color:#F57171;box-shadow:0 0 0 #fff;padding:14rpx;transform:translate(-50%, -50%);margin-left:0;}
 .errorwrap .arrow{border-color: transparent transparent #fbd7d7;top: -14rpx;}
+.toast8.toastPubStyle .toast-introduce { text-align: left;}

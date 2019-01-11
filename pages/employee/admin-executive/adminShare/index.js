@@ -102,6 +102,10 @@ Page({
     })
   },
 
+  backAction: function() {
+    wx.navigateBack({})
+  },
+
   /**
    * 获取被邀请人信息
    */
