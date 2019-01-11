@@ -6,8 +6,8 @@ page{
     padding:30rpx 64rpx;
     line-height:1;
     background:#fff;   
-    border-bottom: 1px solid #dcdcdc; 
-    border-top: 1px solid #dcdcdc;
+    border-bottom: 1px solid rgba(220, 220, 220, .5); 
+    border-top: 1px solid rgba(220, 220, 220, .5);
 }
 .boss-list{
     padding: 60rpx 60rpx 0;
@@ -30,6 +30,7 @@ page{
     height: 80rpx;
     border-bottom: 1px solid #dcdcdc;
     text-align: center;
+    color: #8891A9;
 }
 ._footer_btn{
     padding: 30rpx 60rpx;
