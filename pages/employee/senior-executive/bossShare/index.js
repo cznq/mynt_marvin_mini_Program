@@ -120,7 +120,7 @@ Page({
   onShareAppMessage: function (res) {
     var that = this;
     return {
-      title: that.data.companyInfo.company_short_name +'给您发送了一个邀请，期待您的到访！',
+      title: that.data.empInfo.name + '邀请' + that.data.inviterInfo.bossName + '成为该公司高管',
       path: '/pages/employee/senior-executive/receive/index?invitation_id='+that.data.invitation_id,
       success: function (res) {
         // 转发成功

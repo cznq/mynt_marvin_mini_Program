@@ -144,7 +144,7 @@ Page({
             },
             success: res => {
               if (res.data.sub_code == 0) {
-                _this.getEmployeeInfo();
+                wx.navigateBack({});
               } else {
                 toast.showToast(this, {
                   toastStyle: 'toast',
@@ -160,36 +160,35 @@ Page({
 
         }
       });
-    } else {
+    } else if (_this.data.btnType == 'remove') {
 
-    toast.hideToast(_this, {
-      cb: function () {
-        app.Util.network.POST({
-          url: app.globalData.BASE_API_URL,
-          params: {
-            service: 'company',
-            method: 'update_employee_role',
-            data: JSON.stringify({
-              admin_union_id: wx.getStorageSync('xy_session'),
-              employee_union_id: _this.data.editData.union_id,
-              role: 1
-            })
-          },
-          success: res => {
-            if (res.data.sub_code == 0) {
-              _this.getEmployeeInfo();
-            } else {
-              wx.showToast({
-                title: '删除失败',
-                icon: 'none'
+      toast.hideToast(_this, {
+        cb: function () {
+          app.Util.network.POST({
+            url: app.globalData.BASE_API_URL,
+            params: {
+              service: 'company',
+              method: 'update_employee_role',
+              data: JSON.stringify({
+                employee_union_id: _this.data.union_id,
+                role: 1
               })
+            },
+            success: res => {
+              if (res.data.sub_code == 0) {
+                _this.getEmployeeInfo();
+              } else {
+                wx.showToast({
+                  title: '删除失败',
+                  icon: 'none'
+                })
+              }
+
             }
+          })
 
-          }
-        })
-
-      }
-    });
+        }
+      });
     }
   },
   bindToastClose: function () {

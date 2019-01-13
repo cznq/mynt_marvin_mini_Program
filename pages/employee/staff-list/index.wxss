@@ -81,7 +81,7 @@ page {
 ._role_admin ._family_name {
   background-color: #484F62;
 }
-._role_front ._family_name {
+._role_leader ._family_name {
   background-color: #F9922F;
 }
 ._role_staff ._family_name {

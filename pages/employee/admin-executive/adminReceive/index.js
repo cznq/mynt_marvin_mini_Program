@@ -91,12 +91,10 @@ Page({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'company',
-        method: 'update_employee_role',
+        method: 'accept_role_invitation',
         data: JSON.stringify({
           union_id: wx.getStorageSync('xy_session'),
-          employee_union_id: wx.getStorageSync('xy_session'),
-          invitation_id: that.data.invitation_id,
-          role: that.data.invitation.assigned_role
+          role_invitation_id: that.data.invitation_id
         }),
         isloading: false
       },
