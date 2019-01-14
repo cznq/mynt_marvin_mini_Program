@@ -63,7 +63,7 @@ Page({
                 console.log(res);
                 var resdata = res.data.result;
                 if (res.data.sub_code == 0) {
-                    if (resdata.role == 30) {
+                    if (resdata.role == 3) {
                         wx.reLaunch({
                             url: '../../../manage/manage',
                         })
