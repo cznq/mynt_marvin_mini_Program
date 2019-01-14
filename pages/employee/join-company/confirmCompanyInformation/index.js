@@ -8,6 +8,7 @@ Page({
         company_code: '',
         showLoginModal: false,
         invite_info: false,
+        disabled: true
     },
     onLoad: function(options) {
         console.log('received options:' + options);
@@ -62,7 +63,7 @@ Page({
                 console.log(res);
                 var resdata = res.data.result;
                 if (res.data.sub_code == 0) {
-                    if (resdata.role == 3) {
+                    if (resdata.role == 30) {
                         wx.reLaunch({
                             url: '../../../manage/manage',
                         })
@@ -172,6 +173,18 @@ Page({
                     })
                 }
             });
+        }
+    },
+    watchInputText: function(e) {
+        var _this = this;
+        if (e.detail.value != '') {
+            _this.setData({
+                disabled: false
+            })
+        } else {
+            _this.setData({
+                disabled: true
+            })
         }
     }
 })
