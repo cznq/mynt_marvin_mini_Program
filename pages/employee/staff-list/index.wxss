@@ -33,9 +33,7 @@ page {
   padding: 0 60rpx;
   margin-top: 30rpx;
 }
-.staff-list {
-  padding-top: 30rpx;
-}
+
 ._list_item {
   padding: 60rpx 0 30rpx;
 }

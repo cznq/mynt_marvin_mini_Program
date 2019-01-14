@@ -22,7 +22,7 @@ Page({
       limit_count:options.limit_count
     })    
     if(this.data.limit_count == 0){
-      that.setData({
+      this.setData({
         btnShow:true
       })
     } 

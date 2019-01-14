@@ -44,6 +44,9 @@ page{
     width: 496rpx;
     margin: 108rpx auto 60rpx;
 }
+._width500 {
+  width: 500rpx;
+}
 .add_executive button{
     background-color: #007BFF;
     color: #fff;

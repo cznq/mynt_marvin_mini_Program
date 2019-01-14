@@ -9,7 +9,8 @@ Page({
   data: {
     textInfo: '很高兴邀请您成为本公司新的管理员，您将拥有我们的以下管理权力，烦请点击下方按钮接受邀请并开始使用管理权力。',
     roleTitle: '前台(子管理员)',
-    changeRole: 2
+    changeRole: 2,
+    inviteInfo: null
   },
 
   /**
@@ -17,62 +18,87 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    if(options.from == 'transAdmin') {
-      this.setData({
-        textInfo: '很高兴邀请您成为本公司新的管理员，您将拥有我们的以下管理权力，烦请点击下方按钮接受邀请并开始使用管理权力。',
-        roleTitle: '管理员',
-        changeRole: 3,
-
-      })
-    } else if(options.from == 'inviteFront') {
-      this.setData({
-        textInfo: '很高兴邀请您成为本公司的前台(子管理员)，您将拥有我们的以下管理权力，烦请点击下方按钮接受邀请并开始使用管理权力。',
-        roleTitle: '前台(子管理员)',
-        changeRole: 2
-      })
-    }
-    
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'company',
-        method: 'get_employee_info',
-        data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session')
-        })
-      },
-      success: res => {
-        if (res.data.result) {
-          that.setData({
-            invitor: res.data.result
-          });
-        }
-        
-        app.Util.network.POST({
-          url: app.globalData.BASE_API_URL,
-          params: {
-            service: 'company',
-            method: 'get_info',
-            data: JSON.stringify({
-              union_id: wx.getStorageSync('xy_session'),
-            })
-          },
-          success: res => {
-            if (res.data.result) {
-              that.setData({
-                compInfo: res.data.result
-              });
-            }
-            that.getInviteeInfo(options.unionId);
+    if (options.invitation_id) {
+      that.data.invitation_id = options.invitation_id;
+      app.Util.network.POST({
+        url: app.globalData.BASE_API_URL,
+        params: {
+          service: 'company',
+          method: 'get_role_invitation_info',
+          data: JSON.stringify({
+            union_id: wx.getStorageSync('xy_session'),
+            invitation_id: that.data.invitation_id,
+            invitation_type: 0
+          })
+        },
+        success: res => {
+          if (res.data.result) {
+            
+            that.setData({
+              inviteInfo: res.data.result
+            });
           }
+        }
+      })
+    } else {
+      if(options.from == 'transAdmin') {
+        this.setData({
+          textInfo: '很高兴邀请您成为本公司新的管理员，您将拥有我们的以下管理权力，烦请点击下方按钮接受邀请并开始使用管理权力。',
+          roleTitle: '管理员',
+          changeRole: 3,
+
+        })
+      } else if(options.from == 'inviteFront') {
+        this.setData({
+          textInfo: '很高兴邀请您成为本公司的前台(子管理员)，您将拥有我们的以下管理权力，烦请点击下方按钮接受邀请并开始使用管理权力。',
+          roleTitle: '前台(子管理员)',
+          changeRole: 2
         })
       }
-    })
-    
+      
+      app.Util.network.POST({
+        url: app.globalData.BASE_API_URL,
+        params: {
+          service: 'company',
+          method: 'get_employee_info',
+          data: JSON.stringify({
+            union_id: wx.getStorageSync('xy_session')
+          })
+        },
+        success: res => {
+          if (res.data.result) {
+            that.setData({
+              'inviteInfo.inviter_name': res.data.result.name
+            });
+          }
+          
+          app.Util.network.POST({
+            url: app.globalData.BASE_API_URL,
+            params: {
+              service: 'company',
+              method: 'get_info',
+              data: JSON.stringify({
+                union_id: wx.getStorageSync('xy_session'),
+              })
+            },
+            success: res => {
+              if (res.data.result) {
+                that.setData({
+                  'inviteInfo.company_logo': res.data.result.logo,
+                  'inviteInfo.company_name': res.data.result.company_name,
+                  'inviteInfo.company_short_name': res.data.result.company_short_name
+                });
+              }
+              that.getInviteeInfo(options.unionId);
+            }
+          })
+        }
+      })
+    }
 
   },
   /**
-   * 提价邀请信息
+   * 提交邀请信息
    */
   submitInvitation(inviter_name, invitee_union_id, invitee_name, assigned_role, invitation_type, company_id) {
     var that = this;
@@ -127,7 +153,7 @@ Page({
         console.log(res.data.result);
         if (res.data.result) {
           that.setData({
-            invitee: res.data.result
+            'inviteInfo.inviter_name': res.data.result.name
           });
           that.submitInvitation(that.data.invitor.name, employee_union_id, res.data.result.name, that.data.changeRole, 0, that.data.compInfo.company_id);
         }
