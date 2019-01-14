@@ -22,6 +22,7 @@ Page({
                     method: 'get_role_invitation_info',
                     data: JSON.stringify({
                         union_id: wx.getStorageSync('xy_session'),
+                        invitation_id: options.invitation_id,
                         invitation_type: 1
                     })
                 },
