@@ -46,8 +46,9 @@ Page({
             leaderList:res.data.result.leader,
             setNum:n
           })   
-          if (that.data.setNum == 0) {
-            that.setData({
+          if (that.data.setNum <= 0) {
+            that.setData({             
+              setNum:0,
               btnShow: true
             })
           } 
