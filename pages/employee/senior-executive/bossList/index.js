@@ -11,6 +11,7 @@ Page({
     staffList: null,
     leaderList:null,
     limit_count:'',
+    setNum:'',
     btnShow:false,
   },
 
@@ -20,12 +21,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       limit_count:options.limit_count
-    })    
-    if(this.data.limit_count == 0){
-      this.setData({
-        btnShow:true
-      })
-    } 
+    })   
     this.getBossList();
   },
   /**
@@ -45,9 +41,16 @@ Page({
       success: res => {
         console.log(res.data.result);
         if(res.data.result){  
+          let n = that.data.limit_count - res.data.result.leader.length;
           that.setData({
             leaderList:res.data.result.leader,
+            setNum:n
           })   
+          if (that.data.setNum == 0) {
+            that.setData({
+              btnShow: true
+            })
+          } 
         }
       }
     })

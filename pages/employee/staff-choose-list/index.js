@@ -69,6 +69,9 @@ Page({
       if (chooseFrom =='inviteLeader' && staffList[index].person_type == null) {
         staffList[index].highlight = true
       }
+      if (chooseFrom == 'inviteLeader' && staffList[index].union_id == wx.getStorageSync('xy_session')) {
+        staffList[index].highlight = false
+      }
       if (chooseFrom == 'inviteFront' && staffList[index].role<2) {
         staffList[index].highlight = true
       }

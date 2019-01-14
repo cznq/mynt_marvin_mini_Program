@@ -19,7 +19,7 @@
     </view>
     <block wx:if="{{version}}">
         <view class="_fixed footer _boss {{isIphoneX?'iphonex':''}}">
-            <view  class="_font24 _txt_darkgre tip">您目前还可以设置{{limit_count}}位高管</view >
+            <view  class="_font24 _txt_darkgre tip">您目前还可以设置{{setNum}}位高管</view >
             <view class="_footer_btn">
                 <button class="_font32 _fontw500 _border_radius10" bindtap="goSelect" data-from="inviteLeader" disabled="{{btnShow}}">添加高管</button>
             </view>
@@ -27,7 +27,7 @@
     </block>
     <block wx:else>
         <cover-view class="_fixed footer _boss {{isIphoneX?'iphonex':''}}">
-            <cover-view  class="_font24 _txt_darkgre tip">您目前还可以设置{{limit_count}}位高管</cover-view >
+            <cover-view  class="_font24 _txt_darkgre tip">您目前还可以设置{{setNum}}位高管</cover-view >
             <cover-view class="_footer_btn">
                 <button class="_font32 _fontw500 _border_radius10" bindtap="goSelect" data-from="inviteLeader" disabled="{{btnShow}}">添加高管</button>
             </cover-view>
