@@ -30,7 +30,7 @@
             <text class="status _fontw300">已拒绝申请</text>
           </view>
           <view class="_rgt _flex _flex_item_center" wx:elif="{{item.status == 3}}">
-            <text class="status _fontw300">申请取消</text>
+            <text class="status _fontw300">已失效</text>
           </view>
         </view>
         </block>

@@ -123,10 +123,17 @@ Page({
   bindToastSure: function () {
     var _this = this;
     if (_this.data.btnType =='trans') {
-      toast.hideToast();
-      wx.navigateTo({
-        url: '../../staff-choose-list/index?from=transAdmin'
-      })
+      if (_this.data.empInfo.role_invitation_id!=0) {
+        toast.hideToast();
+        wx.navigateTo({
+          url: '../adminShare/index?invitation_id=' + _this.data.empInfo.role_invitation_id + '&from=inviteFront',
+        })
+      } else {
+        toast.hideToast();
+        wx.navigateTo({
+          url: '../../staff-choose-list/index?from=transAdmin'
+        })
+      }
       return ;
     } 
     if (_this.data.btnType == 'unbind') {
@@ -146,7 +153,7 @@ Page({
               if (res.data.sub_code == 0) {
                 wx.navigateBack({});
               } else {
-                toast.showToast(this, {
+                toast.showToast(_this, {
                   toastStyle: 'toast',
                   title: res.data.sub_msg,
                   duration: 2000,
@@ -200,7 +207,7 @@ Page({
   reInviteFront() {
     var that= this;
     wx.navigateTo({
-      url: '../adminShare/index?unionId=' + that.data.union_id + '&from=inviteFront',
+      url: '../adminShare/index?invitation_id=' + that.data.empInfo.role_invitation_id + '&from=inviteFront',
     })
   },
 

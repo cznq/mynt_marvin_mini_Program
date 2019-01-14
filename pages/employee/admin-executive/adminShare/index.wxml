@@ -64,7 +64,8 @@
   </view>
 
   <view class="_fixed footer _flex _flex_justify_center _flex_space_around {{isIphoneX?'iphonex':''}}">
-    <button class="_button back_btn _font32" bindtap="backAction">返回</button>
+    <button class="_button back_btn _font32" bindtap="cancelTrans" wx:if="{{cancelTrans}}">撤销</button>
+    <button class="_button back_btn _font32" bindtap="backAction" wx:else>返回</button>
     <button class="_button share_btn _font32" open-type="share"><text class="iconfont icon-weixin"></text>发送微信邀请</button>
   </view>
 
