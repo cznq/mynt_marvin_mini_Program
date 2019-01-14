@@ -62,12 +62,10 @@ Page({
                 console.log('get_employee_info API return:');
                 console.log(res);
                 var resdata = res.data.result;
-                if (res.data.sub_code == 0) {
-                    if (resdata.role == 3) {
-                        wx.reLaunch({
-                            url: '../../../manage/manage',
-                        })
-                    }
+                if (res.data.sub_code == 0 && resdata.role == 3) {
+                    wx.reLaunch({
+                        url: '../../../manage/manage',
+                    })
                 } else {
                     app.Util.network.POST({
                         url: app.globalData.BASE_API_URL,
