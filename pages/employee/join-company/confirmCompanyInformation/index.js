@@ -11,7 +11,8 @@ Page({
         disabled: true
     },
     onLoad: function(options) {
-        console.log('received options:' + options);
+        console.log('received options:');
+        console.log(options);
         var _this = this;
         //判断是否有邀请
         if (options.invitation_id) {
