@@ -30,8 +30,8 @@
     <view>
       <button bindtap="reInviteFront" wx:if="{{selfRole>1 && empInfo.role<2 && empInfo.role_invitation_id!=0}}">重新发送邀请</button>
       <button bindtap="removeFrontDesk" wx:if="{{selfRole==3 && empInfo.role==2}}">删除前台(子管理员)</button>
-      <button bindtap="removeFrontApply" wx:if="{{selfRole>1 && empInfo.role==1 && invitation_id!=0}}">删除前台(子管理员)</button>
-      <button bindtap="unbindStaff" wx:if="{{selfRole>1 && empInfo.role==1 && invitation_id==0}}">解绑该员工</button>
+      <button bindtap="removeFrontApply" wx:if="{{selfRole>1 && empInfo.role==1 && empInfo.role_invitation_id!=0}}">删除前台(子管理员)</button>
+      <button bindtap="unbindStaff" wx:if="{{selfRole>1 && empInfo.role==1 && empInfo.role_invitation_id==0}}">解绑该员工</button>
       <button bindtap="transAdmin" wx:if="{{selfRole==3 && empInfo.role==3}}">转让管理员</button>
     </view>
   </view>

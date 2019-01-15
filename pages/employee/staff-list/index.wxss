@@ -35,7 +35,7 @@ page {
 }
 
 ._list_item {
-  padding: 60rpx 0 30rpx;
+  padding: 30rpx 0 30rpx;
 }
 .front-list ._list_item:last-child {
   border-bottom: 2rpx solid rgba(220, 220, 220, .5);
