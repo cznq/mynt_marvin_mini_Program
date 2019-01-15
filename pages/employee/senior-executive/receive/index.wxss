@@ -21,6 +21,9 @@ page{
 .page_bd{
     padding: 100rpx 40rpx 0;
 }
+.page_bd.noLogo{
+  padding-top:50rpx;
+}
 .invite-wrapper._receive{
     background-image:linear-gradient(135deg, #E9C395 , #D9A76B);
 }
@@ -33,7 +36,6 @@ page{
 .invite-wrapper._receive .company-info::before,
 .invite-wrapper._receive .company-info::after {
   background-color: #191918;
-  top: 216rpx;
 }
 .invite-wrapper._receive .company-info ._short_name,
 .invite-wrapper._receive .int-item-name {

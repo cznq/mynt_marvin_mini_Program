@@ -1,4 +1,4 @@
-
+var toast = require('../../../../templates/showToast/showToast');
 const app = getApp();
 
 Page({
@@ -91,18 +91,25 @@ Page({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'company',
-        method: 'update_employee_role',
+        method: 'accept_role_invitation',
         data: JSON.stringify({
           union_id: wx.getStorageSync('xy_session'),
-          employee_union_id: wx.getStorageSync('xy_session'),
-          invitation_id: that.data.invitation_id,
-          role: that.data.invitation.assigned_role
-        })
+          role_invitation_id: that.data.invitation_id
+        }),
+        isloading: false
       },
       success: res => {
         console.log(res.data.sub_code);
         if (res.data.sub_code ==0) {
           that.getEmployeeInfo();
+        } else {
+          toast.showToast(this, {
+            toastStyle: 'toast',
+            title: res.data.sub_msg,
+            duration: 2000,
+            mask: false,
+            cb: function () {}
+          });
         }
 
       }

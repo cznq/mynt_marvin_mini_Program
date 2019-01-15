@@ -10,7 +10,7 @@
         扫描二维码
         <image src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/icon_erweima.png' class="_absolute"></image>
     </view>
-    <view class='hint _font22 _txt_darkgrey _fontw300'>
+    <view class='hint _font24 _txt_darkgrey _fontw300'>
         <text>{{hint}}</text>
     </view>
 </view>

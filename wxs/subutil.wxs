@@ -11,19 +11,22 @@ var transRoleName = function (role) {
   if (role == 1) {
     return '员工';
   } else if (role == 2) {
-    return '前台';
+    return '前台（子管理员）';
   } else if (role == 3) {
     return '管理员';
   }
 }
 
-var transRoleClassName = function (role) {
-  if (role == 1) {
-    return '_role_staff';
-  } else if (role == 2) {
-    return '_role_front';
-  } else if (role == 3) {
+var transRoleClassName = function (role, personType) {
+  if (role > 1) {
     return '_role_admin';
+  } else {
+    if (personType == 3) {
+      return '_role_leader';
+    } else {
+      return '_role_staff'; 
+    }
+    
   }
 }
 
@@ -36,8 +39,12 @@ var getFirstLetter = function (name) {
 }
 
 var returnArrayLength = function (arr) {
-  console.log(arr.length);
-  return arr.length;
+  if (arr !=null) {
+    return arr.length;
+  } else {
+    return 0;
+  }
+  
 }
 
 module.exports.transRoleClassName = transRoleClassName;

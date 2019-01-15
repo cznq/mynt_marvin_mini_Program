@@ -23,15 +23,15 @@ page {
 }
 
 .cview_logo_invite {
-    height: 200rpx;
+    height: 174rpx;
 }
 
 .cview_logo {
-    height: 140rpx;
+    height: 114rpx;
 }
 
 .cview_invite {
-    height: 126rpx;
+    height: 100rpx;
 }
 
 .cview_no_logo_invite {
@@ -44,7 +44,7 @@ page {
     border-radius: 10rpx;
     left: 50%;
     margin-left: -61rpx;
-    top: 183rpx;
+    top: 157rpx;
     background: #fff;
     border: 1rpx solid #ddd;
 }
@@ -55,7 +55,7 @@ page {
     border-radius: 10rpx;
     left: 50%;
     margin-left: -61rpx;
-    top: 87rpx;
+    top: 56rpx;
     background: #fff;
     border: 1rpx solid #ddd;
 }
@@ -86,13 +86,11 @@ page {
     height: 60rpx;
     line-height: 60rpx;
     margin-left: 19rpx;
-    width: 248rpx;
+    width: auto;
     font-size: 36rpx;
     font-weight: 500;
     color: #1A2A4B;
 }
-
-
 
 .c_logo image,
 .c_logo_invite image {
@@ -104,4 +102,16 @@ page {
 .input_block ._button {
     width: 560rpx;
     margin: 40rpx 0 15rpx 0;
+}
+
+.Name_header {
+    border-bottom: 0;
+    margin-bottom: 0;
+}
+
+.mynt_logo_gray {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }

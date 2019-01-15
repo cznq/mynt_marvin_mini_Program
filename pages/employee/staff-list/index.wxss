@@ -1,6 +1,5 @@
-@import "../../../templates/showMenu/showMenu.wxss";
+
 @import "../../../templates/showToast/showToast.wxss";
-@import "../../../templates/noneData/noneData.wxss";
 @import "../public/style.wxss";
 
 page {
@@ -12,7 +11,7 @@ page {
   background: #fff;
 }
 .iconfont.icon-tianjiayuangong1 {
-  font-size: 52rpx;
+  font-size: 48rpx;
 }
 .search { margin-top: 15px; }
 
@@ -24,21 +23,19 @@ page {
 .setBar navigator:last-child ._list_item {
   border-bottom: none;
 }
-.setBar .iconfont { margin-right: 42rpx; }
+.setBar .iconfont { margin-right: 42rpx;line-height: 1; }
 
 ._num_info {
   margin: 0 18rpx;
 }
 .staff_list {
   background: #fff;
-  padding: 0 60rpx 24rpx;
+  padding: 0 60rpx;
   margin-top: 30rpx;
 }
-.staff-list {
-  padding-top: 30rpx;
-}
+
 ._list_item {
-  padding: 60rpx 0 30rpx;
+  padding: 30rpx 0 30rpx;
 }
 .front-list ._list_item:last-child {
   border-bottom: 2rpx solid rgba(220, 220, 220, .5);
@@ -82,7 +79,7 @@ page {
 ._role_admin ._family_name {
   background-color: #484F62;
 }
-._role_front ._family_name {
+._role_leader ._family_name {
   background-color: #F9922F;
 }
 ._role_staff ._family_name {
@@ -110,6 +107,9 @@ page {
   margin-top: 0;
   border-bottom: 2rpx solid rgba(220, 220, 220, .5);
 }
+.icon-sousuo {
+  color: rgba(136, 145, 169, .3);
+}
 .search-page .clear-btn {
   position:absolute;
   right: 140rpx;
@@ -125,6 +125,7 @@ page {
   padding: 0 30rpx;
   margin-right: 80rpx;
   height: 60rpx;
+  line-height: 60rpx;
 }
 .search-page .cancel-btn {
   position: absolute;

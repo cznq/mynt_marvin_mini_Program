@@ -19,7 +19,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCompanyInfo();
+    
     this.getEmployeeInfo();
     
   },
@@ -42,33 +42,7 @@ Page({
       }
     });
   },
-  /**
-   * 获取公司信息
-   * Param: company_id (公司id)
-   */
-  getCompanyInfo: function () {
-
-    var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'company',
-        method: 'get_info',
-        data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session')
-        })
-      },
-      success: res => {
-        console.log(res.data);
-        if (res.data.result) {
-          that.setData({
-            companyInfo: res.data.result
-          })
-        }
-       
-      }
-    })
-  },
+  
 
   /**
    * 获取员工信息
@@ -89,6 +63,55 @@ Page({
           that.setData({
             empInfo: res.data.result
           });
+        }
+
+        app.Util.network.POST({
+          url: app.globalData.BASE_API_URL,
+          params: {
+            service: 'company',
+            method: 'get_info',
+            data: JSON.stringify({
+              union_id: wx.getStorageSync('xy_session')
+            })
+          },
+          success: res => {
+            console.log(res.data);
+            if (res.data.result) {
+              that.setData({
+                companyInfo: res.data.result
+              })
+              that.inviteStaffSubmit();
+            }
+
+          }
+        })
+       
+      }
+    })
+  },
+
+  /**
+   * 邀请员工加入
+   */
+  inviteStaffSubmit() {
+    var that = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'role_invitation_record',
+        data: JSON.stringify({
+          inviter_union_id: wx.getStorageSync('xy_session'),
+          inviter_name: that.data.empInfo.name,
+          company_id: that.data.companyInfo.company_id,
+          assigned_role: 1,
+          invitation_type: 1
+        })
+      },
+      success: res => {
+        console.log(res.data);
+        if (res.data.result) {
+          that.data.invitation_id = res.data.result.invitation_id
         }
 
       }
@@ -417,7 +440,7 @@ Page({
   onShareAppMessage: function (res) {
     return {
       title: this.data.empInfo.name + '邀请你加入' + this.data.companyInfo.company_short_name,
-      path: '/pages/employee/join-company/confirmCompanyInformation/index?company_code=' + this.data.companyInfo.company_code,
+      path: '/pages/employee/join-company/confirmCompanyInformation/index?company_code=' + this.data.companyInfo.company_code + '&invitation_id=' + this.data.invitation_id,
       success: function (res) {},
       fail: function (res) {}
     }

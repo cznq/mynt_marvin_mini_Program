@@ -4,12 +4,15 @@ Page({
     data: {
         mainTitle: '确认加入此公司',
         button_text: '提交申请',
-        hint: '二维码与邀请码来自于企业内部人员的分享,可\n向企业员工或管理员索要',
+        hint: '二维码与邀请码来自于企业内部人员的分享,可向企业员工或管理员索要',
         company_code: '',
         showLoginModal: false,
         invite_info: false,
+        disabled: true
     },
     onLoad: function(options) {
+        console.log('received options:');
+        console.log(options);
         var _this = this;
         //判断是否有邀请
         if (options.invitation_id) {
@@ -20,10 +23,13 @@ Page({
                     method: 'get_role_invitation_info',
                     data: JSON.stringify({
                         union_id: wx.getStorageSync('xy_session'),
+                        invitation_id: options.invitation_id,
                         invitation_type: 1
                     })
                 },
                 success: res => {
+                    console.log('get_role_invitation_info API return:');
+                    console.log(res);
                     if (res.data.sub_code == 0) {
                         var resdata = res.data.result;
                         _this.setData({
@@ -55,14 +61,13 @@ Page({
                 })
             },
             success: res => {
+                console.log('get_employee_info API return:');
                 console.log(res);
                 var resdata = res.data.result;
-                if (res.data.sub_code == 0) {
-                    if (resdata.role == 3) {
-                        wx.reLaunch({
-                            url: '../../../manage/manage',
-                        })
-                    }
+                if (res.data.sub_code == 0 && resdata.role == 3) {
+                    wx.reLaunch({
+                        url: '../../../manage/manage',
+                    })
                 } else {
                     app.Util.network.POST({
                         url: app.globalData.BASE_API_URL,
@@ -75,13 +80,15 @@ Page({
                             })
                         },
                         success: res => {
+                            console.log('get_company_info API return:');
                             console.log(res);
                             if (res.data.sub_code == 0) {
-                                console.log('数据成功');
+                                console.log('get_company_info API数据成功');
                                 _this.setData({
                                     cd: res.data.result
                                 })
                             } else {
+                                console.log('get_company_info:');
                                 console.log(res.data.sub_msg);
                                 toast.showToast(this, {
                                     toastStyle: 'toast',
@@ -113,7 +120,6 @@ Page({
         var realName = e.detail.value.name;
         var applicationReason = e.detail.value.reason;
         var formId = e.detail.formId;
-        // var formId = '123123123dfsdf';
         if (realName !== '') {
             app.Util.network.POST({
                 url: app.globalData.BASE_API_URL,
@@ -167,6 +173,18 @@ Page({
                     })
                 }
             });
+        }
+    },
+    watchInputText: function(e) {
+        var _this = this;
+        if (e.detail.value != '') {
+            _this.setData({
+                disabled: false
+            })
+        } else {
+            _this.setData({
+                disabled: true
+            })
         }
     }
 })

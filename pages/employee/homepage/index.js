@@ -42,6 +42,15 @@ Page({
             url: '/pages/manage/manage',
           })
         }
+        if (res.data.result.avatar =="") {
+          var pages = getCurrentPages();
+          var currentPage = pages[pages.length - 1]
+          var url = currentPage.route;
+          var opt = JSON.stringify(currentPage.options)
+          wx.redirectTo({
+            url: '/pages/login/index?route=' + url + '&opt=' + opt,
+          })
+        }
         if (res.data.result) {
           res.data.result.fuzz_id_number = that.fuzzIdNumber(res.data.result.id_number);
           that.setData({

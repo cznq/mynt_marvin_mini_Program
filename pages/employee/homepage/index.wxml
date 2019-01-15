@@ -37,7 +37,7 @@
       <view class="_flex _flex_item_center">
         <text class="iconfont icon-suoshuqiye"></text><text>所属企业</text>
       </view>
-      <view><text class="_font28 _short">{{cmpInfo.company_name}}</text><text class="iconfont icon-jiantou"></text></view>
+      <view class="cpinfo _flex"><view class="_font28 _short">{{cmpInfo.company_name}}</view><text class="iconfont icon-jiantou"></text></view>
     </view>
 
   </view>

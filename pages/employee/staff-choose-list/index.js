@@ -21,10 +21,13 @@ Page({
     this.setData({ from: options.from })
     if (options.from =='transAdmin'){
       this.setData({ changeRole: '管理员' })
+      wx.setNavigationBarTitle({ title: '管理员设置' })
     } else if (options.from == 'inviteFront'){
       this.setData({ changeRole: '前台（子管理员）' })
+      wx.setNavigationBarTitle({ title: '前台（子管理员）设置' })
     } else if (options.from == 'inviteLeader') {
       this.setData({ changeRole: '高管' })
+      wx.setNavigationBarTitle({ title: '高管设置' })
     }
   },
   getStaffList:function(){
@@ -45,22 +48,38 @@ Page({
           let { admin ,front_desk ,employee} = res.data.result;
           var staffList = [...admin, ...front_desk,...employee]
           
-          for (var index in staffList) {
-            if(staffList[index].invite_status==0){
-              staffList.splice(index,1)
-            }
-            if(staffList[index].person_type == null){
-                staffList[index].highlight=true
-            }
-          }
           that.setData({
-            staffList: staffList
+            staffList: that.chooseStaffHighLight(staffList, that.data.from)
           })    
           console.log(that.data.staffList);
         }
         
       }
     })
+  },
+  /**
+   * 员工列表高亮删选
+   * chooseFrom: transAdmin 转让管理员; inviteFront 邀请子管理员; inviteLeader 邀请高管
+   */
+  chooseStaffHighLight(staffList, chooseFrom) {
+    for (var index in staffList) {
+      if (staffList[index].invite_status == 0) {
+        staffList.splice(index, 1)
+      }
+      if (chooseFrom =='inviteLeader' && staffList[index].person_type == null) {
+        staffList[index].highlight = true
+      }
+      if (chooseFrom == 'inviteLeader' && staffList[index].union_id == wx.getStorageSync('xy_session')) {
+        staffList[index].highlight = false
+      }
+      if (chooseFrom == 'inviteFront' && staffList[index].role<2) {
+        staffList[index].highlight = true
+      }
+      if (chooseFrom == 'transAdmin' && staffList[index].role < 3) {
+        staffList[index].highlight = true
+      }
+    }
+    return staffList;
   },
   selectBoss:function(e){
     var _this = this;

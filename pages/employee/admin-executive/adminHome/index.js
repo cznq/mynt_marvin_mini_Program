@@ -91,7 +91,7 @@ Page({
     var self = this;
     this.data.btnType = 'trans';
     toast.showToast(this, {
-      toastStyle: 'toast4',
+      toastStyle: 'toast8',
       title: '确定转让管理员权限吗？',
       introduce: '1、转让需要待对方确认接受后才能生效;\n2、对方确认后您将不再具备公司管理权限；\n3、请敦促对方尽快完成接受，以免造成机器人接待工作的中断。',
       mask: true,
@@ -100,6 +100,31 @@ Page({
       isClose: true,
       closeText: '取消'
     });
+  },
+
+  /**
+   * 删除前台记录
+   */
+  removeFrontApply: function() {
+    var that = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'cancel_role_invitation',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+          invitation_id: that.data.empInfo.role_invitation_id
+        })
+      },
+      success: res => {
+        if (res.data.sub_code == 0) {
+          wx.redirectTo({
+            url: '../admin-list/index',
+          })
+        }
+      }
+    })
   },
 
   /**
@@ -123,9 +148,17 @@ Page({
   bindToastSure: function () {
     var _this = this;
     if (_this.data.btnType =='trans') {
-      wx.navigateTo({
-        url: '../../staff-choose-list/index?from=transAdmin'
-      })
+      if (_this.data.empInfo.role_invitation_id!=0) {
+        toast.hideToast();
+        wx.navigateTo({
+          url: '../adminShare/index?invitation_id=' + _this.data.empInfo.role_invitation_id + '&from=inviteFront',
+        })
+      } else {
+        toast.hideToast();
+        wx.navigateTo({
+          url: '../../staff-choose-list/index?from=transAdmin'
+        })
+      }
       return ;
     } 
     if (_this.data.btnType == 'unbind') {
@@ -143,7 +176,39 @@ Page({
             },
             success: res => {
               if (res.data.sub_code == 0) {
-                _this.getEmployeeInfo();
+                wx.navigateBack({});
+              } else {
+                toast.showToast(_this, {
+                  toastStyle: 'toast',
+                  title: res.data.sub_msg,
+                  duration: 2000,
+                  mask: false,
+                  cb: function () { }
+                });
+              }
+
+            }
+          })
+
+        }
+      });
+    } else if (_this.data.btnType == 'remove') {
+
+      toast.hideToast(_this, {
+        cb: function () {
+          app.Util.network.POST({
+            url: app.globalData.BASE_API_URL,
+            params: {
+              service: 'company',
+              method: 'update_employee_role',
+              data: JSON.stringify({
+                employee_union_id: _this.data.union_id,
+                role: 1
+              })
+            },
+            success: res => {
+              if (res.data.sub_code == 0) {
+                wx.navigateBack();
               } else {
                 wx.showToast({
                   title: '删除失败',
@@ -156,36 +221,6 @@ Page({
 
         }
       });
-    } else {
-
-    toast.hideToast(_this, {
-      cb: function () {
-        app.Util.network.POST({
-          url: app.globalData.BASE_API_URL,
-          params: {
-            service: 'company',
-            method: 'update_employee_role',
-            data: JSON.stringify({
-              admin_union_id: wx.getStorageSync('xy_session'),
-              employee_union_id: _this.data.editData.union_id,
-              role: 1
-            })
-          },
-          success: res => {
-            if (res.data.sub_code == 0) {
-              _this.getEmployeeInfo();
-            } else {
-              wx.showToast({
-                title: '删除失败',
-                icon: 'none'
-              })
-            }
-
-          }
-        })
-
-      }
-    });
     }
   },
   bindToastClose: function () {
@@ -197,7 +232,7 @@ Page({
   reInviteFront() {
     var that= this;
     wx.navigateTo({
-      url: '../adminShare/index?unionId=' + that.data.union_id + '&from=inviteFront',
+      url: '../adminShare/index?invitation_id=' + that.data.empInfo.role_invitation_id + '&from=inviteFront',
     })
   },
 

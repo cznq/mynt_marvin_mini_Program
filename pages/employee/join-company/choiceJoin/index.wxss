@@ -10,6 +10,9 @@ page {
 
 .hint {
     margin: 80rpx auto 0 auto;
+    width: 484rpx;
+    height: 59rpx;
+    line-height: 36rpx;
 }
 
 .c_block {

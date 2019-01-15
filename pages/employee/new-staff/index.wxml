@@ -1,7 +1,7 @@
 <import src="../../../templates/showToast/showToast.wxml" />
 <wxs src="../../../wxs/subutil.wxs" module="tools" />
 
-<view class="page">
+<view class="page" wx:if="{{newStaff}}">
   <view class="page__hd _flex _flex_space_between _flex_item_center">
       <text class="_font60 _fontw700">新申请员工</text>
   </view>
@@ -30,7 +30,7 @@
             <text class="status _fontw300">已拒绝申请</text>
           </view>
           <view class="_rgt _flex _flex_item_center" wx:elif="{{item.status == 3}}">
-            <text class="status _fontw300">申请取消</text>
+            <text class="status _fontw300">已失效</text>
           </view>
         </view>
         </block>
@@ -40,6 +40,16 @@
     </block>
   </view>
    
+</view>
+
+<view class="nonePage _flex _flex_item_center _flex_justify_center" wx:else>
+  <view class="noneWrapper">
+    <view class="iconfont icon-kongyemian"></view>
+    <view class="invite_info _txt_center">暂无员工申请信息</view>
+    <navigator url="/pages/employee/invite-staff/index" hover-class="none">
+    <button class='_button_width350 _button_white invte-btn _font24'>邀请员工</button>
+    </navigator>
+  </view>
 </view>
 
 <template is="showToast" data="{{showToast: showToast}}" />

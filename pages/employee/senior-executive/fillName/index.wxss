@@ -1,6 +1,6 @@
 /* pages/employee/senior-executive/fillName/index.wxss */
 page{
-    background-color: #fcfcfc;
+    background-color: #F7F8FA;
 }
 .page{
     padding: 0 60rpx;

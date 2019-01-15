@@ -61,6 +61,7 @@ page {
   padding: 0 60rpx 0 68rpx;
   align-items: center;
   line-height: 1;
+  white-space: nowrap;
 } 
 .icon-suoshuqiye,
 .icon-yuangonglururenlian {
@@ -74,5 +75,11 @@ page {
 }
 ._short {
   color: rgba(136, 145, 169, 1);
-  margin-right: 30rpx;
+  margin-left: 30rpx;
+  margin-right: 20rpx;
+  width: 340rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  text-align: right;
 }

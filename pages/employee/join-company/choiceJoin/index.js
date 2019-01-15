@@ -3,7 +3,7 @@ Page({
     data: {
         mainTitle: '选择一种方式加入',
         button_text: '下一步',
-        hint: '二维码与邀请码来自于企业内部人员的分享,可\n向企业员工或管理员索要'
+        hint: '二维码与邀请码来自于企业内部人员的分享,可向企业员工或管理员索要'
     },
     bindcode: function() {
         wx.navigateTo({
