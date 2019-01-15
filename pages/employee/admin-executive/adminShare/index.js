@@ -94,6 +94,8 @@ Page({
             success: res => {
               if (res.data.result) {
                 that.setData({
+                  'inviteInfo.company_id': res.data.result.company_id,
+                  'inviteInfo.company_code': res.data.result.company_code,
                   'inviteInfo.company_logo': res.data.result.logo,
                   'inviteInfo.company_name': res.data.result.company_name,
                   'inviteInfo.company_short_name': res.data.result.company_short_name
@@ -183,9 +185,9 @@ Page({
         console.log(res.data.result);
         if (res.data.result) {
           that.setData({
-            'inviteInfo.inviter_name': res.data.result.name
+            'inviteInfo.invitee_name': res.data.result.name
           });
-          that.submitInvitation(that.data.invitor.name, employee_union_id, res.data.result.name, that.data.changeRole, 0, that.data.compInfo.company_id);
+          that.submitInvitation(that.data.inviteInfo.inviter_name, employee_union_id, res.data.result.name, that.data.changeRole, 0, that.data.inviteInfo.company_id);
         }
 
       }
@@ -198,7 +200,7 @@ Page({
     var that = this;
     var shareTitle = that.data.changeRole == 2 ?'成为该公司前台':'成为该公司的管理员';
     return {
-      title: that.data.invitor.name + '邀请' + that.data.invitee.name + shareTitle,
+      title: that.data.inviteInfo.inviter_name + '邀请' + that.data.inviteInfo.invitee_name + shareTitle,
       path: '/pages/employee/admin-executive/adminReceive/index?invitation_id=' + that.data.invitation_id + '&invitation_type=0',
       success: function (res) {
         // 转发成功
