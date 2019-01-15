@@ -183,7 +183,7 @@ Page({
             },
             success: res => {
               if (res.data.sub_code == 0) {
-                _this.getEmployeeInfo();
+                wx.navigateBack();
               } else {
                 wx.showToast({
                   title: '删除失败',
