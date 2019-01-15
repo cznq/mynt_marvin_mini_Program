@@ -10,8 +10,7 @@ Page({
     textInfo: '很高兴邀请您成为本公司新的管理员，您将拥有我们的以下管理权力，烦请点击下方按钮接受邀请并开始使用管理权力。',
     roleTitle: '管理员',
     changeRole: 3,
-    inviteInfo: null,
-    cancelTrans: false
+    inviteInfo: null
   },
 
   /**
@@ -21,7 +20,6 @@ Page({
     var that = this;
     if (options.invitation_id) {
       that.setData({
-        cancelTrans: true,
         invitation_id: options.invitation_id
       })
       app.Util.network.POST({

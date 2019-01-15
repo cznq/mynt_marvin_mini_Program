@@ -103,6 +103,31 @@ Page({
   },
 
   /**
+   * 删除前台记录
+   */
+  removeFrontApply: function() {
+    var that = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'cancel_role_invitation',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+          invitation_id: that.data.empInfo.role_invitation_id
+        })
+      },
+      success: res => {
+        if (res.data.sub_code == 0) {
+          wx.redirectTo({
+            url: '../admin-list/index',
+          })
+        }
+      }
+    })
+  },
+
+  /**
    * 删除前台
    */
   removeFrontDesk: function() {
