@@ -117,6 +117,8 @@ Page({
                 })
             },
             success: res => {
+                console.log('get_review_status API return:');
+                console.log(res);
                 var resdata = res.data.result;
                 if (res.data.sub_code == 0) {
                     if (resdata.employee_status === 0) {
@@ -127,9 +129,12 @@ Page({
                         })
                         //普通员工
                         if (resdata.role == 1) {
+                            console.log("普通员工");
                             _this.setData({
                                 'application[5].isShow': false //自动值守
                             })
+                        } else {
+                            _this.get_attended_status(_this);
                         }
                         _this.get_info(); //获取企业信息
                         _this.get_rotation_chart(_this); //获取轮播图
@@ -249,35 +254,6 @@ Page({
                 } else {
                     console.log(res.data.sub_msg);
                 }
-                // 获取自动值守状态
-                app.Util.network.POST({
-                    url: app.globalData.BASE_API_URL,
-                    params: {
-                        service: 'company',
-                        method: 'get_company_service_status',
-                        data: JSON.stringify({
-                            union_id: wx.getStorageSync('xy_session'),
-                            service_key: 'ATTEND_FUNCTION'
-                        }),
-                        isloading: false
-                    },
-                    success: res => {
-                        console.log('请求自动值守接口返回数据:');
-                        console.log(res);
-                        if (res.data.result.service_status != 0) {
-                            _this.setData({
-                                'application[5].isShow': true //自动值守
-                            });
-                        } else {
-                            _this.setData({
-                                'application[5].isShow': false //自动值守
-                            });
-                        }
-                    },
-                    fail: res => {
-                        console.log('请求自动值守接口失败');
-                    }
-                })
             },
             fail: res => {
                 console.log('fail');
@@ -314,6 +290,37 @@ Page({
             },
             fail: res => {
                 console.log('fail');
+            }
+        })
+    },
+    get_attended_status: function(_this) {
+        // 获取自动值守状态
+        app.Util.network.POST({
+            url: app.globalData.BASE_API_URL,
+            params: {
+                service: 'company',
+                method: 'get_company_service_status',
+                data: JSON.stringify({
+                    union_id: wx.getStorageSync('xy_session'),
+                    service_key: 'ATTEND_FUNCTION'
+                }),
+                isloading: false
+            },
+            success: res => {
+                console.log('请求自动值守接口返回数据:');
+                console.log(res);
+                if (res.data.result.service_status != 0) {
+                    _this.setData({
+                        'application[5].isShow': true //自动值守
+                    });
+                } else {
+                    _this.setData({
+                        'application[5].isShow': false //自动值守
+                    });
+                }
+            },
+            fail: res => {
+                console.log('请求自动值守接口失败');
             }
         })
     }
