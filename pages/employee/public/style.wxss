@@ -3,7 +3,7 @@
   position: relative;
 }
 .search-input {
-  background-color: rgba(136, 145, 169, 0.11);
+  background-color: #f4f5f7;
   border-radius: 10rpx;
   padding: 0 30rpx 0 80rpx;
   height: 56rpx;

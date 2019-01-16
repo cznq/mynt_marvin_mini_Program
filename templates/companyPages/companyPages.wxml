@@ -12,7 +12,9 @@
               <button open-type="share" class='share icon iconfont icon-fenxiang' bindtap="share"></button>
             </form>
             {{cd.company_short_name}}
-            <view class='vipicon'></view>
+            <!-- <view class='vipicon'></view> -->
+            <view class='vipicon' wx:if="{{cd.service_suite==1}}"></view>
+            <view wx:else class='vipicon vipicon_gray'></view>
           </view>
           <view class='t2'>{{cd.company_name}}</view>
           <!-- <image class='_absolute vip' src='{{vipImg}}'></image> -->
