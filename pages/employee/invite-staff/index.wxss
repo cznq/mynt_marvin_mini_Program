@@ -15,6 +15,10 @@ page {
   border-radius: 10rpx;
   box-shadow: 14rpx 14rpx 122rpx rgba(0, 0, 0, 0.06);
 }
+.company-card.nologo {
+  margin-top: 60rpx;
+  padding-top: 48rpx;
+}
 .logo {
   width: 100rpx;
   height: 100rpx;

@@ -1,6 +1,14 @@
 /* pages/login/index.wxss */
+page {
+  height: 100%;
+}
 .modal-dialog {
   background-color: #fff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .modal-content {
   border-bottom: none;

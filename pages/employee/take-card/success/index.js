@@ -12,9 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      company_id: options.company_id
-    });
+    
   },
 
   /**
@@ -22,7 +20,7 @@ Page({
    */
   backGuide: function () {
     wx.navigateTo({
-      url: '/pages/employee/take-card/guide/index?company_id=' + this.data.company_id
+      url: '/pages/employee/take-card/guide/index'
     })
   }
 

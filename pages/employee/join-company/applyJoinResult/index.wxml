@@ -1,0 +1,16 @@
+<view class="content">
+    <view class="applySuccess" wx:if="{{applySuccess}}">
+        <view class="applySuccessImg">
+            <image src="http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/WechatIMG224.png"></image>
+        </view>
+        <view class="applySuccessNotice">
+            <text>申请已提交,正在等待管理员审核...</text>
+        </view>
+    </view>
+    <view class="applyFail" wx:if="{{applySuccess == false}}">
+        <text class="t1">您已加入过公司</text>
+        <text class="t2">请勿重复提交申请</text>
+        <button class="_button" bindtap="viewCompany" formType="submit">查看所属公司</button>
+    </view>
+    <view class="mynt_logo_blue " wx:if="{{applySuccess == false}}"></view>
+</view>

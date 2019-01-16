@@ -1,0 +1,28 @@
+/* pages/employee/senior-executive/bossShare/index.wxss */
+@import "../public/style.wxss";
+page{
+    background-color: #F7F8FA;
+}
+.page{
+    padding: 0 40rpx;
+}
+.icon-weixin {
+  vertical-align: middle;
+}
+._button.share_btn::after{
+  border: none;
+}
+.share-box{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 442rpx;
+}
+.footer-img{
+  width: 44rpx;
+  height: 44rpx;
+  margin-right: 12rpx;
+}
+.footer button[disabled] {
+  background: rgba(12, 206, 21, .2)
+}

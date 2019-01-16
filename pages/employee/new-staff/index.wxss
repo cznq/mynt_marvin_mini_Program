@@ -49,3 +49,28 @@ button.btn.allow {
   font-size: 24rpx;
   color: #8891A9;
 }
+
+page {
+  height: 100%;
+}
+.nonePage {
+  height: 100%;
+  width: 100%;
+}
+.icon-kongyemian {
+  color: #b6bac9;
+  font-size: 170rpx;
+  text-align: center;
+  margin-top: -100rpx;
+}
+.invite_info {
+  font-size: 28rpx;
+  color: #8891A9;
+}
+.invte-btn {
+  color: #1F2F4F;
+  height: 66rpx;
+  line-height: 66rpx;
+  margin: 88rpx auto 0;
+  width: 250rpx;
+}

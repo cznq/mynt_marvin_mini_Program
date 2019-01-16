@@ -1,0 +1,239 @@
+/** 搜索框 **/
+.search {
+  position: relative;
+}
+.search-input {
+  background-color: #f4f5f7;
+  border-radius: 10rpx;
+  padding: 0 30rpx 0 80rpx;
+  height: 56rpx;
+}
+.search-btn {
+  position: absolute;
+  left: 20rpx;
+  top: 0;
+  height: 56rpx;
+  width: 56rpx;
+  padding: 0;
+  line-height: 56rpx;
+  text-align: center;
+  background-color: transparent;
+}
+.icon-sousuo { color: #8891a9 }
+.search-placeholder {
+  color: rgba(136, 145, 169, .3);
+}
+/**  员工详情页 **/
+
+.avatar {
+  width: 170rpx;
+  height: 170rpx;
+  border-radius: 50%;
+  margin-top: -85rpx;
+  color: #fff;
+  line-height: 170rpx;
+  text-align: center;
+  box-shadow: 6rpx 0 92rpx rgba(43, 51, 72, 0.12);
+}
+.avatar._role_leader {
+  background-color: rgba(249, 146, 47, 1);
+}
+.avatar._role_admin {
+  background-color: rgba(72, 79, 98, 1);
+}
+.avatar._role_staff {
+  background-color: rgba(96, 146, 254, 1);
+}
+.icon-icon_new { color: #05d414;}
+.icon-icon_guanliyuan { color: rgba(72, 79, 98, 1);}
+.icon-icon_gaoguan { color: rgba(249, 146, 47, 1);}
+._name {
+  line-height: 1;
+}
+._role {
+  color: rgba(136, 145, 169, 1);
+  border-radius: 6rpx;
+  border: 2rpx solid rgba(0, 0, 0, 0.1);
+  margin-top: 20rpx;
+  padding: 14rpx 20rpx 12rpx 20rpx;
+}
+.list-info {
+  padding: 0 60rpx;
+}
+.label {
+  color: rgba(136, 145, 169, 1);
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.info-value {
+  font-size: 32rpx;
+  color: rgba(26, 42, 75, 1);
+  line-height: 1;
+  margin-top: 24rpx;
+  padding-bottom: 38rpx;
+  border-bottom: 2rpx solid rgba(220, 220, 220, .5);
+}
+.list-item {
+  padding-top: 40rpx;
+}
+/* 分享页面共用样式 */
+.page_bd {
+  padding-top: 100rpx;
+}
+.page_bd.noLogo {
+  padding-top: 50rpx;
+}
+.invite-wrapper {
+  background-color: #fff;
+  margin: 0 40rpx;
+  border-radius: 10rpx;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.06) 0 0 122rpx;
+}
+.company-info {
+  line-height: 1;
+  padding-bottom: 64rpx;
+  padding-top: 50rpx;
+  border-bottom: 2rpx solid rgba(220, 220, 220, .5)
+}
+.company-info::before,
+.company-info::after {
+  content: '';
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  background-color: RGBA(240, 241, 242, 1);
+  position: absolute;
+  top: 210rpx;
+}
+.noLogo .company-info::before,
+.noLogo .company-info::after {
+  top: 180rpx;
+}
+.company-info::before {
+  left: -18rpx; 
+}
+.company-info::after {
+  right: -18rpx; 
+}
+.company-info ._logo {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 10rpx;
+  margin-top: -150rpx;
+  margin-bottom: 26rpx;
+}
+.company-info ._name {
+  color: rgba(26, 42, 75, 1);
+}
+.company-info ._short_name {
+  color: rgba(136, 145, 169, 1);
+  margin-top: 16rpx;
+}
+.icon-jiantou {
+  color: rgba(124, 130, 157, .3);
+  font-size: 22rpx;
+  margin-left: 16rpx;
+}
+
+.invite-info {
+  padding: 58rpx 40rpx 64rpx;
+
+}
+.invite-info ._sec {
+  padding-bottom: 34rpx;
+  border-bottom: 2rpx solid rgba(220, 220, 220, .5);
+}
+.int-title {
+  line-height: 1;
+}
+.int-intro {
+  color: rgba(26, 42, 75, 1);
+  line-height: 42rpx;
+  margin-top: 34rpx;
+}
+.int-item-name {
+  margin-top: 38rpx;
+  color: rgba(136, 145, 169, 1);
+}
+.int-item-info {
+  color: rgba(26, 42, 75, 1);
+  font-weight: 600;
+}
+.know-list-title {
+  color: rgba(26, 42, 75, 1);
+  margin-bottom: 20rpx;
+}
+.know-list {
+  color: rgba(136, 145, 169, 1);
+  font-size: 26rpx;
+  line-height: 40rpx;
+}
+.know-list ._num {
+  margin-right: 10rpx;
+}
+._ft_logo {
+  padding: 64rpx 0 0;
+}
+.footer {
+  background: #ccc;
+  left:0;
+  bottom:0;
+  width:100%;
+  padding:30rpx 0;
+  background: rgba(253, 254, 254, .96);
+  border-top:1rpx solid #eeeeee;
+  z-index: 101;
+}
+.footer.iphonex {
+  padding-bottom: 110rpx;
+}
+.footer button {
+  color: #fff!important;
+}
+._button.back_btn {
+  width: 156rpx;
+  margin-right: 0;
+  background-color: #fff;
+  color: rgba(26, 42, 75, 1)!important;
+  border: 2rpx solid rgba(0,0,0,.05);
+}
+._button.share_btn {
+  margin-left: 32rpx;
+  width: 442rpx;
+  background: rgba(12, 206, 21, 1);
+}
+.icon-weixin {
+  font-size: 42rpx;
+  margin-right: 18rpx;
+}
+.footer button[disabled] {
+  background: rgba(71, 95, 253, .2);
+}
+._authIntro {
+  padding: 0 60rpx;
+}
+._authList {
+  margin-top: 72rpx;
+}
+._authList ._icon {
+  width: 68rpx;
+  height: 68rpx;
+  padding: 28rpx;
+  text-align: center;
+  margin-right: 50rpx;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid rgba(220, 220, 220, 1);
+}
+._icon image {
+  width: 68rpx;
+  height: 66rpx;
+}
+._itemTitle {
+  margin-bottom: 20rpx;
+  line-height: 1;
+}
+._font_gray {
+  color: rgba(136, 145, 169, 1);
+}

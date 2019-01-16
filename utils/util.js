@@ -24,20 +24,6 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
       app.checkWxLogin(function(){
         request(method, requestHandler, app)
       })
-
-    /*
-      if (!(app.checkSession())) {
-        var pages = getCurrentPages();
-        var currentPage = pages[pages.length - 1] 
-        var url = currentPage.route; 
-        var opt = JSON.stringify(currentPage.options) 
-        wx.redirectTo({
-          url: '/pages/login/index?route=' + url + '&opt=' + opt,
-        })
-      } else {
-        request(method, requestHandler, app)
-      }
-    */
               
     }
   }
@@ -48,10 +34,14 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     dataJson.union_id = wx.getStorageSync('xy_session');
 
     requestHandler.params.data = JSON.stringify(dataJson);
-    wx.showLoading({
-      title: '正在加载',
-      mask: true
-    })
+
+    if (requestHandler.params.isloading !== false){
+      wx.showLoading({
+        title: '正在加载',
+        mask: true
+      })
+    }
+    
     requestHandler.params.app_id = '65effd5a42fd1870b2c7c5343640e9a8'; //接口需要的第三方App_id
     requestHandler.params.timestamp = Math.round(new Date().getTime() / 1000 - 28800);
     requestHandler.params.sign_type = 'MD5';
@@ -67,6 +57,16 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: res => {
+        //未关注公众号跳转
+        if (res.data.return_code == 'NO_FOLLOW') {
+          var pages = getCurrentPages();
+          var currentPage = pages[pages.length - 1] //获取当前页面的对象
+          var url = currentPage.route; //获取当前页面url
+          var opt = JSON.stringify(currentPage.options) //获取url中所带的参数
+          wx.redirectTo({
+            url: '/pages/checkfollow/index?route=' + url + '&opt=' + opt,
+          })
+        }
         if (res.data.sub_code !== 0) {
           app.myLog("请求成功错误", 'union_id:' + wx.getStorageSync('xy_session') + '\nopen_id:' + wx.getStorageSync('open_id') + '\n\n请求参数：\n' + JSON.stringify(requestHandler.params) + '\n\n接口返回信息：\n' + JSON.stringify(res))
         }
@@ -76,6 +76,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
       fail: (res) => {
         app.myLog("请求错误", 'union_id:' + wx.getStorageSync('xy_session') + '\nopen_id:' + wx.getStorageSync('open_id') + '\n\n请求参数：\n' + JSON.stringify(requestHandler.params) + '\n\n接口返回信息：\n' + JSON.stringify(res))
         wx.hideLoading();
+        
         wx.showToast({
           title: '加载失败，请尝试刷新',
           icon: 'none'
@@ -102,8 +103,6 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     qqmapsdk.geocoder({
       address: address,
       success: function (res) {
-        console.log(res.result);
-        app.myLog("根据地址获取经纬度: ", " 地址：" + address + '返回：' + JSON.stringify(res.result));
         _this.setData({
           latitude: res.result.location.lat,
           longitude: res.result.location.lng

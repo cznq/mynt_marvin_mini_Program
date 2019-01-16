@@ -1,0 +1,42 @@
+<!--pages/employee/admin-executive/adminHome/index.wxml-->
+
+<import src="../../../../templates/showToast/showToast.wxml" /> 
+<wxs src="../../../../wxs/subutil.wxs" module="tools" />
+
+<view class="page">
+  <view class="page__hd"></view>
+  <view class="page__bd">
+    <view class="_flex _flex_item_center _flex_justify_center">
+      <view class="avatar {{tools.transRoleClassName(empInfo.role, empInfo.person_type)}} _font68">{{tools.getFirstLetter(empInfo.name)}}</view>   
+      <view class="_font36 _name _fontw600">{{empInfo.name}}</view> 
+    </view>
+    <view class="list-info">
+      <view class="list-item">
+        <view class="label">所属企业</view>
+        <view class="info-value">{{compInfo.company_name}}</view>
+      </view>
+      <view class="list-item">
+        <view class="label">姓名</view>
+        <view class="info-value">{{empInfo.name}}</view>
+      </view>
+      <view class="list-item">
+        <view class="label">角色</view>
+        <view class="info-value">{{tools.transRoleName(empInfo.role)}}{{empInfo.person_type==3?', 高管':''}}</view>
+      </view>
+    </view>
+    
+  </view>
+  <view class="page__ft">
+    <view>
+      <button bindtap="reInviteFront" wx:if="{{selfRole>1 && empInfo.role<2 && empInfo.role_invitation_id!=0}}">重新发送邀请</button>
+      <button bindtap="removeFrontDesk" wx:if="{{selfRole==3 && empInfo.role==2}}">删除前台(子管理员)</button>
+      <button bindtap="removeFrontApply" wx:if="{{selfRole>1 && empInfo.role==1 && empInfo.role_invitation_id!=0}}">删除前台(子管理员)</button>
+      <button bindtap="unbindStaff" wx:if="{{selfRole>1 && empInfo.role==1 && empInfo.role_invitation_id==0}}">解绑该员工</button>
+      <button bindtap="transAdmin" wx:if="{{selfRole==3 && empInfo.role==3}}">转让管理员</button>
+    </view>
+  </view>
+</view>
+
+
+<template is="showToast" data="{{showToast: showToast}}" />
+

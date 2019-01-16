@@ -1,0 +1,61 @@
+/* pages/employee/senior-executive/fillName/index.wxss */
+page{
+    background-color: #F7F8FA;
+}
+.page{
+    padding: 0 60rpx;
+}
+.page__hd{
+    line-height: 1;
+    padding: 40rpx 0 70rpx;
+}
+._selected_list ._list_item{
+    margin-top: 36rpx;
+}
+._selected_list ._family_name{
+ background-color: #6092FE;  
+}
+._selected_list ._fill{
+    margin-top: 60rpx;
+    line-height: 1;
+}
+._selected_list ._fill_text{
+    margin-top: 26rpx;
+    padding-bottom: 30rpx;
+    border-bottom: 1px solid rgba(220, 220, 220, .5);
+}
+._selected_list ._fill ._tip{
+   position: relative;
+   margin-top: 36rpx;
+   background-color: #F2F3F8;
+   width: 498rpx;
+   height: 84rpx;
+   line-height: 84rpx;
+   text-align: center;
+}
+._selected_list ._fill ._tip::after{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    display: block;
+    border-left: 24rpx solid transparent;
+    border-right: 24rpx solid transparent;
+    border-bottom: 40rpx solid #F2F3F8;
+    top: -20rpx;
+    left: 28rpx;
+    z-index: -1;
+}
+.footer.iphonex{
+    padding-bottom: 110rpx;
+}
+.footer._boss_fill ._footer_btn{
+    padding: 0 60rpx;
+}
+.footer._boss_fill ._footer_btn button{
+    background-color: #007BFF;
+    color: #fff;
+    height: 100rpx;
+    width: 630rpx;
+    line-height: 100rpx;
+}

@@ -18,7 +18,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    app.getServiceStatus(that, 'EMPLOYEE_TAKE_CARD', that.getCompany());
+    app.getServiceStatus(that, 'EMPLOYEE_TAKE_CARD', function(){that.getCompany()});
     
   },
 
@@ -38,15 +38,20 @@ Page({
           that.setData({
             cmpInfo: res.data.result
           })
+          that.getEmployeeInfo(res.data.result.take_card_ways);
+        } else {
+          wx.redirectTo({
+            url: '/pages/manage/manage',
+          })
         }
-
+        
       }
     })
   },
   /**
    * 获取员工信息
    */
-  getEmployeeInfo: function () {
+  getEmployeeInfo(take_card_way) {
     var that = this;
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
@@ -62,14 +67,20 @@ Page({
           that.setData({
             empInfo: res.data.result
           })
-          if (that.data.serviceStatus !== 'closed' && !app.Util.checkEmpty(that.data.empInfo.input_pic_url) && !app.Util.checkEmpty(that.data.empInfo.id_number)) {
-            wx.navigateTo({
-              url: '../success/index',
-            })
+          console.log(res.data.result);
+          if (that.data.serviceStatus !== 'closed' && !app.Util.checkEmpty(that.data.empInfo.input_pic_url)) {
+            if (take_card_way==0){
+              wx.navigateTo({
+                url: '../success/index',
+              })
+            } else {
+              wx.navigateTo({
+                url: '/pages/e-card/detail/index',
+              })
+            }
+            
           }
-        } else {
-          
-        }
+        } 
       }
     })
   },

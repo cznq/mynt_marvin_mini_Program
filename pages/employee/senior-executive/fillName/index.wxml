@@ -1,0 +1,28 @@
+<!--pages/employee/senior-executive/fillName/index.wxml-->
+<wxs src="../../../../wxs/subutil.wxs" module="tools" />
+<view class="page" style="padding-bottom:{{isIphoneX?'240':'160'}}rpx">
+    <view class="page__hd">
+        <text class="_font60 _fontw700">输入高管的尊称</text>
+    </view>
+    <view class="_selected_list">
+        <view class="_font24 _txt_darkgrey">已选择的高管</view>
+        <view class="_list_item">
+            <view class="_lft _flex _flex_item_center">
+                <view class="_family_name">{{tools.getFirstLetter(empInfo.name)}}</view>
+                <view class="_name _fontw500 _font34">{{empInfo.name}}</view>
+            </view>
+            <view class="_fill">
+                <view class="_font24 _txt_darkgrey">尊称</view>
+                <view class="_font32 _fill_text">
+                    <input placeholder="例：刘总是刘志强的尊称" bindinput="giveTitle" />
+                </view>
+                <view class="_font24 _txt_darkgrey _tip _border_radius10">小觅机器人今后会以您设置的尊称称呼他。</view>
+            </view>
+        </view>
+    </view>
+    <cover-view class="_fixed footer _boss_fill {{isIphoneX?'iphonex':''}}">
+        <cover-view class="_footer_btn">
+            <button class="_font32 _fontw500 _border_radius10" bindtap="goShare">下一步</button>
+        </cover-view>
+    </cover-view>
+</view>

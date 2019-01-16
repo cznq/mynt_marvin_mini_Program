@@ -1,0 +1,62 @@
+<!--pages/employee/executiveHome/index.wxml-->
+<view class="banner">
+    <image class="banner_pic" src='https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/bossSet/boss_setting_illustration%402x.png' mode="widthFix"></image>
+</view>
+<view class="intro" style="padding-bottom:{{isIphoneX?'240':'160'}}rpx">
+    <view class="_txt_center top_info">
+        <view class="_font44 _fontw600 tit">添加高管，全程尊贵体验</view>
+        <view class="_font32">高管随时到访无需预约，小觅机器人全程敬语服务，绿色通道尊贵体验。</view>
+    </view>
+    <view class="boss_service">
+        <view class="_txt_center _font32 _fontw600 _mb20 title">高管服务权益</view>
+        <view class="_flex _flex_item_center boss_service_item">
+            <view class="_lft">
+                <image src='https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/bossSet/boss_setting_advertise_icon%402x.png' class="icon"></image>
+            </view>
+            <view class="_rgt">
+                <view class="_font32 _fontw600 _mb20 title">播放企业简介</view>
+                <view class="_font24 _txt_darkgrey">当小觅机器人认出企业高管后会自动播放企业的宣传简介，进一步提升企业的品牌形象。</view>
+            </view>
+        </view>
+        <view class="_flex _flex_item_center boss_service_item">
+            <view class="_lft">
+                <image src='https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/bossSet/boss_setting_take_card_icon%402x.png' class="icon"></image>
+            </view>
+            <view class="_rgt">
+                <view class="_font32 _fontw600 _mb20 title">快捷通道到访</view>
+                <view class="_font24 _txt_darkgrey">您企业的高管作为贵公司的重要人物，可以随时无限次的获取电梯卡上楼。</view>
+            </view>
+        </view>
+    </view>
+<block wx:if="{{is_vip}}">
+    <block wx:if="{{is_tryout}}">
+        <view class="add_executive">
+            <button class="_border_radius10 _font34 _fontw500 _mb20" bindtap="goExecutive" data-limit="{{limit_count}}">限时免费，立即添加</button>
+            <view class="_font24 _txt_darkgrey _txt_center">
+                编辑高管邀请函，通过微信发送给公司高管,他接受邀请后便可享受机器人提供的优质服务。 
+            </view>
+        </view>
+        <view class="adrim">
+            <import src="../../../../templates/vipAd/vipAd.wxml"/>
+            <template is="vipAd"/>
+        </view>
+    </block>
+    <block wx:else>
+        <view class="add_executive">
+            <button class="_border_radius10 _font34 _fontw500 _mb20" bindtap="goExecutive" data-limit="{{limit_count}}">添加高管</button>
+            <view class="_font24 _txt_darkgrey _txt_center _width500">编辑高管邀请函，通过微信发送给公司高管,他接受邀请后便可享受机器人提供的优质服务。</view>
+        </view>
+    </block>
+</block>
+<block wx:else>
+   <view class="learn_vip">
+        <navigator url="/benifit/pages/suite-introduce/suite-introduce">
+            <button class="_flex _flex_item_center _flex_justify_center _btn _mb20">
+                <view class="vipicon"></view>
+                <view class="_font34 _fontw500" bindtap="learnVip">了解小觅商业服务套件</view>
+            </button>
+        </navigator>
+        <view class="_font24 _txt_darkgrey _txt_center">点击了解小觅商业服务套件，获得完整楼宇服务功能，助推企业商业发展。</view>
+    </view>
+</block>
+</view>

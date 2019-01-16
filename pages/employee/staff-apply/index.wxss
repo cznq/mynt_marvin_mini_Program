@@ -1,0 +1,58 @@
+/* pages/employee/staff-apply/index.wxss */
+@import "../public/style.wxss";
+@import "../../../templates/showToast/showToast.wxss";
+page {
+  background: rgba(249, 250, 251, 1);
+}
+.page__hd {
+  padding-top: 40rpx;
+  line-height: 1;
+  height: 100rpx;
+}
+.page__hd._status {
+  height: 210rpx;
+}
+.page__bd {
+  background-color: #fff;
+  padding-bottom: 94rpx;
+}
+._apply_title {
+  color: rgba(136, 145, 169, 1);
+}
+._status {
+  margin-top: 20rpx;
+}
+._name {   margin-top: 40rpx; }
+._status.pass {
+  color: rgba(100, 219, 137, 1);
+}
+._status.refuse {
+  color: rgba(253, 71, 71, 1);
+}
+._status.invalid {
+  color: rgba(136, 145, 169, 1);
+}
+.page_ft {
+  bottom: 0;
+  padding: 30rpx 60rpx;
+  width:100%;
+  background: #fff;
+  box-sizing: border-box;
+}
+._flex {
+  flex-direction: row;
+}
+._flex_column {
+  flex-direction: column;
+}
+._button { 
+  width: 300rpx;
+  padding: 0;
+  margin: 0;
+  font-weight: 600;
+}
+._button._refuse {
+  color: rgba(26, 42, 75, 1);
+  border: 2rpx solid rgba(0, 0, 0, .1);
+  background-color: rgba(253, 254, 254, 0.96);
+}

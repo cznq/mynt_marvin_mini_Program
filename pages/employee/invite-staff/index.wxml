@@ -2,7 +2,7 @@
 <view class="page">
   
   <view class="page__bd">
-    <view class="company-card _txt_center">
+    <view class="company-card _txt_center {{companyInfo.logo?'':'nologo'}}">
       <image class='logo' src='{{companyInfo.logo}}' wx:if="{{companyInfo.logo}}"></image>
       <view class="_short_name _fontw700">{{companyInfo.company_short_name}}</view>
       <view class="_company_name">{{companyInfo.company_name}}</view>

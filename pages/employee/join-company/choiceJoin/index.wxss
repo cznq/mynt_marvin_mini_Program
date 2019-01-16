@@ -1,39 +1,42 @@
 @import "../../../create-company/public/style.wxss";
 
 page {
-  background: #f9fafb;
+    background: linear-gradient(0deg, #FFFFFF, #FCFCFC);
 }
 
 .mainTitle {
-  margin-bottom: 74rpx;
+    margin-bottom: 74rpx;
 }
 
 .hint {
-  margin: 80rpx auto 0 auto;
+    margin: 80rpx auto 0 auto;
+    width: 484rpx;
+    height: 59rpx;
+    line-height: 36rpx;
 }
 
 .c_block {
-  height: 150rpx;
-  border-radius: 10rpx;
-  background: #fff;
-  line-height: 150rpx;
-  color: #233252;
-  font-size: 34rpx;
-  text-indent: 127rpx;
-  margin-bottom: 30rpx;
+    height: 150rpx;
+    border-radius: 10rpx;
+    background: rgba(255, 255, 255, 1);
+    line-height: 150rpx;
+    color: #233252;
+    font-size: 34rpx;
+    text-indent: 127rpx;
+    margin-bottom: 30rpx;
 }
 
 .c_block image {
-  width: 50rpx;
-  height: 50rpx;
-  left: 39rpx;
-  top: 50rpx;
+    width: 50rpx;
+    height: 50rpx;
+    left: 39rpx;
+    top: 50rpx;
 }
 
 .c_block .c_dot {
-  float: right;
-  color: #c2c6cc;
-  font-size: 20rpx;
-  margin: -1rpx 17rpx 0 0;
-  font-weight: bold;
+    float: right;
+    color: #c2c6cc;
+    font-size: 20rpx;
+    margin: -1rpx 17rpx 0 0;
+    font-weight: bold;
 }
