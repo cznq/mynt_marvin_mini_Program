@@ -18,7 +18,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    app.getServiceStatus(that, 'EMPLOYEE_TAKE_CARD', that.getCompany());
+    app.getServiceStatus(that, 'EMPLOYEE_TAKE_CARD', function(){that.getCompany()});
     
   },
 
@@ -67,6 +67,7 @@ Page({
           that.setData({
             empInfo: res.data.result
           })
+          console.log(res.data.result);
           if (that.data.serviceStatus !== 'closed' && !app.Util.checkEmpty(that.data.empInfo.input_pic_url)) {
             if (take_card_way==0){
               wx.navigateTo({

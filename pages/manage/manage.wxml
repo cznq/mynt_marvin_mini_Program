@@ -7,8 +7,7 @@
         <view class='t1 _ellipsis _fontw600'>{{cd.company_short_name}}</view>
         <view class='t2 _ellipsis'>{{cd.company_name}}</view>
         <view class='vipicon _absolute' wx:if="{{cd.service_suite==1}}"></view>
-        <view wx:else class='vipicon vipicon_gray  _absolute '>
-        </view>
+        <view wx:else class='vipicon vipicon_gray  _absolute '></view>
       </view>
       <swiper class='manage-swiper-box' autoplay="true" interval="3000" duration="500" circular="true" bindchange="swiperChange" previous-margin="20rpx" next-margin="20rpx">
         <block wx:for="{{imgurl_manage}}" wx:key="">

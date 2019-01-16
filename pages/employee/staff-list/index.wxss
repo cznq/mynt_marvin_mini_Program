@@ -122,7 +122,7 @@ page {
   background-color:transparent;
 }
 .search-page .search-input {
-  padding: 0 30rpx;
+  padding: 0 60rpx 0 30rpx;
   margin-right: 80rpx;
   height: 60rpx;
   line-height: 60rpx;
