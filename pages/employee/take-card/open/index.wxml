@@ -1,26 +1,38 @@
 
-<view class="page">
+<view class="page" wx:if="{{empInfo}}">
   <view class="page__hd">
       <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/welcome_one%402x.png" mode='widthFix' wx:if="{{cmpInfo.take_card_ways == 0}}"></image>
       <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/electronic_card%402x.png" mode='widthFix' wx:if="{{cmpInfo.take_card_ways == 1}}"></image>
   </view>
-  <view class="page__bd ">
-    <view class="guide-title _txt_center _font44 _fontw600">{{cmpInfo.take_card_ways == 0?'开通员工取卡':'刷电子门卡上楼，简单快速'}}</view>
-    <view class="guide-intro _font32 _txt_center">{{cmpInfo.take_card_ways == 0?'机器人快速为我发卡，即使上班忘带电梯卡也能轻松上楼。':'上班刷电子门卡上楼，简单快速'}}</view>
+  
+  <view class="page__bd">
+    <block wx:if="{{hasFace && serviceStatus!=='closed'}}">
+      <view class="guide-title _txt_center _font44 _fontw600">已为您开通员工取卡</view>
+      <view class="guide-intro _font32 _txt_center">机器人快速为我发卡，即使上班忘带电梯卡也能轻松上楼。</view>
+      <view class="status _font44 _fontw500 _txt_center">服务已开通</view>
+      <view class="page__ft " style="margin-top: 108rpx;">
+        <view class="_back_function _txt_center" bindtap="backGuide">进一步了解员工取卡流程</view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="guide-title _txt_center _font44 _fontw600">{{cmpInfo.take_card_ways == 0?'开通员工取卡':'刷电子门卡上楼，简单快速'}}</view>
+      <view class="guide-intro _font32 _txt_center">{{cmpInfo.take_card_ways == 0?'机器人快速为我发卡，即使上班忘带电梯卡也能轻松上楼。':'上班刷电子门卡上楼，简单快速'}}</view>
+      
+      <button class="_button" bindtap="openTakeCard" wx:if="{{serviceStatus == 'tried'}}">限时免费，立即开通</button>
+      <button class="_button" bindtap="openTakeCard" wx:elif="{{serviceStatus == 'opened'}}">立即开通</button>
+      <button class="_button close _font34 _flex _flex_item_center _flex_justify_center" bindtap="viewBusinessService" wx:else>
+
+      <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/diamond%402x.png"></image>
+      了解小觅商业服务套件</button>
+
+      <view class="_font24 warn_info">该功能只对入驻小觅楼宇服务的公司员工开放，如果您还不是员工请先加入公司。</view>
+
+      <view class="page__ft" wx:if="{{serviceStatus == 'tried' && !hasFace}}" bindtap="viewBusinessService">
+        <import src="../../../../templates/vipAd/vipAd.wxml" />
+        <template is="vipAd" data="{{text: 'forbar'}}" />
+      </view>
+    </block>
     
-    <button class="_button" bindtap="openTakeCard" wx:if="{{serviceStatus == 'tried'}}">限时免费，立即开通</button>
-    <button class="_button" bindtap="openTakeCard" wx:elif="{{serviceStatus == 'opened'}}">立即开通</button>
-     <button class="_button close _font34 _flex _flex_item_center _flex_justify_center" bindtap="viewBusinessService" wx:else>
-
-    <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/diamond%402x.png"></image>
-    了解小觅商业服务套件</button>
-
-    <view class="_font24 warn_info">该功能只对入驻小觅楼宇服务的公司员工开放，如果您还不是员工请先加入公司。</view>
-  </view>
-
-  <view class="page__ft" wx:if="{{serviceStatus == 'tried'}}" bindtap="viewBusinessService">
-    <import src="../../../../templates/vipAd/vipAd.wxml" />
-    <template is="vipAd" data="{{text: 'forbar'}}" />
   </view>
 
 </view>

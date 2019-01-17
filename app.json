@@ -11,7 +11,6 @@
     "pages/employee/edit-name/index",
     "pages/employee/edit-phone/index",
     "pages/employee/take-card/open/index",
-    "pages/employee/take-card/success/index",
     "pages/employee/take-card/guide/index",
     "pages/employee/staff-list/index",
     "pages/employee/invite-staff/index",

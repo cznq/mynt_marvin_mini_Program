@@ -20,9 +20,9 @@
             </view>
         </view>
     </view>
-    <cover-view class="_fixed footer _boss_fill {{isIphoneX?'iphonex':''}}">
-        <cover-view class="_footer_btn">
+    <view class="_fixed footer _boss_fill {{isIphoneX?'iphonex':''}}">
+        <view class="_footer_btn">
             <button class="_font32 _fontw500 _border_radius10" bindtap="goShare">下一步</button>
-        </cover-view>
-    </cover-view>
+        </view>
+    </view>
 </view>

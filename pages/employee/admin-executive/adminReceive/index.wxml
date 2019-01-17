@@ -1,7 +1,7 @@
 <!--pages/employee/admin-executive/adminShare/index.wxml-->
 <import src="../../../../templates/showToast/showToast.wxml" />
 <view class="page">
-  <view class="page_hd" wx:if="{{hasAccept}}">
+  <view class="page_hd" wx:if="{{invitation && hasAccept}}">
     <view class="_txt_center">
       <view class="iconfont icon-successful"></view>
       <view class="_font46 _fontw600 sutitle">已成为公司{{roleTitle}}</view>
@@ -68,13 +68,11 @@
     </view>
   </view>
 
-  <view class="_fixed footer _flex _flex_justify_center _flex_space_around {{isIphoneX?'iphonex':''}}" wx:if="{{!hasAccept}}">
+  <view class="_fixed footer _flex _flex_justify_center _flex_space_around {{isIphoneX?'iphonex':''}}" wx:if="{{invitation && !hasAccept}}">
   <form bindsubmit="receiveInvitation">
     <button class="_button _font32" form-type="submit">接受邀请</button>
   </form>
   </view>
-
-  
 
 </view>
 <template is="showToast" data="{{showToast: showToast}}" />

@@ -9,7 +9,7 @@ Page({
    * Param: 
    *   source (来源) | params (参数)                               | callback（回调）
    *   invite       | form_id                                     | /pages/invite-visitor/success/index?invitation_id
-   *   takeCard     | card_type                                   | /pages/employee/take-card/success/index 或者  /pages/e-card/detail/index
+   *   takeCard     | card_type                                   | /pages/employee/take-card/open/index 或者  /pages/e-card/detail/index
    *   editInfo     | company_id                                  | /pages/employee/homepage/index
    *   reRecodeFace | company_id                                  | /pages/employee/homepage/index
    *   applyVisit   | company_id, form_id, visitor_name, note     | /pages/apply-visit/applicationStatus/index?visit_apply_id
@@ -238,7 +238,7 @@ Page({
             that.uploadCanvasImg(res.tempFilePath, timer, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
               app.receiveSubmit(that.data.options.params.invitation_id, that.data.options.params.form_id, function () {
                 wx.hideLoading();
-                wx.redirectTo({
+                wx.reLaunch({
                   url: '/pages/invite-visitor/success/index?invitation_id=' + that.data.options.params.invitation_id,
                 })
               }) 
@@ -249,7 +249,7 @@ Page({
             that.uploadCanvasImg(res.tempFilePath, timer, that.data.options.params.visit_company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
               app.applySubmit(that.data.options.params.visit_company_id, that.data.options.params.form_id, that.data.options.params.visitor_name, that.data.options.params.note, function (visit_apply_id) {
                 wx.hideLoading();
-                wx.redirectTo({
+                wx.reLaunch({
                   url: '/pages/apply-visit/applicationStatus/index?visit_apply_id=' + visit_apply_id,
                 })
               }) 
@@ -260,11 +260,11 @@ Page({
             that.uploadCanvasImg(res.tempFilePath, timer, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {              
               wx.hideLoading();
               if (that.data.options.params.card_type == 0) {
-                wx.redirectTo({
-                  url: '/pages/employee/take-card/success/index?company_id=' + that.data.options.params.company_id,
+                wx.reLaunch({
+                  url: '/pages/employee/take-card/open/index?company_id=' + that.data.options.params.company_id,
                 })
               } else {
-                wx.redirectTo({
+                wx.reLaunch({
                   url: '/pages/e-card/detail/index'
                 })
               }
@@ -275,7 +275,7 @@ Page({
             var op_type = 0, user_type = 2;
             that.uploadCanvasImg(res.tempFilePath, timer, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
               wx.hideLoading();
-              wx.redirectTo({
+              wx.reLaunch({
                 url: '/pages/employee/homepage/index',
               })
               
@@ -285,7 +285,7 @@ Page({
             var op_type = 1, user_type = 2;
             that.uploadCanvasImg(res.tempFilePath, timer, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
               wx.hideLoading();
-              wx.redirectTo({
+              wx.reLaunch({
                 url: '/pages/employee/homepage/index',
               })
             });
