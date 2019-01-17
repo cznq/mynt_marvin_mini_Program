@@ -1,8 +1,12 @@
 page, .page {
   
 }
+.page__hd {
+  height: 580rpx;
+}
 .page__hd image {
   width: 100%;
+  height: 580rpx;
   vertical-align: bottom;
 }
 .page__bd {
@@ -42,5 +46,15 @@ page, .page {
 }
 .page__ft {
   margin-top: 56rpx;
-  padding: 0 60rpx 86rpx;
+  padding: 0 0 86rpx;
+}
+
+
+.status {
+  margin-top: 124rpx;
+  color: rgba(78, 221, 122, .5);
+}
+._back_function {
+  font-size: 22rpx;
+  color: rgba(0, 123, 255, .9);
 }

@@ -10,7 +10,8 @@ Page({
    */
   data: {
     cmpInfo: null,
-    serviceStatus: 'closed'
+    serviceStatus: 'closed',
+    hasFace: false
   },
 
   /**
@@ -64,22 +65,21 @@ Page({
       },
       success: res => {
         if (res.data.result) {
-          that.setData({
-            empInfo: res.data.result
-          })
-          console.log(res.data.result);
-          if (that.data.serviceStatus !== 'closed' && !app.Util.checkEmpty(that.data.empInfo.input_pic_url)) {
+          if (that.data.serviceStatus !== 'closed' && !app.Util.checkEmpty(res.data.result.input_pic_url)) {
             if (take_card_way==0){
-              wx.navigateTo({
-                url: '../success/index',
-              })
+              that.setData({ hasFace: true })
             } else {
-              wx.navigateTo({
+              wx.redirectTo({
                 url: '/pages/e-card/detail/index',
               })
             }
-            
           }
+          that.setData({
+            empInfo: res.data.result
+          })
+          wx.setNavigationBarTitle({
+            title: '开通员工取卡'
+          })
         } 
       }
     })
@@ -103,6 +103,15 @@ Page({
   */
   viewBusinessService() {
     app.viewBusinessService();
+  },
+
+  /**
+   * 返回快捷取卡指南页
+   */
+  backGuide: function () {
+    wx.navigateTo({
+      url: '/pages/employee/take-card/guide/index'
+    })
   }
 
 
