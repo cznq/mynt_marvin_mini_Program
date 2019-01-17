@@ -1,4 +1,5 @@
 /* pages/employee/senior-executive/receive/index.wxss */
+@import "../../../../templates/showToast/showToast.wxss";
 @import "../public/style.wxss";
 page{
     background-color: #191918;

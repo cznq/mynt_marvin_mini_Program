@@ -1,4 +1,5 @@
 // pages/employee/senior-executive/receive/index.js
+var toast = require('../../../../templates/showToast/showToast');
 const app = getApp();
 Page({
 
@@ -46,11 +47,12 @@ Page({
             title: '没有获取到邀请信息',
             icon: 'none'
           })
+        } else {
+          that.setData({
+            invitation: res.data.result,
+          })
         }
-        console.log(res.data.result)
-        that.setData({
-          invitation: res.data.result,
-        })
+       
         //获取职员信息 判断person_type是否为高管 是=已接受
         app.Util.network.POST({
           url: app.globalData.BASE_API_URL,
@@ -63,7 +65,7 @@ Page({
           },
           success: res => {
             console.log(res.data.result);
-            if (res.data.result.person_type == 3) {
+            if (res.data.result && res.data.result.person_type == 3) {
               that.setData({
                 notAccepted: false,
               })
@@ -90,15 +92,24 @@ Page({
           union_id:wx.getStorageSync('xy_session'),
           role:4, //员工角色(4:高管)
           invitation_id:that.data.invitation_id
-        })
+        }),
+        isloading: false
       },
       success: res => {
-        console.log(res.data);
+        console.log(res.data.sub_msg);
         if (res.data.sub_code == 0) {//success
           that.setData({
             notAccepted:false,
           });
-        }      
+        } else {
+          toast.showToast(that, {
+            toastStyle: 'toast',
+            title: res.data.sub_msg,
+            duration: 2000,
+            mask: false,
+            cb: function () { }
+          });
+        }     
       }
     })
   },
