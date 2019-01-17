@@ -32,7 +32,8 @@ Page({
         method: 'get_info',
         data: JSON.stringify({
           union_id: wx.getStorageSync('xy_session')
-        })
+        }),
+        isloading: false
       },
       success: res => {
         if (res.data.result) {
@@ -61,25 +62,34 @@ Page({
         method: 'get_employee_info',
         data: JSON.stringify({
           union_id: wx.getStorageSync('xy_session')
-        })
+        }),
+        isloading: false
       },
       success: res => {
         if (res.data.result) {
           if (that.data.serviceStatus !== 'closed' && !app.Util.checkEmpty(res.data.result.input_pic_url)) {
             if (take_card_way==0){
               that.setData({ hasFace: true })
+              that.setData({
+                empInfo: res.data.result
+              })
+              wx.setNavigationBarTitle({
+                title: '开通员工取卡'
+              })
             } else {
               wx.redirectTo({
                 url: '/pages/e-card/detail/index',
               })
             }
+          } else {
+            that.setData({
+              empInfo: res.data.result
+            })
+            wx.setNavigationBarTitle({
+              title: '开通员工取卡'
+            })
           }
-          that.setData({
-            empInfo: res.data.result
-          })
-          wx.setNavigationBarTitle({
-            title: '开通员工取卡'
-          })
+          
         } 
       }
     })
