@@ -9,7 +9,7 @@ Page({
    */
 
   data: {
-    serviceStatus: 'closed',
+    serviceStatus: '',
     limitCount: -1
   },
 
