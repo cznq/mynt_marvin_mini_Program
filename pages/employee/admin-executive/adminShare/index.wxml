@@ -29,7 +29,7 @@
         </view>
 
         <view class="_ft_logo _txt_center">
-          <image style="width:224rpx" mode='widthFix' src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/foot_mynt_logo%402x.png"></image>
+          <image style="width:224rpx;height:40rpx;" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/foot_mynt_logo%402x.png"></image>
         </view>
 
       </view>
