@@ -1,4 +1,6 @@
 <!--pages/employee/senior-executive/receive/index.wxml-->
+<import src="../../../../templates/showToast/showToast.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />
 <view class="page" style="padding-bottom:{{isIphoneX?'240':'160'}}rpx">
     <view class="page_hd _txt_center">
         <block wx:if="{{notAccepted}}">
