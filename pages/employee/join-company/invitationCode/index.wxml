@@ -6,7 +6,7 @@
             <text>{{hint}}</text>
         </view>
         <view class='input_block' style="position: {{position}};padding-top: {{padding}}">
-            <button class="_button" form-type="submit" disabled="{{disabled}}">确认</button>
+            <button class="_button" form-type="submit" disabled="{{disabled}}">{{button_text}}</button>
         </view>
     </form>
 </view>

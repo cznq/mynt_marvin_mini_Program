@@ -4,6 +4,7 @@ Page({
     data: {
         mainTitle: '输入邀请码',
         hint: '二维码与邀请码来自于企业内部人员的分享,可\n向企业员工或管理员索要',
+        button_text: '确认',
         codevalue: '',
         isfocus: true,
         position: 'fixed',
