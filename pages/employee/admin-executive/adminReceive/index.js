@@ -65,7 +65,7 @@ Page({
           that.setData({
             invitation: res.data.result
           })
-          if (res.data.result.assigned_role == that.data.role) {
+          if (res.data.result.assigned_role == that.data.role && res.data.result.invitee_union_id == wx.getStorageSync('xy_session')) {
             that.setData({ hasAccept: true })
           }
           if (res.data.result.assigned_role == 3) {

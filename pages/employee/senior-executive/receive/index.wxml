@@ -1,9 +1,9 @@
 <!--pages/employee/senior-executive/receive/index.wxml-->
 <import src="../../../../templates/showToast/showToast.wxml" />
 <template is="showToast" data="{{showToast: showToast}}" />
-<view class="page" style="padding-bottom:{{isIphoneX?'240':'160'}}rpx">
+<view class="page" style="padding-bottom:{{isIphoneX?'240':'160'}}rpx" wx:if="{{invitation}}">
     <view class="page_hd _txt_center">
-        <block wx:if="{{invitation && hasAccepted}}">
+        <block wx:if="{{hasAccepted}}">
           <image class="_success_icon" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/accept_Invitation_success%403x.png"></image>
             <view class="_font48 _fontw600 wel-tit">恭喜您已成为我们的企业高管。</view>
             <view class="_font28 wel-intro">您可以享受小觅楼宇服务的以下权益。</view>
@@ -63,7 +63,7 @@
     <view class="_ft_logo _txt_center">
         <image mode='widthFix' src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/WechatIMG218.png"></image>
     </view>
-    <view class="page_ft" wx:if="{{invitation && !hasAccepted}}">
+    <view class="page_ft" wx:if="{{!hasAccepted}}">
       <form bindsubmit="receiveSubmit">
         <view class="footer _fixed receive_submit {{isIphoneX?'iphonex':''}}">
             <button form-type="submit" class="_button" id="inviteBtn">接受邀请</button>
