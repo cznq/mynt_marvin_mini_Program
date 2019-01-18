@@ -7,7 +7,7 @@
     
     <button class="_button _font34" wx:if="{{serviceStatus == 'tried'}}" bindtap="goToInvite">试用邀请功能</button>
     <button class="_button _font34" wx:elif="{{serviceStatus == 'opened'}}" bindtap="goToInvite">开始邀请</button>
-    <button class="_button close _font34 _flex _flex_item_center _flex_justify_center" bindtap="viewBusinessService" wx:else>
+    <button class="_button close _font34 _flex _flex_item_center _flex_justify_center" bindtap="viewBusinessService" wx:elif="{{serviceStatus == 'closed'}}">
 
     <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/diamond%402x.png"></image>
     了解小觅商业服务套件</button>

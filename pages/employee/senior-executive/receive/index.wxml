@@ -1,16 +1,16 @@
 <!--pages/employee/senior-executive/receive/index.wxml-->
 <import src="../../../../templates/showToast/showToast.wxml" />
 <template is="showToast" data="{{showToast: showToast}}" />
-<view class="page" style="padding-bottom:{{isIphoneX?'240':'160'}}rpx">
+<view class="page" style="padding-bottom:{{isIphoneX?'240':'160'}}rpx" wx:if="{{invitation}}">
     <view class="page_hd _txt_center">
-        <block wx:if="{{notAccepted}}">
-            <view class="_font48 _fontw600 wel-tit">尊敬的高管，您好。</view>
-            <view class="_font28 wel-intro">您有一个新的邀请，等待您的接受。</view>
-        </block>
-        <block wx:else>
-            <image class="_success_icon" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/accept_Invitation_success%403x.png"></image>
+        <block wx:if="{{hasAccepted}}">
+          <image class="_success_icon" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/accept_Invitation_success%403x.png"></image>
             <view class="_font48 _fontw600 wel-tit">恭喜您已成为我们的企业高管。</view>
             <view class="_font28 wel-intro">您可以享受小觅楼宇服务的以下权益。</view>
+        </block>
+        <block wx:else>
+          <view class="_font48 _fontw600 wel-tit">尊敬的高管，您好。</view>
+          <view class="_font28 wel-intro">您有一个新的邀请，等待您的接受。</view>
         </block>
     </view>
     <view class="page_bd {{invitation.company_logo?'':'noLogo'}}">
@@ -60,19 +60,14 @@
             </view>
         </view>
     </view>
-    <view class="_ft_logo _txt_center"  wx:if="{{!notAccepted}}">
+    <view class="_ft_logo _txt_center">
         <image mode='widthFix' src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/WechatIMG218.png"></image>
     </view>
-    <view class="page_ft" wx:if="{{notAccepted}}">
-        <form bindsubmit="receiveSubmit">
-            <view class="footer _fixed receive_submit {{isIphoneX?'iphonex':''}}" wx:if="{{version}}">
-                <button form-type="submit" class="_button" id="inviteBtn">接受邀请</button>
-            </view>
-            <view wx:else>
-            <cover-view class="footer _fixed receive_submit {{isIphoneX?'iphonex':''}}">
-                <button form-type="submit" class="_button _font500" id="inviteBtn">接受邀请</button>
-            </cover-view>
-          </view>
-        </form>
+    <view class="page_ft" wx:if="{{!hasAccepted}}">
+      <form bindsubmit="receiveSubmit">
+        <view class="footer _fixed receive_submit {{isIphoneX?'iphonex':''}}">
+            <button form-type="submit" class="_button" id="inviteBtn">接受邀请</button>
+        </view>
+      </form>
     </view>
 </view>

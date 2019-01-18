@@ -1,6 +1,6 @@
 <!--pages/employee/admin-executive/adminShare/index.wxml-->
 <import src="../../../../templates/showToast/showToast.wxml" />
-<view class="page">
+<view class="page" wx:if="{{invitation}}">
   <view class="page_hd" wx:if="{{hasAccept}}">
     <view class="_txt_center">
       <view class="iconfont icon-successful"></view>
@@ -73,8 +73,6 @@
     <button class="_button _font32" form-type="submit">接受邀请</button>
   </form>
   </view>
-
-  
 
 </view>
 <template is="showToast" data="{{showToast: showToast}}" />

@@ -10,9 +10,8 @@ Page({
     isIphoneX: app.globalData.isIphoneX,
     version: app.globalData.version,
     invitation_id: null,
-    visit_company_id: null ,
-    invitation:'',
-    notAccepted:true
+    invitation: null,
+    hasAccepted: false
   },
 
   /**
@@ -30,6 +29,7 @@ Page({
         title: '没有获取到邀请信息',
         icon: 'none'
       })
+      return ;
     }
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
@@ -65,9 +65,9 @@ Page({
           },
           success: res => {
             console.log(res.data.result);
-            if (res.data.result && res.data.result.person_type == 3) {
+            if (res.data.result && res.data.result.person_type == 3 && that.data.invitation.invitee_union_id == wx.getStorageSync('xy_session')) {
               that.setData({
-                notAccepted: false,
+                hasAccepted: true,
               })
             }      
           }
@@ -99,7 +99,7 @@ Page({
         console.log(res.data.sub_msg);
         if (res.data.sub_code == 0) {//success
           that.setData({
-            notAccepted:false,
+            hasAccepted:true,
           });
         } else {
           toast.showToast(that, {
