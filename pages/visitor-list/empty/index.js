@@ -15,8 +15,15 @@ Page({
         let _this = this;
         _this.setData({
             'noneData.textInfo': '暂无数据',
-            'noneData.buttonText': '邀请访客'
+            'noneData.buttonText': '邀请访客',
+            'noneData.emptyBtnFunc': 'emptyButton'
         });
+    },
+    emptyButton: function() {
+        console.log('aaa');
+        wx.navigateTo({
+            url: '/pages/invite-visitor/edit/index',
+        })
     },
 
     /**
