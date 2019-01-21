@@ -198,6 +198,10 @@
     font-size: 24rpx;
 }
 
+._font26 {
+    font-size: 26rpx;
+}
+
 ._font28 {
     font-size: 28rpx;
 }

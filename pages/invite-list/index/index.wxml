@@ -1,2 +1,35 @@
-<!--pages/invite-list/index/index.wxml-->
-<text>pages/invite-list/index/index.wxml</text>
+<import src="../../../templates/noneData/noneData.wxml" />
+<template wx:if='{{noneData.show}}' is="noneDataPage" data="{{noneData:noneData}}" />
+<view bindtap='headTab' class="headTab _row _cen_center">
+    <view data-name='all' class="allInvite {{initeType === 'all'?'active':''}}" >全部邀请</view>
+    <view data-name='my' class="myInvite {{initeType === 'my'?'active':''}}">我的邀请</view>
+</view>
+<view catchtap='allTimeState' class="allTime _row _cen_center">
+  <view class='_font26'>全部时间</view>
+  <image  class="arrow {{allTime ?'active':''}}" src='../../../images/arrow.png'></image>
+  <view bindtap='seleTime' class="seleTime {{allTime ?'active':''}} _border_box column">
+    <li data-name='allTime' class="_font26 _row _cen_start {{seleTime ==='allTime'?'_txt_blue':''}}">全部时间</li>
+    <li data-name='today' class="_font26 _row _cen_start {{seleTime ==='today'?'_txt_blue':''}}">今天</li>
+    <li data-name='month' class="_font26 _row _cen_start {{seleTime ==='month'?'_txt_blue':''}}">本周</li>
+    <li data-name='week' class="_font26 _row _cen_start {{seleTime ==='week'?'_txt_blue':''}}">本月</li>
+  </view>
+</view>
+<view class="content">
+  <input class="search _font24"  placeholder="搜索你要找的人名" placeholder-class=''/>
+  <view>
+    <li class="_row _cen_space">
+      <view class='info _row _cen_start'>
+        <image class=""></image>
+        <view class="_font36 _txt_gray">Edafa</view>
+      </view>
+      <view class='_font24 _txt_darkgrey'>未接受</view>
+    </li>
+    <li class="_row _cen_space">
+      <view class='info _row _cen_start'>
+        <image class=""></image>
+        <view class="_font36 _txt_gray">Edafa</view>
+      </view>
+    </li>
+  </view>
+</view>
+<view wx:if="{{allTime}}" class="mask"></view>
