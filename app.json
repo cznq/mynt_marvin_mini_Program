@@ -63,6 +63,7 @@
     "pages/invite-list/invite-detail/invite-detail",
     "pages/visitor-list/list/index",
     "pages/visitor-list/detail/index",
+    "pages/visitor-list/empty/index",
     "pages/company/unattended-setting/setting/index"
   ],
   "subPackages": [
