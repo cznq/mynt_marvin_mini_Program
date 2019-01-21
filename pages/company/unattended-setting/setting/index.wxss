@@ -46,7 +46,7 @@ page {
 	border-radius: 50%;
 	background-color: #fff;
 	transition: left 0.2s ease-out;
-    -webkit-transition: left ease-out 0.2s;
+  -webkit-transition: left ease-out 0.2s;
 }
 .toggle-off{
 	background-color: #e1e1e1;

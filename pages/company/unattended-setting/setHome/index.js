@@ -26,8 +26,8 @@ Page({
     },
 
     goSetting:function () {
-        wx.navigateTo({
-            url: '/pages/company/unattended-setting/setting/index',
+        wx.redirectTo({
+            url: '/pages/company/unattended-setting/setting/index', 
         })
     },
     /**

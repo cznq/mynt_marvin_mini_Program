@@ -192,9 +192,17 @@ Page({
     },
     //自动值守
     unattendedSetting: function() {
-        wx.navigateTo({
-            url: '/pages/company/unattended-setting/setHome/index',
-        })
+        var that =this;
+        if (that.data.cd.attend_status == 0) {
+            wx.navigateTo({
+                url: '/pages/company/unattended-setting/setHome/index',
+            })
+        } else if (that.data.cd.attend_status == 1){
+            wx.navigateTo({
+                url: '/pages/company/unattended-setting/setting/index',
+            })
+        }
+        
     },
     //邀请访客
     inviteVisitor: function() {
