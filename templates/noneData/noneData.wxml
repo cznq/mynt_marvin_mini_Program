@@ -2,13 +2,8 @@
   <view class="nonePage _flex _flex_item_center _flex_justify_center">
     <view class="noneWrapper">
       <view class="iconfont icon-kongyemian"></view>
-<<<<<<< HEAD
-      <view class="invite_info _txt_center" >{{noneData.textInfo}}</view>
-      <button class='_button_width350 _button_white invte-btn _font24' wx:if="{{noneData.buttonText}}">{{noneData.buttonText}}</button>
-=======
       <view class="invite_info _txt_center">{{noneData.textInfo}}</view>
       <button class='_button_width350 _button_white invte-btn _font24' bindtap='{{noneData.emptyBtnFunc}}' wx:if="{{noneData.buttonText}}">{{noneData.buttonText}}</button>
->>>>>>> 95e8ce11972eeab2d06beb4c274ddc49c01fe64e
     </view>
   </view>
 </template>
