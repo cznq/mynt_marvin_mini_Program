@@ -1,4 +1,5 @@
 /* pages/employee/senior-executive/bossList/index.wxss */
+@import "../../../../templates/showToast/showToast.wxss";
 page{
     background-color: #F7F8FA;
 }
@@ -9,8 +10,32 @@ page{
     border-bottom: 1px solid rgba(220, 220, 220, .5); 
     border-top: 1px solid rgba(220, 220, 220, .5);
 }
-.boss-list{
-    padding: 60rpx 60rpx 0;
+.page ._section{
+    padding: 0 60rpx;
+}
+.page ._section ._tip{
+    padding: 30rpx 0;
+    line-height: 1;
+}
+._addbox{
+    margin-bottom: 30rpx;
+}
+._btn_add{
+    width: 70rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    text-align: center;
+    border-radius: 100%;
+    margin-right: 20rpx;
+}
+._btn_add button{
+    padding: 0;
+    border-radius: 100%; 
+    width: 70rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    text-align: center;
+    border: 1px dashed #8891A9;
 }
 .boss-list ._list_item{
   margin-bottom: 60rpx;  
@@ -18,27 +43,11 @@ page{
 .boss-list ._family_name{
     background-color: #F9922F;
 }
-.footer._boss{
-    padding: 0;
-}
-.footer.iphonex{
-    padding-bottom: 80rpx;
-}
-.footer .tip{
-    background-color: #fff;
-    line-height: 80rpx;
-    height: 80rpx;
-    border-bottom: 1px solid #dcdcdc;
-    text-align: center;
-    color: #8891A9;
-}
-._footer_btn{
-    padding: 30rpx 60rpx;
-}
-._footer_btn button{
-    background-color: #007BFF;
+._btn_remove{
+    background-color: #FA4343;
     color: #fff;
-    height: 100rpx;
-    width: 630rpx;
-    line-height: 100rpx;
+    width: 120rpx;
+    height: 60rpx;
+    margin-left: 20rpx;
+    line-height: 60rpx;
 }
