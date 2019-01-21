@@ -58,7 +58,11 @@
     "pages/employee/senior-executive/bossShare/index",
     "pages/employee/senior-executive/receive/index",
     "pages/demo/iconfont/index",
-    "pages/demo/showToastDemo/index"
+    "pages/demo/showToastDemo/index",
+    "pages/invite-list/index/index",
+    "pages/invite-list/invite-detail/invite-detail",
+    "pages/visitor-list/list/index",
+    "pages/visitor-list/detail/index"
   ],
   "subPackages": [
     {
