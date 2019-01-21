@@ -1,0 +1,2 @@
+/* pages/visitor-list/empty/index.wxss */
+@import "../../../templates/noneData/noneData.wxss";

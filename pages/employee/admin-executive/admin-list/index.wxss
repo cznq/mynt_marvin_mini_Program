@@ -1,6 +1,6 @@
 /* pages/employee/admin-list/index.wxss */
 @import "../../public/style.wxss";
-
+@import "../../../../templates/showToast/showToast.wxss";
 page {
   background: #F9FAFB;
 }
@@ -38,4 +38,7 @@ page {
 ._title { line-height: 1; color: rgba(26, 42, 75, 1);margin-top: 30rpx;}
 ._title_info { color: rgba(136, 145, 169, 1);margin-left: 10rpx;}
 ._status { color: rgba(136, 145, 169, 1);}
-.icon-add_qiantai { font-size: 70rpx;margin-right: 20rpx;color:rgba(136, 145, 169, 1);}
+.icon-add_qiantai { font-size: 70rpx;margin-right: 20rpx;color:rgba(136, 145, 169, 1);line-height: 1;}
+._margin-top28 { margin-top: 28rpx;}
+.editBtn { background-color: #EBEEF5; border-radius: 6rpx;width:120rpx;height: 60rpx;margin-left: 22rpx;}
+.editBtn._remove { color: #FA4343;}

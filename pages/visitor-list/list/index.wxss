@@ -1,0 +1,162 @@
+/* pages/visitor-list/list/index.wxss */
+.page {
+    width: 750rpx;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(252, 252, 252, 1));
+}
+
+/*访客列表标题*/
+.head {
+    width: 750rpx;
+    height: 114rpx;
+    box-shadow: 0rpx 12rpx 92rpx 0rpx rgba(43, 51, 72, 0.03);
+}
+
+.head text {
+    height: 56rpx;
+    font-size: 60rpx;
+    font-weight: 500;
+    color: #1A2A4B;
+    padding: 24rpx 0 34rpx 62rpx;
+}
+
+/*条件过滤*/
+.filter {
+    width: 750rpx;
+    height: 78rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0rpx 12rpx 92rpx 0rpx rgba(43, 51, 72, 0.03);
+}
+
+.filter .filter-view {
+    height: 44rpx;
+    font-size: 26rpx;
+    font-family: NotoSansHans-Medium;
+    font-weight: 500;
+    color: #1A2A4B;
+    opacity: 0.5;
+    padding: 27rpx 0 26rpx 0;
+}
+
+
+.filter .filter-time {
+    padding-left: 146rpx
+}
+
+.filter .filter-type {
+    padding-right: 147rpx
+}
+
+/*搜索框*/
+.search {
+    width: 750rpx;
+    height: 60rpx;
+}
+
+.search-input {
+    width: 630rpx;
+    margin: 55rpx auto 0 auto;
+    background: #8891A9;
+    height: 60rpx;
+    /*padding: 55rpx 0 19rpx 32rpx;*/
+    font-size: 24rpx;
+    font-family: NotoSansHans-DemiLight;
+    font-weight: normal;
+    opacity: 0.3;
+}
+
+.search-btn {
+    position: absolute;
+    left: 20rpx;
+    top: 0;
+    height: 56rpx;
+    width: 56rpx;
+    padding: 0;
+    line-height: 56rpx;
+    text-align: center;
+    background-color: transparent;
+
+}
+
+/*访客列表*/
+.list {
+    width: 750rpx;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(252, 252, 252, 1));
+}
+
+.list .visitor {
+    width: 750rpx;
+    height: 70rpx;
+    margin-top: 90rpx;
+    padding: 0rpx 60rpx 0 61rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list .visitor .visit-left {
+    width: 350rpx;
+}
+
+.list .visitor .visit-left ._ellipsis {
+    margin-top: 1rpx;
+}
+
+.list .visitor .visit-left .visit-to {
+    color: #1A2A4B;
+    font-size: 36rpx;
+    font-weight: normal;
+}
+
+.list .visitor .visit-left .visit-from {
+    font-size: 22rpx;
+    font-family: NotoSansHans-Medium;
+    font-weight: 500;
+    color: #8891A9;
+}
+
+.list .visitor .visit-right {
+    width: 260rpx;
+    margin-right: 60rpx;
+    height: 21rpx;
+    font-size: 24rpx;
+    font-family: NotoSansHans-Regular;
+    font-weight: 400;
+    color: rgba(136, 145, 169, 1);
+    line-height: 38rpx;
+    opacity: 0.6;
+}
+
+.list .visit-time {
+    display: flex;
+    align-items: flex-end;
+}
+
+.list .visitor .vipicon {
+    right: 64rpx;
+    top: 30rpx;
+    width: 50rpx;
+    height: 44rpx;
+}
+
+.list image {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+    float: left;
+    margin-right: 20rpx;
+}
+
+.list .visitor .visit-left-no-invite {
+    width: 350rpx;
+    display: flex;
+    align-items: center;
+}
+
+/*未预约访客样式*/
+.list .visitor .visit-left .visit-no-invite {
+    display: flex;
+    align-items: center;
+}

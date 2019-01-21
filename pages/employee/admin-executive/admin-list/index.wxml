@@ -1,10 +1,12 @@
 <!--pages/employee/admin-list/index.wxml-->
 <wxs src="../../../../wxs/subutil.wxs" module="tools" />
-
+<import src="../../../../templates/showToast/showToast.wxml" />
 <view class="page">
   <view class="page__hd">
     <view class="_flex _flex_space_between _flex_item_center">
       <text class="_font60 _fontw700">管理员列表</text>
+      <view class="_font28 _fontw700" bindtap="editAdminList" wx:if="{{edit}}">完成</view>
+      <view class="iconfont icon-shezhi _font40" bindtap="editAdminList" wx:else></view>
     </view>
   </view>
   <view class="page__bd">
@@ -21,6 +23,9 @@
             <view class="_name _fontw500">{{item.employee_name}}</view>
           </view>
           </navigator>
+          <view class="_rgt _flex _flex_item_center">
+            <button class="editBtn _font24 _fontw600" wx:if="{{edit}}" bindtap="transAdmin" data-roleInvitationId="{{item.role_invitation_id}}">转让</button>
+          </view>
         </view>
         </block>
       </view>
@@ -29,7 +34,7 @@
         <view class="_font28 _title">前台(子管理员)<text class="_font24 _title_info">每个企业仅可以设置3名</text></view>
         <block wx:for="{{staffList.front_desk}}" wx:key="">
           <view class="_list_item _flex _flex_space_between _role_front" data-unionid='{{item.union_id}}'>
-            <navigator url="/pages/employee/admin-executive/adminHome/index?union_id={{item.union_id}}&unactive={{item.invite_status==0?'true':false}}" hover-class="none">
+            <navigator url="/pages/employee/admin-executive/adminHome/index?union_id={{item.union_id}}" hover-class="none">
             <view class="_lft _flex _flex_item_center">
               <view class="_family_name">{{tools.getFirstLetter(item.employee_name)}}</view>
               <view class="_name _fontw500">{{item.employee_name}}</view>
@@ -37,18 +42,18 @@
             </navigator>
             <view class="_rgt _flex _flex_item_center">
               <view class="_status _font24" wx:if="{{item.invite_status==0}}">待激活</view>
+              <button class="editBtn _remove _font24 _fontw600" bindtap="{{item.invite_status==0?'removeFrontDesk':'removeFrontApply'}}" wx:if="{{edit}}" data-roleInvitationId="{{item.role_invitation_id}}">移除</button>
             </view>
           </view>
         </block>
         
         <!--  添加子管理员 -->
         <navigator url="/pages/employee/staff-choose-list/index?from=inviteFront" hover-class="none" wx:if="{{tools.returnArrayLength(staffList.front_desk)<3}}">
-        <view class="_list_item _flex _flex_space_between">
-          <view class="_lft _flex _flex_item_center">
+        <view class="_list_item _flex _flex_space_between {{staffList.front_desk?'':'_margin-top28'}}">
+          <view class="_lft _flex _flex_item_center ">
             <view class="add_icon iconfont icon-add_qiantai"></view>
             <view class="_status _font24">设置子管理员，便于企业、员工及访客的管理</view>
           </view>
-          <view class="_rgt _flex _flex_item_center"></view>
         </view>
         </navigator>
         </view>
@@ -58,3 +63,4 @@
   </view>
 </view>
 
+<template is="showToast" data="{{showToast: showToast}}" />

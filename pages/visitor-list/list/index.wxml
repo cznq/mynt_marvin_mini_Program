@@ -1,0 +1,42 @@
+<!--pages/visitor-list/list/index.wxml-->
+<view class="page">
+    <view class="head">
+        <text>访客列表</text>
+    </view>
+    <view class="filter">
+        <view class="filter-view filter-time">全部时间</view>
+        <view class="filter-view filter-type">全部类型</view>
+    </view>
+    <form>
+        <view class="search">
+            <input class="search-input _font24" type="text" name="search" placeholder="搜索你要找的人名" placeholder-class="search-placeholder" bindtap="startSearchInput" disabled="disabled"></input>
+            <!-- <button wx:if="{{clearSearchShow}}" class="btn clear-btn" bindtap="clearSearch"></button>
+<button class="btn search-btn" form-type="submit"><text class="iconfont icon-sousuo _font44"></text></button> -->
+        </view>
+    </form>
+    <view class="list">
+        <view class="visitor">
+            <view class="visit-left">
+                <image class="logo" src="https://slightech-marvin.oss-cn-hangzhou.aliyuncs.com/testing/company/143/logo_url/895fa23e9b88fa31402d5118780ac0b6.jpg" mode="{{mode}}"></image>
+                <view class="visit-to _ellipsis">Edw Zhang</view>
+                <view class="visit-from _ellipsis">邀请人：经济i哦哦哦哦哦</view>
+            </view>
+            <view class="visit-right">
+                <view class="visit-time">
+                    <text>10月12日 15:30</text>
+                </view>
+            </view>
+        </view>
+        <view class="visitor">
+            <view class="visit-left-no-invite">
+                <image class="logo" src="https://slightech-marvin.oss-cn-hangzhou.aliyuncs.com/testing/company/143/logo_url/895fa23e9b88fa31402d5118780ac0b6.jpg" mode="{{mode}}"></image>
+                <view class="visit-no-invite">Edw Zhang</view>
+            </view>
+            <view class="visit-right">
+                <view class="visit-time">
+                    <text>10月12日 15:30</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -48,11 +48,47 @@ Page({
    * 立即支付
    */
   quickPay: function () {
-    this.setData({
-      showModal: true
-    });
+
+    // this.setData({
+    //   showModal: true
+    // });
+    // 发起微信支付
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'pay',
+        method: 'order',
+        data: JSON.stringify({
+          
+        })
+      },
+      success: res => {
+        if (res.data.result) {
+          wx.requestPayment({
+            timeStamp: res.data.result.timeStamp,
+            nonceStr: res.data.result.nonceStr,
+            package: res.data.result.package,
+            signType: 'MD5',
+            paySign: res.data.result.paySign,
+            success: res => {
+
+            },
+            fail: res => {
+
+            },
+            complete: res => {
+
+            }
+          });
+        }
+        
+      },
+      fail: res => {}
+    })
+
   },
 
+  
   /**
    * 关闭弹出框
    */
