@@ -38,7 +38,7 @@
     "pages/employee/join-company/invitationCode/index",
     "pages/employee/join-company/choiceJoin/index",
     "pages/employee/join-company/confirmCompanyInformation/index",
-    "pages/company/unattended-setting/index",
+    "pages/company/unattended-setting/setHome/index",
     "pages/company/introduction/index",
     "pages/company/otherCompany/index",
     "pages/company/webview/index",
@@ -62,7 +62,8 @@
     "pages/invite-list/index/index",
     "pages/invite-list/invite-detail/invite-detail",
     "pages/visitor-list/list/index",
-    "pages/visitor-list/detail/index"
+    "pages/visitor-list/detail/index",
+    "pages/company/unattended-setting/setting/index"
   ],
   "subPackages": [
     {

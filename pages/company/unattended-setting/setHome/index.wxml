@@ -1,0 +1,21 @@
+<!--pages/company/unattended/unapptended-index.wxml-->
+<view class="page">
+    <view class="page_hd"></view>
+    <view class="page_bd _txt_center">
+        <view class="_fontw600 _font44 tit">自动值守，接待访客更灵活</view>
+        <view class=" _font32 intro">如您无法及时处理访客申请，或希望访客无需通过申请即可取卡，请开启此功能。</view>
+        
+        <button class="_button _font34" wx:if="{{serviceStatus == 'tried'}}" bindtap="goSetting">试用自动值守</button>
+        <button class="_button _font34" wx:elif="{{serviceStatus == 'opened'}}" bindtap="goSetting">开启自动值守</button>
+        <button class="_button close _font34 _flex _flex_item_center _flex_justify_center" bindtap="viewBusinessService" wx:elif="{{serviceStatus == 'closed'}}">
+    
+        <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/diamond%402x.png"></image>
+        了解小觅商业服务套件</button>
+    
+        <view class="voice _font24">开启无人值守，未预约访客取卡无需前台确认，为确保公司安全，请谨慎开启。</view>
+    </view>
+    <view class="page_ft" wx:if="{{serviceStatus == 'tried'}}" bindtap="viewBusinessService">
+        <import src="../../../../templates/vipAd/vipAd.wxml" />
+        <template is="vipAd" data="{{text: 'forbar'}}" />
+    </view>
+</view>

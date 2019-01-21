@@ -193,7 +193,7 @@ Page({
     //自动值守
     unattendedSetting: function() {
         wx.navigateTo({
-            url: '/pages/company/unattended-setting/index',
+            url: '/pages/company/unattended-setting/setHome/index',
         })
     },
     //邀请访客
