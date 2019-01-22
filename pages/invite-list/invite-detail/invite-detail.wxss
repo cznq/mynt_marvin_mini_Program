@@ -1,3 +1,4 @@
+@import "../../../templates/showToast/showToast.wxss";
 page{
   background: #F9FAFB;
 }

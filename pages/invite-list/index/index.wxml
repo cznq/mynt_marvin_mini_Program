@@ -1,35 +1,65 @@
 <import src="../../../templates/noneData/noneData.wxml" />
-<template wx:if='{{noneData.show}}' is="noneDataPage" data="{{noneData:noneData}}" />
-<view bindtap='headTab' class="headTab _row _cen_center">
-    <view data-name='all' class="allInvite {{initeType === 'all'?'active':''}}" >全部邀请</view>
+<!-- 头部Tab开始 -->
+<view class='block_fixed' catchtouchmove='maskMove'>
+  <view wx:if='{{identity===2||identity===3}}' bindtap='headTab' class="headTab _row _cen_center">
+    <view data-name='all' class="allInvite {{initeType === 'all'?'active':''}}">全部邀请</view>
     <view data-name='my' class="myInvite {{initeType === 'my'?'active':''}}">我的邀请</view>
-</view>
-<view catchtap='allTimeState' class="allTime _row _cen_center">
-  <view class='_font26'>全部时间</view>
-  <image  class="arrow {{allTime ?'active':''}}" src='../../../images/arrow.png'></image>
-  <view bindtap='seleTime' class="seleTime {{allTime ?'active':''}} _border_box column">
-    <li data-name='allTime' class="_font26 _row _cen_start {{seleTime ==='allTime'?'_txt_blue':''}}">全部时间</li>
-    <li data-name='today' class="_font26 _row _cen_start {{seleTime ==='today'?'_txt_blue':''}}">今天</li>
-    <li data-name='month' class="_font26 _row _cen_start {{seleTime ==='month'?'_txt_blue':''}}">本周</li>
-    <li data-name='week' class="_font26 _row _cen_start {{seleTime ==='week'?'_txt_blue':''}}">本月</li>
+  </view>
+  <view wx:if='{{identity===1}}' class="headTab _row _cen_start">
+    <view class="inviteList _txt_gray">邀请列表</view>
   </view>
 </view>
-<view class="content">
-  <input class="search _font24"  placeholder="搜索你要找的人名" placeholder-class=''/>
-  <view>
-    <li class="_row _cen_space">
-      <view class='info _row _cen_start'>
-        <image class=""></image>
-        <view class="_font36 _txt_gray">Edafa</view>
-      </view>
-      <view class='_font24 _txt_darkgrey'>未接受</view>
-    </li>
-    <li class="_row _cen_space">
-      <view class='info _row _cen_start'>
-        <image class=""></image>
-        <view class="_font36 _txt_gray">Edafa</view>
-      </view>
-    </li>
+
+<block wx:if='{{!noneData.show && !searchModal}}'>
+  <!-- 下拉时间组件开始 -->
+  <view catchtap='allTimeState' class="allTime _row _cen_center" catchtouchmove='maskMove'>
+    <view class='_font26'>{{seleTime}}</view>
+    <image class="arrow {{allTime ?'active':''}}" src='../../../images/arrow.png'></image>
+    <view bindtap='seleTime' class="seleTime {{allTime ?'active':''}} _border_box column">
+      <li data-name='全部时间' class="_font26 _row _cen_start {{seleTime ==='全部时间'?'_txt_blue':''}}">全部时间</li>
+      <li data-name='今天' class="_font26 _row _cen_start {{seleTime ==='今天'?'_txt_blue':''}}">今天</li>
+      <li data-name='本周' class="_font26 _row _cen_start {{seleTime ==='本周'?'_txt_blue':''}}">本周</li>
+      <li data-name='本月' class="_font26 _row _cen_start {{seleTime ==='本月'?'_txt_blue':''}}">本月</li>
+    </view>
+  </view>
+  <!-- 邀请列表开始 -->
+  <view class="content">
+    <input class="search _font24" placeholder="搜索你要找的人名" placeholder-class='' bindtap="startSearchInput" disabled='disabled' />
+    <view bindtap='currentEmployee'>
+      <li class="_row _cen_space">
+        <view class='info _row _cen_start'>
+          <image class=""></image>
+          <view class="_font36 _txt_gray">Edafa</view>
+        </view>
+        <view class='_font24 _txt_darkgrey'>未接受</view>
+      </li>
+    </view>
+  </view>
+</block>
+<!-- 搜索页面开始 -->
+<view class="search-page" wx:if="{{searchModal}}">
+  <form bindsubmit="searchSubmit">
+    <view class="search">
+      <input class="search-input _font24" type="text" name="search" placeholder="搜索" confirm-type="search" placeholder-class="search-placeholder" value="{{search}}" bindconfirm="searchSubmit" bindinput="searchInput" focus='true'></input>
+      <button wx:if="{{clearSearchShow}}" class="btn clear-btn" bindtap="clearSearch"><text class="iconfont icon-cha1"></text></button>
+      <button class="btn cancel-btn _font28" bindtap="searchCancel">取消</button>
+    </view>
+  </form>
+  <!-- wx:for='{{searchResult}}' wx:key="" -->
+  <block>
+    <view class="searchResult">
+      <li class="_row _cen_space">
+        <view class='info _row _cen_start'>
+          <image class=""></image>
+          <view class="_font36 _txt_gray">Edafa</view>
+        </view>
+        <view class='_font24 _txt_darkgrey'>未接受</view>
+      </li>
+    </view>
+  </block>
+  <view wx:if='{{searchNoneData.show}}' class="moveUp108">
+    <template is="noneDataPage" data="{{noneData:searchNoneData}}" />
   </view>
 </view>
-<view wx:if="{{allTime}}" class="mask"></view>
+<template wx:if='{{noneData.show}}' is="noneDataPage" data="{{noneData:noneData}}" />
+<view wx:if="{{allTime}}" catchtouchmove='maskMove' class="mask"></view>
