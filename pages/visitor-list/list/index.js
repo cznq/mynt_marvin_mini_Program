@@ -4,8 +4,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        allTime: false,
-        allType: false,
+        timeChoose: false,
+        typeChoose: false,
         timeText: '全部时间',
         typeText: '全部类型',
         visitor_type: 0,
@@ -19,18 +19,18 @@ Page({
             show: false
         }
     },
-    allTimeState: function() {
-        let allTime = this.data.allTime;
+    timeChooseState: function() {
+        let timeChoose = this.data.timeChoose;
         let _this = this;
-        if (allTime) {
+        if (timeChoose) {
             _this.setData({
-                allTime: false,
-                allType: false,
+                timeChoose: false,
+                typeChoose: false,
             })
         } else {
             _this.setData({
-                allTime: true,
-                allType: false,
+                timeChoose: true,
+                typeChoose: false,
             })
         }
     },
@@ -38,7 +38,7 @@ Page({
         let seleTime = e.target.dataset.name;
         let _this = this;
         switch (seleTime) {
-            case 'allType':
+            case 'typeChoose':
                 var timeText = "全部时间";
                 var time_range = 0;
                 break;
@@ -67,18 +67,18 @@ Page({
             _this.showList();
         });
     },
-    allTypeState: function() {
+    typeChooseState: function() {
         let _this = this;
-        let allType = this.data.allType;
-        if (allType) {
+        let typeChoose = this.data.typeChoose;
+        if (typeChoose) {
             _this.setData({
-                allType: false,
-                allTime: false
+                typeChoose: false,
+                timeChoose: false
             })
         } else {
             _this.setData({
-                allType: true,
-                allTime: false
+                typeChoose: true,
+                timeChoose: false
             })
         }
     },
@@ -86,7 +86,7 @@ Page({
         let seleType = e.target.dataset.name;
         let _this = this;
         switch (seleType) {
-            case 'allTime':
+            case 'timeChoose':
                 var typeText = "全部类型";
                 var visitor_type = 0;
                 break;
