@@ -95,9 +95,9 @@ Page({
         data: JSON.stringify({
           union_id: wx.getStorageSync('xy_session'),
           role_invitation_id: that.data.invitation_id
-        }),
-        isloading: false
+        })
       },
+      showLoading: false,
       success: res => {
         console.log(res.data.sub_code);
         if (res.data.sub_code ==0) {

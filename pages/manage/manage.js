@@ -241,9 +241,9 @@ Page({
                 method: 'get_info',
                 data: JSON.stringify({
                     union_id: wx.getStorageSync('xy_session')
-                }),
-                isloading: false
+                })
             },
+            showLoading: false,
             success: res => {
                 //员工提示信息
                 if (res.data.result.apply_number > 0) {
@@ -277,9 +277,9 @@ Page({
                 method: 'get_rotation_chart',
                 data: JSON.stringify({
                     location_type: 0
-                }),
-                isloading: false
+                })
             },
+            showLoading: false,
             success: res => {
                 if (res.data.result) {
                     _this.setData({
@@ -311,9 +311,9 @@ Page({
                 data: JSON.stringify({
                     union_id: wx.getStorageSync('xy_session'),
                     service_key: 'ATTEND_FUNCTION'
-                }),
-                isloading: false
+                })
             },
+            showLoading: false,
             success: res => {
                 console.log('请求自动值守接口返回数据:');
                 console.log(res);

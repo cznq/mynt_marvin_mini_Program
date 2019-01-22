@@ -27,7 +27,14 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
               
     }
   }
-  //请求接口
+
+  /** 
+   * 请求参数 requestHandler
+   * requestHandler.url              'https://marvin-api-test.slightech.com/mini_program/api/'
+   * requestHandler.params           { service: 'oauth', method: 'login', data: ({}) }
+   * requestHandler.loadingTitle      '正在加载'
+   * requestHandler.showLoading       true | false
+   */
   function request(method, requestHandler, app) {
     
     var dataJson = JSON.parse(requestHandler.params.data);
@@ -35,9 +42,10 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
     requestHandler.params.data = JSON.stringify(dataJson);
 
-    if (requestHandler.params.isloading !== false){
+    if (requestHandler.showLoading != false) {
+      var title = requestHandler.loadingTitle != undefined ? requestHandler.loadingTitle : '正在加载';
       wx.showLoading({
-        title: '正在加载',
+        title: title,
         mask: true
       })
     }
@@ -70,12 +78,16 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         if (res.data.sub_code !== 0) {
           app.myLog("请求成功错误", 'union_id:' + wx.getStorageSync('xy_session') + '\nopen_id:' + wx.getStorageSync('open_id') + '\n\n请求参数：\n' + JSON.stringify(requestHandler.params) + '\n\n接口返回信息：\n' + JSON.stringify(res))
         }
-        wx.hideLoading();
+        if (requestHandler.showLoading != false) {
+          wx.hideLoading();
+        }
         if (requestHandler.success) requestHandler.success(res);
       },
       fail: (res) => {
         app.myLog("请求错误", 'union_id:' + wx.getStorageSync('xy_session') + '\nopen_id:' + wx.getStorageSync('open_id') + '\n\n请求参数：\n' + JSON.stringify(requestHandler.params) + '\n\n接口返回信息：\n' + JSON.stringify(res))
-        wx.hideLoading();
+        if (requestHandler.showLoading != false) {
+          wx.hideLoading();
+        }
         
         wx.showToast({
           title: '加载失败，请尝试刷新',

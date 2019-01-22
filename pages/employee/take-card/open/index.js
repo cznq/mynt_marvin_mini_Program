@@ -32,9 +32,9 @@ Page({
         method: 'get_info',
         data: JSON.stringify({
           union_id: wx.getStorageSync('xy_session')
-        }),
-        isloading: false
+        })
       },
+      showLoading: false,
       success: res => {
         if (res.data.result) {
           that.setData({
@@ -62,9 +62,9 @@ Page({
         method: 'get_employee_info',
         data: JSON.stringify({
           union_id: wx.getStorageSync('xy_session')
-        }),
-        isloading: false
+        })
       },
+      showLoading: false,
       success: res => {
         if (res.data.result) {
           if (that.data.serviceStatus !== 'closed' && !app.Util.checkEmpty(res.data.result.input_pic_url)) {
