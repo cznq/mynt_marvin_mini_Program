@@ -1,6 +1,16 @@
 /* pages/visitor-list/list/index.wxss */
+@import "../../../templates/noneData/noneData.wxss";
+
 page {
     background: linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(252, 252, 252, 1));
+}
+
+.block_fixed {
+    position: fixed;
+    width: 750rpx;
+    z-index: 9999;
+    left: 0;
+    top: 0;
 }
 
 /*访客列表标题*/
@@ -98,39 +108,32 @@ page {
 }
 
 /*搜索框*/
-.search {
-    width: 750rpx;
-    height: 60rpx;
-}
-
-.search-input {
-    width: 630rpx;
-    margin: 55rpx auto 0 auto;
-    background: #8891A9;
-    height: 60rpx;
-    /*padding: 55rpx 0 19rpx 32rpx;*/
-    font-size: 24rpx;
-    font-weight: normal;
-    opacity: 0.3;
-}
-
-.search-btn {
+.content {
     position: absolute;
-    left: 20rpx;
-    top: 0;
-    height: 56rpx;
-    width: 56rpx;
-    padding: 0;
-    line-height: 56rpx;
-    text-align: center;
-    background-color: transparent;
+    top: 190rpx;
+    padding: 55rpx 60rpx 0 60rpx;
+}
 
+.content.active {
+    position: absolute;
+    top: 114rpx;
+    padding: 55rpx 60rpx 0;
+}
+
+.content .search {
+    width: 630rpx;
+    height: 60rpx;
+    background: rgba(136, 145, 169, 0.1);
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    padding: 18rpx 32rpx;
 }
 
 /*访客列表*/
 .list {
     width: 750rpx;
     background: linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(252, 252, 252, 1));
+    margin-top: 365rpx;
 }
 
 .list .visitor {

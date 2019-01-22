@@ -1,5 +1,6 @@
 <!--pages/visitor-list/list/index.wxml-->
-<view class="page">
+<import src="../../../templates/noneData/noneData.wxml" />
+<view class="block_fixed">
     <view class="head">
         <text>访客列表</text>
     </view>
@@ -24,9 +25,14 @@
             </view>
         </view>
     </view>
-    <!-- <view class="search">
-    <input class="search-input _font24" type="text" name="search" placeholder="搜索你要找的人名" placeholder-class="search-placeholder" bindtap="startSearchInput" disabled="disabled"></input>
-</view> -->
+</view>
+<block wx:if='{{noneData.show}}'>
+    <template wx:if='{{noneData.show}}' is="noneDataPage" data="{{noneData:noneData}}" />
+</block>
+<block wx:else>
+    <view class="content">
+        <input class="search _font24" placeholder="搜索你要找的人名" placeholder-class='' bindtap="startSearchInput" disabled='disabled' />
+    </view>
     <view class="list" wx:key="list">
         <view class="visitor">
             <view class="visit-left">
@@ -52,5 +58,5 @@
             </view>
         </view>
     </view>
-</view>
+</block>
 <view wx:if="{{allTime || allType}}" class="mask"></view>

@@ -12,6 +12,12 @@ Page({
         time_range: 0,
         page: 1,
         list: {},
+        noneData: {
+            textInfo: '暂无数据',
+            buttonText: '邀请访客',
+            emptyBtnFunc: 'emptyButton',
+            show: false
+        }
     },
     allTimeState: function() {
         let allTime = this.data.allTime;
@@ -105,8 +111,28 @@ Page({
             _this.showList();
         });
     },
+    // 调取接口查询访客列表
     showList: function() {
         console.log(123);
+    },
+    // 搜索
+    startSearchInput: function() {
+        let _this = this;
+        _this.setData({
+            searchModal: true
+        });
+    },
+    searchCancel: function() {
+        let _this = this;
+        _this.setData({
+            searchModal: false
+        });
+    },
+    // 空页面跳转到邀请页
+    emptyButton: function() {
+        wx.navigateTo({
+            url: '/pages/invite-visitor/edit/index',
+        })
     },
 
     /**
