@@ -17,12 +17,12 @@
       <view class="_font28 _txt_gray detail">邀请事由邀请事由邀请事由</view>
     </li>
   </view>
-  <view class="inite-card _row _cen_center">
+  <view catchtap='inviteVisitor' class="inite-card _row _cen_center">
     <image class="inite_image" src="../../../images/init-card.png"></image>
     <view class="_font22 _txt_gray">邀请函</view>
   </view>
 </view>
-<view class="deleBtn _txt_gray">
-  删除
-</view>
+<view catchtap='deleBtn' class="deleBtn _txt_gray">删除</view>
 <view class="blank"></view>
+<import src="../../../templates/showToast/showToast.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />

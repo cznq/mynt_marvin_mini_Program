@@ -1,6 +1,14 @@
 @import "../../../templates/noneData/noneData.wxss";
+@import "../../../templates/showToast/showToast.wxss";
+@import "../../employee/public/style.wxss";
+
 page{
   background: #F9FAFB;
+}
+.block_fixed{
+  position: fixed;
+  width:750rpx;
+  z-index: 9999;
 }
 .headTab{
   position: relative;
@@ -39,18 +47,27 @@ page{
   border-radius:5rpx 5rpx 2rpx 2rpx;
 }
 .allTime{
-  position: relative;
+  position: absolute;
+  top:114rpx;
+  width: 750rpx;
   height: 78rpx;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, .5);
+  box-shadow:0rpx 12rpx 92rpx 0rpx rgba(43,51,72,0.03);
   z-index: 999;
+}
+.inviteList{
+  font-size: 60rpx;
+  box-sizing: border-box;
+  padding-left: 62rpx;
 }
 .allTime .arrow{
   width: 11rpx;
   height: 19rpx;
   margin-left: 16rpx;
+  transform:rotate(90deg);
 }
 .allTime .arrow.active{
-  transform:rotate(90deg);
+  transform:rotate(-90deg);
   transtion:all 1s;
 }
 .seleTime{
@@ -79,7 +96,7 @@ page{
 }
 .mask{
   position: absolute;
-  top:0;
+  top:192rpx;
   bottom:0;
   left: 0;
   right:0;
@@ -87,6 +104,13 @@ page{
   z-index: 998;
 }
 .content{
+  position: absolute;
+  top:192rpx;
+  padding:55rpx 60rpx 0;
+}
+.content.active{
+  position: absolute;
+  top:114rpx;
   padding:55rpx 60rpx 0;
 }
 .content .search{
@@ -113,4 +137,67 @@ page{
   margin-right: 29rpx;
   box-sizing: border-box;
   border: 1px solid red;
+}
+/* search获取焦点查询 */
+.search-page {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(249, 250, 251, 1);
+  top: 0;
+  z-index: 99999;
+}
+.search-page .search {
+  padding: 24rpx 60rpx;
+  margin-top: 0;
+  border-bottom: 2rpx solid rgba(220, 220, 220, .5);
+}
+.icon-sousuo {
+  color: rgba(136, 145, 169, .3);
+}
+.search-page .clear-btn {
+  position:absolute;
+  right: 140rpx;
+  top: 24rpx;
+  height:56rpx;
+  width:56rpx;
+  padding:0;
+  line-height:56rpx;
+  text-align:center;
+  background-color:transparent;
+}
+.search-page .search-input {
+  padding: 0 60rpx 0 30rpx;
+  margin-right: 80rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.search-page .cancel-btn {
+  position: absolute;
+  right: 30rpx;
+  top: 24rpx;
+  height:56rpx;
+  background: transparent;
+  line-height:56rpx;
+  text-align:center;
+}
+.icon-cha1 {
+  color: rgba(186, 191, 201, 1);
+}
+.searchResult{
+  padding:55rpx 60rpx 0;
+}
+.searchResult li{
+  margin-top:60rpx;
+}
+.searchResult li:last-child{
+  padding-bottom:60rpx;
+}
+.searchResult li:first-child{
+  margin-top:0rpx;
+}
+.moveUp108{
+  width: 100%;
+  height: 100%;
+  margin-top:-108rpx;
 }

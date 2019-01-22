@@ -6,14 +6,21 @@ Page({
    * 页面的初始数据
    */
   data: {
+    identity:1,//0:非员工,1:普通职员,2:前台,3:公司管理员
     initeType:'all',
     allTime:false,
-    seleTime:'allTime',
+    seleTime:'全部时间',
     noneData:{
       buttonText:'邀请访客',
+      emptyBtnFunc:'',
       textInfo:'暂无邀请',
       show:false
-    }
+    },
+    searchNoneData:{
+      textInfo:'找不到匹配的内容',
+      show:false
+    },
+    searchModal:false
   },
 
   /**
@@ -21,10 +28,10 @@ Page({
    */
   onLoad: function (options) {
     let _this = this;
-    _this.get_employee_status();
+    _this.get_employee_status(_this);
   },
   //获取用户状态
-  get_employee_status: function() {
+  get_employee_status: function(_this) {
       app.Util.network.POST({
           url: app.globalData.BASE_API_URL,
           params: {
@@ -33,7 +40,7 @@ Page({
               data: JSON.stringify({})
           },
           success: res => {
-            console.log('相应:',res);
+            console.log('响应:',res);
             let data = res.data;
             if (data.sub_code === 0) {
               switch (data.result.role) {//0:角色待定,1:普通职员,2:前台,3:公司管理员
@@ -43,16 +50,22 @@ Page({
                     })
                   break;
                 case 1:
-
+                  _this.setData({
+                    identity:1
+                  })
                   break;
                 case 2:
-
+                  _this.setData({
+                    identity:2
+                  })
                   break;
                 case 3:
-
+                  _this.setData({
+                    identity:3
+                  })
                   break;
                 default:
-
+                  break;
               }
             }else{
                 wx.redirectTo({
@@ -92,6 +105,53 @@ Page({
     this.setData({
       seleTime:seleTime
     })
+  },
+  maskMove:function(){
+    return false
+  },
+  currentEmployee:function () {
+    wx.navigateTo({
+      url:'../invite-detail/invite-detail'
+    })
+  },
+
+  searchInput: function(e) {
+    var searchValue = e.detail.value;
+    // let { admin, front_desk, employee } = this.data.staffList;
+    // var allList = [...admin, ...front_desk, ...employee];
+    // for (var index in allList) {
+    //   if (allList[index].invite_status == 0) {
+    //     allList.splice(index, 1)
+    //   }
+    // }
+
+    var searchResult = [];
+    if (searchValue) {
+      this.setData({
+        clearSearchShow: true
+      })
+      // for (let i = 0; i < allList.length; i++) {
+      //   if (allList[i].employee_name.indexOf(searchValue) != -1) {
+      //     searchResult.push(allList[i])
+      //   }
+      // }
+      this.setData({ searchStaffList: searchResult })
+    } else {
+      this.setData({ clearSearchShow: true, searchStaffList: [] })
+    }
+
+  },
+
+  clearSearch: function() {
+    this.setData({ search: '', clearSearchShow: false });
+  },
+
+  startSearchInput: function() {
+    this.setData({ searchModal: true })
+  },
+
+  searchCancel: function() {
+    this.setData({ searchModal: false })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
