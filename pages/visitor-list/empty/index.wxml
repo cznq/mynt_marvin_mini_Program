@@ -1,3 +1,0 @@
-<!--pages/visitor-list/empty/index.wxml-->
-<import src="../../../templates/noneData/noneData.wxml" />
-<template is="noneDataPage" data="{{noneData: noneData}}" />
