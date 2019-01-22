@@ -4,17 +4,30 @@
         <text>访客列表</text>
     </view>
     <view class="filter">
-        <view class="filter-view filter-time">全部时间</view>
-        <view class="filter-view filter-type">全部类型</view>
-    </view>
-    <form>
-        <view class="search">
-            <input class="search-input _font24" type="text" name="search" placeholder="搜索你要找的人名" placeholder-class="search-placeholder" bindtap="startSearchInput" disabled="disabled"></input>
-            <!-- <button wx:if="{{clearSearchShow}}" class="btn clear-btn" bindtap="clearSearch"></button>
-<button class="btn search-btn" form-type="submit"><text class="iconfont icon-sousuo _font44"></text></button> -->
+        <view class="filter-view filter-time" catchtap="allTimeState">
+            <text class='_font26'>{{timeText}}</text>
+            <image class="arrow {{allTime ?'active':''}}" src='../../../images/arrow.png'></image>
+            <view bindtap='seleTime' class="seleTime {{allTime ?'active':''}} _border_box column">
+                <li data-name='allTime' class="_font26 _row _cen_start {{seleTime ==='allTime'?'_txt_blue':''}}">全部时间</li>
+                <li data-name='today' class="_font26 _row _cen_start {{seleTime ==='today'?'_txt_blue':''}}">今天</li>
+                <li data-name='week' class="_font26 _row _cen_start {{seleTime ==='week'?'_txt_blue':''}}">本周</li>
+                <li data-name='month' class="_font26 _row _cen_start {{seleTime ==='month'?'_txt_blue':''}}">本月</li>
+            </view>
         </view>
-    </form>
-    <view class="list">
+        <view class="filter-view filter-type" catchtap="allTypeState">
+            <text class='_font26'>{{typeText}}</text>
+            <image class="arrow {{allType ?'active':''}}" src='../../../images/arrow.png'></image>
+            <view bindtap='seleType' class="seleType {{allType ?'active':''}} _border_box column">
+                <li data-name='allType' class="_font26 _row _cen_start {{seleType ==='allType'?'_txt_blue':''}}">全部访客</li>
+                <li data-name='invType' class="_font26 _row _cen_start {{seleType ==='invType'?'_txt_blue':''}}">预约访客</li>
+                <li data-name='tmpType' class="_font26 _row _cen_start {{seleType ==='tmpType'?'_txt_blue':''}}">临时访客</li>
+            </view>
+        </view>
+    </view>
+    <!-- <view class="search">
+    <input class="search-input _font24" type="text" name="search" placeholder="搜索你要找的人名" placeholder-class="search-placeholder" bindtap="startSearchInput" disabled="disabled"></input>
+</view> -->
+    <view class="list" wx:key="list">
         <view class="visitor">
             <view class="visit-left">
                 <image class="logo" src="https://slightech-marvin.oss-cn-hangzhou.aliyuncs.com/testing/company/143/logo_url/895fa23e9b88fa31402d5118780ac0b6.jpg" mode="{{mode}}"></image>
@@ -40,3 +53,4 @@
         </view>
     </view>
 </view>
+<view wx:if="{{allTime || allType}}" class="mask"></view>

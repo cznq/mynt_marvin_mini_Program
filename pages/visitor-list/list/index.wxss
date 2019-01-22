@@ -1,7 +1,5 @@
 /* pages/visitor-list/list/index.wxss */
-.page {
-    width: 750rpx;
-    height: 100%;
+page {
     background: linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(252, 252, 252, 1));
 }
 
@@ -9,7 +7,8 @@
 .head {
     width: 750rpx;
     height: 114rpx;
-    box-shadow: 0rpx 12rpx 92rpx 0rpx rgba(43, 51, 72, 0.03);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 12px 92px 0px rgba(43, 51, 72, 0.03);
 }
 
 .head text {
@@ -26,27 +25,76 @@
     height: 78rpx;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     box-shadow: 0rpx 12rpx 92rpx 0rpx rgba(43, 51, 72, 0.03);
 }
 
 .filter .filter-view {
-    height: 44rpx;
-    font-size: 26rpx;
-    font-family: NotoSansHans-Medium;
+    width: 375rpx;
+    display: flex;
+    align-items: center;
+    height: 78rpx;
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 999;
     font-weight: 500;
     color: #1A2A4B;
-    opacity: 0.5;
-    padding: 27rpx 0 26rpx 0;
 }
 
-
 .filter .filter-time {
-    padding-left: 146rpx
+    justify-content: flex-start;
+    padding-left: 146rpx;
 }
 
 .filter .filter-type {
-    padding-right: 147rpx
+    justify-content: flex-end;
+    padding-right: 147rpx;
+}
+
+.filter .filter-view .arrow {
+    width: 11rpx;
+    height: 19rpx;
+    margin-left: 16rpx;
+    transform: rotate(90deg);
+}
+
+.filter .filter-view .arrow.active {
+    transform: rotate(270deg);
+    transition: all .3s;
+}
+
+.filter .filter-view li {
+    height: 79rpx;
+    color: #1A2A4B;
+    box-sizing: border-box;
+    border-bottom: 1rpx solid rgba(220, 220, 220, 0.5);
+}
+
+/*下拉框过滤*/
+.filter .filter-view .seleTime,
+.filter .filter-view .seleType {
+    position: absolute;
+    top: 192rpx;
+    left: 0;
+    width: 750rpx;
+    background: rgba(255, 255, 255, 1);
+    padding-left: 57rpx;
+    overflow: hidden;
+    height: 0;
+    transition: height .3s;
+}
+
+.filter .filter-view .seleTime.active {
+    height: 320rpx;
+    transition: height .3s;
+}
+
+.filter .filter-view .seleType.active {
+    height: 243rpx;
+    transition: height .3s;
+}
+
+
+.filter .filter-view li:last-child {
+    border-bottom: 0;
 }
 
 /*搜索框*/
@@ -62,7 +110,6 @@
     height: 60rpx;
     /*padding: 55rpx 0 19rpx 32rpx;*/
     font-size: 24rpx;
-    font-family: NotoSansHans-DemiLight;
     font-weight: normal;
     opacity: 0.3;
 }
@@ -87,10 +134,10 @@
 }
 
 .list .visitor {
-    width: 750rpx;
+    width: 629rpx;
     height: 70rpx;
     margin-top: 90rpx;
-    padding: 0rpx 60rpx 0 61rpx;
+    padding: 0 0 0 61rpx;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -112,21 +159,20 @@
 
 .list .visitor .visit-left .visit-from {
     font-size: 22rpx;
-    font-family: NotoSansHans-Medium;
     font-weight: 500;
     color: #8891A9;
 }
 
 .list .visitor .visit-right {
     width: 260rpx;
-    margin-right: 60rpx;
     height: 21rpx;
     font-size: 24rpx;
-    font-family: NotoSansHans-Regular;
     font-weight: 400;
     color: rgba(136, 145, 169, 1);
     line-height: 38rpx;
     opacity: 0.6;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .list .visit-time {
@@ -159,4 +205,15 @@
 .list .visitor .visit-left .visit-no-invite {
     display: flex;
     align-items: center;
+}
+
+/*遮盖层*/
+.mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 998;
 }
