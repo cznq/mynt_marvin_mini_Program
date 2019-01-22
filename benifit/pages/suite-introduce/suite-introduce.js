@@ -52,6 +52,7 @@ Page({
     // this.setData({
     //   showModal: true
     // });
+    
     // 发起微信支付
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,

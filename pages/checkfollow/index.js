@@ -53,8 +53,8 @@ Page({
         data: JSON.stringify({
           union_id: unionId,
         }),
-        isloading:false
       },
+      showLoading: false,
       success: res => {
         console.log(res);
         if (res.data.sub_code==0){
