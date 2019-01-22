@@ -1,6 +1,13 @@
 @import "../public/style.wxss";
 .page {
   background-color: rgba(0, 123, 255, 1);
+  padding-bottom: 160rpx;
+}
+.page.iphonex {
+  padding-bottom: 240rpx;
+}
+.page.noPaddingBottom {
+  padding-bottom: 0rpx!important;
 }
 .page_hd {
   padding: 22rpx 60rpx 20rpx;
