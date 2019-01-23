@@ -31,7 +31,12 @@
                     </view>
                     <view class="_rgt _flex _flex_item_center">
                         <text wx:if="{{item.invite_status == 0}}" class="_font24 _txt_darkgrey">待激活</text>
-                        <button class="_btn_remove _font28 _border_radius10" bindtap="remove" wx:if="{{showRemove}}" data-id="{{item.union_id}}">移除</button>
+                        <block wx:if="{{item.invite_status == 0}}">
+                            <button class="_btn_remove _font28 _border_radius10" bindtap="remove" wx:if="{{showRemove}}" data-id="{{item.union_id}}" data-status="{{item.invite_status}}" data-invitation="{{item.role_invitation_id}}">移除</button>
+                        </block>
+                        <block wx:else>
+                            <button class="_btn_remove _font28 _border_radius10" bindtap="remove" wx:if="{{showRemove}}" data-id="{{item.union_id}}" data-status="{{item.invite_status}}" data-invitation="">移除</button>
+                        </block>
                     </view>
                 </view>
             </block>
