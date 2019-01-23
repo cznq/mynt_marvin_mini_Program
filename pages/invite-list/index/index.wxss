@@ -138,6 +138,20 @@ page{
   box-sizing: border-box;
   border: 1px solid red;
 }
+
+.info .face{
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  margin-right: 29rpx;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 70rpx;
+  font-size: 28rpx;
+  background:rgba(96,146,254,1);
+  opacity:0.5;
+  color:#fff;
+}
 /* search获取焦点查询 */
 .search-page {
   position: absolute;
@@ -190,7 +204,7 @@ page{
 .searchResult li{
   margin-top:60rpx;
 }
-.searchResult li:last-child{
+.searchResult:last-child li{
   padding-bottom:60rpx;
 }
 .searchResult li:first-child{

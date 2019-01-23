@@ -1,11 +1,16 @@
 var app = getApp();
 var toast = require('../../../templates/showToast/showToast');
+var utils = require('../../../utils/util');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    invitation_id:"",
+    invitation_intro:"",//邀请描述
+    employee_name:"",//邀请人姓名
+    appointment_time:"",//预约的时间
 
   },
 
@@ -13,7 +18,39 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var _this = this;
+    if (options.invitation_id) {
+      _this.setData({
+        invitation_id:options.invitation_id
+      })
+      _this.get_invitation_info(_this, this.data.invitation_id, _this.set_all_Data);
+    }
+  },
+  //获取邀请信息
+  get_invitation_info: function(_this,invitation_id,callback) {
+      app.Util.network.POST({
+          url: app.globalData.BASE_API_URL,
+          params: {
+              service: 'visitor',
+              method: 'get_invitation_info',
+              data: JSON.stringify({
+                invitation_id:invitation_id
+              })
+          },
+          success: res => {
+            console.log('响应invitation_id:',res);
+            let data = res.data;
+            if (data.result && data.return_code ==="SUCCESS") {
+              callback && callback(data.result)
+            }
+          },
+          fail: res => {
+              console.log('fail');
+          }
+      })
+  },
+  set_all_Data:function(data) {
+    console.log('data2222',data);
   },
   inviteVisitor:function () {
     wx.navigateTo({

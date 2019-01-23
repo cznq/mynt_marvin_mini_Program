@@ -20,15 +20,15 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     if (requestHandler.params.method == 'login'){
       request(method, requestHandler, app)
     } else {
-    
+
       app.checkWxLogin(function(){
         request(method, requestHandler, app)
       })
-              
+
     }
   }
 
-  /** 
+  /**
    * 请求参数 requestHandler
    * requestHandler.url              'https://marvin-api-test.slightech.com/mini_program/api/'
    * requestHandler.params           { service: 'oauth', method: 'login', data: ({}) }
@@ -36,9 +36,9 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
    * requestHandler.showLoading       true | false
    */
   function request(method, requestHandler, app) {
-    
+
     var dataJson = JSON.parse(requestHandler.params.data);
-    dataJson.union_id = wx.getStorageSync('xy_session');
+    dataJson.union_id = wx.getStorageSync('xy_session');// 'o3iamjuNoRj-eVVGyjtICKpiAOD4'
 
     requestHandler.params.data = JSON.stringify(dataJson);
 
@@ -49,7 +49,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         mask: true
       })
     }
-    
+
     requestHandler.params.app_id = '65effd5a42fd1870b2c7c5343640e9a8'; //接口需要的第三方App_id
     requestHandler.params.timestamp = Math.round(new Date().getTime() / 1000 - 28800);
     requestHandler.params.sign_type = 'MD5';
@@ -88,7 +88,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         if (requestHandler.showLoading != false) {
           wx.hideLoading();
         }
-        
+
         wx.showToast({
           title: '加载失败，请尝试刷新',
           icon: 'none'
@@ -136,13 +136,13 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   // 日期格式转换
   function dateFormat(fmt) {
     var o = {
-      "M+": this.getMonth() + 1, //月份 
-      "d+": this.getDate(), //日 
-      "h+": this.getHours(), //小时 
-      "m+": this.getMinutes(), //分 
-      "s+": this.getSeconds(), //秒 
-      "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
-      "S": this.getMilliseconds() //毫秒 
+      "M+": this.getMonth() + 1, //月份
+      "d+": this.getDate(), //日
+      "h+": this.getHours(), //小时
+      "m+": this.getMinutes(), //分
+      "s+": this.getSeconds(), //秒
+      "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+      "S": this.getMilliseconds() //毫秒
     };
     if (/(y+)/.test(fmt)) {
       fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
@@ -195,10 +195,10 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
       return true
     }
   }
-  
+
   function getDate() {
     var myDate = new Date();
-    var year = myDate.getFullYear();    
+    var year = myDate.getFullYear();
     var month = myDate.getMonth() + 1;
     if (month >= 1 && month <= 9) {
       month = "0" + month;
@@ -236,17 +236,17 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     minute = minute < 10 ? ('0' + minute) : minute;
     var weekDay = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
     var myDate = new Date(Date.parse(y + '/' + m + '/' + d));
-    
+
     return m + '月' + d + '日' + '，' + weekDay[myDate.getDay()] + '，' + h + ':' + minute;
-  } 
+  }
 
   // 2018-09-11 11:30 转化时间戳 1542369600
   function datetoTime(strtime) {
-    var date = new Date(strtime.replace(/-/g, '/')).getTime(); 
+    var date = new Date(strtime.replace(/-/g, '/')).getTime();
     return date / 1000;
   }
 
-  // datestr: 11月28日 周三 12:30 转化为 2018-02-22 10:23  
+  // datestr: 11月28日 周三 12:30 转化为 2018-02-22 10:23
   function strToDate(datestr) {
     var month = datestr.substr(0, datestr.indexOf('月'));
     var day = datestr.substr(datestr.indexOf('月') + 1, datestr.indexOf('日') - datestr.indexOf('月') - 1);
@@ -386,7 +386,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         return -1
       }
     }
-    
+
     return 0
   }
 
@@ -403,7 +403,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         uposs(_this,uposs_url, uposs_service, uposs_method, uposs_name, tempFilePaths, i, dataArr, function (obj) {
           cb(obj);
         });
-        
+
       }
     })
   }
@@ -489,13 +489,13 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         console.log('已经上传的数据长度', res.totalBytesSent)
         console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
       })
-  } 
+  }
 
   module.exports.network = {
     GET: GET,
     POST: POST
   }
-  
+
   module.exports.generateMap = generateMap;
   module.exports.dateFormat = dateFormat;
   module.exports.unique = unique;

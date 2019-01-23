@@ -1,9 +1,10 @@
+<wxs src="../../../wxs/subutil.wxs" module="tools" />
 <import src="../../../templates/noneData/noneData.wxml" />
 <!-- 头部Tab开始 -->
 <view class='block_fixed' catchtouchmove='maskMove'>
   <view wx:if='{{identity===2||identity===3}}' bindtap='headTab' class="headTab _row _cen_center">
-    <view data-name='all' class="allInvite {{initeType === 'all'?'active':''}}">全部邀请</view>
-    <view data-name='my' class="myInvite {{initeType === 'my'?'active':''}}">我的邀请</view>
+    <view data-name='all_invit' class="allInvite {{view_type === 0 ? 'active':''}}">全部邀请</view>
+    <view data-name='my_invit' class="myInvite {{view_type === 1 ? 'active':''}}">我的邀请</view>
   </view>
   <view wx:if='{{identity===1}}' class="headTab _row _cen_start">
     <view class="inviteList _txt_gray">邀请列表</view>
@@ -16,22 +17,23 @@
     <view class='_font26'>{{seleTime}}</view>
     <image class="arrow {{allTime ?'active':''}}" src='../../../images/arrow.png'></image>
     <view bindtap='seleTime' class="seleTime {{allTime ?'active':''}} _border_box column">
-      <li data-name='全部时间' class="_font26 _row _cen_start {{seleTime ==='全部时间'?'_txt_blue':''}}">全部时间</li>
-      <li data-name='今天' class="_font26 _row _cen_start {{seleTime ==='今天'?'_txt_blue':''}}">今天</li>
-      <li data-name='本周' class="_font26 _row _cen_start {{seleTime ==='本周'?'_txt_blue':''}}">本周</li>
-      <li data-name='本月' class="_font26 _row _cen_start {{seleTime ==='本月'?'_txt_blue':''}}">本月</li>
+      <li data-name='全部时间' class="_font26 _row _cen_start {{time_range === 0?'_txt_blue':''}}">全部时间</li>
+      <li data-name='今天' class="_font26 _row _cen_start {{time_range === 1?'_txt_blue':''}}">今天</li>
+      <li data-name='本周' class="_font26 _row _cen_start {{time_range === 2?'_txt_blue':''}}">本周</li>
+      <li data-name='本月' class="_font26 _row _cen_start {{time_range === 3?'_txt_blue':''}}">本月</li>
     </view>
   </view>
   <!-- 邀请列表开始 -->
   <view class="content">
     <input class="search _font24" placeholder="搜索你要找的人名" placeholder-class='' bindtap="startSearchInput" disabled='disabled' />
-    <view bindtap='currentEmployee'>
-      <li class="_row _cen_space">
+    <view wx:for='{{inviteList}}' wx:key="" bindtap='currentEmployee'><!--  -->
+      <li data-invitationId="{{item.invitation_id}}" class="_row _cen_space">
         <view class='info _row _cen_start'>
-          <image class=""></image>
-          <view class="_font36 _txt_gray">Edafa</view>
+          <view wx:if="{{item.avatar===''}}" class="face">{{tools.getFirstLetter(item.visitor_name)}}</view>
+          <image wx:else src='{{item.avatar}}'></image>
+          <view class="_font36 _txt_gray">{{item.visitor_name}}</view>
         </view>
-        <view class='_font24 _txt_darkgrey'>未接受</view>
+        <view wx:if='{{item.visitor_id === 0}}' class='_font24 _txt_darkgrey'>未接受</view>
       </li>
     </view>
   </view>
@@ -45,15 +47,15 @@
       <button class="btn cancel-btn _font28" bindtap="searchCancel">取消</button>
     </view>
   </form>
-  <!-- wx:for='{{searchResult}}' wx:key="" -->
   <block>
-    <view class="searchResult">
+    <view wx:for='{{searchStaffList}}' wx:key="" bindtap='searchCurrenEmployee' class="searchResult">
       <li class="_row _cen_space">
         <view class='info _row _cen_start'>
-          <image class=""></image>
-          <view class="_font36 _txt_gray">Edafa</view>
+          <view wx:if="{{item.avatar===''}}" class="face">{{tools.getFirstLetter(item.visitor_name)}}</view>
+          <image wx:else src='{{item.avatar}}'></image>
+          <view data-invitationId="{{item.invitation_id}}" class="_font36 _txt_gray">{{item.visitor_name}}</view>
         </view>
-        <view class='_font24 _txt_darkgrey'>未接受</view>
+        <view wx:if='{{item.visitor_id === 0}}' class='_font24 _txt_darkgrey'>未接受</view>
       </li>
     </view>
   </block>
@@ -61,5 +63,6 @@
     <template is="noneDataPage" data="{{noneData:searchNoneData}}" />
   </view>
 </view>
+
 <template wx:if='{{noneData.show}}' is="noneDataPage" data="{{noneData:noneData}}" />
 <view wx:if="{{allTime}}" catchtouchmove='maskMove' class="mask"></view>

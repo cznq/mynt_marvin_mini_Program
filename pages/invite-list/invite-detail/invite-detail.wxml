@@ -9,11 +9,11 @@
       <view class="_font28 _txt_gray detail">邀请事由邀请事由邀请事由</view>
     </li>
     <li class="_column ml40-top">
-      <view class="_font24 _txt_darkgrey">邀请事由</view>
+      <view class="_font24 _txt_darkgrey">预约时间</view>
       <view class="_font28 _txt_gray detail">邀请事由邀请事由邀请事由</view>
     </li>
     <li class="_column ml40-top">
-      <view class="_font24 _txt_darkgrey">邀请事由</view>
+      <view class="_font24 _txt_darkgrey">邀请人</view>
       <view class="_font28 _txt_gray detail">邀请事由邀请事由邀请事由</view>
     </li>
   </view>
