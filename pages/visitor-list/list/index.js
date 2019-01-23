@@ -172,12 +172,11 @@ Page({
             params: {
                 service: 'company',
                 method: 'get_info',
-                data: JSON.stringify({
-
-                })
+                data: JSON.stringify({})
             },
             success: res => {
                 console.log("获取公司信息:", res.data);
+                console.log("搜索条件", _this.data);
                 if (res.data.sub_code == 0) {
                     var company_id = res.data.result.company_id;
                     app.Util.network.POST({
@@ -195,13 +194,16 @@ Page({
                         },
                         success: res => {
                             console.log("获取访客信息:", res.data.result);
-                            if (res.data.sub_code == 0 && res.data.result) {
+                            if (res.data.sub_code == 0) {
                                 let rtData = res.data.result;
                                 if (rtData.count == 0) {
                                     _this.setData({
                                         'noneData.show': true,
                                     });
                                 } else {
+                                    _this.setData({
+                                        'noneData.show': false,
+                                    });
                                     // 如果搜索条件不为空则放入搜素对象内,否则放入正常数据对象
                                     if (_this.data.keyWord.length != 0) {
                                         _this.setData({
@@ -270,7 +272,7 @@ Page({
      */
     onReachBottom: function() {
         let _this = this;
-        if (_this.data.total_page == _this.data.page) {
+        if (_this.data.total_page <= _this.data.page) {
             return false;
         }
         app.Util.network.POST({
