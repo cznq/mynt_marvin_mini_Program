@@ -2,7 +2,7 @@
 <view class="detailsPage">
     <view class="header">
         <view class='headImage'>
-            <image wx:if="{{avatar}}" src="https://slightech-marvin.oss-cn-hangzhou.aliyuncs.com/development/visitor/robot_upload/2019-01-07/c0ef3355cca830e9ca2b5f7b45b78312.jpeg"></image>
+            <image wx:if="{{avatar}}" src="{{avatar}}"></image>
             <view wx:else class="no-image-letter _txtcenter">{{tools.getFirstLetter(visitor)}}</view>
         </view>
         <view class='_font36 _txt_gray _txt_center mr39-top'>{{visitor}}</view>
