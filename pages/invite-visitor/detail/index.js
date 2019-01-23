@@ -35,10 +35,7 @@ Page({
       },
       success: res => {
         if (res.data.result) {
-          wx.setNavigationBarColor({
-            frontColor: '#ffffff',
-            backgroundColor: '#007BFF'
-          })
+          
           if (res.data.result.visitor.visitor_id != 0) {
             _this.setData({ hasAccept: true })
           } 

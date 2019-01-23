@@ -9,7 +9,7 @@
       <view class="iconfont icon-shezhi _font40" bindtap="editAdminList" wx:else></view>
     </view>
   </view>
-  <view class="page__bd">
+  <view class="page__bd" wx:if="{{staffList}}">
 
     <view class="staff_list">
       <!-- 管理员列表 -->
@@ -24,7 +24,7 @@
           </view>
           </navigator>
           <view class="_rgt _flex _flex_item_center">
-            <button class="editBtn _font24 _fontw600" wx:if="{{edit}}" bindtap="transAdmin" data-roleInvitationId="{{item.role_invitation_id}}">转让</button>
+            <button class="editBtn _font24 _fontw600" wx:if="{{edit}}" bindtap="transAdmin" data-roleinvitationid="{{item.role_invitation_id}}">转让</button>
           </view>
         </view>
         </block>
@@ -42,14 +42,15 @@
             </navigator>
             <view class="_rgt _flex _flex_item_center">
               <view class="_status _font24" wx:if="{{item.invite_status==0}}">待激活</view>
-              <button class="editBtn _remove _font24 _fontw600" bindtap="{{item.invite_status==0?'removeFrontDesk':'removeFrontApply'}}" wx:if="{{edit}}" data-roleInvitationId="{{item.role_invitation_id}}">移除</button>
+              <button class="editBtn _remove _font24 _fontw600" bindtap="removeFrontApply" wx:if="{{edit && item.invite_status==0}}" data-roleinvitationid="{{item.role_invitation_id}}">移除</button>
+              <button class="editBtn _remove _font24 _fontw600" bindtap="removeFrontDesk" wx:if="{{edit && item.invite_status==1}}" data-unionid="{{item.union_id}}">移除</button>
             </view>
           </view>
         </block>
         
         <!--  添加子管理员 -->
         <navigator url="/pages/employee/staff-choose-list/index?from=inviteFront" hover-class="none" wx:if="{{tools.returnArrayLength(staffList.front_desk)<3}}">
-        <view class="_list_item _flex _flex_space_between {{staffList.front_desk?'':'_margin-top28'}}">
+        <view class="_list_item _flex _flex_space_between {{staffList.front_desk.length!=0?'':'_margin-top28'}}">
           <view class="_lft _flex _flex_item_center ">
             <view class="add_icon iconfont icon-add_qiantai"></view>
             <view class="_status _font24">设置子管理员，便于企业、员工及访客的管理</view>

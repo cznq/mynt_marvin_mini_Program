@@ -181,13 +181,13 @@ Page({
     //访客列表
     visitor: function() {
         wx.navigateTo({
-            url: '../company/webview/index?page=visitor'
+            url: '../visitor-list/list/index'
         })
     },
     //邀请列表
     invite: function() {
         wx.navigateTo({
-            url: '../company/webview/index?page=invite'
+            url: '../invite-list/index/index'
         })
     },
     //自动值守

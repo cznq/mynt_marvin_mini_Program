@@ -1,6 +1,6 @@
 @import "../public/style.wxss";
 .page {
-  background-color: rgba(0, 123, 255, 1);
+  background-color: rgba(249, 250, 251, 1);
 }
 .page_hd {
   padding: 22rpx 60rpx 20rpx;
@@ -28,8 +28,4 @@
 }
 .page_bd {
   padding-bottom: 48rpx;
-}
-.company-info::before,
-.company-info::after {
-  background-color: rgba(0, 123, 255, 1);
 }
