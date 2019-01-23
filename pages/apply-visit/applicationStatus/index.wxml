@@ -21,7 +21,7 @@
     <view class='pubLayout'>
       <view class="icon iconfont icon-shenqingtongguo"></view>
       <view class='title'>申请已通过，请前往取卡</view>
-      <view class='con'>公司已通过您的申请，请前往机器人处取卡</view>
+      <view class='con'>请重新唤醒小觅机器人，我们将快速为您发卡</view>
     </view>
     <view class='cardPrompt'>
       <view class='t1'>前往机器人取卡</view>

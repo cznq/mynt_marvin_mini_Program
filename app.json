@@ -47,7 +47,7 @@
     "pages/invite-visitor/edit/index",
     "pages/invite-visitor/share/index",
     "pages/invite-visitor/receive/index",
-    "pages/invite-visitor/success/index",
+    "pages/invite-visitor/detail/index",
     "pages/apply-visit/noAppointment/index",
     "pages/apply-visit/reasonsVisiting/index",
     "pages/apply-visit/applicationStatus/index",
@@ -63,7 +63,6 @@
     "pages/invite-list/invite-detail/invite-detail",
     "pages/visitor-list/list/index",
     "pages/visitor-list/detail/index",
-    "pages/visitor-list/empty/index",
     "pages/company/unattended-setting/setting/index"
   ],
   "subPackages": [

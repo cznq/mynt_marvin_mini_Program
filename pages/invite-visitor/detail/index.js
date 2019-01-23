@@ -10,7 +10,8 @@ Page({
     longitude: null,
     invitation_id: null,
     invitation: null,
-    appointment_time: null
+    appointment_time: null,
+    hasAccept: false
   },
 
   /**
@@ -18,39 +19,43 @@ Page({
    */
   onLoad: function (options) {
     this.data.invitation_id = options.invitation_id;
-    this.getInitation();
+    this.getInitation(this);
     
   },
 
-  getInitation: function () {
-    var that = this;
-    if (that.data.invitation_id == undefined) {
-      that.setData({
-        error: "没有获取到邀请信息"
-      })
-    }
-    var unionId = wx.getStorageSync('xy_session');
+  getInitation(_this) {
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
         service: 'visitor',
         method: 'get_invitation_info',
         data: JSON.stringify({
-          union_id: unionId,
-          invitation_id: that.data.invitation_id,
+          invitation_id: _this.data.invitation_id,
         })
       },
       success: res => {
-        that.setData({
-          invitation: res.data.result,
-          appointment_time: app.Util.formatTime(res.data.result.appointment_time + 8 * 3600)
-        })
-        app.Util.generateMap(that, res.data.result.company.address);
-
+        if (res.data.result) {
+          
+          if (res.data.result.visitor.visitor_id != 0) {
+            _this.setData({ hasAccept: true })
+          } 
+          _this.setData({
+            invitation: res.data.result,
+            appointment_time: app.Util.formatTime(res.data.result.appointment_time + 8 * 3600)
+          })
+          app.Util.generateMap(_this, res.data.result.company.address);
+        } else {
+          wx.showToast({
+            title: '获取邀请失败',
+            icon: 'none'
+          })
+        }
+        
       },
       fail: res => {
-        that.setData({
-          error: "没有获取到邀请信息"
+        wx.showToast({
+          title: '获取邀请失败',
+          icon: 'none'
         })
       }
     })
@@ -80,14 +85,6 @@ Page({
     wx.navigateTo({
       url: '/pages/invite-visitor/guide/index'
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
-
   }
 
 })

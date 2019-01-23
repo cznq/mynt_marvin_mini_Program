@@ -1,10 +1,17 @@
 <wxs src="../../../wxs/subutil.wxs" module="tools" />
-<view class="page" style="padding-bottom:{{isIphoneX?'240':'160'}}rpx" wx:if="{{invitation}}">
-  <view class="page_hd _flex _flex_item_center _flex_justify_center">
+<view class="page {{isIphoneX?'iphonex':''}} {{hasAccept?'noPaddingBottom':''}}" wx:if="{{invitation}}">
 
+  <view class="page_hd _flex _flex_item_center _flex_justify_center" wx:if="{{hasAccept}}">
+    <image style="width:80rpx;height:80rpx" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/accept_Invitation_success%403x.png"></image>
+    <view class="_font48 _fontw600 wel-tit">真诚期待您的光临。</view>
+    <view class="_font28 wel-intro">您已成功接受邀请，请留意到访时间。</view>
+    <navigator url="/pages/invite-visitor/guide/index?company_code={{invitation.company.company_code}}" hover-class="none">
+      <view class="viewGuide">如何使用我的邀请函</view>
+    </navigator>
+  </view>
+  <view class="page_hd _flex _flex_item_center _flex_justify_center" wx:else>
     <view class="_font48 _fontw600 wel-tit">尊敬的访客，您好。</view>
     <view class="_font28 wel-intro">您有一个新的邀请，等待您的接受。</view>
-
   </view>
 
   <view class="page_bd {{invitation.company.company_logo?'':'noLogo'}}">
@@ -67,7 +74,7 @@
       </view>
     </view>
   </view>
-  <view class="page_ft">
+  <view class="page_ft" wx:if="{{!hasAccept}}">
     <form bindsubmit="receiveSubmit" report-submit="true">
       <view class="_fixed receive_submit {{isIphoneX?'iphonex':''}}" wx:if="{{version}}">
         <button form-type="submit" class="_button" id="inviteBtn">接受邀请</button>

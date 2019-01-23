@@ -24,11 +24,11 @@
       </view>
       <view class="page_step_list">
         <view class="page_step_lbox">
-          <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/invitation_step_three%402x.png"></image>
+          <image src="{{thirdStepInfo.img}}"></image>
         </view>
         <view class="page_step_text">
           <view class="_font38 _txt_darkgrey">第三步</view>
-          <view class="_font28">取出电梯卡并在电梯刷卡上楼。</view>
+          <view class="_font28">{{thirdStepInfo.intro}}</view>
         </view>
       </view>
     </view>
