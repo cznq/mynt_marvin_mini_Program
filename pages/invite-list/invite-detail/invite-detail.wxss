@@ -18,8 +18,11 @@ page{
   width: 170rpx;
   height: 170rpx;
   box-sizing: border-box;
-  border: 1px solid red;
+  background:rgba(96,146,254,0.5);
   border-radius: 50%;
+  text-align: center;
+  line-height: 170rpx;
+  font-size: 50rpx;
 }
 .mr39-top{
   margin-top:39rpx;

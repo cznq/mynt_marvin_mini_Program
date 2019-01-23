@@ -13,7 +13,7 @@ Page({
     view_type:0,//0:全部邀请，1:我的邀请
     noneData:{
       buttonText:'邀请访客',
-      emptyBtnFunc:'',
+      emptyBtnFunc:'emptyBtnFunc',
       textInfo:'暂无邀请',
       show:false
     },
@@ -32,6 +32,11 @@ Page({
   onLoad: function (options) {
     let _this = this
     _this.get_employee_status(_this)
+  },
+  emptyBtnFunc:function () {
+    wx.navigateTo({
+      url:'../../employee/invite-staff/index'
+    })
   },
   //获取用户状态
   get_employee_status: function(_this) {

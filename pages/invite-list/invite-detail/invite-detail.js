@@ -9,9 +9,10 @@ Page({
   data: {
     invitation_id:"",
     invitation_intro:"",//邀请描述
-    employee_name:"",//邀请人姓名
     appointment_time:"",//预约的时间
-
+    employee_name:"",//邀请人姓名
+    avatar:"",
+    visitor_name:""
   },
 
   /**
@@ -51,16 +52,24 @@ Page({
   },
   set_all_Data:function(data) {
     console.log('data2222',data);
+    let appointment_time = utils.formatTime(data.appointment_time)
+    this.setData({
+      invitation_intro:data.invitation_intro,//邀请描述
+      appointment_time:appointment_time,//预约的时间
+      employee_name:data.employee_name,//邀请人姓名
+      visitor_name:data.visitor.visitor_name,
+      avatar:data.visitor.avatar,
+    })
   },
   inviteVisitor:function () {
     wx.navigateTo({
-      url:'../../invite-visitor/success/index'
+      url:'../../invite-visitor/detail/index?'+'invitation_id' + '=' + this.data.invitation_id
     })
   },
   deleBtn:function(){
     toast.showToast(this, {
       toastStyle: 'toast6',
-      title: '确定要删除邀请人Leo Zhu吗？',
+      title: '确定要删除邀请人'+ this.data.visitor_name + '吗？',
       mask: true,
       isSure: true,
       sureText: '确定',
@@ -76,11 +85,45 @@ Page({
 
   //确定关闭弹层
   bindToastSure: function () {
+    let _this = this;
     toast.hideToast(this, {
       cb: function () {
-        console.log(333);
+        _this.update_invitation_status(_this);
       }
     });
+  },
+  //获取邀请信息
+  update_invitation_status: function(_this) {
+      app.Util.network.POST({
+          url: app.globalData.BASE_API_URL,
+          params: {
+              service: 'visitor',
+              method: 'update_invitation_status',
+              data: JSON.stringify({
+                invitation_id:_this.data.invitation_id
+              })
+          },
+          success: res => {
+            console.log('删除成功',res);
+            if (res.data.sub_code === 0) {
+              wx.redirectTo({
+                url:'../index/index',
+                success:()=>{
+                  toast.showToast(_this, {
+                    toastStyle: 'toast',
+                    title: '删除成功',
+                    duration: 0,
+                    mask:false
+                  });
+                }
+              })
+
+            }
+          },
+          fail: res => {
+              console.log('fail');
+          }
+      })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
