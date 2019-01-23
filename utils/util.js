@@ -38,7 +38,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   function request(method, requestHandler, app) {
 
     var dataJson = JSON.parse(requestHandler.params.data);
-    dataJson.union_id = 'o3iamjuNoRj-eVVGyjtICKpiAOD4';// wx.getStorageSync('xy_session')
+    dataJson.union_id =  wx.getStorageSync('xy_session');
 
     requestHandler.params.data = JSON.stringify(dataJson);
 
