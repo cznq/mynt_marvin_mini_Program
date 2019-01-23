@@ -3,7 +3,7 @@
 <import src="../../../../templates/showToast/showToast.wxml" /> 
 <wxs src="../../../../wxs/subutil.wxs" module="tools" />
 
-<view class="page">
+<view class="page" wx:if="{{compInfo}}">
   <view class="page__hd"></view>
   <view class="page__bd">
     <view class="_flex _flex_item_center _flex_justify_center">

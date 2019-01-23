@@ -54,7 +54,7 @@ Page({
     console.log(e);
     var self = this;
     this.data.btnType = 'trans';
-    this.data.role_invitation_id = e.currentTarget.dataset.roleInvitationId;
+    this.data.role_invitation_id = e.currentTarget.dataset.roleinvitationid;
     toast.showToast(this, {
       toastStyle: 'toast8',
       title: '确定转让管理员权限吗？',
@@ -71,26 +71,19 @@ Page({
    * 删除前台记录
    */
   removeFrontApply: function (e) {
-    var that = this;
-    this.data.role_invitation_id = e.currentTarget.dataset.roleInvitationId;
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'company',
-        method: 'cancel_role_invitation',
-        data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session'),
-          invitation_id: that.data.role_invitation_id
-        })
-      },
-      success: res => {
-        if (res.data.sub_code == 0) {
-          wx.redirectTo({
-            url: '../admin-list/index',
-          })
-        }
-      }
-    })
+    var self = this;
+    self.data.role_invitation_id = e.currentTarget.dataset.roleinvitationid;
+    self.data.btnType = 'cancel';
+    toast.showToast(self, {
+      toastStyle: 'toast4',
+      title: '移除该前台(子管理员)',
+      introduce: '确定撤销该前台(子管理员)的邀请？',
+      mask: true,
+      isSure: true,
+      sureText: '确定',
+      isClose: true,
+      closeText: '取消'
+    });
   },
 
   /**
@@ -98,12 +91,12 @@ Page({
    */
   removeFrontDesk: function (e) {
     var self = this;
-    this.data.btnType = 'remove';
-    this.data.role_invitation_id = e.currentTarget.dataset.roleInvitationId;
-    toast.showToast(this, {
+    self.data.union_id = e.currentTarget.dataset.unionid;
+    self.data.btnType = 'remove';
+    toast.showToast(self, {
       toastStyle: 'toast4',
-      title: '删除前台（子管理员）',
-      introduce: '确定要删除该前台的职务吗？',
+      title: '移除该前台(子管理员)',
+      introduce: '移除后，该前台将失去前台管理权力',
       mask: true,
       isSure: true,
       sureText: '确定',
@@ -116,7 +109,7 @@ Page({
   bindToastSure: function () {
     var _this = this;
     if (_this.data.btnType == 'trans') {
-      if (_this.data.empInfo.role_invitation_id != 0) {
+      if (_this.data.role_invitation_id!=0) {
         toast.hideToast();
         wx.navigateTo({
           url: '../adminShare/index?invitation_id=' + _this.data.role_invitation_id + '&from=inviteFront',
@@ -144,7 +137,7 @@ Page({
             },
             success: res => {
               if (res.data.sub_code == 0) {
-                wx.navigateBack();
+                _this.getStaffList();
               } else {
                 wx.showToast({
                   title: '删除失败',
@@ -157,6 +150,31 @@ Page({
 
         }
       });
+    } else if (_this.data.btnType == 'cancel') {
+      toast.hideToast(_this, {
+        cb: function () {
+          app.Util.network.POST({
+            url: app.globalData.BASE_API_URL,
+            params: {
+              service: 'company',
+              method: 'cancel_role_invitation',
+              data: JSON.stringify({
+                invitation_id: _this.data.role_invitation_id
+              })
+            },
+            success: res => {
+              if (res.data.sub_code == 0) {
+                _this.getStaffList();
+              } else {
+                wx.showToast({
+                  title: '删除失败',
+                  icon: 'none'
+                })
+              }
+            }
+          })
+        }
+      })
     }
   },
   bindToastClose: function () {

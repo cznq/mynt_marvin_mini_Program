@@ -1,6 +1,6 @@
 <!--pages/employee/admin-executive/adminShare/index.wxml-->
 
-<view class="page">
+<view class="page" wx:if="{{inviteInfo}}">
   <view class="page_hd"></view>
 
   <view class="page_bd {{inviteInfo.company_logo?'':'noLogo'}}">

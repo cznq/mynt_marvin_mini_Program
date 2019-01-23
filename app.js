@@ -5,7 +5,7 @@ const Promise = require('utils/promise.js');
  * 抛出的错误对象   app.globalData.fundebug.notifyError(new Error("TEST"));
  * 
  */
-var fundebug = require('utils/fundebug.0.9.0.min.js');
+var fundebug = require('utils/fundebug.1.0.0.min.js');
 // 配置项
 fundebug.init({
   //apikey: "950ab8d47c6dbb69527a604ee684c588369af4dd554cc59fa38e1e4aa5b763ac",  //正式环境
