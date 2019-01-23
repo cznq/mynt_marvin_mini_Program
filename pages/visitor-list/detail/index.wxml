@@ -1,2 +1,20 @@
-<!--pages/visitor-list/detail/index.wxml-->
-<text>pages/visitor-list/detail/index.wxml</text>
+<wxs src="../../../wxs/subutil.wxs" module="tools" />
+<view class="detailsPage">
+    <view class="header">
+        <view class='headImage'>
+            <image wx:if="{{avatar}}" src="{{avatar}}"></image>
+            <view wx:else class="no-image-letter _txtcenter">{{tools.getFirstLetter(visitor)}}</view>
+        </view>
+        <view class='_font36 _txt_gray _txt_center mr39-top'>{{visitor}}</view>
+    </view>
+    <view class='content _border_box'>
+        <li class="_column">
+            <view class="_font24 _txt_darkgrey">到访事由</view>
+            <view class="_font28 _txt_gray detail">{{note}}</view>
+        </li>
+        <li class="_column ml40-top">
+            <view class="_font24 _txt_darkgrey">到访时间</view>
+            <view class="_font28 _txt_gray detail">{{time}}</view>
+        </li>
+    </view>
+</view>
