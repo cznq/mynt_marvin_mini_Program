@@ -32,7 +32,7 @@
     <button class="_font28 cancel-btn" bindtap="searchCancel">取消</button>
 </view>
 <view class="content" wx:else>
-    <input class="search _font24" placeholder="搜索你要查询的访客名称" placeholder-class='' bindtap="showSearch" value="{{keyWord}}" disabled='disabled' />
+    <input class="search _font24" placeholder="搜索你要找的人名" placeholder-class='' bindtap="showSearch" value="{{keyWord}}" disabled='disabled' />
 </view>
 <view wx:if='{{noneData.show}}' class="showNoneData">
     <template wx:if='{{noneData.show}}' is="noneDataPage" data="{{noneData:noneData}}" />
