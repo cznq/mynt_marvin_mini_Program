@@ -234,6 +234,17 @@ Page({
             }
         })
     },
+    visitDetail: function(e) {
+        let jumpData = e.currentTarget.dataset;
+        let avatar = jumpData.avatar,
+            note = jumpData.note,
+            time = jumpData.time,
+            visitor = jumpData.visitor;
+        console.log(jumpData);
+        wx.navigateTo({
+            url: '../detail/index?avatar=' + avatar + '&note=' + note + '&time=' + time + '&visitor=' + visitor
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */

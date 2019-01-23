@@ -39,8 +39,8 @@
 </view>
 <block wx:else>
     <view class="list" wx:for="{{keyWord.length == 0 ? list : sData}}" wx:for-item="item">
-        <view class="visitor">
-            <view class="visit-left" wx:if="{{item.invitation_user_name}}">
+        <view class="visitor" bindtap="visitDetail" data-avatar="{{item.avatar}}" data-visitor=" {{item.visitor_name}}" data-time=" {{item.visit_time}}" data-note=" {{item.note}}">
+            <view class=" visit-left" wx:if="{{item.invitation_user_name}}">
                 <block wx:if="{{item.avatar}}">
                     <image class="logo" src="{{item.avatar}}}"></image>
                 </block>
