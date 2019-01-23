@@ -57,28 +57,31 @@ Page({
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
-        service: 'pay',
-        method: 'order',
+        service: 'wechat',
+        method: 'pay',
         data: JSON.stringify({
-          
+          pay_service: 'BUSINESS_SUITE'
         })
       },
       success: res => {
         if (res.data.result) {
           wx.requestPayment({
-            timeStamp: res.data.result.timeStamp,
+            timeStamp: JSON.stringify(res.data.result.timeStamp),
             nonceStr: res.data.result.nonceStr,
             package: res.data.result.package,
             signType: 'MD5',
             paySign: res.data.result.paySign,
             success: res => {
-
+              console.log('pay success');
             },
             fail: res => {
-
+              wx.showToast({
+                title: '支付失败',
+                icon: 'none'
+              })
             },
             complete: res => {
-
+              console.log('pay complete');
             }
           });
         }
