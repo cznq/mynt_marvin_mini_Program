@@ -41,12 +41,8 @@
     <view class="list" wx:for="{{keyWord.length == 0 ? list : sData}}" wx:for-item="item">
         <view class="visitor" bindtap="visitDetail" data-avatar="{{item.avatar}}" data-visitor=" {{item.visitor_name}}" data-time=" {{item.visit_time}}" data-note=" {{item.note}}">
             <view class=" visit-left" wx:if="{{item.invitation_user_name}}">
-                <block wx:if="{{item.avatar}}">
-                    <image class="logo" src="{{item.avatar}}}"></image>
-                </block>
-                <block wx:else>
-                    <view class="no-image-letter _txtcenter">{{tools.getFirstLetter(item.visitor_name)}}</view>
-                </block>
+                <image class="logo" wx:if="{{item.avatar}}" src="{{item.avatar}}"></image>
+                <view wx:else class="no-image-letter _txtcenter">{{tools.getFirstLetter(item.visitor_name)}}</view>
                 <view class="visit-to _ellipsis">{{item.visitor_name}}</view>
                 <view class="visit-from _ellipsis">邀请人：{{item.invitation_user_name}}</view>
             </view>
