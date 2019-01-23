@@ -35,6 +35,7 @@ page {
     height: 78rpx;
     display: flex;
     align-items: center;
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .filter .filter-view {
@@ -42,7 +43,6 @@ page {
     display: flex;
     align-items: center;
     height: 78rpx;
-    background: rgba(255, 255, 255, 0.5);
     box-shadow: 0px 12px 92px 0px rgba(43, 51, 72, 0.03);
     z-index: 999;
     font-weight: 500;
@@ -109,14 +109,10 @@ page {
 
 /*搜索框*/
 .content {
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     margin: 55rpx 60rpx 0 60rpx;
-}
-
-.content.active {
-    position: absolute;
-    top: 114rpx;
-    padding: 55rpx 60rpx 0;
 }
 
 .content .search {
@@ -125,7 +121,23 @@ page {
     background: rgba(136, 145, 169, 0.1);
     border-radius: 10rpx;
     box-sizing: border-box;
-    padding: 18rpx 32rpx;
+    padding: 6rpx 32rpx;
+}
+
+.content .search-input {
+    width: 500rpx;
+    height: 60rpx;
+    background: rgba(136, 145, 169, 0.1);
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    padding: 6rpx 32rpx;
+}
+
+.content .cancel-btn {
+    color: rgba(26, 42, 75, 1);
+    background: #FFFFFF;
+    height: 60rpx;
+    line-height: 60rpx;
 }
 
 /*访客列表*/
@@ -224,4 +236,19 @@ page {
 .showNoneData {
     overflow: none;
     margin-top: 165rpx;
+}
+
+/*没有访客头像样式*/
+.no-image-letter {
+    float: left;
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+    margin-right: 20rpx;
+    background-color: #6092FE;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 90rpx;
+    font-size: 50rpx;
+    font-weight: 400;
 }

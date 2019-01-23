@@ -3,7 +3,7 @@ const Promise = require('utils/promise.js');
  * Fundebug 打印日志
  * 其它页面引用  app.globalData.fundebug.notify("TEST", "Hello, Fundebug!");
  * 抛出的错误对象   app.globalData.fundebug.notifyError(new Error("TEST"));
- * 
+ *
  */
 var fundebug = require('utils/fundebug.1.0.0.min.js');
 // 配置项
@@ -34,14 +34,14 @@ App({
     //BENIFIT_API_URL: 'https://marvin-benifit-api.slightech.com/mini_program/api',
     //WEB_VIEW_URL: 'https://marvin-official-account.slightech.com',
   },
-  
+
   onLaunch: function () {
     /**  获取手机信息 */
     var that = this;
     wx.getSystemInfo({
       success(res) {
         wx.setStorage({
-          key: 'sysinfo', 
+          key: 'sysinfo',
           data: res,
         })
         if (res.model.search('iPhone X') != -1) {
@@ -55,8 +55,8 @@ App({
         }
       }
     })
-    
-  },    
+
+  },
 
   onShow: function () {
     if (wx.getUpdateManager) {
@@ -86,17 +86,17 @@ App({
         })
       })
     }
-    
-  },     
+
+  },
 
   /**
    * 自定义日志函数
-   */       
+   */
   myLog(tit, cont) {
     var sysinfo = wx.getStorageSync('sysinfo');
     fundebug.notify(tit, cont + '\n\n基础信息：\n' + JSON.stringify(sysinfo));
   },
-  
+
   Util: require('utils/util.js'),
 
   /**
@@ -129,7 +129,7 @@ App({
         }
       })
     }
-    
+
   },
 
   /**
@@ -167,7 +167,7 @@ App({
             url: '/pages/login/index?route=' + url + '&opt=' + opt,
           })
         }
-        
+
       },
       fail: res => {
         callback();
@@ -198,7 +198,7 @@ App({
   /**
    * 查看服务状态开启
    * serviceStatus   状态，0：关闭，1：开通，2：试用
-   * param: service 
+   * param: service
    * EMPLOYEE_TAKE_CARD     员工取卡
    * SHOW_AD_AFTER_TAKE_CARD     取卡后播放广告
    * ATTEND_FUNCTION     无人值守
@@ -328,7 +328,7 @@ App({
         }
       }
     })
-    
+
   },
 
   /**
@@ -357,7 +357,7 @@ App({
             icon: 'none'
           })
         }
-        
+
       },
       fail: res => {
 
@@ -395,7 +395,7 @@ App({
         } else if (res.data.sub_msg =='访客不存在') {
           callback('');
         }
-        
+
       },
       fail: res => {
         console.log('')
