@@ -145,7 +145,8 @@ Page({
             searchFocus: true,
             timeChoose: false,
             typeChoose: false,
-            sData: {}
+            sData: {},
+            'noneData.show': false
         });
     },
     searchCancel: function() {
@@ -153,19 +154,38 @@ Page({
         _this.setData({
             searchModal: false,
             searchFocus: false,
-            keyWord: ''
+            keyWord: '',
+            'noneData.show': _this.data.list.length ? false : true
         });
     },
     searchInput: function(e) {
         let keyWord = e.detail.value;
         let _this = this;
-        _this.setData({
-            keyWord: keyWord
-        });
+        if (keyWord.length == 0) {
+            _this.setData({
+                searchModal: false,
+                searchFocus: false,
+                keyWord: '',
+                'noneData.show': _this.data.list.length ? false : true
+            });
+        } else {
+            _this.setData({
+                keyWord: keyWord
+            }, _this.showList('cover'));
+        }
     },
-    searchSubmit: function() {
+    searchSubmit: function(e) {
+        let keyWord = e.detail.value;
         let _this = this;
-        _this.showList('cover');
+        if (keyWord.length == 0) {
+            _this.setData({
+                keyWord: keyWord
+            });
+        } else {
+            _this.setData({
+                keyWord: keyWord
+            }, _this.showList('cover'));
+        }
     },
     // 调取接口查询访客列表
     showList: function(dtype) {
@@ -179,10 +199,8 @@ Page({
             },
             success: res => {
                 console.log("获取公司信息:", res.data);
-                console.log("搜索条件", _this.data);
                 if (res.data.sub_code == 0) {
                     var company_id = res.data.result.company_id;
-                    console.log(company_id);
                     app.Util.network.POST({
                         url: app.globalData.BASE_API_URL,
                         params: {
@@ -197,7 +215,6 @@ Page({
                             })
                         },
                         success: res => {
-                            console.log(dtype);
                             console.log("获取访客信息:", res.data.result);
                             if (res.data.sub_code == 0) {
                                 let rtData = res.data.result;
@@ -261,7 +278,6 @@ Page({
             note = jumpData.note,
             time = jumpData.time,
             visitor = jumpData.visitor;
-        console.log(jumpData);
         wx.navigateTo({
             url: '../detail/index?avatar=' + avatar + '&note=' + note + '&time=' + time + '&visitor=' + visitor
         })
