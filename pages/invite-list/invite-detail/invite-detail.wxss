@@ -17,12 +17,15 @@ page{
 .headImage{
   width: 170rpx;
   height: 170rpx;
-  box-sizing: border-box;
-  background:rgba(96,146,254,0.5);
-  border-radius: 50%;
   text-align: center;
   line-height: 170rpx;
-  font-size: 50rpx;
+  font-size: 60rpx;
+  font-weight:500;
+  color:#fff;
+  box-sizing: border-box;
+  background:rgba(96,146,254,1);
+  box-shadow:0px 6px 92px 0px rgba(43,51,72,0.12);
+  border-radius: 50%;
 }
 .mr39-top{
   margin-top:39rpx;

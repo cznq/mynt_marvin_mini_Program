@@ -26,7 +26,7 @@
   <!-- 邀请列表开始 -->
   <view class="content">
     <input class="search _font24" placeholder="搜索你要找的人名" placeholder-class='' bindtap="startSearchInput" disabled='disabled' />
-    <view wx:for='{{inviteList}}' data-invitationId="{{item.invitation_id}}" wx:key="" bindtap='currentEmployee'>
+    <view wx:for='{{inviteList}}' data-invitationId="{{item.invitation_id}}" wx:key="" bindtap='currentEmployee' class="inviteListli">
       <!--  -->
       <view class="li _row _cen_space">
         <view class='info _row _cen_start'>

@@ -130,6 +130,9 @@ page{
 .content .li{
   margin-top:60rpx;
 }
+.content .inviteListli:last-child{
+  padding-bottom: 60rpx;
+}
 .info image{
   width: 70rpx;
   height: 70rpx;

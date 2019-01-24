@@ -23,6 +23,7 @@ Page({
       show: false
     },
     inviteList: [],
+    inviteListCount:0,
     searchStaffList: [],
     searchModal: false
   },
@@ -115,8 +116,10 @@ Page({
         if (!_this.data.searchModal) { //邀请列表
           if (data.return_code && data.result && data.return_code === 'SUCCESS') {
             let result = data.result
+            let inviteList = _this.data.inviteList.concat(result.data);
             _this.setData({
-              inviteList: result.data
+              inviteList: inviteList,
+              inviteListCount:result.count
             })
 
           } else {
@@ -305,13 +308,24 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    // this.data.page
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
+    let _this = this;
+    let minVal = _this.data.inviteListCount - _this.data.inviteList.length
+    if (minVal > 0) {
+      let page = _this.data.page + 1
+      console.log('page1:',page)
+      _this.setData({
+        page:page
+      })
+        console.log('page2:',_this.data.page);
+      _this.get_visitor_list(_this, _this.data.view_type, _this.data.time_range, _this.data.page)
+    }
 
   },
 
