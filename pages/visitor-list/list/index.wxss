@@ -75,7 +75,7 @@ page {
 }
 
 .filter .filter-view li {
-    height: 79rpx;
+    height: 80rpx;
     color: #1A2A4B;
     box-sizing: border-box;
     border-bottom: 1rpx solid rgba(220, 220, 220, 0.5);
@@ -89,7 +89,7 @@ page {
     left: 0;
     width: 750rpx;
     background: rgba(255, 255, 255, 1);
-    padding-left: 57rpx;
+    padding: 0 57rpx;
     overflow: hidden;
     height: 0;
     transition: height .3s;
@@ -101,7 +101,7 @@ page {
 }
 
 .filter .filter-view .seleType.active {
-    height: 243rpx;
+    height: 244rpx;
     transition: height .3s;
 }
 
