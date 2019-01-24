@@ -62,7 +62,7 @@
             </view>
             <view class="visit-right">
                 <view class="visit-time">
-                    <text>{{item.visit_time}}</text>
+                    <text>{{item.time}}</text>
                 </view>
             </view>
         </view>

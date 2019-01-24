@@ -225,12 +225,15 @@ page {
     color: #1A2A4B;
     font-size: 36rpx;
     font-weight: normal;
+    line-height: 1;
 }
 
 .list .visitor .visit-left .visit-from {
     font-size: 22rpx;
     font-weight: 500;
     color: #8891A9;
+    line-height: 1;
+    margin-top: 12rpx;
 }
 
 .list .visitor .visit-right {
@@ -258,11 +261,11 @@ page {
 }
 
 .list image {
-    width: 100rpx;
-    height: 100rpx;
+    width: 70rpx;
+    height: 70rpx;
     border-radius: 50%;
     float: left;
-    margin-right: 20rpx;
+    margin-right: 30rpx;
 }
 
 .list .visitor .visit-left-no-invite {
@@ -297,14 +300,14 @@ page {
 /*没有访客头像样式*/
 .no-image-letter {
     float: left;
-    width: 100rpx;
-    height: 100rpx;
+    width: 70rpx;
+    height: 70rpx;
     border-radius: 50%;
-    margin-right: 20rpx;
+    margin-right: 30rpx;
     background-color: #6092FE;
     color: #FFFFFF;
     text-align: center;
-    line-height: 90rpx;
-    font-size: 50rpx;
+    line-height: 70rpx;
+    font-size: 28rpx;
     font-weight: 400;
 }
