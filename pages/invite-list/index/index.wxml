@@ -67,3 +67,5 @@
 
 <template wx:if='{{noneData.show}}' is="noneDataPage" data="{{noneData:noneData}}" />
 <view wx:if="{{allTime}}" catchtouchmove='maskMove' class="mask"></view>
+<import src="../../../templates/showToast/showToast.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />

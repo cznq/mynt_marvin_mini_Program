@@ -104,7 +104,6 @@ Page({
               })
           },
           success: res => {
-            console.log('删除成功',res);
             if (res.data.sub_code === 0) {
               wx.redirectTo({
                 url:'../index/index',
@@ -112,7 +111,7 @@ Page({
                   toast.showToast(_this, {
                     toastStyle: 'toast',
                     title: '删除成功',
-                    duration: 0,
+                    duration: 1500,
                     mask:false
                   });
                 }

@@ -1,5 +1,5 @@
 var app = getApp()
-
+var toast = require('../../../templates/showToast/showToast');
 Page({
 
   /**
@@ -23,7 +23,7 @@ Page({
       show: false
     },
     inviteList: [],
-    inviteListCount:0,
+    inviteListCount: 0,
     searchStaffList: [],
     searchModal: false
   },
@@ -119,13 +119,13 @@ Page({
             if (page === 1) {
               _this.setData({
                 inviteList: result.data,
-                inviteListCount:result.count
+                inviteListCount: result.count
               })
-            }else {
+            } else { //搜索列表
               let inviteList = _this.data.inviteList.concat(result.data);
               _this.setData({
                 inviteList: inviteList,
-                inviteListCount:result.count
+                inviteListCount: result.count
               })
             }
           } else {
@@ -157,7 +157,7 @@ Page({
   },
   headTab: function(e) {
     this.setData({
-      page:1
+      page: 1
     })
     let _this = this
     let _data = _this.data;
@@ -189,7 +189,7 @@ Page({
   },
   seleTime: function(e) {
     this.setData({
-      page:1
+      page: 1
     })
     let _this = this
     let _data = _this.data;
@@ -238,7 +238,7 @@ Page({
   searchCurrenEmployee: function(e) {
     let invitationId = e.currentTarget.dataset.invitationid
     wx.navigateTo({
-      url: '../invite-detail/invite-detail?'+ 'invitation_id' + '=' + invitationId
+      url: '../invite-detail/invite-detail?' + 'invitation_id' + '=' + invitationId
     })
 
     this.setData({
@@ -332,9 +332,16 @@ Page({
     if (minVal > 0) {
       let page = _this.data.page + 1
       _this.setData({
-        page:page
+        page: page
       })
       _this.get_visitor_list(_this, _this.data.view_type, _this.data.time_range, _this.data.page)
+    }else {
+      toast.showToast(_this, {
+        toastStyle: 'toast',
+        title: '全部加载完毕',
+        duration: 1000,
+        mask:false
+      });
     }
 
   },
