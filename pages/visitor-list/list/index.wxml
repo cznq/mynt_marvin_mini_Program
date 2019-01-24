@@ -27,12 +27,22 @@
         </view>
     </view>
 </view>
-<view class="content" wx:if="{{searchModal}}">
-    <input class="search-input _font24" placeholder="搜索" placeholder-class='' bindtap="searchStart" bindconfirm="searchSubmit" bindinput="searchInput" focus="{{searchFocus}}" value="{{keyWord}}" />
-    <button class="_font28 cancel-btn" bindtap="searchCancel">取消</button>
+<view class="search-page" wx:if="{{searchModal}}">
+    <form bindsubmit="searchSubmit">
+        <view class="search">
+            <input class="search-input _font24" type="text" name="search" placeholder="搜索" confirm-type="search" placeholder-class="search-placeholder" value="{{search}}" bindconfirm="searchSubmit" bindinput="searchInput" focus='true'></input>
+            <button wx:if="{{clearSearchShow}}" class="btn clear-btn" bindtap="clearSearch"><text class="iconfont icon-cha1"></text></button>
+            <button class="btn cancel-btn _font28" bindtap="searchCancel">取消</button>
+        </view>
+    </form>
 </view>
-<view class="content" wx:else>
-    <input class="search _font24" placeholder="搜索你要找的人名" placeholder-class='' bindtap="showSearch" value="{{keyWord}}" disabled='disabled' />
+<view class="page__hd" wx:else>
+    <form>
+        <view class="search">
+            <input class="search-input _font24" type="text" name="search" placeholder="搜索你要找的人名" placeholder-class="search-placeholder" bindtap="showSearch" disabled='disabled' value="{{keyWord}}"></input>
+            <button class="btn search-btn" form-type="submit"><text class="iconfont icon-sousuo _font44"></text></button>
+        </view>
+    </form>
 </view>
 <view wx:if='{{noneData.show}}' class="showNoneData">
     <template wx:if='{{noneData.show}}' is="noneDataPage" data="{{noneData:noneData}}" />

@@ -1,4 +1,5 @@
 /* pages/visitor-list/list/index.wxss */
+@import "../../employee/public/style.wxss";
 @import "../../../templates/noneData/noneData.wxss";
 
 page {
@@ -36,6 +37,7 @@ page {
     display: flex;
     align-items: center;
     background: rgba(255, 255, 255, 0.5);
+    /*background: #a3ee;*/
 }
 
 .filter .filter-view {
@@ -82,7 +84,7 @@ page {
 .filter .filter-view .seleTime,
 .filter .filter-view .seleType {
     position: absolute;
-    top: 192rpx;
+    top: 190rpx;
     left: 0;
     width: 750rpx;
     background: rgba(255, 255, 255, 1);
@@ -102,56 +104,109 @@ page {
     transition: height .3s;
 }
 
-
 .filter .filter-view li:last-child {
     border-bottom: 0;
 }
 
 /*搜索框*/
-.content {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin: 55rpx 60rpx 0 60rpx;
+.page__hd {
+    padding: 0 60rpx;
+    line-height: 1;
+    margin-top: 55rpx;
+    background: #fff;
+    /*background: #b33;*/
 }
 
-.content .search {
-    width: 630rpx;
-    height: 60rpx;
-    background: rgba(136, 145, 169, 0.1);
-    border-radius: 10rpx;
-    box-sizing: border-box;
-    padding: 6rpx 32rpx;
+.search {
+    margin-top: 15px;
 }
 
-.content .search-input {
-    width: 500rpx;
-    height: 60rpx;
-    background: rgba(136, 145, 169, 0.1);
-    border-radius: 10rpx;
-    box-sizing: border-box;
-    padding: 6rpx 32rpx;
+.search-page {
+    position: relative;
+    z-index: 11;
+    line-height: 1;
+    margin-top: 55rpx;
+    background: #fff;
 }
 
-.content .cancel-btn {
-    color: rgba(26, 42, 75, 1);
-    background: #FFFFFF;
+.search-page .search {
+    position: relative;
+    padding: 0 60rpx;
+    margin-top: 0;
+    /*border-bottom: 2rpx solid rgba(220, 220, 220, .5);*/
+}
+
+.icon-sousuo {
+    color: rgba(136, 145, 169, .3);
+}
+
+.search-page .clear-btn {
+    position: absolute;
+    right: 140rpx;
+    top: 0;
+    height: 56rpx;
+    width: 56rpx;
+    padding: 0;
+    line-height: 56rpx;
+    text-align: center;
+    background-color: transparent;
+}
+
+.search-page .search-input {
+    padding: 0 60rpx 0 30rpx;
+    margin: 0 80rpx 0 0;
     height: 60rpx;
     line-height: 60rpx;
+}
+
+.search .search-input {
+    height: 60rpx;
+    line-height: 60rpx;
+}
+
+.page__hd .search .search-btn {
+    position: absolute;
+    left: 20rpx;
+    top: 0;
+    height: 60rpx;
+    width: 60rpx;
+    padding: 0;
+    line-height: 60rpx;
+    text-align: center;
+    background-color: transparent;
+
+}
+
+.search-page .cancel-btn {
+    position: absolute;
+    right: 30rpx;
+    top: 0;
+    height: 56rpx;
+    background: transparent;
+    line-height: 56rpx;
+    text-align: center;
+}
+
+.icon-cha1 {
+    color: rgba(186, 191, 201, 1);
+}
+
+.search-result {
+    padding: 0 60rpx;
 }
 
 /*访客列表*/
 .list {
     width: 750rpx;
     background: linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(252, 252, 252, 1));
-    /*margin-top: 365rpx;*/
     position: relative;
+    /*background: #c55aaa;*/
 }
 
 .list .visitor {
     width: 629rpx;
     height: 70rpx;
-    margin-top: 90rpx;
+    margin-top: 60rpx;
     padding: 0 0 0 61rpx;
     display: flex;
     justify-content: space-between;
@@ -229,7 +284,8 @@ page {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 1);
+    opacity: 0.1;
     z-index: 998;
 }
 
