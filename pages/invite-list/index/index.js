@@ -116,12 +116,18 @@ Page({
         if (!_this.data.searchModal) { //邀请列表
           if (data.return_code && data.result && data.return_code === 'SUCCESS') {
             let result = data.result
-            let inviteList = _this.data.inviteList.concat(result.data);
-            _this.setData({
-              inviteList: inviteList,
-              inviteListCount:result.count
-            })
-
+            if (page === 1) {
+              _this.setData({
+                inviteList: result.data,
+                inviteListCount:result.count
+              })
+            }else {
+              let inviteList = _this.data.inviteList.concat(result.data);
+              _this.setData({
+                inviteList: inviteList,
+                inviteListCount:result.count
+              })
+            }
           } else {
             _this.setData({
               inviteList: [],
@@ -150,7 +156,10 @@ Page({
     })
   },
   headTab: function(e) {
-    let _this = this;
+    this.setData({
+      page:1
+    })
+    let _this = this
     let _data = _this.data;
     let name = e.target.dataset.name;
     if (name === 'all_invit') {
@@ -179,7 +188,10 @@ Page({
     }
   },
   seleTime: function(e) {
-    let _this = this;
+    this.setData({
+      page:1
+    })
+    let _this = this
     let _data = _this.data;
     let seleTime = e.target.dataset.name;
     if (seleTime === '全部时间') {
@@ -236,7 +248,7 @@ Page({
     })
   },
   searchInput: function(e) {
-    let _this = this;
+    let _this = this
     let _data = _this.data;
     let searchValue = e.detail.value;
     if (searchValue) {
@@ -315,15 +327,13 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    let _this = this;
+    let _this = this
     let minVal = _this.data.inviteListCount - _this.data.inviteList.length
     if (minVal > 0) {
       let page = _this.data.page + 1
-      console.log('page1:',page)
       _this.setData({
         page:page
       })
-        console.log('page2:',_this.data.page);
       _this.get_visitor_list(_this, _this.data.view_type, _this.data.time_range, _this.data.page)
     }
 
