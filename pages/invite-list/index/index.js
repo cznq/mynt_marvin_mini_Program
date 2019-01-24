@@ -240,12 +240,6 @@ Page({
     wx.navigateTo({
       url: '../invite-detail/invite-detail?' + 'invitation_id' + '=' + invitationId
     })
-
-    this.setData({
-      search: '',
-      clearSearchShow: false,
-      searchModal: false
-    })
   },
   searchInput: function(e) {
     let _this = this
@@ -299,7 +293,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.setData({
+      searchModal: false,
+      clearSearchShow: false,
+      searchStaffList: [],
+      ['searchNoneData.show']: false
+    })
   },
 
   /**
