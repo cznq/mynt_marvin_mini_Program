@@ -51,7 +51,7 @@ Page({
       })
   },
   set_all_Data:function(data) {
-    console.log('data2222',data);
+    console.log('data',data);
     let appointment_time = utils.formatTime(data.appointment_time)
     this.setData({
       invitation_intro:data.invitation_intro,//邀请描述

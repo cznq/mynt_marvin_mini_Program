@@ -19,16 +19,16 @@ App({
     open_id_type: 1,
     isIphoneX: false,
     BASE_IMG_URl: 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/',
-    // 开发环境 
+    // 开发环境
     //BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
     //BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
-    //BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/', //内网环境
-    //BENIFIT_API_URL: 'http://192.168.1.204:10004/mini_program/api', //内网环境
-    //WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
-    // 测试环境 
-    BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
-    BENIFIT_API_URL: 'https://marvin-benifit-api-test.slightech.com/mini_program/api',
-    WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com',
+    BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/', //内网环境
+    BENIFIT_API_URL: 'http://192.168.1.204:10004/mini_program/api', //内网环境
+    WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
+    // 测试环境
+    // BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
+    // BENIFIT_API_URL: 'https://marvin-benifit-api-test.slightech.com/mini_program/api',
+    // WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com',
     // 正式环境
     //BASE_API_URL: 'https://marvin-api.slightech.com/mini_program/api/',
     //BENIFIT_API_URL: 'https://marvin-benifit-api.slightech.com/mini_program/api',
