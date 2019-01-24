@@ -7,6 +7,8 @@ Page({
      * 页面的初始数据
      */
     data: {
+        seleTime: 'timeChoose',
+        seleType: 'typeChoose',
         timeChoose: false,
         typeChoose: false,
         timeText: '全部时间',
@@ -50,7 +52,7 @@ Page({
         let seleTime = e.target.dataset.name;
         let _this = this;
         switch (seleTime) {
-            case 'typeChoose':
+            case 'timeChoose':
                 var timeText = "全部时间";
                 var time_range = 0;
                 break;
@@ -106,7 +108,7 @@ Page({
         let seleType = e.target.dataset.name;
         let _this = this;
         switch (seleType) {
-            case 'timeChoose':
+            case 'typeChoose':
                 var typeText = "全部类型";
                 var visitor_type = 0;
                 break;

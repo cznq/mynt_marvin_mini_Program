@@ -156,7 +156,7 @@ page{
 }
 /* search获取焦点查询 */
 .search-page {
-  position: absolute;
+  position: fixed;
   height: 100%;
   width: 100%;
   background: rgba(249, 250, 251, 1);
