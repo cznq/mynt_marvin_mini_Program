@@ -80,7 +80,7 @@ Page({
             page: 1,
             list: {}
         }, () => {
-            _this.showList();
+            _this.showList('cover');
         });
     },
     typeChooseState: function() {
@@ -132,7 +132,7 @@ Page({
             page: 1,
             list: {}
         }, () => {
-            _this.showList();
+            _this.showList('cover');
         });
     },
     // 搜索
@@ -143,6 +143,7 @@ Page({
             searchFocus: true,
             timeChoose: false,
             typeChoose: false,
+            sData: {}
         });
     },
     searchCancel: function() {
@@ -162,10 +163,10 @@ Page({
     },
     searchSubmit: function() {
         let _this = this;
-        _this.showList();
+        _this.showList('cover');
     },
     // 调取接口查询访客列表
-    showList: function() {
+    showList: function(dtype) {
         let _this = this;
         app.Util.network.POST({
             url: app.globalData.BASE_API_URL,
@@ -179,6 +180,7 @@ Page({
                 console.log("搜索条件", _this.data);
                 if (res.data.sub_code == 0) {
                     var company_id = res.data.result.company_id;
+                    console.log(company_id);
                     app.Util.network.POST({
                         url: app.globalData.BASE_API_URL,
                         params: {
@@ -193,6 +195,7 @@ Page({
                             })
                         },
                         success: res => {
+                            console.log(dtype);
                             console.log("获取访客信息:", res.data.result);
                             if (res.data.sub_code == 0) {
                                 let rtData = res.data.result;
@@ -206,15 +209,31 @@ Page({
                                     });
                                     // 如果搜索条件不为空则放入搜素对象内,否则放入正常数据对象
                                     if (_this.data.keyWord.length != 0) {
-                                        _this.setData({
-                                            totalPage: rtData.total_page,
-                                            sData: rtData.data
-                                        })
+                                        if (dtype == 'cover') {
+                                            _this.setData({
+                                                totalPage: rtData.total_page,
+                                                sData: rtData.data
+                                            })
+                                        } else {
+                                            _this.setData({
+                                                totalPage: rtData.total_page,
+                                                page: _this.data.page + 1,
+                                                sData: _this.data.sData.concat(rtData.data)
+                                            })
+                                        }
                                     } else {
-                                        _this.setData({
-                                            totalPage: rtData.total_page,
-                                            list: rtData.data
-                                        })
+                                        if (dtype == 'cover') {
+                                            _this.setData({
+                                                totalPage: rtData.total_page,
+                                                list: rtData.data
+                                            })
+                                        } else {
+                                            _this.setData({
+                                                totalPage: rtData.total_page,
+                                                page: _this.data.page + 1,
+                                                list: _this.data.list.concat(rtData.data)
+                                            })
+                                        }
                                     }
                                 }
                             } else {
@@ -250,7 +269,7 @@ Page({
      */
     onLoad: function(options) {
         let _this = this;
-        _this.showList();
+        _this.showList('cover');
     },
 
     /**
@@ -286,66 +305,7 @@ Page({
         if (_this.data.total_page <= _this.data.page) {
             return false;
         }
-        app.Util.network.POST({
-            url: app.globalData.BASE_API_URL,
-            params: {
-                service: 'company',
-                method: 'get_info',
-                data: JSON.stringify({
-
-                })
-            },
-            success: res => {
-                console.log("获取公司信息:", res.data);
-                if (res.data.sub_code == 0) {
-                    var company_id = res.data.result.company_id;
-                    app.Util.network.POST({
-                        url: app.globalData.BASE_API_URL,
-                        params: {
-                            service: 'visitor',
-                            method: 'get_visitor_list',
-                            data: JSON.stringify({
-                                company_id: company_id,
-                                time_range: _this.data.time_range,
-                                visitor_type: _this.data.visitor_type,
-                                page: _this.data.page,
-                                visitor_name: _this.data.keyWord,
-                            })
-                        },
-                        success: res => {
-                            console.log("获取访客信息:", res.data.result);
-                            if (res.data.sub_code == 0 && res.data.result) {
-                                let rtData = res.data.result;
-                                // 如果搜索条件不为空则放入搜素对象内,否则放入正常数据对象
-                                if (_this.data.keyWord.length != 0) {
-                                    _this.setData({
-                                        totalPage: rtData.total_page,
-                                        page: _this.data.page + 1,
-                                        sData: _this.data.sData.concat(rtData.data)
-                                    })
-                                } else {
-                                    _this.setData({
-                                        totalPage: rtData.total_page,
-                                        page: _this.data.page + 1,
-                                        list: _this.data.list.concat(rtData.data)
-                                    })
-                                }
-                            } else {
-                                _this.setData({
-                                    'noneData.show': true,
-                                });
-                            }
-                        },
-                        fail: res => {
-                            console.log(res);
-                        }
-                    })
-                }
-            },
-            fail: res => {
-                console.log(res);
-            }
-        })
+        _this.showList('add');
     },
 
     /**

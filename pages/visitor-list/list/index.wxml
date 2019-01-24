@@ -48,7 +48,7 @@
     <template wx:if='{{noneData.show}}' is="noneDataPage" data="{{noneData:noneData}}" />
 </view>
 <block wx:else>
-    <view class="list" wx:for="{{keyWord.length == 0 ? list : sData}}" wx:for-item="item">
+    <view class="list" wx:for="{{keyWord.length == 0 ? (searchModal == true ? sData : list) :(searchModal == true ? sData : list)}}" wx:for-item="item">
         <view class="visitor" bindtap="visitDetail" data-avatar="{{item.avatar}}" data-visitor=" {{item.visitor_name}}" data-time=" {{item.visit_time}}" data-note=" {{item.note}}">
             <view class=" visit-left" wx:if="{{item.invitation_user_name}}">
                 <image class="logo" wx:if="{{item.avatar}}" src="{{item.avatar}}"></image>
@@ -62,7 +62,7 @@
             </view>
             <view class="visit-right">
                 <view class="visit-time">
-                    <text>{{item.visit_time}}</text>
+                    <text>{{item.time}}</text>
                 </view>
             </view>
         </view>
