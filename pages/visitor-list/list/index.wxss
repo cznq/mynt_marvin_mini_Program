@@ -36,7 +36,8 @@ page {
     height: 78rpx;
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 12rpx 12rpx 92rpx rgba(43, 51, 72, 0.03) inset;
     /*background: #a3ee;*/
 }
 
@@ -283,7 +284,6 @@ page {
 /*遮盖层*/
 .mask {
     position: absolute;
-    top: 0;
     bottom: 0;
     left: 0;
     right: 0;

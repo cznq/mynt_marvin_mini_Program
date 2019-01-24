@@ -68,4 +68,4 @@
         </view>
     </view>
 </block>
-<view wx:if="{{timeChoose || typeChoose}}" class="mask"></view>
+<view wx:if="{{timeChoose || typeChoose}}" class="mask" style="top: {{timeChoose?'510':'433'}}rpx;"></view>
