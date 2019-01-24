@@ -50,7 +50,7 @@ Page({
         data: JSON.stringify({})
       },
       success: res => {
-        console.log('响应:', res);
+        // console.log('响应:', res);
         let data = res.data;
         if (data.sub_code === 0) {
           switch (data.result.role) { //0:角色待定,1:普通职员,2:前台,3:公司管理员
@@ -111,7 +111,7 @@ Page({
         })
       },
       success: res => {
-        console.log('邀请列表响应:', res)
+        // console.log('邀请列表响应:', res)
         let data = res.data
         if (!_this.data.searchModal) { //邀请列表
           if (data.return_code && data.result && data.return_code === 'SUCCESS') {

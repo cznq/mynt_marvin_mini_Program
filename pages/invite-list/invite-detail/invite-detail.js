@@ -39,7 +39,7 @@ Page({
               })
           },
           success: res => {
-            console.log('响应invitation_id:',res);
+            // console.log('响应invitation_id:',res);
             let data = res.data;
             if (data.result && data.return_code ==="SUCCESS") {
               callback && callback(data.result)
@@ -51,7 +51,6 @@ Page({
       })
   },
   set_all_Data:function(data) {
-    console.log('data',data);
     let appointment_time = utils.formatTime(data.appointment_time)
     this.setData({
       invitation_intro:data.invitation_intro,//邀请描述
