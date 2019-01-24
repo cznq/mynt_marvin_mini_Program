@@ -163,7 +163,10 @@ Page({
         let _this = this;
         if (keyWord.length == 0) {
             _this.setData({
-                keyWord: keyWord
+                searchModal: false,
+                searchFocus: false,
+                keyWord: '',
+                'noneData.show': _this.data.list.length ? false : true
             });
         } else {
             _this.setData({
