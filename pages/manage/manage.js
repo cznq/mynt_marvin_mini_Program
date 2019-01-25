@@ -117,8 +117,7 @@ Page({
                 })
             },
             success: res => {
-                console.log('get_review_status API return:');
-                console.log(res);
+                console.log('get_review_status API return:', res);
                 var resdata = res.data.result;
                 if (res.data.sub_code == 0) {
                     if (resdata.employee_status === 0) {
@@ -192,17 +191,17 @@ Page({
     },
     //自动值守
     unattendedSetting: function() {
-        var that =this;
+        var that = this;
         if (that.data.cd.attend_status == 0) {
             wx.navigateTo({
                 url: '/pages/company/unattended-setting/setHome/index',
             })
-        } else if (that.data.cd.attend_status == 1){
+        } else if (that.data.cd.attend_status == 1) {
             wx.navigateTo({
                 url: '/pages/company/unattended-setting/setting/index',
             })
         }
-        
+
     },
     //邀请访客
     inviteVisitor: function() {
@@ -315,8 +314,7 @@ Page({
             },
             showLoading: false,
             success: res => {
-                console.log('请求自动值守接口返回数据:');
-                console.log(res);
+                console.log('请求自动值守接口返回数据:', res);
                 if (res.data.result.service_status != 0) {
                     _this.setData({
                         'application[5].isShow': true //自动值守

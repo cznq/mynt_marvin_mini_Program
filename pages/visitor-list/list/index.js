@@ -282,6 +282,11 @@ Page({
             url: '../detail/index?avatar=' + avatar + '&note=' + note + '&time=' + time + '&visitor=' + visitor
         })
     },
+    emptyButton: function() {
+        wx.navigateTo({
+            url: '../../employee/invite-staff/index'
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
