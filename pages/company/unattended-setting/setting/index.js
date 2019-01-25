@@ -30,23 +30,17 @@ Page({
             success: res => {
                 console.log(res);
                 if (res.data.sub_code == 0) {
-                    if (res.data.result.service_suite == 0) {
+                    if (res.data.result.attend_status == 0) {//有人值守
                         _this.setData({
                             isChecked: false,
                             isShow: true
                         })
-                    } else {
-                        if (res.data.result.attend_status == 1) {
-                            _this.setData({
-                                isChecked: true,
-                                isShow: false
-                            })
-                        } else {
-                            _this.setData({
-                                isChecked: false,
-                                isShow: true
-                            })
-                        }
+                    } else if (res.data.result.attend_status == 1){//无人值守
+                        _this.setData({
+                            isChecked: true,
+                             isShow: false
+                        })
+                        
                     }
                 } else {
                     console.log(res.data.sub_msg);
