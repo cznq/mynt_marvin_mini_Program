@@ -10,8 +10,7 @@
     <view class="inviteList _txt_gray">邀请列表</view>
   </view>
 </view>
-
-<block wx:if='{{!noneData.show && !searchModal}}'>
+<block wx:if="{{ render && inviteList.length !== 0}}">
   <!-- 下拉时间组件开始 -->
   <view catchtap='allTimeState' class="allTime _row _cen_center" catchtouchmove='maskMove'>
     <view class='_font26'>{{seleTime}}</view>
@@ -23,6 +22,7 @@
       <view data-name='本月' class="li _font26 _row _cen_start {{time_range === 3?'_txt_blue':''}}">本月</view>
     </view>
   </view>
+<block wx:if='{{ !noneData.show && !searchModal }}'>
   <!-- 邀请列表开始 -->
   <view class="content">
     <input class="search _font24" placeholder="搜索你要找的人名" placeholder-class='' bindtap="startSearchInput" disabled='disabled' />
@@ -38,6 +38,7 @@
       </view>
     </view>
   </view>
+</block>
 </block>
 <!-- 搜索页面开始 -->
 <view class="search-page" wx:if="{{searchModal}}">

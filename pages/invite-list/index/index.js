@@ -6,8 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    identity: 1, //0:非员工,1:普通职员,2:前台,3:公司管理员
+    identity: 0, //0:非员工,1:普通职员,2:前台,3:公司管理员
     allTime: false,
+    render: true,
     seleTime: '全部时间',
     time_range: 0, //0:全部,1:今天,2:本周,3:本月
     view_type: 0, //0:全部邀请，1:我的邀请
@@ -149,6 +150,9 @@ Page({
             })
           }
         }
+        // _this.setData({
+        //   render: true
+        // })
       },
       fail: res => {
         console.log('fail');
@@ -189,7 +193,8 @@ Page({
   },
   seleTime: function(e) {
     this.setData({
-      page: 1
+      page: 1,
+      ['noneData.show']: false
     })
     let _this = this
     let _data = _this.data;
@@ -334,12 +339,12 @@ Page({
         page: page
       })
       _this.get_visitor_list(_this, _this.data.view_type, _this.data.time_range, _this.data.page)
-    }else {
+    } else {
       toast.showToast(_this, {
         toastStyle: 'toast',
         title: '全部加载完毕',
         duration: 1000,
-        mask:false
+        mask: false
       });
     }
 

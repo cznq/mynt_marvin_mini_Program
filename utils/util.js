@@ -1,8 +1,8 @@
-
 var md5 = require('md5.js');
 var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
-; (function () {
+;
+(function() {
   // 网络请求
 
   // GET请求
@@ -14,14 +14,14 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     checkRequest('POST', requestHandler)
   }
   //检测是否已登陆
-  function checkRequest(method, requestHandler){
+  function checkRequest(method, requestHandler) {
     var app = getApp();
 
-    if (requestHandler.params.method == 'login'){
+    if (requestHandler.params.method == 'login') {
       request(method, requestHandler, app)
     } else {
 
-      app.checkWxLogin(function(){
+      app.checkWxLogin(function() {
         request(method, requestHandler, app)
       })
 
@@ -38,7 +38,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   function request(method, requestHandler, app) {
 
     var dataJson = JSON.parse(requestHandler.params.data);
-    dataJson.union_id =  wx.getStorageSync('xy_session');
+    dataJson.union_id = wx.getStorageSync('xy_session');
 
     requestHandler.params.data = JSON.stringify(dataJson);
 
@@ -120,20 +120,20 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     }
     qqmapsdk.geocoder({
       address: address,
-      success: function (res) {
+      success: function(res) {
         _this.setData({
           latitude: res.result.location.lat,
           longitude: res.result.location.lng
         })
       },
-      fail: function (res) {
-        app.myLog("根据地址获取经纬度: ", " 地址："+address + '返回：' + JSON.stringify(res));
+      fail: function(res) {
+        app.myLog("根据地址获取经纬度: ", " 地址：" + address + '返回：' + JSON.stringify(res));
         wx.showToast({
           icon: 'none',
           title: '获取经纬度失败'
         })
       },
-      complete: function (res) {
+      complete: function(res) {
         console.log(res);
       }
     })
@@ -161,8 +161,10 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
   // 数组去重
   function unique(arr) {
-    var result = [], hash = {};
-    for (var i = 0, elem; (elem = arr[i]) != null; i++) {
+    var result = [],
+      hash = {};
+    for (var i = 0, elem;
+      (elem = arr[i]) != null; i++) {
       if (!hash[elem]) {
         result.push(elem);
         hash[elem] = true;
@@ -172,7 +174,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   }
 
   //去除emoji表情输入
-  function filterEmoji (str) {
+  function filterEmoji(str) {
     return str.replace(/\ud83c[\udf00-\udfff]|\ud83d[\udc00-\ude4f]|\ud83d[\ude80-\udeff]/g, "");
   }
 
@@ -189,7 +191,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   }
 
   function isBlank(str) {
-    if (Object.prototype.toString.call(str) === '[object Undefined]') {//空
+    if (Object.prototype.toString.call(str) === '[object Undefined]') { //空
       return true
     } else if (
       Object.prototype.toString.call(str) === '[object String]' ||
@@ -232,7 +234,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
   function formatTime(fmt) {
     var date = new Date();
-    date.setTime((fmt - 8 * 3600) * 1000);
+    date.setTime(fmt * 1000);
     var y = date.getFullYear();
     var m = date.getMonth() + 1;
     var d = date.getDate();
@@ -265,7 +267,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   function dateToStr(str) {
     var weekDay = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
     var myDate = new Date(Date.parse(str));
-    return weekDay[myDate.getDay()];    // 星期六
+    return weekDay[myDate.getDay()]; // 星期六
   }
 
   function decodeTextAreaString(str) {
@@ -277,7 +279,43 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   //校验身份证
   function checkID(ID) {
     if (typeof ID !== 'string') return '非法字符串';
-    var city = { 11: "北京", 12: "天津", 13: "河北", 14: "山西", 15: "内蒙古", 21: "辽宁", 22: "吉林", 23: "黑龙江 ", 31: "上海", 32: "江苏", 33: "浙江", 34: "安徽", 35: "福建", 36: "江西", 37: "山东", 41: "河南", 42: "湖北 ", 43: "湖南", 44: "广东", 45: "广西", 46: "海南", 50: "重庆", 51: "四川", 52: "贵州", 53: "云南", 54: "西藏 ", 61: "陕西", 62: "甘肃", 63: "青海", 64: "宁夏", 65: "新疆", 71: "台湾", 81: "香港", 82: "澳门", 91: "国外" };
+    var city = {
+      11: "北京",
+      12: "天津",
+      13: "河北",
+      14: "山西",
+      15: "内蒙古",
+      21: "辽宁",
+      22: "吉林",
+      23: "黑龙江 ",
+      31: "上海",
+      32: "江苏",
+      33: "浙江",
+      34: "安徽",
+      35: "福建",
+      36: "江西",
+      37: "山东",
+      41: "河南",
+      42: "湖北 ",
+      43: "湖南",
+      44: "广东",
+      45: "广西",
+      46: "海南",
+      50: "重庆",
+      51: "四川",
+      52: "贵州",
+      53: "云南",
+      54: "西藏 ",
+      61: "陕西",
+      62: "甘肃",
+      63: "青海",
+      64: "宁夏",
+      65: "新疆",
+      71: "台湾",
+      81: "香港",
+      82: "澳门",
+      91: "国外"
+    };
     var birthday = ID.substr(6, 4) + '/' + Number(ID.substr(10, 2)) + '/' + Number(ID.substr(12, 2));
     var d = new Date(birthday);
     var newBirthday = d.getFullYear() + '/' + Number(d.getMonth() + 1) + '/' + Number(d.getDate());
@@ -285,7 +323,8 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     var time = d.getTime();
     var arrInt = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
     var arrCh = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
-    var sum = 0, i, residue;
+    var sum = 0,
+      i, residue;
 
     if (!/^\d{17}(\d|x)$/i.test(ID)) return false;
     if (city[ID.substr(0, 2)] === undefined) return false;
@@ -320,7 +359,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   }
 
   function checkNumber(num) {
-    if(isNaN(num)) {
+    if (isNaN(num)) {
       return false;
     } else {
       return true;
@@ -339,7 +378,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
   //判断接口返回数据是否为空
   function checkEmpty(data) {
-    if(data == "" || data == null) {
+    if (data == "" || data == null) {
       return true;
     }
     return false;
@@ -396,17 +435,17 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     return 0
   }
 
-//选择图片
-  function uploadImage(_this,count, sizeType, sourceType, uposs_url, uposs_service, uposs_method,uposs_name,cb) {
+  //选择图片
+  function uploadImage(_this, count, sizeType, sourceType, uposs_url, uposs_service, uposs_method, uposs_name, cb) {
     wx.chooseImage({
       count: count,
       sizeType: sizeType,
       sourceType: sourceType,
       success(res) {
         const tempFilePaths = res.tempFilePaths;
-        var i = 0;//选择上传位置
-        var dataArr =[];//返回数据组
-        uposs(_this,uposs_url, uposs_service, uposs_method, uposs_name, tempFilePaths, i, dataArr, function (obj) {
+        var i = 0; //选择上传位置
+        var dataArr = []; //返回数据组
+        uposs(_this, uposs_url, uposs_service, uposs_method, uposs_name, tempFilePaths, i, dataArr, function(obj) {
           cb(obj);
         });
 
@@ -415,7 +454,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   }
 
   //选择视频
-  function uploadvideo(_this,sourceType, compressed, maxDuration, camera, uposs_url, uposs_service, uposs_method, uposs_name,cb){
+  function uploadvideo(_this, sourceType, compressed, maxDuration, camera, uposs_url, uposs_service, uposs_method, uposs_name, cb) {
     wx.chooseVideo({
       sourceType: sourceType,
       maxDuration: maxDuration,
@@ -425,9 +464,9 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         console.log(res.tempFilePath);
         var datatt = [];
         datatt.push(res.tempFilePath);
-        var i = 0;//选择上传位置
-        var dataArr = [];//返回数据组
-        uposs(_this,uposs_url, uposs_service, uposs_method, uposs_name, datatt, i, dataArr,  function (obj) {
+        var i = 0; //选择上传位置
+        var dataArr = []; //返回数据组
+        uposs(_this, uposs_url, uposs_service, uposs_method, uposs_name, datatt, i, dataArr, function(obj) {
           cb(obj);
         });
       }
@@ -435,9 +474,9 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   }
 
   //上传oss
-  function uposs(_this,uposs_url, uposs_service, uposs_method, uposs_name, tempFilePaths, i, dataArr,cb){
+  function uposs(_this, uposs_url, uposs_service, uposs_method, uposs_name, tempFilePaths, i, dataArr, cb) {
     var spliceArr = dataArr;
-    var tempFilePathsLength = tempFilePaths.length-1;//图片数量
+    var tempFilePathsLength = tempFilePaths.length - 1; //图片数量
     var url = uposs_url;
     var name = uposs_name;
     var service = uposs_service;
@@ -451,50 +490,50 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     wx.showLoading({
       title: '加载中',
     })
-      const uploadTask = wx.uploadFile({
-        url: url,
-        filePath: tempFilePaths[i],
-        header: {
-          'content-type': 'multipart/form-data'
-        },
-        name: name,
-        formData: {
-          union_id: wx.getStorageSync('xy_session'),
-          service: service,
-          method: method,
-          app_id: app_id,
-          timestamp: timestamp,
-          sign_type: sign_type,
-          sign: sign,
-          data: data
-        },
-        success: res => {
-          var resdata = JSON.parse(res.data);
-          if (resdata.sub_code == 0){
-            spliceArr.push(resdata.result.company_multimedia_url);
-            if (i == tempFilePathsLength) {
-              cb(spliceArr);
-              wx.hideLoading();
-            } else if(i < tempFilePathsLength){
-              i++;
-              uposs(_this,url, service, method, name, tempFilePaths, i, spliceArr, cb);
-            }
-          }else{
-            app.globalData.fundebug.notify("上传图片视频/upload_company_multimedia", res.data.sub_msg);
-            console.log(res.data.sub_msg);
+    const uploadTask = wx.uploadFile({
+      url: url,
+      filePath: tempFilePaths[i],
+      header: {
+        'content-type': 'multipart/form-data'
+      },
+      name: name,
+      formData: {
+        union_id: wx.getStorageSync('xy_session'),
+        service: service,
+        method: method,
+        app_id: app_id,
+        timestamp: timestamp,
+        sign_type: sign_type,
+        sign: sign,
+        data: data
+      },
+      success: res => {
+        var resdata = JSON.parse(res.data);
+        if (resdata.sub_code == 0) {
+          spliceArr.push(resdata.result.company_multimedia_url);
+          if (i == tempFilePathsLength) {
+            cb(spliceArr);
+            wx.hideLoading();
+          } else if (i < tempFilePathsLength) {
+            i++;
+            uposs(_this, url, service, method, name, tempFilePaths, i, spliceArr, cb);
           }
-        },
-        fail: res => {
-          wx.showToast({
-            title: '上传失败'
-          })
+        } else {
+          app.globalData.fundebug.notify("上传图片视频/upload_company_multimedia", res.data.sub_msg);
+          console.log(res.data.sub_msg);
         }
-      })
-      uploadTask.onProgressUpdate((res) => {
-        console.log('上传进度', res.progress)
-        console.log('已经上传的数据长度', res.totalBytesSent)
-        console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
-      })
+      },
+      fail: res => {
+        wx.showToast({
+          title: '上传失败'
+        })
+      }
+    })
+    uploadTask.onProgressUpdate((res) => {
+      console.log('上传进度', res.progress)
+      console.log('已经上传的数据长度', res.totalBytesSent)
+      console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
+    })
   }
 
   module.exports.network = {

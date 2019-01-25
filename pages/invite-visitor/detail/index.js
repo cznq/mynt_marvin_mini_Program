@@ -1,4 +1,3 @@
-
 const app = getApp();
 Page({
 
@@ -17,10 +16,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.data.invitation_id = options.invitation_id;
     this.getInitation(this);
-    
+
   },
 
   getInitation(_this) {
@@ -35,13 +34,15 @@ Page({
       },
       success: res => {
         if (res.data.result) {
-          
+
           if (res.data.result.visitor.visitor_id != 0) {
-            _this.setData({ hasAccept: true })
-          } 
+            _this.setData({
+              hasAccept: true
+            })
+          }
           _this.setData({
             invitation: res.data.result,
-            appointment_time: app.Util.formatTime(res.data.result.appointment_time + 8 * 3600)
+            appointment_time: app.Util.formatTime(res.data.result.appointment_time)
           })
           app.Util.generateMap(_this, res.data.result.company.address);
         } else {
@@ -50,7 +51,7 @@ Page({
             icon: 'none'
           })
         }
-        
+
       },
       fail: res => {
         wx.showToast({
@@ -64,13 +65,13 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
     var that = this;
     that.mapCtx = wx.createMapContext('myMap');
     that.mapCtx.moveToLocation();
   },
 
-  openLocation: function () {
+  openLocation: function() {
     wx.openLocation({
       latitude: this.data.latitude,
       longitude: this.data.longitude,
@@ -81,7 +82,7 @@ Page({
   /**
    * 如何试用邀请函
    */
-  viewGuide: function () {
+  viewGuide: function() {
     wx.navigateTo({
       url: '/pages/invite-visitor/guide/index'
     })
