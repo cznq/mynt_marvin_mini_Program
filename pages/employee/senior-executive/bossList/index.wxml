@@ -11,14 +11,14 @@
             <view class="_font28 _fontw700" bindtap="manage">确认</view>
         </block>
         <block wx:else>          
-            <view class="iconfont icon-shezhi _font40" bindtap="manage"></view>
+            <view class="iconfont icon-shezhi _font48" bindtap="manage"></view>
         </block>
     </view>
     <view class="_section">
         <view class="_tip _font24 _txt_darkgrey">每个企业仅可以设置{{limit_count}}名</view>
         <view class="_flex _flex_item_center _addbox" wx:if="{{isNull}}">
             <view class="_font30 _btn_add">
-                <button class="iconfont icon-tianjia _txt_darkgrey" bindtap="goSelect" data-from="inviteLeader" disabled="{{btnShow}}"></button>
+                <button class="iconfont icon-tianjia _txt_darkgrey" bindtap="goSelect" data-from="inviteLeader"></button>
             </view>
             <view class="_font24 _txt_darkgrey">设置高管，获取全程尊贵体验</view>
         </view>

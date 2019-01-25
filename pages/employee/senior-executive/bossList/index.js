@@ -24,9 +24,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      limit_count:options.limit_count
-    })   
+    if(options.limit_count<0){ //-1不限制 默认3
+      this.setData({
+        limit_count:'3'
+      }) 
+    }else{
+      this.setData({
+        limit_count:options.limit_count
+      })
+    }
     this.getBossList();
   },
   /**
@@ -58,12 +64,10 @@ Page({
           if (that.data.leaderList.length >= that.data.limit_count) {
             that.setData({             
               isNull:false,
-              btnShow:false
             })
           }else{
             that.setData({             
-              isNull:true,
-              btnShow:true
+              isNull:true
             })
           }
         }
