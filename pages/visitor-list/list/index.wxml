@@ -57,7 +57,8 @@
                 <view class="visit-from _ellipsis">邀请人：{{item.invitation_user_name}}</view>
             </view>
             <view class="visit-left-no-invite" wx:else>
-                <image class="logo" src="https://slightech-marvin.oss-cn-hangzhou.aliyuncs.com/testing/company/143/logo_url/895fa23e9b88fa31402d5118780ac0b6.jpg" mode="{{mode}}"></image>
+                <image class="logo" wx:if="{{item.avatar}}" src="{{item.avatar}}"></image>
+                <view wx:else class="no-image-letter _txtcenter">{{tools.getFirstLetter(item.visitor_name)}}</view>
                 <view class="visit-no-invite">{{item.visitor_name}}</view>
             </view>
             <view class="visit-right">
