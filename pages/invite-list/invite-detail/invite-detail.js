@@ -52,8 +52,9 @@ Page({
   },
   set_all_Data: function(data) {
     let appointment_time = utils.formatTime(data.appointment_time)
+    let invitation_intro = data.invitation_intro.replace(/<[^>]+>/g, ""); //过滤html标签
     this.setData({
-      invitation_intro: data.invitation_intro, //邀请描述
+      invitation_intro: invitation_intro, //邀请描述
       appointment_time: appointment_time, //预约的时间
       employee_name: data.employee_name, //邀请人姓名
       visitor_name: data.visitor.visitor_name,

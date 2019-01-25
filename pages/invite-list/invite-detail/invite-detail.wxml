@@ -6,18 +6,18 @@
     <view class='_font36 _txt_gray _txt_center mr39-top'>{{visitor_name}}</view>
   </view>
   <view class='content _border_box'>
-    <li class="_column">
+    <view class="li _column">
       <view class="_font24 _txt_darkgrey">邀请事由</view>
-      <view class="_font28 _txt_gray detail">{{invitation_intro}}</view>
-    </li>
-    <li class="_column ml40-top">
+      <view class="_font28 _txt_gray detail _ellipsis">{{invitation_intro}}</view>
+    </view>
+    <view class="li _column ml40-top">
       <view class="_font24 _txt_darkgrey">预约时间</view>
       <view class="_font28 _txt_gray detail">{{appointment_time}}</view>
-    </li>
-    <li class="_column ml40-top">
+    </view>
+    <view class="li _column ml40-top">
       <view class="_font24 _txt_darkgrey">邀请人</view>
       <view class="_font28 _txt_gray detail">{{employee_name}}</view>
-    </li>
+    </view>
   </view>
   <view catchtap='inviteVisitor' class="inite-card _row _cen_center">
     <image class="inite_image" src="../../../images/init-card.png"></image>
