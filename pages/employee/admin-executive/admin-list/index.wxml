@@ -6,7 +6,7 @@
     <view class="_flex _flex_space_between _flex_item_center">
       <text class="_font60 _fontw700">管理员列表</text>
       <view class="_font28 _fontw700" bindtap="editAdminList" wx:if="{{edit}}">完成</view>
-      <view class="iconfont icon-shezhi _font40" bindtap="editAdminList" wx:else></view>
+      <view class="iconfont icon-shezhi _font48" bindtap="editAdminList" wx:else></view>
     </view>
   </view>
   <view class="page__bd" wx:if="{{staffList}}">
