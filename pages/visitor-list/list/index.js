@@ -284,7 +284,8 @@ Page({
     },
     emptyButton: function() {
         wx.navigateTo({
-            url: '../../employee/invite-staff/index'
+            url: '../../invite-visitor/start/index'
+
         })
     },
     /**
