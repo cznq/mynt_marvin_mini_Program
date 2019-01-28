@@ -10,7 +10,8 @@ Page({
     textInfo: '很高兴邀请您成为本公司新的管理员，您将拥有我们的以下管理权力，烦请点击下方按钮接受邀请并开始使用管理权力。',
     roleTitle: '管理员',
     changeRole: 3,
-    inviteInfo: null
+    inviteInfo: null,
+    shareBtn: ''
   },
 
   /**
@@ -132,6 +133,12 @@ Page({
           that.setData({
             invitation_id: res.data.result.invitation_id
           });
+        } else {
+          that.setData({ shareBtn: 'disabled' })
+          wx.showToast({
+            title: res.data.sub_msg,
+            icon: 'none'
+          })
         }
 
       }
@@ -140,24 +147,29 @@ Page({
 
   cancelTrans: function() {
     var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'company',
-        method: 'cancel_role_invitation',
-        data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session'),
-          invitation_id: that.data.invitation_id
-        })
-      },
-      success: res => {
-        if (res.data.sub_code==0) {
-          wx.redirectTo({
-            url: '../admin-list/index',
+    if (that.data.invitation_id) {
+      app.Util.network.POST({
+        url: app.globalData.BASE_API_URL,
+        params: {
+          service: 'company',
+          method: 'cancel_role_invitation',
+          data: JSON.stringify({
+            union_id: wx.getStorageSync('xy_session'),
+            invitation_id: that.data.invitation_id
           })
+        },
+        success: res => {
+          if (res.data.sub_code == 0) {
+            wx.redirectTo({
+              url: '../admin-list/index',
+            })
+          }
         }
-      }
-    })
+      })
+    } else {
+      wx.navigateBack();
+    }
+    
   },
 
   backAction: function() {

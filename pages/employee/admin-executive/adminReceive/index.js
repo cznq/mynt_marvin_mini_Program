@@ -18,6 +18,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    console.log(options);
     that.data.invitation_id = options.invitation_id;
     that.data.invitation_type = options.invitation_type;
     that.getEmployeeInfo();
@@ -61,6 +62,7 @@ Page({
         })
       },
       success: res => {
+        console.log(res);
         if (res.data.result) {
           that.setData({
             invitation: res.data.result
