@@ -65,14 +65,15 @@ Page({
       },
       success: res => {
         if (res.data.result) {
+          var out_order_id = res.data.result.out_order_id;
           wx.requestPayment({
-            timeStamp: JSON.stringify(res.data.result.timeStamp),
-            nonceStr: res.data.result.nonceStr,
-            package: res.data.result.package,
+            timeStamp: JSON.stringify(res.data.result.wx_package.timeStamp),
+            nonceStr: res.data.result.wx_package.nonceStr,
+            package: res.data.result.wx_package.package,
             signType: 'MD5',
-            paySign: res.data.result.paySign,
+            paySign: res.data.result.wx_package.paySign,
             success: res => {
-              console.log('pay success');
+              console.log('支付成功');   
             },
             fail: res => {
               wx.showToast({
@@ -81,8 +82,12 @@ Page({
               })
             },
             complete: res => {
-              console.log('pay complete');
+              
+              wx.redirectTo({
+                url: '/benifit/pages/pay-status/index?out_order_id=' + out_order_id
+              })
             }
+            
           });
         }
         
@@ -91,8 +96,25 @@ Page({
     })
 
   },
+  searchOrderInfo(out_order_id){
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'pay',
+        method: 'get_order_info',
+        data: JSON.stringify({
+          out_order_id: out_order_id
+        })
+      },
+      success: res => {
+        if (res.data.result.status==1) {
+          
+        }
 
-  
+      },
+      fail: res => { }
+    })
+  },
   /**
    * 关闭弹出框
    */
@@ -316,7 +338,6 @@ Page({
         if (res.data.result) {
             that.setData({
               phone: res.data.result.phone,
-              service_suite: res.data.result.service_suite,
               cost_price: res.data.result.cost_price,
               current_price: res.data.result.current_price,
               image: res.data.result.image,

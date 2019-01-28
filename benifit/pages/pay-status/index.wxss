@@ -1,0 +1,32 @@
+/* pages/suite-introduce/suite-introduce.wxss */
+page { height: 100%;}
+.page {
+  height: 100%;
+  background: rgba(249, 250, 251, 1);
+  text-align: center;
+}
+.page__bd {
+  height: 100%;
+  padding-top: 300rpx;
+  box-sizing: border-box;
+}
+.status .iconfont { font-size: 152rpx; line-height: 1;margin-bottom: 40rpx;}
+.iconfont.icon-dengdaitongguo { color: #5587fe; }
+.iconfont.icon-successful { color: #59d67e;font-size: 182rpx;margin-bottom: 0; }
+.iconfont.icon-shenqingbeijujue { color: #ff3b3c; }
+.font-gray { color: rgba(136, 145, 169, 1);}
+.font-gray .blue { color:rgba(0, 132, 255, 1);}
+
+.page__ft {
+  width: 100%;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px -4rpx 10rpx 0rpx rgba(0, 0, 0, 0.04);
+  position: fixed;
+  bottom: 0;
+  padding: 40rpx 60rpx;
+  box-sizing: border-box;
+}
+.page__ft ._button[disabled] {
+  background-color: rgba(0, 132, 255, .3);
+  color: #fff;
+}
