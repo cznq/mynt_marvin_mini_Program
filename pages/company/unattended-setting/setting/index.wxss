@@ -1,0 +1,77 @@
+@import "../../../../templates/showToast/showToast.wxss";
+page {
+  background-color: #F7F8FA;
+}
+
+.content{
+  padding-top: 30rpx;
+}
+.content ._top{
+  background-color: #fff;
+  height: 140rpx;
+  color: #1A2A4B;
+  padding: 0 60rpx;
+}
+/* .wx-switch-input{
+  width:50px !important;
+  height:18px !important;
+  background-color:#4EDE7A !important;
+}
+.wx-switch-input::before{
+  width:26px !important;
+  height: 26px !important;
+  border-radius: 100%;
+  margin-top: -6px;
+}
+.wx-switch-input::after{
+  width:26px !important;
+  height: 26px !important;
+  border-radius: 100%;
+  margin-top: -6px;
+} */
+
+.switch {
+    position: relative;
+	width: 50px;
+	height: 18px;
+    border-radius: 9px;
+    background-color: #4EDE7A;
+}
+.switch::after {
+	position: absolute;
+	display: inline-block;
+	content: "";
+	height: 26px;
+	width: 26px;
+	border-radius: 50%;
+	background-color: #fff;
+	transition: left 0.2s ease-out;
+  -webkit-transition: left ease-out 0.2s;
+}
+.toggle-off{
+	background-color: #e1e1e1;
+}
+.toggle-off::after{
+    left: 1px;
+    top: -4px;
+	box-shadow: 1px 2px 4px #aaa;
+}
+
+.toggle-on:after{
+	left: 23px;
+    top: -4px;
+	box-shadow: 1px 2px 4px #aaa;
+}
+
+.content ._tip{
+  padding: 30rpx 50rpx 0 54rpx;
+}
+.content .btn {
+  padding: 94rpx 130rpx 0 131rpx;
+}
+
+.content .btn button {
+  background-color: #007BFF;
+  color: #FFFFFF;
+  font-weight: 500;
+}

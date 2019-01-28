@@ -3,9 +3,9 @@ const Promise = require('utils/promise.js');
  * Fundebug 打印日志
  * 其它页面引用  app.globalData.fundebug.notify("TEST", "Hello, Fundebug!");
  * 抛出的错误对象   app.globalData.fundebug.notifyError(new Error("TEST"));
- * 
+ *
  */
-var fundebug = require('utils/fundebug.0.9.0.min.js');
+var fundebug = require('utils/fundebug.1.0.0.min.js');
 // 配置项
 fundebug.init({
   //apikey: "950ab8d47c6dbb69527a604ee684c588369af4dd554cc59fa38e1e4aa5b763ac",  //正式环境
@@ -19,24 +19,29 @@ App({
     open_id_type: 1,
     isIphoneX: false,
     BASE_IMG_URl: 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/',
-    // BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
-    // WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
-    // BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
+    // 开发环境
+    //BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
+    //BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
+    //BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/', //内网环境
+    //BENIFIT_API_URL: 'http://192.168.1.204:10004/mini_program/api', //内网环境
+    //WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
+    // 测试环境
     BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
     BENIFIT_API_URL: 'https://marvin-benifit-api-test.slightech.com/mini_program/api',
     WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com',
-    //BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/',//开发环境
-    //BENIFIT_API_URL: 'http://192.168.1.204:10004/mini_program/api',//员工福利开发环境
-
+    // 正式环境
+    //BASE_API_URL: 'https://marvin-api.slightech.com/mini_program/api/',
+    //BENIFIT_API_URL: 'https://marvin-benifit-api.slightech.com/mini_program/api',
+    //WEB_VIEW_URL: 'https://marvin-official-account.slightech.com',
   },
-  
+
   onLaunch: function () {
     /**  获取手机信息 */
     var that = this;
     wx.getSystemInfo({
       success(res) {
         wx.setStorage({
-          key: 'sysinfo', 
+          key: 'sysinfo',
           data: res,
         })
         if (res.model.search('iPhone X') != -1) {
@@ -50,8 +55,8 @@ App({
         }
       }
     })
-    
-  },    
+
+  },
 
   onShow: function () {
     if (wx.getUpdateManager) {
@@ -81,17 +86,17 @@ App({
         })
       })
     }
-    
-  },     
+
+  },
 
   /**
    * 自定义日志函数
-   */       
+   */
   myLog(tit, cont) {
     var sysinfo = wx.getStorageSync('sysinfo');
     fundebug.notify(tit, cont + '\n\n基础信息：\n' + JSON.stringify(sysinfo));
   },
-  
+
   Util: require('utils/util.js'),
 
   /**
@@ -124,7 +129,7 @@ App({
         }
       })
     }
-    
+
   },
 
   /**
@@ -162,7 +167,7 @@ App({
             url: '/pages/login/index?route=' + url + '&opt=' + opt,
           })
         }
-        
+
       },
       fail: res => {
         callback();
@@ -193,7 +198,7 @@ App({
   /**
    * 查看服务状态开启
    * serviceStatus   状态，0：关闭，1：开通，2：试用
-   * param: service 
+   * param: service
    * EMPLOYEE_TAKE_CARD     员工取卡
    * SHOW_AD_AFTER_TAKE_CARD     取卡后播放广告
    * ATTEND_FUNCTION     无人值守
@@ -235,6 +240,13 @@ App({
           }
           callback();
         }
+        //未加入公司跳转
+        else if (res.data.sub_code == 100013) {
+          wx.reLaunch({
+            url: '/pages/manage/manage',
+          })
+        }
+
       },
       fail: res => {
         console.log('获取服务失败')
@@ -323,7 +335,7 @@ App({
         }
       }
     })
-    
+
   },
 
   /**
@@ -352,7 +364,7 @@ App({
             icon: 'none'
           })
         }
-        
+
       },
       fail: res => {
 
@@ -390,7 +402,7 @@ App({
         } else if (res.data.sub_msg =='访客不存在') {
           callback('');
         }
-        
+
       },
       fail: res => {
         console.log('')

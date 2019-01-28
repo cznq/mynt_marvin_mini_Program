@@ -1,0 +1,84 @@
+@import "../../../templates/showToast/showToast.wxss";
+
+page {
+  background: #F9FAFB;
+}
+
+.detailsPage {
+  position: relative;
+  margin-top: 179rpx;
+  background: #fff;
+  padding-bottom: 88rpx;
+}
+
+.header {
+  position: relative;
+  top: -85rpx;
+  width: 170rpx;
+  margin: 0 auto;
+}
+
+.headImage {
+  width: 170rpx;
+  height: 170rpx;
+  text-align: center;
+  line-height: 170rpx;
+  font-size: 60rpx;
+  font-weight: 500;
+  color: #fff;
+  box-sizing: border-box;
+  background: rgba(96, 146, 254, 1);
+  box-shadow: 0px 6px 92px 0px rgba(43, 51, 72, 0.12);
+  border-radius: 50%;
+}
+
+.mr39-top {
+  margin-top: 39rpx;
+}
+
+.content {
+  padding: 0 60rpx;
+  margin-top: -40rpx;
+}
+
+.content .li {
+  height: 111rpx;
+  border-bottom: 2rpx solid rgba(220, 220, 220, .5);
+}
+
+.content .li .detail {
+  line-height: 65rpx;
+}
+
+.ml40-top {
+  margin-top: 40rpx;
+}
+
+.inite-card {
+  margin: 68rpx auto 0;
+  width: 209rpx;
+  height: 64rpx;
+  border: 1rpx solid rgba(0, 0, 0, .1);
+  border-radius: 10rpx;
+}
+
+.inite_image {
+  width: 20rpx;
+  height: 20rpx;
+  margin-right: 8rpx;
+}
+
+.deleBtn {
+  position: relative;
+  margin: 80rpx auto 0;
+  width: 630rpx;
+  height: 90rpx;
+  background: #fff;
+  border: 1rpx solid rgba(0, 0, 0, 0.1);
+  line-height: 90rpx;
+  text-align: center;
+}
+
+.blank {
+  height: 200rpx;
+}

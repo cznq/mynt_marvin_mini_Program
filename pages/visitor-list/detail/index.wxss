@@ -1,0 +1,67 @@
+@import "../../../templates/showToast/showToast.wxss";
+
+page {
+    background: #F9FAFB;
+}
+
+.detailsPage {
+    position: relative;
+    margin-top: 179rpx;
+    background: #fff;
+    padding-bottom: 88rpx;
+}
+
+.header {
+    position: relative;
+    top: -85rpx;
+    width: 170rpx;
+    margin: 0 auto;
+}
+
+.headImage {
+    width: 170rpx;
+    height: 170rpx;
+    box-sizing: border-box;
+
+}
+
+.headImage image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+
+.mr39-top {
+    margin-top: 39rpx;
+}
+
+.content {
+    padding: 0 60rpx;
+}
+
+.content li {
+    height: 111rpx;
+    border-bottom: 2rpx solid rgba(220, 220, 220, .5);
+}
+
+.content li .detail {
+    line-height: 65rpx;
+}
+
+.ml40-top {
+    margin-top: 40rpx;
+}
+
+.no-image-letter {
+    float: left;
+    width: 170rpx;
+    height: 170rpx;
+    border-radius: 50%;
+    background-color: #6092FE;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 170rpx;
+    font-size: 50rpx;
+    font-weight: 400;
+}

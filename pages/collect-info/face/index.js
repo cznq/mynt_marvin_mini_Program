@@ -8,7 +8,7 @@ Page({
    * 邀请流程，员工快捷取卡，员工信息录入, 员工人脸修改，申请发卡，协议商户
    * Param: 
    *   source (来源) | params (参数)                               | callback（回调）
-   *   invite       | form_id                                     | /pages/invite-visitor/success/index?invitation_id
+   *   invite       | form_id                                     | /pages/invite-visitor/receive/index?invitation_id
    *   takeCard     | card_type                                   | /pages/employee/take-card/open/index 或者  /pages/e-card/detail/index
    *   editInfo     | company_id                                  | /pages/employee/homepage/index
    *   reRecodeFace | company_id                                  | /pages/employee/homepage/index
@@ -239,7 +239,7 @@ Page({
               app.receiveSubmit(that.data.options.params.invitation_id, that.data.options.params.form_id, function () {
                 wx.hideLoading();
                 wx.reLaunch({
-                  url: '/pages/invite-visitor/success/index?invitation_id=' + that.data.options.params.invitation_id,
+                  url: '/pages/invite-visitor/receive/index?invitation_id=' + that.data.options.params.invitation_id,
                 })
               }) 
             });

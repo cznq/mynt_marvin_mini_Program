@@ -24,9 +24,9 @@ var transRoleClassName = function (role, personType) {
     if (personType == 3) {
       return '_role_leader';
     } else {
-      return '_role_staff'; 
+      return '_role_staff';
     }
-    
+
   }
 }
 
@@ -44,7 +44,6 @@ var returnArrayLength = function (arr) {
   } else {
     return 0;
   }
-  
 }
 
 module.exports.transRoleClassName = transRoleClassName;

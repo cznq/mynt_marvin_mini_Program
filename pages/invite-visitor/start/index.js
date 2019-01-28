@@ -9,8 +9,8 @@ Page({
    */
 
   data: {
-    serviceStatus: '',
-    limitCount: -1
+    serviceStatus: null,
+    limitCount: null
   },
 
   /**

@@ -1,12 +1,17 @@
 <wxs src="../../../wxs/subutil.wxs" module="tools" />
-<view class="page">
-  <view class="page_hd _flex _flex_item_center _flex_justify_center">
+<view class="page" wx:if="{{invitation}}">
+<!--
+  <view class="page_hd _flex _flex_item_center _flex_justify_center" wx:if="{{hasAccept}}">
     <image style="width:80rpx;height:80rpx" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/accept_Invitation_success%403x.png"></image>
     <view class="_font48 _fontw600 wel-tit">真诚期待您的光临。</view>
     <view class="_font28 wel-intro">您已成功接受邀请，请留意到访时间。</view>
     <button bindtap="viewGuide">如何使用我的邀请函</button>
   </view>
-
+  <view class="page_hd _flex _flex_item_center _flex_justify_center" wx:else>
+    <view class="_font48 _fontw600 wel-tit">尊敬的访客，您好。</view>
+    <view class="_font28 wel-intro">您有一个新的邀请，等待您的接受。</view>
+  </view>
+-->
   <view class="page_bd {{invitation.company.company_logo?'':'noLogo'}}">
     <view class="invite-wrapper">
       <view class="company-info _txt_center">
