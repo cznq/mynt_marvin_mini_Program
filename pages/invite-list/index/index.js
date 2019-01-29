@@ -235,9 +235,10 @@ Page({
     return false
   },
   currentEmployee: function(e) {
+    let _this = this
     let invitationId = e.currentTarget.dataset.invitationid
     wx.navigateTo({
-      url: '../invite-detail/invite-detail?' + 'invitation_id' + '=' + invitationId
+      url: '../invite-detail/invite-detail?' + 'invitation_id' + '=' + invitationId + '&' + 'view_type' + '=' + _this.data.view_type
     })
   },
   searchCurrenEmployee: function(e) {
