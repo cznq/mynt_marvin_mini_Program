@@ -1,6 +1,13 @@
 @import "../public/style.wxss";
 .page {
   background-color: rgba(0, 123, 255, 1);
+  padding-bottom: 160rpx;
+}
+.page.iphonex {
+  padding-bottom: 240rpx;
+}
+.page.noPaddingBottom {
+  padding-bottom: 0rpx!important;
 }
 .page_hd {
   padding: 22rpx 60rpx 20rpx;
@@ -14,7 +21,7 @@
 .page_hd .wel-intro {
   color: rgba(255, 255, 255, .6);
 }
-.page_hd button {
+.page_hd .viewGuide {
   background-color: transparent;
   border: 2rpx solid rgba(255, 255, 255, .2);
   color: #fff;
@@ -25,6 +32,7 @@
   width: 340rpx;
   margin-top: 52rpx;
   font-weight: 600;
+  text-align: center;
 }
 .page_bd {
   padding-bottom: 48rpx;

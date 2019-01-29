@@ -25,10 +25,19 @@ Page({
   //单选按钮
   radioChange:function(e){
     var _this = this;
-    _this.setData({
-      disabled: false,
-      checked: true
-    })
+    console.log(e);
+    if (_this.data.checked && !_this.data.disabled) {
+      _this.setData({
+        disabled: true,
+        checked: false
+      })
+    } else {
+      _this.setData({
+        disabled: false,
+        checked: true
+      })
+    }
+    
   },
   /**
     * 检查是否关注
@@ -43,8 +52,9 @@ Page({
         method: 'check_follow',
         data: JSON.stringify({
           union_id: unionId,
-        })
+        }),
       },
+      showLoading: false,
       success: res => {
         console.log(res);
         if (res.data.sub_code==0){

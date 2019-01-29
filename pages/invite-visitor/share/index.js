@@ -1,4 +1,3 @@
-
 const app = getApp();
 Page({
 
@@ -21,20 +20,20 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var params = JSON.parse(options.params);
     this.setData({
       inviteInfo: params,
-      appointment_time: app.Util.formatTime(params.appointment_time + 8 * 3600)
+      appointment_time: app.Util.formatTime(params.appointment_time)
     })
     this.getCompanyInfo();
-    
+
   },
 
   /**
    * 获取员工信息
    */
-  getEmployeeInfo: function () {
+  getEmployeeInfo: function() {
     var that = this;
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
@@ -84,7 +83,7 @@ Page({
     })
   },
 
-  getCompanyInfo: function () {
+  getCompanyInfo: function() {
 
     var that = this;
     app.Util.network.POST({
@@ -112,12 +111,12 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
     this.mapCtx = wx.createMapContext('address-map');
     this.mapCtx.moveToLocation();
   },
 
-  openLocation: function () {
+  openLocation: function() {
     wx.openLocation({
       latitude: this.data.latitude,
       longitude: this.data.longitude,
@@ -125,28 +124,28 @@ Page({
     })
   },
 
-  backAction: function () {
+  backAction: function() {
     wx.navigateBack()
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function (res) {
+  onShareAppMessage: function(res) {
     var that = this;
     return {
       title: that.data.companyInfo.company_short_name + '给您发送了一个邀请，期待您的到访！',
       path: '/pages/invite-visitor/receive/index?invitation_id=' + that.data.invitation_id,
-      success: function (res) {
+      success: function(res) {
         // 转发成功
         wx.showToast({
           title: '分享成功',
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         // 转发失败
       }
     }
-    
+
   }
 })

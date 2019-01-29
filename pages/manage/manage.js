@@ -117,8 +117,7 @@ Page({
                 })
             },
             success: res => {
-                console.log('get_review_status API return:');
-                console.log(res);
+                console.log('get_review_status API return:', res);
                 var resdata = res.data.result;
                 if (res.data.sub_code == 0) {
                     if (resdata.employee_status === 0) {
@@ -128,13 +127,14 @@ Page({
                             ismanage: true
                         })
                         //普通员工
-                        if (resdata.role == 1) {
-                            console.log("普通员工");
+                        if (resdata.role == 2 || resdata.role == 3) {
+                            _this.setData({
+                                'application[5].isShow': true //自动值守
+                            })
+                        } else {
                             _this.setData({
                                 'application[5].isShow': false //自动值守
                             })
-                        } else {
-                            _this.get_attended_status(_this);
                         }
                         _this.get_info(); //获取企业信息
                         _this.get_rotation_chart(_this); //获取轮播图
@@ -181,20 +181,27 @@ Page({
     //访客列表
     visitor: function() {
         wx.navigateTo({
-            url: '../company/webview/index?page=visitor'
+            url: '../visitor-list/list/index'
         })
     },
     //邀请列表
     invite: function() {
         wx.navigateTo({
-            url: '../company/webview/index?page=invite'
+            url: '../invite-list/index/index'
         })
     },
     //自动值守
     unattendedSetting: function() {
-        wx.navigateTo({
-            url: '/pages/company/unattended-setting/index',
-        })
+        var that = this;
+        if (that.data.cd.attend_status == 0) {
+            wx.navigateTo({
+                url: '/pages/company/unattended-setting/setHome/index',
+            })
+        } else if (that.data.cd.attend_status == 1) {
+            wx.navigateTo({
+                url: '/pages/company/unattended-setting/setting/index',
+            })
+        }
     },
     //邀请访客
     inviteVisitor: function() {
@@ -233,9 +240,9 @@ Page({
                 method: 'get_info',
                 data: JSON.stringify({
                     union_id: wx.getStorageSync('xy_session')
-                }),
-                isloading: false
+                })
             },
+            showLoading: false,
             success: res => {
                 //员工提示信息
                 if (res.data.result.apply_number > 0) {
@@ -269,9 +276,9 @@ Page({
                 method: 'get_rotation_chart',
                 data: JSON.stringify({
                     location_type: 0
-                }),
-                isloading: false
+                })
             },
+            showLoading: false,
             success: res => {
                 if (res.data.result) {
                     _this.setData({
@@ -290,37 +297,6 @@ Page({
             },
             fail: res => {
                 console.log('fail');
-            }
-        })
-    },
-    get_attended_status: function(_this) {
-        // 获取自动值守状态
-        app.Util.network.POST({
-            url: app.globalData.BASE_API_URL,
-            params: {
-                service: 'company',
-                method: 'get_company_service_status',
-                data: JSON.stringify({
-                    union_id: wx.getStorageSync('xy_session'),
-                    service_key: 'ATTEND_FUNCTION'
-                }),
-                isloading: false
-            },
-            success: res => {
-                console.log('请求自动值守接口返回数据:');
-                console.log(res);
-                if (res.data.result.service_status != 0) {
-                    _this.setData({
-                        'application[5].isShow': true //自动值守
-                    });
-                } else {
-                    _this.setData({
-                        'application[5].isShow': false //自动值守
-                    });
-                }
-            },
-            fail: res => {
-                console.log('请求自动值守接口失败');
             }
         })
     }

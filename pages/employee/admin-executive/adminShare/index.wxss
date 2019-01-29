@@ -7,3 +7,4 @@
 .page_bd {
   padding-bottom: 100rpx;
 }
+.footer ._button[disabled] { background-color: rgba(12, 206, 21, .5) }

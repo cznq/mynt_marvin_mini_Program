@@ -18,6 +18,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    console.log(options);
     that.data.invitation_id = options.invitation_id;
     that.data.invitation_type = options.invitation_type;
     that.getEmployeeInfo();
@@ -61,6 +62,7 @@ Page({
         })
       },
       success: res => {
+        console.log(res);
         if (res.data.result) {
           that.setData({
             invitation: res.data.result
@@ -95,9 +97,9 @@ Page({
         data: JSON.stringify({
           union_id: wx.getStorageSync('xy_session'),
           role_invitation_id: that.data.invitation_id
-        }),
-        isloading: false
+        })
       },
+      showLoading: false,
       success: res => {
         console.log(res.data.sub_code);
         if (res.data.sub_code ==0) {

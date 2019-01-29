@@ -92,9 +92,9 @@ Page({
           union_id:wx.getStorageSync('xy_session'),
           role:4, //员工角色(4:高管)
           invitation_id:that.data.invitation_id
-        }),
-        isloading: false
+        })
       },
+      showLoading: false,
       success: res => {
         console.log(res.data.sub_msg);
         if (res.data.sub_code == 0) {//success

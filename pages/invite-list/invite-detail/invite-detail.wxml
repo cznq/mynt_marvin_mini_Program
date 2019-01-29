@@ -1,0 +1,30 @@
+<wxs src="../../../wxs/subutil.wxs" module="tools" />
+<view class="detailsPage">
+  <view class="header">
+    <view wx:if="{{avatar===''}}" class='headImage'>{{tools.getFirstLetter(visitor_name)}}</view>
+    <image wx:else src='{{avatar}}' class="headImage"></image>
+    <view class='_font36 _txt_gray _txt_center mr39-top'>{{visitor_name}}</view>
+  </view>
+  <view class='content _border_box'>
+    <view class="li _column">
+      <view class="_font24 _txt_darkgrey">邀请事由</view>
+      <view class="_font28 _txt_gray detail _ellipsis">{{invitation_intro}}</view>
+    </view>
+    <view class="li _column ml40-top">
+      <view class="_font24 _txt_darkgrey">预约时间</view>
+      <view class="_font28 _txt_gray detail">{{appointment_time}}</view>
+    </view>
+    <view class="li _column ml40-top">
+      <view class="_font24 _txt_darkgrey">邀请人</view>
+      <view class="_font28 _txt_gray detail">{{employee_name}}</view>
+    </view>
+  </view>
+  <view catchtap='inviteVisitor' class="inite-card _row _cen_center">
+    <image class="inite_image" src="../../../images/init-card.png"></image>
+    <view class="_font22 _txt_gray">邀请函</view>
+  </view>
+</view>
+<view wx:if="{{view_type == 1}}" catchtap='deleBtn' class="deleBtn _txt_gray">删除</view>
+<view class="blank"></view>
+<import src="../../../templates/showToast/showToast.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />

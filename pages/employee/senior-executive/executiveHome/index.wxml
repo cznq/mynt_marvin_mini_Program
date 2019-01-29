@@ -2,7 +2,7 @@
 <view class="banner">
     <image class="banner_pic" src='https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/bossSet/boss_setting_illustration%402x.png' mode="widthFix"></image>
 </view>
-<view class="intro" style="padding-bottom:{{isIphoneX?'240':'160'}}rpx">
+<view class="intro">
     <view class="_txt_center top_info">
         <view class="_font44 _fontw600 tit">添加高管，全程尊贵体验</view>
         <view class="_font32">高管随时到访无需预约，小觅机器人全程敬语服务，绿色通道尊贵体验。</view>

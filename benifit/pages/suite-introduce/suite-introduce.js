@@ -48,11 +48,73 @@ Page({
    * 立即支付
    */
   quickPay: function () {
-    this.setData({
-      showModal: true
-    });
-  },
 
+    // this.setData({
+    //   showModal: true
+    // });
+    
+    // 发起微信支付
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'wechat',
+        method: 'pay',
+        data: JSON.stringify({
+          pay_service: 'BUSINESS_SUITE'
+        })
+      },
+      success: res => {
+        if (res.data.result) {
+          var out_order_id = res.data.result.out_order_id;
+          wx.requestPayment({
+            timeStamp: JSON.stringify(res.data.result.wx_package.timeStamp),
+            nonceStr: res.data.result.wx_package.nonceStr,
+            package: res.data.result.wx_package.package,
+            signType: 'MD5',
+            paySign: res.data.result.wx_package.paySign,
+            success: res => {
+              console.log('支付成功');   
+            },
+            fail: res => {
+              wx.showToast({
+                title: '支付失败',
+                icon: 'none'
+              })
+            },
+            complete: res => {
+              
+              wx.redirectTo({
+                url: '/benifit/pages/pay-status/index?out_order_id=' + out_order_id
+              })
+            }
+            
+          });
+        }
+        
+      },
+      fail: res => {}
+    })
+
+  },
+  searchOrderInfo(out_order_id){
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'pay',
+        method: 'get_order_info',
+        data: JSON.stringify({
+          out_order_id: out_order_id
+        })
+      },
+      success: res => {
+        if (res.data.result.status==1) {
+          
+        }
+
+      },
+      fail: res => { }
+    })
+  },
   /**
    * 关闭弹出框
    */
@@ -276,7 +338,6 @@ Page({
         if (res.data.result) {
             that.setData({
               phone: res.data.result.phone,
-              service_suite: res.data.result.service_suite,
               cost_price: res.data.result.cost_price,
               current_price: res.data.result.current_price,
               image: res.data.result.image,

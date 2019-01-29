@@ -7,7 +7,7 @@ Page({
    * 邀请流程，员工快捷取卡，员工信息修改，申请发卡，协议商户
    * Param: 
    *   source (来源) | params (参数)                               | callback（回调）
-   *   invite       | form_id                                     | /pages/invite-visitor/success/index?invitation_id
+   *   invite       | form_id                                     | /pages/invite-visitor/receive/index?invitation_id
    *   takeCard     | card_type                                   | /pages/employee/take-card/open/index 或者  /pages/e-card/detail/index
    *   editInfo     |                                             | /pages/employee/homepage/index
    *   applyVisit   |  company_id, form_id, visitor_name, note    | /pages/apply-visit/applicationStatus/index?visit_apply_id
