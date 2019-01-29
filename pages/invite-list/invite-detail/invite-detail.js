@@ -12,7 +12,8 @@ Page({
     appointment_time: "", //预约的时间
     employee_name: "", //邀请人姓名
     avatar: "",
-    visitor_name: ""
+    visitor_name: "",
+    view_type: 1
   },
 
   /**
@@ -25,6 +26,11 @@ Page({
         invitation_id: options.invitation_id
       })
       _this.get_invitation_info(_this, this.data.invitation_id, _this.set_all_Data);
+    }
+    if (options.view_type !== void 0) {
+      _this.setData({
+        view_type: options.view_type
+      })
     }
   },
   //获取邀请信息

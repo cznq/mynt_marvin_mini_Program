@@ -24,7 +24,7 @@
     <view class="_font22 _txt_gray">邀请函</view>
   </view>
 </view>
-<view catchtap='deleBtn' class="deleBtn _txt_gray">删除</view>
+<view wx:if="{{view_type == 1}}" catchtap='deleBtn' class="deleBtn _txt_gray">删除</view>
 <view class="blank"></view>
 <import src="../../../templates/showToast/showToast.wxml" />
 <template is="showToast" data="{{showToast: showToast}}" />
