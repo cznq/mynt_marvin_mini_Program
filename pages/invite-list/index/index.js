@@ -120,7 +120,8 @@ Page({
             if (page === 1) {
               _this.setData({
                 inviteList: result.data,
-                inviteListCount: result.count
+                inviteListCount: result.count,
+                ['noneData.show']: false
               })
             } else { //搜索列表
               let inviteList = _this.data.inviteList.concat(result.data);
@@ -170,14 +171,13 @@ Page({
       _this.setData({
         view_type: 0
       })
-      _this.get_visitor_list(_this, _data.view_type)
     }
     if (name === 'my_invit') {
       _this.setData({
         view_type: 1
       })
-      _this.get_visitor_list(_this, _data.view_type)
     }
+    _this.get_visitor_list(_this, _data.view_type)
   },
   allTimeState: function() {
     let allTime = this.data.allTime;
@@ -193,8 +193,7 @@ Page({
   },
   seleTime: function(e) {
     this.setData({
-      page: 1,
-      ['noneData.show']: false
+      page: 1
     })
     let _this = this
     let _data = _this.data;
