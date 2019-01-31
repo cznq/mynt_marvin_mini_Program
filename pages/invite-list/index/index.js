@@ -34,7 +34,10 @@ Page({
    */
   onLoad: function(options) {
     let _this = this
-    _this.get_employee_status(_this)
+    if (options.view_type != void 0) {
+      var returnTab = options.view_type
+    }
+    _this.get_employee_status(_this, returnTab)
   },
   emptyBtnFunc: function() {
     wx.navigateTo({
@@ -42,7 +45,7 @@ Page({
     })
   },
   //获取用户状态
-  get_employee_status: function(_this) {
+  get_employee_status: function(_this, returnTab) {
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
@@ -84,6 +87,11 @@ Page({
         } else {
           wx.redirectTo({
             url: '/pages/manage/manage'
+          })
+        }
+        if (returnTab != void 0) {
+          _this.setData({
+            view_type: returnTab
           })
         }
         //获取邀请列表

@@ -3,8 +3,8 @@
 <!-- 头部Tab开始 -->
 <view class='block_fixed' catchtouchmove='maskMove'>
   <view wx:if='{{identity===2||identity===3}}' bindtap='headTab' class="headTab _row _cen_center">
-    <view data-name='all_invit' class="allInvite {{view_type === 0 ? 'active':''}}">全部邀请</view>
-    <view data-name='my_invit' class="myInvite {{view_type === 1 ? 'active':''}}">我的邀请</view>
+    <view data-name='all_invit' class="allInvite {{view_type == 0 ? 'active':''}}">全部邀请</view>
+    <view data-name='my_invit' class="myInvite {{view_type == 1 ? 'active':''}}">我的邀请</view>
   </view>
   <view wx:if='{{identity===1}}' class="headTab _row _cen_start">
     <view class="inviteList _txt_gray">邀请列表</view>
