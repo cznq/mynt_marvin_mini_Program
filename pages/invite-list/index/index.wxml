@@ -10,7 +10,7 @@
     <view class="inviteList _txt_gray">邀请列表</view>
   </view>
 </view>
-<block wx:if="{{ render && inviteList.length !== 0}}">
+<block wx:if="{{ render }}">
   <!-- 下拉时间组件开始 -->
   <view catchtap='allTimeState' class="allTime _row _cen_center" catchtouchmove='maskMove'>
     <view class='_font26'>{{seleTime}}</view>
