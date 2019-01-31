@@ -61,3 +61,6 @@ page{
     background: -webkit-linear-gradient(to right, #E9C395 , #D9A76B); 
     color: #fff;
 }
+.intro .adrim{
+  margin-bottom: 60rpx;
+}
