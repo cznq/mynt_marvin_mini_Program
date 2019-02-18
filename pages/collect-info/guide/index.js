@@ -24,12 +24,12 @@ Page({
   onLoad: function (options) {
     this.data.options.source = options.source;
     this.data.options.params = options.params;
-    
+    this.data.options.hideIdCard = options.hideIdCard
   },
 
   startRecodeInfo: function () {
     wx.navigateTo({
-      url: '/pages/collect-info/identity/index?source=' + this.data.options.source + '&params=' + this.data.options.params
+      url: '/pages/collect-info/identity/index?source=' + this.data.options.source + '&params=' + this.data.options.params + '&hideIdCard=' + this.data.options.hideIdCard
     })
   }
 

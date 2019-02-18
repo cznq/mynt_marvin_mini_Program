@@ -112,7 +112,7 @@ Page({
       success: res => {
         if (res.data.sub_code === 0) {
           wx.redirectTo({
-            url: '../index/index',
+            url: '../index/index?' + 'view_type' + '=' + _this.data.view_type,
             success: () => {
               toast.showToast(_this, {
                 toastStyle: 'toast',
@@ -122,7 +122,6 @@ Page({
               });
             }
           })
-
         }
       },
       fail: res => {

@@ -1,6 +1,7 @@
 
 <template name="companyPages">
 <wxs src="../../wxs/subutil.wxs" module="tools" />
+<block wx:if="{{cd}}">
   <image wx:if="{{cd.background_url}}" class='background_url' mode="aspectFill" src='{{cd.background_url}}'></image>
   <view class='companyPages _relative'>
     <view class='header'>
@@ -80,4 +81,5 @@
       </view>
     </view>
   </view>
+</block>
 </template>
