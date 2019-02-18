@@ -20,13 +20,15 @@ Page({
       phone: null,
       id_number: null
     },
+    formReady: false,
     inputError: {
       phone: false,
       id_number: false
     },
     errorData: null,
     options: {},
-    cardType: 0 //0 大陆身份证 1 护照
+    cardType: 0, //0 大陆身份证 1 护照
+    hideIdCard: false
   },
 
   /**
@@ -36,7 +38,14 @@ Page({
     console.log(options);
     this.data.options.source = options.source;
     this.data.options.params = options.params;
-    this.showInfo('#ib2', '请确保使用您本人的证件号，我们会将它作为重置您人脸信息的凭证。');
+    if (options.hideIdCard=='true'){
+      this.setData({
+        hideIdCard: true
+      })
+    } else {
+      this.showInfo('#ib2', '请确保使用您本人的证件号，我们会将它作为重置您人脸信息的凭证。');
+    }
+    
   },
 
   /**
@@ -79,25 +88,21 @@ Page({
       })
     })
   },
-
+  //切换证件类型
   changCardType: function (e) {
-    console.log(e.currentTarget.dataset.idtype);
     this.setData({
       cardType: e.currentTarget.dataset.idtype
     })
   },
-
+  //提交表单
   editSubmit: function (e) {
     var that = this;
-    var id_type = that.data.cardType;
-    var phone = e.detail.value.phone;
-    var id_number = e.detail.value.id_number;
-    
-    that.checkParam(phone, id_number, function(){
+    var id_type = that.data.cardType;    
+    that.checkParam(that.data.formData.phone, that.data.formData.id_number, function(){
       var idInfo = JSON.stringify({
         id_type: id_type,
-        phone: phone,
-        id_number: id_number
+        phone: that.data.formData.phone,
+        id_number: that.data.formData.id_number
       })
       wx.navigateTo({
         url: '/pages/collect-info/face/index?source=' + that.data.options.source + '&params=' + that.data.options.params + '&idInfo=' + idInfo
@@ -119,25 +124,23 @@ Page({
     })
     if (e.currentTarget.id == 'i1') {
       if (e.detail.value !== '') {
-        this.setData({
-          'formData.phone': e.detail.value
-        });
+        this.setData({ 'formData.phone': e.detail.value });
       } else {
-        this.setData({
-          'formData.phone': null
-        });
+        this.setData({ 'formData.phone': null });
       } 
     }
     if (e.currentTarget.id == 'i2') {
       if (e.detail.value !== '') {
-        this.setData({
-          'formData.id_number': e.detail.value
-        });
+        this.setData({ 'formData.id_number': e.detail.value });
       } else {
-        this.setData({
-          'formData.id_number': null
-        });
+        this.setData({ 'formData.id_number': null });
       } 
+    }
+    if (this.data.formData.phone && this.data.formData.id_number && !this.data.hideIdCard) {
+      this.setData({ formReady: true })
+    }
+    if (this.data.formData.phone && this.data.hideIdCard) {
+      this.setData({ formReady: true })
     }
   },
 
@@ -155,13 +158,13 @@ Page({
         'inputError.id_number': false
       });
       that.showError('#ib1', '请输入正确的手机号');
-    } else if (idcard_reg === false) {
+    } else if (idcard_reg === false && !this.data.hideIdCard) {
       that.setData({
         'inputError.phone': false,
         'inputError.id_number': true
       });
       that.showError('#ib2', '请输入有效的证件号');
-    } else if (idcard_reg && phone_reg) {
+    } else {
       callback();
     }
   },
@@ -193,14 +196,6 @@ Page({
         errorData: null
       })
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function (options) {
-
   }
-
 
 })

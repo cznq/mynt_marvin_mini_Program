@@ -15,7 +15,7 @@
       <input class="input_text {{inputError.phone?'error':''}}" type="number" name="phone" value='{{formData.phone}}' bindinput="checkForm" placeholder-class='input_text_phc' placeholder='请输入手机号' id='i1'></input>
       <icon type="clear" size="16" wx:if="{{formData.phone}}" catchtap="clearInput" id="b1"></icon>
     </view>
-    <view class='input_block' id='ib2'>
+    <view class="input_block {{hideIdCard?'hide':''}}" id='ib2'>
       <view>
         <text class='_font24 _txt_darkgrey'>证件号</text>
       </view>
@@ -23,12 +23,13 @@
         <button class="_card_button {{cardType==0?'on':''}}" bindtap="changCardType" data-idtype="0">大陆身份证</button>
         <button class="_card_button {{cardType==1?'on':''}}" bindtap="changCardType" data-idtype="1">护照</button>
       </view>
-      <input class="input_text {{(inputError.id_number)?'error':''}}" name="id_number" type="{{cardType==0?'idcard':'text'}}" bindinput="checkForm" value='{{formData.id_number}}' placeholder="{{cardType==0?'请输入正确的身份证号':'请输入正确的护照号'}}" placeholder-class='input_text_phc' id='i2'></input><icon type="clear" size="16" wx:if="{{formData.id_number}}" catchtap="clearInput" id="b2"></icon>
+      <input class="input_text {{(inputError.id_number)?'error':''}}" name="id_number" type="{{cardType==0?'idcard':'text'}}" bindinput="checkForm" value='{{formData.id_number}}' placeholder="{{cardType==0?'请输入正确的身份证号':'请输入正确的护照号'}}" placeholder-class='input_text_phc' id='i2'></input>
+      <icon type="clear" size="16" wx:if="{{formData.id_number}}" catchtap="clearInput" id="b2"></icon>
     </view>
 
     <view class="_fixed footer {{isIphoneX?'iphonex':''}}">
       <view class="_font24 invoice"><text class="iconfont icon-dunpai"></text>请放心我们不会向任何第三方透露您的身份信息。</view>
-      <button class="_button _font32" disabled="{{(formData.phone && formData.id_number)?'':'disabled'}}" form-type="submit">下一步</button>
+      <button class="_button _font32" disabled="{{formReady?'':'disabled'}}" form-type="submit">下一步</button>
     </view>
   </form>
 </view>
