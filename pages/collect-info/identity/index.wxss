@@ -85,3 +85,6 @@ icon {
 .footer button[disabled] {
   background: rgba(0, 123, 255, .2);
 }
+.hide {
+  display: none;
+}

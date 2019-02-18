@@ -81,9 +81,17 @@ Page({
     }
     app.checkHasRecodeFace('visitor', that.data.invitation.company.company_id, function(res) {
       if (res == '') {
-        wx.navigateTo({
-          url: '/pages/collect-info/guide/index?source=invite&params=' + JSON.stringify(params),
-        })
+      
+        if (that.data.invitation.company.is_force_visitor_input_info == 0) {
+          wx.navigateTo({
+            url: '/pages/collect-info/guide/index?source=invite&params=' + JSON.stringify(params) + '&hideIdCard=true',
+          })
+        } else {
+          wx.navigateTo({
+            url: '/pages/collect-info/guide/index?source=invite&params=' + JSON.stringify(params),
+          })
+        }
+        
       } else {
         app.receiveSubmit(that.data.invitation_id, e.detail.formId, function() {
           that.getInitation(that, that.data.invitation_id)

@@ -18,7 +18,6 @@ Page({
     that.getEmployeeInfo();
     that.getCompany();
     
-    
   },
 
   /**
@@ -42,16 +41,23 @@ Page({
             url: '/pages/manage/manage',
           })
         }
-        if (res.data.result.avatar =="") {
-          var pages = getCurrentPages();
-          var currentPage = pages[pages.length - 1]
-          var url = currentPage.route;
-          var opt = JSON.stringify(currentPage.options)
-          wx.redirectTo({
-            url: '/pages/login/index?route=' + url + '&opt=' + opt,
-          })
-        }
         if (res.data.result) {
+          if (res.data.result.avatar == "") {
+            var pages = getCurrentPages();
+            var currentPage = pages[pages.length - 1]
+            var url = currentPage.route;
+            var opt = JSON.stringify(currentPage.options)
+            wx.redirectTo({
+              url: '/pages/login/index?route=' + url + '&opt=' + opt,
+            })
+          }
+          wx.setNavigationBarTitle({
+            title: '个人中心'
+          })
+          wx.setNavigationBarColor({
+            frontColor: '#ffffff',
+            backgroundColor: '#009CFF'
+          })
           res.data.result.fuzz_id_number = that.fuzzIdNumber(res.data.result.id_number);
           that.setData({
             empInfo: res.data.result

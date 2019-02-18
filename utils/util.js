@@ -75,7 +75,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
             url: '/pages/checkfollow/index?route=' + url + '&opt=' + opt,
           })
         }
-        
+
         if (res.data.sub_code != 0) {
           app.myLog("请求成功错误", 'union_id:' + wx.getStorageSync('xy_session') + '\nopen_id:' + wx.getStorageSync('open_id') + '\n\n请求参数：\n' + JSON.stringify(requestHandler.params) + '\n\n接口返回信息：\n' + JSON.stringify(res))
         }

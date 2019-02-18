@@ -81,7 +81,7 @@
     }
   ],
   "window": {
-    "backgroundTextStyle": "black",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"
