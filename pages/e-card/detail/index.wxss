@@ -3,16 +3,19 @@
   background-color: rgba(135, 145, 168, 1);
   padding: 132rpx 40rpx 0;
 }
+
 .card-wrapper {
   background-color: #fff;
   border-radius: 10rpx;
   position: relative;
 }
+
 .card-info {
   line-height: 1;
-  height: 660rpx;
+  height: 700rpx;
   border-bottom: 2rpx solid rgba(202, 202, 202, .5);
 }
+
 .card-info::before,
 .card-info::after {
   content: '';
@@ -24,31 +27,103 @@
   top: 642rpx;
   box-sizing: border-box;
 }
+
 .card-info::before {
-  left: -18rpx; 
+  left: -18rpx;
 }
+
 .card-info::after {
-  right: -18rpx; 
+  right: -18rpx;
 }
+
 .card-info ._logo {
   width: 100rpx;
   height: 100rpx;
   border-radius: 10rpx;
   margin-top: -50rpx;
 }
+
 ._name {
   color: rgba(26, 42, 75, 1);
   margin-top: 26rpx;
 }
+
 ._short_name {
   color: rgba(136, 145, 169, 1);
   margin-top: 16rpx;
 }
+
 .e-card-qrcode image {
   width: 366rpx;
   height: 366rpx;
   margin: 32rpx auto 0;
 }
+
+.e-card-floor {
+  position: relative;
+  width: 366rpx;
+  height: 70rpx;
+  margin: 2rpx auto 0;
+}
+
+swiper {
+  height: 70rpx;
+}
+
+.lbtnCon {
+  width: 40rpx;
+  height: 70rpx;
+  position: absolute;
+  left: -42rpx;
+  top: 0rpx;
+}
+
+.left_btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(180deg);
+  z-index: 99;
+}
+
+.left_btn.invalid {
+  color: rgba(124, 130, 157, .1) !important;
+}
+
+.rbtnCon {
+  width: 40rpx;
+  height: 70rpx;
+  position: absolute;
+  right: -40rpx;
+  top: 0;
+}
+
+.right_btn {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+}
+
+.right_btn.invalid {
+  color: rgba(124, 130, 157, .1) !important;
+}
+
+.slide-image {
+  width: 102rpx;
+  height: 70rpx;
+  border-radius: 8rpx;
+  color: black;
+  font-size: 38rpx;
+  text-align: center;
+  line-height: 70rpx;
+}
+
+.slide-image.active {
+  background: #D7D9E1;
+}
+
 .error {
   display: flex;
   justify-content: center;
@@ -59,55 +134,66 @@
   line-height: 1.4;
   text-align: center;
 }
+
 .qr-intro {
   color: rgba(136, 145, 169, .6);
   margin-top: 20rpx;
 }
-.refreshBtn { 
+
+.refreshBtn {
   background: rgba(231, 238, 246, 1);
   padding: 8rpx 12rpx;
   border-radius: 6rpx;
   color: rgba(0, 123, 255, .6)
 }
+
 .company-info {
   padding: 58rpx 40rpx 64rpx;
-
 }
+
 .company-info ._address {
   margin-bottom: 32rpx;
   line-height: 1.2;
 }
+
 .int-title {
   line-height: 1;
 }
+
 .int-intro {
   color: rgba(26, 42, 75, 1);
   line-height: 42rpx;
   margin-top: 34rpx;
 }
+
 .int-item-name {
   margin-right: 30rpx;
   min-width: 100rpx;
   color: rgba(136, 145, 169, 1);
 }
+
 .int-item-info {
   color: rgba(34, 49, 81, 1);
 }
+
 .company-card {
   background-color: rgba(243, 245, 251, 1);
   border-radius: 10rpx;
   padding: 28rpx 36rpx 28rpx 28rpx;
 }
+
 .company-card image {
   width: 80rpx;
   height: 80rpx;
   border-radius: 10rpx;
   margin-right: 20rpx;
 }
+
 .company-card ._name {
   margin-top: 0;
   line-height: 1.2;
 }
+
 .company-card ._short_name {
   margin-top: 10rpx;
   line-height: 1;
@@ -118,36 +204,43 @@
   font-size: 22rpx;
   margin-left: 16rpx;
 }
+
 ._sec {
   border-bottom: 2rpx solid rgba(202, 202, 202, .5);
   padding-bottom: 50rpx;
 }
+
 .page_ft {
   margin-top: 64rpx;
 }
+
 .know-list-title {
   color: #fff;
   margin-bottom: 20rpx;
 }
+
 .know-list {
   color: rgba(255, 255, 255, .6);
   font-size: 26rpx;
   line-height: 40rpx;
 }
+
 .know-list ._num {
   color: #fff;
   margin-right: 10rpx;
 }
+
 ._ft_logo {
   padding: 64rpx 0;
 }
+
 .footer {
   background: #ccc;
-  left:0;
-  bottom:0;
-  width:100%;
-  padding:30rpx 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 30rpx 0;
   background: rgba(253, 254, 254, .96);
-  border-top:1rpx solid #eeeeee;
+  border-top: 1rpx solid #eeeeee;
   z-index: 101;
 }
