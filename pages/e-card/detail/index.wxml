@@ -19,7 +19,8 @@
             <view class="error _font28 _txt_center" wx:else><text>{{error_msg}}</text></view>
           </view>
           <view wx:if='{{floors!=""}}' class="e-card-floor">
-            <swiper class="row _cen_center" display-multiple-items='{{multiple_item}}' current='{{cur_Item}}' previous-margin='{{multiple_item ==1?"130rpx":multiple_item ==2?"40rpx":"20rpx"}}' next-margin=''>
+            <swiper class="row _cen_center" display-multiple-items='{{multiple_item}}' current='{{cur_Item}}' previous-margin='{{multiple_item ==1?"130rpx":multiple_item ==2?"80rpx":"10rpx"}}'
+            next-margin='{{multiple_item ==2?"80rpx":""}}'>
               <block wx:for="{{floors}}" wx:for-index="idx" wx:for-item="item" wx:key=''>
                 <swiper-item catchtouchmove="stopTouchMove">
                   <view  data-current='{{idx}}' data-floor='{{item}}'  bindtap='clicItem' class="slide-image {{curren_idx===idx?'active':''}}" >{{item}}</view>

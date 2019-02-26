@@ -65,6 +65,11 @@ Page({
       this.setData({
         rbtnLose: false,
       })
+      if (count == 1) {
+        this.setData({
+          lbtnLose: true,
+        })
+      }
     }
     this.setData({
       cur_Item: cur_Item
@@ -83,6 +88,11 @@ Page({
       this.setData({
         lbtnLose: false,
       })
+      if (count > step) {
+        this.setData({
+          rbtnLose: true,
+        })
+      }
     }
     this.setData({
       cur_Item: cur_Item
