@@ -22,13 +22,15 @@
             <swiper class="row _cen_center" display-multiple-items='{{multiple_item}}' current='{{cur_Item}}' previous-margin='{{multiple_item ==1?"130rpx":multiple_item ==2?"40rpx":"20rpx"}}' next-margin=''>
               <block wx:for="{{floors}}" wx:for-index="idx" wx:for-item="item" wx:key=''>
                 <swiper-item catchtouchmove="stopTouchMove">
-                  <view  data-current='{{idx}}' data-floor='{{item}}'  bindtap='clicItem' class="slide-image {{curren_idx===idx?'active':''}}" >{{item+"F"}}</view>
+                  <view  data-current='{{idx}}' data-floor='{{item}}'  bindtap='clicItem' class="slide-image {{curren_idx===idx?'active':''}}" >{{item}}</view>
                 </swiper-item>
               </block>
 
             </swiper>
+            <block wx:if='{{floors.length > 3}}'>
             <view class='lbtnCon' bindtap='clik_lBtn'><text  class="left_btn iconfont icon-jiantou {{lbtnLose?'invalid':''}}"></text></view>
             <view class='rbtnCon' bindtap='clik_rBtn'><text class="right_btn iconfont icon-jiantou {{rbtnLose?'invalid':''}}"></text></view>
+            </block>
           </view>
           <view class="_font24 qr-intro"><text>{{qrcode_tips}}</text><text class="refreshBtn" bindtap="refreshQrcode">点击刷新</text></view>
 
