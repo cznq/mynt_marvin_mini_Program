@@ -11,7 +11,8 @@ Page({
     longitude: null,
     invitation_id: null,
     visit_company_id: null,
-    hasAccept: false
+    hasAccept: false,
+    arrayFandR: '' //拼接楼房
   },
 
   /**
@@ -53,6 +54,7 @@ Page({
             invitation: res.data.result,
             appointment_time: app.Util.formatTime(res.data.result.appointment_time)
           })
+          _this.joinFloorRoom(_this.data.invitation.company.company_floor, _this.data.invitation.company.company_room)
           app.Util.generateMap(_this, res.data.result.company.address);
 
         } else {
@@ -71,7 +73,42 @@ Page({
       }
     })
   },
+  joinFloorRoom(floor, room) {
+    let arrayFloor = floor.split(',');
+    let arrayRoom = room.split(',');
+    let arrayLen = arrayFloor.length;
+    let arrayFandR = [];
+    let FloorAnRoom = '';
+    for (let i = 0; i < arrayLen; i++) {
+      let FloorAndRoom = arrayFloor[i] + ' ' + arrayRoom[i] + '室'
+      arrayFandR.push(FloorAndRoom)
+    }
+    switch (arrayLen) {
+      case 1:
+        FloorAnRoom = `${arrayFandR[0]}`
+        break;
+      case 2:
+        FloorAnRoom = `${arrayFandR[0]}， ${arrayFandR[1]}`
+        break;
+      case 3:
+        FloorAnRoom = `${arrayFandR[0]}， ${arrayFandR[1]}，
+             ${arrayFandR[2]}`
+        break;
+      case 4:
+        FloorAnRoom = `${arrayFandR[0]}， ${arrayFandR[1]}，
+              ${arrayFandR[2]}， ${arrayFandR[3]}`
+        break;
+      case 5:
+        FloorAnRoom = `${arrayFandR[0]}， ${arrayFandR[1]}，
+                ${arrayFandR[2]}， ${arrayFandR[3]}， ${arrayFandR[4]}`
+        break;
+      default:
 
+    }
+    this.setData({
+      arrayFandR: FloorAnRoom
+    })
+  },
   receiveSubmit(e) {
     var that = this;
     var params = {
@@ -81,7 +118,7 @@ Page({
     }
     app.checkHasRecodeFace('visitor', that.data.invitation.company.company_id, function(res) {
       if (res == '') {
-      
+
         if (that.data.invitation.company.is_force_visitor_input_info == 0) {
           wx.navigateTo({
             url: '/pages/collect-info/guide/index?source=invite&params=' + JSON.stringify(params) + '&hideIdCard=true',
@@ -91,7 +128,7 @@ Page({
             url: '/pages/collect-info/guide/index?source=invite&params=' + JSON.stringify(params),
           })
         }
-        
+
       } else {
         app.receiveSubmit(that.data.invitation_id, e.detail.formId, function() {
           that.getInitation(that, that.data.invitation_id)

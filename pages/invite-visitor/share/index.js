@@ -14,7 +14,8 @@ Page({
     inviteInfo: {},
     companyInfo: null,
     empInfo: null,
-    shareBtn: true
+    shareBtn: true,
+    arrayFandR: ''
   },
 
   /**
@@ -101,13 +102,49 @@ Page({
           that.setData({
             companyInfo: res.data.result
           })
+          that.joinFloorRoom(that.data.companyInfo.floor, that.data.companyInfo.room)
         }
         that.getEmployeeInfo();
         app.Util.generateMap(that, res.data.result.address);
       }
     })
   },
+  joinFloorRoom(floor, room) {
+    let arrayFloor = floor.split(',');
+    let arrayRoom = room.split(',');
+    let arrayLen = arrayFloor.length;
+    let arrayFandR = [];
+    let FloorAnRoom = '';
+    for (let i = 0; i < arrayLen; i++) {
+      let FloorAndRoom = arrayFloor[i] + ' ' + arrayRoom[i] + '室'
+      arrayFandR.push(FloorAndRoom)
+    }
+    switch (arrayLen) {
+      case 1:
+        FloorAnRoom = `${arrayFandR[0]}`
+        break;
+      case 2:
+        FloorAnRoom = `${arrayFandR[0]}， ${arrayFandR[1]}`
+        break;
+      case 3:
+        FloorAnRoom = `${arrayFandR[0]}， ${arrayFandR[1]}，
+             ${arrayFandR[2]}`
+        break;
+      case 4:
+        FloorAnRoom = `${arrayFandR[0]}， ${arrayFandR[1]}，
+              ${arrayFandR[2]}， ${arrayFandR[3]}`
+        break;
+      case 5:
+        FloorAnRoom = `${arrayFandR[0]}， ${arrayFandR[1]}，
+                ${arrayFandR[2]}， ${arrayFandR[3]}， ${arrayFandR[4]}`
+        break;
+      default:
 
+    }
+    this.setData({
+      arrayFandR: FloorAnRoom
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

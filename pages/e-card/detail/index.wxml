@@ -45,7 +45,7 @@
         </view>
         <view class=" _address _flex ">
           <view class="int-item-name _font24">详细地址</view>
-          <view class="_font28 int-item-info">{{tools.removeFloor(cmpInfo.floor)}}层 {{cmpInfo.room}}室</view>
+          <text class="_font28 int-item-info" >{{arrayFandR}}</text>
         </view>
         <navigator url="/pages/company/otherCompany/index?company_code={{cmpInfo.company_code}}" hover-class="none">
         <view class="company-card _flex _flex_item_center _flex_space_between">

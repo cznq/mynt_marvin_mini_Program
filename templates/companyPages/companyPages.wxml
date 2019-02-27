@@ -70,7 +70,7 @@
       </view>
       <view class='tr _clearfloat' wx:if="{{cd.floor=='' && cd.room==''?false:true}}">
         <text>详细地址</text>
-        <view class='_f_left'>{{cd.floor?tools.removeFloor(cd.floor)+'层':''}} {{cd.room?cd.room+'室':''}}</view>
+        <text class='_f_left addressColo'>{{cd.floor?cd.FloorAnRoom:''}}</text>
       </view>
       <view class='tr _clearfloat' wx:if="{{cd.phone}}">
         <text>联系方式</text>
