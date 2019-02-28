@@ -46,11 +46,11 @@
       <view class='st'>
         <text class='_font24 _txt_darkgrey _fontw300'>楼层信息</text>
       </view>
-      <input class='input_text dis_b_n pj9' disabled='false' name="floor" value='{{tools.removeFloor(cd.floor)}}层'></input>
+      <input class='input_text dis_b_n pj9' disabled='false' name="floor" value='{{cd.floor}}'></input>
       <view class='st'>
         <text class='_font24 _txt_darkgrey _fontw300'>门牌号（必填）</text>
       </view>
-      <input class='input_text pj9' name="room" value='{{cd.room}}' placeholder='请输入' maxlength='20' placeholder-class='input_text_phc'></input>
+      <input class='input_text pj9' name="room" value='{{cd.room}}' placeholder='请输入' placeholder-class='input_text_phc'></input>
       <view class='st'>
         <text class='_font24 _txt_darkgrey _fontw300'>联系方式（必填）</text>
       </view>
@@ -76,7 +76,7 @@
       <button class="_button" formType="submit">{{button_text}}</button>
     </cover-view>
     </block>
-   
+
   </form>
 </view>
 <import src="../../../templates/showToast/showToast.wxml" />

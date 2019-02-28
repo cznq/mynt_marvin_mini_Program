@@ -29,17 +29,18 @@ function pubData(_this, app, service, method, parameter, cb) {
         _this.setData({
           cd: res.data.result
         });
+        joinFloorRoom(_this.data.cd.floor, _this.data.cd.room, _this, _this.data.cd)
         //简介展开收起功能
         console.log();
-        if (res.data.result.introduction.length !=0){
+        if (res.data.result.introduction.length != 0) {
           introductionSwitch(_this);
         }
         //机器人预览 管理员
-        if (par == 'union_id') {   
+        if (par == 'union_id') {
           setAdminRobotReview(app, _this);
         }
         //如果有成功的回调则
-        cb && typeof cb == 'function' && cb(); 
+        cb && typeof cb == 'function' && cb();
       } else {
         console.log(res.data.sub_msg);
       }
@@ -47,6 +48,43 @@ function pubData(_this, app, service, method, parameter, cb) {
     fail: res => {
       console.log('fail');
     }
+  })
+}
+
+function joinFloorRoom(floor, room, _this, cd) {
+  let arrayFloor = floor.split(',');
+  let arrayRoom = room.split(',');
+  let arrayLen = arrayFloor.length;
+  let arrayFandR = [];
+  let FloorAnRoom = '';
+  for (let i = 0; i < arrayLen; i++) {
+    let FloorAndRoom = arrayFloor[i] + ' ' + arrayRoom[i] + '室'
+    arrayFandR.push(FloorAndRoom)
+  }
+  switch (arrayLen) {
+    case 1:
+      FloorAnRoom = `${arrayFandR[0]}`
+      break;
+    case 2:
+      FloorAnRoom = `${arrayFandR[0]}，${arrayFandR[1]}`
+      break;
+    case 3:
+      FloorAnRoom = `${arrayFandR[0]}，${arrayFandR[1]}，
+           ${arrayFandR[2]}`
+      break;
+    case 4:
+      FloorAnRoom = `${arrayFandR[0]}，${arrayFandR[1]}，
+            ${arrayFandR[2]}， ${arrayFandR[3]}`
+      break;
+    case 5:
+      FloorAnRoom = `${arrayFandR[0]}，${arrayFandR[1]}，
+              ${arrayFandR[2]}，${arrayFandR[3]}，${arrayFandR[4]}`
+      break;
+    default:
+
+  }
+  _this.setData({
+    ['cd.FloorAnRoom']: FloorAnRoom
   })
 }
 // 如果有union_id则判断是否是管理员来判断是否显示机器人预览
@@ -77,14 +115,14 @@ function setAdminRobotReview(app, _this) {
   });
 }
 //简介展开收起功能
-function introductionSwitch(_this){
+function introductionSwitch(_this) {
   var query = wx.createSelectorQuery();
-  query.select('#sonCon').boundingClientRect(function (qry) {
+  query.select('#sonCon').boundingClientRect(function(qry) {
     var sonHeight = qry.height;
     if (sonHeight >= 88) {
       _this.setData({
         "cd.isEllipsis": true,
-        "cd.isEllipsisbutton":true
+        "cd.isEllipsisbutton": true
       })
     }
   }).exec();
@@ -92,11 +130,11 @@ function introductionSwitch(_this){
 //简介展开
 function introductionAll(_this) {
   console.log();
-  if (_this.data.cd.isEllipsis==true){
+  if (_this.data.cd.isEllipsis == true) {
     _this.setData({
       "cd.isEllipsis": false
     })
-  }else{
+  } else {
     _this.setData({
       "cd.isEllipsis": true
     })

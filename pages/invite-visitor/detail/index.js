@@ -10,7 +10,8 @@ Page({
     invitation_id: null,
     invitation: null,
     appointment_time: null,
-    hasAccept: false
+    hasAccept: false,
+    arrayFandR: '' //楼房拼接字段
   },
 
   /**
@@ -44,6 +45,7 @@ Page({
             invitation: res.data.result,
             appointment_time: app.Util.formatTime(res.data.result.appointment_time)
           })
+          _this.joinFloorRoom(_this.data.invitation.company.company_floor, _this.data.invitation.company.company_room)
           app.Util.generateMap(_this, res.data.result.company.address);
         } else {
           wx.showToast({
@@ -61,7 +63,42 @@ Page({
       }
     })
   },
+  joinFloorRoom(floor, room) {
+    let arrayFloor = floor.split(',');
+    let arrayRoom = room.split(',');
+    let arrayLen = arrayFloor.length;
+    let arrayFandR = [];
+    let FloorAnRoom = '';
+    for (let i = 0; i < arrayLen; i++) {
+      let FloorAndRoom = arrayFloor[i] + ' ' + arrayRoom[i] + '室'
+      arrayFandR.push(FloorAndRoom)
+    }
+    switch (arrayLen) {
+      case 1:
+        FloorAnRoom = `${arrayFandR[0]}`
+        break;
+      case 2:
+        FloorAnRoom = `${arrayFandR[0]}，${arrayFandR[1]}`
+        break;
+      case 3:
+        FloorAnRoom = `${arrayFandR[0]}，${arrayFandR[1]}，
+             ${arrayFandR[2]}`
+        break;
+      case 4:
+        FloorAnRoom = `${arrayFandR[0]}，${arrayFandR[1]}，
+              ${arrayFandR[2]}， ${arrayFandR[3]}`
+        break;
+      case 5:
+        FloorAnRoom = `${arrayFandR[0]}，${arrayFandR[1]}，
+                ${arrayFandR[2]}，${arrayFandR[3]}，${arrayFandR[4]}`
+        break;
+      default:
 
+    }
+    this.setData({
+      arrayFandR: FloorAnRoom
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -2,7 +2,7 @@
 
 <view class="page">
   <view class="page_hd">
-  
+
   </view>
 
   <view class="page_bd">
@@ -13,24 +13,39 @@
           <text>{{title}}</text>
         </view>
         <view class="_short_name _font24">对准电梯扫码口扫描二维码上楼</view>
-        
+
           <view class="e-card-qrcode">
             <image src="{{floor_qrcode_url}}" wx:if="{{!error_msg}}"></image>
             <view class="error _font28 _txt_center" wx:else><text>{{error_msg}}</text></view>
           </view>
+          <view wx:if='{{floors!=""}}' class="e-card-floor">
+            <swiper class="row _cen_center" display-multiple-items='{{multiple_item}}' current='{{cur_Item}}' previous-margin='{{multiple_item ==1?"130rpx":multiple_item ==2?"80rpx":"10rpx"}}'
+            next-margin='{{multiple_item ==2?"80rpx":""}}'>
+              <block wx:for="{{floors}}" wx:for-index="idx" wx:for-item="item" wx:key=''>
+                <swiper-item catchtouchmove="stopTouchMove">
+                  <view  data-current='{{idx}}' data-floor='{{item}}'  bindtap='clicItem' class="slide-image {{curren_idx===idx?'active':''}}" >{{item}}</view>
+                </swiper-item>
+              </block>
+
+            </swiper>
+            <block wx:if='{{floors.length > 3}}'>
+            <view class='lbtnCon' bindtap='clik_lBtn'><text  class="left_btn iconfont icon-jiantou {{lbtnLose?'invalid':''}}"></text></view>
+            <view class='rbtnCon' bindtap='clik_rBtn'><text class="right_btn iconfont icon-jiantou {{rbtnLose?'invalid':''}}"></text></view>
+            </block>
+          </view>
           <view class="_font24 qr-intro"><text>{{qrcode_tips}}</text><text class="refreshBtn" bindtap="refreshQrcode">点击刷新</text></view>
-        
+
       </view>
 
       <view class="company-info">
-        
+
         <view class=" _address _flex ">
           <view class="int-item-name _font24">公司地址</view>
           <view class="_font28 int-item-info">{{cmpInfo.address}}</view>
         </view>
         <view class=" _address _flex ">
           <view class="int-item-name _font24">详细地址</view>
-          <view class="_font28 int-item-info">{{tools.removeFloor(cmpInfo.floor)}}层 {{cmpInfo.room}}室</view>
+          <text class="_font28 int-item-info" >{{arrayFandR}}</text>
         </view>
         <navigator url="/pages/company/otherCompany/index?company_code={{cmpInfo.company_code}}" hover-class="none">
         <view class="company-card _flex _flex_item_center _flex_space_between">
@@ -62,12 +77,12 @@
         </view>
     </view>
 
-    
+
 
 
 
   </view>
 
-  
+
 
 </view>
