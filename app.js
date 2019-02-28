@@ -8,8 +8,8 @@ const Promise = require('utils/promise.js');
 var fundebug = require('utils/fundebug.1.0.0.min.js');
 // 配置项
 fundebug.init({
-  //apikey: "950ab8d47c6dbb69527a604ee684c588369af4dd554cc59fa38e1e4aa5b763ac",  //正式环境
-  apikey: "f7a08bd4f8006965ba11314b2571777ea295a98e84766ade31bdb5c272b87428",  //测试环境
+  // apikey: "950ab8d47c6dbb69527a604ee684c588369af4dd554cc59fa38e1e4aa5b763ac", //正式环境
+  apikey: "f7a08bd4f8006965ba11314b2571777ea295a98e84766ade31bdb5c272b87428", //测试环境
   silent: false
 })
 
@@ -20,22 +20,22 @@ App({
     isIphoneX: false,
     BASE_IMG_URl: 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/',
     // 开发环境
-    //BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
-    //BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
-    //BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/', //内网环境
-    //BENIFIT_API_URL: 'http://192.168.1.204:10004/mini_program/api', //内网环境
-    //WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
+    // BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
+    // BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
+    // BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/', //内网环境
+    // BENIFIT_API_URL: 'http://192.168.1.204:10004/mini_program/api', //内网环境
+    // WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
     // 测试环境
     BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
     BENIFIT_API_URL: 'https://marvin-benifit-api-test.slightech.com/mini_program/api',
     WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com',
     // 正式环境
-    //BASE_API_URL: 'https://marvin-api.slightech.com/mini_program/api/',
-    //BENIFIT_API_URL: 'https://marvin-benifit-api.slightech.com/mini_program/api',
-    //WEB_VIEW_URL: 'https://marvin-official-account.slightech.com',
+    // BASE_API_URL: 'https://marvin-api.slightech.com/mini_program/api/',
+    // BENIFIT_API_URL: 'https://marvin-benifit-api.slightech.com/mini_program/api',
+    // WEB_VIEW_URL: 'https://marvin-official-account.slightech.com',
   },
 
-  onLaunch: function () {
+  onLaunch: function() {
     /**  获取手机信息 */
     var that = this;
     wx.getSystemInfo({
@@ -50,7 +50,7 @@ App({
         var version = res.SDKVersion;
         if (that.Util.compareVersion(version, '2.2.5') >= 0) {
           that.globalData.version = false
-        }else{
+        } else {
           that.globalData.version = true
         }
       }
@@ -58,18 +58,18 @@ App({
 
   },
 
-  onShow: function () {
+  onShow: function() {
     if (wx.getUpdateManager) {
       const updateManager = wx.getUpdateManager()
-      updateManager.onCheckForUpdate(function (res) {
+      updateManager.onCheckForUpdate(function(res) {
         // 请求完新版本信息的回调
         console.log('小程序版本更新提示：' + res.hasUpdate)
       })
-      updateManager.onUpdateReady(function () {
+      updateManager.onUpdateReady(function() {
         wx.showModal({
           title: '更新提示',
           content: '新版本已经准备好，是否重启应用？',
-          success: function (res) {
+          success: function(res) {
             if (res.confirm) {
               // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
               updateManager.applyUpdate()
@@ -77,7 +77,7 @@ App({
           }
         })
       })
-      updateManager.onUpdateFailed(function () {
+      updateManager.onUpdateFailed(function() {
         // 新的版本下载失败
         wx.showModal({
           title: '更新提示',
@@ -102,7 +102,7 @@ App({
   /**
    * 检查App是否登录
    */
-  checkSession: function () {
+  checkSession: function() {
     if (wx.getStorageSync('xy_session') == '' || wx.getStorageSync('xy_session') == null || wx.getStorageSync('open_id') == '' || wx.getStorageSync('open_id') == null) {
       return false;
     } else {
@@ -180,7 +180,7 @@ App({
   /**
    * 授权登录，弹出授权框
    */
-  authorizeLogin(encryptedData, iv, callback = function () { }) {
+  authorizeLogin(encryptedData, iv, callback = function() {}) {
     var that = this;
     wx.login({
       success: res => {
@@ -206,7 +206,7 @@ App({
    * EMPLOYEE_BENIFIT     周边福利
    * COMPANY_INTRODUCE_MEDIA     公司图文视频介绍
    */
-  getServiceStatus(_this, service, callback = function () { }) {
+  getServiceStatus(_this, service, callback = function() {}) {
     var that = this;
     that.Util.network.POST({
       url: that.globalData.BASE_API_URL,
@@ -255,8 +255,8 @@ App({
   },
 
   /**
-  * 了解小觅商业服务套件
-  */
+   * 了解小觅商业服务套件
+   */
   viewBusinessService() {
     wx.navigateTo({
       url: '/benifit/pages/suite-introduce/suite-introduce',
@@ -276,7 +276,7 @@ App({
    * 身份信息提交
    * param: id_type, phone, id_number
    */
-  idInformationSubmit(service, method, id_type, phone, id_number, callback = function () {}) {
+  idInformationSubmit(service, method, id_type, phone, id_number, callback = function() {}) {
     var that = this;
     that.Util.network.POST({
       url: that.globalData.BASE_API_URL,
@@ -308,7 +308,7 @@ App({
    * 申请信息提交
    * param: company_id, form_id, visitor_name, note, id_type, phone, id_number
    */
-  applySubmit(company_id, form_id, visitor_name, note, callback = function () { }) {
+  applySubmit(company_id, form_id, visitor_name, note, callback = function() {}) {
     var that = this;
     that.Util.network.POST({
       url: that.globalData.BASE_API_URL,
@@ -342,7 +342,7 @@ App({
    * 接受邀请
    * Param: invitation_id
    */
-  receiveSubmit(invitation_id, formId, callback = function () {}) {
+  receiveSubmit(invitation_id, formId, callback = function() {}) {
     var that = this;
     that.Util.network.POST({
       url: that.globalData.BASE_API_URL,
@@ -356,7 +356,7 @@ App({
         })
       },
       success: res => {
-        if (res.data.sub_code==0) {
+        if (res.data.sub_code == 0) {
           callback();
         } else {
           wx.showToast({
@@ -379,9 +379,11 @@ App({
   checkHasRecodeFace(personType, visit_company_id, callback) {
     var that = this;
     if (personType == 'employee') {
-      var service = 'company', method = 'get_employee_info';
+      var service = 'company',
+        method = 'get_employee_info';
     } else if (personType == 'visitor') {
-      var service = 'visitor', method = 'get_visitor_info';
+      var service = 'visitor',
+        method = 'get_visitor_info';
     } else {
       return false;
     }
@@ -399,7 +401,7 @@ App({
         console.log(res);
         if (res.data.result) {
           callback(res.data.result.input_pic_url);
-        } else if (res.data.sub_msg =='访客不存在') {
+        } else if (res.data.sub_msg == '访客不存在') {
           callback('');
         }
 
