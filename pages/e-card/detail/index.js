@@ -265,6 +265,7 @@ Page({
             'cmpInfo.logo': res.data.result.company.company_logo,
             avatar: res.data.result.visitor.input_pic_url
           })
+          that.joinFloorRoom(that.data.cmpInfo.floor, that.data.cmpInfo.room)
         }
 
       },
