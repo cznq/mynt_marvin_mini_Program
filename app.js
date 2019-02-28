@@ -8,7 +8,7 @@ const Promise = require('utils/promise.js');
 var fundebug = require('utils/fundebug.1.0.0.min.js');
 // 配置项
 fundebug.init({
-  //apikey: "950ab8d47c6dbb69527a604ee684c588369af4dd554cc59fa38e1e4aa5b763ac",  //正式环境
+  // apikey: "950ab8d47c6dbb69527a604ee684c588369af4dd554cc59fa38e1e4aa5b763ac", //正式环境
   apikey: "f7a08bd4f8006965ba11314b2571777ea295a98e84766ade31bdb5c272b87428", //测试环境
   silent: false
 })
@@ -30,9 +30,9 @@ App({
     BENIFIT_API_URL: 'https://marvin-benifit-api-test.slightech.com/mini_program/api',
     WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com',
     // 正式环境
-    //BASE_API_URL: 'https://marvin-api.slightech.com/mini_program/api/',
-    //BENIFIT_API_URL: 'https://marvin-benifit-api.slightech.com/mini_program/api',
-    //WEB_VIEW_URL: 'https://marvin-official-account.slightech.com',
+    // BASE_API_URL: 'https://marvin-api.slightech.com/mini_program/api/',
+    // BENIFIT_API_URL: 'https://marvin-benifit-api.slightech.com/mini_program/api',
+    // WEB_VIEW_URL: 'https://marvin-official-account.slightech.com',
   },
 
   onLaunch: function() {

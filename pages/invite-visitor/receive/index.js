@@ -88,19 +88,19 @@ Page({
         FloorAnRoom = `${arrayFandR[0]}`
         break;
       case 2:
-        FloorAnRoom = `${arrayFandR[0]}， ${arrayFandR[1]}`
+        FloorAnRoom = `${arrayFandR[0]}，${arrayFandR[1]}`
         break;
       case 3:
-        FloorAnRoom = `${arrayFandR[0]}， ${arrayFandR[1]}，
+        FloorAnRoom = `${arrayFandR[0]}，${arrayFandR[1]}，
              ${arrayFandR[2]}`
         break;
       case 4:
-        FloorAnRoom = `${arrayFandR[0]}， ${arrayFandR[1]}，
+        FloorAnRoom = `${arrayFandR[0]}，${arrayFandR[1]}，
               ${arrayFandR[2]}， ${arrayFandR[3]}`
         break;
       case 5:
-        FloorAnRoom = `${arrayFandR[0]}， ${arrayFandR[1]}，
-                ${arrayFandR[2]}， ${arrayFandR[3]}， ${arrayFandR[4]}`
+        FloorAnRoom = `${arrayFandR[0]}，${arrayFandR[1]}，
+                ${arrayFandR[2]}，${arrayFandR[3]}，${arrayFandR[4]}`
         break;
       default:
 
