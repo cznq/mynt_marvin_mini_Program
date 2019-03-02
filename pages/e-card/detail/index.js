@@ -171,13 +171,7 @@ Page({
         })
       },
       success: res => {
-        if (res.data.result) {
-          that.setData({
-            cmpInfo: res.data.result
-          })
-          console.log('cmpInfo:', that.data.cmpInfo);
-          that.joinFloorRoom(that.data.cmpInfo.floor, that.data.cmpInfo.room)
-        }
+
         app.Util.network.POST({
           url: app.globalData.BASE_API_URL,
           params: {
@@ -195,8 +189,15 @@ Page({
             }
           }
         })
+        if (res.data.result) {
+          that.getFloorQrcode();
+          that.setData({
+            cmpInfo: res.data.result
+          })
+          console.log('cmpInfo:', that.data.cmpInfo);
+          that.joinFloorRoom(that.data.cmpInfo.floor, that.data.cmpInfo.room)
+        }
 
-        that.getFloorQrcode();
       }
     })
   },
