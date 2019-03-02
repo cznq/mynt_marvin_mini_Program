@@ -2,7 +2,7 @@
   <view class="city-picker-view" bind:tap="togglePicker">
     <slot></slot>
   </view>
-  <view class="city-picker-container{{show ? ' show' : ''}}">
+  <view class="city-picker-wrapper{{show ? ' show' : ''}}">
     <view class="city-picker-shadow" catch:tap="hideCityPicker"></view>
     <view class="city-picker-box">
       <view class="city-picker-header">

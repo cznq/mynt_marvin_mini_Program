@@ -33,7 +33,9 @@ Component({
   },
   methods: {
     hasValue(list) {
-      const { childkey } = this.properties
+      const {
+        childkey
+      } = this.properties
       return this.isUndefined(list[childkey]) ? [] : list[childkey]
     },
 
@@ -60,13 +62,16 @@ Component({
     },
 
     getCityItem(list, id) {
-      const { childkey } = this.properties
+      const {
+        childkey
+      } = this.properties
       let result = this.getCityCodeItem(list, id)
-      if (!result) return { item: list.length > 0 ? list[0] : [], index: 0 }
+      if (!result) return {
+        item: list.length > 0 ? list[0] : [],
+        index: 0
+      }
       return {
-        item: this.isUndefined(result.item[childkey])
-          ? []
-          : result.item[childkey],
+        item: this.isUndefined(result.item[childkey]) ? [] : result.item[childkey],
         index: result.index
       }
     },
@@ -82,8 +87,16 @@ Component({
 
     // 初始化选择器信息
     togglePicker() {
-      let { value, mode, codes, show, data } = this.data
-      if (show) return this.setData({ show: !show })
+      let {
+        value,
+        mode,
+        codes,
+        show,
+        data
+      } = this.data
+      if (show) return this.setData({
+        show: !show
+      })
       if (mode === 2) value.length = 2
 
       let citys = []
@@ -110,12 +123,21 @@ Component({
         citys,
         show: !show
       }
-      this.setData(mode == 1 ? { ...params, areas } : params)
+      this.setData(mode == 1 ? {
+        ...params,
+        areas
+      } : params)
     },
     // 列滚动
     changeCityPicker(e) {
       const val = e.detail.value
-      let { citys, areas, value, mode, data } = this.data
+      let {
+        citys,
+        areas,
+        value,
+        mode,
+        data
+      } = this.data
       if (val[0] !== value[0]) {
         const currentCity = data[val[0]]
         citys = this.hasValue(currentCity)
@@ -128,14 +150,27 @@ Component({
         value = val
       }
 
-      const params = { value, citys }
-      this.setData(mode == 1 ? { ...params, areas } : params)
+      const params = {
+        value,
+        citys
+      }
+      this.setData(mode == 1 ? {
+        ...params,
+        areas
+      } : params)
     },
     // 确认
     submitCityPicker() {
-      const { data, citys, areas, value, mode, idkey, namekey } = this.data
-      this.setData(
-        {
+      const {
+        data,
+        citys,
+        areas,
+        value,
+        mode,
+        idkey,
+        namekey
+      } = this.data
+      this.setData({
           show: false
         },
         () => {
@@ -148,22 +183,24 @@ Component({
             this.key2Value(citys, value[1], namekey)
           ]
           const result =
-            mode === 2
-              ? {
-                  code: codeList,
-                  value: valueList
-                }
-              : {
-                  code: [...codeList, this.key2Value(areas, value[2], idkey)],
-                  value: [...valueList, this.key2Value(areas, value[2], namekey)]
-                }
+            mode === 2 ? {
+              code: codeList,
+              value: valueList
+            } : {
+              code: [...codeList, this.key2Value(areas, value[2], idkey)],
+              value: [...valueList, this.key2Value(areas, value[2], namekey)]
+            }
           this.triggerEvent('select', result)
         }
       )
+      console.log(22222);
     },
     // 取消
     hideCityPicker() {
-      this.setData({ show: false })
+      console.log(3333);
+      this.setData({
+        show: false
+      })
     }
   }
 })

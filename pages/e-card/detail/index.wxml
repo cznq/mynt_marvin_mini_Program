@@ -1,11 +1,11 @@
 <wxs src="../../../wxs/subutil.wxs" module="tools" />
-<view class="testCan">
-  <city-picker  data="{{citylist}}"  bind:select="onSelect">
-  <view class="input-picker">
-    {{city}}
-  </view>
-</city-picker>
+
+<city-picker codes="{{codes}}" mode="2" data="{{citylist}}"  bind:select="onSelect">
+<view class="input-picker">
+  {{city}}
 </view>
+</city-picker>
+
 <view class="testCanvas">
   <canvas-ring id="canvasRing" canvasWidth='50' value="50"></canvas-ring>
 </view>

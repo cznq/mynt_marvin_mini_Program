@@ -26,12 +26,14 @@ Page({
     show: true,
     curren_idx: 0,
     arrayFandR: '',
-    city: '',
+    codes: [],
+    city: 'wwwww',
     citylist: CityList
   },
   onSelect(e) {
     console.log(e);
     this.setData({
+      codes: e.detail.code,
       city: e.detail.value
     })
   },
