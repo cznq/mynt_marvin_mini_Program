@@ -67,7 +67,7 @@ Page({
         if (res.data.result) {
           var out_order_id = res.data.result.out_order_id;
           wx.requestPayment({
-            timeStamp: JSON.stringify(res.data.result.wx_package.timeStamp),
+            timeStamp: res.data.result.wx_package.timeStamp,
             nonceStr: res.data.result.wx_package.nonceStr,
             package: res.data.result.wx_package.package,
             signType: 'MD5',
@@ -82,13 +82,17 @@ Page({
               })
             },
             complete: res => {
-              
               wx.redirectTo({
                 url: '/benifit/pages/pay-status/index?out_order_id=' + out_order_id
               })
             }
             
           });
+        } else {
+          wx.showToast({
+            title: res.data.sub_msg,
+            icon: 'none'
+          })
         }
         
       },
