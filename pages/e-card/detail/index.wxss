@@ -244,3 +244,17 @@ swiper {
   border-top: 1rpx solid #eeeeee;
   z-index: 101;
 }
+
+.testCanvas {
+  width: 100rpx;
+  height: 90rpx;
+  margin: 0 auto;
+  border: 1px solid red;
+}
+
+.testCan {
+  width: 750rpx;
+  height: 150rpx;
+  margin: 0 auto;
+  border: 1px solid red;
+}
