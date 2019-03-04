@@ -29,7 +29,7 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-
+    options.invitation_id = "478";
     if (options.invitation_id) {
       that.data.invitation_id = options.invitation_id;
       that.setData({
@@ -265,6 +265,7 @@ Page({
             'cmpInfo.logo': res.data.result.company.company_logo,
             avatar: res.data.result.visitor.input_pic_url
           })
+          that.joinFloorRoom(that.data.cmpInfo.floor, that.data.cmpInfo.room)
         }
 
       },
