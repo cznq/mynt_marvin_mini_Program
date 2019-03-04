@@ -84,7 +84,11 @@
       "root": "assets",
       "name": "Assets",
       "pages": [
-        "pages/home/index"
+        "pages/home/index",
+        "pages/join-asset/homepage/index",
+        "pages/join-asset/invite-code/index",
+        "pages/join-asset/basic-info/index",
+        "pages/join-asset/upload-aptitude/index"
       ]
     }
   ],
