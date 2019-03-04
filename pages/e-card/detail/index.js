@@ -29,7 +29,6 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-
     if (options.invitation_id) {
       that.data.invitation_id = options.invitation_id;
       that.setData({
@@ -195,7 +194,6 @@ Page({
             }
           }
         })
-
         that.getFloorQrcode();
       }
     })
@@ -253,7 +251,7 @@ Page({
       },
       success: res => {
         if (res.data.result) {
-          that.getFloorQrcode();
+
           that.setData({
             'cmpInfo.address': res.data.result.company.address,
             'cmpInfo.floor': res.data.result.company.company_floor,
@@ -265,8 +263,9 @@ Page({
             'cmpInfo.logo': res.data.result.company.company_logo,
             avatar: res.data.result.visitor.input_pic_url
           })
+          that.joinFloorRoom(that.data.cmpInfo.floor, that.data.cmpInfo.room)
         }
-
+        that.getFloorQrcode();
       },
       fail: res => {
 
