@@ -207,34 +207,21 @@ page {
   border: none;
   width: 32rpx;
   height: 32rpx;
-  border-radius: 16rpx;
-  content: '';
-  position: relative;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.weui-cells_checkbox .weui-icon-checked:before {
-  position: absolute;
-  left: 6rpx;
-  top: 6rpx;
+.weui-cells_checkbox .weui-icon-checked .dot {
   background-color: rgba(0, 0, 0, 0);
   border: none;
   width: 20rpx;
   height: 20rpx;
-  border-radius: 10rpx;
-  content: '';
-  margin: 0;
+  border-radius: 50%;
 }
-.weui-cells_checkbox .weui-check[checked] + .weui-icon-checked:before {
-  width: 20rpx;
-  height: 20rpx;
-  margin: 0;
-  position: absolute;
-  left: 6rpx;
-  top: 6rpx;
-  border-radius: 10rpx;
-  content: '';
+.weui-cells_checkbox .weui-check[checked] + .weui-icon-checked .dot {
   background-color: #64DB89;
 }
-
 .page__ft {
   position: fixed;
   bottom: 0;
