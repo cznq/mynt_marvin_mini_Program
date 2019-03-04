@@ -1,0 +1,4 @@
+<!--pages/guide/index.wxml-->
+ <view class='page_cont'>
+    <image wx:for="{{image}}" wx:key="" wx:for-item="item" src="{{item}}" mode='widthFix'></image>
+  </view>

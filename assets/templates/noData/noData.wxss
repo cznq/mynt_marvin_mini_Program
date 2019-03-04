@@ -1,0 +1,31 @@
+.nonePage {
+  height: 100%;
+  width: 100%;
+}
+.noneIcon.no_asset{
+  width: 180rpx;
+  height: 144rpx;
+  margin: 450rpx auto 40rpx;
+  display: block;
+}
+.noneIcon.no_receipt{
+  width: 162rpx;
+  height: 128rpx;
+  margin: 184rpx auto 40rpx;
+  display: block;
+}
+.noneInfo {
+  font-size: 28rpx;
+  color: #6B7182;
+  line-height: 28rpx;
+}
+.noneBtn {
+  color: #fff;
+  width: 210rpx;
+  height: 74rpx;
+  line-height: 74rpx;
+  background-color: #0084FF;
+  border-radius: 10rpx;
+  margin: 46rpx auto 0;
+  font-size: 28rpx;
+}

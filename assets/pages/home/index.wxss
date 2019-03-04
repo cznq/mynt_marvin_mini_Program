@@ -1,0 +1,137 @@
+/* assets/home/index.wxss */
+@import "../../templates/noData/noData.wxss";
+page{
+    background-color: #F0F2F5;
+}
+.block_fixed{
+    position:fixed;
+    width:100%;
+    z-index:9999;
+    top: 0;
+}
+.top_menu{
+    width: 750rpx;
+    height: 180rpx;
+    background-color: #fff;
+}
+.menu_item{
+    width: 110rpx;
+    margin-right: 52rpx;
+    font-size:28rpx;
+    color: #6B7182;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    line-height: 28rpx;
+}
+.menu_item:first-child{
+    margin-left: 46rpx;
+}
+.menu_item image.pic{
+    width: 70rpx;
+    height: 70rpx;
+    margin: 34rpx auto 18rpx;
+    display: block;
+}
+.total_panel{
+    background-color: #fff;
+    margin-top: 200rpx;
+    padding: 40rpx 40rpx 32rpx;
+}
+.total_panel .total_top{
+    border-bottom: 1px solid #EBEBEB;
+    padding-bottom: 36rpx;
+}
+.total_panel .total_bottom{
+    padding-top: 28rpx;
+}
+.total_panel ._title{
+    font-size: 28rpx;
+    color: #868B97;
+    line-height: 28rpx;
+    margin-bottom: 9rpx;
+}
+.total_panel ._money{
+    font-size: 52rpx;
+    line-height: 52rpx;
+    color: #042948;
+}
+.total_panel ._num{
+    font-size: 40rpx;
+    line-height: 40rpx;
+    color :#5F6A79;
+    margin-bottom: 12rpx;
+}
+.total_panel ._name{
+    font-size: 26rpx;
+    line-height: 26rpx;
+    color: #6B7182;
+}
+._section_pay{
+    padding: 0 40rpx 60rpx;
+}
+._section_pay .pay_title{
+    padding: 60rpx 0 16rpx;
+}
+._section_pay .pay_title ._tit{
+    font-size: 34rpx;
+    color: #022443;
+}
+._section_pay .pay_title ._more{
+    font-size: 30rpx;
+    color: rgba(2, 36, 67, .3);
+}
+._section_pay ._pay_item{
+    background-color: #fff;
+    border-radius: 10rpx;
+    margin-top: 20rpx;
+    padding: 32rpx;
+}
+._section_pay ._pay_item ._name{
+    font-size: 32rpx;
+    color: #022443;
+}
+._section_pay ._pay_item ._money{
+    font-size: 40rpx;
+    color: #022443;
+}
+._section_pay ._pay_item ._item_lessee,
+._section_pay ._pay_item ._time,
+._section_pay ._pay_item ._address{
+    font-size: 26rpx;
+    color: #9DA7B8;
+}
+._section_pay ._pay_item ._label{
+    font-size: 28rpx;
+    color: #FF5E5E;
+}
+._section_pay ._pay_item ._label._rent{
+    font-size: 26rpx;
+    color: #E98637;
+    background-color: #FFDFC8;
+    border-radius: 6rpx;
+    width: 80rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    text-align: center;
+}
+._section_pay ._pay_item ._label._electricity{
+    font-size: 26rpx;
+    color: #77C690;
+    background-color: #D5F8E0;
+    border-radius: 6rpx;
+    width: 80rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    text-align: center;
+}
+._section_pay ._pay_item ._label._water_charge{
+    font-size: 26rpx;
+    color: #5996F1;
+    background-color: #DDE8FA;
+    border-radius: 6rpx;
+    width: 80rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    text-align: center;
+}

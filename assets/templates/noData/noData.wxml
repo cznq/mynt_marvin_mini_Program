@@ -1,0 +1,11 @@
+<template name="noneDataPage">
+  <view class="nonePage _flex _flex_item_center _flex_justify_center">
+    <view class="noneWrapper">
+      <image class="noneIcon {{noneData.icon}}" src='{{noneData.pic}}'></image>
+      <view class="noneInfo _txt_center">{{ noneData.textInfo }}</view>
+      <button class="noneBtn" bindtap="{{ noneData.btnFunc }}" wx:if="{{ noneData.buttonText }}">
+        {{ noneData.buttonText }}
+      </button>
+    </view>
+  </view>
+</template>

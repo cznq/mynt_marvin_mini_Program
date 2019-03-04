@@ -1,0 +1,10 @@
+/* pages/guide/index.wxss */
+.page_cont{
+   width: 750rpx;
+}
+.page_cont image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-repeat: no-repeat;
+}

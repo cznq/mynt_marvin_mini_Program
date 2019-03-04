@@ -63,7 +63,8 @@
     "pages/invite-list/invite-detail/invite-detail",
     "pages/visitor-list/list/index",
     "pages/visitor-list/detail/index",
-    "pages/company/unattended-setting/setting/index"
+    "pages/company/unattended-setting/setting/index",
+    "pages/guide/index"
   ],
   "subPackages": [
     {
@@ -77,6 +78,13 @@
         "pages/mall-comment/mall-comment",
         "pages/suite-introduce/suite-introduce",
         "pages/pay-status/index"
+      ]
+    },
+    {
+      "root": "assets",
+      "name": "Assets",
+      "pages": [
+        "pages/home/index"
       ]
     }
   ],

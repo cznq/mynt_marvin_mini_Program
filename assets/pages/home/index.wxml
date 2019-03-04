@@ -1,0 +1,133 @@
+<!--assets/home/index.wxml-->
+<import src="../../templates/noData/noData.wxml" />
+<view class="block_fixed">
+    <view class="top_menu">
+        <scroll-view scroll-x style="white-space: nowrap;">
+            <view wx:for="{{application}}" wx:for-index="idx" wx:key="key" class='menu_item' bindtap="{{item.bindtap}}" wx:if="{{item.isShow}}">
+                <image class="m{{idx+1}} pic" src='{{item.pic}}'></image>
+                {{item.name}}
+            </view>
+        </scroll-view>
+    </view>
+</view>
+<block wx:if='{{hasAssets}}'>
+    <view class="total_panel">
+        <view class="total_top _flex _flex_item_center _flex_space_around _txt_center">
+            <view class="arrival_account">
+                <view class="_title">本月到账 (元)</view>
+                <view class="_money">1680.26</view>
+            </view>
+            <view class="wait_account">
+                <view class="_title">本月待收 (元)</view>
+                <view class="_money">462.00</view>
+            </view>
+        </view>
+        <view class="total_bottom _flex _flex_item_center _flex_space_around _txt_center">
+            <view class="assets_num">
+                <view class="_num">43</view>
+                <view class="_name">总资产数</view>
+            </view>
+            <view class="renting">
+                <view class="_num">25</view>
+                <view class="_name">在租资产</view>
+            </view>
+            <view class="expiring">
+                <view class="_num">16</view>
+                <view class="_name">即将到期</view>
+            </view>
+            <view class="waiting">
+                <view class="_num">2</view>
+                <view class="_name">待租</view>
+            </view>
+        </view>
+    </view>
+    <!-- 收款 -->
+    <block wx:if="{{payable}}">
+        <view class="_section_pay">
+            <view class="_flex _flex_item_center _flex_space_between pay_title">
+                <view class="_tit">逾期收款</view>
+                <view class="_more">查看全部</view>
+            </view>
+            <view class="_pay_overdue">
+                <view class="_pay_item">
+                    <view class="_flex _flex_item_center _flex_space_between">
+                        <view class="_name">1601-望京大厦 C1栋 </view>
+                        <view class="_money">56.00</view>
+                    </view>
+                    <view class="_item_lessee">承租方：轻客智能科技</view>
+                    <view class="_flex _flex_item_center _flex_space_between">
+                        <view class="_time">逾期8天</view>
+                        <view class="_label">待核销</view>
+                    </view>
+                </view>
+                <view class="_pay_item">
+                    <view class="_flex _flex_item_center _flex_space_between">
+                        <view class="_name">1601-望京大厦 C1栋 </view>
+                        <view class="_money">56.00</view>
+                    </view>
+                    <view class="_item_lessee">承租方：轻客智能科技</view>
+                    <view class="_flex _flex_item_center _flex_space_between">
+                        <view class="_time">逾期8天</view>
+                        <view class="_label _rent">房租</view>
+                    </view>
+                </view>
+                <view class="_pay_item">
+                    <view class="_flex _flex_item_center _flex_space_between">
+                        <view class="_name">1601-望京大厦 C1栋 </view>
+                        <view class="_money">56.00</view>
+                    </view>
+                    <view class="_item_lessee">承租方：轻客智能科技</view>
+                    <view class="_flex _flex_item_center _flex_space_between">
+                        <view class="_time">逾期8天</view>
+                        <view class="_label _electricity">电费</view>
+                    </view>
+                </view>
+            </view>
+            <view class="_flex _flex_item_center _flex_space_between pay_title">
+                <view class="_tit">即将收款</view>
+                <view class="_more">查看全部</view>
+            </view>
+            <view class="_pay_overdue">
+                <view class="_pay_item">
+                    <view class="_flex _flex_item_center _flex_space_between">
+                        <view class="_name">2019-03-05 </view>
+                        <view class="_money">50.00</view>
+                    </view>
+                    <view class="_item_lessee">承租方：轻客智能科技</view>
+                    <view class="_flex _flex_item_center _flex_space_between">
+                        <view class="_address">地址：2205-望京大厦C1栋</view>
+                        <view class="_label _water_charge">水费</view>
+                    </view>
+                </view>
+                <view class="_pay_item">
+                    <view class="_flex _flex_item_center _flex_space_between">
+                        <view class="_name">2019-03-10 </view>
+                        <view class="_money">2000.00</view>
+                    </view>
+                    <view class="_item_lessee">承租方：轻客智能科技</view>
+                    <view class="_flex _flex_item_center _flex_space_between">
+                        <view class="_address">地址：2205-望京大厦C1栋</view>
+                        <view class="_label _rent">房租</view>
+                    </view>
+                </view>
+                <view class="_pay_item">
+                    <view class="_flex _flex_item_center _flex_space_between">
+                        <view class="_name">2019-03-17</view>
+                        <view class="_money">160.00</view>
+                    </view>
+                    <view class="_item_lessee">承租方：轻客智能科技</view>
+                    <view class="_flex _flex_item_center _flex_space_between">
+                        <view class="_address">地址：2205-望京大厦C1栋</view>
+                        <view class="_label _water_charge">水费</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <block wx:else>
+        <template is="noneDataPage" data="{{noneData:noPay}}" />
+    </block>
+</block>
+<block wx:else>
+    <template is="noneDataPage" data="{{noneData:noneData}}" />
+</block>
