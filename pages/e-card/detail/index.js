@@ -1,11 +1,17 @@
 const app = getApp();
 var count = 1;
+import {
+  CityList
+} from '../../../utils/pca.js'; //^
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    codes: [], //
+    city: 'dsdsad', //
+    citylist: CityList, //
     invitation_id: null,
     floor_qrcode_url: null,
     cmpInfo: null,
@@ -23,7 +29,12 @@ Page({
     curren_idx: 0,
     arrayFandR: ''
   },
-
+  onSelect(e) { //
+    this.setData({
+      codes: e.detail.code,
+      city: e.detail.value
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
