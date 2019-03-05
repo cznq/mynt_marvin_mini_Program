@@ -1,4 +1,4 @@
-// pages/join-asset/basic-info/index.js
+// pages/join-asset/upload-licence/index.js
 Page({
 
   /**

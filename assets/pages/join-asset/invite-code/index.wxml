@@ -1,2 +1,13 @@
 <!--pages/join-asset/invite-code/index.wxml-->
-<text>pages/join-asset/invite-code/index.wxml</text>
+<view class='_content _top_gradient2'>
+    <view class='mainTitle'>{{mainTitle}}</view>
+    <form bindsubmit="confirmCode">
+        <input class='inp' bindinput='companyCode' bindfocus="bindfocus" bindblur="bindblur" maxlength='8' confirm-hold="true" focus="true" value='{{codevalue}}' name="code" focus="{{isfocus}}"></input>
+        <view class='hint _font22 _txt_darkgrey _fontw300'>
+            <text>{{hint}}</text>
+        </view>
+        <view class='input_block' style="position: {{position}};padding-top: {{padding}}">
+            <button class="_button" form-type="submit" disabled="{{disabled}}">{{button_text}}</button>
+        </view>
+    </form>
+</view>

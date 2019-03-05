@@ -1,14 +1,11 @@
-// pages/join-asset/homepage/index.js
+// pages/join-asset/upload-id/index.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        headlinesT1: "欢迎使用",
-        headlinesT2: "小觅资产管理系统",
-        explainText: "资产管理便捷高效，多套房源一手掌握， 线上收租方便快捷。",
-        buttonText: "立即体验"
+
     },
 
     /**

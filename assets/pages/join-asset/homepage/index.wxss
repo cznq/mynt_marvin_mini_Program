@@ -1,1 +1,30 @@
 /* pages/join-asset/homepage/index.wxss */
+page {
+    background: #FFFFFF;
+    height: 100%;
+}
+
+.headlines {
+    height: 800rpx;
+    background: url('https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/assets/join-asset-homepage.png') no-repeat center 93rpx;
+    background-size: contain;
+}
+
+.t1 {
+    padding-top: 664rpx;
+    font-size: 68rpx;
+    color: #1A2A4B;
+    font-weight: bold;
+}
+
+.t2 {
+    font-size: 68rpx;
+    color: #007BFF;
+    font-weight: bold;
+}
+
+.input_block {
+    background: #bababa;
+    position: fixed;
+    bottom: 30rpx;
+}

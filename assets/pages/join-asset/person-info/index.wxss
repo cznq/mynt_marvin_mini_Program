@@ -1,0 +1,41 @@
+/* pages/join-asset/person-info/index.wxss */
+page {
+    background: #F9FAFB;
+    height: 100%;
+}
+
+.mainTitle {
+    padding-top: 90rpx;
+}
+
+.title-top {
+    padding: 111rpx 0 0 1rpx;
+}
+
+.view-title {
+    color: #1A2A4B;
+    font-size: 30rpx;
+}
+
+.view-inp {
+    height: 34rpx;
+    font-size: 36rpx;
+    font-weight: normal;
+    color: rgba(26, 42, 75, 1);
+    line-height: 38rpx;
+    opacity: 0.2;
+    padding-top: 25rpx;
+}
+
+.view-line {
+    height: 51rpx;
+    margin-top: 36rpx;
+    border-top: 1rpx solid #DCDCDC;
+    opacity: 0.5;
+}
+
+.input_block {
+    background: #bababa;
+    position: fixed;
+    bottom: 30rpx;
+}
