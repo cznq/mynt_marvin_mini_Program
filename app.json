@@ -88,7 +88,8 @@
         "pages/join-asset/homepage/index",
         "pages/join-asset/invite-code/index",
         "pages/join-asset/basic-info/index",
-        "pages/join-asset/upload-aptitude/index"
+        "pages/join-asset/upload-aptitude/index",
+        "pages/staff/list/index"
       ]
     }
   ],

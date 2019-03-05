@@ -2,6 +2,23 @@
   height: 100%;
   width: 100%;
 }
+.noneWrapper {
+  position: relative;
+}
+.noneWrapper .pointer {
+  position: absolute;
+  right: -24rpx;
+  top: 30rpx;
+}
+.noneIcon {
+  margin: 0 auto 40rpx;
+}
+.noneTitle {
+  font-size: 40rpx;
+  line-height: 50rpx;
+  font-weight: 600;
+  margin-bottom: 14rpx;
+}
 .noneIcon.no_asset{
   width: 180rpx;
   height: 144rpx;
