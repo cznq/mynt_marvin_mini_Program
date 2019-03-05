@@ -1,2 +1,6 @@
-<!--components/uploadRoomProve/uploadRoomProve.wxml-->
-<text>components/uploadRoomProve/uploadRoomProve.wxml</text>
+<view class="uiView">
+  <view class="uploadModul">
+    <image class="uploadBg" src='../../images/roomProve.png'></image>
+    <view class="icon-tianjia"><text class="tianjia iconfont icon-shenqingbeijujue"></text></view>
+  </view>
+</view>
