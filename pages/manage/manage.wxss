@@ -1,4 +1,5 @@
 @import "../create-company/public/style.wxss";
+
 /* 创建公司&&加入公司首页 */
 .login .headlines {padding:47rpx 0 0 58rpx;font-size:68rpx;line-height:68rpx;font-weight: bold;}
 .login .headlines .t2{padding:19rpx 0 43rpx 0;color:#0093FE;}
@@ -84,3 +85,58 @@ swiper-item.active1 image {width:630rpx;margin-left:40rpx;display: block;height:
 .s_hint .text {color: #3ed26b;}
 .company-sh {background: #fff;}
 .zwc{height: 180rpx;overflow: hidden;}
+/* 弹窗 */
+.toast-bg {position: fixed;top: 0;bottom: 0;z-index: 900;left: 0;right: 0;background:#818181;opacity:0.4;}
+.toastPubStyle{
+    position: fixed;
+    display: inline-block;
+    border-radius: 10rpx;
+    top: 50%;
+    left: 50%;
+    z-index: 901;
+    transform: translate(-50%, -50%);
+    color:#fff;
+    background: #fff;
+    width: 530rpx;
+}
+.toast9{
+    background: url('https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/assets/index_toast_pic%402x.png') no-repeat center;
+    width: 530rpx;
+    height: 590rpx;
+    background-size: cover;
+    padding: 80rpx 0 0 46rpx;
+}
+.toastPubStyle .learn_more{
+    line-height: 120rpx;
+    color: #007BFF;
+    font-size: 32rpx;
+    text-align: center;
+}
+.toastPubStyle .toast-subtitle{
+    font-size: 46rpx;
+}
+.toastPubStyle .toast-title{
+    font-size: 56rpx;
+}
+.toastPubStyle .toast-line{
+    width: 46rpx;
+    height: 2rpx;
+    background-color: #fff;
+    margin: 32rpx 0;
+}
+.toastPubStyle .toast-introduce{
+    font-size: 22rpx;
+}
+.toastPubStyle .icon_close{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.toastPubStyle .icon_close .icon-cha{
+    background-color: transparent;
+    color: #fff;
+    font-size: 20rpx;
+    width: 68rpx;
+    height: 68rpx;
+    line-height: 68rpx;
+}

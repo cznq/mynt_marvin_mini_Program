@@ -2,6 +2,7 @@ var app = getApp()
 Page({
     data: {
         isiphoneX: app.globalData.isIphoneX,
+        version: app.globalData.version,
         swiperCurrent: 0,
         showLoginModal: false,
         indicatorDots: true, //是否显示面板指示点
@@ -85,7 +86,12 @@ Page({
         }],
         server_input_pic_url: '',
         serviceStatus: '',
-        isSwiperText: [true, false, false] //轮播文案
+        isSwiperText: [true, false, false], //轮播文案
+        showToast:{
+            toastStyle:'toast9', 
+            mask: true,
+            isShow:true
+        }
     },
     onLoad: function(options) {
         var _this = this;
@@ -299,5 +305,16 @@ Page({
                 console.log('fail');
             }
         })
+    },
+    closeToast:function(){
+        var that= this;
+        that.setData({
+            'showToast.isShow': false
+        });
+    },
+    goGuide:function(){
+        wx.navigateTo({
+            url: '/pages/guide/index',
+        })    
     }
 })
