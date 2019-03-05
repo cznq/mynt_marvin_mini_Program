@@ -15,28 +15,28 @@
         <view class="total_top _flex _flex_item_center _flex_space_around _txt_center">
             <view class="arrival_account">
                 <view class="_title">本月到账 (元)</view>
-                <view class="_money">1680.26</view>
+                <view class="_money">{{assets.income}}</view>
             </view>
             <view class="wait_account">
                 <view class="_title">本月待收 (元)</view>
-                <view class="_money">462.00</view>
+                <view class="_money">{{assets.pending_payment}}</view>
             </view>
         </view>
         <view class="total_bottom _flex _flex_item_center _flex_space_around _txt_center">
             <view class="assets_num">
-                <view class="_num">43</view>
+                <view class="_num">{{assets.total}}</view>
                 <view class="_name">总资产数</view>
             </view>
             <view class="renting">
-                <view class="_num">25</view>
+                <view class="_num">{{assets.renting_no}}</view>
                 <view class="_name">在租资产</view>
             </view>
             <view class="expiring">
-                <view class="_num">16</view>
+                <view class="_num">{{assets.expiring_no}}</view>
                 <view class="_name">即将到期</view>
             </view>
             <view class="waiting">
-                <view class="_num">2</view>
+                <view class="_num">{{assets.for_rent_no}}</view>
                 <view class="_name">待租</view>
             </view>
         </view>
