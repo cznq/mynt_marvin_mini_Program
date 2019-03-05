@@ -1,3 +1,7 @@
 {
-  "navigationBarTitleText": ""
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "upload-Room-Prove":"../../../components/uploadRoomProve/uploadRoomProve",
+     "city-picker": "../../../components/cityPicker/index"
+  }
 }
