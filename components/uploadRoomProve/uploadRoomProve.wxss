@@ -1,1 +1,47 @@
 /* components/uploadRoomProve/uploadRoomProve.wxss */
+@import "../../templates/iconfont/iconfont.wxss";
+
+.uiView {
+  width: 670rpx;
+  height: 580rpx;
+  padding: 30rpx 0rpx 15rpx;
+  margin: 0 auto;
+  border: 2rpx solid red;
+  box-sizing: border-box;
+}
+
+.uploadModul {
+  position: relative;
+  width: 576rpx;
+  height: 384rpx;
+  margin: 0 auto;
+}
+
+.uploadBg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 576rpx;
+  height: 384rpx;
+  z-index: 9;
+}
+
+.icon-tianjia {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90rpx;
+  height: 90rpx;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+}
+
+.tianjia {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90rpx;
+  height: 90rpx;
+}
