@@ -110,7 +110,7 @@ Page({
         method: 'get_floor_qrcode',
         data: JSON.stringify({
           invitation_id: that.data.invitation_id,
-          floor: that.data.floor
+          floor: that.data.floor,
         })
       },
       success: res => {
@@ -119,6 +119,7 @@ Page({
           that.setData({
             floor_qrcode_url: res.data.result.qrcode_url,
             floors: res.data.result.floors,
+            error_msg: ''
           })
           if (that.data.floors != '') {
             that.initSwiperShow()
