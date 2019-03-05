@@ -24,15 +24,18 @@ App({
     // BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
     // BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/', //内网环境
     // BENIFIT_API_URL: 'http://192.168.1.204:10004/mini_program/api', //内网环境
-    // WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
+    //WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
+    BASE_ASSET_URL: 'http://192.168.1.211:20000/asset',
     // 测试环境
     BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
     BENIFIT_API_URL: 'https://marvin-benifit-api-test.slightech.com/mini_program/api',
     WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com',
+    // BASE_ASSET_URL: 'https://marvin-test.myntai.com/asset',
     // 正式环境
     // BASE_API_URL: 'https://marvin-api.slightech.com/mini_program/api/',
     // BENIFIT_API_URL: 'https://marvin-benifit-api.slightech.com/mini_program/api',
     // WEB_VIEW_URL: 'https://marvin-official-account.slightech.com',
+    //BASE_ASSET_URL: 'https://marvin.myntai.com/asset',
   },
 
   onLaunch: function() {
