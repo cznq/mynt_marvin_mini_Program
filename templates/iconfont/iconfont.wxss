@@ -212,7 +212,7 @@
   content: "\e64a";
 }
 
-<<<<<<< HEAD .icon-hetong:before {
+.icon-hetong:before {
   content: "\e64b";
 }
 
@@ -223,5 +223,3 @@
 .icon-shenqingbeijujue-copy:before {
   content: "\e64d";
 }
-
-=======>>>>>>>ac5daf5b7680ce64ede85b31e48d2276a608a0f0
