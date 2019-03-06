@@ -17,7 +17,9 @@ Page({
    */
   onLoad: function (options) {
     var _this = this;
-    _this.data.pay_from = options.pay_from
+    _this.setData({
+      pay_from: options.pay_from
+    })
     if (options.pay_from == 'commerce'){
       _this.searchOrderInfo(_this, options.out_order_id, app.globalData.BENIFIT_API_URL);
     } else if (options.pay_from == 'package') {
