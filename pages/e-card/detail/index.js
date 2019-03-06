@@ -29,7 +29,6 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-
     if (options.invitation_id) {
       that.data.invitation_id = options.invitation_id;
       that.setData({
@@ -253,6 +252,7 @@ Page({
       },
       success: res => {
         if (res.data.result) {
+
           that.setData({
             'cmpInfo.address': res.data.result.company.address,
             'cmpInfo.floor': res.data.result.company.company_floor,

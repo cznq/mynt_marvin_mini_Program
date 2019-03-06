@@ -228,6 +228,7 @@ Page({
       success: res => {
         if (res.data.result) {
           var data = res.data.result;
+          delete data.discount_tag
           for (var i = 0; i < data.length; i++) {
             data[i].deal_price_fen = String(data[i].deal_price_fen).split('');
           }

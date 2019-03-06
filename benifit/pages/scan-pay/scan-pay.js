@@ -53,7 +53,7 @@ Page({
         if(res.data.result){
           if (res.data.result.sub_mch_id ==''){
             that.setData({ cannotPay: true})
-            toast.showToast(_this, {
+            toast.showToast(that, {
               toastStyle: 'toast',
               title: '商家未开通支付',
               duration: 1000,
@@ -162,7 +162,7 @@ Page({
   },
   clickKey(event) {
     let value = event.currentTarget.dataset.keyval;
-    console.log(value);
+
     if (this.data.keyVal == 0) {
       this.handleTotalValue(value);
     } else {
@@ -286,18 +286,21 @@ Page({
   },
   calcRealPrice: function () {
     let discount_tag = this.data.cd_CommerceDiscount.discount_tag;
-    console.log(discount_tag.full_price + "==" + discount_tag.discount_type + '==' + discount_tag.discount_price);
-    console.log('totalPrice:'+this.data.totalPrice+'  outPrice:'+this.data.outPrice+'  realPrice:'+this.data.realPrice);
+    //console.log(discount_tag.full_price + "==" + discount_tag.discount_type + '==' + discount_tag.discount_price);
+    //console.log('totalPrice:'+this.data.totalPrice+'  outPrice:'+this.data.outPrice+'  realPrice:'+this.data.realPrice);
     if (this.data.totalPrice == null || this.data.totalPrice == '') {
       this.setData({ realPrice: 0 })
+      this.calcSavedPrice();
       return ;
     }
     if (this.data.hasDiscount == 0) {
       this.setData({ realPrice: this.data.totalPrice })
+      this.calcSavedPrice();
       return ;
     }
     if (this.data.totalPrice - this.data.outPrice < 0) {
       this.setData({ realPrice: this.data.totalPrice })
+      this.calcSavedPrice();
       return ;
     }
     if (discount_tag.discount_type == 1) {
@@ -315,11 +318,11 @@ Page({
       console.log('满减方式');
       if (this.data.outPrice !== null && this.data.outPrice !== '') {
         this.setData({
-          realPrice: this.data.totalPrice - this.data.outPrice > discount_tag.full_price ? this.data.totalPrice - discount_tag.discount_price : this.data.totalPrice
+          realPrice: this.data.totalPrice - this.data.outPrice >= discount_tag.full_price ? this.data.totalPrice - discount_tag.discount_price : this.data.totalPrice
         })
       } else {
         this.setData({
-          realPrice: this.data.totalPrice - discount_tag.full_price > 0 ? this.data.totalPrice - discount_tag.discount_price : this.data.totalPrice
+          realPrice: this.data.totalPrice - discount_tag.full_price >= 0 ? this.data.totalPrice - discount_tag.discount_price : this.data.totalPrice
         })
       }
     }
