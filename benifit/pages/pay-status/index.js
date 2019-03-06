@@ -8,7 +8,7 @@ Page({
    */
   data: {
     status: 'wait',
-    phone: '0571-82417637',
+    phone: '0571-82617637',
     pay_from: ''
   },
 
