@@ -19,14 +19,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
- 
     this.data.commerce_id = options.commerce_id;
     this.data.type = options.type;
-    // if (type != 0 && type != 1) {
-    //   wx.redirectTo({
-    //     url: '/benifit/pages/mall-detail/mall-detail?commerce_id=' + commerce_id + '&commerce_type=' + type
-    //   });
-    // }
     this.hasDiscount();
     this.getCommerceInfo(this.data.commerce_id);
     this.getCommerceDiscount(this.data.commerce_id, this.data.type);
@@ -177,6 +171,10 @@ Page({
       if (this.data.totalPrice == null) {
         this.setData({ totalPrice: '' })
       }
+      //禁止小数点后面输入第三位
+      if (this.data.totalPrice.toString().indexOf('.') != -1 && this.data.totalPrice.toString().substr(this.data.totalPrice.toString().indexOf('.'), this.data.totalPrice.toString().length - 1).length > 2) {
+        val = ''
+      }
       if (val == '.' && (this.data.totalPrice.toString().indexOf('.') != -1 || this.data.totalPrice == '')) {
         val = ''
       }
@@ -189,6 +187,10 @@ Page({
     } else {
       if (this.data.outPrice == null) {
         this.setData({ outPrice: '' })
+      }
+      //禁止小数点后面输入第三位
+      if (this.data.outPrice.toString().indexOf('.') != -1 && this.data.outPrice.toString().substr(this.data.outPrice.toString().indexOf('.'), this.data.outPrice.toString().length - 1).length > 2) {
+        val = ''
       }
       if (val == '.' && (this.data.outPrice.toString().indexOf('.') != -1 || this.data.outPrice == '')) {
         val = ''
@@ -237,7 +239,9 @@ Page({
             },
             fail: res => {},
             complete: res => {
-              _this.orderSearch(out_order_id);
+              wx.navigateTo({
+                url: '/benifit/pages/pay-status/index?out_order_id=' + out_order_id + '&pay_from=commerce'
+              })
             }
           });
         } else {
@@ -253,37 +257,7 @@ Page({
       }
     })
   },
-  orderSearch: function (out_order_id) {
-    let _this = this
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
-      params: {
-        service: 'pay',
-        method: 'get_order_info',
-        data: JSON.stringify({
-          "commerce_id": _this.data.commerce_id,
-          "out_order_id": out_order_id,
-        })
-      },
-      success: res => {
-        console.log(res.data);
-        if (res.data.sub_code == 0) {
-          wx.redirectTo({
-            url: '/benifit/pages/scan-pay/scan-pay?commerce_id=' + _this.data.commerce_id + '&type=' + _this.data.type,
-          })
-        } else {
-          toast.showToast(_this, {
-            toastStyle: 'toast',
-            title: res.data.sub_msg,
-            duration: 1000,
-            mask: false,
-            isArrow: true
-          });
-        }
-
-      }
-    })
-  },
+  
   calcRealPrice: function () {
     let discount_tag = this.data.cd_CommerceDiscount.discount_tag;
     //console.log(discount_tag.full_price + "==" + discount_tag.discount_type + '==' + discount_tag.discount_price);
