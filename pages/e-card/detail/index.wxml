@@ -5,7 +5,8 @@
   </view>
 </city-picker>
 
-<upload-Room-Prove></upload-Room-Prove>
+<upload-Room-Prove ></upload-Room-Prove>
+
 <view class="page">
   <view class="page_hd">
 

@@ -1,4 +1,6 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "canvas-ring": "../canvas-ring/canvas-ring"
+  }
 }
