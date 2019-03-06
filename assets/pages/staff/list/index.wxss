@@ -18,3 +18,28 @@ page {
   color: #0084FF;
   margin-right: 6rpx;
 }
+.staff-list_item {
+  margin: 40rpx;
+  background-color: #fff;
+  padding: 20rpx;
+  border-radius: 10rpx;
+}
+.staff-list_item .first-name {
+  font-size: 50rpx;
+  width: 100rpx;
+  height: 100rpx;
+  color: #fff;
+  background-color: #5487FE;
+  text-align: center;
+  line-height: 100rpx;
+  margin-right: 22rpx;
+}
+.staff-list_item ._per-info {
+  color: rgba(9, 35, 68, .3)
+}
+.staff-list_item .status {
+  background-color: rgba(136, 145, 169, .3);
+  color: #fff;
+  padding: 6rpx 10rpx;
+  border-radius: 6rpx;
+}

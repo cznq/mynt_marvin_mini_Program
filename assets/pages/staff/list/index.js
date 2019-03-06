@@ -6,7 +6,17 @@ Page({
    */
   data: {
     staffCount: 0,
-    staffList: '',
+    staffList: [{
+        "employee_id": 1,
+        "union_id": "o3iamjh_tpecJOwgrAhWHM7CQb2k",
+        "name": "李四",
+        "phone": "130xxxxxxxx",
+        "role": 0,
+        "owner_id": 1,
+        "manage_asset_count": 0,
+        "manage_asset_total_amount": 0
+      }
+    ],
     noneData: {
       pointer: true,
       title: '暂无资产',

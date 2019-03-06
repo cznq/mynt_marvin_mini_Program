@@ -1,0 +1,49 @@
+.page__hd {
+  padding: 36rpx 40rpx 34rpx;
+  background-color: #fff;
+}
+._content {
+  background: #fff!important;
+}
+.collect-information {
+  padding: 40rpx 0 0 40rpx;
+}
+
+.input_block {
+  padding: 10rpx 0 20rpx;
+  position: relative;
+  border-bottom: 1rpx solid #ededed;
+}
+._pb40 {
+  padding-bottom: 40rpx!important;
+}
+.input_block .input_text {
+  border-bottom: none;
+  height: 45rpx;
+}
+icon {
+  position: absolute;
+  bottom: 50rpx;
+  right: 0;
+  z-index: 100;
+}
+
+.footer {
+  background: #ccc;
+  left:0;
+  bottom:0;
+  width:100%;
+  padding-top: 30rpx;
+  background: #fff;
+  border-top: none;
+}
+.footer.iphonex {
+  padding-bottom: 110rpx;
+}
+.footer button {
+  background: #007bff;
+  color: #fff!important;
+}
+.footer button[disabled] {
+  background: rgba(0, 123, 255, .2);
+}
