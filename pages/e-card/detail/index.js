@@ -29,7 +29,6 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-
     if (options.invitation_id) {
       that.data.invitation_id = options.invitation_id;
       that.setData({
@@ -111,7 +110,7 @@ Page({
         method: 'get_floor_qrcode',
         data: JSON.stringify({
           invitation_id: that.data.invitation_id,
-          floor: that.data.floor
+          floor: that.data.floor,
         })
       },
       success: res => {
@@ -120,6 +119,7 @@ Page({
           that.setData({
             floor_qrcode_url: res.data.result.qrcode_url,
             floors: res.data.result.floors,
+            error_msg: ''
           })
           if (that.data.floors != '') {
             that.initSwiperShow()
@@ -195,7 +195,6 @@ Page({
             }
           }
         })
-
         that.getFloorQrcode();
       }
     })
@@ -253,7 +252,7 @@ Page({
       },
       success: res => {
         if (res.data.result) {
-          that.getFloorQrcode();
+
           that.setData({
             'cmpInfo.address': res.data.result.company.address,
             'cmpInfo.floor': res.data.result.company.company_floor,
@@ -265,8 +264,9 @@ Page({
             'cmpInfo.logo': res.data.result.company.company_logo,
             avatar: res.data.result.visitor.input_pic_url
           })
+          that.joinFloorRoom(that.data.cmpInfo.floor, that.data.cmpInfo.room)
         }
-
+        that.getFloorQrcode();
       },
       fail: res => {
 

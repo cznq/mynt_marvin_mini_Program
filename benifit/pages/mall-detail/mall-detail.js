@@ -228,6 +228,7 @@ Page({
       success: res => {
         if (res.data.result) {
           var data = res.data.result;
+          delete data.discount_tag
           for (var i = 0; i < data.length; i++) {
             data[i].deal_price_fen = String(data[i].deal_price_fen).split('');
           }
@@ -287,21 +288,26 @@ Page({
    * 协议买单
    */
   cardTopay: function (e) {
-    if (this.data.is_vip == false) {
-      wx.navigateTo({
-        url: '/benifit/pages/vip-card/vip-card'
+
+    if (this.data.commerceDetail.sub_mch_id==''){
+      wx.showToast({
+        title: '商家未开通线上支付',
+        icon: 'none'
       })
-      return;
+    } else {
+      wx.navigateTo({
+        url: '/benifit/pages/scan-pay/scan-pay?commerce_id=' + this.data.commerce_id + '&type=' + this.data.commerce_type
+      })
     }
-    this.setData({
-      showVipCard: true,
-      dialog_discount: e.currentTarget.dataset.discount,
-      dialog_discount_limit: e.currentTarget.dataset.limit,
-    })
-    wx.setNavigationBarColor({
-      frontColor: '#ffffff',
-      backgroundColor: '#000000',
-    })
+    // this.setData({
+    //   showVipCard: true,
+    //   dialog_discount: e.currentTarget.dataset.discount,
+    //   dialog_discount_limit: e.currentTarget.dataset.limit,
+    // })
+    // wx.setNavigationBarColor({
+    //   frontColor: '#ffffff',
+    //   backgroundColor: '#000000',
+    // })
   },
 
   /**
