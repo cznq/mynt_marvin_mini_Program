@@ -27,7 +27,7 @@
                 <label class="weui-cell weui-check__label" for="s11" bindtap="changeCheckBox">
                     <view class="weui-cell__hd">
                         <checkbox class="weui-check" id="s11" name="nodiscount" checked="{{checkBox}}" />
-                        <view class="weui-icon-checked"></view>
+                        <view class="weui-icon-checked"><view class="dot"></view></view>
                     </view>
                     <view class="weui-cell__bd">
                         <text>输入不参与优惠金额(如酒水、套餐)</text> 
@@ -74,7 +74,7 @@
             <view class="weui-grid" bindtap="clickKey" data-keyval="1"><view class="weui-grid__label">1</view></view>
             <view class="weui-grid" bindtap="clickKey" data-keyval="2"><view class="weui-grid__label">2</view></view>
             <view class="weui-grid" bindtap="clickKey" data-keyval="3"><view class="weui-grid__label">3</view></view>
-            <view class="weui-grid weui-grid-last" bindtap="clickKey" data-keyval="del"><view class="weui-grid__label" id="del1"><view class="iconfont icon-Delete" id="del2"></view></view></view>
+            <view class="weui-grid weui-grid-last" bindtap="clickKey" data-keyval="del"><view class="weui-grid__label"><view class="iconfont icon-Delete"></view></view></view>
             <view class="weui-grid" bindtap="clickKey" data-keyval="4"><view class="weui-grid__label">4</view></view>
             <view class="weui-grid" bindtap="clickKey" data-keyval="5"><view class="weui-grid__label">5</view></view>
             <view class="weui-grid" bindtap="clickKey" data-keyval="6"><view class="weui-grid__label">6</view></view>
