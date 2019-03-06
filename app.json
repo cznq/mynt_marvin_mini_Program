@@ -88,8 +88,6 @@
         "pages/home/index",
         "pages/join-asset/homepage/index",
         "pages/join-asset/invite-code/index",
-        "pages/join-asset/basic-info/index",
-        "pages/join-asset/upload-aptitude/index",
         "pages/join-asset/company-info/index",
         "pages/join-asset/person-info/index",
         "pages/join-asset/upload-licence/index",
