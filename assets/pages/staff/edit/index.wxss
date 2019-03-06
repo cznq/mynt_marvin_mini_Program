@@ -1,0 +1,61 @@
+.page__hd {
+  padding: 36rpx 40rpx 34rpx;
+  background-color: #fff;
+}
+._content {
+  background: #fff!important;
+}
+.collect-information {
+  padding: 40rpx 0 0 40rpx;
+}
+.first-name {
+  font-size: 50rpx;
+  width: 100rpx;
+  height: 100rpx;
+  color: #fff;
+  background-color: #5487FE;
+  text-align: center;
+  line-height: 100rpx;
+  border-radius: 4rpx;
+  margin-bottom: 40rpx;
+}
+.input_block {
+  padding: 10rpx 0 20rpx;
+  position: relative;
+  border-bottom: 1rpx solid #ededed;
+}
+._pb40 {
+  padding-bottom: 40rpx!important;
+}
+.input_block .input_text {
+  border-bottom: none;
+  height: 45rpx;
+}
+icon {
+  position: absolute;
+  bottom: 50rpx;
+  right: 0;
+  z-index: 100;
+}
+
+.footer {
+  background: #ccc;
+  left:0;
+  bottom:0;
+  width:100%;
+  padding-top: 30rpx;
+  background: #fff;
+  border-top: none;
+}
+.footer.iphonex {
+  padding-bottom: 110rpx;
+}
+.footer ._button {
+  background: transparent;
+  width: 282rpx;
+  height: 82rpx;
+  line-height: 82rpx;
+  color: rgba(136, 145, 169, 1);
+  border: 2rpx solid rgba(136, 145, 169, 1);
+  border-radius: 4rpx;
+}
