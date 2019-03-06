@@ -1,6 +1,23 @@
 <view class="uiView">
-  <view class="uploadModul">
-    <image class="uploadBg" src='../../images/roomProve.png'></image>
-    <view class="icon-tianjia"><text class="tianjia iconfont icon-shenqingbeijujue"></text></view>
+  <view catchtap='uploadImage' class="uploadModul">
+    <block wx:if="{{model===1}}" >
+      <image class="uploadBg" src='../../images/roomProve.png'></image>
+    <view ><text class="icon-tianjia iconfont icon-shenqingbeijujue-copy"></text></view>
+    </block>
+    <block  wx:if="{{model===2}}">
+      <view catchtap="forbid">
+      <image class="uploadBg" src='{{uploadImage}}'></image>
+      <view class="zhezhao"></view>
+      <canvas-ring  class="canvas-ring" id="canvasRing" value="{{c_val}}"></canvas-ring>
+      </view>
+    </block>
+    <block wx:if="{{model===3}}">
+      <image class="uploadBg" src='../../images/roomProve.png'></image>
+      <view class="zhezhao"></view>
+      <text class="shuanxin iconfont icon-shuaxin"></text>
+    </block>
+    <block  wx:if="{{model===4}}">
+      <image class="uploadBg" src='../../images/roomProve.png'></image>
+    </block>
   </view>
 </view>
