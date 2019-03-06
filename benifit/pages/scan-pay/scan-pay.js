@@ -136,7 +136,8 @@ Page({
   },
   changeCheckBox: function() {
     if(this.data.checkBox){
-      this.setData({ checkBox: false })
+      this.setData({ checkBox: false, outPrice: null })
+      this.calcRealPrice();
     } else {
       this.setData({ checkBox: true })
     }
