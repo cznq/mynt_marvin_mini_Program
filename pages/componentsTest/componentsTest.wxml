@@ -1,0 +1,9 @@
+<!--pages/componentsTest/componentsTest.wxml-->
+<text>pages/componentsTest/componentsTest.wxml</text>
+<city-picker mode='2' codes='{{codes}}'  data="{{citylist}}"  bind:select="onSelect">
+  <view class="input-picker">
+    {{city}}
+  </view>
+</city-picker>
+
+<upload-Room-Prove ></upload-Room-Prove>

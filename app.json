@@ -64,7 +64,8 @@
     "pages/visitor-list/list/index",
     "pages/visitor-list/detail/index",
     "pages/company/unattended-setting/setting/index",
-    "pages/guide/index"
+    "pages/guide/index",
+    "pages/componentsTest/componentsTest"
   ],
   "subPackages": [
     {

@@ -1,11 +1,4 @@
 <wxs src="../../../wxs/subutil.wxs" module="tools" />
-<city-picker mode='2' codes='{{codes}}'  data="{{citylist}}"  bind:select="onSelect">
-  <view class="input-picker">
-    {{city}}
-  </view>
-</city-picker>
-
-<upload-Room-Prove ></upload-Room-Prove>
 
 <view class="page">
   <view class="page_hd">
