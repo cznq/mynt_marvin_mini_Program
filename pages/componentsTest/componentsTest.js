@@ -1,16 +1,16 @@
 // pages/componentsTest/componentsTest.js
 import {
   CityList
-} from '../../utils/pca.js'; //^
+} from '../../utils/pca.js'; //引入城市数据
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    codes: [], //
-    city: 'dsdsad', //
-    citylist: CityList, //
+    codes: [], //城市ID
+    city: 'dsdsad', //city名称
+    citylist: CityList, //城市数据
   },
 
   /**

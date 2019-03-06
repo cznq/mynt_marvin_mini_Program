@@ -29,6 +29,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    //上传图片
     uploadImage() {
       let that = this;
       wx.chooseImage({
@@ -38,7 +39,6 @@ Component({
         success(res) {
           // tempFilePath可以作为img标签的src属性显示图片
           const tempFilePaths = res.tempFilePaths
-          console.log('tempFilePaths', tempFilePaths)
           let uploadImage = tempFilePaths[0];
           that.setData({
             uploadImage: uploadImage,
