@@ -19,18 +19,6 @@
   font-weight: 600;
   margin-bottom: 14rpx;
 }
-.noneIcon.no_asset{
-  width: 180rpx;
-  height: 144rpx;
-  margin: 450rpx auto 40rpx;
-  display: block;
-}
-.noneIcon.no_receipt{
-  width: 162rpx;
-  height: 128rpx;
-  margin: 184rpx auto 40rpx;
-  display: block;
-}
 .noneInfo {
   font-size: 28rpx;
   color: #6B7182;

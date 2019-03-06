@@ -137,6 +137,7 @@ Page({
                             _this.setData({
                                 'application[5].isShow': true //自动值守
                             })
+                            _this.checkShowGuide();
                         } else {
                             _this.setData({
                                 'application[5].isShow': false //自动值守
@@ -316,5 +317,25 @@ Page({
         wx.navigateTo({
             url: '/pages/guide/index',
         })    
-    }
+    },
+    onReady: function () {
+       
+    },
+    /**
+    * 检测是否第一次进来
+    */
+    checkShowGuide() {
+      var flag = wx.getStorageSync('firstComeIn');
+      //console.log(flag)
+      if (flag) {
+        this.setData({
+            'showToast.isShow': false
+        });
+      }else{
+        wx.setStorage({
+            key: 'firstComeIn',
+            data: 'true'
+        })
+      }
+    },
 })

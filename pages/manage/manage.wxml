@@ -49,29 +49,21 @@
         </view>
     </view>
     <block wx:if="{{showToast.isShow? showToast.isShow: false}}">
-        <block wx:if="{{version}}">
-            <!-- 小与1.99版本 -->
-           
-        </block>
-        <block wx:else>
-            <!-- 大于1.99版本 -->
-            <cover-view class="toast-bg" wx:if="{{showToast.mask==false? false : true}}"></cover-view>
-            <cover-view class="toastPubStyle">
-                <cover-view class='icon_close'>
+            <view class="toast-bg" wx:if="{{showToast.mask==false? false : true}}"></view>
+            <view class="toastPubStyle">
+                <view class='icon_close'>
                     <button class="iconfont icon-cha" bindtap="closeToast"></button>
-                </cover-view>
-                <cover-view class="{{showToast.toastStyle}}">
-                    <cover-view class="toast-subtitle">欢迎使用</cover-view>
-                    <cover-view class="toast-title">小觅楼宇服务</cover-view>
-                    <cover-view class="toast-line"></cover-view>
-                    <cover-view class="toast-introduce">开启办公室新生活</cover-view>
-                </cover-view>
-                <cover-view class="learn_more"  bindtap="goGuide">
+                </view>
+                <view class="{{showToast.toastStyle}}">
+                    <view class="toast-subtitle">欢迎使用</view>
+                    <view class="toast-title">小觅楼宇服务</view>
+                    <view class="toast-line"></view>
+                    <view class="toast-introduce">开启办公室新生活</view>
+                </view>
+                <view class="learn_more"  bindtap="goGuide">
                     了解更多详情
-                </cover-view>
-            </cover-view>
-
-        </block>
+                </view>
+            </view>
     </block>
 </view>
 <!--登陆页面-->

@@ -44,12 +44,22 @@ Page({
       textInfo: '暂无资产，请先创建楼宇',
       btnFunc:'creatAsset',
       icon:'no_asset',
-      pic:app.globalData.BASE_IMG_URl +'assets/empty_no_asset%402x.png'
+      pic:app.globalData.BASE_IMG_URl +'assets/empty_no_asset%402x.png',
+      picSize:{
+        width:180+'rpx',
+        height:144+'rpx',
+        marginTop: 450+'rpx'
+      }
     },
     noPay:{
       textInfo: '暂无逾期收款',
       pic:app.globalData.BASE_IMG_URl +'assets/empty_overdue_receivable%402x.png',
-      icon:'no_receipt'
+      icon:'no_receipt',
+      picSize:{
+        width:162+'rpx',
+        height:128+'rpx',
+        marginTop:184+'rpx'
+      }
     }
   },
 
