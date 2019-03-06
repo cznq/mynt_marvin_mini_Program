@@ -10,12 +10,12 @@
     <view class="status" wx:if="{{status=='success'}}">
       <view class="iconfont icon-successful"></view>
       <view class="_font40 _fontw700">支付成功</view>
-      <view class="_font32 font-gray">您的VIP服务已开通</view>
+      <view class="_font32 font-gray" wx:if="{{pay_from=='package'}}">您的VIP服务已开通</view>
     </view>
     <view class="status" wx:if="{{status=='fail'}}">
       <view class="iconfont icon-shenqingbeijujue"></view>
       <view class="_font40 _fontw700">支付未完成</view>
-      <view class="_font32 font-gray"><text>您的VIP服务未能开通 \n请于客服联系：</text><text class="blue" bindtap='makePhoneCall' data-phone="{{phone}}">{{phone}}</text></view>
+      <view class="_font32 font-gray" wx:if="{{pay_from=='package'}}"><text>您的VIP服务未能开通 \n请于客服联系：</text><text class="blue" bindtap='makePhoneCall' data-phone="{{phone}}">{{phone}}</text></view>
     </view>
 
   </view>
