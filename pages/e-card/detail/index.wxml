@@ -23,7 +23,7 @@
             next-margin='{{multiple_item ==2?"80rpx":""}}'>
               <block wx:for="{{floors}}" wx:for-index="idx" wx:for-item="item" wx:key=''>
                 <swiper-item catchtouchmove="stopTouchMove">
-                  <view  data-current='{{idx}}' data-floor='{{item}}'  bindtap='clicItem' class="slide-image {{curren_idx===idx?'active':''}}" >{{item}}</view>
+                  <view  data-current='{{idx}}' data-floor='{{item.floor_index}}'  bindtap='clicItem' class="slide-image {{curren_idx===idx?'active':''}}" >{{item.floor_name}}</view>
                 </swiper-item>
               </block>
 
