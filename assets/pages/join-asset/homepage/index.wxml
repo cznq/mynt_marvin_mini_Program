@@ -1,2 +1,10 @@
 <!--pages/join-asset/homepage/index.wxml-->
-<text>pages/join-asset/homepage/index.wxml</text>
+<view class="_content _top_gradient2">
+    <view class="headlines">
+        <view class='t1'>{{headlinesT1}}</view>
+        <view class='t2'>{{headlinesT2}}</view>
+    </view>
+    <view class='input_block'>
+        <button class="_button" form-type="submit" disabled="{{disabled}}">{{buttonText}}</button>
+    </view>
+</view>

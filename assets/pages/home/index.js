@@ -1,4 +1,5 @@
 // assets/home/index.js
+var app = getApp();
 Page({
 
   /**
@@ -8,45 +9,46 @@ Page({
     application:[{
       bindtap:'',
       name:'资产管理',
-      pic:'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/assets/homepage_asset_management%402x.png',
+      pic:app.globalData.BASE_IMG_URl +'assets/homepage_asset_management%402x.png',
       isShow:true
     },
     {
       bindtap:'',
       name:'收款核销',
-      pic:'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/assets/homepage_receivables%402x.png',
+      pic:app.globalData.BASE_IMG_URl +'assets/homepage_receivables%402x.png',
       isShow:true
     },
     {
       bindtap:'',
       name:'新增收款',
-      pic:'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/assets/homepage_add_receipts%402x.png',
+      pic:app.globalData.BASE_IMG_URl +'assets/homepage_add_receipts%402x.png',
       isShow:true
     },
     {
       bindtap:'',
       name:'对账',
-      pic:'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/assets/homepage_reconciliation%402x.png',
+      pic:app.globalData.BASE_IMG_URl +'assets/homepage_reconciliation%402x.png',
       isShow:true
     },
     {
       bindtap:'',
       name:'人员管理',
-      pic:'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/assets/homepage_man_management%402x.png',
+      pic:app.globalData.BASE_IMG_URl +'assets/homepage_man_management%402x.png',
       isShow:true
     }],
-    hasAssets:true,
-    payable:true,
+    assets:'',//资产统计
+    hasAssets:false,
+    payable:false,//收款项
     noneData: {
       buttonText: '创建资产',
       textInfo: '暂无资产，请先创建楼宇',
       btnFunc:'creatAsset',
       icon:'no_asset',
-      pic:'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/assets/empty_no_asset%402x.png'
+      pic:app.globalData.BASE_IMG_URl +'assets/empty_no_asset%402x.png'
     },
     noPay:{
       textInfo: '暂无逾期收款',
-      pic:'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/assets/empty_overdue_receivable%402x.png',
+      pic:app.globalData.BASE_IMG_URl +'assets/empty_overdue_receivable%402x.png',
       icon:'no_receipt'
     }
   },
@@ -55,7 +57,39 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var _this = this;
+    app.Util.networkUrl.postUrl({
+      url: app.globalData.BASE_ASSET_URL+'/employee/get/union_id',
+      params: {
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session')
+        })
+      },
+      success: res => {
+        //if (res.data.sub_code == 0 && res.data.result) {
+          var employee_id = res.data.result.employee_id;//职员id
+          var owner_id= res.data.result.owner_id;//房东id
+          //获取资产汇总信息
+          app.Util.networkUrl.postUrl({
+            url: app.globalData.BASE_ASSET_URL+'/asset/summary',
+            params: {
+              data: JSON.stringify({
+                owner_id: 1,
+                employee_id:1
+              })
+            },
+            success: res => {
+              if (res.data.result) {
+                _this.setData({
+                  hasAssets: true,
+                  assets:res.data.result
+                })
+              }
+            }
+          })
+        //}
+      }
+    })
   },
 
   /**

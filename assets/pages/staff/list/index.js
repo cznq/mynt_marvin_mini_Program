@@ -1,11 +1,23 @@
-// pages/join-asset/upload-aptitude/index.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    staffCount: 0,
+    staffList: '',
+    noneData: {
+      pointer: true,
+      title: '暂无资产',
+      textInfo: '添加人员，帮助您添加资产、核销缴费',
+      picSize: {
+        width: '180rpx',
+        height: '156rpx',
+        marginTop: '178rpx'
+      },
+      pic: 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/assets/no-staff%402x.png'
+    }
   },
 
   /**

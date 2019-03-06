@@ -1,1 +1,31 @@
 /* pages/join-asset/invite-code/index.wxss */
+/*@import "../../../create-company/public/style.wxss";
+@import "../../../../templates/showToast/showToast.wxss";*/
+
+page {
+    background: #F9FAFB;
+    height: 100%;
+}
+
+.mainTitle {
+    padding-top: 90rpx;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+}
+
+.hint {
+    width: 100%;
+    margin: 139rpx auto 0 172rpx;
+}
+
+.toast {
+    top: 60%;
+}
+
+.input_block {
+    left: auto;
+    bottom: 0;
+}

@@ -1,7 +1,11 @@
 <template name="noneDataPage">
   <view class="nonePage _flex _flex_item_center _flex_justify_center">
-    <view class="noneWrapper">
-      <image class="noneIcon {{noneData.icon}}" src='{{noneData.pic}}'></image>
+    <view class="noneWrapper _txt_center">
+      <view class="pointer" wx:if="{{noneData.pointer}}">
+        <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/assets/pointer%402x.png" style="width:170rpx;height:160rpx;"></image>
+      </view>
+      <image class="noneIcon" src='{{noneData.pic}}' style="width:{{noneData.picSize.width}};height:{{noneData.picSize.height}};margin-top:{{noneData.picSize.marginTop}};"></image>
+      <view class="noneTitle" wx:if="{{ noneData.title }}">{{noneData.title}}</view>
       <view class="noneInfo _txt_center">{{ noneData.textInfo }}</view>
       <button class="noneBtn" bindtap="{{ noneData.btnFunc }}" wx:if="{{ noneData.buttonText }}">
         {{ noneData.buttonText }}

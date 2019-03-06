@@ -1,14 +1,15 @@
-// pages/join-asset/homepage/index.js
+// pages/join-asset/person-info/index.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        headlinesT1: "欢迎使用",
-        headlinesT2: "小觅资产管理系统",
-        explainText: "资产管理便捷高效，多套房源一手掌握， 线上收租方便快捷。",
-        buttonText: "立即体验"
+        personTitle: "请填写个人信息",
+        personName: "真实姓名",
+        personContact: "联系方式",
+        personID: "身份证",
+        button_text: "下一步",
     },
 
     /**
