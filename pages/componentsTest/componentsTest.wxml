@@ -1,0 +1,8 @@
+<city-picker mode='1' codes='{{codes}}'  data="{{citylist}}"  bind:select="onSelect">
+  
+  <view class="input-picker">
+    {{city}}
+  </view>
+</city-picker>
+
+<upload-Room-Prove ></upload-Room-Prove>

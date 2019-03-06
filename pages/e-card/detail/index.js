@@ -1,17 +1,11 @@
 const app = getApp();
 var count = 1;
-import {
-  CityList
-} from '../../../utils/pca.js'; //^
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    codes: [], //
-    city: 'dsdsad', //
-    citylist: CityList, //
     invitation_id: null,
     floor_qrcode_url: null,
     cmpInfo: null,
@@ -29,18 +23,12 @@ Page({
     curren_idx: 0,
     arrayFandR: ''
   },
-  onSelect(e) { //
-    this.setData({
-      codes: e.detail.code,
-      city: e.detail.value
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     var that = this;
-
     if (options.invitation_id) {
       that.data.invitation_id = options.invitation_id;
       that.setData({
@@ -122,7 +110,7 @@ Page({
         method: 'get_floor_qrcode',
         data: JSON.stringify({
           invitation_id: that.data.invitation_id,
-          floor: that.data.floor
+          floor: that.data.floor,
         })
       },
       success: res => {
@@ -131,6 +119,7 @@ Page({
           that.setData({
             floor_qrcode_url: res.data.result.qrcode_url,
             floors: res.data.result.floors,
+            error_msg: ''
           })
           if (that.data.floors != '') {
             that.initSwiperShow()
@@ -206,7 +195,6 @@ Page({
             }
           }
         })
-
         that.getFloorQrcode();
       }
     })
@@ -264,7 +252,7 @@ Page({
       },
       success: res => {
         if (res.data.result) {
-          that.getFloorQrcode();
+
           that.setData({
             'cmpInfo.address': res.data.result.company.address,
             'cmpInfo.floor': res.data.result.company.company_floor,
@@ -276,8 +264,9 @@ Page({
             'cmpInfo.logo': res.data.result.company.company_logo,
             avatar: res.data.result.visitor.input_pic_url
           })
+          that.joinFloorRoom(that.data.cmpInfo.floor, that.data.cmpInfo.room)
         }
-
+        that.getFloorQrcode();
       },
       fail: res => {
 

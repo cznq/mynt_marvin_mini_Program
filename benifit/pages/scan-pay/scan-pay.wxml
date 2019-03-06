@@ -1,88 +1,94 @@
 <!--pages/scan-pay/scan-pay.wxml-->
-<view class="page">
-  <view class="card-wrapper vip-card-wrapper" wx:if="{{is_vip}}">
-    <view class="card-content">
-      <view class="vip-card-top">
-        <view class="name">
-          <text>协</text>{{employeeInfo.name}}</view>
-        <image class="avatar" src="{{employeeInfo.input_pic_url}}"></image>
-      </view>
-      <view class="vip-card-middle">
-        <view class="company-name">{{employeeInfo.company_name}}</view>
-        <view class="company-address">{{employeeInfo.company_address}}</view>
-      </view>
-      <view class="bar">
-        <view class='backfont'>员工福利卡</view>
-        <view class="id-num">ID: {{employeeInfo.employee_card_id}}</view>
-        <view class="expire-time">有效期: {{employeeInfo.expire}}</view>
-      </view>
-    </view>
-  </view>
-  <view class="card-wrapper" wx:elif="{{is_vip == false}}">
-    <view class="card-content">
-      <view class="card-main">
-        <view class="name">员工福利卡</view>
-        <view class="info">您的企业尚未开通员工福利卡，在合约商户消费并出示该卡可享商户协议价。</view>
-      </view>
-      <view class="bar"></view>
-    </view>
-  </view>
-  <view class='subtit'>
-    <view class='line'></view>
-    <view class='text'>您是福利员工卡会员,享受以下优惠</view>
-  </view>
-  <view class='discountBlock'>
-    <image class='logo' src='{{cd_CommerceInfo.homepage_url}}'></image>
-    <view class='name'>
-      {{cd_CommerceInfo.name}}
-    </view>
-    <view class='hr' wx:for="{{cd_CommerceDiscount}}">
-      <view class='pay' data-discount="{{item.benifit_content}}" data-limit="{{item.benifit_limit}}" bindtap="cardTopay">协议买单</view>
-      <view class='t1'>{{item.benifit_content}}</view>
-      <view class='hint'>{{item.benifit_limit}}</view>
-    </view>
-  </view>
-</view>
-<view id="vip-dialogs" wx:if="{{showVipCard}}">
-  <view class="js_dialog" id="iosDialog1">
-    <view class="weui-mask"></view>
-    <view class="weui-dialog">
-      <view class="weui-dialog__hd">
-        <view class="weui-dialog__title">向商家出示此页面以享受优惠</view>
-        <view class="shop-pic">
-          <image src="{{cd_CommerceInfo.homepage_url}}" width="100%" mode="aspectFill"></image>
+<view class="page" id="app" wx:if="{{cd_CommerceInfo}}">
+    <view class="page__hd">
+        <view class="weui-cells">
+            <view class="weui-cell shop-info">
+                <view class="weui-cell__bd">
+                    <text class="shop-name">{{cd_CommerceInfo.name}}</text>
+                </view>
+                <view class="weui-cell__ft"></view>
+            </view>
         </view>
-        <view class="shop-name">{{cd_CommerceInfo.name}}</view>
-      </view>
-      <view class="weui-dialog__bd">
-        <view class="card-wrapper vip-card-wrapper">
-          <view class="card-content">
-            <view class="vip-card-top">
-              <view class="name">
-                <text>协</text>{{employeeInfo.name}}</view>
-              <image class="avatar" src="{{employeeInfo.input_pic_url}}" mode="aspectFill"></image>
-            </view>
-            <view class="vip-card-middle">
-              <view class="company-name">{{employeeInfo.company_name}}</view>
-              <view class="company-address">{{employeeInfo.company_address}}</view>
-            </view>
-            <view class="bar">
-              <view class='backfont'>员工福利卡</view>
-              <view class="id-num">ID: {{employeeInfo.employee_card_id}}</view>
-              <view class="expire-time">有效期: {{employeeInfo.expire}}</view>
-            </view>
-          </view>
-          <view class="discount-info">
-            <view class="coupon">{{dialog_discount}}</view>
-            <view class="limit">{{dialog_discount_limit}}</view>
-          </view>
-        </view>
-      </view>
-      <view class="weui-dialog__ft">
-        <button class="weui-dialog__btn" bindtap="closeDialog">
-          <image src="../../images/back@2x.png"></image>
-        </button>
-      </view>
+        
     </view>
-  </view>
+    <view class="page__bd">
+        
+        <view class="weui-cell weui-cell_price">
+            <view class="weui-cell__hd">
+                <label class="weui-label">消费金额</label>
+            </view>
+            <view class="weui-cell__bd input-wrapper input-total-wrapper {{keyVal==0 ? 'focus':''}}">
+                <input class="weui-input weui-input_price" type="text" id="tp" adjust-position="false" bindtap="inputPrice" focus="true" value='{{totalPrice}}' disabled="true" />
+            </view>
+        </view>
+        
+        <view class="options">
+            <view class="weui-cells weui-cells_checkbox">
+                <label class="weui-cell weui-check__label" for="s11" bindtap="changeCheckBox">
+                    <view class="weui-cell__hd">
+                        <checkbox class="weui-check" id="s11" name="nodiscount" checked="{{checkBox}}" />
+                        <view class="weui-icon-checked"><view class="dot"></view></view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <text>输入不参与优惠金额(如酒水、套餐)</text> 
+                    </view>
+                </label>
+            </view>
+            <view class="weui-cell weui-cell_price" wx:if="{{checkBox}}">
+                <view class="weui-cell__hd">
+                    <label class="weui-label">不参与优惠金额</label>
+                </view>
+                <view class="weui-cell__bd input-wrapper input-out-wrapper {{keyVal==1 ? 'focus':''}}">
+                    <input class="weui-input" type="text" id="op" placeholder="请联系服务员了解金额" adjust-position="false" bindtap="inputPrice" placeholder-class="outprice-input" value='{{outPrice}}' disabled="true" />
+                </view>
+            </view>
+        </view>
+        <view class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">
+                        <view class="_flex-center">
+                          <text class='vipicon'></text>
+                          <text>小觅福利卡</text>
+                        </view>
+                        <view class="binifit-info">{{cd_CommerceDiscount[0].benifit_content}}</view>
+                    </label>
+            
+                    <view class="weui-form-preview__value" wx:if="{{ hasDiscount }}">{{ savedPrice }}</view>
+                    <navigator url="/benifit/pages/suite-introduce/suite-introduce" hover-class="none" wx:else>
+                    <view class="weui-form-preview__value _font12" id="previewBenifit">未开通小觅福利卡<text class="weui-right_arrow"></text></view>
+                    </navigator>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item _flex_align_center">
+                    <label class="weui-form-preview__label">实付金额</label>
+                    <view class="weui-form-preview__value">¥ {{ realPrice }}</view>
+                </view>
+            </view>
+           
+        </view>
+    </view>
+    <view class="page__ft ">
+        <view class="weui-grids">
+            <view class="weui-grid" bindtap="clickKey" data-keyval="1"><view class="weui-grid__label">1</view></view>
+            <view class="weui-grid" bindtap="clickKey" data-keyval="2"><view class="weui-grid__label">2</view></view>
+            <view class="weui-grid" bindtap="clickKey" data-keyval="3"><view class="weui-grid__label">3</view></view>
+            <view class="weui-grid weui-grid-last" bindtap="clickKey" data-keyval="del"><view class="weui-grid__label"><view class="iconfont icon-Delete"></view></view></view>
+            <view class="weui-grid" bindtap="clickKey" data-keyval="4"><view class="weui-grid__label">4</view></view>
+            <view class="weui-grid" bindtap="clickKey" data-keyval="5"><view class="weui-grid__label">5</view></view>
+            <view class="weui-grid" bindtap="clickKey" data-keyval="6"><view class="weui-grid__label">6</view></view>
+            <view class="weui-grid weui-grid-pay noneMb weui-grid-last connot-pay" wx:if="{{cannotPay}}"><view class="weui-grid__label">支付</view></view>
+            <view class="weui-grid weui-grid-pay noneMb weui-grid-last" bindtap="pay" wx:else><view class="weui-grid__label">支付</view></view>
+            <view class="weui-grid" bindtap="clickKey" data-keyval="7"><view class="weui-grid__label">7</view></view>
+            <view class="weui-grid" bindtap="clickKey" data-keyval="8"><view class="weui-grid__label">8</view></view>
+            <view class="weui-grid" bindtap="clickKey" data-keyval="9"><view class="weui-grid__label">9</view></view>
+            <view class="weui-grid noneMb"><view class="weui-grid__label"> </view></view>
+            <view class="weui-grid noneMb" bindtap="clickKey" data-keyval="0"><view class="weui-grid__label">0</view></view>
+            <view class="weui-grid noneMb" bindtap="clickKey" data-keyval="."><view class="weui-grid__label">.</view></view>
+        </view>
+    </view>
+    
 </view>
+<import src="../../../templates/showToast/showToast.wxml" /> 
+<template is="showToast" data="{{showToast: showToast}}" /> 

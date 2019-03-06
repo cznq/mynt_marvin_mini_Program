@@ -161,7 +161,6 @@ App({
           wx.setStorageSync('avatar', res.data.result.avatar);
           callback();
         } else {
-          that.myLog("进入授权登录页面", "跳转到登录页面");
           var pages = getCurrentPages();
           var currentPage = pages[pages.length - 1]
           var url = currentPage.route;

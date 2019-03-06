@@ -64,7 +64,8 @@
     "pages/visitor-list/list/index",
     "pages/visitor-list/detail/index",
     "pages/company/unattended-setting/setting/index",
-    "pages/guide/index"
+    "pages/guide/index",
+    "pages/componentsTest/componentsTest"
   ],
   "subPackages": [
     {
@@ -90,7 +91,10 @@
         "pages/join-asset/company-info/index",
         "pages/join-asset/person-info/index",
         "pages/join-asset/upload-licence/index",
-        "pages/join-asset/upload-id/index"
+        "pages/join-asset/upload-id/index",
+        "pages/staff/list/index",
+        "pages/staff/basic-info/index",
+        "pages/staff/edit/index"
       ]
     }
   ],
