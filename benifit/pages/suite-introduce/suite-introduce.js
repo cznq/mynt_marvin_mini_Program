@@ -83,7 +83,7 @@ Page({
             },
             complete: res => {
               wx.redirectTo({
-                url: '/benifit/pages/pay-status/index?out_order_id=' + out_order_id
+                url: '/benifit/pages/pay-status/index?out_order_id=' + out_order_id + '&pay_from=package'
               })
             }
             
