@@ -15,6 +15,10 @@ Component({
     direction: {
       type: String,
       value: "row"
+    },
+    tipTxt: {
+      type: String,
+      value: "上传房产证"
     }
   },
 

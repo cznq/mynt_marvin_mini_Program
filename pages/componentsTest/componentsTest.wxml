@@ -5,4 +5,5 @@
   </view>
 </city-picker>
 
-<upload-Room-Prove direction='col'></upload-Room-Prove>
+<upload-Room-Prove direction='row' tipTxt='上传营业执照'></upload-Room-Prove>
+<upload-Room-Prove direction='row' tipTxt='上传营业执照'></upload-Room-Prove>
