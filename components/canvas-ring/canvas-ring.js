@@ -23,6 +23,7 @@ Component({
       type: String,
       value: "rgba(255,255,255, .6)"
     },
+
     //当前的值 默认45
     value: {
       type: Number,
@@ -97,9 +98,6 @@ Component({
       ctx.closePath();
 
       ctx.draw();
-
-
-
 
     }
   }
