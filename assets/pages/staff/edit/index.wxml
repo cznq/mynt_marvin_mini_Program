@@ -27,8 +27,10 @@
         
       </view>
       <view class="_fixed footer {{isIphoneX?'iphonex':''}}">
-        <button class="_button _font32" formType="submit" form-type="submit">删除该人员</button>
+        <button class="_button _font32" bindtap="removeStaff">删除该人员</button>
       </view>
     </form>
   </view>
 </view>
+<import src="../../../../templates/showToast/showToast.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />
