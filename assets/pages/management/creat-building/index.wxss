@@ -1,0 +1,11 @@
+/* assets/pages/management/creat-building/index.wxss */
+@import "../../public/public.wxss";
+page{
+    background-color: #F0F2F5;
+}
+._content_creat{
+    border-top: 1px solid rgba(136, 145, 169, .3);
+}
+._info_item{
+    padding: 40rpx;
+}
