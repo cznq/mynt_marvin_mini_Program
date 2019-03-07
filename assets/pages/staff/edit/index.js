@@ -1,4 +1,4 @@
-
+var toast = require('../../../../templates/showToast/showToast');
 const app = getApp();
 Page({
 
@@ -111,7 +111,38 @@ Page({
         
       }
     })
-  }
+  },
+
+  removeStaff: function() {
+    toast.showToast(this, {
+      toastStyle: 'toast6',
+      title: '确定拒绝操作吗？',
+      mask: true,
+      isSure: true,
+      sureText: '确定',
+      isClose: true,
+      closeText: '取消'
+    });
+  },
+
+  /**
+   * 取消拒绝并关闭弹层
+   */
+  bindToastClose: function () {
+    toast.hideToast();
+  },
+
+  /**
+   * 确定删除
+   */
+  bindToastSure: function () {
+    var _this = this;
+    toast.hideToast(_this, {
+      cb: function () {
+        
+      }
+    });
+  },
 
 
 })

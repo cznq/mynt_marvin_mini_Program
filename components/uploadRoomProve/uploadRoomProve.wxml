@@ -1,23 +1,31 @@
-<view class="uiView">
-  <view catchtap='uploadImage' class="uploadModul">
-    <block wx:if="{{model===1}}" >
-      <image class="uploadBg" src='../../images/roomProve.png'></image>
-    <view ><text class="icon-tianjia iconfont icon-shenqingbeijujue-copy"></text></view>
-    </block>
-    <block  wx:if="{{model===2}}">
-      <view catchtap="forbid">
-      <image class="uploadBg" src='{{uploadImage}}'></image>
-      <view class="zhezhao"></view>
-      <canvas-ring  class="canvas-ring" id="canvasRing" value="{{c_val}}"></canvas-ring>
-      </view>
-    </block>
-    <block wx:if="{{model===3}}">
-      <image class="uploadBg" src='../../images/roomProve.png'></image>
-      <view class="zhezhao"></view>
-      <text class="shuanxin iconfont icon-shuaxin"></text>
-    </block>
-    <block  wx:if="{{model===4}}">
-      <image class="uploadBg" src='../../images/roomProve.png'></image>
-    </block>
+<block wx:if="{{direction==='row'}}" >
+  <view class="uiView">
+    <view catchtap='uploadImage' class="uploadModul">
+      <block wx:if="{{model===1}}" >
+        <image class="uploadBg" src='../../images/roomProve.png'></image>
+      <view ><text class="icon-tianjia iconfont icon-shenqingbeijujue-copy"></text></view>
+      </block>
+      <block  wx:if="{{model===2}}">
+        <view catchtap="forbid">
+        <image class="uploadBg" src='{{uploadImage}}'></image>
+        <view class="zhezhao"></view>
+        <canvas-ring  class="canvas-ring" id="canvasRing" value="{{c_val}}"></canvas-ring>
+        </view>
+      </block>
+      <block wx:if="{{model===3}}">
+        <image class="uploadBg" src='../../images/roomProve.png'></image>
+        <view class="zhezhao"></view>
+        <text class="shuanxin iconfont icon-shuaxin"></text>
+      </block>
+      <block  wx:if="{{model===4}}">
+        <image class="uploadBg" src='../../images/roomProve.png'></image>
+      </block>
+
+    </view>
+    <view class="tipOne">上传房产证</view>
+    <view class="tipTwo">请按照图例上传相关证件</view>
   </view>
-</view>
+</block>
+  <block wx:if="{{direction==='col'}}" >
+    fdjsaklfjdskafj
+  </block>
