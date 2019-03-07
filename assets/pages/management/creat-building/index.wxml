@@ -1,0 +1,47 @@
+<!--assets/pages/management/creat-building/index.wxml-->
+<view class="_content_creat">
+    <view class=_info_item">
+        <view class='input_block'>
+            <view class='_s_tit'>
+                    <text class='_font28'>大厦名称</text>
+            </view>
+            <input class='_text' name="buildingName" placeholder="望京大厦" placeholder-class='input_text_phc'></input>
+        </view>
+    </view>
+    <view class=_info_item">
+        <view class='input_block'>
+            <view class='_s_tit'>
+                <text class='_font28'>楼层房号</text>
+            </view>
+            <view class="_flex _flex_item_center">
+                <input class='_text _text_wd' name="city" placeholder="请选择市" placeholder-class='input_text_phc'></input>
+                <input class='_text _text_wd _text_ml' name="area" placeholder="请选择区" placeholder-class='input_text_phc'></input>
+                <text>区</text>
+            </view>
+        </view>
+    </view>
+    <view class=_info_item">
+        <view class='input_block'>
+            <view class='_s_tit'>
+                <text class='_font28'>栋/幢</text>
+            </view>
+            <view class="_flex _flex_item_center">
+                <input class='_text _text_wd' name="building" placeholder="请填写" placeholder-class='input_text_phc'></input>
+                <text>栋/幢</text>
+            </view>
+        </view>
+    </view>
+    <view class=_info_item">
+        <view class='input_block'>
+            <view class='_s_tit'>
+                    <text class='_font28'>详细地址</text>
+            </view>
+            <input class='_text' name="adress" placeholder="景贤路21号" placeholder-class='input_text_phc'></input>
+        </view>
+    </view>
+</view>
+<view class="_fixed _footer">
+    <view class="_footer_btn">
+        <button class="_font32 _fontw500 _border_radius10" bindtap="goNext">完成创建</button>
+    </view>
+</view>

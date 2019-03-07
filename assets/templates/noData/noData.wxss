@@ -7,8 +7,8 @@
 }
 .noneWrapper .pointer {
   position: absolute;
-  right: -24rpx;
-  top: 30rpx;
+  right: -94rpx;
+  top: 158rpx;
 }
 .noneIcon {
   margin: 0 auto 40rpx;

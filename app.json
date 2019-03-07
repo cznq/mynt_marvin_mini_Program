@@ -95,6 +95,10 @@
         "pages/staff/list/index",
         "pages/staff/basic-info/index",
         "pages/staff/edit/index",
+        "pages/management/assets-list/index",
+        "pages/management/add-asset/index",
+        "pages/management/building-list/index",
+        "pages/management/creat-building/index",
         "pages/staff/invite/index"
       ]
     }

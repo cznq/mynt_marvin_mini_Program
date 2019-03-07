@@ -43,7 +43,6 @@ Page({
       buttonText: '创建资产',
       textInfo: '暂无资产，请先创建楼宇',
       btnFunc:'creatAsset',
-      icon:'no_asset',
       pic:app.globalData.BASE_IMG_URl +'assets/empty_no_asset%402x.png',
       picSize:{
         width:180+'rpx',
@@ -54,7 +53,6 @@ Page({
     noPay:{
       textInfo: '暂无逾期收款',
       pic:app.globalData.BASE_IMG_URl +'assets/empty_overdue_receivable%402x.png',
-      icon:'no_receipt',
       picSize:{
         width:162+'rpx',
         height:128+'rpx',
@@ -68,6 +66,9 @@ Page({
    */
   onLoad: function (options) {
     var _this = this;
+    wx.setNavigationBarTitle({
+      title: "轻客智能科技"
+    })
     app.Util.networkUrl.postUrl({
       url: app.globalData.BASE_ASSET_URL+'/employee/get/union_id',
       params: {
@@ -104,7 +105,7 @@ Page({
   //资产管理
   assetsManage:function(){
     wx.navigateTo({
-      url: '',
+      url: '../management/assets-list/index',
     })
   },
   //核销
