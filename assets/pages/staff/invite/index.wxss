@@ -1,0 +1,83 @@
+page {
+  background-color: #fff;
+}
+.page__bd {
+  padding: 0 40rpx;
+}
+.invite-card {
+  padding: 40rpx;
+  border-radius: 10rpx;
+  background: repeating-linear-gradient(120deg,#08294f,#08294f 10px,#092344 0,#092344 30px);
+}
+.invite-card ._id-icon {
+  background-color: #fff;
+  border-radius: 6rpx;
+  color:#8891A9;
+  padding: 8rpx 12rpx 6rpx 12rpx;
+  display: inline;
+  line-height: 1;
+}
+._cpm-name {
+  font-size: 46rpx;
+  font-weight: 600;
+  color: #fff;
+}
+._int-info {
+  color: #8891A9;
+  font-size: 32rpx;
+}
+.card-center {
+  margin-top: 40rpx;
+  padding-bottom: 64rpx;
+  background-color:#fff;
+  border-radius: 8rpx;
+  position: relative;
+}
+.card-center:after {
+  content: '';
+  width: 100rpx;
+  height: 50rpx;
+  border-radius: 100rpx 100rpx 0 0;
+  background: repeating-linear-gradient(120deg,#08294f,#08294f 10px,#092344 0,#092344 30px);
+  position: absolute;
+  bottom: -10rpx;
+  left: 50%;
+  margin-left: -50rpx;
+
+}
+.int-name {
+  font-size: 40rpx;
+  color: #092344;
+  font-weight: 500;
+  line-height: 1;
+  padding-top: 52rpx;
+}
+.qrcode {
+  width: 160rpx;
+  height: 160rpx;
+  margin: 30rpx auto 20rpx;
+  background: #000000;
+}
+.qrinco {
+  color: #8891A9;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+.remind {
+  padding: 20rpx 20rpx 22rpx 18rpx;
+  color: #8891A9;
+  font-size: 28rpx;
+  margin: 50rpx 26rpx 0;
+  border: 2rpx dashed #8891A9;
+}
+
+
+
+
+._line-height1 {
+  line-height: 1;
+}
+.footer {
+  background: #fff;
+  border-top: none;
+}

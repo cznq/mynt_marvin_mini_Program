@@ -1,3 +1,4 @@
+@import "../../../../templates/showToast/showToast.wxss";
 .page__hd {
   padding: 36rpx 40rpx 34rpx;
   background-color: #fff;

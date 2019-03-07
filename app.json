@@ -94,7 +94,8 @@
         "pages/join-asset/upload-id/index",
         "pages/staff/list/index",
         "pages/staff/basic-info/index",
-        "pages/staff/edit/index"
+        "pages/staff/edit/index",
+        "pages/staff/invite/index"
       ]
     }
   ],
