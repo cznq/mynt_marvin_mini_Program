@@ -7,31 +7,31 @@ Page({
    */
   data: {
     application:[{
-      bindtap:'',
+      bindtap:'assetsManage',
       name:'资产管理',
       pic:app.globalData.BASE_IMG_URl +'assets/homepage_asset_management%402x.png',
       isShow:true
     },
     {
-      bindtap:'',
+      bindtap:'clearPayment',
       name:'收款核销',
       pic:app.globalData.BASE_IMG_URl +'assets/homepage_receivables%402x.png',
       isShow:true
     },
     {
-      bindtap:'',
+      bindtap:'addPayment',
       name:'新增收款',
       pic:app.globalData.BASE_IMG_URl +'assets/homepage_add_receipts%402x.png',
       isShow:true
     },
     {
-      bindtap:'',
+      bindtap:'comparePayment',
       name:'对账',
       pic:app.globalData.BASE_IMG_URl +'assets/homepage_reconciliation%402x.png',
       isShow:true
     },
     {
-      bindtap:'',
+      bindtap:'peopleManage',
       name:'人员管理',
       pic:app.globalData.BASE_IMG_URl +'assets/homepage_man_management%402x.png',
       isShow:true
@@ -101,7 +101,36 @@ Page({
       }
     })
   },
-
+  //资产管理
+  assetsManage:function(){
+    wx.navigateTo({
+      url: '',
+    })
+  },
+  //核销
+  clearPayment:function(){
+    wx.navigateTo({
+      url: '',
+    })
+  },
+  //新增收款
+  addPayment:function(){
+    wx.navigateTo({
+      url: '',
+    })
+  },
+  //对账
+  comparePayment:function(){
+    wx.navigateTo({
+      url: '',
+    })
+  },
+  //人员管理
+  peopleManage:function(){
+    wx.navigateTo({
+      url: '',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
