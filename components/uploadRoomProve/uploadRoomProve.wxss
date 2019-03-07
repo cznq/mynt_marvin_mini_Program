@@ -69,3 +69,21 @@
   transform: translate(-50%, -50%);
   z-index: 99;
 }
+
+.tipOne {
+  width: 100%;
+  line-height: 30rpx;
+  padding-top: 40rpx;
+  text-align: center;
+  color: #8891A9;
+  font-size: 32rpx;
+}
+
+.tipTwo {
+  width: 100%;
+  line-height: 24rpx;
+  padding-top: 19rpx;
+  text-align: center;
+  color: #8891A9;
+  font-size: 24rpx;
+}

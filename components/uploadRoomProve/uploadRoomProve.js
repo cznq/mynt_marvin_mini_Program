@@ -10,11 +10,11 @@ Component({
     },
     c_val: {
       type: Number,
-      value: 0
+      value: 45
     },
-    model: {
-      type: Number,
-      value: 1
+    direction: {
+      type: String,
+      value: "row"
     }
   },
 
@@ -22,7 +22,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    // c_val: 60
+    model: 1
   },
 
   /**
