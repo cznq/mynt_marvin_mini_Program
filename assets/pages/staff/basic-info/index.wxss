@@ -14,6 +14,9 @@
   position: relative;
   border-bottom: 1rpx solid #ededed;
 }
+.input_block.error {
+  border-bottom: 1rpx solid rgba(247, 86, 86, 0.5);
+}
 ._pb40 {
   padding-bottom: 40rpx!important;
 }

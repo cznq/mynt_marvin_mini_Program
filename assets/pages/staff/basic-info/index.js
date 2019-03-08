@@ -1,116 +1,74 @@
-
 const app = getApp();
 Page({
 
   data: {
     isIphoneX: app.globalData.isIphoneX,
     formData: {
-      name: null
+      name: null,
+      phone: null
     },
     inputError: {
-      name: false
-    },
-    errorData: null,
-    empInfo: null
+      name: false,
+      phone: false
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    that.getEmployeeInfo();
+    
+
   },
 
   editSubmit: function (e) {
-    var name = e.detail.value.name;
-   
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
+    var _this = this
+    var phone_reg = app.Util.checkPhone(_this.data.formData.phone);
+    if (phone_reg === false) {
+      _this.setData({
+        'inputError.phone': true
+      });
+      return ;
+    }
+  
+    app.Util.networkUrl.postUrl({
+      url: app.globalData.BASE_ASSET_URL + '/employee/add',
       params: {
-        service: 'company',
-        method: 'update_employee',
         data: JSON.stringify({
           union_id: wx.getStorageSync('xy_session'),
-          name: name,
-          avatar: wx.getStorageSync('avatar')
+          name: _this.data.formData.name,
+          phone: _this.data.formData.phone,
+          role: 0
         })
       },
       success: res => {
-        if (res.data.sub_code == 0) {
-          wx.redirectTo({
-            url: '/pages/employee/homepage/index',
-          })
-        } else {
-          wx.showModal({
-            content: res.data.error_msg,
-            showCancel: false
-          })
-        }
+        if (res.data.sub_code == 0) {}
+        wx.redirectTo({
+          url: '../invite/index?employee_id=',
+        })  
+        
       }
     })
     
-
   },
 
   /**
    * 检测表单可提交状态
    */
   checkForm: function (e) {
-    this.setData({
-      errorData: null,
-      'inputError.name': false
-    })
-    
-    if (e.detail.value !== '') {
+    console.log(e.currentTarget.id)
+    if (e.currentTarget.id == 'i1') {
       this.setData({
+        'inputError.name': false,
         'formData.name': e.detail.value
-      });
-    } else {
+      })
+    } else if (e.currentTarget.id == 'i2') {
       this.setData({
-        'formData.name': null
-      });
+        'inputError.phone': false,
+        'formData.phone': e.detail.value
+      })
     }
-   
-  },
-
-  /**
-   * 清空输入框
-   */
-  clearInput: function (e) {
-    this.setData({
-      errorData: null,
-      'inputError.name': null,
-      'formData.name': null
-    })
     
-  },
-
-  /**
-   * 获取员工信息
-   */
-  getEmployeeInfo: function () {
-    var that = this;
-    var unionId = wx.getStorageSync('xy_session');
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'company',
-        method: 'get_employee_info',
-        data: JSON.stringify({
-          union_id: unionId,
-        })
-      },
-      success: res => {
-        if (res.data.result) {
-          that.setData({
-            empInfo: res.data.result,
-            'formData.name': res.data.result.name
-          });
-        }
-        
-      }
-    })
   }
 
 
