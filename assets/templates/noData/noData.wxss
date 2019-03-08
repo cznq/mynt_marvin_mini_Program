@@ -2,13 +2,10 @@
   height: 100%;
   width: 100%;
 }
-.noneWrapper {
-  position: relative;
-}
 .noneWrapper .pointer {
   position: absolute;
-  right: -94rpx;
-  top: 158rpx;
+  right: -40rpx;
+  top: -148rpx;
 }
 .noneIcon {
   margin: 0 auto 40rpx;
