@@ -1,12 +1,51 @@
 /* components/uploadRoomProve/uploadRoomProve.wxss */
 @import "../../templates/iconfont/iconfont.wxss";
 
+._row {
+  display: flex;
+  flex-direction: row;
+}
+
+._column {
+  display: flex;
+  flex-direction: column;
+}
+
+._start_cen {
+  align-items: start;
+  justify-content: center;
+}
+
+._cen_space {
+  align-items: center;
+  justify-content: space-between;
+}
+
+._cen_around {
+  align-items: center;
+  justify-content: space-around;
+}
+
+._cen_start {
+  align-items: center;
+  justify-content: start;
+}
+
+._cen_end {
+  align-items: center;
+  justify-content: flex-end;
+}
+
+._cen_center {
+  align-items: center;
+  justify-content: center;
+}
+
 .uiView {
   width: 670rpx;
   height: 580rpx;
   padding: 30rpx 0rpx 15rpx;
   margin: 0 auto;
-  border: 2rpx solid red;
   box-sizing: border-box;
 }
 
@@ -26,6 +65,7 @@
   right: 0;
   width: 576rpx;
   height: 384rpx;
+  background: rgba(228, 230, 235, 1);
   z-index: 1;
 }
 
@@ -68,4 +108,107 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 99;
+}
+
+.tipOne {
+  width: 100%;
+  line-height: 30rpx;
+  padding-top: 40rpx;
+  text-align: center;
+  color: #8891A9;
+  font-size: 32rpx;
+}
+
+.tipTwo {
+  width: 100%;
+  line-height: 24rpx;
+  padding-top: 19rpx;
+  text-align: center;
+  color: #8891A9;
+  font-size: 24rpx;
+}
+
+/* col */
+.CuiView {
+  width: 430rpx;
+  height: 770rpx;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.CuploadModul {
+  position: relative;
+  width: 430rpx;
+  height: 620rpx;
+}
+
+.CuploadBg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 430rpx;
+  height: 620rpx;
+  background: rgba(228, 230, 235, 1);
+  z-index: 1;
+}
+
+.Cicon-tianjia {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 80rpx !important;
+  z-index: 99;
+  color: #9CA0AC;
+  opacity: 0.5;
+}
+
+.Czhezhao {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 430rpx;
+  height: 620rpx;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9;
+}
+
+.Cshuanxin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 75rpx !important;
+  z-index: 99;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.Ccanvas-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+}
+
+.CtipOne {
+  width: 100%;
+  line-height: 30rpx;
+  padding-top: 40rpx;
+  text-align: center;
+  color: #8891A9;
+  font-size: 32rpx;
+}
+
+.CtipTwo {
+  width: 100%;
+  line-height: 24rpx;
+  padding-top: 19rpx;
+  text-align: center;
+  color: #8891A9;
+  font-size: 24rpx;
 }

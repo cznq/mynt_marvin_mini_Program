@@ -1,23 +1,100 @@
-<view class="uiView">
-  <view catchtap='uploadImage' class="uploadModul">
-    <block wx:if="{{model===1}}" >
-      <image class="uploadBg" src='../../images/roomProve.png'></image>
-    <view ><text class="icon-tianjia iconfont icon-shenqingbeijujue-copy"></text></view>
+<block wx:if="{{direction==='row'}}" >
+  <view class="uiView">
+    <view catchtap='uploadImage' class="uploadModul">
+      <!-- 点击上传 -->
+      <block wx:if="{{model===1}}" >
+        <image class="uploadBg" src='http://marvin-api-asset.oss-cn-hangzhou.aliyuncs.com/development/qr_code/shangyan/roomProve.png'></image>
+        <text class="icon-tianjia iconfont icon-shenqingbeijujue-copy"></text>
+      </block>
+      <!-- 正在上传 -->
+      <block  wx:if="{{model===2}}">
+        <view catchtap="forbid">
+        <view class="uploadBg _row _cen_center">
+          <image style="width:{{ImgWid}}rpx;height:{{ImgHeig}}rpx" src='{{uploadImage}}'></image>
+        </view>
+        <view class="zhezhao"></view>
+        <canvas-ring  class="canvas-ring" id="canvasRing" value="{{c_val}}"></canvas-ring>
+        </view>
+      </block>
+      <!-- 上传失败 -->
+      <block wx:if="{{model===3}}">
+        <view class="uploadBg _row _cen_center">
+          <image style="width:{{ImgWid}}rpx;height:{{ImgHeig}}rpx" src='{{uploadImage}}'></image>
+        </view>
+        <view class="zhezhao"></view>
+        <text class="shuanxin iconfont icon-shuaxin"></text>
+      </block>
+      <!-- 上传成功 -->
+      <block  wx:if="{{model===4}}">
+        <image class="uploadBg" src='../../images/roomProve.png'></image>
+      </block>
+
+    </view>
+    <block  wx:if="{{model===1}}">
+      <view class="tipOne">{{tipTxt}}</view>
+      <view class="tipTwo">请按照图例上传相关证件</view>
     </block>
     <block  wx:if="{{model===2}}">
-      <view catchtap="forbid">
-      <image class="uploadBg" src='{{uploadImage}}'></image>
-      <view class="zhezhao"></view>
-      <canvas-ring  class="canvas-ring" id="canvasRing" value="{{c_val}}"></canvas-ring>
-      </view>
+      <view class="tipOne">正在上传…</view>
+      <view class="tipTwo">请按照图例上传相关证件</view>
     </block>
-    <block wx:if="{{model===3}}">
-      <image class="uploadBg" src='../../images/roomProve.png'></image>
-      <view class="zhezhao"></view>
-      <text class="shuanxin iconfont icon-shuaxin"></text>
+    <block  wx:if="{{model===3}}">
+      <view class="tipOne">上传失败，点击重新上传</view>
+      <view class="tipTwo">请按照图例上传相关证件</view>
     </block>
     <block  wx:if="{{model===4}}">
-      <image class="uploadBg" src='../../images/roomProve.png'></image>
+      <view class="tipOne">上传成功</view>
+      <view class="tipTwo">请按照图例上传相关证件</view>
     </block>
   </view>
-</view>
+</block>
+  <block wx:if="{{direction==='col'}}" >
+    <view class="CuiView">
+      <view catchtap='uploadImage' class="CuploadModul">
+        <!-- 点击上传 -->
+        <block wx:if="{{model===1}}" >
+          <image class="CuploadBg" src='http://marvin-api-asset.oss-cn-hangzhou.aliyuncs.com/development/qr_code/shangyan/business_license.png'></image>
+          <text class="Cicon-tianjia iconfont icon-shenqingbeijujue-copy"></text>
+        </block>
+        <!-- 正在上传 -->
+        <block  wx:if="{{model===2}}">
+          <view catchtap="forbid">
+          <view class="CuploadBg _row _cen_center">
+            <image style="width:{{ImgWid}}rpx;height:{{ImgHeig}}rpx" src='{{uploadImage}}'></image>
+          </view>
+          <view class="Czhezhao"></view>
+          <canvas-ring  class="Ccanvas-ring" id="canvasRing" value="{{c_val}}" canvasWidth="{{70}}"></canvas-ring>
+          </view>
+        </block>
+        <!-- 上传失败 -->
+        <block wx:if="{{model===3}}">
+          <view class="CuploadBg _row _cen_center">
+            <image style="width:{{ImgWid}}rpx;height:{{ImgHeig}}rpx" src='{{uploadImage}}'></image>
+          </view>
+          <view class="Czhezhao"></view>
+          <text class="Cshuanxin iconfont icon-shuaxin"></text>
+        </block>
+        <!-- 上传成功 -->
+        <block  wx:if="{{model===4}}">
+          <image class="CuploadBg" src='../../images/roomProve.png'></image>
+        </block>
+
+      </view>
+      <block  wx:if="{{model===1}}">
+        <view class="tipOne">{{tipTxt}}</view>
+        <view class="tipTwo">请按照图例上传相关证件</view>
+      </block>
+      <block  wx:if="{{model===2}}">
+        <view class="tipOne">正在上传…</view>
+        <view class="tipTwo">请按照图例上传相关证件</view>
+      </block>
+      <block  wx:if="{{model===3}}">
+        <view class="tipOne">上传失败，点击重新上传</view>
+        <view class="tipTwo">请按照图例上传相关证件</view>
+      </block>
+      <block  wx:if="{{model===4}}">
+        <view class="tipOne">上传成功</view>
+        <view class="tipTwo">请按照图例上传相关证件</view>
+      </block>
+    </view>
+  </block>

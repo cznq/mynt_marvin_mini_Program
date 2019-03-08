@@ -23,11 +23,7 @@ Component({
       type: String,
       value: "rgba(255,255,255, .6)"
     },
-    //标题 默认“完成率”
-    title: {
-      type: String,
-      value: ""
-    },
+
     //当前的值 默认45
     value: {
       type: Number,
@@ -74,14 +70,7 @@ Component({
    */
   methods: {
     showCanvasRing() {
-      //去掉首位空格后如果标题为空，那么当前值的区域就没有margin-top值
-      if (this.data.title.replace(/(^\s*)|(\s*$)/g, "").length == 0) {
-        this.setData({
-          isMarginTop: false
-        })
-      }
       //作画
-
       var ctx = wx.createCanvasContext("circleBar", this); //canvas组建封装，需要后加个this
       var circle_r = this.data.canvasWidth / 2; //画布的一半，用来找中心点和半径
       var startDegree = this.data.startDegree; //从什么角度开始
@@ -109,9 +98,6 @@ Component({
       ctx.closePath();
 
       ctx.draw();
-
-
-
 
     }
   }

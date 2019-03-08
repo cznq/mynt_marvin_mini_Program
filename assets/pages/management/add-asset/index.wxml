@@ -1,0 +1,54 @@
+<!--assets/pages/management/add-asset/index.wxml-->
+<view class="_content_info">
+    <form bindsubmit='formSubmit'>
+        <view class="_tit">资产地址信息</view>
+        <view class="_flex _flex_item_center _flex_space_between _info_item">
+            <view class='input_block'>
+                <view class='_s_tit'>
+                    <text class='_font28 _txt_darkgrey'>所属楼宇</text>
+                </view>
+                <input class='_text' disabled name="building" placeholder="选择资产所在楼宇" placeholder-class='input_text_phc'></input>
+            </view>
+            <view class="_arrow" bindtap="selectBuilding">
+                <text class="iconfont icon-jiantou"></text>
+            </view>
+        </view>
+        <view class=_info_item">
+            <view class='input_block'>
+                <view class='_s_tit'>
+                    <text class='_font28'>位置</text>
+                </view>
+                <input class='_text' name="address" placeholder="位置将更具楼宇自动生成" placeholder-class='input_text_phc'></input>
+            </view>
+        </view>
+        <view class=_info_item">
+            <view class='input_block'>
+                <view class='_s_tit'>
+                    <text class='_font28'>楼层房号</text>
+                </view>
+                <view class="_flex _flex_item_center">
+                    <input class='_text _text_w' name="floor" placeholder="请选择" placeholder-class='input_text_phc'></input>
+                    <text>层</text>
+                    <input class='_text _text_w _text_ml' name="room" placeholder="请选择" placeholder-class='input_text_phc'></input>
+                    <text>号</text>
+                </view>
+            </view>
+        </view>
+        <view class=_info_item">
+            <view class='input_block'>
+                <view class='_s_tit'>
+                    <text class='_font28'>建筑面积</text>
+                </view>
+                <view class="_flex _flex_item_center">
+                    <input class='_text _text_w' name="area" placeholder="请填写" placeholder-class='input_text_phc'></input>
+                    <text>㎡</text>
+                </view>
+            </view>
+        </view>
+    </form>
+</view>
+<view class="_fixed _footer">
+    <view class="_footer_btn">
+        <button disabled class="_font32 _fontw500 _border_radius10" bindtap="goNext">下一步</button>
+    </view>
+</view>

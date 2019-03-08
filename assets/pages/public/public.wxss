@@ -1,0 +1,52 @@
+._info_item{
+    border-bottom: 1px solid rgba(136, 145, 169, .3);
+    padding: 40rpx 0;
+    background-color: #fff;
+}
+._info_item .input_block{
+    font-size: 32rpx;
+    color: rgba(9, 35, 68, .6);
+}
+._info_item ._s_tit{
+    color: #8891A9;
+}
+._info_item ._text{
+    color: #092344;
+    font-size: 32rpx;
+}
+._info_item .input_text_phc{
+    color:rgba(9, 35, 68, .3);
+}
+._info_item ._arrow{
+    width: 60rpx;
+    height: 60rpx;
+    color: #8891A9;
+    font-size: 20rpx;
+    text-align: right;
+    line-height: 60rpx;
+}
+._info_item ._text._text_w{
+    width: 100rpx;
+    margin-right: 26rpx;
+}
+._info_item ._text._text_wd{
+    width: 160rpx;
+}
+._info_item ._text._text_ml{
+    margin-left: 80rpx;
+}
+._footer{
+    padding: 40rpx 0;
+    bottom: 0;
+    width: 100%;
+}
+._footer ._footer_btn button{
+    background-color: rgba(0, 132, 255, 1);
+    width: 670rpx;
+    color: #fff;
+    line-height: 100rpx;
+    height: 100rpx;
+}
+._footer ._footer_btn button[disabled]{
+    background-color: rgba(0, 132, 255, .3);
+}

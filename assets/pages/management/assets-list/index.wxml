@@ -1,0 +1,17 @@
+<!--assets/pages/management/assets-list/index.wxml-->
+<import src="../../../templates/noData/noData.wxml" />
+<view class="block_fixed">
+    <view class="_flex _flex_item_center _flex_space_between top_title">
+        <view class="_landlord">轻客智能科技有限公司</view>
+        <view class="_add_asset _flex _flex_item_center _flex_space_around" bindtap="addAsset">
+            <view class="iconfont icon-tianjia"></view>
+            <view>添加资产</view>
+        </view>
+    </view>
+</view>
+<block wx:if='{{hasAssets}}'>
+   
+</block>
+<block wx:else>
+    <template is="noneDataPage" data="{{noneData:noneAssets}}" />
+</block>

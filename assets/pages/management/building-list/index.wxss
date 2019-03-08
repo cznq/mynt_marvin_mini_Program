@@ -1,0 +1,106 @@
+/* assets/pages/management/building-list/index.wxss */
+page{
+    background-color: #F0F2F5;
+}
+.block_fixed{
+    position:fixed;
+    width:100%;
+    z-index:9999;
+    top: 0;
+}
+._search_building_content{
+    background-color: #fff;
+    height: 120rpx;
+    padding: 26rpx 30rpx 26rpx 40rpx;
+    box-sizing: border-box;
+}
+._search_building_content ._select_area{
+    font-size: 32rpx;
+    color: #092344;
+}
+._search_building_content .icon-jiantou{
+    font-size: 24rpx;
+    color: #092344;
+    transform:rotate(90deg);
+    display: inline-block;
+    margin-left: 10rpx;
+}
+._search_building_content .search{
+    width: 540rpx;
+    height: 70rpx;
+    color: #092344;
+    background-color:rgba(136, 145, 169, .1);
+    border-radius: 6rpx;
+    padding: 0 14rpx 0 32rpx;
+    box-sizing: border-box;
+}
+._search_building_content .search .search-placeholder{
+    color: rgba(9, 35, 68, .3);
+}
+._search_building_content .search .search-input{
+    line-height: 70rpx;
+    height: 70rpx;
+}
+._search_building_content ._before_search {
+    margin: 0 auto;
+}
+._search_building_content .icon-sousuo{
+    font-size: 40rpx;
+    color: rgba(9, 35, 68, .3);
+    line-height: 70rpx;
+}
+._search_building_content .clear-btn{
+    width: 70rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    background-color: transparent;
+    font-size: 32rpx;
+    color: rgba(136, 145, 169, .6);
+    margin: 0;
+}
+._building_list{
+    margin-top: 120rpx;
+}
+._building_list ._list_code{
+    line-height:60rpx;
+    font-size: 24rpx;
+    color: #8891A9;
+    padding-left: 40rpx;
+}
+._building_list ._list_item{
+    background-color: #fff;
+    padding: 40rpx;
+    border-bottom: 1px solid rgba(136, 145, 169, .3);
+}
+._building_list ._list_item:last-child{
+    border: none;
+}
+._building_list ._building_name{
+    font-size: 36rpx;
+    color: #092344;
+}
+._building_list ._address{
+    font-size: 24rpx;
+    color: rgba(9, 35, 68, .6);
+}
+._build_footer{
+    border-top: 1px solid rgba(136, 145, 169, .3);
+    font-size: 28rpx;
+    line-height: 28rpx;
+    color: rgba(9, 35, 68, .3);
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+    padding: 40rpx 0;
+}
+._build_footer .creat_btn{
+    width: 280rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 24rpx;
+    color: #8891A9;
+    border: 1px solid #8891A9;
+    border-radius: 6rpx;
+    margin-top: 20rpx;
+}
