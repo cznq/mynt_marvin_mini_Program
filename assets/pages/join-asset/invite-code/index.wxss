@@ -1,6 +1,6 @@
 /* pages/join-asset/invite-code/index.wxss */
-/*@import "../../../create-company/public/style.wxss";
-@import "../../../../templates/showToast/showToast.wxss";*/
+@import "../../public/public.wxss";
+@import "../../../../templates/showToast/showToast.wxss";
 
 page {
     background: #F9FAFB;

@@ -6,9 +6,6 @@ Page({
      */
     data: {
         personTitle: "请填写个人信息",
-        personName: "真实姓名",
-        personContact: "联系方式",
-        personID: "身份证",
         button_text: "下一步",
     },
 
@@ -16,7 +13,16 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-
+        // var options = new Array();
+        // options.name = "张三";
+        // options.phone = "13120286041";
+        // options.paperwork_pic_url = "https://www.baidu.com";
+        let _this = this;
+        _this.setData({
+            personName: options.name,
+            personContact: options.phone,
+            personID: options.paperwork_pic_url
+        });
     },
 
     /**

@@ -3,11 +3,11 @@
     <view class='mainTitle'>{{companyTitle}}</view>
     <form bindsubmit="confirmInfo">
         <view class="view-title title-top">
-            <text>{{companyText}}</text>
+            <text>公司全称</text>
         </view>
-        <input class="view-inp" name="personName" placeholder="请输入公司全称"></input>
+        <input class="view-inp" name="personName" placeholder="请输入公司全称" value="{{companyName}}"></input>
         <view class="view-line"></view>
-        <view class='input_block'>
+        <view class='input_block _fixed footer covview {{isiphoneX ? "footer_x" : ""}}'>
             <button class="_button" form-type="submit" disabled="{{disabled}}">{{button_text}}</button>
         </view>
     </form>
