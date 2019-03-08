@@ -1,5 +1,6 @@
-page {
+.page {
   background-color: #fff;
+  position: relative;
 }
 .page__bd {
   padding: 0 40rpx;
@@ -65,14 +66,11 @@ page {
 }
 .remind {
   padding: 20rpx 20rpx 22rpx 18rpx;
-  color: #8891A9;
+  color: rgba(9, 35, 68, .3);
   font-size: 28rpx;
   margin: 50rpx 26rpx 0;
-  border: 2rpx dashed #8891A9;
+  border: 2rpx dashed rgba(9, 35, 68, .3);
 }
-
-
-
 
 ._line-height1 {
   line-height: 1;
@@ -80,4 +78,11 @@ page {
 .footer {
   background: #fff;
   border-top: none;
+}
+canvas {
+  position: absolute;
+  top: 40rpx;
+  left: 40rpx;
+  border-radius: 10px;
+  background: repeating-linear-gradient(120deg,#08294f,#08294f 10px,#092344 0,#092344 30px);
 }
