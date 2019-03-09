@@ -7,7 +7,6 @@ Page({
     data: {
         isiphoneX: app.globalData.isIphoneX,
         companyTitle: "请填写企业信息",
-        companyText: "公司全称",
         button_text: "下一步",
     },
 
@@ -18,6 +17,15 @@ Page({
         let _this = this;
         _this.setData({
             companyName: options.name,
+            owner_id: options.owner_id
+        });
+    },
+    nextStep: function(e) {
+        let name = e.detail.value.name;
+        let _this = this;
+        let url = '../upload-licence/index?owner_id=' + _this.owner_id + '&name=' + name;
+        wx.navigateTo({
+            url: url
         });
     },
 

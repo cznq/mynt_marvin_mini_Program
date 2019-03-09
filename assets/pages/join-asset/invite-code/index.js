@@ -42,9 +42,9 @@ Page({
                 if (res.data.sub_code == "SUCCESS") {
                     let info = res.data.result;
                     if (info.type == 1) {
-                        let url = '../company-info/index?business_contract_pic_urls=' + info.business_contract_pic_urls + '&number=' + info.number + '&paperwork_pic_url=' + info.paperwork_pic_url;
+                        let url = '../company-info/index?owner_id=' + info.owner_id + '&business_contract_pic_urls=' + info.business_contract_pic_urls + '&number=' + info.number + '&paperwork_pic_url=' + info.paperwork_pic_url;
                     } else {
-                        let url = '../person-info/index?owner_id=' + info.owner_id + '&owner_id=' + info.owner_id + '&business_contract_pic_urls=' + info.business_contract_pic_urls + '&number=' + info.number + '&paperwork_pic_url=' + info.paperwork_pic_url + '&phone=' + phone;
+                        let url = '../person-info/index?owner_id=' + info.owner_id + '&business_contract_pic_urls=' + info.business_contract_pic_urls + '&number=' + info.number + '&paperwork_pic_url=' + info.paperwork_pic_url + '&phone=' + phone;
                     }
                     wx.navigateTo({
                         url: url,
