@@ -1,19 +1,25 @@
-/* components/multiPhotoUpload/multiPhotoUpload.wxss */
-@import "../../templates/iconfont/iconfont.wxss";
+.wrapper {
+  width: 670rpx;
+  margin: 40rpx;
+  padding: 40rpx;
+  box-sizing: border-box;
+  border: 1px dashed rgba(136, 145, 169, .3)
+}
+
+
 
 .upload-pic-area {
   text-align: center;
 }
 .pic-list {
   display: flex;
-  flex-wrap: wrap;
 }
 .imageWrap {
   width: 160rpx;
   height: 160rpx;
   border-radius: 10rpx;
   position: relative;
-  margin-bottom: 20rpx;
+  margin-bottom: 40rpx;
   display: inline-block;
   margin-right: 20rpx;
 }
@@ -84,6 +90,3 @@
 .error {
     background-color: #f5615f;
 }
-
-
-

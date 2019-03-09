@@ -2,11 +2,9 @@
   <view class="pic-list {{uploading ? 'uploading' : ''}}">
 
     <block wx:for="{{selectedImages}}" wx:key="">
-      <view class="image">
-          <image src="{{item}}" mode="aspectFill" data-index="{{index}}" bindtap="previewImage"></image>
-          <view class="remove">
-              <image class="removeImg" src="../../images/icon_delete@2x.png" data-index="{{index}}" bindtap="removeImage"></image>
-          </view>
+      <view class="imageWrap">
+          <image src="{{item}}" mode="aspectFill" data-index="{{index}}" bindtap="previewImage" style="width: 160rpx;height:160rpx;border-radius:10rpx;"></image>
+          <view class="remove iconfont icon-shenqingbeijujue" data-index="{{index}}" bindtap="removeImage"></view>
           <view class="progress">
               <block wx:if="{{progress[index] == undefined}}">
                   <icon type="waiting" size="20" color="#fff" />
@@ -29,9 +27,9 @@
           </view>
       </view>
     </block>
-
-
-    
+    <view class="uploadBtn" bindtap="selectImage"><text class="iconfont icon-shenqingbeijujue-copy"></text></view>
   </view>
-  <button class="uploadBtn" bindtap="selectImage">上传照片</button>
+
+  <view class="_tip-title">{{ title }}</view>
+  <view class="_tip-intro">{{ intro }}</view>
 </view>

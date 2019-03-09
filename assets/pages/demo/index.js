@@ -7,7 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    selectedImages: ['http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/prompt@2x.png'],
+    uploading: false,
+    uploadImagesLimit: 9
   },
 
   /**
@@ -16,7 +18,6 @@ Page({
   onLoad: function (options) {
     var _this = this;
     
-  
   },
 
   /**

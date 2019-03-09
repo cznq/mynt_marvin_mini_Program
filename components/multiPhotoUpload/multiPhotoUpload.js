@@ -7,16 +7,29 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    
+    title: {
+      type: String,
+      value: '上传租赁合同'
+    },
+    intro: {
+      type: String,
+      value: '上传的图片需要体现合同期限、资产明细、双方签名'
+    },
+    selectedImages: {
+      type: Array,
+      value: []
+    },
+    uploadImagesLimit: {
+      type: Number,
+      value: 9
+    }
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    selectedImages: [],
-    uploading: false,
-    uploadImagesLimit: 9
+    uploading: false
   },
 
   /**
@@ -25,14 +38,12 @@ Component({
   methods: {
     // 提交
     reviewSubmit(e) {
-      
       if (this.data.selectedImages.length > 0) {
-        this.uploadImage(0);
+        this.uploadImage(this, 0);
       }
     },
     // 上传图片
-    uploadImage(i) {
-      var that = this;
+    uploadImage(_this, i) {
       var service = 'commerce';
       var data = JSON.stringify({});
       var method = 'upload_comment_file';
@@ -41,12 +52,12 @@ Component({
       var sign_type = 'MD5';
       var stringA = 'app_id=' + app_id + '&data=' + data + '&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
       var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
-      that.setData({
+      _this.setData({
         uploading: true
       });
       var uploadTask = wx.uploadFile({
         url: app.globalData.BENIFIT_API_URL,
-        filePath: that.data.selectedImages[i],
+        filePath: _this.data.selectedImages[i],
         header: {
           'content-type': 'multipart/form-data'
         },
@@ -63,27 +74,25 @@ Component({
         },
         success: res => {
           var data = JSON.parse(res.data);
-          that.setData({
+          _this.setData({
             [`selectedImages[${i}]`]: data.result.comment_pic
           })
-          if (i < that.data.selectedImages.length - 1) {
+          if (i < _this.data.selectedImages.length - 1) {
             i++;
-            that.uploadImage(i);
-          } else {
-            that.submit(that.data.content);
+            _this.uploadImage(i);
           }
         },
         fail: res => {
           wx.showToast({
             title: '上传失败'
           })
-          that.setData({
+          _this.setData({
             ['progress[' + i + ']']: false
           });
         }
       })
       uploadTask.onProgressUpdate(res => {
-        that.setData({
+        _this.setData({
           ['progress[' + i + ']']: res.progress
         });
       })
