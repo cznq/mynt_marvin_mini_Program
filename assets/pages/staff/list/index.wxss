@@ -42,6 +42,7 @@ page {
   text-align: center;
   line-height: 100rpx;
   margin-right: 22rpx;
+  border-radius: 4rpx;
 }
 .staff-list_item ._per-info {
   color: rgba(9, 35, 68, .3)
