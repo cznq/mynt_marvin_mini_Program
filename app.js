@@ -26,6 +26,7 @@ App({
     // BENIFIT_API_URL: 'http://192.168.1.204:10004/mini_program/api', //内网环境
     //WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
     BASE_ASSET_URL: 'http://192.168.1.211:20000/asset',
+    BASE_UPLOAD_URL: 'http://192.168.1.211:20000/oss',
     // 测试环境
     BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
     BENIFIT_API_URL: 'https://marvin-benifit-api-test.slightech.com/mini_program/api',

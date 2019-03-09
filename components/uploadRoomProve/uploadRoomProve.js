@@ -1,4 +1,6 @@
 // components/uploadRoomProve/uploadRoomProve.js
+const app = getApp();
+console.log('app:', app)
 Component({
   /**
    * 组件的属性列表
@@ -112,33 +114,68 @@ Component({
             uploadImage: uploadImage,
             model: 2
           })
-          that.selectComponent("#canvasRing").showCanvasRing();;
 
+          let randomNum = that.randomOut() //时间戳随机数
+          let imageObject = 'user/' + uploadImage
+          app.Util.network.POST({
+            url: app.globalData.BASE_UPLOAD_URL + "/" + 'object' + '/' + 'upload' + '/' + 'private',
+            filePath: uploadImage,
+            name: 'user',
+            params: {
+              method: 'upload',
+              bucket_name: 'marvin-api-asset',
+              object: imageObject,
+              file: 'user',
+              data: JSON.stringify({})
+            },
+            this: that,
+            success: res => {
+              console.log("3333333", res);
+
+            },
+            fail: res => {
+              console.log('fail');
+            }
+          })
+          // console.log('imageObject:', imageObject)
           // const uploadTask = wx.uploadFile({
-          //   url: 'https://example.weixin.qq.com/upload', // 仅为示例，非真实的接口地址
-          //   filePath: tempFilePaths[0],
-          //   name: 'file',
+          //   url: app.globalData.BASE_UPLOAD_URL + "/" + 'object' + '/' + 'upload' + '/' + 'private',
+          //   filePath: uploadImage,
+          //   name: 'user',
           //   formData: {
-          //     user: 'test'
+          //     bucket_name: '	slightech-testbucket',
+          //     object: imageObject,
           //   },
           //   success(res) {
           //     const data = res.data
-          //     // do something
+          //     console.log(data)
           //   }
           // })
-          //
+
           // uploadTask.onProgressUpdate((res) => {
           //   console.log('上传进度', res.progress)
-          //   console.log('已经上传的数据长度', res.totalBytesSent)
-          //   console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
+          //   that.setData({
+          //     c_val: res.progress
+          //   })
+          //   that.selectComponent("#canvasRing").showCanvasRing();
           // })
-
+          const myEventDetail = {
+            model: 4
+          };
+          that.triggerEvent('currentState', myEventDetail)
         }
       })
     },
     forbid() {
       console.log(4444);
       return false
+    },
+    randomOut() { //时间戳随机数
+      let randomNum = '';
+      for (let i = 0; i < 6; i++) {
+        randomNum += Math.floor(Math.random() * 10);
+      }
+      return new Date().getTime() + randomNum;
     }
   },
   lifetimes: {
