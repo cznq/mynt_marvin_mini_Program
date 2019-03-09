@@ -1,1 +1,59 @@
 /* pages/join-asset/upload-id/index.wxss */
+page {
+    background: #F0F2F5;
+    height: 100%;
+}
+
+.mainTitle {
+    padding-top: 90rpx;
+    font-size: 30rpx;
+    font-size: 60rpx;
+    color: #1A2A4B;
+}
+
+.title-top {
+    padding: 42rpx 0 0 1rpx;
+    font-size: 28rpx;
+    color: #8891A9;
+}
+
+.title-main {
+    height: 30rpx;
+    font-size: 32rpx;
+    color: #8891A9;
+    line-height: 38rpx;
+    text-align: center;
+    padding-top: 40rpx;
+}
+
+.title-sub {
+    height: 23rpx;
+    font-size: 24rpx;
+    font-weight: normal;
+    color: #8891A9;
+    line-height: 38rpx;
+    opacity: 0.6;
+    text-align: center;
+    padding-top: 19rpx;
+}
+
+.upload-view {
+    width: 537rpx;
+    height: 335rpx;
+    background: #bababa;
+    margin: 79rpx auto 0 auto;
+}
+
+button[disabled] {
+    background: #0084FF !important;
+    opacity: 0.2;
+    color: #fff !important;
+}
+
+.footer {
+    margin-top: 43rpx;
+    border: none;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}

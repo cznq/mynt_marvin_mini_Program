@@ -1,22 +1,22 @@
 <!--pages/join-asset/person-info/index.wxml-->
 <view class='_content _top_gradient2'>
     <view class='mainTitle'>{{personTitle}}</view>
-    <form bindsubmit="confirmInfo">
+    <form bindsubmit="nextStep">
         <view class="view-title title-top">
             <text>真实姓名</text>
         </view>
-        <input class="view-inp" name="personName" placeholder="请输入您的姓名" value="{{personName}}"></input>
+        <input class="view-inp" name="name" placeholder="请输入您的姓名" value="{{name}}"></input>
         <view class="view-line"></view>
         <view class="view-title">
             <text>联系方式</text>
         </view>
-        <input class="view-inp" name="personContact" placeholder="请输入手机号或座机号" value="{{personContact}}"></input>
+        <input class="view-inp" name="phone" placeholder="请输入手机号或座机号" value="{{phone}}"></input>
         <view class=" view-line">
         </view>
         <view class="view-title">
             <text>身份证</text>
         </view>
-        <input class="view-inp" name="personID" placeholder="请输入身份证号" value="{{personID}}"></input>
+        <input class="view-inp" name="number" placeholder="请输入身份证号" value="{{number}}"></input>
         <view class=" view-line">
         </view>
         <view class='input_block'>
