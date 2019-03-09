@@ -19,6 +19,8 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
     if (requestHandler.params.method == 'login') {
       request(method, requestHandler, app)
+    } else if (requestHandler.params.method == 'upload') {
+      uploadRequest(method, requestHandler, app)
     } else {
 
       app.checkWxLogin(function() {
@@ -105,6 +107,74 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     })
   }
 
+  /**
+   * 请求参数 requestHandler
+   * requestHandler.url              'https://marvin-api-test.slightech.com/mini_program/api/'
+   * requestHandler.params           { service: 'oauth', method: 'login', data: ({}) }
+   * requestHandler.loadingTitle      '正在加载'
+   * requestHandler.showLoading       true | false
+   */
+  function uploadRequest(method, requestHandler, app) {
+    var dataJson = JSON.parse(requestHandler.params.data);
+    dataJson.union_id = wx.getStorageSync('xy_session');
+    requestHandler.params.data = JSON.stringify(dataJson);
+    // if (requestHandler.showLoading != false) {
+    //   var title = requestHandler.loadingTitle != undefined ? requestHandler.loadingTitle : '正在加载';
+    //   wx.showLoading({
+    //     title: title,
+    //     mask: true
+    //   })
+    // }
+
+    requestHandler.params.app_id = '65effd5a42fd1870b2c7c5343640e9a8'; //接口需要的第三方App_id
+    requestHandler.params.timestamp = Math.round(new Date().getTime() / 1000 - 28800);
+    requestHandler.params.sign_type = 'MD5';
+    var stringA = 'app_id=' + requestHandler.params.app_id + '&data=' + requestHandler.params.data + '&timestamp=' + requestHandler.params.timestamp;
+    requestHandler.params.sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
+    //打印参数
+    const uploadTask = wx.uploadFile({
+      url: requestHandler.url,
+      filePath: requestHandler.filePath,
+      name: requestHandler.name,
+      header: {
+        'content-type': 'multipart/form-data'
+      },
+      formData: requestHandler.params,
+      success(res) {
+        const data = res.data
+        if (res.data.sub_code != 0) {
+          app.myLog("请求成功错误", 'union_id:' + wx.getStorageSync('xy_session') + '\nopen_id:' + wx.getStorageSync('open_id') + '\n\n请求参数：\n' + JSON.stringify(requestHandler.params) + '\n\n接口返回信息：\n' + JSON.stringify(res))
+        }
+        // if (requestHandler.showLoading != false) {
+        //   wx.hideLoading();
+        // }
+        if (requestHandler.success) requestHandler.success(res);
+      },
+      fail: (res) => {
+        app.myLog("请求错误", 'union_id:' + wx.getStorageSync('xy_session') + '\nopen_id:' + wx.getStorageSync('open_id') + '\n\n请求参数：\n' + JSON.stringify(requestHandler.params) + '\n\n接口返回信息：\n' + JSON.stringify(res))
+        // if (requestHandler.showLoading != false) {
+        //   wx.hideLoading();
+        // }
+
+        wx.showToast({
+          title: '加载失败，请尝试刷新',
+          icon: 'none'
+        })
+        if (requestHandler.fail) requestHandler.fail();
+      },
+      complete: () => {
+        wx.stopPullDownRefresh();
+        if (requestHandler.complete) requestHandler.complete();
+      }
+    })
+
+    uploadTask.onProgressUpdate((res) => {
+      requestHandler.this.setData({
+        c_val: res.progress
+      })
+      requestHandler.this.selectComponent("#canvasRing").showCanvasRing();
+    })
+  }
 
 
   // GET请求
@@ -116,10 +186,10 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     checkRequestLogin('POST', requestRouter)
   }
   //检测是否已登陆
-  function checkRequestLogin(method,requestRouter) {
+  function checkRequestLogin(method, requestRouter) {
     var app = getApp();
-    app.checkWxLogin(function () {
-      requestUrl(method,requestRouter, app)
+    app.checkWxLogin(function() {
+      requestUrl(method, requestRouter, app)
     })
   }
 
@@ -130,7 +200,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
    * requestRouter.loadingTitle      '正在加载'
    * requestRouter.showLoading       true | false
    */
-  function requestUrl(method,requestRouter, app) {
+  function requestUrl(method, requestRouter, app) {
 
     var dataJson = JSON.parse(requestRouter.params.data);
     dataJson.union_id = wx.getStorageSync('xy_session');

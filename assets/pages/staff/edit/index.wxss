@@ -7,7 +7,7 @@
   background: #fff!important;
 }
 .collect-information {
-  padding: 40rpx 0 0 40rpx;
+  padding: 40rpx 40rpx 0 40rpx;
 }
 .first-name {
   font-size: 50rpx;
@@ -32,19 +32,36 @@
   border-bottom: none;
   height: 45rpx;
 }
+.input_block .input_text._has-bind {
+  color: rgba(9, 35, 68, .3)
+}
 icon {
   position: absolute;
   bottom: 50rpx;
   right: 0;
   z-index: 100;
 }
-
+.rebind {
+  width: 140rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border: 1px solid rgba(0, 132, 255, 1);
+  color: rgba(0, 132, 255, 1);
+  font-size: 24rpx;
+  padding: 0;
+  border-radius: 6rpx;
+  background-color: transparent;
+  position: absolute;
+  top: 60rpx;
+  right: 10rpx;
+  z-index: 100；
+}
 .footer {
   background: #ccc;
   left:0;
   bottom:0;
   width:100%;
-  padding-top: 30rpx;
+  padding: 60rpx 0;
   background: #fff;
   border-top: none;
 }
@@ -59,4 +76,35 @@ icon {
   color: rgba(136, 145, 169, 1);
   border: 2rpx solid rgba(136, 145, 169, 1);
   border-radius: 4rpx;
+}
+.toast4 .toast-introduce {
+  font-size: 28rpx;
+  color: rgba(9, 35, 68, .6);
+  text-align: left;
+  font-weight: 400;
+}
+.toast4 .toast-title {
+  font-weight: 600;
+}
+.toast-close, .toast-sure {
+  width: 240rpx;
+  height: 82rpx;
+  border-radius: 4rpx;
+  line-height: 82rpx;
+  font-size: 32rpx;
+  box-sizing: border-box;
+}
+.toast-close {
+  background-color: rgba(0, 132, 255, 1);
+  color: #fff;
+}
+.toast-sure {
+  border: 1px solid rgba(0, 132, 255, 1);
+  color: rgba(0, 132, 255, 1);
+  margin-right: 28rpx;
+}
+.toastPubStyle {
+  padding: 62rpx 40rpx 40rpx;
+  width: 590rpx;
+  box-sizing: border-box;
 }

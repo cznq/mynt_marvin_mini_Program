@@ -6,9 +6,6 @@ Page({
      */
     data: {
         personTitle: "请填写个人信息",
-        personName: "真实姓名",
-        personContact: "联系方式",
-        personID: "身份证",
         button_text: "下一步",
     },
 
@@ -16,9 +13,28 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-
+        // var options = new Array();
+        // options.name = "张三";
+        // options.phone = "13120286041";
+        // options.number = "230606111122222222";
+        let _this = this;
+        _this.setData({
+            owner_id: options.owner_id,
+            name: options.name,
+            phone: options.phone,
+            number: options.number
+        });
     },
-
+    nextStep: function(e) {
+        let name = e.detail.value.name;
+        let number = e.detail.value.number;
+        let phone = e.detail.value.phone;
+        let _this = this;
+        let url = '../upload-id/index?owner_id=' + _this.owner_id + '&number=' + number + '&phone=' + phone + '&name=' + name + '&phone=' + phone;
+        wx.navigateTo({
+            url: url
+        });
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

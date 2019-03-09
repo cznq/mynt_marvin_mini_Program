@@ -1,9 +1,8 @@
-<city-picker mode='1' codes='{{codes}}'  data="{{citylist}}"  bind:select="onSelect">
-
+<city-picker mode='2' codes='{{codes}}'  data="{{citylist}}"  bind:select="onSelect">
   <view class="input-picker">
     {{city}}
   </view>
 </city-picker>
-
-<upload-Room-Prove direction='row' tipTxt='上传营业执照'></upload-Room-Prove>
+<!-- identityId  roomProve license 身份证 房产证 营业执照-->
+<upload-Room-Prove direction='row' type='roomProve' tipTxt='上传营业执照'></upload-Room-Prove>
 <upload-Room-Prove direction='row' tipTxt='上传营业执照'></upload-Room-Prove>

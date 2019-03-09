@@ -1,0 +1,18 @@
+<view class="_content_info">
+  <view class="_tit">望京大厦E栋 16层1603</view>
+  <view class="uploadTxt">上传房产证或租赁合同</view>
+    <radio-group class="radio-group _row _cen_start" bindchange="radioChange">
+      <label class="radio" wx:for="{{items}}" wx:key="">
+        <radio value="{{item.name}}" checked="{{item.checked}}" />
+        {{item.value}}
+      </label>
+    </radio-group>
+    <view wx:if="{{selMode==='roomProve'}}" class="selMode">
+      <!-- identityId  roomProve license 身份证 房产证 营业执照-->
+      <upload-Room-Prove  direction='row' type ="license" tipTxt='上传房产证' bindcurrentState='currentState'></upload-Room-Prove>
+    </view>
+    <view wx:if="{{selMode==='leasContr'}}" class="selMode">
+
+    </view>
+    <view class="review {{submit ? 'active' : ''}}">进入审核</view>
+</view>

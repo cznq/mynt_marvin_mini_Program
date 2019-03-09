@@ -1,4 +1,6 @@
 // pages/join-asset/invite-code/index.js
+var app = getApp();
+var toast = require("../../../../templates/showToast/showToast");
 Page({
     data: {
         mainTitle: '输入邀请码',
@@ -24,31 +26,36 @@ Page({
         })
     },
     confirmCode(e) {
-        var company_verify_code = e.detail.value.code;
         var _this = this;
-        app.Util.network.POST({
-            url: app.globalData.BASE_API_URL,
+        var verify_code = e.detail.value.code;
+        app.Util.networkUrl.postUrl({
+            url: app.globalData.BASE_ASSET_URL + "/owner/get/verify_code",
             params: {
-                service: 'company',
-                method: 'get_company_info',
                 data: JSON.stringify({
-                    company_verify_code: company_verify_code,
+                    union_id: wx.getStorageSync('xy_session'),
+                    verify_code: verify_code,
                 })
             },
             success: res => {
-                console.log('get_company_info API return:')
+                console.log('owner-get-verifycode return:');
                 console.log(res);
-                if (res.data.sub_code == 0) {
-                    wx.redirectTo({
-                        url: '../enterRealName/index?company_verify_code=' + company_verify_code + '&company_name=' + res.data.result.company_name + '&company_short_name=' + res.data.result.company_short_name,
-                    })
+                if (res.data.sub_code == "SUCCESS") {
+                    let info = res.data.result;
+                    if (info.type == 1) {
+                        let url = '../company-info/index?owner_id=' + info.owner_id + '&business_contract_pic_urls=' + info.business_contract_pic_urls + '&number=' + info.number + '&paperwork_pic_url=' + info.paperwork_pic_url;
+                    } else {
+                        let url = '../person-info/index?owner_id=' + info.owner_id + '&business_contract_pic_urls=' + info.business_contract_pic_urls + '&number=' + info.number + '&paperwork_pic_url=' + info.paperwork_pic_url + '&phone=' + phone;
+                    }
+                    wx.navigateTo({
+                        url: url,
+                    });
                 } else {
                     _this.setData({
                         isfocus: false
                     })
                     toast.showToast(this, {
                         toastStyle: 'toast',
-                        title: '你输入的码有误,请重新输入',
+                        title: res.data.sub_msg,
                         duration: 2000,
                         mask: false,
                         cb: function() {

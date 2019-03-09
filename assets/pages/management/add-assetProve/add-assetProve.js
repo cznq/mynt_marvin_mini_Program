@@ -1,16 +1,22 @@
-// pages/componentsTest/componentsTest.js
-import {
-  CityList
-} from '../../utils/pca.js'; //引入城市数据
+// assets/pages/management/add-assetProve/add-assetProve.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    codes: [], //城市ID
-    city: '北京 北京市', //city名称
-    citylist: CityList, //城市数据
+    items: [{
+        name: 'roomProve',
+        value: '房产证',
+        checked: 'true'
+      },
+      {
+        name: 'leasContr',
+        value: '租赁合同'
+      },
+    ],
+    selMode: 'roomProve',
+    submit: false
   },
 
   /**
@@ -19,11 +25,18 @@ Page({
   onLoad: function(options) {
 
   },
-  onSelect(e) { //
+  radioChange(e) {
     this.setData({
-      codes: e.detail.code,
-      city: e.detail.value
+      selMode: e.detail.value
     })
+  },
+  currentState(e) {
+    console.log(e.detail);
+    if (e.detail.uploadState) {
+      this.setData({
+        submit: true
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

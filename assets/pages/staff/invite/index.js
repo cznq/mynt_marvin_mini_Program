@@ -1,3 +1,4 @@
+var canvasKit = require('../../../../utils/canvasKit.js');
 const app = getApp()
 Page({
 
@@ -37,55 +38,49 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.saveInviteCard();
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  drawInviteCard: function (ctx) {
+    //企业个人图标
+    canvasKit.roundRect(ctx, 20, 20, 35, 18, 3, '#fff');
+    canvasKit.drawText(ctx, 12, '#8891A9', 'center', '企业', 38, 34);
+    //企业名称
+    canvasKit.drawText(ctx, 23, '#FFFFFF', 'left', '轻客智能科技(江苏)有限公司', 20, 66);
+    canvasKit.drawText(ctx, 16, '#8891A9', 'left', '邀请您管理资产', 20, 90);
+    //中间白色圆角矩形
+    canvasKit.roundRect(ctx, 20, 118, 295, 319, 4, '#FFFFFF');
+    //邀请人
+    canvasKit.drawText(ctx, 20, '#092344', 'center', '谢林允', 167, 160);
+    //二维码下面文字
+    canvasKit.fillText(ctx,'长按识别二维码\n关注公众号 进行身份绑定', 167, 256, 12, '#8891A9', 20, 'center');
+    canvasKit.drawDashLineRect(ctx, 33, 325, 270, 80, 5);
+    canvasKit.fillText(ctx, '绑定成功后可在小程序中\n进行添加本企业或本人所租售的资产信息\n并为资产相关费用的账目进行智能核销', 167, 334, 12, '#b5bdc7', 20, 'center');
+    canvasKit.drawDot(ctx, 167, 445, 25, "#092344"); 
+    ctx.draw(true, function () {  })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  saveInviteCard: function() {
+    var _this = this;
+    const ctxv = wx.createCanvasContext('inviteCard');
+    //canvasKit.drawNetworkPhoto(ctxv, 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/pay_qrcode.png', 146, 47, 80, 80, function () {_this.drawInviteCard(ctxv);})
 
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+    _this.drawInviteCard(ctxv);
+    wx.getImageInfo({
+      src: 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/pay_qrcode.png',
+      success: function (res) {
+        ctxv.save();
+        ctxv.beginPath(); //开始绘制
+        ctxv.drawImage(res.path, 128, 170, 80, 80);
+        ctxv.restore();
+        ctxv.draw(true, function () {  })
+      }
+    })
 
   }
+
+ 
+
+ 
+
 })

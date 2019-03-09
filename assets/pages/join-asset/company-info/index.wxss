@@ -36,7 +36,6 @@ page {
 }
 
 .input_block {
-    background: #bababa;
     position: fixed;
     bottom: 30rpx;
 }

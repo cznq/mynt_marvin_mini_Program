@@ -1,11 +1,16 @@
 // pages/join-asset/upload-id/index.js
 Page({
-
     /**
      * 页面的初始数据
      */
     data: {
-
+        mainTitle: '请上传身份证照片',
+        explain: "上传身份证照片，这将帮助我们审核您的个人信息，维护平台的安全。您的证件信息会严格为您保密。",
+        fontText: '上传身份证正面照片',
+        backText: '上传身份证背面照片',
+        subText: '请按照图例上传相关证件',
+        button_text: '完成',
+        disabled: true
     },
 
     /**

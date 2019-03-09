@@ -15,7 +15,7 @@
                 <text class="iconfont icon-jiantou"></text>
             </view>
         </view>
-        <view class=_info_item">
+        <view class="_info_item">
             <view class='input_block'>
                 <view class='_s_tit'>
                     <text class='_font28'>位置</text>
@@ -25,7 +25,7 @@
                 </view>
             </view>
         </view>
-        <view class=_info_item">
+        <view class="_info_item">
             <view class='input_block'>
                 <view class='_s_tit'>
                     <text class='_font28'>楼层房号</text>
@@ -47,7 +47,7 @@
                 </view>
             </view>
         </view>
-        <view class=_info_item">
+        <view class="_info_item">
             <view class='input_block'>
                 <view class='_s_tit'>
                     <text class='_font28'>建筑面积</text>

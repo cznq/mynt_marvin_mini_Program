@@ -3,8 +3,17 @@ page {
   background-color: #F0F2F5;
 }
 .page__hd {
-  padding: 36rpx 40rpx 34rpx;
+  padding: 0 40rpx;
   background-color: #fff;
+  position: fixed;
+  height: 120rpx;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+.page__bd {
+  padding-top: 120rpx;
 }
 .add_btn {
   color: #0084FF;
@@ -33,6 +42,7 @@ page {
   text-align: center;
   line-height: 100rpx;
   margin-right: 22rpx;
+  border-radius: 4rpx;
 }
 .staff-list_item ._per-info {
   color: rgba(9, 35, 68, .3)

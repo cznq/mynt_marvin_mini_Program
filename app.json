@@ -66,6 +66,7 @@
     "pages/company/unattended-setting/setting/index",
     "pages/guide/index",
     "pages/componentsTest/componentsTest"
+
   ],
   "subPackages": [
     {
@@ -97,9 +98,11 @@
         "pages/staff/edit/index",
         "pages/management/assets-list/index",
         "pages/management/add-asset/index",
+        "pages/management/add-assetProve/add-assetProve",
         "pages/management/building-list/index",
         "pages/management/creat-building/index",
-        "pages/staff/invite/index"
+        "pages/staff/invite/index",
+        "pages/demo/index"
       ]
     }
   ],

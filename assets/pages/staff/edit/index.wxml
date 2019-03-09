@@ -1,36 +1,36 @@
-
 <view class="page">
-  
   <view class='_content collect-information'>
     <view class="first-name">谢</view>
-    <form bindsubmit='editSubmit'>
-      
-      <view class='input_block' id='ib1'>
-        <view>
-          <text class='_font24 _txt_darkgrey'>姓名</text>
-        </view>
-        <input class="input_text {{inputError.name?'error':''}}" type="text" name="name" value='{{formData.name}}' bindinput="checkForm" placeholder-class='input_text_phc' placeholder='请输入姓名' id='i1'></input>
-        
+    
+      <view class='input_block'>
+        <view><text class='_font24 _txt_darkgrey'>姓名</text></view>
+        <view class="input_text">{{empInfo.name}}</view>
       </view>
-      <view class='input_block' id='ib1'>
-        <view>
-          <text class='_font24 _txt_darkgrey'>手机号码</text>
-        </view>
-        <input class="input_text {{inputError.name?'error':''}}" type="text" name="name" value='{{formData.name}}' bindinput="checkForm" placeholder-class='input_text_phc' placeholder='请输入真实手机号码' id='i1'></input>
-        
+      <view class='input_block'>
+        <view><text class='_font24 _txt_darkgrey'>手机号码</text></view>
+        <view class="input_text" >{{empInfo.phone}}</view>
       </view>
-      <view class='input_block' id='ib1'>
-        <view>
-          <text class='_font24 _txt_darkgrey'>微信绑定</text>
-        </view>
-        <input class="input_text {{inputError.name?'error':''}}" type="text" name="name" value='{{formData.name}}' bindinput="checkForm" placeholder-class='input_text_phc' placeholder='请输入真实手机号码' id='i1'></input>
+      <view class='input_block'>
+        <view><text class='_font24 _txt_darkgrey'>微信绑定</text></view>
+        <view class="input_text {{empInfo.union_id==''?'_has-bind':''}}">{{empInfo.union_id==''?'暂无绑定':'已绑定'}}</view>
+       
+          <button class="rebind" bindtap="reBind" wx:if="{{empInfo.union_id==''}}">再次绑定</button>
         
       </view>
       <view class="_fixed footer {{isIphoneX?'iphonex':''}}">
         <button class="_button _font32" bindtap="removeStaff">删除该人员</button>
       </view>
-    </form>
+    
   </view>
 </view>
-<import src="../../../../templates/showToast/showToast.wxml" />
-<template is="showToast" data="{{showToast: showToast}}" />
+<block wx:if="{{showToast.isShow? showToast.isShow: false}}">   
+  <view class="toast-bg" wx:if="{{showToast.mask==false? false : true}}"></view>
+  <view class="toastPubStyle {{showToast.toastStyle}}">
+    <view class='toast-b-con'>
+      <view class="toast-title">{{showToast.title}}</view>
+      <view class="toast-introduce" wx:if="{{showToast.introduce}}">{{showToast.introduce}}</view>
+      <view class='toast-sure' bindtap="bindToastSure" wx:if="{{showToast.isSure==false? false : true}}">{{showToast.sureText}}</view>
+      <view class='toast-close' bindtap="bindToastClose" wx:if="{{showToast.isClose==false? false : true}}">{{showToast.closeText}}</view>
+    </view>
+  </view>
+</block>

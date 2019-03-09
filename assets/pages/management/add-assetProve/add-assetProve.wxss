@@ -1,0 +1,60 @@
+@import "../../public/public.wxss";
+
+._content_info {
+  padding: 60rpx 40rpx 0;
+}
+
+._content_info ._tit {
+  color: #092344;
+  font-size: 40rpx;
+  line-height: 40rpx;
+  padding-bottom: 40rpx;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(136, 145, 169, .3);
+}
+
+._content_info .uploadTxt {
+  color: #8891A9;
+  font-size: 28rpx;
+  line-height: 27rpx;
+  padding: 39rpx 0rpx 40rpx;
+}
+
+.radio-group {
+  padding-bottom: 60rpx;
+}
+
+.radio-group .radio {
+  color: #092344;
+  font-size: 32rpx;
+}
+
+.radio-group .radio:first-child {
+  padding-right: 120rpx;
+}
+
+.selMode {
+  width: 670rpx;
+  height: auto;
+  border: 2rpx solid rgba(136, 145, 169, .3);
+}
+
+.review {
+  position: fixed;
+  bottom: 40rpx;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 670rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #fff;
+  background: #0084FF;
+  text-align: center;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+  opacity: 0.3;
+}
+
+.review.active {
+  opacity: 1;
+}
