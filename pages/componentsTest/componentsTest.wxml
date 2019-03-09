@@ -3,6 +3,6 @@
     {{city}}
   </view>
 </city-picker>
-
-<upload-Room-Prove direction='row' tipTxt='上传营业执照'></upload-Room-Prove>
+<!-- identityId  roomProve license 身份证 房产证 营业执照-->
+<upload-Room-Prove direction='row' type='roomProve' tipTxt='上传营业执照'></upload-Room-Prove>
 <upload-Room-Prove direction='row' tipTxt='上传营业执照'></upload-Room-Prove>

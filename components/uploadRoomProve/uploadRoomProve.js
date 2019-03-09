@@ -10,10 +10,6 @@ Component({
       type: String,
       value: ''
     },
-    c_val: {
-      type: Number,
-      value: 90
-    },
     direction: {
       type: String,
       value: "row"
@@ -21,6 +17,11 @@ Component({
     tipTxt: {
       type: String,
       value: "上传房产证"
+    },
+    type: {
+      // <!-- identityId  roomProve license 身份证 房产证 营业执照-->
+      type: String,
+      value: "identityId"
     }
   },
 
@@ -29,7 +30,7 @@ Component({
    */
   data: {
     model: 1,
-    c_val: 45,
+    c_val: 0,
     ImgHeig: 0,
     ImgWid: 0
   },
@@ -43,7 +44,7 @@ Component({
       let that = this;
       wx.chooseImage({
         count: 1,
-        sizeType: ['original'],
+        sizeType: ['compressed'],
         sourceType: ['album', 'camera'],
         success(res) {
           // tempFilePath可以作为img标签的src属性显示图片
@@ -105,8 +106,8 @@ Component({
                   })
                 }
               }
-              console.log('this.data.ImgWid', that.data.ImgWid);
-              console.log('this.data.ImgHeig', that.data.ImgHeig);
+              // console.log('this.data.ImgWid', that.data.ImgWid);
+              // console.log('this.data.ImgHeig', that.data.ImgHeig);
             }
           })
 
@@ -114,33 +115,59 @@ Component({
             uploadImage: uploadImage,
             model: 2
           })
-
+          let uploadImgName = uploadImage.replace('http://tmp/', '');
+          console.log('uploadImgName:', uploadImgName);
           let randomNum = that.randomOut() //时间戳随机数
-          let imageObject = 'user/' + uploadImage
+          let type = "";
+          if (that.data.type === "identityId") {
+            type = "identityId/"
+          } else if (that.data.type === "roomProve") {
+            type = "roomProve/"
+          } else {
+            type = "license/"
+          }
+          let imageObject = 'owner/' + type + uploadImgName //拼接最终地址
           app.Util.network.POST({
-            url: app.globalData.BASE_UPLOAD_URL + "/" + 'object' + '/' + 'upload' + '/' + 'private',
-            filePath: uploadImage,
-            name: 'user',
+            url: app.globalData.BASE_UPLOAD_URL + "/" + 'object' + '/' + 'upload' + '/' + 'private', //app.globalData.BASE_UPLOAD_URL + "/" + 'object' + '/' + 'upload' + '/' + 'private',
+            filePath: tempFilePaths[0],
+            name: 'file',
             params: {
               method: 'upload',
-              bucket_name: 'marvin-api-asset',
-              object: imageObject,
               file: 'user',
-              data: JSON.stringify({})
+              data: JSON.stringify({
+                bucket_name: 'marvin-api-asset',
+                object: imageObject,
+              })
             },
             this: that,
             success: res => {
-              console.log("res:", res);
+              let data = JSON.parse(res.data)
+              if (data.sub_code == "SUCCESS") {
+                let sucUplodImg = data.result.object
+                that.setData({
+                  model: 4
+                })
+                const myEventDetail = {
+                  uploadState: true,
+                  sucUplodImg: sucUplodImg
+                };
+                that.triggerEvent('currentState', myEventDetail)
+              }
 
             },
             fail: res => {
               console.log('fail');
+              that.setData({
+                model: 3
+              })
+              const myEventDetail = {
+                uploadState: false,
+                sucUplodImg: ''
+              };
+              that.triggerEvent('currentState', myEventDetail)
             }
           })
-          // const myEventDetail = {
-          //   model: 4
-          // };
-          // that.triggerEvent('currentState', myEventDetail)
+
         }
       })
     },

@@ -15,7 +15,8 @@ Page({
         value: '租赁合同'
       },
     ],
-    selMode: 'roomProve'
+    selMode: 'roomProve',
+    submit: false
   },
 
   /**
@@ -31,6 +32,11 @@ Page({
   },
   currentState(e) {
     console.log(e.detail);
+    if (e.detail.uploadState) {
+      this.setData({
+        submit: true
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

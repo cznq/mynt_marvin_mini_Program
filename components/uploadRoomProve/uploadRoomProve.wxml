@@ -26,7 +26,9 @@
       </block>
       <!-- 上传成功 -->
       <block  wx:if="{{model===4}}">
-        <image class="uploadBg" src='../../images/roomProve.png'></image>
+        <view class="uploadBg _row _cen_center">
+          <image style="width:{{ImgWid}}rpx;height:{{ImgHeig}}rpx" src='{{uploadImage}}'></image>
+        </view>
       </block>
 
     </view>
@@ -44,7 +46,7 @@
     </block>
     <block  wx:if="{{model===4}}">
       <view class="tipOne">上传成功</view>
-      <view class="tipTwo">请按照图例上传相关证件</view>
+      <view class="tipTwo">点击可重新上传</view>
     </block>
   </view>
 </block>
@@ -53,7 +55,7 @@
       <view catchtap='uploadImage' class="CuploadModul">
         <!-- 点击上传 -->
         <block wx:if="{{model===1}}" >
-          <image class="CuploadBg" src='http://marvin-api-asset.oss-cn-hangzhou.aliyuncs.com/development/qr_code/shangyan/business_license.png'></image>
+          <image class="CuploadBg" src='http://marvin-api-asset.oss-cn-hangzhou.aliyuncs.com/development%2Fqr_code%2Fshangyan%2Fbusiness_license.png?OSSAccessKeyId=LTAIe2N4IX0iiCXc&Expires=1552128470&Signature=U0wTm8CbmA47PZRronB%2BdLt4mFs%3D'></image>
           <text class="Cicon-tianjia iconfont icon-shenqingbeijujue-copy"></text>
         </block>
         <!-- 正在上传 -->
@@ -76,7 +78,9 @@
         </block>
         <!-- 上传成功 -->
         <block  wx:if="{{model===4}}">
-          <image class="CuploadBg" src='../../images/roomProve.png'></image>
+          <view class="CuploadBg _row _cen_center">
+            <image style="width:{{ImgWid}}rpx;height:{{ImgHeig}}rpx" src='{{uploadImage}}'></image>
+          </view>
         </block>
 
       </view>
