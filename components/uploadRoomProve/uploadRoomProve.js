@@ -130,39 +130,17 @@ Component({
             },
             this: that,
             success: res => {
-              console.log("3333333", res);
+              console.log("res:", res);
 
             },
             fail: res => {
               console.log('fail');
             }
           })
-          // console.log('imageObject:', imageObject)
-          // const uploadTask = wx.uploadFile({
-          //   url: app.globalData.BASE_UPLOAD_URL + "/" + 'object' + '/' + 'upload' + '/' + 'private',
-          //   filePath: uploadImage,
-          //   name: 'user',
-          //   formData: {
-          //     bucket_name: '	slightech-testbucket',
-          //     object: imageObject,
-          //   },
-          //   success(res) {
-          //     const data = res.data
-          //     console.log(data)
-          //   }
-          // })
-
-          // uploadTask.onProgressUpdate((res) => {
-          //   console.log('上传进度', res.progress)
-          //   that.setData({
-          //     c_val: res.progress
-          //   })
-          //   that.selectComponent("#canvasRing").showCanvasRing();
-          // })
-          const myEventDetail = {
-            model: 4
-          };
-          that.triggerEvent('currentState', myEventDetail)
+          // const myEventDetail = {
+          //   model: 4
+          // };
+          // that.triggerEvent('currentState', myEventDetail)
         }
       })
     },
