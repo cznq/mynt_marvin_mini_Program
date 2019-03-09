@@ -1,4 +1,5 @@
 <!--pages/join-asset/invite-code/index.wxml-->
+<import src="../../../../templates/showToast/showToast.wxml" />
 <view class='_content _top_gradient2'>
     <view class='mainTitle'>{{mainTitle}}</view>
     <form bindsubmit="confirmCode">
@@ -11,3 +12,4 @@
         </view>
     </form>
 </view>
+<template is="showToast" data="{{showToast: showToast}}" />

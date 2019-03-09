@@ -1,5 +1,5 @@
 <view class="page">
-  <view class="page__hd"></view>
+  <!--
   <view class="page__bd">
     <view class="invite-card">
       <view class="_id-icon _font24">企业</view>
@@ -7,12 +7,14 @@
       <view class="_int-info">邀请您管理资产</view>
       <view class="card-center _txt_center">
         <view class="int-name">谢凌云</view>
-        <view class="qrcode"><image src=""></image></view>
+        <view class="qrcode"><image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/pay_qrcode.png" style="width:160rpx;height:160rpx;"></image></view>
         <view class="qrinco"><text>{{qrinco}}</text></view>
         <view class="remind">绑定成功后可在小程序中进行添加本企业或本人所租售的资产信息并为资产相关费用的账目进行智能核销</view>
       </view>
     </view>
   </view>
+  -->
+  <canvas canvas-id="inviteCard" style="width: 335px; height: 460px;"></canvas>
   <view class="_fixed footer {{isIphoneX?'footer_x':''}}">
     <view class="_font24 _txt_center _txt_darkgrey _mb20 _line-height1">保存以上图片，发送给相关人员，进行身份绑定</view>
     <button class="_button _font32" bindtap="removeStaff">保存到手机</button>
