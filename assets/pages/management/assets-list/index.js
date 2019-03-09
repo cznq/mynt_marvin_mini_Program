@@ -7,7 +7,10 @@ Page({
    */
   data: {
     isIphoneX: app.globalData.isIphoneX,
-    hasAssets:false,
+    owner_id:'',//房东id
+    employee_id:'',
+    hasAssets:true,
+    asset_list:'',
     noneAssets: {
       pointer: true,      
       title: '暂无资产',
@@ -25,11 +28,40 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that= this;
+    that.setData({ 
+      owner_id:JSON.parse(options.params).owner_id,
+      employee_id:JSON.parse(options.params).employee_id
+    })
+    app.Util.networkUrl.postUrl({
+      url: app.globalData.BASE_ASSET_URL+'/asset/building_list',
+      params: {
+        data: JSON.stringify({
+          owner_id: this.data.owner_id,
+          employee_id:this.data.employee_id//员工身份请求时，传此值
+        })
+      },
+      success: res => {
+        if (res.data.result) {
+          that.setData({
+            asset_list:res.data.result.asset_count_list,
+            hasAssets:true
+          })
+        }else{
+          that.setData({
+            hasAssets:false
+          })
+        }
+      }
+    })
   },
   addAsset:function(){
+    var params = JSON.stringify({
+      owner_id: 1,
+      employee_id:1
+    })
     wx.navigateTo({
-      url: '../add-asset/index',
+      url: '../add-asset/index?params='+ params,
     })
   },
   /**

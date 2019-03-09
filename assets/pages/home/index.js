@@ -37,7 +37,7 @@ Page({
       isShow:true
     }],
     assets:'',//资产统计
-    hasAssets:false,
+    hasAssets:true,
     payable:false,//收款项
     noneData: {
       buttonText: '创建资产',
@@ -58,7 +58,9 @@ Page({
         height:128+'rpx',
         marginTop:184+'rpx'
       }
-    }
+    },
+    owner_id:'',//房东id
+    employee_id:''
   },
 
   /**
@@ -78,8 +80,10 @@ Page({
       },
       success: res => {
         //if (res.data.sub_code == 0 && res.data.result) {
-          var employee_id = res.data.result.employee_id;//职员id
-          var owner_id= res.data.result.owner_id;//房东id
+          _this.setData({
+            // owner_id:res.data.result.owner_id,//房东id
+            // employee_id : res.data.result.employee_id//职员id
+          })
           //获取资产汇总信息
           app.Util.networkUrl.postUrl({
             url: app.globalData.BASE_ASSET_URL+'/asset/summary',
@@ -95,6 +99,10 @@ Page({
                   hasAssets: true,
                   assets:res.data.result
                 })
+              }else{
+                _this.setData({
+                  hasAssets: false,
+                })
               }
             }
           })
@@ -104,8 +112,12 @@ Page({
   },
   //资产管理
   assetsManage:function(){
-    wx.navigateTo({
-      url: '../management/assets-list/index',
+    var params = JSON.stringify({
+      owner_id: 1,
+      employee_id:1
+    })
+    wx.navigateTo({  
+      url: '../management/assets-list/index?params='+ params,
     })
   },
   //核销

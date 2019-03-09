@@ -84,10 +84,13 @@ var joinFloorRoom = function (arrayFandR) {
 
 
 }
-
+var getCity = function (city) {
+  return city.split('市')[0]
+}
 module.exports.transRoleClassName = transRoleClassName;
 module.exports.removeFloor = removeFloor;
 module.exports.transRoleName = transRoleName;
 module.exports.getFirstLetter = getFirstLetter;
 module.exports.returnArrayLength = returnArrayLength;
 module.exports.joinFloorRoom = joinFloorRoom;
+module.exports.getCity = getCity;

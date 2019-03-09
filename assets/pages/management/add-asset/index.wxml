@@ -1,4 +1,6 @@
 <!--assets/pages/management/add-asset/index.wxml-->
+<import src="../../../../templates/showToast/showToast.wxml" /> 
+<template is="showToast" data="{{showToast: showToast}}" /> 
 <view class="_content_info">
     <form bindsubmit='formSubmit'>
         <view class="_tit">资产地址信息</view>
@@ -7,7 +9,7 @@
                 <view class='_s_tit'>
                     <text class='_font28 _txt_darkgrey'>所属楼宇</text>
                 </view>
-                <input class='_text' disabled name="building" placeholder="选择资产所在楼宇" placeholder-class='input_text_phc'></input>
+                <input class='_text' disabled name="building" placeholder="选择资产所在楼宇" placeholder-class='input_text_phc' value="{{buildingInfo.name}}"></input>
             </view>
             <view class="_arrow" bindtap="selectBuilding">
                 <text class="iconfont icon-jiantou"></text>
@@ -18,7 +20,9 @@
                 <view class='_s_tit'>
                     <text class='_font28'>位置</text>
                 </view>
-                <input class='_text' name="address" placeholder="位置将更具楼宇自动生成" placeholder-class='input_text_phc'></input>
+                <view class="_text {{buildingInfo.address?'':'input_text_phc'}}">
+                    {{buildingInfo.address?buildingInfo.address:"位置将更具楼宇自动生成"}}
+                </view>
             </view>
         </view>
         <view class=_info_item">
@@ -27,9 +31,18 @@
                     <text class='_font28'>楼层房号</text>
                 </view>
                 <view class="_flex _flex_item_center">
-                    <input class='_text _text_w' name="floor" placeholder="请选择" placeholder-class='input_text_phc'></input>
+                    <block wx:if="{{buildingInfo}}">
+                        <picker bindchange="selectFloor" value="{{index}}" range="{{floor_list}}">
+                            <view class="picker _text _text_w {{floor_list[index]?'':'input_text_phc'}}">
+                                <text>{{floor_list[index]?floor_list[index]:"请选择"}}</text>
+                            </view>
+                        </picker>
+                    </block>
+                    <block wx:else>
+                        <input disabled class='_text _text_w' name="floor" placeholder="请选择" placeholder-class='input_text_phc' bindtap="selectNo"></input>
+                    </block>                  
                     <text>层</text>
-                    <input class='_text _text_w _text_ml' name="room" placeholder="请选择" placeholder-class='input_text_phc'></input>
+                    <input class='_text _text_w _text_ml' name="room" placeholder="请填写" placeholder-class='input_text_phc'></input>
                     <text>号</text>
                 </view>
             </view>

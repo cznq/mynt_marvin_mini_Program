@@ -10,7 +10,22 @@
     </view>
 </view>
 <block wx:if='{{hasAssets}}'>
-   
+<view class="asset_content">
+    <block wx:for="{{asset_list}}" wx:for-index="idx" wx:key="key" >
+        <view class="asset_list" data-id="{{item.building_id}}">
+            <view class="_flex _flex_item_center _flex_space_between ">
+                <view class="_left">
+                    <view class="_buildname">{{item.building_name}}</view>
+                    <view class="_buildaddress">{{item.building_address}}</view>
+                </view>
+                <view class="_right _txt_center">
+                    <view class="_count">{{item.asset_count}}</view>
+                    <view>资产总数</view>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
 </block>
 <block wx:else>
     <template is="noneDataPage" data="{{noneData:noneAssets}}" />
