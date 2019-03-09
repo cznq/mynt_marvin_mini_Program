@@ -1,0 +1,37 @@
+<view class="upload-pic-area">
+  <view class="pic-list {{uploading ? 'uploading' : ''}}">
+
+    <block wx:for="{{selectedImages}}" wx:key="">
+      <view class="image">
+          <image src="{{item}}" mode="aspectFill" data-index="{{index}}" bindtap="previewImage"></image>
+          <view class="remove">
+              <image class="removeImg" src="../../images/icon_delete@2x.png" data-index="{{index}}" bindtap="removeImage"></image>
+          </view>
+          <view class="progress">
+              <block wx:if="{{progress[index] == undefined}}">
+                  <icon type="waiting" size="20" color="#fff" />
+              </block>
+              <block wx:elif="{{progress[index] == false}}">
+                  <view class="icon error">
+                      <image src="../../images/warn.svg"></image>
+                  </view>
+              </block>
+              <block wx:elif="{{progress[index] == 100}}">
+                  <view class="icon success">
+                      <image src="../../images/check_white.svg"></image>
+                  </view>
+              </block>
+              <block wx:else>
+                  <view class="progress-bar">
+                      <view class="progress-inner" style="width: {{progress[index]}}%"></view>
+                  </view>
+              </block>
+          </view>
+      </view>
+    </block>
+
+
+    
+  </view>
+  <button class="uploadBtn" bindtap="selectImage">上传照片</button>
+</view>

@@ -1,0 +1,106 @@
+/* components/multiPhotoUpload/multiPhotoUpload.wxss */
+@import "../../templates/iconfont/iconfont.wxss";
+
+.upload-pic-area {
+  margin-top: 130rpx;
+  padding: 30rpx 0;
+  overflow: hidden;
+}
+.pic-list {
+  float: left;
+}
+.image {
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 44rpx;
+  border-radius: 6rpx;
+  position: relative;
+  margin-bottom: 30rpx;
+  display: inline-block;
+}
+image {
+  width: 100%;
+  height: 100%;
+  border-radius: 6rpx;
+}
+.remove {
+  position: absolute;
+  right: -24rpx;
+  top: -24rpx;
+}
+.remove {
+  display: none;
+}
+.removeImg {
+  width: 48rpx;
+  height: 48rpx;
+}
+.uploadBtn {
+  font-size: 24rpx;
+  line-height: 1;
+  color: rgba(136, 145, 169, 1);
+  text-align: center;
+  padding-bottom: 40rpx;
+  width: 160rpx;
+  margin-left: 0;
+  border-radius: 6rpx;
+  border: 1px dashed rgba(26, 42, 75, 0.3);
+  float: left;
+}
+
+.page__ft {
+  margin-top: 20rpx;
+  padding: 60rpx 0;
+  background-color: #fff;
+}
+.uploadBtn {
+  margin: 0 60rpx;
+  color: #fff;
+  font-weight: bold;
+  background-color: rgba(0, 123, 255, 1);
+  border: none;
+  box-shadow: none;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.progress {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.progress-bar {
+    width: 80%;
+    height: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+}
+.progress {
+    display: flex;
+}
+.progress-inner {
+    height: 100%;
+    background-color: #96588a;
+}
+.icon {
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    border-radius: 50%;
+}
+.success {
+    background-color: #09bb07;
+}
+.error {
+    background-color: #f5615f;
+}
+
+
+
