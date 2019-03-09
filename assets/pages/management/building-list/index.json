@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "所属楼宇"
+  "navigationBarTitleText": "所属楼宇",
+  "usingComponents": {
+    "city-picker": "/components/cityPicker/index"
+  }
 }

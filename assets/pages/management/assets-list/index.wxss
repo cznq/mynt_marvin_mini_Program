@@ -32,3 +32,24 @@ page{
     font-size: 20rpx;
     margin-right: 6rpx;
 }
+.asset_content{
+    margin-top: 160rpx;
+}
+.asset_list{
+    font-size: 24rpx;
+    color: rgba(9, 35, 68, .6);
+    background-color: #fff;
+    margin-bottom: 20rpx;
+    border-radius: 10rpx;
+    padding: 30rpx;
+}
+.asset_list ._buildname{
+    color: #092344;
+    font-size: 36rpx;
+    font-weight: 600;
+}
+.asset_list ._count{
+    color: #092344;
+    font-size: 32rpx;
+    font-weight: 600;
+}

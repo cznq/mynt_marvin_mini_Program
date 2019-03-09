@@ -8,10 +8,11 @@
       </label>
     </radio-group>
     <view wx:if="{{selMode==='roomProve'}}" class="selMode">
-      <upload-Room-Prove direction='row' tipTxt='上传房产证' bindcurrentState='currentState'></upload-Room-Prove>
+      <!-- identityId  roomProve license 身份证 房产证 营业执照-->
+      <upload-Room-Prove  direction='row' type ="license" tipTxt='上传房产证' bindcurrentState='currentState'></upload-Room-Prove>
     </view>
     <view wx:if="{{selMode==='leasContr'}}" class="selMode">
 
     </view>
-    <view class="review">进入审核</view>
+    <view class="review {{submit ? 'active' : ''}}">进入审核</view>
 </view>

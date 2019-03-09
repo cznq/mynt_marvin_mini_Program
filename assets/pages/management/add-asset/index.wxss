@@ -1,5 +1,6 @@
 /* assets/pages/management/add-asset/index.wxss */
 @import "../../public/public.wxss";
+@import "../../../../templates/showToast/showToast.wxss";
 ._content_info{
     padding: 60rpx 40rpx 0;
 }

@@ -3,7 +3,7 @@ export const CityList = [{
   "name": "北京市",
   "children": [{
     "id": "110100",
-    "name": "市辖区",
+    "name": "北京市",
     "children": [{
       "id": "110101",
       "name": "东城区"
@@ -59,7 +59,7 @@ export const CityList = [{
   "name": "天津市",
   "children": [{
     "id": "120100",
-    "name": "市辖区",
+    "name": "天津市",
     "children": [{
       "id": "120101",
       "name": "和平区"
@@ -2655,7 +2655,7 @@ export const CityList = [{
   "name": "上海市",
   "children": [{
     "id": "310100",
-    "name": "市辖区",
+    "name": "上海市",
     "children": [{
       "id": "310101",
       "name": "黄浦区"

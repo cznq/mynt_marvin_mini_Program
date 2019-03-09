@@ -1,11 +1,14 @@
 <!--assets/pages/management/building-list/index.wxml-->
+<wxs src="../../../../wxs/subutil.wxs" module="tools" />
 <view class="page">
 <view class="block_fixed">
     <view class="_flex _flex_item_center _flex_space_between _search_building_content">
-        <view class="_select_area">
-            <text>杭州</text>
-            <text class="iconfont icon-jiantou"></text>
-        </view>
+        <city-picker mode='2' codes='{{codes}}'  data="{{citylist}}"  bind:select="cityPicker">
+            <view class="input-picker _select_area">
+                <text>{{tools.getCity(city)}}</text>
+                <text class="iconfont icon-jiantou"></text>
+            </view>
+        </city-picker>
         <form bindsubmit="searchSubmit">
             <view class="search _flex _flex_item_center _flex_space_between">
                 <view class="{{searchFocus?'':'_before_search'}}  _flex _flex_item_center ">
@@ -17,15 +20,35 @@
         </form>
     </view>
 </view>
+<!-- 未搜索 -->
+<block wx:if="{{!searchShow}}">
 <view class="_building_list">
-    <view class="_list_code">W</view>
-    <view class="_list_item">
-        <view class="_building_name">望京大厦  A栋</view>
-        <view class="_address">杭州市萧山区景贤路21号</view>
+    <block wx:for="{{building_list}}" wx:for-index="idx" wx:key="key" wx:for-item="listitem">
+        <view class='_list_content'>
+            <block  wx:if="{{listitem.code}}">
+                <view class="_list_code">{{listitem.code}}</view>
+                <block wx:for="{{listitem.building}}" wx:for-item="grouplist" wx:for-index="groupindex" wx:key="">
+                    <view class="_list_item" data-id="{{grouplist.building_id}}" data-name="{{grouplist.building_name}}" data-address="{{grouplist.address}}" bindtap="selectBuilding">
+                        <view class="_building_name">{{grouplist.building_name}}</view>
+                        <view class="_address">{{grouplist.address}}</view>
+                    </view>
+                </block>
+            </block>
+        </view>
+    </block>
+</view>
+</block>
+<block wx:else>
+<view class="serach_content _building_list">
+    <view wx:for="{{searchBuildingList}}" wx:for-index="idx" wx:key="key" class="_list_item" data-id="{{item.building_id}}" data-name="{{item.building_name}}" data-address="{{item.address}}" bindtap="selectBuilding">
+        <view class="_building_name">{{item.building_name}}</view>
+        <view class="_address">{{item.address}}</view>
     </view>
 </view>
-<view class="_build_footer _txt_center">
+</block>
+<!-- 没有楼宇的时候不给创建楼宇 -->
+<!-- <view class="_build_footer _txt_center">
     <view>没有找到？创建新楼宇</view>
     <button class="creat_btn" bindtap="creatBuilding">创建新楼宇:望京大厦</button>
-</view>
+</view> -->
 </view>

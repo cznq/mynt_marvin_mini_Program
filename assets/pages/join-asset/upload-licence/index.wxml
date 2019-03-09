@@ -1,2 +1,17 @@
 <!--pages/join-asset/upload-licence/index.wxml-->
-<text>pages/join-asset/upload-licence/index.wxml</text>
+<view class='_content _top_gradient2'>
+    <view class='mainTitle'>{{mainTitle}}</view>
+    <view class="view-title title-top">
+        <text>{{explain}}</text>
+    </view>
+    <view class="upload-view"></view>
+    <view class="view-title title-main">
+        <text>{{mainText}}</text>
+    </view>
+    <view class="view-title title-sub">
+        <text>{{subText}}</text>
+    </view>
+    <view class='input_block footer {{isiphoneX ? "footer_x" : ""}}'>
+        <button class="_button" form-type="submit" disabled="{{disabled}}">{{button_text}}</button>
+    </view>
+</view>
