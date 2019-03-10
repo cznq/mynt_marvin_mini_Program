@@ -9,6 +9,10 @@ Page({
   data: {
     buildingInfo:'',
     floor_list:[],
+    nextStep:true,
+    room:'',
+    roomArea:'',
+    floor:''
   },
 
   /**
@@ -16,8 +20,9 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      owner_id:JSON.parse(options.params).owner_id,
-      employee_id:JSON.parse(options.params).employee_id
+      // owner_id:JSON.parse(options.params).owner_id,
+      // employee_id:JSON.parse(options.params).employee_id,
+      nextStep:true
     })
   },
   //选择所属楼宇
@@ -57,8 +62,18 @@ Page({
   //选择楼层
   selectFloor: function (e) {
     this.setData({
-      index: e.detail.value
+      index: e.detail.value,
+      floor:e.detail.value
     })
+    if(this.data.buildingInfo !=''&& this.data.room !='' && this.data.roomArea !='' && this.data.floor !=''){
+      this.setData({
+        nextStep:false
+      })
+    }else{
+      this.setData({
+        nextStep:true
+      })
+    }
   },
   //没有楼层选择
   selectNo:function(){
@@ -68,6 +83,40 @@ Page({
       duration: 1500,
       mask:false
     });
+  },
+  // 检测是否可以进入下一步
+  getRoom:function(e){
+    this.setData({
+      room:e.detail.value
+    })
+    if(this.data.buildingInfo !=''&& this.data.room !='' && this.data.roomArea !='' && this.data.floor !=''){
+      this.setData({
+        nextStep:false
+      })
+    }else{
+      this.setData({
+        nextStep:true
+      })
+    }
+  },
+  checkNext:function(e){
+    this.setData({
+      roomArea:e.detail.value
+    })
+    if(this.data.buildingInfo !=''&& this.data.room !='' && this.data.roomArea !='' && this.data.floor !=''){
+      this.setData({
+        nextStep:false
+      })
+    }else{
+      this.setData({
+        nextStep:true
+      })
+    }
+  },
+  goNext:function(){
+    wx.navigateTo({
+      url: '../add-assetProve/add-assetProve',
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

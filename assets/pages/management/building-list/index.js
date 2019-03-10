@@ -29,7 +29,30 @@ Page({
   onLoad: function (options) {
     var _this = this
     //获取楼宇列表
-    _this.getBuilding()
+    //_this.getBuilding()
+    app.Util.networkUrl.postUrl({
+      url: app.globalData.BASE_ASSET_URL+'/building/list/group',
+      params: {
+        data: JSON.stringify({
+          province_id: '',
+        })
+      },
+      success: res => {
+        if (res.data.result) {
+          let arr = res.data.result.building_list;
+          arr = arr.map(item => {
+              let _stack = Object.keys(item);
+              if (_stack.length === 0) { return; };
+              let code = _stack.toString(), building = item[code];
+              return { code, building};
+          })       
+          _this.setData({
+            building_list:arr,         
+            allBuilding:arr[0].building
+          })
+        }
+      }
+    })
   },
   //获取楼宇列表
   getBuilding:function(province_id,city_id){
