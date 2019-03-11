@@ -17,7 +17,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
 
   },
 
@@ -42,11 +41,34 @@ Page({
         })
       },
       success: res => {
-        if (res.data.sub_code == 0) {}
-        wx.redirectTo({
-          url: '../invite/index?employee_id=',
-        })  
-        
+        if (res.data.result) {
+          app.Util.networkUrl.postUrl({
+            url: app.globalData.BASE_ASSET_URL + '/owner/get',
+            params: {
+              data: JSON.stringify({
+                owner_id: res.data.result.owner_id
+              })
+            },
+            success: res => {
+              if (res.data.return_code == 'SUCCESS') {
+                wx.redirectTo({
+                  url: '../invite/index?invitee=' + _this.data.formData.name + '&type=' + res.data.result.type + '&name=' + res.data.result.name,
+                })
+              } else {
+                wx.showToast({
+                  title: res.data.error_msg,
+                  icon: 'none'
+                })
+              }
+            } 
+          })
+          
+        } else {
+          wx.showToast({
+            title: res.data.error_msg,
+            icon: 'none'
+          })
+        }
       }
     })
     

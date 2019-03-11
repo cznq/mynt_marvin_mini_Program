@@ -12,7 +12,7 @@
       <upload-Room-Prove  direction='row' type ="license" tipTxt='上传房产证' bindcurrentState='currentState'></upload-Room-Prove>
     </view>
     <view wx:if="{{selMode==='leasContr'}}" class="selMode _pd40">
-      <upload-Agreement-Prove title='上传租赁合同' intro='上传的图片需要体现合同期限、资产明细、双方签名' selectedImages='{{ selectedImages }}' uploadImagesLimit='{{ uploadImagesLimit }}'></upload-Agreement-Prove>
+      <upload-Agreement-Prove title='上传租赁合同' intro='上传的图片需要体现合同期限、资产明细、双方签名' selectedImages='{{ selectedImages }}' uploadImagesLimit='{{ uploadImagesLimit }}' bindcurrentState='currentState'></upload-Agreement-Prove>
     </view>
     <view wx:if="{{!submit}}" class="review">提交</view>
     <view wx:if="{{submit}}"  bindtap="submit" class="review active">提交</view>

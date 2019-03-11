@@ -55,6 +55,10 @@ Page({
         submit: true,
         sucUplodImg: certificate_url_list
       })
+    } else {
+      this.setData({
+        submit: false
+      })
     }
   },
   submit() {

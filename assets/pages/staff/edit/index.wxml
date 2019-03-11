@@ -1,6 +1,7 @@
-<view class="page">
+<wxs src="../../../../wxs/subutil.wxs" module="tools" />
+<view class="page" wx:if="{{empInfo}}">
   <view class='_content collect-information'>
-    <view class="first-name">谢</view>
+    <view class="first-name">{{tools.getFirstLetter(empInfo.name)}}</view>
     
       <view class='input_block'>
         <view><text class='_font24 _txt_darkgrey'>姓名</text></view>

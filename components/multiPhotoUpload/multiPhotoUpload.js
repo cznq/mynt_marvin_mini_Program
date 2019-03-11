@@ -1,4 +1,5 @@
 // components/multiPhotoUpload/multiPhotoUpload.js
+const app = getApp();
 Component({
   options: {
     multipleSlots: true // 在组件定义时的选项中启用多slot支持
@@ -21,7 +22,7 @@ Component({
     },
     uploadImagesLimit: {
       type: Number,
-      value: 3
+      value: null
     }
   },
 
@@ -29,7 +30,9 @@ Component({
    * 组件的初始数据
    */
   data: {
-    uploading: false
+    uploading: false,
+    sucUplodImg: [],
+    c_val: 0
   },
 
   /**
@@ -37,50 +40,52 @@ Component({
    */
   methods: {
     // 提交
-    reviewSubmit(e) {
+    reviewSubmit() {
       if (this.data.selectedImages.length > 0) {
+        console.log(this.data.selectedImages)
         this.uploadImage(this, 0);
       }
     },
     // 上传图片
     uploadImage(_this, i) {
-      var service = 'commerce';
-      var data = JSON.stringify({});
-      var method = 'upload_comment_file';
-      var app_id = '65effd5a42fd1870b2c7c5343640e9a8';
-      var timestamp = Math.round(new Date().getTime() / 1000 - 28800);
-      var sign_type = 'MD5';
-      var stringA = 'app_id=' + app_id + '&data=' + data + '&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
-      var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
       _this.setData({
         uploading: true
       });
-      var uploadTask = wx.uploadFile({
-        url: app.globalData.BENIFIT_API_URL,
+      let uploadImgName = _this.data.selectedImages[i].replace('http://tmp/', '');
+      let imageObject = 'owner/rentAgreement/' + uploadImgName;
+      app.Util.network.POST({
+        url: app.globalData.BASE_UPLOAD_URL + "/" + 'object' + '/' + 'upload' + '/' + 'private',
         filePath: _this.data.selectedImages[i],
-        header: {
-          'content-type': 'multipart/form-data'
-        },
-        name: 'comment_pic',
-        formData: {
-          union_id: wx.getStorageSync('xy_session'),
-          service: service,
-          method: method,
-          app_id: app_id,
-          timestamp: timestamp,
-          sign_type: sign_type,
-          sign: sign,
-          data: data
-        },
-        success: res => {
-          var data = JSON.parse(res.data);
-          _this.setData({
-            [`selectedImages[${i}]`]: data.result.comment_pic
+        name: 'file',
+        params: {
+          method: 'upload',
+          file: 'user',
+          data: JSON.stringify({
+            bucket_name: 'marvin-api-asset',
+            object: imageObject,
           })
-          if (i < _this.data.selectedImages.length - 1) {
-            i++;
-            _this.uploadImage(i);
+        },
+        this: _this,
+        success: res => {
+          let data = JSON.parse(res.data)
+          if (data.sub_code == "SUCCESS") {
+            _this.setData({
+              uploading: false,
+              [`sucUplodImg[${i}]`]: '' + data.result.object
+            })
+            const myEventDetail = {
+              uploadState: true,
+              sucUplodImg: _this.data.sucUplodImg
+            };
+            _this.triggerEvent('currentState', myEventDetail)
+            if (i < _this.data.selectedImages.length - 1) {
+              i++;
+              _this.uploadImage(_this, i);
+            }
+            
+            
           }
+
         },
         fail: res => {
           wx.showToast({
@@ -91,11 +96,7 @@ Component({
           });
         }
       })
-      uploadTask.onProgressUpdate(res => {
-        _this.setData({
-          ['progress[' + i + ']']: res.progress
-        });
-      })
+
     },
 
     // 图片选择
@@ -113,6 +114,7 @@ Component({
           this.setData({
             selectedImages: this.data.selectedImages
           });
+          this.reviewSubmit();
         }
       })
     },
@@ -128,11 +130,26 @@ Component({
 
     // 移除图片
     removeImage(e) {
+      console.log(e);
+      var _this = this
       var index = e.currentTarget.dataset.index;
-      this.data.selectedImages.splice(index, 1);
+      _this.data.selectedImages.splice(index, 1);
+      _this.data.sucUplodImg.splice(index, 1)
       this.setData({
-        selectedImages: this.data.selectedImages
+        selectedImages: _this.data.selectedImages
       });
+      if(index==0){
+        var myEventDetail = {
+          uploadState: false,
+          sucUplodImg: _this.data.sucUplodImg
+        };
+      } else {
+        var myEventDetail = {
+          uploadState: true,
+          sucUplodImg: _this.data.sucUplodImg
+        };
+      }
+      _this.triggerEvent('currentState', myEventDetail)
     },
     
   },

@@ -7,51 +7,90 @@ Page({
    */
   data: {
     isIphoneX: app.globalData.isIphoneX,
-    staffCount: 0,
-    staffList: [{
-        "employee_id": 1,
-        "union_id": "o3iamjh_tpecJOwgrAhWHM7CQb2k",
-        "name": "李四",
-        "phone": "130xxxxxxxx",
-        "role": 0,
-        "owner_id": 1,
-        "manage_asset_count": 0,
-        "manage_asset_total_amount": 0
-      }
-    ],
-    noneData: {
-      pointer: true,
-      title: '暂无资产',
-      textInfo: '添加人员，帮助您添加资产、核销缴费',
-      picSize: {
-        width: '180rpx',
-        height: '156rpx',
-        marginTop: '178rpx'
-      },
-      pic: 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/assets/no-staff%402x.png'
-    },
-    qrinco: '长按识别二维码\n关注公众号 进行身份绑定'
-
+    qrinco: '长按识别二维码\n关注公众号 进行身份绑定',
+    assetId: '',
+    assetOwner: '',
+    invitee: '谢谢谢',
+    canvasWidth: 335,
+    canvasHeight: 460
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.saveInviteCard();
+    if(options.type==2){
+      var assetId = '个人',
+        assetOwner = options.name + '田倩的资产'
+    } else {
+      var assetId = '企业',
+        assetOwner = options.name
+    }
+    this.setData({
+      invitee: options.invitee,
+      assetId: assetId,
+      assetOwner: assetOwner
+    })
+    
   },
 
-  drawInviteCard: function (ctx) {
+  /**
+   * 保存到本地
+   */
+  saveToLocal: function (self) {
+    wx.canvasToTempFilePath({
+      x: 0,
+      y: 0,
+      width: self.data.canvasWidth,
+      height: self.data.canvasHeight,
+      destWidth: self.data.canvasWidth * 2,
+      destHeight: self.data.canvasHeight * 2,
+      canvasId: 'inviteCard',
+      quality: 1,
+      success: function success(res) {
+        //判断是否获得了用户保存到相册授权
+        wx.getSetting({
+          success: (res) => {
+            if (res.authSetting['scope.writePhotosAlbum'] == false) {
+              self.openConfirm();
+            }
+          }
+        })
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success(result) {
+            wx.showToast({
+              title: '保存成功',
+              icon: 'success',
+              duration: 1000
+            });
+          },
+          fail: function () {
+            console.log('保存不成功');
+          }
+        })
+      },
+      fail: function (e) {
+        console.log(e);
+      }
+    });
+
+  },
+
+  drawInviteCard: function (_this, ctx) {
+    //条纹背景
+    //canvasKit.linearGradientRect(ctx, 0, 0, _this.data.canvasWidth, _this.data.canvasHeight);
+    canvasKit.roundRect(ctx, 0, 0, _this.data.canvasWidth, _this.data.canvasHeight, 10, '#092344');
     //企业个人图标
     canvasKit.roundRect(ctx, 20, 20, 35, 18, 3, '#fff');
-    canvasKit.drawText(ctx, 12, '#8891A9', 'center', '企业', 38, 34);
+    canvasKit.drawText(ctx, 12, '#8891A9', 'center', _this.data.assetId, 38, 34);
     //企业名称
-    canvasKit.drawText(ctx, 23, '#FFFFFF', 'left', '轻客智能科技(江苏)有限公司', 20, 66);
+    canvasKit.drawText(ctx, 23, '#FFFFFF', 'left', _this.data.assetOwner, 20, 66);
     canvasKit.drawText(ctx, 16, '#8891A9', 'left', '邀请您管理资产', 20, 90);
     //中间白色圆角矩形
     canvasKit.roundRect(ctx, 20, 118, 295, 319, 4, '#FFFFFF');
     //邀请人
-    canvasKit.drawText(ctx, 20, '#092344', 'center', '谢林允', 167, 160);
+    canvasKit.drawText(ctx, 20, '#092344', 'center', _this.data.invitee, 167, 160);
     //二维码下面文字
     canvasKit.fillText(ctx,'长按识别二维码\n关注公众号 进行身份绑定', 167, 256, 12, '#8891A9', 20, 'center');
     canvasKit.drawDashLineRect(ctx, 33, 325, 270, 80, 5);
@@ -63,9 +102,7 @@ Page({
   saveInviteCard: function() {
     var _this = this;
     const ctxv = wx.createCanvasContext('inviteCard');
-    //canvasKit.drawNetworkPhoto(ctxv, 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/pay_qrcode.png', 146, 47, 80, 80, function () {_this.drawInviteCard(ctxv);})
-
-    _this.drawInviteCard(ctxv);
+    _this.drawInviteCard(_this, ctxv);
     wx.getImageInfo({
       src: 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/pay_qrcode.png',
       success: function (res) {
@@ -73,7 +110,9 @@ Page({
         ctxv.beginPath(); //开始绘制
         ctxv.drawImage(res.path, 128, 170, 80, 80);
         ctxv.restore();
-        ctxv.draw(true, function () {  })
+        ctxv.draw(true, function () { 
+          _this.saveToLocal(_this) 
+        })
       }
     })
 
