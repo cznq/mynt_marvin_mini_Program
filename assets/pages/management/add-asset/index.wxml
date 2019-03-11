@@ -31,9 +31,9 @@
                 </view>
                 <view class="_flex _flex_item_center">
                     <block wx:if="{{buildingInfo}}">
-                        <picker bindchange="selectFloor" value="{{index}}" range="{{floor_list}}">
+                        <picker bindchange="selectFloor" value="{{index}}" range="{{floor_list}}" range-key="floor_name">
                             <view class="picker _text _text_w {{floor_list[index]?'':'input_text_phc'}}">
-                                <text>{{floor_list[index]?floor_list[index]:"请选择"}}</text>
+                                <text>{{floor_list[index]?floor_list[index].floor_name:"请选择"}}</text>
                             </view>
                         </picker>
                     </block>
