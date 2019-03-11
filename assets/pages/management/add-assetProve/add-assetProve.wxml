@@ -1,5 +1,5 @@
 <view class="_content_info">
-  <view class="_tit">望京大厦E栋 16层1603</view>
+  <view class="_tit">{{buildingInfo.name}} {{floor+"层"}}{{room}}</view>
   <view class="uploadTxt">上传房产证或租赁合同</view>
     <radio-group class="radio-group _row _cen_start" bindchange="radioChange">
       <label class="radio" wx:for="{{items}}" wx:key="">
@@ -14,5 +14,6 @@
     <view wx:if="{{selMode==='leasContr'}}" class="selMode _pd40">
       <upload-Agreement-Prove title='上传租赁合同' intro='上传的图片需要体现合同期限、资产明细、双方签名' selectedImages='{{ selectedImages }}' uploadImagesLimit='{{ uploadImagesLimit }}'></upload-Agreement-Prove>
     </view>
-    <view class="review {{submit ? 'active' : ''}}">进入审核</view>
+    <view wx:if="{{!submit}}" class="review">提交</view>
+    <view wx:if="{{submit}}"  bindtap="submit" class="review active">提交</view>
 </view>
