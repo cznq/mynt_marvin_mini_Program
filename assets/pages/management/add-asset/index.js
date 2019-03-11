@@ -12,7 +12,7 @@ Page({
     nextStep:true,
     room:'',
     roomArea:'',
-    floor:''
+    floor_index:''
   },
 
   /**
@@ -46,24 +46,24 @@ Page({
       },
       success: res => {
         if (res.data.result) {
-          let arr = res.data.result.floor_index_list;
-          let floorName = [];
-          for (var i = 0; i < arr.length;i++){
-            floorName.push(arr[i].floor_name,) 
-          }
+          // let arr = res.data.result.floor_index_list;
+          // let floorName = [];
+          // for (var i = 0; i < arr.length;i++){
+          //   floorName.push(arr[i].floor_name,) 
+          // }
           that.setData({
-            floor_list:floorName
+            floor_list:res.data.result.floor_index_list
           })
-         //console.log(that.data.floor_list)
         }
       }
     })
   },
   //选择楼层
   selectFloor: function (e) {
+    let n = e.detail.value
     this.setData({
-      index: e.detail.value,
-      floor:e.detail.value
+      index: n,
+      floor_index:this.data.floor_list[n].floor_index
     })
     if(this.data.buildingInfo !=''&& this.data.room !='' && this.data.roomArea !='' && this.data.floor !=''){
       this.setData({
@@ -116,7 +116,7 @@ Page({
   goNext:function(){
     var assetInfo = JSON.stringify({
       buildingInfo: this.data.buildingInfo,
-      floor:this.data.floor,
+      floor_index:this.data.floor_index,
       room:this.data.room,
       roomArea:this.data.roomArea
     })
