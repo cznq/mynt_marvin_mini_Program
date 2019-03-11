@@ -68,9 +68,6 @@ Page({
    */
   onLoad: function (options) {
     var _this = this;
-    wx.setNavigationBarTitle({
-      title: "轻客智能科技"
-    })
     app.Util.networkUrl.postUrl({
       url: app.globalData.BASE_ASSET_URL+'/employee/get/union_id',
       params: {
@@ -80,6 +77,9 @@ Page({
       },
       success: res => {
         //if (res.data.sub_code == 0 && res.data.result) {
+          wx.setNavigationBarTitle({
+            title: "轻客智能科技"
+          })
           _this.setData({
             // owner_id:res.data.result.owner_id,//房东id
             // employee_id : res.data.result.employee_id//职员id

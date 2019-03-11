@@ -1,4 +1,7 @@
 /* pages/join-asset/upload-licence/index.wxss */
+@import "../../public/public.wxss";
+@import "../../../../templates/showToast/showToast.wxss";
+
 page {
     background: #F0F2F5;
     height: 100%;
@@ -40,7 +43,6 @@ page {
 .upload-view {
     width: 430rpx;
     height: 620rpx;
-    background: #bababa;
     margin: 79rpx auto 0 auto;
 }
 

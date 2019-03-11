@@ -7,38 +7,38 @@ Page({
    * 页面的初始数据
    */
   data: {
-    buildingInfo:'',
-    floor_list:[],
-    nextStep:true,
-    room:'',
-    roomArea:'',
-    floor:''
+    buildingInfo: '',
+    floor_list: [],
+    nextStep: true,
+    room: '',
+    roomArea: '',
+    floor_index: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
-      // owner_id:JSON.parse(options.params).owner_id,
-      // employee_id:JSON.parse(options.params).employee_id,
-      nextStep:true
+      owner_id: JSON.parse(options.params).owner_id,
+      employee_id: JSON.parse(options.params).employee_id,
+      nextStep: true
     })
   },
   //选择所属楼宇
-  selectBuilding:function(){  
+  selectBuilding: function() {
     var params = JSON.stringify({
       owner_id: this.data.owner_id,
-      employee_id:this.data.employee_id
+      employee_id: this.data.employee_id
     })
     wx.navigateTo({
-      url: '../building-list/index?params='+ params,
+      url: '../building-list/index?params=' + params,
     })
   },
-  getFloor:function(){
-    var that =this;
+  getFloor: function() {
+    var that = this;
     app.Util.networkUrl.postUrl({
-      url: app.globalData.BASE_ASSET_URL+'/floor/index/list',
+      url: app.globalData.BASE_ASSET_URL + '/floor/index/list',
       params: {
         data: JSON.stringify({
           building_id: that.data.buildingInfo.id,
@@ -46,98 +46,105 @@ Page({
       },
       success: res => {
         if (res.data.result) {
-          let arr = res.data.result.floor_index_list;
-          let floorName = [];
-          for (var i = 0; i < arr.length;i++){
-            floorName.push(arr[i].floor_name,) 
-          }
+          // let arr = res.data.result.floor_index_list;
+          // let floorName = [];
+          // for (var i = 0; i < arr.length;i++){
+          //   floorName.push(arr[i].floor_name,)
+          // }
           that.setData({
-            floor_list:floorName
+            floor_list: res.data.result.floor_index_list
           })
-         //console.log(that.data.floor_list)
         }
       }
     })
   },
   //选择楼层
-  selectFloor: function (e) {
+  selectFloor: function(e) {
+    let n = e.detail.value
     this.setData({
-      index: e.detail.value,
-      floor:e.detail.value
+      index: n,
+      floor_index: this.data.floor_list[n].floor_index
     })
-    if(this.data.buildingInfo !=''&& this.data.room !='' && this.data.roomArea !='' && this.data.floor !=''){
+    if (this.data.buildingInfo != '' && this.data.room != '' && this.data.roomArea != '' && this.data.floor != '') {
       this.setData({
-        nextStep:false
+        nextStep: false
       })
-    }else{
+    } else {
       this.setData({
-        nextStep:true
+        nextStep: true
       })
     }
   },
   //没有楼层选择
-  selectNo:function(){
+  selectNo: function() {
     toast.showToast(this, {
       toastStyle: 'toast',
       title: '请先选择资产所在楼宇',
       duration: 1500,
-      mask:false
+      mask: false
     });
   },
   // 检测是否可以进入下一步
-  getRoom:function(e){
+  getRoom: function(e) {
     this.setData({
-      room:e.detail.value
+      room: e.detail.value
     })
-    if(this.data.buildingInfo !=''&& this.data.room !='' && this.data.roomArea !='' && this.data.floor !=''){
+    if (this.data.buildingInfo != '' && this.data.room != '' && this.data.roomArea != '' && this.data.floor != '') {
       this.setData({
-        nextStep:false
+        nextStep: false
       })
-    }else{
+    } else {
       this.setData({
-        nextStep:true
+        nextStep: true
       })
     }
   },
-  checkNext:function(e){
+  checkNext: function(e) {
     this.setData({
-      roomArea:e.detail.value
+      roomArea: e.detail.value
     })
-    if(this.data.buildingInfo !=''&& this.data.room !='' && this.data.roomArea !='' && this.data.floor !=''){
+    if (this.data.buildingInfo != '' && this.data.room != '' && this.data.roomArea != '' && this.data.floor != '') {
       this.setData({
-        nextStep:false
+        nextStep: false
       })
-    }else{
+    } else {
       this.setData({
-        nextStep:true
+        nextStep: true
       })
     }
   },
-  goNext:function(){
+  goNext: function() {
+    console.log('this.data.employee_id:', this.data.owner_id);
+    var assetInfo = JSON.stringify({
+      floor_index: this.data.floor_index,
+      room: this.data.room,
+      roomArea: this.data.roomArea,
+      owner_id: this.data.owner_id
+    })
     wx.navigateTo({
-      url: '../add-assetProve/add-assetProve',
+      url: '../add-assetProve/add-assetProve?assetInfo=' + assetInfo,
     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    var that=this;
+  onShow: function() {
+    var that = this;
     let pages = getCurrentPages();
-    let currPage = pages[pages.length-1];
-    if(currPage.data.buildingInfo){
+    let currPage = pages[pages.length - 1];
+    if (currPage.data.buildingInfo) {
       that.setData({
-        buildingInfo:currPage.data.buildingInfo
+        buildingInfo: currPage.data.buildingInfo
       })
     }
-    if(that.data.buildingInfo){
+    if (that.data.buildingInfo) {
       that.getFloor();
     }
   },
@@ -145,35 +152,35 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })
