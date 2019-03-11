@@ -20,8 +20,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      // owner_id:JSON.parse(options.params).owner_id,
-      // employee_id:JSON.parse(options.params).employee_id,
+      owner_id:JSON.parse(options.params).owner_id,
+      employee_id:JSON.parse(options.params).employee_id,
       nextStep:true
     })
   },
@@ -114,8 +114,14 @@ Page({
     }
   },
   goNext:function(){
+    var assetInfo = JSON.stringify({
+      buildingInfo: this.data.buildingInfo,
+      floor:this.data.floor,
+      room:this.data.room,
+      roomArea:this.data.roomArea
+    })
     wx.navigateTo({
-      url: '../add-assetProve/add-assetProve',
+      url: '../add-assetProve/add-assetProve?assetInfo='+assetInfo,
     })
   },
   /**
