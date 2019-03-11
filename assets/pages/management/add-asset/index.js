@@ -116,10 +116,12 @@ Page({
   goNext: function() {
     console.log('this.data.employee_id:', this.data.owner_id);
     var assetInfo = JSON.stringify({
+      buildingInfo: this.data.buildingInfo,
       floor_index: this.data.floor_index,
       room: this.data.room,
       roomArea: this.data.roomArea,
-      owner_id: this.data.owner_id
+      owner_id: this.data.owner_id,
+      employee_id: this.data.employee_id
     })
     wx.navigateTo({
       url: '../add-assetProve/add-assetProve?assetInfo=' + assetInfo,

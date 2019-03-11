@@ -34,10 +34,11 @@ Page({
     if (true) {
       this.setData({
         buildingInfo: assetInfo.buildingInfo,
-        floor: assetInfo.floor,
+        floor: assetInfo.floor_index,
         room: assetInfo.room,
         roomArea: assetInfo.roomArea,
-        owner_id: assetInfo.owner_id
+        owner_id: assetInfo.owner_id,
+        employee_id: assetInfo.employee_id
       })
     }
   },
@@ -67,7 +68,8 @@ Page({
           room_number: that.data.room,
           area: parseInt(that.data.roomArea),
           floor_index: parseInt(that.data.floor),
-          certificate_url_list: that.data.sucUplodImg
+          certificate_url_list: that.data.sucUplodImg,
+          employee_id: parseInt(that.data.employee_id)
         })
       },
       success: res => {
