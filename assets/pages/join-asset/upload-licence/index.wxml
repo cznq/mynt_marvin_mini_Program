@@ -1,17 +1,23 @@
 <!--pages/join-asset/upload-licence/index.wxml-->
+<import src="../../../../templates/showToast/showToast.wxml" />
 <view class='_content _top_gradient2'>
     <view class='mainTitle'>{{mainTitle}}</view>
     <view class="view-title title-top">
         <text>{{explain}}</text>
     </view>
-    <view class="upload-view"></view>
+    <view class="upload-view">
+        <upload-Room-Prove direction='col' type="license" tipTxt='{{mainText}}' bindcurrentState='currentState'></upload-Room-Prove>
+    </view>
     <view class="view-title title-main">
-        <text>{{mainText}}</text>
+        <text></text>
     </view>
     <view class="view-title title-sub">
-        <text>{{subText}}</text>
+        <text></text>
     </view>
-    <view class='input_block footer {{isiphoneX ? "footer_x" : ""}}'>
-        <button class="_button" form-type="submit" disabled="{{disabled}}">{{button_text}}</button>
-    </view>
+    <form bindsubmit="completeUpload">
+        <view class='input_block footer {{isiphoneX ? "footer_x" : ""}}'>
+            <button class="_button" form-type="submit" disabled="{{disabled}}">{{button_text}}</button>
+        </view>
+    </form>
 </view>
+<template is="showToast" data="{{showToast: showToast}}" />
