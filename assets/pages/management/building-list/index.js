@@ -83,8 +83,7 @@ Page({
           //   }
           // }        
           _this.setData({
-            building_list:arr,         
-            allBuilding:arr[0].building
+            building_list:arr,        
           })
           // console.log(_this.data.building_list)
           // console.log(_this.data.allBuilding)
@@ -97,6 +96,7 @@ Page({
     let _this = this
     let searchValue = e.detail.value;//用户实时输入值
     let arr = _this.data.allBuilding;
+    console.log(arr)
     var newList = []//匹配的结果
     if (searchValue) {
       _this.setData({
@@ -111,13 +111,26 @@ Page({
         searchBuildingList: newList,
         searchShow:true
       })
-      console.log(_this.data.searchBuildingList)
+      //console.log(_this.data.searchBuildingList)
     } else {
       this.setData({
         clearSearchShow: true
       })
     }
 
+  },
+  searchSubmit:function(e){
+    //console.log(e)
+    let _this = this
+    let searchValue = e.detail.value;//用户输入值
+    if(searchValue == ''){
+      _this.setData({
+        building_list: _this.data.building_list,
+        searchShow:false
+      })
+    }else{
+      return false;
+    }
   },
   //清除搜索
   clearSearch: function() {
@@ -152,6 +165,10 @@ Page({
       city: e.detail.value[1]
     })
     this.getBuilding(this.data.codes[0],this.data.codes[1])
+    this.setData({
+      building_list: _this.data.building_list,
+      searchShow:false
+    })
   },
   selectBuilding:function(e){
     let pages = getCurrentPages();
