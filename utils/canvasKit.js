@@ -1,5 +1,31 @@
 /**
+ * 条纹渐变填充的矩形 
+ * @param ctx  wx.createCanvasContext返回的canvas绘图上下文
+ * @param x  矩形左上角横坐标
+ * @param y  矩形左上角纵坐标
+ * @param w  矩形长
+ * @param h  矩形宽
+ * @param r  圆角半径
+ */
+function linearGradientRect(ctx, x, y, w, h) {
+  const grd = ctx.createLinearGradient(x, y, w, y)
+  grd.addColorStop(0.1, '#08294f')
+  grd.addColorStop(0.4, '#092344')
+  grd.addColorStop(0.5, '#08294f')
+  grd.addColorStop(0.66, '#092344')
+  grd.addColorStop(1, '#08294f')
+  ctx.setFillStyle(grd)
+  ctx.fillRect(x, y, w, h)
+}
+/**
  * 圆角图片 
+ * @param ctx  wx.createCanvasContext返回的canvas绘图上下文
+ * @param img  图片链接
+ * @param x  矩形左上角横坐标
+ * @param y  矩形左上角纵坐标
+ * @param w  矩形长
+ * @param h  矩形宽
+ * @param r  圆角半径
  */
 function circleImg(ctx, img, x, y, w, h, r, callback = function(){}) {
   var that = this;
@@ -354,6 +380,7 @@ function strLenGraphic(str) {
 }
 
 module.exports = {
+  linearGradientRect: linearGradientRect,
   circleImg: circleImg,
   roundRect: roundRect,
   drawText: drawText,

@@ -4,31 +4,7 @@ Page({
 
   data: {
     isIphoneX: app.globalData.isIphoneX,
-    empInfo: {
-      "employee_id": 2,
-      "union_id": "",
-      "name": "李四",
-      "phone": "120",
-      "role": 0,
-      "owner_id": 1,
-      "asset_list": [
-        {
-          "id": 1,
-          "owner_id": 100,
-          "room_number": "3201",
-          "area": 100,
-          "floor_index": 32,
-          "floor": "32",
-          "building_name": "杭州望京大厦c1栋"
-        }
-      ],
-      "privilege_list": [
-        {
-          "privilege_id": 1,
-          "privilege_name": "添加人员"
-        }
-      ]
-    }
+    empInfo: null
   },
 
   /**
@@ -54,9 +30,10 @@ Page({
         })
       },
       success: res => {
-        if (res.data.sub_code == 0) { }
+        console.log(res.data)
+        if (res.data.result) { }
           this.setData({
-            //empInfo: res.data.result
+            empInfo: res.data.result
           })
 
       }
@@ -100,8 +77,9 @@ Page({
             })
           },
           success: res => {
-            if (res.data.sub_code == 0) { }
-
+            if (res.data.return_code == 'SUCCESS') { 
+              wx.navigateBack();
+            }
 
           }
         })
@@ -111,8 +89,22 @@ Page({
 
   reBind: function() {
     console.log("bind");
-    wx.navigateTo({
-      url: '../invite/index?employee_id=' + this.data.empInfo.employee_id,
+    var _this = this
+    app.Util.networkUrl.postUrl({
+      url: app.globalData.BASE_ASSET_URL + '/owner/get',
+      params: {
+        data: JSON.stringify({
+          owner_id: _this.data.empInfo.owner_id
+        })
+      },
+      success: res => {
+        if (res.data.return_code == 'SUCCESS') {
+          wx.navigateTo({
+            url: '../invite/index?invitee=' + _this.data.empInfo.name + '&type=' + res.data.result.type + '&name=' + res.data.result.name,
+          })
+        }
+
+      }
     })
   }
 

@@ -101,8 +101,7 @@
         "pages/management/add-assetProve/add-assetProve",
         "pages/management/building-list/index",
         "pages/management/creat-building/index",
-        "pages/staff/invite/index",
-        "pages/demo/index"
+        "pages/staff/invite/index"
       ]
     }
   ],

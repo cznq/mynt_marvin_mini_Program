@@ -36,6 +36,10 @@ Page({
       this.setData({
         submit: true
       })
+    } else {
+      this.setData({
+        submit: false
+      })
     }
   },
   /**

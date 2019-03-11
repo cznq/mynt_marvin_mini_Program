@@ -2,7 +2,7 @@
 <wxs src="../../../../wxs/subutil.wxs" module="tools" />
 <view class="page">
   <view class="page__hd _flex _flex_item_center _flex_justify_center _flex_space_between">
-    <view class="_font32">总人数: {{staffList.length}}人</view>
+    <view class="_font32">总人数: {{staffCount}}人</view>
     <navigator url="../basic-info/index" hover-class="none">
       <view class="_font24 add_btn"><text class="iconfont icon-tianjia"></text>新增人员</view>
     </navigator>
@@ -20,7 +20,7 @@
             <view class="_font28">{{item.phone}}</view>
           </view>
         </view>
-        <view><text class="status _font24" wx:if="{{item.union_id}}">绑定中</text></view>
+        <view><text class="status _font24" wx:if="{{item.union_id==''}}">绑定中</text></view>
       </view>
       </navigator>
     </block>

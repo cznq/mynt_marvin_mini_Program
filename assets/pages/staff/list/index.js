@@ -5,31 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    pageSize: 10,
+    pageSize: 6,
     pageNum: 1,
     isLastPage: false,
     staffCount: 0,
-    staffList: [{
-        "employee_id": 1,
-        "union_id": "",
-        "name": "李四",
-        "phone": "130xxxxxxxx",
-        "role": 0,
-        "owner_id": 1,
-        "manage_asset_count": 0,
-        "manage_asset_total_amount": 0
-      },
-      {
-        "employee_id": 1,
-        "union_id": "dsf88sd8f8se777afdkfdknuuuu",
-        "name": "王五",
-        "phone": "130xxxxxxxx",
-        "role": 0,
-        "owner_id": 1,
-        "manage_asset_count": 0,
-        "manage_asset_total_amount": 0
-      }
-    ],
+    staffList: [],
     noneData: {
       pointer: true,
       title: '暂无资产',
@@ -47,11 +27,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var _this = this
-    _this.getStaffList(_this)
+    this.getStaffList(this, true)
   },
 
-  getStaffList(_this) {
+  getStaffList(_this, refresh) {
     app.Util.networkUrl.postUrl({
       url: app.globalData.BASE_ASSET_URL + '/employee/list',
       params: {
@@ -62,27 +41,32 @@ Page({
         })
       },
       success: res => {
-        if(res.data.reslut) {
+        
+        if(refresh){
+          _this.setData({
+            pageNum: 1,
+            staffList: []
+          })
+        }
+        if (res.data.result.employee_list) {
           if (res.data.result.employee_list.length < _this.data.pageSize) {
             _this.setData({
-              isLastPage: true,
-              staffList: _this.data.staffList.concat(res.data.result.employee_list)
+              isLastPage: true
             });
           }
+          if (res.data.result.employee_list.length > 0) {
+            console.log(res.data.result.employee_list);
+            _this.setData({
+              staffList: _this.data.staffList.concat(res.data.result.employee_list),
+              staffCount: res.data.result.total
+            });
+          }
+          
         }
         
         
       }
     })
-  },
-
-  
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
   },
 
   /**
@@ -99,10 +83,10 @@ Page({
     var self = this;
     if (!self.data.isLastPage) {
       self.setData({
-        page: self.data.pageNum + 1
+        pageNum: self.data.pageNum + 1
       });
       console.log('当前页' + self.data.page);
-      this.fetchPostsData(self.data);
+      self.getStaffList(self, false);
     }
     else {
       console.log('最后一页');
@@ -112,7 +96,8 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShow: function () {
+    
+    this.getStaffList(this, true)
   }
 })

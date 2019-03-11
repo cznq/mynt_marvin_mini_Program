@@ -11,12 +11,12 @@
               </block>
               <block wx:elif="{{progress[index] == false}}">
                   <view class="icon error">
-                      <image src="../../images/warn.svg"></image>
+                      <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/assets/warn.svg"></image>
                   </view>
               </block>
               <block wx:elif="{{progress[index] == 100}}">
                   <view class="icon success">
-                      <image src="../../images/check_white.svg"></image>
+                      <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/assets/check_white.svg"></image>
                   </view>
               </block>
               <block wx:else>

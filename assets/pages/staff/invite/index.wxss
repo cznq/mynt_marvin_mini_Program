@@ -81,8 +81,8 @@
 }
 canvas {
   position: absolute;
-  top: 40rpx;
-  left: 40rpx;
+  left: -500px;
+  top: -300px;
   border-radius: 10px;
-  background: repeating-linear-gradient(120deg,#08294f,#08294f 10px,#092344 0,#092344 30px);
+  /* background: repeating-linear-gradient(120deg,#08294f,#08294f 10px,#092344 0,#092344 30px); */
 }
