@@ -9,7 +9,7 @@ Page({
   data: {
     selectedImages: ['http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/prompt@2x.png'],
     uploading: false,
-    uploadImagesLimit: 9
+    uploadImagesLimit: 3
   },
 
   /**

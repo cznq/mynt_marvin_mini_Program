@@ -110,6 +110,10 @@
     padding: 30rpx !important;
 }
 
+._pd40 {
+    padding: 40rpx !important;
+}
+
 /* color */
 
 ._txt_gray {

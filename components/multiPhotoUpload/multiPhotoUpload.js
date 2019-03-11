@@ -21,7 +21,7 @@ Component({
     },
     uploadImagesLimit: {
       type: Number,
-      value: 9
+      value: 3
     }
   },
 

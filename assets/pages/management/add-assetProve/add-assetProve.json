@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "upload-Room-Prove":"../../../../components/uploadRoomProve/uploadRoomProve"
+    "upload-Room-Prove":"../../../../components/uploadRoomProve/uploadRoomProve",
+    "upload-Agreement-Prove": "../../../../components/multiPhotoUpload/multiPhotoUpload"
   }
 }

@@ -37,6 +37,7 @@
   width: 670rpx;
   height: auto;
   border: 2rpx solid rgba(136, 145, 169, .3);
+  box-sizing: border-box;
 }
 
 .review {

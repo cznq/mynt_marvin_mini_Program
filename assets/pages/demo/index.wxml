@@ -9,3 +9,15 @@
 
 </view>
 
+
+<view class="wrapper">
+  <view class="pic-list">
+    <block wx:for="{{selectedImages}}" wx:key="">
+      <view class="imageWrap">
+          <image src="{{item}}" mode="aspectFill" data-index="{{index}}" bindtap="previewImage" style="width: 160rpx;height:160rpx;border-radius:10rpx;"></image>
+          
+          
+      </view>
+    </block>
+  </view>
+</view>
