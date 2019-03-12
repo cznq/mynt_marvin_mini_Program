@@ -1,4 +1,5 @@
 <!--assets/pages/management/edit-asset/index.wxml-->
+<import src="../../../../templates/showToast/showToast.wxml" />
 <view class="slide">
     <view class="item left _font28 _weight500">资产信息</view>
     <view class="item right _font28 _weight500">合同信息</view>
@@ -6,16 +7,16 @@
 <view class="content">
     <view class="infos">
         <view class="headTitle">
-            <text>{{room}}</text>
+            <text>{{building_name}} {{floor_index}}{{room_number}}</text>
         </view>
         <view class="subTitle">
-            <text>{{area}}</text>
+            <text>建筑面积：{{area}}㎡</text>
         </view>
         <view class="subTitle subButtom">
-            <text>{{address}}</text>
+            <text>{{building_address}}</text>
         </view>
     </view>
-    <view class="icons">
+    <view class="icons" bindtap="jumpUrl">
         <view class="iconfont icon-hetong icon-hetong-edit"></view>
         <view class="textEx">
             <text>点击查看</text>
@@ -32,3 +33,4 @@
 <view class="_fixed _footer">
     <button disabled="{{nextStep}}" class="_font28 _border_radius4" bindtap="removeAsset">移除资产</button>
 </view>
+<template is="showToast" data="{{showToast: showToast}}" />

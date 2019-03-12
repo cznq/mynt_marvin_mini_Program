@@ -1,5 +1,6 @@
 /* assets/pages/management/edit-asset/index.wxss */
 @import "../../public/public.wxss";
+@import "../../../../templates/showToast/showToast.wxss";
 
 page {
     background: #F0F2F5;
