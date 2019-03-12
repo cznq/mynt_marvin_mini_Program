@@ -1,0 +1,23 @@
+<!--assets/pages/management/building_room/index.wxml-->
+<view class="_room_content">
+    <view class="_font24 add_btn" bindtap="addRoom" data-from="roomList">
+        <text class="iconfont icon-tianjia"></text>添加房间
+    </view>
+<block wx:for="{{cd}}" wx:for-index="idx" wx:key="key">
+    <view class="_room_list" wx:if="{{item.status != 1}}" bindtap="assetDetail" data-id="{{item.id}}" data-area="{{item.area}}" data-room="{{item.room_number}}" data-floor="{{item.floor_index}}">
+        <view class="_room">
+            {{item.room_number}}
+        </view>
+       
+        <view class="_room_info"> 
+            <view class="_room_area"> 面积：{{item.area}}㎡</view>
+            <view class="_room_lessee" wx:if="{{item.status == 2}}">
+                承租方：轻客智能科技有限公司
+            </view>
+            <view class="_room_lessee" wx:if="{{item.status == 0}}">
+                承租方：暂无
+            </view>
+        </view>
+    </view>
+</block>
+</view>

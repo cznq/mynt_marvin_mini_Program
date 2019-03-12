@@ -2,8 +2,8 @@
 <import src="../../../templates/noData/noData.wxml" />
 <view class="block_fixed">
     <view class="_flex _flex_item_center _flex_space_between top_title">
-        <view class="_landlord">轻客智能科技有限公司</view>
-        <view class="_add_asset _flex _flex_item_center _flex_space_around" bindtap="addAsset">
+        <view class="_landlord">{{assetName}}</view>
+        <view class="_add_asset _flex _flex_item_center _flex_space_around" bindtap="addAsset" data-from="assetList">
             <view class="iconfont icon-tianjia"></view>
             <view>添加资产</view>
         </view>
@@ -11,8 +11,8 @@
 </view>
 <block wx:if='{{hasAssets}}'>
 <view class="asset_content">
-    <block wx:for="{{asset_list}}" wx:for-index="idx" wx:key="key" >
-        <view class="asset_list" data-id="{{item.building_id}}">
+    <block wx:for="{{asset_list}}" wx:for-index="idx" wx:key="key">
+        <view class="asset_list" data-id="{{item.building_id}}" data-building_name="{{item.building_name}}" data-building_address="{{item.building_address}}" bindtap="getBuildingAsset">
             <view class="_flex _flex_item_center _flex_space_between ">
                 <view class="_left">
                     <view class="_buildname">{{item.building_name}}</view>

@@ -1,0 +1,42 @@
+/* assets/pages/management/building_room/index.wxss */
+page{
+    background-color: #F0F2F5;
+}
+._room_content{
+    padding: 40rpx;
+}
+._room_content .add_btn {
+    font-size: 32rpx;
+    color: #8891A9;
+    background-color: #fff;
+    border-radius: 10rpx;
+    padding: 20rpx;
+    margin-bottom: 20rpx;
+}
+._room_content ._room_list{
+    background-color: #fff;
+    border-radius: 10rpx;
+    padding: 30rpx 20rpx;
+    margin-bottom: 20rpx;
+}
+._room_content .add_btn .icon-tianjia{
+    display: inline-block;
+    border: 1px dashed #8891A9;
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 100%;
+    font-size: 30rpx;
+    color: #8891A9;
+    line-height: 60rpx;
+    text-align: center;
+    margin-right: 20rpx;
+}
+._room_content ._room_list ._room{
+    color: #092344;
+    font-weight: 600;
+    font-size: 36rpx;
+}
+._room_content ._room_list ._room_info{
+    color: rgba(9, 35, 68, .6);
+    font-size: 24rpx;
+}
