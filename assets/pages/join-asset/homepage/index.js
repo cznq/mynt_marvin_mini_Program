@@ -1,4 +1,5 @@
 // pages/join-asset/homepage/index.js
+var app = getApp();
 Page({
 
     /**
@@ -9,6 +10,43 @@ Page({
         headlinesT2: "小觅资产管理系统",
         explainText: "资产管理便捷高效，多套房源一手掌握， 线上收租方便快捷。",
         buttonText: "立即体验"
+    },
+
+    jumpUrl: function() {
+        var _this = this;
+        app.Util.networkUrl.postUrl({
+            url: app.globalData.BASE_ASSET_URL + "/employee/get/union_id",
+            params: {
+                data: JSON.stringify({
+                    union_id: wx.getStorageSync('xy_session'),
+                })
+            },
+            success: res => {
+                console.log('owner-get-verifycode return:');
+                console.log(res);
+                if (res.data.sub_code == "SUCCESS") {
+                    let rinfo = res.data.result;
+                    var params = JSON.stringify({
+                        building_address: rinfo.building_address,
+                        owner_id: rinfo.owner_id,
+                        phone: rinfo.phone,
+                        role: rinfo.role,
+                        asset_list: rinfo.asset_list,
+                        privilege_list: rinfo.privilege_list
+                    })
+                    wx.navigateTo({
+                        url: '../asset-;ost/index?params=' + params,
+                    })
+                } else {
+                    wx.navigateTo({
+                        url: "../invite-code/index",
+                    });
+                }
+            },
+            fail: res => {
+                console.log('fail');
+            }
+        })
     },
 
     /**
