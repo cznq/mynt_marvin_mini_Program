@@ -10,6 +10,7 @@ Page({
     floor: 0,
     room: "",
     roomArea: 0,
+    uploadImage: '',
     items: [{
         name: 'roomProve',
         value: '房产证',
@@ -29,17 +30,18 @@ Page({
    */
   onLoad: function(options) {
     console.log('options:', options);
-    let assetInfo = JSON.parse(options.assetInfo)
-    console.log('assetInfo:', assetInfo);
-    if (true) {
-      this.setData({
-        buildingInfo: assetInfo.buildingInfo,
-        floor: assetInfo.floor_index,
-        room: assetInfo.room,
-        roomArea: assetInfo.roomArea,
-        owner_id: assetInfo.owner_id,
-        employee_id: assetInfo.employee_id
-      })
+    if (JSON.stringify(options) != "{}") {
+      let assetInfo = JSON.parse(options.assetInfo)
+      if (true) {
+        this.setData({
+          buildingInfo: assetInfo.buildingInfo,
+          floor: assetInfo.floor_index,
+          room: assetInfo.room,
+          roomArea: assetInfo.roomArea,
+          owner_id: 1, //assetInfo.owner_id
+          employee_id: 1 //assetInfo.employee_id
+        })
+      }
     }
   },
   radioChange(e) {
@@ -48,9 +50,13 @@ Page({
     })
   },
   currentState(e) {
-    console.log(e.detail);
     if (e.detail.uploadState) {
-      let certificate_url_list = [e.detail.sucUplodImg]
+      let certificate_url_list = []
+      if (typeof(e.detail.sucUplodImg) === "string") {
+        certificate_url_list = [e.detail.sucUplodImg]
+      } else {
+        certificate_url_list = e.detail.sucUplodImg
+      }
       this.setData({
         submit: true,
         sucUplodImg: certificate_url_list
@@ -64,24 +70,32 @@ Page({
   submit() {
     let that = this;
     app.Util.networkUrl.postUrl({
-      url: app.globalData.BASE_ASSET_URL + '/asset/admin/create',
+      url: app.globalData.BASE_ASSET_URL + '/asset/create',
       params: {
         data: JSON.stringify({
           owner_id: parseInt(that.data.owner_id),
-          building_id: parseInt(that.data.building_id), //员工身份请求时，传此值
+          building_id: parseInt(that.data.buildingInfo.id), //员工身份请求时，传此值
           room_number: that.data.room,
           area: parseInt(that.data.roomArea),
           floor_index: parseInt(that.data.floor),
           certificate_url_list: that.data.sucUplodImg,
-          employee_id: parseInt(that.data.employee_id)
+          // employee_id: parseInt(that.data.employee_id)
         })
       },
       success: res => {
         console.log('res::', res);
-        if (res.data.result) {
-
+        if (res.data.sub_code === "SUCCESS") {
+          wx.showToast({
+            title: '创建成功',
+            icon: 'success',
+            duration: 2000
+          })
         } else {
-
+          wx.showToast({
+            title: res.data.sub_msg,
+            icon: 'none',
+            duration: 2000
+          })
         }
       }
     })

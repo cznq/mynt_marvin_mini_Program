@@ -3,7 +3,7 @@
     <view catchtap='uploadImage' class="uploadModul">
       <!-- 点击上传 -->
       <block wx:if="{{model===1}}" >
-        <image class="uploadBg" src='http://marvin-api-asset.oss-cn-hangzhou.aliyuncs.com/development%2Fqr_code%2Fshangyan%2FroomProve.png?OSSAccessKeyId=LTAIe2N4IX0iiCXc&Expires=1552279185&Signature=Vjv9CVb9rv98Hen1sqOhWfX7GNM%3D'></image>
+        <image class="uploadBg" src='http://marvin-api-asset.oss-cn-hangzhou.aliyuncs.com/development%2Fqr_code%2Fshangyan%2FroomProve.png?OSSAccessKeyId=LTAIe2N4IX0iiCXc&Expires=1942371349&Signature=XSYwk70DK9ssQbrnsT7cjJ84SbU%3D'></image>
         <text class="icon-tianjia iconfont icon-shenqingbeijujue-copy"></text>
       </block>
       <!-- 正在上传 -->

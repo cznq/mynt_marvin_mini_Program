@@ -118,19 +118,13 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     var dataJson = JSON.parse(requestHandler.params.data);
     dataJson.union_id = wx.getStorageSync('xy_session');
     requestHandler.params.data = JSON.stringify(dataJson);
-    // if (requestHandler.showLoading != false) {
-    //   var title = requestHandler.loadingTitle != undefined ? requestHandler.loadingTitle : '正在加载';
-    //   wx.showLoading({
-    //     title: title,
-    //     mask: true
-    //   })
-    // }
 
     requestHandler.params.app_id = '65effd5a42fd1870b2c7c5343640e9a8'; //接口需要的第三方App_id
     requestHandler.params.timestamp = Math.round(new Date().getTime() / 1000 - 28800);
     requestHandler.params.sign_type = 'MD5';
     var stringA = 'app_id=' + requestHandler.params.app_id + '&data=' + requestHandler.params.data + '&timestamp=' + requestHandler.params.timestamp;
     requestHandler.params.sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
+
     //打印参数
     const uploadTask = wx.uploadFile({
       url: requestHandler.url,
@@ -221,7 +215,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     var stringA = 'app_id=' + requestRouter.params.app_id + '&data=' + requestRouter.params.data + '&timestamp=' + requestRouter.params.timestamp;
     requestRouter.params.sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
     //打印参数
-
+    console.log('requestRouter.params:', requestRouter.params);
     wx.request({
       url: requestRouter.url,
       data: requestRouter.params,
