@@ -38,8 +38,8 @@ Page({
         floor: assetInfo.floor_index,
         room: assetInfo.room,
         roomArea: assetInfo.roomArea,
-        owner_id: 1, //assetInfo.owner_id
-        employee_id: 1 //assetInfo.employee_id
+        owner_id: assetInfo.owner_id, //
+        employee_id: assetInfo.employee_id
       })
     }
   },
@@ -73,12 +73,12 @@ Page({
       params: {
         data: JSON.stringify({
           owner_id: parseInt(that.data.owner_id),
-          building_id: parseInt(that.data.buildingInfo.id), //员工身份请求时，传此值
+          building_id: parseInt(that.data.buildingInfo.id),
           room_number: that.data.room,
           area: parseInt(that.data.roomArea),
           floor_index: parseInt(that.data.floor),
           certificate_url_list: that.data.sucUplodImg,
-          // employee_id: parseInt(that.data.employee_id)
+          employee_id: parseInt(that.data.employee_id) //员工身份请求时，传此值
         })
       },
       success: res => {
@@ -88,6 +88,9 @@ Page({
             title: '创建成功',
             icon: 'success',
             duration: 2000
+          })
+          wx.navigateTo({
+            url: '../assets-list/index',
           })
         } else {
           wx.showToast({
