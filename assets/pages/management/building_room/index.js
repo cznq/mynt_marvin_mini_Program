@@ -70,7 +70,7 @@ Page({
             id: e.currentTarget.dataset.id, //资产id
             area: e.currentTarget.dataset.area,
             room_number: e.currentTarget.dataset.room, //房间号
-            floor_index: e.currentTarget.dataset.floor, //楼层索引
+            floor: e.currentTarget.dataset.floor, //楼层名
         })
         wx.navigateTo({
             url: '../edit-asset/index?params=' + params,
