@@ -60,7 +60,8 @@ Page({
       }
     },
     owner_id:'',//房东id
-    employee_id:''
+    employee_id:'',
+    assetName:''
   },
 
   /**
@@ -95,10 +96,16 @@ Page({
                   wx.setNavigationBarTitle({
                     title: res.data.result.name
                   }) 
+                  _this.setData({
+                    assetName:res.data.result.name
+                  })
                 }else if(res.data.result.type == 2){
                   wx.setNavigationBarTitle({
                     title: "资产管理"
                   }) 
+                  _this.setData({
+                    assetName:res.data.result.name+'的资产'
+                  })
                 }
               }
             }
@@ -132,8 +139,9 @@ Page({
   //资产管理
   assetsManage:function(){
     var params = JSON.stringify({
-      owner_id: 1,
-      employee_id:1
+      owner_id: this.data.owner_id,
+      employee_id:this.data.employee_id,
+      assetName:this.data.assetName
     })
     wx.navigateTo({  
       url: '../management/assets-list/index?params='+ params,

@@ -10,7 +10,7 @@
                 </view>
                 <input class='_text' disabled name="building" placeholder="选择资产所在楼宇" placeholder-class='input_text_phc' value="{{buildingInfo.name}}"></input>
             </view>
-            <view class="_arrow" bindtap="selectBuilding">
+            <view class="_arrow" bindtap="selectBuilding" wx:if="{{from == 'assetList'}}">
                 <text class="iconfont icon-jiantou"></text>
             </view>
         </view>

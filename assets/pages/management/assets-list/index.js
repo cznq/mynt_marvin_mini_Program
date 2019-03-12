@@ -9,6 +9,7 @@ Page({
     isIphoneX: app.globalData.isIphoneX,
     owner_id:'',//房东id
     employee_id:'',
+    assetName:'',
     hasAssets:true,
     asset_list:'',
     noneAssets: {
@@ -31,7 +32,8 @@ Page({
     var that= this;
     that.setData({ 
       owner_id:JSON.parse(options.params).owner_id,
-      employee_id:JSON.parse(options.params).employee_id
+      employee_id:JSON.parse(options.params).employee_id,
+      assetName:JSON.parse(options.params).assetName
     })
     app.Util.networkUrl.postUrl({
       url: app.globalData.BASE_ASSET_URL+'/asset/building_list',
@@ -55,13 +57,26 @@ Page({
       }
     })
   },
-  addAsset:function(){
+  addAsset:function(e){
     var params = JSON.stringify({
-      owner_id: 1,
-      employee_id:1
+      owner_id: this.data.owner_id,
+      employee_id:this.data.employee_id
     })
     wx.navigateTo({
-      url: '../add-asset/index?params='+ params,
+      url: '../add-asset/index?params='+ params+'&from='+e.currentTarget.dataset.from,
+    })
+  },
+  //获取楼宇下资产列表信息
+  getBuildingAsset:function(e){
+    var buildingInfo = JSON.stringify({
+      building_id: e.currentTarget.dataset.id,
+      building_name: e.currentTarget.dataset.building_name,
+      building_address: e.currentTarget.dataset.building_address,
+      owner_id: this.data.owner_id,
+      employee_id: this.data.employee_id
+    })
+    wx.navigateTo({
+      url: '../building_room/index?buildingInfo='+ buildingInfo,
     })
   },
   /**

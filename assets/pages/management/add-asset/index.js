@@ -12,18 +12,33 @@ Page({
     nextStep: true,
     room: '',
     roomArea: '',
-    floor_index: ''
+    floor_index: '',
+    from:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
+   * options.from   roomLIst 房间号列表; assetList 资产列表
    */
   onLoad: function(options) {
-    this.setData({
-      owner_id: JSON.parse(options.params).owner_id,
-      employee_id: JSON.parse(options.params).employee_id,
-      nextStep: true
-    })
+    //console.log(options)
+    this.setData({ from: options.from })
+    if(options.from =='assetList'){
+      this.setData({
+        owner_id: JSON.parse(options.params).owner_id,
+        employee_id: JSON.parse(options.params).employee_id,
+        nextStep: true,
+      })
+    }else if(options.from =='roomList'){
+      this.setData({
+        owner_id: JSON.parse(options.buildingAsset).owner_id,
+        employee_id: JSON.parse(options.buildingAsset).employee_id,
+        buildingInfo:JSON.parse(options.buildingAsset).buildingInfo,
+        nextStep: true,
+      })
+      console.log(this.data.buildingInfo)
+    }
+    
   },
   //选择所属楼宇
   selectBuilding: function() {
@@ -114,7 +129,6 @@ Page({
     }
   },
   goNext: function() {
-    console.log('this.data.employee_id:', this.data.owner_id);
     var assetInfo = JSON.stringify({
       buildingInfo: this.data.buildingInfo,
       floor_index: this.data.floor_index,
@@ -146,6 +160,7 @@ Page({
         buildingInfo: currPage.data.buildingInfo
       })
     }
+    console.log(that.data.buildingInfo)
     if (that.data.buildingInfo) {
       that.getFloor();
     }
