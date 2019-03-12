@@ -32,9 +32,10 @@ Page({
             area: JSON.parse(options.params).area,
             room_number: JSON.parse(options.params).room_number, //房间号
             floor: JSON.parse(options.params).floor, //楼层名
+            building_id:JSON.parse(options.params).building_id
         })
         wx.setNavigationBarTitle({
-            title: JSON.parse(options.room_number)
+            title: _this.data.room_number
         });
     },
 
