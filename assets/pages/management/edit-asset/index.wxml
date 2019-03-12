@@ -7,7 +7,7 @@
 <view class="content">
     <view class="infos">
         <view class="headTitle">
-            <text>{{building_name}} {{floor_index}}{{room_number}}</text>
+            <text>{{building_name}}{{floor}}层{{room_number}}</text>
         </view>
         <view class="subTitle">
             <text>建筑面积：{{area}}㎡</text>

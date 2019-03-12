@@ -24,13 +24,14 @@ Page({
     onLoad: function(options) {
         var _this = this;
         _this.setData({
-            building_address: JSON.parse(options.building_address),
-            building_name: JSON.parse(options.building_name),
-            employee_id: JSON.parse(options.employee_id),
-            id: JSON.parse(options.id), //资产id
-            area: JSON.parse(options.area),
-            room_number: JSON.parse(options.room), //房间号
-            floor_index: JSON.parse(options.floor), //楼层索引
+            building_address: JSON.parse(options.params).building_address,
+            building_name: JSON.parse(options.params).building_name,
+            owner_id:JSON.parse(options.params).owner_id,
+            employee_id: JSON.parse(options.params).employee_id,
+            id: JSON.parse(options.params).id, //资产id
+            area: JSON.parse(options.params).area,
+            room_number: JSON.parse(options.params).room_number, //房间号
+            floor: JSON.parse(options.params).floor, //楼层名
         })
         wx.setNavigationBarTitle({
             title: JSON.parse(options.room_number)
