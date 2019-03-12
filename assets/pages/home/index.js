@@ -107,6 +107,11 @@ Page({
                     assetName:res.data.result.name+'的资产'
                   })
                 }
+                wx.setStorageSync('asset_info',{
+                  "employee_id": _this.data.employee_id,
+                  "owner_id": _this.data.owner_id,
+                  "assetName": _this.data.assetName
+                });
               }
             }
           })
@@ -138,13 +143,8 @@ Page({
   },
   //资产管理
   assetsManage:function(){
-    var params = JSON.stringify({
-      owner_id: this.data.owner_id,
-      employee_id:this.data.employee_id,
-      assetName:this.data.assetName
-    })
     wx.navigateTo({  
-      url: '../management/assets-list/index?params='+ params,
+      url: '../management/assets-list/index',
     })
   },
   //核销

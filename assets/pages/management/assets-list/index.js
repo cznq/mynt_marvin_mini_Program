@@ -29,12 +29,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log('options:', options);
     var that = this;
     that.setData({
-      owner_id: JSON.parse(options.params).owner_id,
-      employee_id: JSON.parse(options.params).employee_id,
-      assetName: JSON.parse(options.params).assetName
+      owner_id: wx.getStorageSync('asset_info').owner_id,
+      employee_id: wx.getStorageSync('asset_info').employee_id,
+      assetName: wx.getStorageSync('asset_info').assetName
     })
     app.Util.networkUrl.postUrl({
       url: app.globalData.BASE_ASSET_URL + '/asset/building_list',
