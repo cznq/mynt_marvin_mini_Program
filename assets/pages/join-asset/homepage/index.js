@@ -28,10 +28,12 @@ Page({
                     let rinfo = res.data.result;
                     var params = JSON.stringify({
                         employee_id: rinfo.employee_id,
-                        building_address: rinfo.building_address,
+                        // building_address: rinfo.building_address,
+                        union_id: rinfo.union_id,
                         owner_id: rinfo.owner_id,
                         phone: rinfo.phone,
                         role: rinfo.role,
+                        assetName: rinfo.name,
                         asset_list: rinfo.asset_list,
                         privilege_list: rinfo.privilege_list
                     })
