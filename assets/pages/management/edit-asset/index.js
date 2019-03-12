@@ -13,6 +13,8 @@ Page({
         area: "",
         room_number: "",
         floor_index: "",
+        owner_id: "",
+        employee_id: "",
         addType: "roomList",
     },
 
