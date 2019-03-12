@@ -172,7 +172,7 @@ Component({
       })
     },
     forbid() {
-      console.log(4444);
+      console.log('禁止点击');
       return false
     },
     randomOut() { //时间戳随机数
@@ -185,7 +185,77 @@ Component({
   },
   lifetimes: {
     attached() {
+      let that = this
       // 在组件实例进入页面节点树时执行
+      console.log('this.data.uploadImage:', this.data.uploadImage);
+      if (this.data.uploadImage != '') {
+        console.log('uploadImage:', '图片不为空');
+        //获取图片信息
+        wx.getImageInfo({
+          src: that.data.uploadImage,
+          success(res) {
+            if (that.data.direction === "row") {
+              if (res.width > res.height) {
+                let scale = 576 / res.width
+                let height = res.height * scale
+                let width = 576
+                if (height > 384) {
+                  scale = 384 / height
+                  width = width * scale
+                  height = 384
+                }
+                that.setData({
+                  ImgWid: width,
+                  ImgHeig: height
+                })
+              } else if (res.width < res.height) {
+                let scale = 384 / res.height
+                let width = res.width * scale
+                let height = 384
+                that.setData({
+                  ImgWid: width,
+                  ImgHeig: height
+                })
+              }
+            } else {
+              if (res.width > res.height) {
+                let scale = 430 / res.width
+                let height = res.height * scale
+                let width = 430
+                if (height > 620) {
+                  scale = 620 / height
+                  width = width * scale
+                  height = 620
+                }
+                that.setData({
+                  ImgWid: width,
+                  ImgHeig: height
+                })
+              } else if (res.width < res.height) {
+                let scale = 620 / res.height
+                let width = res.width * scale
+                let height = 620
+                if (width > 430) {
+                  scale = 430 / height
+                  width = width * scale
+                  height = 430
+                }
+                that.setData({
+                  ImgWid: width,
+                  ImgHeig: height
+                })
+              }
+            }
+            // console.log('this.data.ImgWid', that.data.ImgWid);
+            // console.log('this.data.ImgHeig', that.data.ImgHeig);
+          }
+        })
+
+        that.setData({
+          uploadImage: that.data.uploadImage,
+          model: 4
+        })
+      }
     },
     detached() {
       // 在组件实例被从页面节点树移除时执行

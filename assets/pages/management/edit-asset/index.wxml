@@ -1,0 +1,34 @@
+<!--assets/pages/management/edit-asset/index.wxml-->
+<view class="slide">
+    <view class="item left _font28 _weight500">资产信息</view>
+    <view class="item right _font28 _weight500">合同信息</view>
+</view>
+<view class="content">
+    <view class="infos">
+        <view class="headTitle">
+            <text>{{room}}</text>
+        </view>
+        <view class="subTitle">
+            <text>{{area}}</text>
+        </view>
+        <view class="subTitle subButtom">
+            <text>{{address}}</text>
+        </view>
+    </view>
+    <view class="icons">
+        <view class="iconfont icon-hetong icon-hetong-edit"></view>
+        <view class="textEx">
+            <text>点击查看</text>
+        </view>
+    </view>
+</view>
+<view class="edit _flex _flex_space_between">
+    <text class="t1">面积</text>
+    <view class="t2">
+        <text>请编辑租售面积</text>
+        <text class="iconfont icon-jiantou"></text>
+    </view>
+</view>
+<view class="_fixed _footer">
+    <button disabled="{{nextStep}}" class="_font28 _border_radius4" bindtap="removeAsset">移除资产</button>
+</view>

@@ -1,0 +1,133 @@
+/* assets/pages/management/edit-asset/index.wxss */
+@import "../../public/public.wxss";
+
+page {
+    background: #F0F2F5;
+    height: 100%;
+}
+
+.slide {
+    width: 750rpx;
+    height: 111rpx;
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    border-top: 1rpx solid #8891A9;
+}
+
+.slide .item {
+    display: inline-block;
+    width: 180rpx;
+    height: 111rpx;
+    line-height: 111rpx;
+    text-align: center;
+    height: auto;
+    margin: 0 auto;
+    color: #092344;
+}
+
+.slide .item.left {
+    margin-left: 131rpx;
+    border-bottom: 4rpx solid #092344;
+}
+
+.slide .item.right {
+    margin-right: 135rpx;
+}
+
+.content {
+    width: 710rpx;
+    height: 194rpx;
+    margin: 20rpx;
+    display: flex;
+    background: #FFFFFF;
+}
+
+.content .infos {
+    width: 80%;
+    height: 100%;
+    flex: none;
+}
+
+.content .infos .headTitle {
+    padding: 40rpx 20rpx 10rpx 20rpx;
+    width: 100%;
+    height: 38rpx;
+    font-size: 40rpx;
+    font-weight: 500;
+    color: #092344;
+    line-height: 50rpx;
+}
+
+.content .infos .subTitle {
+    width: 100%;
+    height: 23rpx;
+    font-size: 24rpx;
+    color: #8891A9;
+    line-height: 50rpx;
+    padding: 10rpx 20rpx 0 20rpx;
+}
+
+.content .infos .subButtom {
+    padding-bottom: 40rpx;
+}
+
+.content .icons {
+    height: 100%;
+    flex: 1;
+    text-align: center;
+}
+
+.content .icons .icon-hetong-edit {
+    width: 35rpx;
+    height: 40rpx;
+    color: #F78421;
+    margin: 63rpx auto auto auto;
+}
+
+.content .icons .textEx {
+    height: 19rpx;
+    font-size: 20rpx;
+    font-weight: 500;
+    color: #F78421;
+    line-height: 50rpx;
+}
+
+.edit {
+    width: 670rpx;
+    height: 64rpx;
+    margin: 0 auto;
+    display: flex;
+    border-bottom: 1rpx solid #8891A9;
+}
+
+.edit .t1 {
+    width: 55rpx;
+    height: 27rpx;
+    font-size: 28rpx;
+    font-weight: 500;
+    color: #8891A9;
+    line-height: 50rpx;
+    padding-bottom: 20rpx;
+}
+
+.edit .t2 {
+    margin-left: auto;
+    height: 30rpx;
+    font-size: 32rpx;
+    color: #8891A9;
+    font-weight: normal;
+    line-height: 50rpx;
+    padding: 0 21rpx 20rpx 0;
+}
+
+.edit .iconfont {
+    padding-left: 20rpx;
+}
+
+._fixed button {
+    width: 281rpx;
+    height: 81rpx;
+    border: 1rpx solid #8891A9;
+    color: #8891A9;
+}

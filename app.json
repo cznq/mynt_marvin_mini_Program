@@ -97,6 +97,7 @@
         "pages/staff/edit/index",
         "pages/management/assets-list/index",
         "pages/management/add-asset/index",
+        "pages/management/edit-asset/index",
         "pages/management/add-assetProve/add-assetProve",
         "pages/management/building-list/index",
         "pages/management/creat-building/index",
