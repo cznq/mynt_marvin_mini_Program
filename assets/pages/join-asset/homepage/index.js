@@ -25,7 +25,7 @@ Page({
                 console.log('owner-get-verifycode return:');
                 console.log(res);
                 if (res.data.sub_code == "SUCCESS") {
-                    wx.setStorageSync({
+                    wx.setStorageSync('asset_info', {
                         "employee_id": rinfo.employee_id,
                         "owner_id": rinfo.owner_id,
                         "assetName": rinfo.name
