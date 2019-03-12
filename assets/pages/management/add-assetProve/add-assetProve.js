@@ -11,6 +11,7 @@ Page({
     room: "",
     roomArea: 0,
     uploadImage: '',
+    selectedImages: [],
     items: [{
         name: 'roomProve',
         value: '房产证',
@@ -32,16 +33,14 @@ Page({
     console.log('options:', options);
     if (JSON.stringify(options) != "{}") {
       let assetInfo = JSON.parse(options.assetInfo)
-      if (true) {
-        this.setData({
-          buildingInfo: assetInfo.buildingInfo,
-          floor: assetInfo.floor_index,
-          room: assetInfo.room,
-          roomArea: assetInfo.roomArea,
-          owner_id: 1, //assetInfo.owner_id
-          employee_id: 1 //assetInfo.employee_id
-        })
-      }
+      this.setData({
+        buildingInfo: assetInfo.buildingInfo,
+        floor: assetInfo.floor_index,
+        room: assetInfo.room,
+        roomArea: assetInfo.roomArea,
+        owner_id: 1, //assetInfo.owner_id
+        employee_id: 1 //assetInfo.employee_id
+      })
     }
   },
   radioChange(e) {

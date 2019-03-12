@@ -10,28 +10,28 @@ Page({
    */
   data: {
     isIphoneX: app.globalData.isIphoneX,
-    clearSearchShow:false,
-    searchFocus:false,
-    searchBuildingList:'',
+    clearSearchShow: false,
+    searchFocus: false,
+    searchBuildingList: '',
     codes: [], //城市ID
     city: '区域', //city名称
     citylist: CityList, //城市数据
-    owner_id:'',
-    employee_id:'',
-    building_list:'',
-    allBuilding:'',
-    searchShow:false
+    owner_id: '',
+    employee_id: '',
+    building_list: '',
+    allBuilding: '',
+    searchShow: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var _this = this
     //获取楼宇列表
     //_this.getBuilding()
     app.Util.networkUrl.postUrl({
-      url: app.globalData.BASE_ASSET_URL+'/building/list/group',
+      url: app.globalData.BASE_ASSET_URL + '/building/list/group',
       params: {
         data: JSON.stringify({
           province_id: '',
@@ -41,38 +41,50 @@ Page({
         if (res.data.result) {
           let arr = res.data.result.building_list;
           arr = arr.map(item => {
-              let _stack = Object.keys(item);
-              if (_stack.length === 0) { return; };
-              let code = _stack.toString(), building = item[code];
-              return { code, building};
-          })       
+            let _stack = Object.keys(item);
+            if (_stack.length === 0) {
+              return;
+            };
+            let code = _stack.toString(),
+              building = item[code];
+            return {
+              code,
+              building
+            };
+          })
           _this.setData({
-            building_list:arr,         
-            allBuilding:arr[0].building
+            building_list: arr,
+            allBuilding: arr[0].building
           })
         }
       }
     })
   },
   //获取楼宇列表
-  getBuilding:function(province_id,city_id){
+  getBuilding: function(province_id, city_id) {
     var _this = this
     app.Util.networkUrl.postUrl({
-      url: app.globalData.BASE_ASSET_URL+'/building/list/group',
+      url: app.globalData.BASE_ASSET_URL + '/building/list/group',
       params: {
         data: JSON.stringify({
           province_id: province_id,
-          city_id:city_id
+          city_id: city_id
         })
       },
       success: res => {
         if (res.data.result) {
           let arr = res.data.result.building_list;
           arr = arr.map(item => {
-              let _stack = Object.keys(item);
-              if (_stack.length === 0) { return; };
-              let code = _stack.toString(), building = item[code];
-              return { code, building};
+            let _stack = Object.keys(item);
+            if (_stack.length === 0) {
+              return;
+            };
+            let code = _stack.toString(),
+              building = item[code];
+            return {
+              code,
+              building
+            };
           })
           //console.log(arr)
           //去掉第一个
@@ -81,9 +93,9 @@ Page({
           //   if(arr[i].code !=''){
           //     newArr.push(arr[i])
           //   }
-          // }        
+          // }
           _this.setData({
-            building_list:arr,        
+            building_list: arr,
           })
           // console.log(_this.data.building_list)
           // console.log(_this.data.allBuilding)
@@ -94,22 +106,22 @@ Page({
   //搜索楼宇
   searchInput: function(e) {
     let _this = this
-    let searchValue = e.detail.value;//用户实时输入值
+    let searchValue = e.detail.value; //用户实时输入值
     let arr = _this.data.allBuilding;
     console.log(arr)
-    var newList = []//匹配的结果
+    var newList = [] //匹配的结果
     if (searchValue) {
       _this.setData({
         clearSearchShow: true
       })
-      arr.forEach(function (e) {
+      arr.forEach(function(e) {
         if (e.building_name.indexOf(searchValue) != -1) {
           newList.push(e)
         }
       })
       _this.setData({
         searchBuildingList: newList,
-        searchShow:true
+        searchShow: true
       })
       //console.log(_this.data.searchBuildingList)
     } else {
@@ -119,16 +131,16 @@ Page({
     }
 
   },
-  searchSubmit:function(e){
+  searchSubmit: function(e) {
     //console.log(e)
     let _this = this
-    let searchValue = e.detail.value;//用户输入值
-    if(searchValue == ''){
+    let searchValue = e.detail.value; //用户输入值
+    if (searchValue == '') {
       _this.setData({
         building_list: _this.data.building_list,
-        searchShow:false
+        searchShow: false
       })
-    }else{
+    } else {
       return false;
     }
   },
@@ -152,80 +164,81 @@ Page({
       searchFocus: false
     });
   },
-  creatBuilding:function(){
+  creatBuilding: function() {
     wx.navigateTo({
       url: '../creat-building/index',
     })
   },
   //选择市
-  cityPicker(e) { 
+  cityPicker(e) {
     console.log(e)
+    let _this = this
     this.setData({
       codes: e.detail.code,
       city: e.detail.value[1]
     })
-    this.getBuilding(this.data.codes[0],this.data.codes[1])
+    this.getBuilding(this.data.codes[0], this.data.codes[1])
     this.setData({
       building_list: _this.data.building_list,
-      searchShow:false
+      searchShow: false
     })
   },
-  selectBuilding:function(e){
+  selectBuilding: function(e) {
     let pages = getCurrentPages();
-    let prevPage = pages[pages.length-2];
+    let prevPage = pages[pages.length - 2];
     prevPage.setData({
-      buildingInfo:e.currentTarget.dataset
+      buildingInfo: e.currentTarget.dataset
     })
     wx.navigateBack({
-      delta:1
+      delta: 1
     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })
