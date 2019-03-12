@@ -25,6 +25,11 @@ Page({
                 console.log('owner-get-verifycode return:');
                 console.log(res);
                 if (res.data.sub_code == "SUCCESS") {
+                    wx.setStorageSync({
+                        "employee_id": rinfo.employee_id,
+                        "owner_id": rinfo.owner_id,
+                        "assetName": rinfo.name
+                    });
                     let rinfo = res.data.result;
                     var params = JSON.stringify({
                         employee_id: rinfo.employee_id,
