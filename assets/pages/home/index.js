@@ -76,21 +76,40 @@ Page({
         })
       },
       success: res => {
-        //if (res.data.sub_code == 0 && res.data.result) {
-          wx.setNavigationBarTitle({
-            title: "轻客智能科技"
-          })
+        if (res.data.result) {
           _this.setData({
-            // owner_id:res.data.result.owner_id,//房东id
-            // employee_id : res.data.result.employee_id//职员id
+            owner_id:res.data.result.owner_id,//房东id
+            employee_id : res.data.result.employee_id//职员id
+          })
+          //查询房东信息
+          app.Util.networkUrl.postUrl({
+            url: app.globalData.BASE_ASSET_URL+'/owner/get',
+            params: {
+              data: JSON.stringify({
+                owner_id: _this.data.owner_id
+              })
+            },
+            success: res => {
+              if (res.data.result) {
+                if(res.data.result.type == 1){
+                  wx.setNavigationBarTitle({
+                    title: res.data.result.name
+                  }) 
+                }else if(res.data.result.type == 2){
+                  wx.setNavigationBarTitle({
+                    title: "资产管理"
+                  }) 
+                }
+              }
+            }
           })
           //获取资产汇总信息
           app.Util.networkUrl.postUrl({
             url: app.globalData.BASE_ASSET_URL+'/asset/summary',
             params: {
               data: JSON.stringify({
-                owner_id: 1,
-                employee_id:1
+                owner_id: _this.data.owner_id,
+                employee_id:_this.data.employee_id
               })
             },
             success: res => {
@@ -106,7 +125,7 @@ Page({
               }
             }
           })
-        //}
+        }
       }
     })
   },
@@ -141,7 +160,7 @@ Page({
   //人员管理
   peopleManage:function(){
     wx.navigateTo({
-      url: '',
+      url: '../staff/list/index',
     })
   },
   /**
