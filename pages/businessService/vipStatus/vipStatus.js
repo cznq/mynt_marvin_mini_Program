@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    vipStatus: 'opening'
+    vipStatus: 'opening',
+    submit: '续费享折扣'
   },
 
   /**
