@@ -1,0 +1,21 @@
+<view>
+  <view class="vipCard">
+    <image wx:if="{{vipStatus==='NotOpen'||vipStatus==='opened'}}" class="cardBg" src="http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/card_gray@2x.png" alt="vip背景" />
+    <image wx:if="{{vipStatus==='opening'}}"  class="cardBg" src="http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/card@2x.png" alt="vip背景" />
+    <view class="companyName _row _cen_start">
+      <image class="companyLogo" src='http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/card_gray@2x.png' />
+      <view class="_column">
+        <text class="signOne">轻客智能科技</text>
+        <text class="signTwo">轻客智能科技（江苏）有限公司</text>
+      </view>
+    </view>
+    <view class="payRecord">
+      缴费记录
+    </view>
+    <view class="timeStatus">
+      <view class="signName"></view>
+      <view class="signTime"></view>
+    </view>
+    <view class="statusName"></view>
+  </view>
+</view>

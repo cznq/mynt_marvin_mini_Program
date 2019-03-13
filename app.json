@@ -63,7 +63,8 @@
     "pages/invite-list/invite-detail/invite-detail",
     "pages/visitor-list/list/index",
     "pages/visitor-list/detail/index",
-    "pages/company/unattended-setting/setting/index"
+    "pages/company/unattended-setting/setting/index",
+    "pages/businessService/vipStatus/vipStatus"
   ],
   "subPackages": [
     {

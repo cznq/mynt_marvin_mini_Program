@@ -1,0 +1,60 @@
+.vipCard {
+  position: relative;
+  width: 670rpx;
+  height: 320rpx;
+  margin: 40rpx auto 0;
+}
+
+.vipCard .cardBg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 670rpx;
+  height: 320rpx;
+  z-index: 1;
+}
+
+.vipCard .companyName {
+  position: absolute;
+  left: 40rpx;
+  top: 40rpx;
+  z-index: 2;
+}
+
+.companyName .companyLogo {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 12rpx;
+}
+
+.companyName .signOne {
+  color: #fff;
+  font-size: 32rpx;
+  line-height: 48rpx;
+  letter-spacing: 2px;
+}
+
+.companyName .signTwo {
+  color: #fff;
+  font-size: 20rpx;
+  line-height: 30rpx;
+}
+
+.vipCard .payRecord {
+  position: absolute;
+  top: 50rpx;
+  right: 40rpx;
+  width: 120rpx;
+  height: 40rpx;
+  font-size: 24rpx;
+  color: #fff;
+  border: 2rpx solid #fff;
+  border-radius: 8rpx;
+  text-align: center;
+  line-height: 40rpx;
+  z-index: 2;
+}
+
+.vipCard .timeStatus {}
