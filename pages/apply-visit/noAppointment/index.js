@@ -9,7 +9,7 @@ Page({
     company_code:'',
     qr_code_key:'',
     button_text: '申请访问该企业',
-    showLoginModal: false,
+    buttonDisable: true,
     isCoverView: false//视频全屏cover-view隐藏
   },
   //机器人端二维码隐藏
@@ -51,6 +51,9 @@ Page({
     companyPage.cd(_this, app, "company", "get_company_info", _this.data.company_code, function() {
       wx.setNavigationBarTitle({
         title: _this.data.cd.company_short_name
+      })
+      _this.setData({
+        buttonDisable: false
       })
     });
     setTimeout(function () {
