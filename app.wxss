@@ -575,6 +575,11 @@ input:-webkit-input-placeholder {
     line-height: 100rpx;
 }
 
+button[disabled] {
+  background: rgba(0, 123, 255, .2);
+  color: #fff;
+}
+
 ._button_disabled {
     background: #d9dffd !important;
     color: #fff !important;

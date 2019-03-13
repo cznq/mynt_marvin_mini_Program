@@ -14,6 +14,7 @@
   line-height: 1;
   height: 700rpx;
   border-bottom: 2rpx solid rgba(202, 202, 202, .5);
+  position: relative;
 }
 
 .card-info::before,
@@ -24,7 +25,7 @@
   border-radius: 50%;
   background-color: rgba(135, 145, 168, 1);
   position: absolute;
-  top: 642rpx;
+  bottom: -18rpx;
   box-sizing: border-box;
 }
 

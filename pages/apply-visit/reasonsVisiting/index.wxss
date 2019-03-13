@@ -46,3 +46,7 @@ icon {
   font-weight: 300;
 }
 .pt{top:40%;}
+.footer button[disabled] {
+  background: rgba(0, 123, 255, .2);
+  color: #fff;
+}
