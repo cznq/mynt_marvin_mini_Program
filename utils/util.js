@@ -93,7 +93,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         }
 
         wx.showToast({
-          title: '加载失败，请尝试刷新',
+          title: '加载失败，请关闭后重试',
           icon: 'none'
         })
         if (requestHandler.fail) requestHandler.fail();
