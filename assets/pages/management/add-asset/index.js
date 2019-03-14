@@ -37,6 +37,17 @@ Page({
         nextStep: true,
       })
       console.log(this.data.buildingInfo)
+    }else if(options.from =='editAsset'){
+      this.setData({
+        owner_id: JSON.parse(options.buildingAsset).owner_id,
+        employee_id: JSON.parse(options.buildingAsset).employee_id,
+        buildingInfo:JSON.parse(options.buildingAsset).buildingInfo,
+        floor_index: JSON.parse(options.buildingAsset).floor_index,
+        floor:JSON.parse(options.buildingAsset).floor,
+        room:JSON.parse(options.buildingAsset).room,
+        roomArea:JSON.parse(options.buildingAsset).area,
+        nextStep: false,
+      })
     }
     
   },
@@ -80,7 +91,7 @@ Page({
       index: n,
       floor_index: this.data.floor_list[n].floor_index
     })
-    if (this.data.buildingInfo != '' && this.data.room != '' && this.data.roomArea != '' && this.data.floor != '') {
+    if (this.data.buildingInfo != '' && this.data.room != '' && this.data.roomArea != '' && this.data.floor_index != '') {
       this.setData({
         nextStep: false
       })
@@ -104,7 +115,7 @@ Page({
     this.setData({
       room: e.detail.value
     })
-    if (this.data.buildingInfo != '' && this.data.room != '' && this.data.roomArea != '' && this.data.floor != '') {
+    if (this.data.buildingInfo != '' && this.data.room != '' && this.data.roomArea != '' && this.data.floor_index != '') {
       this.setData({
         nextStep: false
       })
@@ -118,7 +129,7 @@ Page({
     this.setData({
       roomArea: e.detail.value
     })
-    if (this.data.buildingInfo != '' && this.data.room != '' && this.data.roomArea != '' && this.data.floor != '') {
+    if (this.data.buildingInfo != '' && this.data.room != '' && this.data.roomArea != '' && this.data.floor_index != '') {
       this.setData({
         nextStep: false
       })

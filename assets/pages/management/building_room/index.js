@@ -71,6 +71,7 @@ Page({
             area: e.currentTarget.dataset.area,
             room_number: e.currentTarget.dataset.room, //房间号
             floor: e.currentTarget.dataset.floor, //楼层名
+            floor_index:e.currentTarget.dataset.index,//楼层索引
             building_id: this.data.building_id,
         })
         wx.navigateTo({

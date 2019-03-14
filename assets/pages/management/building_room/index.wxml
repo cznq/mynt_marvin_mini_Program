@@ -4,7 +4,7 @@
         <text class="iconfont icon-tianjia"></text>添加房间
     </view>
 <block wx:for="{{cd}}" wx:for-index="idx" wx:key="key">
-    <view class="_room_list" wx:if="{{item.status != 1}}" bindtap="assetDetail" data-id="{{item.id}}" data-area="{{item.area}}" data-room="{{item.room_number}}" data-floor="{{item.floor_name}}">
+    <view class="_room_list" wx:if="{{item.status != 1}}" bindtap="assetDetail" data-id="{{item.id}}" data-area="{{item.area}}" data-room="{{item.room_number}}" data-floor="{{item.floor_name}}" data-index="{{item.floor_index}}">
         <view class="_room">
             {{item.room_number}}
         </view>

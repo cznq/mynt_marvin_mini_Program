@@ -15,7 +15,6 @@ Page({
         floor_index: "",
         owner_id: "",
         employee_id: "",
-        addType: "roomList",
     },
 
     /**
@@ -32,6 +31,7 @@ Page({
             area: JSON.parse(options.params).area,
             room_number: JSON.parse(options.params).room_number, //房间号
             floor: JSON.parse(options.params).floor, //楼层名
+            floor_index: JSON.parse(options.params).floor_index,
             building_id:JSON.parse(options.params).building_id
         })
         wx.setNavigationBarTitle({
@@ -39,7 +39,7 @@ Page({
         });
     },
 
-    jumpUrl: function() {
+    jumpUrl: function(e) {
         var _this = this;
         var buildingAsset = JSON.stringify({
             buildingInfo: {
@@ -47,11 +47,15 @@ Page({
                 name: _this.data.building_name,
                 address: _this.data.building_address,
             },
+            room:_this.data.room_number,
             owner_id: _this.data.owner_id,
+            area: _this.data.area,
+            floor_index: _this.data.floor_index,
+            floor: _this.data.floor,
             employee_id: _this.data.employee_id
         })
         wx.navigateTo({
-            url: '../add-asset/index?buildingAsset=' + buildingAsset + '&from=' + _this.data.addType,
+            url: '../add-asset/index?buildingAsset=' + buildingAsset + '&from=' + e.currentTarget.dataset.from,
         })
     },
 

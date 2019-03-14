@@ -16,7 +16,7 @@
             <text>{{building_address}}</text>
         </view>
     </view>
-    <view class="icons" bindtap="jumpUrl">
+    <view class="icons" bindtap="jumpUrl" data-from="editAsset">
         <view class="iconfont icon-hetong icon-hetong-edit"></view>
         <view class="textEx">
             <text>点击查看</text>
