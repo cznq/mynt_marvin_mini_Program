@@ -1,5 +1,4 @@
 const app = getApp();
-var count = 1;
 Page({
 
   /**
@@ -13,6 +12,7 @@ Page({
     qrcode_tips: '该码实时更新，请勿泄露。',
     avatar: '',
     error_msg: null,
+    count: 1,
     lbtnLose: true,
     rbtnLose: false,
     cur_Item: 0,
@@ -54,18 +54,20 @@ Page({
     this.getFloorQrcode()
   },
   clik_lBtn() {
+    let that = this;
     let cur_Item = this.data.cur_Item - 1
-    if (count == 1) {
+    if (that.data.count == 1) {
       this.setData({
         lbtnLose: true,
       })
       return false
     } else {
-      count = count - 1
+      let count = that.data.count - 1
       this.setData({
         rbtnLose: false,
+        count: count
       })
-      if (count == 1) {
+      if (that.data.count == 1) {
         this.setData({
           lbtnLose: true,
         })
@@ -76,19 +78,21 @@ Page({
     })
   },
   clik_rBtn() {
+    let that = this;
     let cur_Item = this.data.cur_Item + 1
     let step = this.data.floors.length - 3
-    if (count > step) {
+    if (that.data.count > step) {
       this.setData({
         rbtnLose: true,
       })
       return false
     } else {
-      count = count + 1
+      let count = that.data.count + 1
       this.setData({
         lbtnLose: false,
+        count: count
       })
-      if (count > step) {
+      if (that.data.count > step) {
         this.setData({
           rbtnLose: true,
         })
@@ -277,7 +281,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
     if (this.data.invitation_id) {
       this.getInitation();
     } else {
