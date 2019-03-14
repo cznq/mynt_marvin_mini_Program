@@ -1,21 +1,59 @@
-<view>
   <view class="vipCard">
     <image wx:if="{{vipStatus==='NotOpen'||vipStatus==='opened'}}" class="cardBg" src="http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/card_gray@2x.png" alt="vip背景" />
     <image wx:if="{{vipStatus==='opening'}}"  class="cardBg" src="http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/card@2x.png" alt="vip背景" />
     <view class="companyName _row _cen_start">
-      <image class="companyLogo" src='http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/card_gray@2x.png' />
+      <image class="companyLogo" src='http://slightech-marvin.oss-cn-hangzhou.aliyuncs.com/production/company/1/logo_url/6afeea8d976a95c591b8dbc49da9cf13.jpg' />
       <view class="_column">
         <text class="signOne">轻客智能科技</text>
         <text class="signTwo">轻客智能科技（江苏）有限公司</text>
       </view>
     </view>
-    <view class="payRecord">
-      缴费记录
+    <view class="payRecord">缴费记录</view>
+    <view class="timeStatus _column">
+      <view class="signName">过期</view>
+      <view class="signTime">2018-06-01</view>
     </view>
-    <view class="timeStatus">
-      <view class="signName"></view>
-      <view class="signTime"></view>
+    <view class="statusName">
+      <text>已过期</text>
     </view>
-    <view class="statusName"></view>
   </view>
-</view>
+  <!-- nav -->
+  <view class="vipNav _row _cen_space">
+    <view class="exclusive">小觅商业服务专属特权</view>
+    <view class=" _row _cen_center">
+      <text class="exclusive_instr">全部权益</text>
+      <text  class="iconfont icon-jiantou jianSign"></text>
+    </view>
+  </view>
+  <view class="otherFun _row _cen_space">
+    <view class="_column _cen_start">
+      <image class='welfareImg' src='http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/%E5%91%98%E5%B7%A5%E7%A6%8F%E5%88%A9@2x.png'></image>
+      <view class="_column _cen_start">
+        <text class='WelfareOne'>员工福利</text>
+        <text class='WelfareTwo'>低于其他30%</text>
+      </view>
+    </view>
+    <view class="_column _cen_start">
+      <image class='welfareImg' src='http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/%E8%AE%BF%E5%AE%A2%E9%82%80%E8%AF%B7@2x.png'></image>
+      <view class="_column _cen_start">
+        <text class='WelfareOne'>访客邀请</text>
+        <text class='WelfareTwo'>缩短时间成本</text>
+      </view>
+    </view>
+    <view class="_column _cen_start">
+      <image class='welfareImg' src='http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/%E5%B9%BF%E5%91%8A%E5%B1%95%E7%A4%BA@2x.png'></image>
+      <view class="_column _cen_start">
+        <text class='WelfareOne'>广告展示</text>
+        <text class='WelfareTwo'>线上线下垂直</text>
+      </view>
+    </view>
+    <view class="_column _cen_start">
+      <image class='welfareImg' src='http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/%E5%95%86%E5%8A%A1%E5%AE%B4%E8%AF%B7@2x.png'></image>
+      <view class="_column _cen_start">
+        <text class='WelfareOne'>商务宴请</text>
+        <text class='WelfareTwo'>免预存备用金</text>
+      </view>
+    </view>
+  </view>
+
+<view class="submit">{{submit}}</view>

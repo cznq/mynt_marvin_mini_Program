@@ -1,24 +1,20 @@
 .vipCard {
   position: relative;
-  width: 670rpx;
-  height: 320rpx;
+  width: 750rpx;
+  height: 360rpx;
   margin: 40rpx auto 0;
 }
 
 .vipCard .cardBg {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 670rpx;
-  height: 320rpx;
+  width: 750rpx;
+  height: 360rpx;
   z-index: 1;
 }
 
 .vipCard .companyName {
   position: absolute;
-  left: 40rpx;
+  left: 60rpx;
   top: 40rpx;
   z-index: 2;
 }
@@ -34,6 +30,7 @@
   font-size: 32rpx;
   line-height: 48rpx;
   letter-spacing: 2px;
+  font-weight: 600;
 }
 
 .companyName .signTwo {
@@ -45,7 +42,7 @@
 .vipCard .payRecord {
   position: absolute;
   top: 50rpx;
-  right: 40rpx;
+  right: 60rpx;
   width: 120rpx;
   height: 40rpx;
   font-size: 24rpx;
@@ -57,4 +54,95 @@
   z-index: 2;
 }
 
-.vipCard .timeStatus {}
+.vipCard .timeStatus {
+  position: absolute;
+  bottom: 78rpx;
+  left: 60rpx;
+  z-index: 2;
+}
+
+.timeStatus .signName {
+  color: #fff;
+  font-size: 20rpx;
+  line-height: 30rpx;
+  letter-spacing: 1rpx;
+}
+
+.timeStatus .signTime {
+  color: #fff;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  letter-spacing: 1rpx;
+}
+
+.vipCard .statusName {
+  position: absolute;
+  bottom: 78rpx;
+  right: 60rpx;
+  z-index: 2;
+  font-size: 44rpx;
+  letter-spacing: 2rpx;
+  color: #fff;
+  line-height: 66rpx;
+}
+
+.vipNav {
+  padding: 0 60rpx;
+}
+
+.vipNav .exclusive {
+  font-size: 32rpx;
+  color: #1A2A4B;
+  line-height: 48rpx;
+  font-weight: 600;
+}
+
+.vipNav .exclusive_instr {
+  font-size: 24rpx;
+  color: rgba(136, 145, 169, 1);
+  line-height: 36rpx;
+  padding-right: 4rpx;
+}
+
+.jianSign {
+  font-size: 23rpx;
+  color: #8891A9;
+}
+
+.otherFun {
+  padding: 62rpx 38rpx 0;
+}
+
+.otherFun .welfareImg {
+  width: 60rpx;
+  height: 56rpx;
+  margin-bottom: 32rpx;
+}
+
+.otherFun .WelfareOne {
+  color: #1A2A4B;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  font-weight: 600;
+}
+
+.otherFun .WelfareTwo {
+  color: rgba(26, 42, 75, 0.6);
+  font-size: 24rpx;
+  line-height: 36rpx;
+}
+
+.submit {
+  position: fixed;
+  bottom: 60rpx;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 630rpx;
+  height: 100rpx;
+  background: rgba(219, 175, 88, 1);
+  border-radius: 8rpx;
+  color: #fff;
+  font-size: 36rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
