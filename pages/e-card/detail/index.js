@@ -277,7 +277,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    count = 1; //swiper计数器
     if (this.data.invitation_id) {
       this.getInitation();
     } else {
