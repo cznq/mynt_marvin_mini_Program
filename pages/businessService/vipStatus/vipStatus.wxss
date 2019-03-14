@@ -30,6 +30,7 @@
   font-size: 32rpx;
   line-height: 48rpx;
   letter-spacing: 2px;
+  font-weight: 600;
 }
 
 .companyName .signTwo {
@@ -93,6 +94,7 @@
   font-size: 32rpx;
   color: #1A2A4B;
   line-height: 48rpx;
+  font-weight: 600;
 }
 
 .vipNav .exclusive_instr {
