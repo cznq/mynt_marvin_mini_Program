@@ -1,0 +1,25 @@
+/* pages/businessService/payRecode/index.wxss */
+.payList {
+  border-top: 1px solid rgba(136, 145, 169, 0.3);
+  padding: 4rpx 40rpx 40rpx;
+}
+.pck-title {
+  line-height: 1;
+  padding: 44rpx 0 20rpx;
+  border-bottom: 1px dashed rgba(136, 145, 169, 0.3);
+}
+.pck-title .vipicon {
+  margin-right: 20rpx;
+  width: 40rpx;
+  height: 36rpx;
+}
+.price {
+  color: rgba(26, 42, 75, .6);
+  font-weight: 600;
+}
+.payList ._item {
+  color: rgba(136, 145, 169, 1);
+  font-size: 24rpx;
+  line-height: 1;
+  margin-top: 20rpx;
+}

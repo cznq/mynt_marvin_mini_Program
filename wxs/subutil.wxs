@@ -78,11 +78,45 @@ var returnArrayLength = function (arr) {
   }
 }
 
-var joinFloorRoom = function (arrayFandR) {
-
-
-
-
+var returnPicWidth = function (num) {
+  switch (num) {
+    case 0:
+      return 30;
+      break;
+    case 1:
+      return 23;
+      break;
+    case 2:
+      return 30;
+      break;
+    case 3:
+      return 31;
+      break;
+    case 4:
+      return 32;
+      break;
+    case 5:
+      return 30;
+      break;
+    case 6:
+      return 31;
+      break;
+    case 7:
+      return 25;
+      break;
+    case 8:
+      return 31;
+      break;
+    case 9:
+      return 31;
+      break;
+    case '.':
+      return 11;
+      break;
+    default:
+      return 31;
+      break;
+  }
 }
 
 module.exports.transRoleClassName = transRoleClassName;
@@ -90,4 +124,4 @@ module.exports.removeFloor = removeFloor;
 module.exports.transRoleName = transRoleName;
 module.exports.getFirstLetter = getFirstLetter;
 module.exports.returnArrayLength = returnArrayLength;
-module.exports.joinFloorRoom = joinFloorRoom;
+module.exports.returnPicWidth = returnPicWidth;

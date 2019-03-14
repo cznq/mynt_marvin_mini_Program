@@ -64,7 +64,9 @@
     "pages/visitor-list/list/index",
     "pages/visitor-list/detail/index",
     "pages/company/unattended-setting/setting/index",
-    "pages/businessService/vipStatus/vipStatus"
+    "pages/businessService/vipStatus/vipStatus",
+    "pages/businessService/servicePay/index",
+    "pages/businessService/payRecode/index"
   ],
   "subPackages": [
     {

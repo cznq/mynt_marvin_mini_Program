@@ -1,0 +1,117 @@
+/* pages/businessService/servicePay/index.wxss */
+.page__hd {
+  padding: 40rpx;
+}
+._company_name {
+  font-size: 32rpx;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 8rpx;
+  color: rgba(26, 42, 75, 1);
+}
+._company_short_name {
+  font-size: 20rpx;
+  line-height: 1;
+  color: rgba(26, 42, 75, 0.6);
+}
+._logo {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 12rpx;
+  background-color: rgba(136, 145, 169, 0.3);
+  border-radius: 8rpx;
+}
+._logo image {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 8rpx;
+}
+
+.page__bd {
+  padding: 0 40rpx;
+}
+.pay-package {
+  width: 100%;
+  height: 160rpx;
+  border: 2rpx solid rgba(136, 145, 169, 0.3);
+  border-radius: 10rpx;
+  position: relative;
+  overflow: hidden;
+}
+.pay-package.light-on {
+  border-color: rgba(230, 199, 138, 1);
+  background: rgba(255, 247, 230, 1);
+}
+.pay-package .discount {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: rgba(219, 175, 88, 1);
+  background-color: rgba(51, 51, 51, 1);
+  width: 80rpx;
+  height: 40rpx;
+  left: 0;
+  top: 0;
+  text-align: center;
+  line-height: 40rpx;
+  border-top-left-radius: 10rpx;
+  border-bottom-right-radius: 20rpx;
+}
+._content {
+  padding: 0 60rpx 0 80rpx;
+  background: transparent;
+  height: 160rpx;
+}
+._content ._right {
+  text-align: right;
+}
+.length {
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 12rpx;
+}
+.dic-info {
+  font-weight: 600;
+  line-height: 1;
+  color: rgba(26, 42, 75, .6);
+}
+.save {
+  background-color: rgba(230, 191, 115, 1);
+  border-radius: 30rpx;
+  height: 40rpx;
+  display: inline-block;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #fff;
+  padding: 0 22rpx 0 24rpx;
+  line-height: 40rpx;
+}
+.price {
+  color: rgba(139, 87, 42, 1);
+  font-weight: 600;
+  line-height: 1;
+  padding-right: 6rpx;
+}
+.price image {
+  margin-left: 3rpx;
+}
+.price .iconfont {
+  font-size: 60rpx;
+  margin: 0;
+}
+.introdution {
+  color: rgba(136, 145, 169, 1);
+  line-height: 36rpx;
+  margin-top: 40rpx;
+}
+.footer {
+  padding: 0 0 60rpx;
+  background: #fff;
+}
+.time-alert {
+  padding: 28rpx 0;
+  line-height: 1;
+}
+._button {
+  background: rgba(219, 175, 88, 1);
+  border-radius: 8rpx;
+}

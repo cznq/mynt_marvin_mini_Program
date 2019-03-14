@@ -1,0 +1,34 @@
+<!--pages/businessService/servicePay/index.wxml-->
+<view class="page">
+  <view class="page__hd _flex _flex_item_center">
+    
+  </view>
+  <view class="page__bd">
+    <view class="payList">
+      <view class="pck-title _font32 _flex _flex_item_center _flex_space_between">
+        <view class="_flex _flex_item_center"><view class='vipicon'></view><text>商业服务套件1个月</text></view>
+        <view class="price">¥198</view>
+      </view>
+      <view class="_item">会员生效时间:2019-02-25 12:49</view>
+      <view class="_item">会员生效时间:2019-02-25 12:49</view>
+      <view class="_item">会员生效时间:2019-02-25 12:49</view>
+    </view>
+
+    <view class="payList">
+      <view class="pck-title _font32 _flex _flex_item_center _flex_space_between">
+        <view class="_flex _flex_item_center"><view class='vipicon'></view><text>商业服务套件1个月</text></view>
+        <view class="price">¥198</view>
+      </view>
+      <view class="_item">会员生效时间:2019-02-25 12:49</view>
+      <view class="_item">会员生效时间:2019-02-25 12:49</view>
+      <view class="_item">会员生效时间:2019-02-25 12:49</view>
+    </view>
+
+
+  </view>
+  <view class="page__ft ">
+    
+  </view>
+
+
+</view>
