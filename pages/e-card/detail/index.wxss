@@ -15,6 +15,7 @@
   height: 700rpx;
   border-bottom: 2rpx solid rgba(202, 202, 202, .5);
   position: relative;
+  padding-bottom: 32rpx;
 }
 
 .card-info::before,
