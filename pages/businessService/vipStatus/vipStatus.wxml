@@ -8,7 +8,9 @@
         <text class="signTwo">轻客智能科技（江苏）有限公司</text>
       </view>
     </view>
+    <navigator url='../payRecord/index' hover-class='none'>
     <view class="payRecord">缴费记录</view>
+    </navigator>
     <view class="timeStatus _column">
       <view class="signName">过期</view>
       <view class="signTime">2018-06-01</view>
@@ -21,8 +23,10 @@
   <view class="vipNav _row _cen_space">
     <view class="exclusive">小觅商业服务专属特权</view>
     <view class=" _row _cen_center">
+      <navigator url='/benifit/pages/suite-introduce/suite-introduce' hover-class='none'>
       <text class="exclusive_instr">全部权益</text>
       <text  class="iconfont icon-jiantou jianSign"></text>
+      </navigator>
     </view>
   </view>
   <view class="otherFun _row _cen_space">
@@ -55,5 +59,6 @@
       </view>
     </view>
   </view>
-
+<navigator url='../servicePay/index' hover-class='none'>
 <view class="submit">{{submit}}</view>
+</navigator>

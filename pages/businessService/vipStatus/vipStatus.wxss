@@ -22,6 +22,7 @@
 .companyName .companyLogo {
   width: 60rpx;
   height: 60rpx;
+  border-radius: 8rpx;
   margin-right: 12rpx;
 }
 
