@@ -2,72 +2,36 @@
 <wxs src="../../../wxs/subutil.wxs" module="tools" />
 <view class="page">
   <view class="page__hd _flex _flex_item_center">
-    <view class="_logo"><image></image></view>
+    <view class="_logo"><image src="{{cmpInfo.logo}}"></image></view>
     <view class="_company_info">
-      <view class="_company_name">轻客智能科技</view>
-      <view class="_company_short_name">轻客智能科技（江苏）有限公司</view>
+      <view class="_company_name">{{cmpInfo.company_short_name}}</view>
+      <view class="_company_short_name">{{cmpInfo.company_name}}</view>
     </view>
   </view>
-  <view class="page__bd">
+  <view class="page__bd {{isIphoneX?'iphonex':''}}">
+    <block wx:for="{{pck}}" wx:for-item="item" wx:for-index="idx" wx:key="">
     <!-- 套件详情 开始-->
-    <view class="pay-package light-on _mb20" bindtap="choosePck">
-      <view class="discount _absolute">7折</view>
+    <view class="pay-package {{idx == chooseId?'light-on':''}} _mb20" data-pckid="{{idx}}" bindtap="choosePck">
+      <view class="discount _absolute" wx:if="{{item.discount}}">{{item.discount}}折</view>
       <view class="_content _flex _flex_item_center _flex_space_between">
         <view class="_left">
-          <view class="length _font40">12个月</view>
-          <view class="dic-info _font24">原价￥2376，限时折扣</view>
+          <view class="length _font40">{{item.timeLength}}个月</view>
+          <view class="dic-info _font24">{{item.pckInfo}}</view>
         </view>
         <view class="_right">
           <view class="price _flex _flex_item_center">
             <image src="../../../images/num/numb.png" mode='widthFix' style="width: 20rpx;"></image>
-            <block wx:for="{{price}}" wx:for-item="num" wx:key="inx">
+            <block wx:for="{{item.price}}" wx:for-item="num" wx:key="inx">
               <image src="../../../images/num/num{{num=='.'?'dot':num}}.png" mode='widthFix' style="width:{{tools.returnPicWidth(num)}}rpx"></image>
             </block>
           </view>
-          <view class="save">立省238元</view>
+          <view class="save" wx:if="{{item.savedValue}}">立省{{item.savedValue}}元</view>
         </view>
       </view>
     </view>
     <!-- 套件详情 结束-->
-
-    <!-- 套件详情 开始-->
-    <view class="pay-package _mb20" bindtap="choosePck">
-      <view class="discount _absolute">8折</view>
-      <view class="_content _flex _flex_item_center _flex_space_between">
-        <view class="_left">
-          <view class="length _font40">6个月</view>
-          <view class="dic-info _font24">原价￥2376，限时折扣</view>
-        </view>
-        <view class="_right">
-          <view class="price _flex _flex_item_center">
-            <image src="../../../images/num/numb.png" mode='widthFix' style="width: 20rpx;"></image>
-            <block wx:for="{{price}}" wx:for-item="num" wx:key="inx">
-              <image src="../../../images/num/num{{num=='.'?'dot':num}}.png" mode='widthFix' style="width:{{tools.returnPicWidth(num)}}rpx"></image>
-            </block>
-          </view>
-          <view class="save">立省238元</view>
-        </view>
-      </view>
-    </view>
-    <!-- 套件详情 结束-->
-    <!-- 套件详情 开始-->
-    <view class="pay-package _mb20" bindtap="choosePck">
-      <view class="_content _flex _flex_item_center _flex_space_between">
-        <view class="_left">
-          <view class="length _font40">6个月</view>
-          <view class="dic-info _font24">原价￥2376，限时折扣</view>
-        </view>
-        <view class="_right">
-          <view class="price _flex _flex_item_center">
-            <image src="../../../images/num/numb.png" mode='widthFix' style="width: 20rpx;"></image>
-            <block wx:for="{{price}}" wx:for-item="num" wx:key="inx">
-              <image src="../../../images/num/num{{num=='.'?'dot':num}}.png" mode='widthFix' style="width:{{tools.returnPicWidth(num)}}rpx"></image>
-            </block>
-          </view>
-        </view>
-      </view>
-    </view>
-    <!-- 套件详情 结束-->
+    </block>
+    
     <view class="introdution _font24">
       <view class="_line">说明： </view>
       <view class="_line">1. 8折优惠折扣价格仅限连续缴费会员专享，会员身份过期后将无法享受；</view>
@@ -79,7 +43,7 @@
   <view class="page__ft _txt_center">
     <view class="_fixed footer {{isIphoneX?'iphonex':''}}">
       <view class="_font24 time-alert">2019-06-01到期，购买后有效期将延续</view>
-      <button class="_button _font32" form-type="submit">立即续费</button>
+      <button class="_button _font32" bindtap="packagePay">立即续费</button>
     </view>
   </view>
 

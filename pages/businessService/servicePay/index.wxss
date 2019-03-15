@@ -26,9 +26,11 @@
   height: 60rpx;
   border-radius: 8rpx;
 }
-
 .page__bd {
-  padding: 0 40rpx;
+  padding: 0 40rpx 256rpx;
+}
+.page__bd.iphonex {
+  padding: 0 40rpx 296rpx;
 }
 .pay-package {
   width: 100%;
@@ -90,6 +92,7 @@
   font-weight: 600;
   line-height: 1;
   padding-right: 6rpx;
+  justify-content: flex-end;
 }
 .price image {
   margin-left: 3rpx;
@@ -106,6 +109,9 @@
 .footer {
   padding: 0 0 60rpx;
   background: #fff;
+}
+.footer.iphonex {
+  padding-bottom: 109rpx;
 }
 .time-alert {
   padding: 28rpx 0;
