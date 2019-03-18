@@ -1,7 +1,8 @@
 <!--pages/businessService/servicePay/index.wxml-->
+<import src="../../../templates/noneData/noneData.wxml" />
 <view class="page">
   <view class="page__hd _flex _flex_item_center">
-    
+
   </view>
   <view class="page__bd">
     <view class="payList">
@@ -26,8 +27,12 @@
 
 
   </view>
+  <view class="noData">
+      <template wx:if='{{noneData.show}}' is="noneDataPage" data="{{noneData:noneData}}" />
+  </view>
+
   <view class="page__ft ">
-    
+
   </view>
 
 
