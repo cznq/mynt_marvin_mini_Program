@@ -11,7 +11,7 @@
     <navigator url='../payRecord/index' hover-class='none'>
     <view class="payRecord">缴费记录</view>
     </navigator>
-    <view class="timeStatus _column">
+    <view wx:if="{{vipStatus==='opening' || vipStatus==='opened'}}" class="timeStatus _column">
       <view class="signName">过期</view>
       <view class="signTime">2018-06-01</view>
     </view>
@@ -60,5 +60,5 @@
     </view>
   </view>
 <navigator url='../servicePay/index' hover-class='none'>
-<view class="submit">{{submit}}</view>
+<view class="submit {{isIphoneX?'':'IphoneX'}}">{{submit}}</view>
 </navigator>

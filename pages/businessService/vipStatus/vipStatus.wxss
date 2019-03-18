@@ -147,3 +147,7 @@
   line-height: 100rpx;
   text-align: center;
 }
+
+.submit.IphoneX {
+  bottom: 109rpx;
+}

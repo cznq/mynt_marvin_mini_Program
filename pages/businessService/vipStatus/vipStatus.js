@@ -1,10 +1,12 @@
 // businessService/vipStatus/vipStatus.js
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    isIphoneX: app.globalData.isIphoneX,
     vipStatus: 'opening',
     submit: '续费享折扣'
   },
