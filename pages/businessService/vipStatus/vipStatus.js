@@ -15,7 +15,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_business_service_suite_status',
+        data: JSON.stringify({}),
+      },
+      success: res => {
+        console.log("res:", res);
 
+      }
+    })
   },
 
   /**
