@@ -1,0 +1,28 @@
+<view class="page">
+  <view class="page__bd">
+    <view class='collect-information'>
+      <view class="_flex step">
+        <view class='cur'></view>
+        <view class='cur'></view>
+      </view>
+      <view class='recodeTitle _fontw600 _font48;'>录入人脸信息</view>
+      <view class="recodeIntro">我们即将采集您的人脸信息，以便机器人能够快速认出您，并为您提供相应的服务。</view>
+      <view class="_txt_center">
+        <image class="face-pic" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/input_face%402x.png" mode='widthFix'></image>
+      </view>
+    </view>
+
+  </view>
+    <view class="_fixed footer  {{isIphoneX?'iphonex':''}}">
+      <checkbox-group class="checkbox-group" bindchange="radioChange">
+        <label class="check-follow">
+          <checkbox value="" checked="{{checked}}" color='#64DB89' />
+          我已阅读并同意
+        </label><text bindtap="viewAgreement">《Face ID用户协议》</text>
+      </checkbox-group>
+      <view class="_flex _flex_justify_center _flex_space_around">
+        <button class="_button back_btn _font32" bindtap="backAction">返回</button>
+        <button class="_button next_btn _font32" bindtap="startRecodeFace" disabled='{{!checked}}'>开始录入</button>
+      </view>
+    </view>
+</view>

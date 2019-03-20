@@ -19,9 +19,9 @@ Page({
   data: {
     isIphoneX: app.globalData.isIphoneX,
     options: {},
-    face: true,
     ctx: {},
-    showButton: true,
+    timer: 0,
+    recodeFace: false,
     cameraErrorText: "",
     isCameraAuth:true
   },
@@ -35,6 +35,7 @@ Page({
 
     if (app.Util.checkcanIUse('camera')) {
       app.myLog('相机检测', '相机组件检测通过');
+      console.log('相机组件检测通过');
       that.setData({
         ctx: wx.createCameraContext()
       }) 
@@ -105,91 +106,150 @@ Page({
   startRecodeFace: function () {
     var that = this;
     var int;
-    that.openCameraAuth();
+    that.openCameraAuth(); console.log(that.data.ctx);
     if (that.data.isCameraAuth==true){
-      that.setData({
-        showButton: false
-      })
-      var k = 0;
       int = setInterval(function () {
-        if (that.data.face == true && k > 2) {
-          app.myLog('开始拍照', k);
-          that.takePhoto(that.data.ctx, int);
-        }
-        if (k > 15) {
+        if (that.data.timer > 3) {
           wx.showToast({
             title: '录入人脸请求超时',
             icon: 'none'
           })
-        
-          console.log('请求超时');
           clearInterval(int);
-          that.setData({ showButton: true })
+          that.stopRecord(that, that.data.ctx, int);
         }
-        k++;
+        that.setData({ timer: that.data.timer + 1})
       }, 1000);
+      that.startRecord(that, that.data.ctx, int);
     }
 
   },
-
   /**
-   * 相机拍照
+   * 结束录入
    */
-  takePhoto: function (ctx, timer) {
-    app.myLog('调用相机拍照事件：', JSON.stringify(ctx));
-    var that = this;
-    ctx.takePhoto({
-      quality: 'low',
+  stopRecodeFace() {
+    this.stopRecord(this, this.data.ctx, timer)
+  },
+  /**
+   * 开始录像
+   */
+  startRecord(self, ctx, timer){
+    self.setData({ recodeFace: true })
+    ctx.startRecord({
+      success: (res) => {
+        console.log('startRecord')
+
+      }
+    })
+  },
+  /**
+   * 结束录像
+   */
+  stopRecord(self, ctx, timer){
+    self.setData({ recodeFace: false })
+    ctx.stopRecord({
       success: (res) => {
         console.log(res);
-        that.setData({
-          face: false
-        })
-        that.getCanvasImg(res.tempImagePath, timer);
+        self.finishSubmit(self, timer, res.tempVideoPath)
       },
       fail: function () {
-        app.myLog("录入人脸失败", "相机拍照失败");
-        wx.showToast({
-          title: '录入人脸失败',
-          icon: 'none'
-        })
+
       }
     })
   },
 
+  finishSubmit(that, timer, tempFilePath) {
+    console.log(that.data.options.source);
+    if (that.data.options.source == 'invite') {
+      var op_type = 0, user_type = 0;
+      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.company_id, op_type, user_type, function () {
+        app.receiveSubmit(that.data.options.params.invitation_id, that.data.options.params.form_id, function () {
+          wx.hideLoading();
+          wx.reLaunch({
+            url: '/pages/invite-visitor/receive/index?invitation_id=' + that.data.options.params.invitation_id,
+          })
+        })
+      });
+
+    } else if (that.data.options.source == 'applyVisit') {
+      var op_type = 0, user_type = 0;
+      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.visit_company_id, op_type, user_type, function () {
+        app.applySubmit(that.data.options.params.visit_company_id, that.data.options.params.form_id, that.data.options.params.visitor_name, that.data.options.params.note, function (visit_apply_id) {
+          wx.hideLoading();
+          wx.reLaunch({
+            url: '/pages/apply-visit/applicationStatus/index?visit_apply_id=' + visit_apply_id,
+          })
+        })
+      });
+
+    } else if (that.data.options.source == 'takeCard') {
+      var op_type = 0, user_type = 2;
+      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.company_id, op_type, user_type, function () {
+        wx.hideLoading();
+        if (that.data.options.params.card_type == 0) {
+          wx.reLaunch({
+            url: '/pages/employee/take-card/open/index?company_id=' + that.data.options.params.company_id,
+          })
+        } else {
+          wx.reLaunch({
+            url: '/pages/e-card/detail/index'
+          })
+        }
+
+      });
+
+    } else if (that.data.options.source == 'editInfo') {
+      var op_type = 0, user_type = 2;
+      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.company_id, op_type, user_type, function () {
+        wx.hideLoading();
+        wx.reLaunch({
+          url: '/pages/employee/homepage/index',
+        })
+
+      });
+
+    } else if (that.data.options.source == 'reRecodeFace') {
+      var op_type = 1, user_type = 2;
+      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.company_id, op_type, user_type, function () {
+        wx.hideLoading();
+        wx.reLaunch({
+          url: '/pages/employee/homepage/index',
+        })
+      });
+    }
+  },
+  
   /**
-   * 上传图片
+   * 上传人脸视频
    */
-  uploadCanvasImg(canvasImg, timer, company_id, op_type, user_type, phone, id_type, id_number, callback = function () {}) {
-    var that = this;
+  uploadFaceVideo(self, timer, tempVideoPath, company_id, op_type, user_type, callback = function () { }) {
     var data = JSON.stringify({
       union_id: wx.getStorageSync('xy_session'),
       company_id: company_id,
       op_type: op_type,
       user_type: user_type,
-      phone: phone,
-      id_type: id_type,
-      id_number: id_number
+      phone: self.data.options.idInfo.phone,
+      id_type: self.data.options.idInfo.id_type,
+      id_number: self.data.options.idInfo.id_number
     });
-    console.log(data);
-    var service = 'visitor';
-    var method = 'upload_face_pic';
+    var service = 'face';
+    var method = 'upload_video';
     var app_id = '65effd5a42fd1870b2c7c5343640e9a8';
     var timestamp = Math.round(new Date().getTime() / 1000 - 28800);
     var sign_type = 'MD5';
     var stringA = 'app_id=' + app_id + '&data=' + data + '&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
     var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
-    wx.uploadFile({
+    var uploadTask = wx.uploadFile({
       url: app.globalData.BASE_API_URL,
       method: 'POST',
-      filePath: canvasImg,
+      filePath: tempVideoPath,
       header: {
         'content-type': 'multipart/form-data'
       },
-      name: 'face_pic',
+      name: 'face_video',
       formData: {
         service: service,
         method: method,
+        random_code: random_code,
         app_id: app_id,
         timestamp: timestamp,
         sign_type: sign_type,
@@ -197,107 +257,35 @@ Page({
         data: data
       },
       success: function (res) {
+        console.log(res);
         var data = JSON.parse(res.data);
-        console.log(data);
-        app.myLog('上传人脸图片', JSON.stringify(data));
         if (data.sub_code == 0) {
-          console.log('++++++++++++' + data.sub_code + '+++++++++' + data.sub_code);
-          wx.showLoading({ title: '人脸上传中' });
           clearInterval(timer);
           callback();
         } else {
-          that.setData({
-            face: true
-          })
+          wx.navigateBack({ delta: 2 });
         }
       },
-      fail: function (r) {
+      fail: function () {
         app.myLog("微信上传文件失败", "上传人脸失败");
       }
     })
+    uploadTask.onProgressUpdate((res) => {
+      wx.showLoading({ title: '人脸上传中,请等待' });
+    })
   },
 
-  /**
-   * Canvas画图，压缩并获取图片
-   */
-  getCanvasImg: function (tempFilePath, timer) {
-    var that = this;
-    const ctxv = wx.createCanvasContext('attendCanvasId');
-    ctxv.drawImage(tempFilePath, 0, 0, 300, 300);
-    ctxv.draw(true, function () {
-      wx.canvasToTempFilePath({
-        destWidth: 300,
-        destHeight: 300,
-        quality: 1,
-        canvasId: 'attendCanvasId',
-        success: function success(res) {
-          // invite,takeCard,editInfo,applyVisit,benifit
-          
-          if (that.data.options.source == 'invite') {
-            var op_type = 0, user_type = 0;
-            that.uploadCanvasImg(res.tempFilePath, timer, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
-              app.receiveSubmit(that.data.options.params.invitation_id, that.data.options.params.form_id, function () {
-                wx.hideLoading();
-                wx.reLaunch({
-                  url: '/pages/invite-visitor/receive/index?invitation_id=' + that.data.options.params.invitation_id,
-                })
-              }) 
-            });
-            
-          } else if (that.data.options.source == 'applyVisit') {
-            var op_type = 0, user_type = 0;
-            that.uploadCanvasImg(res.tempFilePath, timer, that.data.options.params.visit_company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
-              app.applySubmit(that.data.options.params.visit_company_id, that.data.options.params.form_id, that.data.options.params.visitor_name, that.data.options.params.note, function (visit_apply_id) {
-                wx.hideLoading();
-                wx.reLaunch({
-                  url: '/pages/apply-visit/applicationStatus/index?visit_apply_id=' + visit_apply_id,
-                })
-              }) 
-            });
-           
-          } else if (that.data.options.source == 'takeCard') {
-            var op_type = 0, user_type = 2;
-            that.uploadCanvasImg(res.tempFilePath, timer, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {              
-              wx.hideLoading();
-              if (that.data.options.params.card_type == 0) {
-                wx.reLaunch({
-                  url: '/pages/employee/take-card/open/index?company_id=' + that.data.options.params.company_id,
-                })
-              } else {
-                wx.reLaunch({
-                  url: '/pages/e-card/detail/index'
-                })
-              }
-                
-            });
-            
-          } else if (that.data.options.source == 'editInfo') {
-            var op_type = 0, user_type = 2;
-            that.uploadCanvasImg(res.tempFilePath, timer, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
-              wx.hideLoading();
-              wx.reLaunch({
-                url: '/pages/employee/homepage/index',
-              })
-              
-            });
-            
-          } else if (that.data.options.source == 'reRecodeFace') {
-            var op_type = 1, user_type = 2;
-            that.uploadCanvasImg(res.tempFilePath, timer, that.data.options.params.company_id, op_type, user_type, that.data.options.idInfo.phone, that.data.options.idInfo.id_type, that.data.options.idInfo.id_number, function () {
-              wx.hideLoading();
-              wx.reLaunch({
-                url: '/pages/employee/homepage/index',
-              })
-            });
-          }
 
 
-        }, fail: function (e) {
-          that.getCanvasImg(tempFilePath);
-        }
-      });
-    });
-  },
+
+
+
+
+
+
+
+
+
 
 
   onShow: function () {
@@ -309,11 +297,6 @@ Page({
    */
   backAction: function () {
     wx.navigateBack({});
-  },
-
-
-  onPullDownRefresh: function () {
-    this.openCameraAuth();
   }
 
 })

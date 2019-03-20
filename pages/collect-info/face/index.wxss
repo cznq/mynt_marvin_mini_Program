@@ -3,132 +3,80 @@ page,
 .page {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+}
+.page__bd {
+  height: 100%;
   position: relative;
 }
-.coverview {
+.warn {
+  color: #fff;
   position: absolute;
-  top: 0;
-  z-index: 100;
-  background: #fff;
-  width: 100%;
-  height: 100%;
-}
-.camera-bottom-text {
-  position: absolute;
-  top: 660rpx;
-  left: 88rpx;
-  right: 88rpx;
+  top: 74rpx;
+  left: 50%;
+  margin-left: -300rpx;
+  width: 600rpx;
+  z-index: 99;
+  text-align: center;
+  font-size: 30rpx;
+  line-height: 1;
 }
 .circle {
   position: absolute;
   left: 50%;
   top: 0;
+  z-index: 98;
   margin-left: -50%;
   width: 100%;
+  height: 914rpx;
 }
-.step cover-view {
-  width: 50%;
-}
-.step cover-view{background:#E7E8EE;height:6rpx;margin-right:19rpx;border-radius: 6rpx;}
-.step .cur{background: #007bff;}
-
-.collect-information {
-  position: relative;
-}
-.recodeTitle {
-  padding-bottom: 20rpx;
-  padding-top:60rpx;
-  line-height: 1.2;
-  color: #1A2A4B;
-}
-.recodeIntro {
-  font-size: 30rpx;
-  color: #1A2A4B;
-  font-weight: 400;
-  margin-bottom: 80rpx;
-  white-space: pre-wrap;
-}
-.txt {
-  margin-top: 52rpx;
-  line-height: 48rpx;
-  white-space: pre-wrap;
-}
-.bottom-txt {
-  width: 516rpx;
-  margin: 10rpx auto;
-  text-align: center;
-}
-.step {
-  padding-top:30rpx;
-}
-.face-pic {
-  width: 172rpx;
-  margin: 47rpx auto 48rpx;
-}
-.warm {
-  color: rgba(26, 42, 75, 1);
-  width: 360rpx;
-  line-height: 48rpx;
-  margin: 54rpx auto 0;
-  white-space: pre-wrap;
-}
-.collect-information .face-pic {
-  margin: 200rpx auto 0;
-}
-.progress-bar {
-  width: 360rpx;
-  margin: 0 auto 46rpx;
-  height: 6rpx;
-  background-color: rgba(241, 243, 245, 1);
-}
-.progress {
-  background-color: rgba(0, 123, 255, 1);
-  height: 6rpx;
-  width: 0rpx;
-  animation: bianchang 30s infinite;
-}
-@-webkit-keyframes bianchang {
-  0% { width: 0; }
-  100% { width: 360rpx; }
-}
-@keyframes bianchang {
-  0% { width: 0; }
-  100% { width: 360rpx; }
-}
-canvas {
+.timerCounter {
   position: absolute;
-  bottom: -300px;
-  left: 0;
-  height: 300px;
-  width: 300px;
+  z-index: 100;
+  color: #fff;
+  width: 150rpx;
+  height: 52rpx;
+  bottom: 148rpx;
+  left: 50%;
+  font-size: 34rpx;
+  box-sizing: border-box;
+  margin-left: -75rpx;
+  text-align: center;
+  line-height: 52rpx;
+  border-radius: 26rpx;
+  background-color: rgba(0, 0, 0, .5);
 }
+.reddot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 6rpx;
+  margin-right: 10rpx;
+  background-color: rgba(245, 86, 58, 1);
+}
+
 .footer {
   background: rgba(253, 254, 254, .96);
   left:0;
   bottom:0;
   width:100%;
-  padding:30rpx 0;
-  border-top:1rpx solid #eeeeee;
+  padding:0;
+  border-top: none;
   z-index: 101;
 }
 .footer.iphonex {
   padding-bottom: 110rpx;
 }
-.footer button {
-  background: #007bff;
+._button {
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+  border-radius: 0;
   color: #fff!important;
 }
-._button.back_btn {
-  width: 156rpx;
-  margin-right: 0;
-  background-color: #fff;
-  color: rgba(26, 42, 75, 1)!important;
-  border: 2rpx solid rgba(0,0,0,.05);
+._start_button {
+  background: rgba(0, 123, 255, 1);
 }
-._button.next_btn {
-  margin-left: 32rpx;
-  width: 442rpx;
+._stop_button {
+  background: rgba(245, 86, 58, 1);
 }
 .footer button[disabled] {
   background: rgba(71, 95, 253, .2);
