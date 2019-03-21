@@ -9,29 +9,29 @@
     </view>
   </view>
   <view class="page__bd {{isIphoneX?'iphonex':''}}">
-    <block wx:for="{{pck}}" wx:for-item="item" wx:for-index="idx" wx:key="">
+    <block wx:for="{{pckList}}" wx:for-item="item" wx:for-index="idx" wx:key="">
     <!-- 套件详情 开始-->
     <view class="pay-package {{idx == chooseId?'light-on':''}} _mb20" data-pckid="{{idx}}" bindtap="choosePck">
-      <view class="discount _absolute" wx:if="{{item.discount}}">{{item.discount}}折</view>
+      <view class="discount _absolute" wx:if="{{item.discount_rate}}">{{item.discount_rate}}折</view>
       <view class="_content _flex _flex_item_center _flex_space_between">
         <view class="_left">
-          <view class="length _font40">{{item.timeLength}}个月</view>
-          <view class="dic-info _font24">{{item.pckInfo}}</view>
+          <view class="length _font40">{{tools.typeReturnMouth(item.period_type)}}个月</view>
+          <view class="dic-info _font24">原价￥{{item.package_money}}，限时折扣</view>
         </view>
         <view class="_right">
           <view class="price _flex _flex_item_center">
             <image src="../../../images/num/numb.png" mode='widthFix' style="width: 20rpx;"></image>
-            <block wx:for="{{item.price}}" wx:for-item="num" wx:key="inx">
+            <block wx:for="{{item.price_arr}}" wx:for-item="num" wx:key="inx">
               <image src="../../../images/num/num{{num=='.'?'dot':num}}.png" mode='widthFix' style="width:{{tools.returnPicWidth(num)}}rpx"></image>
             </block>
           </view>
-          <view class="save" wx:if="{{item.savedValue}}">立省{{item.savedValue}}元</view>
+          <view class="save" wx:if="{{item.discount_rate}}">立省{{item.discount_pay}}元</view>
         </view>
       </view>
     </view>
     <!-- 套件详情 结束-->
     </block>
-    
+
     <view class="introdution _font24">
       <view class="_line">说明： </view>
       <view class="_line">1. 8折优惠折扣价格仅限连续缴费会员专享，会员身份过期后将无法享受；</view>
@@ -42,8 +42,8 @@
   </view>
   <view class="page__ft _txt_center">
     <view class="_fixed footer {{isIphoneX?'iphonex':''}}">
-      <view class="_font24 time-alert">2019-06-01到期，购买后有效期将延续</view>
-      <button class="_button _font32" bindtap="packagePay">立即续费</button>
+      <view wx:if='{{end_time}}' class="_font24 time-alert">{{end_time}}到期，购买后有效期将延续</view>
+      <button bindtap='quickPay' class="_button _font32">立即续费</button>
     </view>
   </view>
 

@@ -1,22 +1,24 @@
   <view class="vipCard">
-    <image wx:if="{{vipStatus==='NotOpen'||vipStatus==='opened'}}" class="cardBg" src="http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/card_gray@2x.png" alt="vip背景" />
-    <image wx:if="{{vipStatus==='opening'}}"  class="cardBg" src="http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/card@2x.png" alt="vip背景" />
+    <image wx:if="{{service_status=='0'||service_status=='2'}}" class="cardBg" src="http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/card_gray@2x.png" alt="vip背景" />
+    <image wx:if="{{service_status=='1'}}"  class="cardBg" src="http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/card@2x.png" alt="vip背景" />
     <view class="companyName _row _cen_start">
-      <image class="companyLogo" src='http://slightech-marvin.oss-cn-hangzhou.aliyuncs.com/production/company/1/logo_url/6afeea8d976a95c591b8dbc49da9cf13.jpg' />
+      <image class="companyLogo" src='{{logo}}' />
       <view class="_column">
-        <text class="signOne">轻客智能科技</text>
-        <text class="signTwo">轻客智能科技（江苏）有限公司</text>
+        <text class="signOne">{{company_short_name}}</text>
+        <text class="signTwo">{{company_name}}</text>
       </view>
     </view>
     <navigator url='../payRecord/index' hover-class='none'>
     <view class="payRecord">缴费记录</view>
     </navigator>
-    <view wx:if="{{vipStatus==='opening' || vipStatus==='opened'}}" class="timeStatus _column">
-      <view class="signName">过期</view>
-      <view class="signTime">2018-06-01</view>
+    <view wx:if="{{service_status=='1' || service_status=='2'}}" class="timeStatus _column">
+      <view class="signName">{{end_sign}}</view>
+      <view class="signTime">{{end_time}}</view>
     </view>
     <view class="statusName">
-      <text>已过期</text>
+      <text  wx:if="{{service_status=='0'}}">未开通</text>
+        <text  wx:if="{{service_status=='1'}}">已开通</text>
+          <text  wx:if="{{service_status=='2'}}">已过期</text>
     </view>
   </view>
   <!-- nav -->

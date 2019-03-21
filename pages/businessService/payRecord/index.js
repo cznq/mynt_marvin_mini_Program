@@ -1,4 +1,4 @@
-// pages/businessService/payRecode/index.js
+var app = getApp()
 Page({
 
   /**
@@ -6,6 +6,7 @@ Page({
    */
   data: {
     noneData: {
+      orderList: [],
       textInfo: '暂无交易记录',
       buttonText: '',
       emptyBtnFunc: '',
@@ -17,9 +18,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.getOrderRecord(this)
   },
 
+  getOrderRecord: function(that) {
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'pay',
+        method: 'get_order_record',
+        data: JSON.stringify({}),
+      },
+      success: res => {
+        console.log("获取订单记录:", res);
+        if (res.data.return_code === "SUCCESS") {
+          let data = res.data.result
+          that.setData({
+            orderList: data
+          })
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
