@@ -9,31 +9,6 @@ Page({
     isIphoneX: app.globalData.isIphoneX,
     pckList: [],
     end_time: '',
-    pck: [{
-      price: [7, 8, 4, '.', 5],
-      timeLength: 12,
-      discount: 7,
-      savedValue: 490,
-      pckInfo: '原价￥954，限时折扣'
-    }, {
-      price: [2, 7, 3],
-      timeLength: 6,
-      discount: 7,
-      savedValue: 250,
-      pckInfo: '原价￥784，限时折扣'
-    }, {
-      price: [6, 1, 9],
-      timeLength: 3,
-      discount: 4,
-      savedValue: 120,
-      pckInfo: '原价￥365，限时折扣'
-    }, {
-      price: [8, 4, 9],
-      timeLength: 1,
-      discount: null,
-      savedValue: null,
-      pckInfo: '原价￥12，限时折扣'
-    }],
     chooseId: 0
   },
 
@@ -138,6 +113,7 @@ Page({
    * 立即支付
    */
   quickPay: function() {
+    let customization_id = this.data.pckList[this.data.chooseId].customization_id
     // 发起微信支付
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
@@ -145,7 +121,8 @@ Page({
         service: 'wechat',
         method: 'pay',
         data: JSON.stringify({
-          pay_service: 'BUSINESS_SUITE'
+          pay_service: 'BUSINESS_SUITE',
+          customization_id: customization_id
         })
       },
       success: res => {
