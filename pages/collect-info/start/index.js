@@ -23,8 +23,8 @@ Page({
   onLoad: function (options) {
 
     this.data.options.source = options.source;
-    this.data.options.params = JSON.parse(options.params);
-    this.data.options.idInfo = JSON.parse(options.idInfo);
+    this.data.options.params = options.params;
+    this.data.options.idInfo = options.idInfo;
   
   },
 

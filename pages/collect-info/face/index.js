@@ -27,11 +27,12 @@ Page({
   },
 
   onLoad: function (options) {
-    //console.log(options);
+    console.log(options);
     var that = this;
     that.data.options.source = options.source;
     that.data.options.params = JSON.parse(options.params);
     that.data.options.idInfo = JSON.parse(options.idInfo);
+    that.data.options.faceConfig = JSON.parse(options.faceConfig);
 
     if (app.Util.checkcanIUse('camera')) {
       app.myLog('相机检测', '相机组件检测通过');
@@ -106,18 +107,15 @@ Page({
   startRecodeFace: function () {
     var that = this;
     var int;
-    that.openCameraAuth(); console.log(that.data.ctx);
+    that.openCameraAuth(); console.log(that.data.options.faceConfig);
     if (that.data.isCameraAuth==true){
       int = setInterval(function () {
-        if (that.data.timer > 3) {
-          wx.showToast({
-            title: '录入人脸请求超时',
-            icon: 'none'
-          })
+        that.setData({ timer: that.data.timer + 1 })
+        if (that.data.timer >= that.data.options.faceConfig.counter) {
           clearInterval(int);
           that.stopRecord(that, that.data.ctx, int);
         }
-        that.setData({ timer: that.data.timer + 1})
+        
       }, 1000);
       that.startRecord(that, that.data.ctx, int);
     }
@@ -239,7 +237,7 @@ Page({
     var stringA = 'app_id=' + app_id + '&data=' + data + '&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
     var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
     var uploadTask = wx.uploadFile({
-      url: app.globalData.BASE_API_URL,
+      url: 'http://192.168.1.204:10008/mini_program/api/',        //app.globalData.BASE_API_URL,
       method: 'POST',
       filePath: tempVideoPath,
       header: {
@@ -249,7 +247,6 @@ Page({
       formData: {
         service: service,
         method: method,
-        random_code: random_code,
         app_id: app_id,
         timestamp: timestamp,
         sign_type: sign_type,

@@ -18,18 +18,15 @@ Page({
   data: {
     isIphoneX: app.globalData.isIphoneX,
     options: {},
-    faceConfig: {
-      face_verify_code: [4, 6, 2, 9],
-      counter: 5
-    },
+    faceConfig: {},
     buttonDisabled: true
   },
 
   onLoad: function (options) {
     this.loadConfig(this);
     this.data.options.source = options.source;
-    this.data.options.params = JSON.parse(options.params);
-    this.data.options.idInfo = JSON.parse(options.idInfo);
+    this.data.options.params = options.params;
+    this.data.options.idInfo = options.idInfo;
     
   },
 
@@ -38,7 +35,7 @@ Page({
    */
   loadConfig: function(_this) {
     app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
+      url: 'http://192.168.1.204:10008/mini_program/api/',             //app.globalData.BASE_API_URL,
       params: {
         service: 'face',
         method: 'load_face_config',
@@ -46,10 +43,9 @@ Page({
       },
       success: res => {
         if(res.data.result) {
+          res.data.result.face_verify_code = res.data.result.face_verify_code.split('');
           _this.setData({
-            faceConfig: res.data.result.map(function (item) {
-              item.face_verify_code = item.face_verify_code.splice('')
-            }),
+            faceConfig: res.data.result,
             buttonDisabled: false
           })
         }
@@ -68,7 +64,7 @@ Page({
    */
   startRecodeFace: function () {
     wx.navigateTo({
-      url: '../face/index?source=' + this.data.options.source + '&params=' + this.data.options.params + '&idInfo=' + this.data.options.idInfo + '&faceConfig=' + this.data.options.faceConfig,
+      url: '../face/index?source=' + this.data.options.source + '&params=' + this.data.options.params + '&idInfo=' + this.data.options.idInfo + '&faceConfig=' + JSON.stringify(this.data.faceConfig),
     })
 
   },

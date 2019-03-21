@@ -105,7 +105,7 @@ Page({
         id_number: that.data.formData.id_number
       })
       wx.navigateTo({
-        url: '/pages/collect-info/face/index?source=' + that.data.options.source + '&params=' + that.data.options.params + '&idInfo=' + idInfo
+        url: '/pages/collect-info/start/index?source=' + that.data.options.source + '&params=' + that.data.options.params + '&idInfo=' + idInfo
       })
     }) 
 

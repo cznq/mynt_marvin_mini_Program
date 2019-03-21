@@ -76,7 +76,7 @@ Page({
         id_number: this.data.empInfo.id_number
       })
       wx.redirectTo({
-        url: '/pages/collect-info/face/index?source=' + this.data.options.source + '&params=' + this.data.options.params + '&idInfo=' + idInfo,
+        url: '/pages/collect-info/start/index?source=' + this.data.options.source + '&params=' + this.data.options.params + '&idInfo=' + idInfo,
       })
     } else {
       wx.showToast({
