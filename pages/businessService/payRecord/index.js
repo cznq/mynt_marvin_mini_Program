@@ -30,7 +30,7 @@ Page({
         data: JSON.stringify({}),
       },
       success: res => {
-        console.log("获取订单记录:", res);
+        // console.log("获取订单记录:", res);
         if (res.data.return_code === "SUCCESS") {
           let data = res.data.result
           that.setData({

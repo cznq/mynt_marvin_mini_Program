@@ -22,7 +22,7 @@ Page({
   },
 
   choosePck: function(e) {
-    console.log(e);
+    // console.log(e);
     let chid = e.currentTarget.dataset.pckid;
     this.setData({
       chooseId: chid
@@ -40,7 +40,7 @@ Page({
         data: JSON.stringify({}),
       },
       success: res => {
-        console.log("获取支付方式:", res);
+        // console.log("获取支付方式:", res);
         if (res.data.return_code === "SUCCESS" && res.data.result) {
           let data = res.data.result
           for (let obj of data) {
@@ -65,7 +65,7 @@ Page({
         data: JSON.stringify({}),
       },
       success: res => {
-        console.log("res:", res);
+        // console.log("res:", res);
         if (res.data.return_code === "SUCCESS") {
           let data = res.data
           _this.setData({

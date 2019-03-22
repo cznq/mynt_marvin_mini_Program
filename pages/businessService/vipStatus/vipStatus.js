@@ -36,7 +36,7 @@ Page({
         data: JSON.stringify({}),
       },
       success: res => {
-        console.log("公司信息:", res);
+        // console.log("公司信息:", res);
         if (res.data.return_code === "SUCCESS") {
           let data = res.data.result
           that.setData({
@@ -61,7 +61,7 @@ Page({
       },
       success: res => {
 
-        console.log("res:", res);
+        // console.log("res:", res);
         if (res.data.return_code === "SUCCESS") {
           let data = res.data
           that.setData({

@@ -15,7 +15,8 @@
           <text wx:if='{{item.period_type ==3}}'>商业服务套件6个月</text>
           <text wx:if='{{item.period_type ==4}}'>商业服务套件12个月</text>
         </view>
-        <view class="price">¥{{tools.priceFix(item.payed_money/100)}}</view>
+        <view wx:if="{{item.order_source != 3}}" class="price">¥{{tools.priceFix(item.payed_money/100)}}</view>
+        <view wx:if="{{item.order_source == 3}}" class="price">赠送体验</view>
       </view>
       <view class="_item">会员生效时间:{{item.begin_time}}</view>
       <view class="_item">会员到期时间:{{item.end_time}}</view>
