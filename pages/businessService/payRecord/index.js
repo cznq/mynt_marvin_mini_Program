@@ -35,6 +35,16 @@ Page({
           let data = res.data.result
           that.setData({
             orderList: data
+          }, () => {
+            if (that.data.orderList.length === 0) {
+              that.setData({
+                ['noneData.show']: true
+              })
+            } else {
+              that.setData({
+                ['noneData.show']: false
+              })
+            }
           })
         }
       }

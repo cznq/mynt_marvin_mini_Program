@@ -7,38 +7,6 @@ var removeFloor = function (floor) {
   }
 }
 
-var removeFloor1 = function (floor,room) {
-console.log('floor:',floor)
-console.log('room:',room)
-let arrayFloor = floor.split(',');
-console.log('arrayFloor:',arrayFloor)
-let arrayRoom = room.split(',');
-console.log('arrayRoom:',arrayRoom)
-let arrayLen = arrayFloor.length;
-let arrayFandR = [];
-let FloorAnRoom = '';
-for (var i = 0; i < arrayLen; i++) {
-  let FloorAndRoom = arrayFloor[i] + ' ' + arrayRoom[i] + '室'
-  arrayFandR.push(FloorAndRoom)
-}
-switch (arrayLen) {
-  case 1:
-    FloorAnRoom = arrayFandR[0]
-    break;
-  case 2:
-    FloorAnRoom = arrayFandR[0]+','+' '+arrayFandR[1]
-    break;
-  case 3:
-    FloorAnRoom = arrayFandR[0]+','+' '+arrayFandR[1]+',' +'\n'+arrayFandR[2]
-
-    break;
-
-  default:
-
-}
-return FloorAnRoom
-}
-
 var transRoleName = function (role) {
   if (role == 1) {
     return '员工';

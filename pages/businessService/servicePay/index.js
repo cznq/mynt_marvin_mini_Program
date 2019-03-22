@@ -28,14 +28,6 @@ Page({
       chooseId: chid
     })
   },
-
-  // packagePay() {
-  //
-  //   wx.showToast({
-  //     title: '你选择的套餐是' + this.data.pck[this.data.chooseId].timeLength + '个月',
-  //     icon: 'none'
-  //   })
-  // },
   /**
    * 获取支付方式
    */
@@ -49,7 +41,7 @@ Page({
       },
       success: res => {
         console.log("获取支付方式:", res);
-        if (res.data.return_code === "SUCCESS") {
+        if (res.data.return_code === "SUCCESS" && res.data.result) {
           let data = res.data.result
           for (let obj of data) {
             for (let i in obj) {
