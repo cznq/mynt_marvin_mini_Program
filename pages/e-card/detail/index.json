@@ -2,6 +2,7 @@
   "navigationBarTitleText": "",
   "usingComponents":{
      "canvas-ring": "/components/canvas-ring/canvas-ring",
-     "city-picker": "/components/wx-city-picker/index"
+     "city-picker": "/components/wx-city-picker/index",
+     "calendar": "/components/calendar/index"
   }
 }

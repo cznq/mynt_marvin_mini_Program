@@ -1,5 +1,7 @@
 <wxs src="../../../wxs/subutil.wxs" module="tools" />
 
+<calendar calendar="{{calendar}}" gesture="{{gesture}}"></calendar>
+
 <city-picker codes="{{codes}}" mode="2" data="{{citylist}}"  bind:select="onSelect">
 <view class="input-picker">
   {{city}}
