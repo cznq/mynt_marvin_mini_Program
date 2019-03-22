@@ -60,7 +60,6 @@ Page({
         data: JSON.stringify({}),
       },
       success: res => {
-
         // console.log("res:", res);
         if (res.data.return_code === "SUCCESS") {
           let data = res.data
