@@ -37,7 +37,7 @@ Page({
       },
       success: res => {
         // console.log("公司信息:", res);
-        if (res.data.return_code === "SUCCESS") {
+        if (res.data.return_code === "SUCCESS" && res.data.result) {
           let data = res.data.result
           that.setData({
             company_name: data.company_name,
