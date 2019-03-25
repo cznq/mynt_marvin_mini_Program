@@ -31,7 +31,7 @@ Page({
       },
       success: res => {
         // console.log("获取订单记录:", res);
-        if (res.data.return_code === "SUCCESS") {
+        if (res.data.return_code === "SUCCESS" && res.data.result) {
           let data = res.data.result
           that.setData({
             orderList: data
@@ -45,6 +45,10 @@ Page({
                 ['noneData.show']: false
               })
             }
+          })
+        } else {
+          that.setData({
+            ['noneData.show']: true
           })
         }
       }
