@@ -42,8 +42,14 @@
   </view>
   <view class="page__ft _txt_center">
     <view class="_fixed footer {{isIphoneX?'iphonex':''}}">
-      <view wx:if='{{end_time}}' class="_font24 time-alert">{{end_time}}到期，购买后有效期将延续</view>
-      <button bindtap='quickPay' class="_button _font32">立即续费</button>
+      <block wx:if='{{business_service_suite_status == 0}}'>
+        <view class="_font24 time-alert"  >开通后功能立即生效</view>
+        <button bindtap='quickPay' class="_button _font32">立即开通</button>
+      </block>
+      <block wx:elif="{{business_service_suite_status > 0}}">
+        <view class="_font24 time-alert">{{end_time}}到期，购买后有效期将延续</view>
+        <button bindtap='quickPay' class="_button _font32">立即续费</button>
+      </block>
     </view>
   </view>
 

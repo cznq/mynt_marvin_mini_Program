@@ -317,7 +317,7 @@ Page({
           _this.setData({
             imgurl_manage: [{
               'image_url': 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/slide-default.png',
-              'link_url': '/benifit/pages/suite-introduce/suite-introduce'
+              'link_url': '/pages/businessService/suite-introduce/suite-introduce'
             }]
           })
           console.log(res.data.sub_msg);

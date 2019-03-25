@@ -64,11 +64,10 @@ Page({
   },
   backPay() {
     if (this.data.pay_from == 'commerce') {
-      console.log('okokok');
       wx.navigateBack();
     } else if (this.data.pay_from == 'package') {
       wx.redirectTo({
-        url: '/benifit/pages/suite-introduce/suite-introduce',
+        url: '/pages/businessService/suite-introduce/suite-introduce',
       })
     }
     

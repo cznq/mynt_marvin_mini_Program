@@ -89,7 +89,7 @@ Page({
   },
   next2: function() {
     wx.navigateTo({
-      url: '/benifit/pages/suite-introduce/suite-introduce',
+      url: '/pages/businessService/suite-introduce/suite-introduce',
     })
   }
 })

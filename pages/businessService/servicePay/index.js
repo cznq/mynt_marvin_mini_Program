@@ -9,6 +9,7 @@ Page({
     isIphoneX: app.globalData.isIphoneX,
     pckList: [],
     end_time: '',
+    business_service_suite_status: null,  // 0：未开通，1：已开通，2：已过期
     chooseId: 0
   },
 
@@ -69,6 +70,7 @@ Page({
         if (res.data.return_code === "SUCCESS") {
           let data = res.data
           _this.setData({
+            business_service_suite_status: data.result.business_service_suite_status,
             end_time: data.result.end_time
           })
 
