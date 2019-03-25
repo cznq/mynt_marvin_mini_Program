@@ -11,13 +11,18 @@
         <cover-view class="reddot"></cover-view>
         <cover-view>00:0{{timer}}</cover-view>
       </cover-view>
-
-    </camera>  
+      <cover-view class="_fixed footer _flex _flex_justify_center _flex_space_around {{isIphoneX?'iphonex':''}}">
+        <button class="_button _font34 _start_button" bindtap="startRecodeFace" wx:if="{{status == 'start'}}">开始录制</button>
+        <button class="_button _font34 _stop_button" bindtap="stopRecodeFace" wx:elif="{{status == 'stop'}}">结束录制</button>
+        <button class="_button _font34 _upload_button" wx:elif="{{status == 'uploading'}}">
+          <cover-view class="_flex _flex_justify_center _flex_item_center">
+            <cover-image class="loading" animation="{{animationData}}" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/loading%403x.png"></cover-image>
+            <cover-view>视频上传中</cover-view>
+          </cover-view>
+        </button>
+      </cover-view>
+    </camera>
   </view>
-  <cover-view class="_fixed footer _flex _flex_justify_center _flex_space_around {{isIphoneX?'iphonex':''}}">
-    <button class="_button _font34 _start_button" bindtap="startRecodeFace" wx:if="{{!recodeFace}}">开始录制</button>
-    <button class="_button _font34 _stop_button" bindtap="stopRecodeFace" wx:else>结束录制</button>
-  </cover-view>
 
 </view>
 

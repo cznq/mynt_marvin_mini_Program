@@ -21,7 +21,7 @@ Page({
     options: {},
     ctx: {},
     timer: 0,
-    recodeFace: false,
+    status: 'start', //start, stop, uploading
     cameraErrorText: "",
     isCameraAuth:true
   },
@@ -33,10 +33,9 @@ Page({
     that.data.options.params = JSON.parse(options.params);
     that.data.options.idInfo = JSON.parse(options.idInfo);
     that.data.options.faceConfig = JSON.parse(options.faceConfig);
-
+    
     if (app.Util.checkcanIUse('camera')) {
       app.myLog('相机检测', '相机组件检测通过');
-      console.log('相机组件检测通过');
       that.setData({
         ctx: wx.createCameraContext()
       }) 
@@ -115,7 +114,6 @@ Page({
           clearInterval(int);
           that.stopRecord(that, that.data.ctx, int);
         }
-        
       }, 1000);
       that.startRecord(that, that.data.ctx, int);
     }
@@ -131,7 +129,7 @@ Page({
    * 开始录像
    */
   startRecord(self, ctx, timer){
-    self.setData({ recodeFace: true })
+    self.setData({ status: 'stop' })
     ctx.startRecord({
       success: (res) => {
         console.log('startRecord')
@@ -143,7 +141,7 @@ Page({
    * 结束录像
    */
   stopRecord(self, ctx, timer){
-    self.setData({ recodeFace: false })
+    self.setData({ recodeFace: 'start' })
     ctx.stopRecord({
       success: (res) => {
         console.log(res);
@@ -223,6 +221,7 @@ Page({
     var data = JSON.stringify({
       union_id: wx.getStorageSync('xy_session'),
       company_id: company_id,
+      face_verify_code: self.data.options.faceConfig.face_verify_code,
       op_type: op_type,
       user_type: user_type,
       phone: self.data.options.idInfo.phone,
@@ -230,14 +229,15 @@ Page({
       id_number: self.data.options.idInfo.id_number
     });
     var service = 'face';
-    var method = 'upload_video';
+    var method = 'upload_face_video';
     var app_id = '65effd5a42fd1870b2c7c5343640e9a8';
     var timestamp = Math.round(new Date().getTime() / 1000 - 28800);
     var sign_type = 'MD5';
     var stringA = 'app_id=' + app_id + '&data=' + data + '&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
     var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
+    console.log(data)
     var uploadTask = wx.uploadFile({
-      url: 'http://192.168.1.204:10008/mini_program/api/',        //app.globalData.BASE_API_URL,
+      url: 'http://61.149.7.239:10008/mini_program/api/',        //app.globalData.BASE_API_URL,
       method: 'POST',
       filePath: tempVideoPath,
       header: {
@@ -260,30 +260,31 @@ Page({
           clearInterval(timer);
           callback();
         } else {
-          wx.navigateBack({ delta: 2 });
+          self.uploadFaceError();
         }
       },
       fail: function () {
+        self.uploadFaceError();
         app.myLog("微信上传文件失败", "上传人脸失败");
       }
     })
     uploadTask.onProgressUpdate((res) => {
-      wx.showLoading({ title: '人脸上传中,请等待' });
+      self.setData({ status: 'uploading'})
+
+      //wx.showLoading({ title: '人脸上传中,请等待' });
     })
   },
 
-
-
-
-
-
-
-
-
-
-
-
-
+  uploadFaceError(){
+    var pages = getCurrentPages();
+    var prevPage = pages[pages.length - 2];
+    prevPage.setData({
+      error: true
+    });
+    wx.navigateBack({
+      delta: 1
+    })
+  },
 
   onShow: function () {
     this.openCameraAuth();

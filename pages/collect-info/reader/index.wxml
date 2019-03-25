@@ -8,7 +8,7 @@
     <view class="check-part _txt_center">
       <text class="_font32 ">请在拍摄时朗读4位验证数字</text>
       <view class="num-col _flex _flex_justify_center _flex_space_around">
-        <block wx:for="{{faceConfig.face_verify_code}}" wx:key="">
+        <block wx:for="{{face_verify_code}}" wx:key="">
           <view class="num">{{item}}</view>
         </block>
       </view>
@@ -17,3 +17,5 @@
   </view>
 
 </view>
+<import src="../../../templates/showToast/showToast.wxml" /> 
+<template is="showToast" data="{{showToast: showToast}}" /> 

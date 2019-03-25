@@ -1,4 +1,4 @@
-
+var toast = require('../../../templates/showToast/showToast');
 var app = getApp()
 Page({
 
@@ -19,7 +19,9 @@ Page({
     isIphoneX: app.globalData.isIphoneX,
     options: {},
     faceConfig: {},
-    buttonDisabled: true
+    face_verify_code: [],
+    buttonDisabled: true,
+    error: false
   },
 
   onLoad: function (options) {
@@ -30,12 +32,41 @@ Page({
     
   },
 
+  onShow: function() {
+    if (this.data.error) {
+      toast.showToast(this, {
+        toastStyle: 'toast4',
+        title: '验证失败',
+        introduce: '请将正脸至于框内，用普通话说出4位验证数字。',
+        mask: true,
+        isSure: true,
+        sureText: '重新录入',
+        isClose: true,
+        closeText: '退出'
+      });
+    }
+  },
+
+  //取消关闭弹层
+  bindToastClose: function () {
+    toast.hideToast();
+  },
+  //确定退出企业
+  bindToastSure: function () {
+    var _this = this;
+    toast.hideToast(this, {
+      cb: function () {
+        _this.loadConfig(_this);
+      }
+    });
+  },
+
   /**
    * 请求验证数字
    */
   loadConfig: function(_this) {
     app.Util.network.POST({
-      url: 'http://192.168.1.204:10008/mini_program/api/',             //app.globalData.BASE_API_URL,
+      url: 'http://61.149.7.239:10008/mini_program/api/',             //app.globalData.BASE_API_URL,
       params: {
         service: 'face',
         method: 'load_face_config',
@@ -43,9 +74,9 @@ Page({
       },
       success: res => {
         if(res.data.result) {
-          res.data.result.face_verify_code = res.data.result.face_verify_code.split('');
           _this.setData({
             faceConfig: res.data.result,
+            face_verify_code: res.data.result.face_verify_code.split(''),
             buttonDisabled: false
           })
         }
@@ -54,7 +85,7 @@ Page({
         console.log('fail');
       },
       complete: res => {
-        _this.setData({ buttonDisabled: false })
+        
       }
     })
   },
@@ -64,7 +95,7 @@ Page({
    */
   startRecodeFace: function () {
     wx.navigateTo({
-      url: '../face/index?source=' + this.data.options.source + '&params=' + this.data.options.params + '&idInfo=' + this.data.options.idInfo + '&faceConfig=' + JSON.stringify(this.data.faceConfig),
+      url: '../face/index?source=' + this.data.options.source + '&params=' + this.data.options.params + '&idInfo=' + this.data.options.idInfo + '&faceConfig=' + JSON.stringify(this.data.faceConfig)
     })
 
   },

@@ -1,3 +1,4 @@
+@import "../../../templates/showToast/showToast.wxss";
 page, 
 .page {
   background-color: rgba(249, 250, 251, 1);

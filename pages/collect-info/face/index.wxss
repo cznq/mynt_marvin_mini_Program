@@ -18,7 +18,6 @@ page,
   z-index: 99;
   text-align: center;
   font-size: 30rpx;
-  line-height: 1;
 }
 .circle {
   position: absolute;
@@ -78,6 +77,24 @@ page,
 ._stop_button {
   background: rgba(245, 86, 58, 1);
 }
+._upload_button {
+  background: rgba(136, 136, 136, 1);
+}
+.loading {
+  margin-right: 20rpx;
+  width: 34rpx;
+  height: 34rpx;
+  font-size: 34rpx;
+  -webkit-animation: roateAll 4s linear infinite;
+}
+@-webkit-keyframes roateAll {
+  0%{-webkit-transform:rotate(0deg);}
+  25%{-webkit-transform:rotate(90deg);}
+  50%{-webkit-transform:rotate(180deg);}
+  75%{-webkit-transform:rotate(270deg);}
+  100%{-webkit-transform:rotate(360deg);}
+}
+
 .footer button[disabled] {
   background: rgba(71, 95, 253, .2);
 }
