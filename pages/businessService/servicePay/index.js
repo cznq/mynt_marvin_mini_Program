@@ -9,7 +9,7 @@ Page({
     isIphoneX: app.globalData.isIphoneX,
     pckList: [],
     end_time: '',
-    business_service_suite_status: null,  // 0：未开通，1：已开通，2：已过期
+    business_service_suite_status: null, // 0：未开通，1：已开通，2：已过期
     chooseId: 0
   },
 
@@ -130,6 +130,9 @@ Page({
             paySign: res.data.result.wx_package.paySign,
             success: res => {
               console.log('支付成功');
+              wx.redirectTo({
+                url: '../vipStatus/vipStatus'
+              })
             },
             fail: res => {
               wx.showToast({

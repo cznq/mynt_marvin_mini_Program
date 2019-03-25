@@ -2,7 +2,7 @@
     <image wx:if="{{service_status=='0'||service_status=='2'}}" class="cardBg" src="http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/card_gray@2x.png" alt="vip背景" />
     <image wx:if="{{service_status=='1'}}"  class="cardBg" src="http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/card@2x.png" alt="vip背景" />
     <view class="companyName _row _cen_start">
-      <image class="companyLogo" src='{{logo}}' />
+      <image class="companyLogo" src='{{logo}}' style="width:{{logo?'60':'0'}}rpx" />
       <view class="_column">
         <text class="signOne">{{company_short_name}}</text>
         <text class="signTwo">{{company_name}}</text>
