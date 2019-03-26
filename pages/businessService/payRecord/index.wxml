@@ -5,8 +5,8 @@
   <view class="page__hd _flex _flex_item_center">
 
   </view>
-  <view wx:if="{{!noneData.show}}" class="page__bd">
-    <view wx:for="{{orderList}}" wx:key="" class="payList">
+  <view wx:if="{{orderList.length!=0}}" class="page__bd">
+    <view wx:for="{{orderList}}" wx:key="" wx:item='item' class="payList">
       <view class="pck-title _font32 _flex _flex_item_center _flex_space_between">
         <view class="_flex _flex_item_center">
           <view class='vipicon'></view>

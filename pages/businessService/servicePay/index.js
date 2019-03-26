@@ -53,6 +53,13 @@ Page({
           _this.setData({
             pckList: data
           })
+        } else {
+          if (res.data.sub_code !== 0) {
+            wx.showToast({
+              title: res.data.sub_msg,
+              icon: 'none'
+            })
+          }
         }
       }
     })
@@ -73,7 +80,13 @@ Page({
             business_service_suite_status: data.result.business_service_suite_status,
             end_time: data.result.end_time
           })
-
+        } else {
+          if (res.data.sub_code !== 0) {
+            wx.showToast({
+              title: res.data.sub_msg,
+              icon: 'none'
+            })
+          }
         }
 
       }
