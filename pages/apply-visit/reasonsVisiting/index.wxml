@@ -21,7 +21,7 @@
     </view>
 
     <view class='_fixed footer {{isiphoneX ? "footer_x" : ""}}'>
-  <button class="_button" bindtap="next" formType="submit" disabled="{{disabled}}">{{button_text}}</button>
+    <button class="_button" formType="submit" disabled="{{disabled}}">{{button_text}}</button>
   </view>
   </form>
 </view>

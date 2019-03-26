@@ -11,13 +11,18 @@ page,
 .warn {
   color: #fff;
   position: absolute;
-  top: 74rpx;
+  top: 60rpx;
   left: 50%;
   margin-left: -300rpx;
   width: 600rpx;
   z-index: 99;
+}
+.warn .txt {
+  color: #fff;
+  font-weight: 300;
   text-align: center;
-  font-size: 30rpx;
+  font-size: 32rpx;
+  line-height: 46rpx;
 }
 .circle {
   position: absolute;
@@ -26,7 +31,7 @@ page,
   z-index: 98;
   margin-left: -50%;
   width: 100%;
-  height: 914rpx;
+  height: 952rpx;
 }
 .timerCounter {
   position: absolute;
@@ -53,13 +58,13 @@ page,
 }
 
 .footer {
-  background: rgba(253, 254, 254, .96);
   left:0;
   bottom:0;
   width:100%;
   padding:0;
   border-top: none;
   z-index: 101;
+  background: transparent;
 }
 .footer.iphonex {
   padding-bottom: 110rpx;
@@ -74,27 +79,26 @@ page,
 ._start_button {
   background: rgba(0, 123, 255, 1);
 }
-._stop_button {
-  background: rgba(245, 86, 58, 1);
-}
-._upload_button {
-  background: rgba(136, 136, 136, 1);
-}
-.loading {
-  margin-right: 20rpx;
-  width: 34rpx;
-  height: 34rpx;
+.uploadTxt {
+  color: #fff;
   font-size: 34rpx;
-  -webkit-animation: roateAll 4s linear infinite;
+  font-weight: 700;
+  padding-bottom: 68rpx;
 }
-@-webkit-keyframes roateAll {
-  0%{-webkit-transform:rotate(0deg);}
-  25%{-webkit-transform:rotate(90deg);}
-  50%{-webkit-transform:rotate(180deg);}
-  75%{-webkit-transform:rotate(270deg);}
-  100%{-webkit-transform:rotate(360deg);}
+.uploadTxt .uptxt {
+  text-align: center;
+  margin-bottom: 28rpx;
 }
-
-.footer button[disabled] {
-  background: rgba(71, 95, 253, .2);
+.progressBar {
+  width: 444rpx;
+  height: 12rpx;
+  border-radius: 6rpx;
+  background-color: rgba(208, 208, 208, 1);
+}
+.progressBar .progress {
+  height: 100%;
+  border-radius: 6rpx;
+}
+.progressBar .active {
+  background-color: rgba(0, 123, 255, 1);
 }

@@ -5,21 +5,28 @@
       <text>{{cameraErrorText}}</text>
     </view>
     <camera device-position="front" flash="off" binderror="cameraError" style="width: 100%; height: 100%;position:relative;">
-      <cover-view class="warn _font30">请将人脸放置在人形框内</cover-view>
+      <cover-view class="warn _font30">
+        <cover-view class="txt">请将人脸放置在人形框内，</cover-view>
+        <cover-view class="txt">并用普通话说出4位验证数字</cover-view>
+      </cover-view>
       <cover-image class="circle" mode="widthFix" src="../../../images/mask@2x.png"></cover-image>
-      <cover-view class="timerCounter _flex _flex_item_center _flex_justify_center">
+      <!-- <cover-view class="timerCounter _flex _flex_item_center _flex_justify_center">
         <cover-view class="reddot"></cover-view>
         <cover-view>00:0{{timer}}</cover-view>
-      </cover-view>
+      </cover-view> -->
       <cover-view class="_fixed footer _flex _flex_justify_center _flex_space_around {{isIphoneX?'iphonex':''}}">
         <button class="_button _font34 _start_button" bindtap="startRecodeFace" wx:if="{{status == 'start'}}">开始录制</button>
-        <button class="_button _font34 _stop_button" bindtap="stopRecodeFace" wx:elif="{{status == 'stop'}}">结束录制</button>
-        <button class="_button _font34 _upload_button" wx:elif="{{status == 'uploading'}}">
-          <cover-view class="_flex _flex_justify_center _flex_item_center">
-            <cover-image class="loading" animation="{{animationData}}" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/loading%403x.png"></cover-image>
-            <cover-view>视频上传中</cover-view>
+        <cover-view class="_font34 uploadTxt" bindtap="stopRecodeFace" wx:elif="{{status == 'stop'}}">
+          <cover-view class="uptxt">录制中…</cover-view>
+          <cover-view class="progressBar">
+            <cover-view class="progress active" style="width: {{progress}}%"></cover-view>
           </cover-view>
-        </button>
+        </cover-view>
+        <cover-view class=" _font34 uploadTxt" wx:elif="{{status == 'uploading'}}">
+          <cover-view class="progressBar">
+            <cover-view class="progress active" style="width: {{100}}%"></cover-view>
+          </cover-view>
+        </cover-view>
       </cover-view>
     </camera>
   </view>

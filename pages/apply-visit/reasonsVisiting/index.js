@@ -35,12 +35,8 @@ Page({
       })
     },2000)
 
-    if (e.detail.value.name !== '') {
-       
-        console.log('需要身份，跳转到录入人脸流程');
-
+    if (e.detail.value.name !== '') {  
       app.checkHasRecodeFace('visitor', _this.data.company_id, function (res) {
-
         if (res == '') {
           console.log('还没录入身份信息，跳转到录入人脸流程');
           var params = JSON.stringify({
@@ -60,7 +56,6 @@ Page({
               url: '/pages/collect-info/identity/index?source=applyVisit&params=' + params
             })
           }
-          
         } else {
           app.applySubmit(_this.data.company_id, e.detail.formId, e.detail.value.name, e.detail.value.reason, function (visit_apply_id) {
             wx.redirectTo({
@@ -68,11 +63,7 @@ Page({
             })
           }) 
         }
-
       }) 
-
-          
-      
     } else {
       toast.showToast(this, {
         toastStyle: 'toast pt',

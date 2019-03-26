@@ -3,7 +3,7 @@ page,
   background-color: rgba(249, 250, 251, 1)!important;
 }
 .page__bd {
-  padding: 0 34rpx 0 46rpx;
+  padding: 0 34rpx 2rpx 46rpx;
   color: rgba(26, 42, 75, 1);
 }
 .agree-title {

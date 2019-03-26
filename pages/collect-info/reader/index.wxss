@@ -58,3 +58,12 @@ page,
   background: rgba(0, 123, 255, 0.2) !important;
   color: #fff !important;
 }
+.toast4 .toast-title {
+  font-size: 36rpx;
+  font-weight: 700;
+}
+.toast4 .toast-introduce {
+  font-size: 30rpx;
+  color: rgba(27, 43, 76, 1);
+  font-weight: 400;
+}

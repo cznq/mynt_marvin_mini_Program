@@ -23,7 +23,8 @@ Page({
     timer: 0,
     status: 'start', //start, stop, uploading
     cameraErrorText: "",
-    isCameraAuth:true
+    isCameraAuth:true,
+    progress: 0
   },
 
   onLoad: function (options) {
@@ -109,7 +110,10 @@ Page({
     that.openCameraAuth(); console.log(that.data.options.faceConfig);
     if (that.data.isCameraAuth==true){
       int = setInterval(function () {
-        that.setData({ timer: that.data.timer + 1 })
+        that.setData({ 
+          timer: that.data.timer + 1,
+          progress: (100/that.data.options.faceConfig.counter)*that.data.timer
+        })
         if (that.data.timer >= that.data.options.faceConfig.counter) {
           clearInterval(int);
           that.stopRecord(that, that.data.ctx, int);
@@ -235,7 +239,7 @@ Page({
     var sign_type = 'MD5';
     var stringA = 'app_id=' + app_id + '&data=' + data + '&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
     var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
-    console.log(data)
+    wx.showLoading({ title: '人脸上传中' });
     var uploadTask = wx.uploadFile({
       url: 'http://61.149.7.239:10008/mini_program/api/',        //app.globalData.BASE_API_URL,
       method: 'POST',
@@ -259,27 +263,34 @@ Page({
         if (data.sub_code == 0) {
           clearInterval(timer);
           callback();
+        } else if(data.result) {
+          self.uploadFaceError(data.result.error);
+          app.myLog("人脸上传失败", data.result.error);
         } else {
-          self.uploadFaceError();
+          self.uploadFaceError(data.sub_msg);
+          app.myLog("人脸上传失败", data.sub_msg);
         }
       },
       fail: function () {
-        self.uploadFaceError();
+        self.uploadFaceError('请将正脸置于框内，用普通话说出4位验证数字。');
         app.myLog("微信上传文件失败", "上传人脸失败");
       }
     })
     uploadTask.onProgressUpdate((res) => {
+      console.log(res);
       self.setData({ status: 'uploading'})
-
-      //wx.showLoading({ title: '人脸上传中,请等待' });
+      if(res.progress == 100){
+        wx.hideLoading();
+      }
     })
   },
 
-  uploadFaceError(){
+  uploadFaceError(errMsg){
     var pages = getCurrentPages();
     var prevPage = pages[pages.length - 2];
     prevPage.setData({
-      error: true
+      error: true,
+      errorMsg: errMsg
     });
     wx.navigateBack({
       delta: 1

@@ -21,7 +21,6 @@ Page({
   },
 
   onLoad: function (options) {
-
     this.data.options.source = options.source;
     this.data.options.params = options.params;
     this.data.options.idInfo = options.idInfo;
