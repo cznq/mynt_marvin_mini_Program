@@ -44,6 +44,12 @@ Page({
             company_short_name: data.company_short_name,
             logo: data.logo
           })
+        } else if (res.data.sub_code !== 0) {
+          wx.showToast({
+            title: res.data.sub_msg,
+            icon: 'none'
+          })
+
         }
       }
     })
@@ -61,7 +67,7 @@ Page({
       },
       success: res => {
         // console.log("res:", res);
-        if (res.data.return_code === "SUCCESS") {
+        if (res.data.return_code === "SUCCESS" && res.data.result) {
           let data = res.data
           that.setData({
             service_status: data.result.business_service_suite_status,
@@ -79,6 +85,12 @@ Page({
               })
             }
 
+          })
+
+        } else if (res.data.sub_code !== 0) {
+          wx.showToast({
+            title: res.data.sub_msg,
+            icon: 'none'
           })
 
         }

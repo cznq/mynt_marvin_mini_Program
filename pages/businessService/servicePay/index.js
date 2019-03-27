@@ -43,7 +43,7 @@ Page({
       success: res => {
         // console.log("获取支付方式:", res);
         if (res.data.return_code === "SUCCESS" && res.data.result) {
-          let data = res.data.result
+          let data = res.data.result.period_list
           for (let obj of data) {
             for (let i in obj) {
               let price_arr = obj['real_money'].toString().split('')
@@ -74,7 +74,7 @@ Page({
       },
       success: res => {
         // console.log("res:", res);
-        if (res.data.return_code === "SUCCESS") {
+        if (res.data.return_code === "SUCCESS" && res.data.result) {
           let data = res.data
           _this.setData({
             business_service_suite_status: data.result.business_service_suite_status,

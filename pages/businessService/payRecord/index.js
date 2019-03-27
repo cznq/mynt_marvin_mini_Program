@@ -5,15 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    page_size: 1,
-    order_len: 0,
+    curr_page: 1,
     noneData: {
-      orderList: [],
       textInfo: '暂无交易记录',
       buttonText: '',
       emptyBtnFunc: '',
       show: false
     },
+    orderList: [],
     forbid: false
   },
 
@@ -21,11 +20,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getOrderRecord(this, 1, 10)
+    this.getOrderRecord(this, 1, 5)
   },
 
   getOrderRecord: function(that, page, page_size) {
-
     app.Util.network.POST({
       url: app.globalData.BASE_API_URL,
       params: {
@@ -39,33 +37,23 @@ Page({
       success: res => {
         console.log("获取订单记录:", res);
         if (res.data.return_code === "SUCCESS" && res.data.result) {
-          let data = res.data.result
-          let len = res.data.result.length
-          if (data.length == that.data.order_len) {
-            that.setData({
-              forbid: true
-            })
-            wx.showToast({
-              title: '加载完！',
-              icon: 'none'
-            })
-            return false
-          } else {
-            that.setData({
-              orderList: data,
-              order_len: len
-            }, () => {
-              if (that.data.orderList.length === 0) {
-                that.setData({
-                  ['noneData.show']: true
-                })
-              } else {
-                that.setData({
-                  ['noneData.show']: false
-                })
-              }
-            })
-          }
+          let data = res.data.result.record_list
+          const newOrderList = that.data.orderList.concat(data)
+          that.setData({
+            orderList: newOrderList,
+            total_page: res.data.result.total_page
+          }, () => {
+            if (that.data.orderList.length === 0) {
+              that.setData({
+                ['noneData.show']: true
+              })
+            } else {
+              that.setData({
+                ['noneData.show']: false
+              })
+            }
+          })
+
         } else {
           if (res.data.return_code !== 0 && res.data.sub_msg) {
             wx.showToast({
@@ -119,22 +107,18 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
-    let i = (this.data.page_size + 1) * 10;
-
-    if (!this.data.forbid) {
+    if (this.data.curr_page != this.data.total_page) {
+      let page = this.data.curr_page + 1
       this.setData({
-        page_size: i
+        curr_page: page
       })
-      this.getOrderRecord(this, 1, this.data.page_size)
+      this.getOrderRecord(this, this.data.curr_page, 5)
     } else {
       wx.showToast({
-        title: '加载完！',
+        title: '我们是有底线的哦！',
         icon: 'none'
       })
     }
-
-
   },
 
   /**
