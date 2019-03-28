@@ -282,6 +282,7 @@ Page({
         method: 'get_business_service_suite_status',
         data: JSON.stringify({}),
       },
+      showLoading: false,
       success: res => {
         // console.log("商业服务套件的状态:", res);
         if (res.data.return_code === "SUCCESS") {
