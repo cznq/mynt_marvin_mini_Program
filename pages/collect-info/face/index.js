@@ -21,10 +21,11 @@ Page({
     options: {},
     ctx: {},
     timer: 0,
-    status: 'start', //start, stop, uploading
+    status: 'stop', //start, stop, uploading
     cameraErrorText: "",
     isCameraAuth:true,
-    progress: 0
+    progress: 0,
+    face_verify_code: []
   },
 
   onLoad: function (options) {
@@ -34,7 +35,8 @@ Page({
     that.data.options.params = JSON.parse(options.params);
     that.data.options.idInfo = JSON.parse(options.idInfo);
     that.data.options.faceConfig = JSON.parse(options.faceConfig);
-    
+
+    that.setData({ face_verify_code: that.data.options.faceConfig.face_verify_code.split('') })
     if (app.Util.checkcanIUse('camera')) {
       app.myLog('相机检测', '相机组件检测通过');
       that.setData({
@@ -50,7 +52,7 @@ Page({
     var that = this;
     app.myLog('取消打开摄像头授权', '你已经取消了人脸录入的授权');
     this.setData({
-      cameraErrorText: "\n\n你已经取消了人脸录入的授权,\n点击下一步重新授权"
+      cameraErrorText: "\n\n你已经取消了人脸录入的授权,\n点击开始拍摄按钮重新授权"
     });
     that.data.isCameraAuth = false;
   },
@@ -100,7 +102,6 @@ Page({
     })
   },
 
-
   /**
    * 开始录入
    */
@@ -123,12 +124,7 @@ Page({
     }
 
   },
-  /**
-   * 结束录入
-   */
-  stopRecodeFace() {
-    this.stopRecord(this, this.data.ctx, timer)
-  },
+
   /**
    * 开始录像
    */
@@ -152,7 +148,7 @@ Page({
         self.finishSubmit(self, timer, res.tempVideoPath)
       },
       fail: function () {
-
+        console.log('stop recode fail')
       }
     })
   },
@@ -204,7 +200,6 @@ Page({
         wx.reLaunch({
           url: '/pages/employee/homepage/index',
         })
-
       });
 
     } else if (that.data.options.source == 'reRecodeFace') {
