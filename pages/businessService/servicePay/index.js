@@ -41,13 +41,19 @@ Page({
         data: JSON.stringify({}),
       },
       success: res => {
-        // console.log("获取支付方式:", res);
+        console.log("获取支付方式:", res);
         if (res.data.return_code === "SUCCESS" && res.data.result) {
           let data = res.data.result.period_list
           for (let obj of data) {
             for (let i in obj) {
-              let price_arr = obj['real_money'].toString().split('')
-              obj.price_arr = price_arr
+              if (obj['reduction'] === 1) {
+                let price_arr = obj['real_money'].toString().split('')
+                obj.price_arr = price_arr
+              } else {
+                let price_arr = obj['package_money'].toString().split('')
+                obj.price_arr = price_arr
+              }
+
             }
           }
           _this.setData({

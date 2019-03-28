@@ -47,7 +47,9 @@ var returnArrayLength = function (arr) {
 }
 
 var returnPicWidth = function (num) {
+if(num !="."){
 var num = parseInt(num)
+}
   switch (num) {
     case 0:
       return 30;
@@ -80,7 +82,7 @@ var num = parseInt(num)
       return 31;
       break;
     case '.':
-      return 11;
+      return 9;
       break;
     default:
       return 31;

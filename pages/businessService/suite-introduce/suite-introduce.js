@@ -7,22 +7,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isiphoneX: app.globalData.isIphoneX
+    isiphoneX: app.globalData.isIphoneX,
+    route: 'other'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var self = this;
+    console.log('options:', options);
+    if (options.route) { //从会员中心点击“全部权益”,没有“立即购买”的按钮
+      self.setData({
+        route: options.route
+      })
+    }
+
     self.getSuiteInfos();
-    
+
   },
 
   /**
    * 立即支付
    */
-  quickPay: function () {
+  quickPay: function() {
     wx.redirectTo({
       url: '/pages/businessService/servicePay/index'
     })
@@ -42,17 +50,17 @@ Page({
       success: res => {
         console.log(res);
         if (res.data.result) {
-            that.setData({
-              phone: res.data.result.phone,
-              cost_price: res.data.result.cost_price,
-              current_price: res.data.result.current_price,
-              image: res.data.result.image,
-            })
+          that.setData({
+            phone: res.data.result.phone,
+            cost_price: res.data.result.cost_price,
+            current_price: res.data.result.current_price,
+            image: res.data.result.image,
+          })
         }
       }
     })
   },
-  makePhoneCall: function (e) {
+  makePhoneCall: function(e) {
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.phone
     })

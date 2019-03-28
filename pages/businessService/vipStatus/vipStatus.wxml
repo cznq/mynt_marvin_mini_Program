@@ -25,7 +25,7 @@
   <view class="vipNav _row _cen_space">
     <view class="exclusive">小觅商业服务专属特权</view>
     <view class=" _row _cen_center">
-      <navigator url='/pages/businessService/suite-introduce/suite-introduce' hover-class='none'>
+      <navigator url='/pages/businessService/suite-introduce/suite-introduce?route=vipStatus' hover-class='none'>
       <text class="exclusive_instr">全部权益</text>
       <text  class="iconfont icon-jiantou jianSign"></text>
       </navigator>

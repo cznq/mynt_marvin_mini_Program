@@ -12,9 +12,9 @@
     <view class='consult _flex _flex_item_center'>
       <view class="contact _txt_center" bindtap="makePhoneCall" data-phone="{{phone}}">
       </view>
-      
-      <button class="_font30" bindtap='quickPay' style="background: url(https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/buy-button%402x.png) no-repeat center 10rpx;background-size: 224rpx 134rpx;">立即购买</button>
-      
+
+      <button wx:if='{{route!="vipStatus"}}' class="_font30" bindtap='quickPay' style="background: url(https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/buy-button%402x.png) no-repeat center 10rpx;background-size: 224rpx 134rpx;">立即购买</button>
+
     </view>
   </view>
 
