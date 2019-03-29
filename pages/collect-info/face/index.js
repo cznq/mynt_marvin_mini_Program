@@ -21,7 +21,7 @@ Page({
     options: {},
     ctx: {},
     timer: 0,
-    status: 'stop', //start, stop, uploading
+    status: 'start', //start, stop, uploading
     cameraErrorText: "",
     isCameraAuth:true,
     progress: 0,
