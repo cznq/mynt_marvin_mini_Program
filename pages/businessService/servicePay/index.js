@@ -52,6 +52,7 @@ Page({
               } else {
                 let price_arr = obj['package_money'].toString().split('')
                 obj.price_arr = price_arr
+                obj.reason = ""
               }
 
             }
