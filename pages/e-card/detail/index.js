@@ -41,7 +41,9 @@ const conf = {
    * 日历初次渲染完成后触发事件，如设置事件标记
    * @param { object } ctx 当前页面实例
    */
-  afterCalendarRender(ctx) {},
+  afterCalendarRender(ctx) {
+    // console.log('ctx:', ctx);
+  },
 }
 Page({
 
