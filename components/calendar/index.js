@@ -21,20 +21,40 @@ Component({
       type: Object
     }
   },
-  lifetimes: {
-    attached: function() {
-      currentPage = getCurrentPage();
+  pageLifetimes: {
+    show() {
+      // 页面被展示
+      console.log('calendar:', this.properties.calendar);
+    },
+    hide() {
+      // 页面被隐藏
+    },
+    resize(size) {
+      // 页面尺寸变化
     }
   },
-  attached: function() {
-    currentPage = getCurrentPage();
+  lifetimes: {
+    attached: function() {
+
+      currentPage = getCurrentPage();
+
+    }
   },
+  // attached: function() {
+  //   console.log('calendar:', JSON.parse(this.data));
+  //   currentPage = getCurrentPage();
+  // },
   methods: {
+
     /**
      * 选择上一月
      */
     choosePrevMonth() {
-      const { curYear, curMonth } = this.data.calendar;
+      const {
+        curYear,
+        curMonth
+      } = this.data.calendar;
+      // console.log('calendar:', this.data.calendar);
       let newYear = curYear;
       let newMonth = curMonth - 1;
       if (newMonth < 1) {
@@ -57,7 +77,10 @@ Component({
      * 选择下一月
      */
     chooseNextMonth() {
-      const { curYear, curMonth } = this.data.calendar;
+      const {
+        curYear,
+        curMonth
+      } = this.data.calendar;
       let newYear = curYear;
       let newMonth = curMonth + 1;
       if (newMonth > 12) {
@@ -81,13 +104,23 @@ Component({
      * @param {!object} e 事件对象
      */
     tapDayItem(e) {
-      const { idx, disable } = e.currentTarget.dataset;
+      const {
+        idx,
+        disable
+      } = e.currentTarget.dataset;
       if (disable) return;
       let currentSelected = {}; // 当前选中日期
-      let { days, selectedDay: selectedDays, todoLabels } =
-        this.data.calendar || []; // 所有选中日期
+      let {
+        days,
+        selectedDay: selectedDays,
+        todoLabels
+      } =
+      this.data.calendar || []; // 所有选中日期
       const config = currentPage.config;
-      const { multi, onTapDay } = config;
+      const {
+        multi,
+        onTapDay
+      } = config;
       const opts = {
         e,
         idx,

@@ -176,7 +176,7 @@ Page({
         })
       },
       success: res => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.result) {
           that.setData({
             floor_qrcode_url: res.data.result.qrcode_url,
@@ -236,7 +236,7 @@ Page({
           that.setData({
             cmpInfo: res.data.result
           })
-          console.log('cmpInfo:', that.data.cmpInfo);
+          // console.log('cmpInfo:', that.data.cmpInfo);
           that.joinFloorRoom(that.data.cmpInfo.floor, that.data.cmpInfo.room)
         }
         app.Util.network.POST({
@@ -417,7 +417,7 @@ Page({
         data.multiIndex[2] = 0
         break
     }
-    console.log(data.multiIndex)
+    // console.log(data.multiIndex)
     this.setData(data)
   }
 })
