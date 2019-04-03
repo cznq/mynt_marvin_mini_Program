@@ -154,17 +154,8 @@ Page({
                 url: '../vipStatus/vipStatus'
               })
             },
-            fail: res => {
-              wx.showToast({
-                title: '支付失败',
-                icon: 'none'
-              })
-            },
-            complete: res => {
-              wx.redirectTo({
-                url: '/benifit/pages/pay-status/index?out_order_id=' + out_order_id + '&pay_from=package'
-              })
-            }
+            fail: res => {},
+            complete: res => {}
 
           });
         } else {
