@@ -151,7 +151,7 @@ Page({
             success: res => {
               // console.log('支付成功');
               wx.redirectTo({
-                url: '../vipStatus/vipStatus'
+                url: '/benifit/pages/pay-status/index?out_order_id=' + out_order_id + '&pay_from=package'
               })
             },
             fail: res => {
