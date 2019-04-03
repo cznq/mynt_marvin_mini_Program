@@ -18,8 +18,8 @@
 
           <text wx:if='{{item.period_type ==3 && item.order_source == 1}}'>商业服务套件6个月</text>
           <text wx:if='{{item.period_type ==3 && item.order_source != 1}}'>商业服务套件</text>
-          
-          <text wx:if='{{item.period_type ==4 && item.order_source != 1}}'>商业服务套件12个月</text>
+
+          <text wx:if='{{item.period_type ==4 && item.order_source == 1}}'>商业服务套件12个月</text>
           <text wx:if='{{item.period_type ==4 && item.order_source != 1}}'>商业服务套件</text>
         </view>
         <view wx:if="{{item.order_source != 3}}" class="price">¥{{tools.priceFix(item.payed_money/100)}}</view>
