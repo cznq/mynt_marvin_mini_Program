@@ -154,8 +154,11 @@ Page({
                 url: '../vipStatus/vipStatus'
               })
             },
-            fail: res => {},
-            complete: res => {}
+            fail: res => {
+              wx.redirectTo({
+                url: '/benifit/pages/pay-status/index?out_order_id=' + out_order_id + '&pay_from=package'
+              })
+            }
 
           });
         } else {
