@@ -258,3 +258,28 @@ swiper {
   margin: 0 auto;
   border: 1px solid red;
 }
+
+.calendar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 750rpx;
+  height: auto;
+  background: #fff;
+  z-index: 999;
+}
+
+.calTitle {
+  padding: 0 30rpx;
+  font-size: 32rpx;
+  height: 82rpx;
+  border-bottom: 1rpx solid #DEE7F2;
+}
+
+.calCancel {
+  color: #8891A9;
+}
+
+.calQuery {
+  color: #0080FA;
+}

@@ -83,12 +83,6 @@ Page({
    */
   onLoad: function(options) {
     initCalendar(conf);
-    // jump({
-    //   year: '2019',
-    //   month: '3',
-    //   day: '25'
-    // })
-    // console.log('getSelectedDay', getSelectedDay());
     var that = this;
 
     if (options.invitation_id) {

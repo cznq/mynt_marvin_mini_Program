@@ -1,6 +1,12 @@
 <wxs src="../../../wxs/subutil.wxs" module="tools" />
-
-<calendar calendar="{{calendar}}" gesture="{{gesture}}"></calendar>
+.
+<view class="calendar">
+  <view class="calTitle _row _cen_space">
+    <view class="calCancel">取消</view>
+    <view class="calQuery">确定</view>
+  </view>
+  <calendar calendar="{{calendar}}" gesture="{{gesture}}"></calendar>
+</view>
 
 <city-picker codes="{{codes}}" mode="2" data="{{citylist}}"  bind:select="onSelect">
 <view class="input-picker">
