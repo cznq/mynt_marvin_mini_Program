@@ -71,7 +71,7 @@ Page({
       wx.navigateBack();
     } else if (this.data.pay_from == 'package') {
       wx.redirectTo({
-        url: '/pages/businessService/vipStatus/vipStatus',
+        url: '/pages/businessService/servicePay/index',
       })
     }
 
