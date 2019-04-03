@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function(options) {
     var self = this;
-    console.log('options:', options);
+    // console.log('options:', options);
     if (options.route) { //从会员中心点击“全部权益”,没有“立即购买”的按钮
       self.setData({
         route: options.route
@@ -48,7 +48,7 @@ Page({
         })
       },
       success: res => {
-        console.log(res);
+        // console.log(res);
         if (res.data.result) {
           that.setData({
             phone: res.data.result.phone,

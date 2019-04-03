@@ -36,7 +36,7 @@ Page({
         data: JSON.stringify({}),
       },
       success: res => {
-        console.log("公司信息:", res);
+        // console.log("公司信息:", res);
         if (res.data.return_code === "SUCCESS" && res.data.result) {
           let data = res.data.result
           that.setData({
@@ -66,7 +66,7 @@ Page({
         data: JSON.stringify({}),
       },
       success: res => {
-        console.log("res:", res);
+        // console.log("res:", res);
         if (res.data.return_code === "SUCCESS" && res.data.result) {
           let data = res.data
           if (data.result.business_service_suite_name) {

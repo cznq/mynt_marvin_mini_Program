@@ -35,7 +35,7 @@ Page({
         }),
       },
       success: res => {
-        console.log("获取订单记录:", res);
+        // console.log("获取订单记录:", res);
         if (res.data.return_code === "SUCCESS" && res.data.result) {
           let data = res.data.result.record_list
           const newOrderList = that.data.orderList.concat(data)

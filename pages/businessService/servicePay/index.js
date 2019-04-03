@@ -41,7 +41,7 @@ Page({
         data: JSON.stringify({}),
       },
       success: res => {
-        console.log("获取支付方式:", res);
+        // console.log("获取支付方式:", res);
         if (res.data.return_code === "SUCCESS" && res.data.result) {
           let data = res.data.result.period_list
           for (let obj of data) {
@@ -149,7 +149,7 @@ Page({
             signType: 'MD5',
             paySign: res.data.result.wx_package.paySign,
             success: res => {
-              console.log('支付成功');
+              // console.log('支付成功');
               wx.redirectTo({
                 url: '../vipStatus/vipStatus'
               })
