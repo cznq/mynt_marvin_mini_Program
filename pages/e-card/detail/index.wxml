@@ -1,5 +1,5 @@
 <wxs src="../../../wxs/subutil.wxs" module="tools" />
-.
+
 <view class="calendar">
   <view class="calTitle _row _cen_space">
     <view class="calCancel">取消</view>
