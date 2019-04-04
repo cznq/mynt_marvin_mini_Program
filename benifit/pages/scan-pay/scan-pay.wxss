@@ -1,6 +1,10 @@
 @import "../../../templates/showToast/showToast.wxss";
 page {
+  height: 100%;
+}
+.page {
   background-color: #F5F6F7;
+  height: 100%;
 }
 ._flex_align_center {
   display: flex;
