@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "calendar":"../../../components/calendar2"
+    "calendar":"../../../components/calendar2/index"
   }
 }
