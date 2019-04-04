@@ -198,7 +198,7 @@ const conf = {
     conf.calculateDays.call(this, curYear, curMonth, curDate);
     const {
       todoLabels
-    } = this.data.calendar || {};
+    } = this.data.calendar || {}; //todo
     const {
       afterCalendarRender
     } = this.config;
