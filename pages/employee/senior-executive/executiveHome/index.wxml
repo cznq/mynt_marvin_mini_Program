@@ -50,7 +50,7 @@
 </block>
 <block wx:else>
    <view class="learn_vip">
-        <navigator url="/benifit/pages/suite-introduce/suite-introduce">
+        <navigator url="/pages/businessService/suite-introduce/suite-introduce">
             <button class="_flex _flex_item_center _flex_justify_center _btn _mb20">
                 <view class="vipicon"></view>
                 <view class="_font34 _fontw500" bindtap="learnVip">了解小觅商业服务套件</view>

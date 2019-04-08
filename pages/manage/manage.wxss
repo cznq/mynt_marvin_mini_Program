@@ -35,7 +35,8 @@ background: linear-gradient(to bottom,#ffffff 0%,#ffffff 3%,#f3f3f3 97%,#f3f3f3 
 
 .manage .header{padding-top:22rpx;}
 .header .top{border-bottom: 1rpx solid #e2e2e2;padding:0 60rpx 30rpx 60rpx;}
-.header .top .vipicon{right: 64rpx;top:30rpx;width:50rpx;height:44rpx;}
+.header .top .vipicon{right: 40rpx;top:30rpx;width:40rpx;height:36rpx;}
+.header .top .vipicon:before {content: '';width: 100rpx;height: 60rpx;position: absolute;right: -42rpx;top:-14rpx;border:1px solid rgba(205, 205, 205, 1);border-radius: 60rpx 0 0 60rpx;}
 .header .top image{width: 100rpx;height:100rpx;border-radius: 8rpx;float: left;margin-right:20rpx;}
 .header .t1{font-size:44rpx;line-height:65rpx;color: #081C33;}
 .header .t2{font-size:24rpx;color:#8891A9;}

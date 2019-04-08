@@ -1,0 +1,43 @@
+<!--pages/businessService/servicePay/index.wxml-->
+<wxs src="../../../wxs/subutil.wxs" module="tools" />
+<import src="../../../templates/noneData/noneData.wxml" />
+<view class="page">
+  <view class="page__hd _flex _flex_item_center">
+
+  </view>
+  <view wx:if="{{orderList.length!=0}}" class="page__bd">
+    <view wx:for="{{orderList}}" wx:key="" wx:item='item' class="payList">
+      <view class="pck-title _font32 _flex _flex_item_center _flex_space_between">
+        <view class="_flex _flex_item_center">
+          <view class='vipicon'></view>
+          <text wx:if='{{item.period_type ==1 && item.order_source == 1}}'>商业服务套件1个月</text>
+          <text wx:if='{{item.period_type ==1 && item.order_source != 1}}'>商业服务套件</text>
+
+          <text wx:if='{{item.period_type ==2 && item.order_source == 1}}'>商业服务套件3个月</text>
+          <text wx:if='{{item.period_type ==2 && item.order_source != 1}}'>商业服务套件</text>
+
+          <text wx:if='{{item.period_type ==3 && item.order_source == 1}}'>商业服务套件6个月</text>
+          <text wx:if='{{item.period_type ==3 && item.order_source != 1}}'>商业服务套件</text>
+
+          <text wx:if='{{item.period_type ==4 && item.order_source == 1}}'>商业服务套件12个月</text>
+          <text wx:if='{{item.period_type ==4 && item.order_source != 1}}'>商业服务套件</text>
+        </view>
+        <view wx:if="{{item.order_source != 3}}" class="price">¥{{tools.priceFix(item.payed_money/100)}}</view>
+        <view wx:if="{{item.order_source == 3}}" class="price">赠送体验</view>
+      </view>
+      <view class="_item">会员生效时间:{{item.begin_time}}</view>
+      <view class="_item">会员到期时间:{{item.end_time}}</view>
+      <view class="_item">购买时间:{{item.buying_time}}</view>
+      <view class="_item">订单编号:{{item.order_id}}</view>
+    </view>
+  </view>
+  <view wx:if='{{noneData.show}}' class="noData">
+      <template is="noneDataPage" data="{{noneData:noneData}}" />
+  </view>
+
+  <view class="page__ft ">
+
+  </view>
+
+
+</view>

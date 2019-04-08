@@ -55,7 +55,7 @@
                     </label>
             
                     <view class="weui-form-preview__value" wx:if="{{ hasDiscount }}">{{ savedPrice }}</view>
-                    <navigator url="/benifit/pages/suite-introduce/suite-introduce" hover-class="none" wx:else>
+                    <navigator url="/pages/businessService/suite-introduce/suite-introduce" hover-class="none" wx:else>
                     <view class="weui-form-preview__value _font12" id="previewBenifit">未开通小觅福利卡<text class="weui-right_arrow"></text></view>
                     </navigator>
                 </view>

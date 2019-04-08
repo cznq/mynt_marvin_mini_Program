@@ -1,0 +1,21 @@
+<!--pages/suite-introduce/suite-introduce.wxml-->
+<view class='page'>
+  <view class='page__hd'></view>
+  <view class='page__cont'>
+    <image wx:for="{{image}}" wx:key="" wx:for-item="item" src="{{item}}" mode='widthFix'></image>
+  </view>
+
+  <view class='page__ft _flex _flex_space_between _flex_item_center {{isiphoneX ? "footer_x" : ""}}' >
+    <view class='info'>
+      <view class='info__top'><text>小觅楼宇\n商业服务套餐</text></view>
+    </view>
+    <view class='consult _flex _flex_item_center'>
+      <view class="contact _txt_center" bindtap="makePhoneCall" data-phone="{{phone}}">
+      </view>
+
+      <button wx:if='{{route!="vipStatus"}}' class="_font30" bindtap='quickPay' style="background: url(https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/buy-button%402x.png) no-repeat center 10rpx;background-size: 224rpx 134rpx;">立即购买</button>
+
+    </view>
+  </view>
+
+</view>

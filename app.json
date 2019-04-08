@@ -63,7 +63,11 @@
     "pages/invite-list/invite-detail/invite-detail",
     "pages/visitor-list/list/index",
     "pages/visitor-list/detail/index",
-    "pages/company/unattended-setting/setting/index"
+    "pages/company/unattended-setting/setting/index",
+    "pages/businessService/vipStatus/vipStatus",
+    "pages/businessService/servicePay/index",
+    "pages/businessService/payRecord/index",
+    "pages/businessService/suite-introduce/suite-introduce"
   ],
   "subPackages": [
     {
@@ -75,7 +79,6 @@
         "pages/mall-home/mall-home",
         "pages/mall-detail/mall-detail",
         "pages/mall-comment/mall-comment",
-        "pages/suite-introduce/suite-introduce",
         "pages/pay-status/index"
       ]
     }
