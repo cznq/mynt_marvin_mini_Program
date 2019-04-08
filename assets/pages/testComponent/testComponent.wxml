@@ -1,1 +1,6 @@
-<calendar calendar="{{calendar}}" gesture="{{gesture}}"></calendar>
+<!-- <calendar2></calendar2> -->
+<sinlecal bind:select="onSelect">
+    <view class="calendar-select">
+        {{selectData}}
+    </view>
+</sinlecal>

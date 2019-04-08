@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "calendar":"../../../components/calendar2/index"
+    "calendar2":"../../../components/calendar2/calendar",
+    "sinlecal":"../../../components/calendarMoel/index"
   }
 }
