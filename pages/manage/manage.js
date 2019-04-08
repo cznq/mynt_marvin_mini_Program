@@ -23,6 +23,7 @@ Page({
         button_text_qx: '取消申请',
         mode: 'aspectFill', //manage logo展示效果
         cd: {},
+        businessVip_status: 0,
         imgurl_manage: [],
         imgUrls: [{
                 url: app.globalData.BASE_IMG_URl + 'welcome_one@2x.png',
@@ -121,7 +122,9 @@ Page({
                 var resdata = res.data.result;
                 if (res.data.sub_code == 0) {
                     if (resdata.employee_status === 0) {
-                        _this.setData({ role: resdata.role });
+                        _this.setData({
+                            role: resdata.role
+                        });
                         _this.setData({
                             islogin: false,
                             ismanage: true
@@ -193,15 +196,40 @@ Page({
     //自动值守
     unattendedSetting: function() {
         var that = this;
-        if (that.data.cd.attend_status == 0) {
-            wx.navigateTo({
-                url: '/pages/company/unattended-setting/setHome/index',
-            })
-        } else if (that.data.cd.attend_status == 1) {
-            wx.navigateTo({
-                url: '/pages/company/unattended-setting/setting/index',
-            })
-        }
+        app.Util.network.POST({
+            url: app.globalData.BASE_API_URL,
+            params: {
+                service: 'company',
+                method: 'get_company_service_status',
+                data: JSON.stringify({
+                    union_id: wx.getStorageSync('xy_session'),
+                    service_key: "ATTEND_FUNCTION"
+                })
+            },
+            success: res => {
+                if (res.data.result) {
+                    if (res.data.result.service_status == 0) {
+                        wx.navigateTo({
+                            url: '/pages/company/unattended-setting/setHome/index',
+                        })
+                    }
+                    if (res.data.result.service_status == 1) {
+                        if (that.data.cd.attend_status == 1) {
+                            wx.navigateTo({
+                                url: '/pages/company/unattended-setting/setting/index',
+                            })
+                        } else {
+                            wx.navigateTo({
+                                url: '/pages/company/unattended-setting/setHome/index',
+                            })
+                        }
+                    }
+                }
+            },
+            fail: res => {
+                console.log('获取服务失败')
+            }
+        })
     },
     //邀请访客
     inviteVisitor: function() {
@@ -261,9 +289,35 @@ Page({
                 } else {
                     console.log(res.data.sub_msg);
                 }
+                _this.getServiceStatus(_this);
             },
             fail: res => {
                 console.log('fail');
+            }
+        })
+    },
+    /**
+     * 获取商业服务套件的状态
+     */
+    getServiceStatus: function(that) {
+        app.Util.network.POST({
+            url: app.globalData.BASE_API_URL,
+            params: {
+                service: 'company',
+                method: 'get_business_service_suite_status',
+                data: JSON.stringify({}),
+            },
+            showLoading: false,
+            success: res => {
+                // console.log("商业服务套件的状态:", res);
+                if (res.data.return_code === "SUCCESS") {
+                    let data = res.data
+                    that.setData({
+                        businessVip_status: data.result.business_service_suite_status,
+                    })
+
+                }
+
             }
         })
     },
@@ -289,7 +343,7 @@ Page({
                     _this.setData({
                         imgurl_manage: [{
                             'image_url': 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/slide-default.png',
-                            'link_url': '/benifit/pages/suite-introduce/suite-introduce'
+                            'link_url': '/pages/businessService/suite-introduce/suite-introduce'
                         }]
                     })
                     console.log(res.data.sub_msg);

@@ -15,17 +15,17 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var _this = this;
     _this.setData({
       pay_from: options.pay_from
     })
-    if (options.pay_from == 'commerce'){
+    if (options.pay_from == 'commerce') {
       _this.searchOrderInfo(_this, options.out_order_id, app.globalData.BENIFIT_API_URL);
     } else if (options.pay_from == 'package') {
       _this.searchOrderInfo(_this, options.out_order_id, app.globalData.BASE_API_URL);
     }
-    
+
   },
   //套餐订单查询
   searchOrderInfo(_this, out_order_id, requestUrl) {
@@ -41,36 +41,39 @@ Page({
       success: res => {
         if (res.data.result) {
           if (res.data.result.status == 1) {
-            _this.setData({ status: 'success' })
+            _this.setData({
+              status: 'success'
+            })
           } else if (res.data.result.status == 0) {
-            _this.setData({ status: 'fail' })
+            _this.setData({
+              status: 'fail'
+            })
           }
         } else {
           wx.showToast({
             title: res.data.sub_msg,
             icon: 'none'
           })
-        } 
+        }
 
       },
-      fail: res => { }
+      fail: res => {}
     })
   },
-  
-  makePhoneCall: function (e) {
+
+  makePhoneCall: function(e) {
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.phone
     })
   },
   backPay() {
     if (this.data.pay_from == 'commerce') {
-      console.log('okokok');
       wx.navigateBack();
     } else if (this.data.pay_from == 'package') {
       wx.redirectTo({
-        url: '/benifit/pages/suite-introduce/suite-introduce',
+        url: '/pages/businessService/servicePay/index',
       })
     }
-    
+
   }
 })

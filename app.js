@@ -22,6 +22,7 @@ App({
     // 开发环境
     // BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
     // BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
+    // BASE_API_URL: 'http://192.168.1.204:10009/mini_program/api/', //VIP套餐接口调试地址
     // BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/', //内网环境
     // BENIFIT_API_URL: 'http://192.168.1.204:10004/mini_program/api', //内网环境
     // WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
@@ -258,7 +259,7 @@ App({
    */
   viewBusinessService() {
     wx.navigateTo({
-      url: '/benifit/pages/suite-introduce/suite-introduce',
+      url: '/pages/businessService/suite-introduce/suite-introduce',
     })
   },
 

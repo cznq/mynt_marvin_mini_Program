@@ -1,0 +1,189 @@
+/* pages/suite-introduce/suite-introduce.wxss */
+
+.page {
+  width: 750rpx;
+  background: rgba(255, 255, 255, 1);
+  position: relative;
+}
+
+.page__hd {
+  padding: 20rpx 40rpx 0;
+  height: 64rpx;
+  background-color: #03428f;
+}
+
+.page__ft {
+  width: 100%;
+  height: 140rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px -4rpx 10rpx 0rpx rgba(0, 0, 0, 0.04);
+  position: fixed;
+  bottom: 0;
+  padding: 0 60rpx;
+  box-sizing: border-box;
+}
+
+.page .page__cont {
+  padding-bottom: 140rpx;
+}
+
+.page .page__cont image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-repeat: no-repeat;
+}
+
+.page__ft .consult {
+  box-sizing: border-box;
+}
+
+.page__ft .consult button {
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+  width: 200rpx;
+  height: 140rpx;
+  line-height: 140rpx;
+  margin-left: 20rpx;
+}
+
+.page__ft .info .info__top {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 600;
+}
+
+.page__ft .info .info__ft {
+  line-height: 1;
+  color: rgba(51, 51, 51, 1);
+}
+
+.page__ft .info .info__ft .text__hd {
+  font-size: 50rpx;
+  font-weight: 400;
+  color: #333;
+}
+
+.page__ft .info .info__ft .text__blur {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #999;
+}
+.blue {
+  color: rgba(0, 132, 255, 1);
+  line-height: 1.2;
+}
+.icon-zixun {
+  font-size: 36rpx;
+}
+/* 弹出付费窗口 */
+canvas {
+  position: absolute;
+  left: -500px;
+  top: -300px;
+  /* left: 0;
+  top: 0; */
+}
+.modal-bg {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 900;
+  left: 0;
+  right: 0;
+  background: rgba(129, 129, 129, .7);
+}
+.invite-modal {
+  position: fixed;
+  display: inline-block;
+  border-radius: 10rpx;
+  text-align: center;
+  top: 108rpx;
+  left: 50%;
+  z-index: 901;
+  transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  color:#1B2B4C;
+  background: #fff;
+  box-sizing: border-box;
+  width: 612rpx;
+}
+.modal-header {
+  padding: 68rpx 96rpx 48rpx; 
+  position: relative;
+}
+.modal-body {
+  position: relative;
+  border-top: 1px solid rgba(220, 220, 220, .2);
+}
+.modal-body::before, .modal-body::after {
+  content: '';
+  width: 10rpx;
+  height: 20rpx;
+  background-color: rgba(129, 129, 129, .6);
+  position: absolute;
+  top: -10rpx;
+  border-radius: 0 10rpx 10rpx 0;
+}
+.modal-body::before {
+  left: 0;
+}
+.modal-body::after {
+  right: 0!important;
+  border-radius: 10rpx 0 0 10rpx;
+}
+._suite_intro {
+  color: rgba(136, 145, 169, 1);
+}
+.invite-method-part .qrcode{
+  margin-top: 20rpx;
+  height: 430rpx;
+}
+.invite-method-part .code {
+  margin-top: 40rpx;
+}
+.qrcode-img {
+  width: 354rpx;
+  height: 354rpx;
+  border: 14rpx solid rgba(221, 221, 221, 1);
+}
+.tips {
+  margin-top: 14rpx;
+  line-height: 1;
+  color: rgba(136, 145, 169, 1);
+}
+.code .tit {
+  font-size: 42rpx;
+  line-height: 1;
+  color: rgba(26, 42, 75, 1);
+  margin-bottom: 12rpx;
+}
+.code button {
+  width: 480rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 76rpx;
+  color: rgba(33, 38, 47, 1);
+  background: rgba(242, 244, 247, 1);
+  margin-bottom: 28rpx;
+  border-radius: 10rpx;
+  box-shadow: 0rpx 2rpx 2rpx rgba(112, 123, 141, 0.7) inset;
+}
+.invite-btn-area {
+  margin: 72rpx 0 60rpx;
+}
+.invite-btn-area button {
+  width: 246rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-bottom: 32rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #fff;
+  background-color: transparent;
+  color: rgba(71, 95, 253, 1);
+  border: 1px solid #007bff;
+}

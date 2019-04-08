@@ -50,7 +50,7 @@
       <view class='st'>
         <text class='_font24 _txt_darkgrey _fontw300'>门牌号（必填）</text>
       </view>
-      <input class='input_text pj9' name="room" value='{{cd.room}}' placeholder='请输入' placeholder-class='input_text_phc'></input>
+      <input class='input_text pj9' name="room" disabled='true' value='{{cd.room}}' placeholder='请输入' placeholder-class='input_text_phc'></input>
       <view class='st'>
         <text class='_font24 _txt_darkgrey _fontw300'>联系方式（必填）</text>
       </view>
