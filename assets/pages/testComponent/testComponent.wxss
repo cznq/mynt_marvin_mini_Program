@@ -1,1 +1,33 @@
 /* assets/pages/testComponent/testComponent.wxss */
+/* pages/others/dateLater/index.wxss */
+.header_date {
+  width: 750rpx;
+  background-color: #fff;
+  padding: 40rpx 16rpx;
+}
+
+.date_item {
+  width: 134rpx;
+  font-size: 32rpx;
+  color: #8891A9;
+  text-align: center;
+  display: inline-block;
+}
+
+._week {
+  line-height: 36rpx;
+  margin-bottom: 16rpx;
+}
+
+._day {
+  font-size: 28rpx;
+  line-height: 28rpx;
+}
+
+.more_date {
+  color: #FF6923;
+}
+
+.date_item.active {
+  color: #FF6923;
+}

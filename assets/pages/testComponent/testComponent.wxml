@@ -1,6 +1,26 @@
 <!-- <calendar2></calendar2> -->
-<sinlecal bind:select="onSelect">
+<!-- <sinlecal bind:select="onSelect">
     <view class="calendar-select">
         {{selectData}}
     </view>
-</sinlecal>
+</sinlecal> -->
+
+
+<view class="header_date">
+    <scroll-view scroll-x style="white-space: nowrap;">
+        <view wx:for="{{dateList}}" wx:for-index="idx" wx:key="key" class="date_item  {{ checkId ==idx ?'active':''}}" data-year="{{item.year}}" data-month="{{item.month}}" data-day="{{item.day}}" data-id="{{idx}}"  bindtap="onPressDate">
+            <view class="_week">{{item.week}}</view>
+            <view class="_day">{{item.newdates}}</view>
+        </view>
+        <view class="date_item more_date">
+            <view class="_day">更多</view>
+        </view>
+    </scroll-view>
+</view>
+<view>
+    预定日期：{{checkDate}}
+</view>
+
+<view>
+    当前时间：{{time}}
+</view>
