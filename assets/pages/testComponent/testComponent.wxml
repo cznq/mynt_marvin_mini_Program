@@ -1,12 +1,12 @@
 <!-- <calendar2></calendar2> -->
-<!-- <sinlecal bind:select="onSelect">
+<sinlecal bind:select="onSelect">
     <view class="calendar-select">
         {{selectData}}
     </view>
-</sinlecal> -->
+</sinlecal>
 
 
-<view class="header_date">
+<!-- <view class="header_date">
     <scroll-view scroll-x style="white-space: nowrap;">
         <view wx:for="{{dateList}}" wx:for-index="idx" wx:key="key" class="date_item  {{ checkId ==idx ?'active':''}}" data-year="{{item.year}}" data-month="{{item.month}}" data-day="{{item.day}}" data-id="{{idx}}"  bindtap="onPressDate">
             <view class="_week">{{item.week}}</view>
@@ -23,4 +23,4 @@
 
 <view>
     当前时间：{{time}}
-</view>
+</view> -->
