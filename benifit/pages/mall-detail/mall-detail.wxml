@@ -187,7 +187,7 @@
               <view class="vip-card-top">
                 <view class="name">
                   <text>协</text>{{employeeInfo.name}}</view>
-                <image class="avatar" src="{{employeeInfo.avatar}}" mode="widthFix"></image>
+                <image class="avatar" src="{{employeeInfo.avatar}}" mode="widthFix" wx:if="{{employeeInfo.avatar != ''}}"></image>
               </view>
               <view class="vip-card-middle">
                 <view class="company-name">{{employeeInfo.company_name}}</view>
