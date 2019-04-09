@@ -244,7 +244,7 @@ Page({
         data: JSON.stringify({
           "commerce_id": _this.data.commerce_id,
           "total": _this.data.totalPrice,
-          "enjoy_discount": isVip?1:0,
+          "enjoy_discount": _this.data.isVip?1:0,
           "out_price": _this.data.outPrice == null ? 0 : _this.data.outPrice,
           "total_fee": _this.data.realPrice,
           "pay_type": 3
