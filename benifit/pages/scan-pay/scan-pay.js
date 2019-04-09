@@ -1,4 +1,4 @@
-// pages/scan-pay/scan-pay.js
+const Promise = require('../../../utils/promise.js');
 var toast = require('../../../templates/showToast/showToast');
 const app = getApp();
 Page({
@@ -13,7 +13,9 @@ Page({
     totalPrice: null,
     outPrice: null,
     keyVal: 0,
-    cannotPay: false
+    isVip: false,
+    employeeInfo: null,
+    loadComplete: false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -21,10 +23,68 @@ Page({
   onLoad: function(options) {
     this.data.commerce_id = options.commerce_id;
     this.data.type = options.type;
-    this.hasDiscount();
     this.getCommerceInfo(this.data.commerce_id);
     this.getCommerceDiscount(this.data.commerce_id, this.data.type);
     this.sendScanRecord(options.commerce_id);
+  },
+  /**
+   * 获取用户信息
+   */
+  getEmployeeInfo(sub_mch_id) {
+    var that = this;
+    app.Util.network.POST({
+      url: app.globalData.BENIFIT_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_employee_info',
+        union_id: wx.getStorageSync('xy_session'),
+        data: JSON.stringify({})
+      },
+      showLoading: false,
+      success: res => {
+        if (res.data.result) {
+          that.setData({
+            employeeInfo: res.data.result
+          })
+        }
+        app.Util.network.POST({
+          url: app.globalData.BENIFIT_API_URL,
+          params: {
+            service: 'company',
+            method: 'get_company_service_status',
+            data: JSON.stringify({ service_key: 'EMPLOYEE_BENIFIT' })
+          },
+          success: res => {
+            that.setData({ loadComplete: true })
+            wx.setNavigationBarTitle({
+              title: '协议买单'
+            })
+            if (res.data.result) {
+              if (res.data.result.service_status !== 0) {
+                that.setData({ isVip: true })
+              }
+            } 
+            if (sub_mch_id == '') { // 未开通支付
+              if (that.data.employeeInfo) { // 小觅用户
+                if (that.data.isVip) {  // 小觅VIP用户
+                  wx.redirectTo({
+                    url: '../mall-detail/mall-detail?showVipCard=true&dialog_discount=' + that.data.cd_CommerceDiscount[0].benifit_content + '&dialog_discount_limit=' + that.data.cd_CommerceDiscount[0].benifit_limit + '&commerce_id=' + that.data.commerce_id + '&commerce_type=' + that.data.type,
+                  })
+                } else {
+                  wx.redirectTo({
+                    url: '../vip-card/vip-card',
+                  })
+                }
+              } else { // 非小觅用户
+                wx.redirectTo({
+                  url: '/pages/manage/manage',
+                })
+              }
+            }
+          }
+        })
+      }
+    })
   },
 
   /**
@@ -42,22 +102,14 @@ Page({
           "commerce_id": commerce_id
         })
       },
+      showLoading: false,
       success: res => {
         console.log(res);
         if(res.data.result){
-          if (res.data.result.sub_mch_id ==''){
-            that.setData({ cannotPay: true})
-            toast.showToast(that, {
-              toastStyle: 'toast',
-              title: '商家未开通支付',
-              duration: 1000,
-              mask: false,
-              isArrow: true
-            });
-          }
           that.setData({
             cd_CommerceInfo: res.data.result
           })
+          that.getEmployeeInfo(res.data.result.sub_mch_id);
         } 
       }
     })
@@ -78,6 +130,7 @@ Page({
           "type": type
         })
       },
+      showLoading: false,
       success: res => {
         that.setData({
           cd_CommerceDiscount: res.data.result
@@ -100,40 +153,13 @@ Page({
           "commerce_id": commerce_id
         })
       },
+      showLoading: false,
       success: res => {
         console.log(res);
       }
     })
   },
-  /**
-   * 获取是否拥有福利
-   */
-  hasDiscount() {
-    var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'company',
-        method: 'get_company_service_status',
-        data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session'),
-          service_key: 'EMPLOYEE_BENIFIT'
-        })
-      },
-      success: res => {
-        console.log(res);
-        if (res.data.success == false) {
-          this.setData({
-            hasDiscount: 0
-          })
-        } else {
-          this.setData({
-            hasDiscount: res.data.result.service_status
-          })
-        }
-      }
-    })
-  },
+
   changeCheckBox: function() {
     if(this.data.checkBox){
       this.setData({ checkBox: false, outPrice: null })
@@ -157,7 +183,6 @@ Page({
   },
   clickKey(event) {
     let value = event.currentTarget.dataset.keyval;
-
     if (this.data.keyVal == 0) {
       this.handleTotalValue(value);
     } else {
@@ -219,7 +244,7 @@ Page({
         data: JSON.stringify({
           "commerce_id": _this.data.commerce_id,
           "total": _this.data.totalPrice,
-          "enjoy_discount": _this.data.hasDiscount,
+          "enjoy_discount": isVip?1:0,
           "out_price": _this.data.outPrice == null ? 0 : _this.data.outPrice,
           "total_fee": _this.data.realPrice,
           "pay_type": 3
@@ -268,7 +293,7 @@ Page({
       this.calcSavedPrice();
       return ;
     }
-    if (this.data.hasDiscount == 0) {
+    if (this.data.isVip == false) {
       this.setData({ realPrice: this.data.totalPrice })
       this.calcSavedPrice();
       return ;
