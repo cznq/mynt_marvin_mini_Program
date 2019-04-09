@@ -1,5 +1,3 @@
-/* pages/suite-introduce/suite-introduce.wxss */
-
 .page {
   width: 750rpx;
   background: rgba(255, 255, 255, 1);
@@ -70,13 +68,16 @@
   font-weight: 500;
   color: #999;
 }
+
 .blue {
   color: rgba(0, 132, 255, 1);
   line-height: 1.2;
 }
+
 .icon-zixun {
   font-size: 36rpx;
 }
+
 /* 弹出付费窗口 */
 canvas {
   position: absolute;
@@ -85,6 +86,7 @@ canvas {
   /* left: 0;
   top: 0; */
 }
+
 .modal-bg {
   position: fixed;
   top: 0;
@@ -94,6 +96,7 @@ canvas {
   right: 0;
   background: rgba(129, 129, 129, .7);
 }
+
 .invite-modal {
   position: fixed;
   display: inline-block;
@@ -106,19 +109,22 @@ canvas {
   -moz-transform: translate(-50%, 0);
   -webkit-transform: translate(-50%, 0);
   -ms-transform: translate(-50%, 0);
-  color:#1B2B4C;
+  color: #1B2B4C;
   background: #fff;
   box-sizing: border-box;
   width: 612rpx;
 }
+
 .modal-header {
-  padding: 68rpx 96rpx 48rpx; 
+  padding: 68rpx 96rpx 48rpx;
   position: relative;
 }
+
 .modal-body {
   position: relative;
   border-top: 1px solid rgba(220, 220, 220, .2);
 }
+
 .modal-body::before, .modal-body::after {
   content: '';
   width: 10rpx;
@@ -128,39 +134,48 @@ canvas {
   top: -10rpx;
   border-radius: 0 10rpx 10rpx 0;
 }
+
 .modal-body::before {
   left: 0;
 }
+
 .modal-body::after {
-  right: 0!important;
+  right: 0 !important;
   border-radius: 10rpx 0 0 10rpx;
 }
+
 ._suite_intro {
   color: rgba(136, 145, 169, 1);
 }
-.invite-method-part .qrcode{
+
+.invite-method-part .qrcode {
   margin-top: 20rpx;
   height: 430rpx;
 }
+
 .invite-method-part .code {
   margin-top: 40rpx;
 }
+
 .qrcode-img {
   width: 354rpx;
   height: 354rpx;
   border: 14rpx solid rgba(221, 221, 221, 1);
 }
+
 .tips {
   margin-top: 14rpx;
   line-height: 1;
   color: rgba(136, 145, 169, 1);
 }
+
 .code .tit {
   font-size: 42rpx;
   line-height: 1;
   color: rgba(26, 42, 75, 1);
   margin-bottom: 12rpx;
 }
+
 .code button {
   width: 480rpx;
   height: 120rpx;
@@ -172,9 +187,11 @@ canvas {
   border-radius: 10rpx;
   box-shadow: 0rpx 2rpx 2rpx rgba(112, 123, 141, 0.7) inset;
 }
+
 .invite-btn-area {
   margin: 72rpx 0 60rpx;
 }
+
 .invite-btn-area button {
   width: 246rpx;
   height: 80rpx;

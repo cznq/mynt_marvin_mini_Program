@@ -69,11 +69,6 @@ Page({
         // console.log("res:", res);
         if (res.data.return_code === "SUCCESS" && res.data.result) {
           let data = res.data
-          if (data.result.business_service_suite_name) {
-            wx.setNavigationBarTitle({
-              title: data.result.business_service_suite_name
-            })
-          }
           that.setData({
             service_status: data.result.business_service_suite_status,
             end_time: data.result.end_time

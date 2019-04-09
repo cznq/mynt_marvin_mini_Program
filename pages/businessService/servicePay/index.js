@@ -29,6 +29,7 @@ Page({
       chooseId: chid
     })
   },
+
   /**
    * 获取支付方式
    */
@@ -87,6 +88,11 @@ Page({
             business_service_suite_status: data.result.business_service_suite_status,
             end_time: data.result.end_time
           })
+          if (data.result.business_service_suite_name) {
+            wx.setNavigationBarTitle({
+              title: data.result.business_service_suite_name
+            })
+          }
         } else {
           if (res.data.sub_code !== 0) {
             wx.showToast({

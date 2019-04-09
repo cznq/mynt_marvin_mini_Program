@@ -46,7 +46,7 @@ background: linear-gradient(to bottom,#ffffff 0%,#ffffff 3%,#f3f3f3 97%,#f3f3f3 
 .manage-swiper-box{height:210rpx;margin-top:42rpx;margin-bottom:12rpx;}
 swiper-item image{width:730rpx;float:left;}
 swiper-item.active1 image {width:630rpx;margin-left:40rpx;display: block;height:210rpx;border-radius: 8rpx;}
-.manage-swiper-box swiper-item image { height:210rpx; }
+
 .dots{display: flex;justify-content: center;margin-bottom:35rpx;}
 .dots .dot{margin: 0 8rpx;width: 8rpx;height: 8rpx;background: #cccccc;border-radius: 8rpx;transition: all .1s;}
 .dots .active{ width: 16rpx;background: #999999;}
