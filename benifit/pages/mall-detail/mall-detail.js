@@ -25,11 +25,8 @@ Page({
     employeeInfo: null,
     protocolInfo: null,
     commentList: null,
-    rate: 2,
     dialog_discount: null,
     dialog_discount_limit: null,
-    systemInfo: null,
-    viewID: "discSec",
     businessStatus: "",
     latitude: null,
     longitude: null
@@ -44,18 +41,19 @@ Page({
       commerce_id: options.commerce_id,
       commerce_type: options.commerce_type
     })
-
     that.getDetailInfo(that.data.commerce_id);
     that.getEmployeeInfo();
-
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          systemInfo: res
-        })
-      }
-    })
-
+    if (options.showVipCard) {
+      that.setData({
+        showVipCard: true,
+        dialog_discount: options.dialog_discount,
+        dialog_discount_limit: options.dialog_discount_limit
+      })
+      wx.setNavigationBarColor({
+        frontColor: '#ffffff',
+        backgroundColor: '#000000'
+      })
+    }
   },
 
   /**
@@ -64,56 +62,42 @@ Page({
   getEmployeeInfo() {
     var that = this;
     app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
+      url: app.globalData.BENIFIT_API_URL,
       params: {
         service: 'company',
-        method: 'get_company_service_status',
-        data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session'),
-          service_key: 'EMPLOYEE_BENIFIT'
-        })
+        method: 'get_employee_info',
+        union_id: wx.getStorageSync('xy_session'),
+        data: JSON.stringify({})
       },
+      showLoading: false,
       success: res => {
         if (res.data.result) {
-          if (res.data.result.service_status !== 0) {
-            app.Util.network.POST({
-              url: app.globalData.BENIFIT_API_URL,
-              params: {
-                service: 'company',
-                method: 'get_employee_info',
+          that.setData({
+            employeeInfo: res.data.result
+          })
+          app.Util.network.POST({
+            url: app.globalData.BENIFIT_API_URL,
+            params: {
+              service: 'company',
+              method: 'get_company_service_status',
+              data: JSON.stringify({
                 union_id: wx.getStorageSync('xy_session'),
-                data: JSON.stringify({})
-              },
-              success: res => {
-                if (res.data.result) {
-                  that.setData({
-                    is_vip: true
-                  })
-                } else {
-                  that.setData({
-                    is_vip: false
-                  })
-                }
+                service_key: 'EMPLOYEE_BENIFIT'
+              })
+            },
+            showLoading: false,
+            success: res => {
+              if (res.data.result.service_status !== 0) {
                 that.setData({
-                  employeeInfo: res.data.result
+                  is_vip: true
                 })
               }
-            })
-          } else {
-            that.setData({
-              is_vip: false
-            })
-          }
-        } else {
-          that.setData({
-            is_vip: false
-          })
+            }
+          }) 
         }
       }
     })
   },
-
-
 
   /**
    * 获取商家详情
@@ -225,6 +209,7 @@ Page({
           type: typeid
         })
       },
+      showLoading: false,
       success: res => {
         if (res.data.result) {
           var data = res.data.result;
@@ -255,6 +240,7 @@ Page({
           commerce_id: commerce_id
         })
       },
+      showLoading: false,
       success: res => {
         if (res.data.result) {
           that.setData({
@@ -262,12 +248,6 @@ Page({
           })
         }
       }
-    })
-  },
-
-  gotoView: function (e) {
-    this.setData({
-      viewID: e.currentTarget.dataset.partid
     })
   },
 
@@ -288,26 +268,33 @@ Page({
    * 协议买单
    */
   cardTopay: function (e) {
-
-    if (this.data.commerceDetail.sub_mch_id==''){
-      wx.showToast({
-        title: '商家未开通线上支付',
-        icon: 'none'
-      })
-    } else {
+    if (this.data.commerceDetail.sub_mch_id == '') { // 未开通支付
+      if (this.data.employeeInfo) { // 小觅用户
+        if (this.data.is_vip) {  // 小觅VIP用户
+          this.setData({
+            showVipCard: true,
+            dialog_discount: e.currentTarget.dataset.discount,
+            dialog_discount_limit: e.currentTarget.dataset.limit,
+          })
+          wx.setNavigationBarColor({
+            frontColor: '#ffffff',
+            backgroundColor: '#000000',
+          })
+        } else {
+          wx.redirectTo({
+            url: '../vip-card/vip-card',
+          })
+        }
+      } else { // 非小觅用户
+        wx.redirectTo({
+          url: '/pages/manage/manage',
+        })
+      }
+    } else { // 已开通支付
       wx.navigateTo({
-        url: '/benifit/pages/scan-pay/scan-pay?commerce_id=' + this.data.commerce_id + '&type=' + this.data.commerce_type
+        url: '../scan-pay/scan-pay?commerce_id=' + this.data.commerce_id + '&type=' + this.data.commerce_type
       })
     }
-    // this.setData({
-    //   showVipCard: true,
-    //   dialog_discount: e.currentTarget.dataset.discount,
-    //   dialog_discount_limit: e.currentTarget.dataset.limit,
-    // })
-    // wx.setNavigationBarColor({
-    //   frontColor: '#ffffff',
-    //   backgroundColor: '#000000',
-    // })
   },
 
   /**
