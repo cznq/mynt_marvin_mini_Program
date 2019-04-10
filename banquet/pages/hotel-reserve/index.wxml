@@ -10,15 +10,15 @@
     <view class="_list _room">
         <view class="_lw">房间数</view>
         <view class="stepper _flex _flex_space_between _flex_item_center">
-            <!-- 减号 -->  
-            <view class="_minus" bindtap="bindMinus"><text class="iconfont icon-ziyuan"></text></view>  
-            <!-- 数值 -->  
-            <input type="number" bindchange="bindManual" value="{{num}}" />  
-            <!-- 加号 -->  
+            <!-- 减号 -->
+            <view class="_minus" bindtap="bindMinus"><text class="iconfont icon-ziyuan"></text></view>
+            <!-- 数值 -->
+            <input type="number" bindchange="bindManual" value="{{num}}" />
+            <!-- 加号 -->
             <view class="_plus" bindtap="bindPlus"><text class="iconfont icon-ziyuan1"></text></view>
         </view>
     </view>
-    <view  class="_list _name">  
+    <view  class="_list _name">
         <view class="_lw">入住人</view>
         <view class="_person">
             <block wx:for="{{num}}" wx:key="" >
@@ -26,13 +26,13 @@
             </block>
         </view>
     </view>
-    <view  class="_list _tel">  
+    <view  class="_list _tel">
         <view class="_lw">手机号</view>
         <view>
             <input type="number" placeholder="请输入您的联系方式" placeholder-class="input_text_phc"></input>
         </view>
     </view>
-    <view  class="_list _time_slot">  
+    <view  class="_list _time_slot">
         <view class="_lw">预计到店</view>
         <view>
             <!-- <input type="text" placeholder="请选择到店时间" placeholder-class="input_text_phc"></input> -->
@@ -46,7 +46,7 @@
     <view class="_lw">备注</view>
     <textarea class="_conts" placeholder-class="input_text_phc" cursor-spacing="100rpx" name="remarks" placeholder="备注您的需求，我们会尽快为您安排" bindinput="remarksText" maxlength="{{max}}" >
     </textarea>
-    <text class="currentWordNumber">{{currentWordNumber|0}}/{{max}}</text>
+    <text class="currentWordNumber">{{ww|0}}/{{max}}</text>
 </view>
 <view class="_footer">
     <view class="tip _flex">
