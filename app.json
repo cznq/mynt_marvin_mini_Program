@@ -82,6 +82,14 @@
         "pages/mall-comment/mall-comment",
         "pages/pay-status/index"
       ]
+    },
+    {
+      "root": "banquet",
+      "name": "Banquet",
+      "pages": [
+        "pages/banquet-home/index",
+        "pages/detail/index"
+      ]
     }
   ],
   "window": {
