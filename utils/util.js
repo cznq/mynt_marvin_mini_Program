@@ -156,6 +156,17 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     return fmt;
   }
 
+  //json拼接成带&的字符串
+  function json2Form(json) {
+    var str = [];
+    for (var p in json) {
+      if (json[p] !== '' || json[p] !== null) {
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(json[p]));
+      }
+    }
+    return str.join("&");
+  }
+
   // 数组去重
   function unique(arr) {
     var result = [],
@@ -546,6 +557,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   module.exports.getTime = getTime;
   module.exports.strToDate = strToDate;
   module.exports.dateToStr = dateToStr;
+  module.exports.json2Form = json2Form;
   module.exports.formatTime = formatTime;
   module.exports.checkID = checkID;
   module.exports.checkPassport = checkPassport;
