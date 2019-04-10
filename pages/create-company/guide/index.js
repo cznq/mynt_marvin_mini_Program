@@ -12,10 +12,7 @@ Page({
   onLoad: function(options) {
     var _this = this;
     _this.data.CstateCode = options.CstateCode;
-    _this.setData({
-      company_name: options.company_name,
-      company_short_name: options.company_short_name
-    })
+    
     if (options.CstateCode == 1) {
       wx.setNavigationBarTitle({
         title: '创建公司'
