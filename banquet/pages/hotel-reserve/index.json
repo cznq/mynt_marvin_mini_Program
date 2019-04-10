@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "time-slot": "../../../../components/timeSlot/index"
+  }
+}

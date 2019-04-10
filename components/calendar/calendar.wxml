@@ -1,0 +1,48 @@
+<!--component/calendar.wxml-->
+<view class="top">
+  <view class="_date">
+      <view class="_left">
+          入住<text>{{showCheckIn}}</text>
+      </view>
+      <view class="_center">
+        <text>共{{stayDays}}晚</text>
+      </view>
+      <view class="_right">
+          离店<text>{{showCheckOut}}</text>
+      </view>
+  </view>
+  <view class="_date_week">
+    <view class="_week" wx:for="{{weekStr}}" wx:key="{{index}}">
+      {{item}}
+    </view>
+  </view>
+</view>
+<view style="margin-top:110px"></view>
+<view wx:for="{{dateList}}" wx:key="{{index}}"   wx:for-item="dateItem" class="_date_panel">
+  <view class="date-year-month">{{dateItem.year}}年{{dateItem.month}}月</view>
+  <view class="_date_panel_day">
+    <view class="date-day {{item.class}} {{item.day>0?'':'bgwhite'}}" data-year="{{dateItem.year}}" data-month="{{dateItem.month}}" data-day="{{item.day}}" bindtap="onPressDate" wx:for="{{dateItem.days}}" wx:key="{{index}}">
+      <view class='item-days'>
+        <block wx:if="{{item.inday}}">
+          <text class="_in">入住</text>
+        </block>
+        <block wx:elif="{{item.outday}}">
+          <text class="_out">离店</text>
+        </block>
+        <block wx:else>
+          <text class="_none" decode="{{true}}">&nbsp;</text>
+        </block>
+        <block wx:if="{{dateItem.year+'-'+dateItem.month+'-'+item.day === today}}">
+          <text class="today">今天</text>
+        </block>
+        <block wx:else>
+          <text>{{item.day>0?item.day:''}}</text>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="_footer">
+  <view class="_text" wx:if="{{!markcheckOutDate}}">{{markcheckInDate?'请选择离店时间':'请选择入住时间'}}</view>
+  <view class="_text" bindtap="confirm" wx:else>确定</view>
+</view>

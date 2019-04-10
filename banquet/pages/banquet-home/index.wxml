@@ -1,2 +1,62 @@
 <!--banquet/pages/banquet-home/index.wxml-->
-<text>banquet/pages/banquet-home/index.wxml</text>
+<view class="page">
+    <view class="page__hd">
+      <view class="title-bar">
+        <text>商务宴请</text>
+        <view class="order-wrapper">
+            <text class="iconfont icon-dingdan"></text>
+        </view>
+      </view>
+      <view class="home-slide">
+        <swiper indicator-dots="{{slide_data.indicatorDots}}" autoplay="{{slide_data.autoplay}}" interval="{{slide_data.interval}}" duration="{{slide_data.duration}}">
+            <swiper-item>
+              <view class="swiper-item" style="background: url(https://slightech-marvin-benifit.oss-cn-hangzhou.aliyuncs.com/testing/benifit/building/0/homepage/ff732e3cca161a807c59745f0ef7bc60.png) no-repeat center center;background-size:cover;"></view>
+            </swiper-item>
+        </swiper>
+      </view>
+    </view>
+    <view class="page__bd">
+      <view class="tab {{tabFixed ? 'fixed' : ''}}" id="selTab">
+        <block wx:for="{{tabList}}" wx:key="{{key}}">
+          <text wx:if="{{item.id == tabSelected}}" class="selected" bindtap="changeTab" data-typeid="{{item.typeid}}" data-selectid="{{item.id}}">{{item.title}}</text>
+          <text bindtap="changeTab" data-typeid="{{item.typeid}}" data-selectid="{{item.id}}" wx:else>{{item.title}}</text>
+        </block>
+      </view>
+      <view class="shop-list">
+        <!-- 商家列表 -->
+        <block wx:for="{{shopList.commerces}}" wx:key="{{key}}">
+          <view class="shop-wrapper" bindtap="redirectCommerce" data-commerceid="{{item.commerce_id}}" data-commercetype="{{selectedType}}">
+            <view class="head-pic">
+              <image src="{{item.commerce_homepage_url}}" mode="aspectFill"></image>
+            </view>
+            <view class="shop-name">{{item.commerce_name}}</view>
+            <view class="star-part">
+              <block wx:for="{{5}}" wx:key="" wx:for-item="num">
+                <image class="star" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/{{num <= item.score-1 ? 'love@2x.png' : 'love_gray@2x.png'}}"></image>
+              </block>
+            </view>
+            <view class="tags">
+              <view class="tag-name">{{item.business_projects}}</view>
+              <view class="distance"></view>
+            </view>
+            <view class="discount {{selectedType == 2 ? 'hotel-discount' : ''}}">
+              <view class="price-wrapper">
+                <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/shape@2x.png"></image>协议价
+              </view>
+              <view class="price-protocol hotel-price" wx:if="{{selectedType == 2}}">
+                <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/num/num_yb.png"></image>
+                <block wx:for="{{item.agreement_price}}" wx:for-item="imgnum" wx:key="">
+                  <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/num/num_y{{imgnum}}.png"></image>
+                </block>
+              </view>
+              <view class="price-protocol" wx:else>
+                {{item.agreement_price}}
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="page__ft">
+    </view>
+  </view>

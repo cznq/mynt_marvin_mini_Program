@@ -1,0 +1,135 @@
+page{
+  padding-bottom: 200rpx;
+  background-color: #fff;
+}
+.top{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  background-color: #fff;
+}
+.top ._date{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40rpx 40rpx 26rpx 40rpx;
+  font-size: 28rpx;
+  color: #1A2A4B;
+  border-bottom: 1px solid #DEE7F2;
+}
+.top ._date ._left,
+.top ._date ._right{
+  flex: 1;
+  text-align: center;
+}
+.top ._date ._left text,
+.top ._date ._right text{
+  font-size: 38rpx;
+  display: inline-block;
+  margin-left: 20rpx;
+}
+.top ._date ._center{
+  width: 120rpx;
+  height: 50rpx;
+  color: #B7C6D5;
+  font-size: 28rpx;
+  border: 1px solid #B7C6D5;
+  border-radius: 25rpx;
+  text-align: center;
+  line-height: 50rpx;
+}
+.top ._date_week{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, .1);
+  padding: 0 20rpx;
+}
+.top ._date_week ._week{
+  line-height: 80rpx;
+  color: #1A2A4B;
+  font-size: 28rpx;
+}
+._date_panel{
+  border-bottom: 1px solid #DEE7F2;
+}
+._date_panel:last-child{
+  border: none;
+}
+.date-year-month{
+  text-align: center;
+  color: #1A2A4B;
+  font-size: 30rpx;
+  padding: 26rpx 0;
+}
+._date_panel_day{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding:0 20rpx;
+  align-items: center;
+}
+._date_panel_day .date-day{
+  width: 100rpx;
+  height: 84rpx;
+}
+._date_panel_day .date-day.unavailable{
+  color: #B7C6D5;
+}
+._date_panel_day .date-day.bgitem{
+  background-color: rgba(255, 105, 35, .3);
+}
+._date_panel_day .date-day.active{
+  background-color: #FF6923;
+  color: #fff; 
+}
+._date_panel_day .date-day.dayIn{
+ border-top-left-radius: 10rpx;
+ border-bottom-left-radius: 10rpx;
+}
+._date_panel_day .date-day.dayOut{
+  border-top-right-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+ }
+._date_panel_day .date-day.bgwhite{
+  background-color: #fff;
+}
+._date_panel_day .item-days{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  font-size: 30rpx;
+  height: 84rpx;
+}
+._date_panel_day .item-days .today{
+  color: #FF6923;
+}
+._date_panel_day .date-day.active .item-days .today{
+  color: #fff;
+}
+._date_panel_day .item-days ._in,
+._date_panel_day .item-days ._out,
+._date_panel_day .item-days ._none{
+  font-size: 20rpx;
+  color: rgba(255, 255, 255, .5)
+}
+._footer{
+  position: fixed;
+  z-index: 999;
+  bottom: 0;
+  padding: 40rpx;
+  background-color: #fff;
+  border-top: 1px solid #DEE7F2;
+}
+._footer ._text{
+  background-color: #FF6923;
+  color: rgba(255, 255, 255, .5);
+  font-size: 32rpx;
+  width: 670rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
