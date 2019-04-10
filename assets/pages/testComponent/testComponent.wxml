@@ -1,9 +1,9 @@
-<!-- <calendar2></calendar2> -->
-<sinlecal bind:select="onSelect">
+<calendar2></calendar2>
+<!-- <sinlecal bind:select="onSelect">
     <view class="calendar-select">
         {{selectData}}
     </view>
-</sinlecal>
+</sinlecal> -->
 
 
 <!-- <view class="header_date">
