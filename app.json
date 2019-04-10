@@ -67,8 +67,7 @@
     "pages/businessService/vipStatus/vipStatus",
     "pages/businessService/servicePay/index",
     "pages/businessService/payRecord/index",
-    "pages/businessService/suite-introduce/suite-introduce",
-    "pages/businessDining/order/order"
+    "pages/businessService/suite-introduce/suite-introduce"
   ],
   "subPackages": [
     {
@@ -88,7 +87,8 @@
       "name": "Banquet",
       "pages": [
         "pages/banquet-home/index",
-        "pages/detail/index"
+        "pages/detail/index",
+        "pages/order/order"
       ]
     }
   ],
