@@ -1,0 +1,4 @@
+<!--banquet/pages/calendar-hotel/index.wxml-->
+<!-- 引用组件 -->
+<calendar id='calendar'></calendar>
+

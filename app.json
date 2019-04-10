@@ -88,7 +88,9 @@
       "name": "Banquet",
       "pages": [
         "pages/banquet-home/index",
-        "pages/detail/index"
+        "pages/detail/index",
+        "pages/hotel-reserve/index",
+        "pages/calendar-hotel/index"
       ]
     }
   ],

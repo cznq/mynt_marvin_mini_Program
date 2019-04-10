@@ -1,0 +1,50 @@
+/* components/timeSelect/index.wxss */
+.time-picker-wrapper {
+  position: fixed;
+  top: 100vh;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 20000;
+  transition: 0.3s all ease-in-out;
+}
+.time-picker-wrapper.show {
+    top: 0;
+}
+.time_shadow{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    display:none;
+}
+.time-picker-wrapper.show .time_shadow{
+  display:block;
+}
+.time_panel{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #fff;
+}
+._button_content{
+  padding: 0 40rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 32rpx;
+  border-bottom: 1px solid #DEE7F2;
+  box-sizing: border-box;
+  line-height: 80rpx;
+}
+._button_content ._cancel{
+    color: rgba(136, 145, 169, .5);
+}
+._button_content ._confirm{
+    color: #0080FA;
+}
