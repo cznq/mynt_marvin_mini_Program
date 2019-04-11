@@ -1,0 +1,33 @@
+<!--banquet/pages/restaurant-time/index.wxml-->
+<view class="header_date">
+    <scroll-view scroll-x style="white-space: nowrap;">
+        <view wx:for="{{dateList}}" wx:for-index="idx" wx:key="key" class="date_item  {{ checkId ==idx ?'active':''}}" data-year="{{item.year}}" data-month="{{item.month}}" data-day="{{item.day}}" data-id="{{idx}}" data-week="{{item.week}}"  bindtap="onPressDate">
+            <view class="_week">{{item.week}}</view>
+            <view class="_day">{{item.newdates}}</view>
+        </view>
+        <view class="date_item more_date">
+            <!-- <text class="iconfont icon-rili"></text>
+            <view class="_day">更多</view> -->
+            <calendar bind:select="onSelect">
+                <view class="calendar-select">
+                    <text class="iconfont icon-rili"></text>
+                    <view class="_day">更多</view>
+                </view>
+            </calendar>
+        </view>
+    </scroll-view>
+</view>
+<view class="time-slot">
+    <view class='title'>午市（11:00—13:30）</view>
+    <radio-group bindchange="radioChangeTime">
+        <view class='label'>
+            <label class="ui-radio {{item.checked?'is_checked':''}}" wx:for="{{pmTime}}" wx:key="">
+                <radio value="{{item.id}}" checked="{{item.checked}}" />
+                <text class="text">{{item.value}}</text>
+            </label>
+        </view>
+    </radio-group>
+</view>
+<view>
+    <text decode="{{true}}" >{{checkDate}}&nbsp;&nbsp;{{week}}</text>
+</view>

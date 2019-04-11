@@ -1,0 +1,39 @@
+<!--components/calendarMoel/index.wxml-->
+<view class="calendar">
+<view class="calendar_view" bind:tap="toggleSelect">
+    <slot></slot>
+</view>
+<view class="calendar_panel_wrapper {{show ? ' show' : ''}}">
+    <view class="calendar_shadow" catch:tap="hideCalendar"></view>
+    <view class="calendar_panel">
+        <view class="_button_content">
+            <view class="_cancel" catch:tap="hideCalendar">取消</view>
+            <view class="_confirm" catch:tap="submitCalendar">确定</view>
+        </view>
+        <view class="top_handle">
+            <view class="prev {{ n =='0' ?'first':''}}" bindtap="handleCalendar" data-handle="prev">《</view>
+            <View class="date-year-month">
+                {{currMonth.year}}年{{currMonth.month}}月
+            </View>
+            <view class="next  {{ n =='11' ?'last':''}}" bindtap="handleCalendar" data-handle="next">》</view>
+        </view>
+        <view class="_date_week">
+            <view class="_week" wx:for="{{weekStr}}" wx:key="{{index}}">
+            {{item}}
+            </view>
+        </view>
+        <view class="_date_panel">
+            <view class="date-day {{item.class}}" data-year="{{currMonth.year}}" data-month="{{currMonth.month}}" data-day="{{item.day}}" wx:for="{{currMonth.days}}" wx:key="{{index}}" style="width:{{systemInfo.windowWidth/7}}px;" bindtap="changeDate">
+                <view class="item-days">
+                    <block wx:if="{{currMonth.year+'-'+currMonth.month+'-'+item.day === today}}">
+                    <text class="today">今天</text>
+                    </block>
+                    <block wx:else>
+                    <text>{{item.day>0?item.day:''}}</text>
+                    </block>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+</view>

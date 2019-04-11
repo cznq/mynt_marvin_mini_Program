@@ -1,0 +1,85 @@
+/* banquet/pages/reserve-success/index.wxss */
+page{
+    background-color: #F0F2F5;
+}
+.page{
+    background-color: #fff;
+    padding: 0 40rpx;
+}
+.page_hd{
+    text-align: center;
+    flex-direction: column;
+    padding: 40rpx 80rpx 52rpx 88rpx;
+}
+.page_hd .icon-yudingchenggong{
+    color: #64db89;
+    font-size: 114rpx;
+    line-height: 1;
+}
+.page_hd ._txt{
+    font-size: 38rpx;
+    color: #1A2A4B;
+    margin: 20rpx auto;
+}
+.page_hd ._tip{
+    font-size: 26rpx;
+    color: #A1A8BA;
+    line-height: 1.2;
+}
+.reserve_progress{
+    padding: 50rpx 0 60rpx;
+    font-size: 32rpx;
+    border-top:1px solid #DEE7F2;
+}
+.reserve_progress ._step_cont ._step{
+    position: relative;
+    line-height: 1;
+    border-left: 1px solid #B7C6D5;
+    padding-left: 40rpx;
+    padding-bottom: 112rpx;
+}
+.reserve_progress ._step_cont ._step:last-child{
+    border: none;
+    padding-bottom: 0;
+}
+.reserve_progress ._step_cont ._step_name{
+    margin-bottom: 20rpx;
+}
+.reserve_progress ._step_cont ._time{
+    font-size: 28rpx;
+    color: #8891A9;
+}
+.reserve_progress ._step_cont ._step_name:before{
+    content: '';
+    display: inline-block;
+    width: 20rpx;
+    height: 20rpx;
+    background-color: #B7C6D5;
+    border-radius: 1000%;
+    position: absolute;
+    top: 0;
+    left: -10rpx;
+}
+
+.reserve_progress ._step_cont ._step.active ._step_name{
+    color: #FF6923;   
+}
+.reserve_progress ._step_cont ._step.active ._step_name:before{
+    background-color: #FF6923;
+}
+._footer{
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40rpx;
+    bottom: 0;
+    left: 0;
+}
+._footer button{
+    width: 670rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    background-color: #FF6923;
+    color: #fff;
+    font-size: 32rpx;
+}

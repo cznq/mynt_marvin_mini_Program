@@ -1,0 +1,67 @@
+/* banquet/pages/restaurant-time/index.wxss */
+page{
+    background-color: #F0F2F5;
+}
+.header_date{
+    width: 750rpx;
+    background-color: #fff;
+    padding: 40rpx 16rpx;
+}
+.date_item{
+    width: 134rpx;
+    font-size:32rpx;
+    color: #8891A9;
+    text-align: center;
+    display: inline-block;
+}
+._week{
+    line-height: 32rpx;
+    margin-bottom: 16rpx;
+}
+._day{
+    font-size: 28rpx;
+    line-height: 28rpx;
+}
+.more_date{
+    color: #FF6923;
+    border-left: 1px solid #DEE7F2;
+}
+.date_item.active{
+    color: #FF6923;
+}
+.more_date .icon-rili{
+    font-size: 30rpx;
+}
+.time-slot{
+    padding: 40rpx 30rpx 0;
+}
+.time-slot .title{
+    font-size: 28rpx;
+    color: #1A2A4B;
+    margin-bottom: 24rpx;
+    padding-left: 10rpx;
+}
+.time-slot radio{
+    display: none;
+}
+.time-slot .label{
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+}
+.time-slot .ui-radio{
+    border-radius: 10rpx;
+    width: 210rpx;
+    height: 70rpx;
+    text-align: center;
+    margin: 10rpx;
+    white-space:nowrap;
+    line-height: 70rpx;
+    font-size: 28rpx;
+    color: #8891A9;
+    background-color: #fff;
+}
+.time-slot .ui-radio.is_checked{
+    background-color: #FFDCC5;
+    color: #FF6923;
+}

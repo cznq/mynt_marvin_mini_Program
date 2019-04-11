@@ -90,7 +90,10 @@
         "pages/detail/index",
         "pages/order/order",
         "pages/hotel-reserve/index",
-        "pages/calendar-hotel/index"
+        "pages/calendar-hotel/index",
+        "pages/reserve-success/index",
+        "pages/restaurant-reserve/index",
+        "pages/restaurant-time/index"
       ]
     }
   ],

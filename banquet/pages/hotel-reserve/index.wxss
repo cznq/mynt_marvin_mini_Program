@@ -111,14 +111,14 @@ page{
     left: 0;
     width: 100%;
     background-color: #fff;
-    padding: 40rpx;
+    padding: 40rpx 36rpx;
     box-sizing: border-box;
-    align-items: flex-start;
 }
 ._footer .tip{
     font-size: 24rpx;
     color: #8891A9;
     margin-bottom: 20rpx;
+    align-items: flex-start;
 }
 ._footer .tip ._icon{
     background-color: rgba(136, 145, 169, .5);

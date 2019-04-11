@@ -8,7 +8,7 @@ Page({
   data: {
     commerce_id: null,
     commerce_type: null,
-    num:"1",
+    num:1,
     max:'100',
     selectData:'请选择到店时间',
   },
