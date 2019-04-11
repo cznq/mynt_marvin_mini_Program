@@ -22,6 +22,7 @@ Page({
     face_verify_code: [],
     buttonDisabled: true,
     error: false,
+    errorCode: 0,
     errorMsg: '请将正脸置于框内，用普通话说出4位验证数字。'
   },
 
@@ -55,9 +56,15 @@ Page({
   //确定退出企业
   bindToastSure: function () {
     var _this = this;
-    toast.hideToast(this, {
+    toast.hideToast(_this, {
       cb: function () {
-        _this.loadConfig(_this);
+        if (_this.data.errorCode == '800005') {
+          wx.navigateTo({
+            url: '../identity/index?source=' + _this.data.options.source + '&params=' + _this.data.options.params + '&idInfo=' + _this.data.options.idInfo
+          })
+        } else {
+          _this.loadConfig(_this);
+        }
       }
     });
   },
@@ -98,7 +105,6 @@ Page({
     wx.navigateTo({
       url: '../face/index?source=' + this.data.options.source + '&params=' + this.data.options.params + '&idInfo=' + this.data.options.idInfo + '&faceConfig=' + JSON.stringify(this.data.faceConfig)
     })
-
   }
 
 })

@@ -72,6 +72,7 @@ Page({
     if (idnum == id_number_last_six) {
       var idInfo = JSON.stringify({
         id_type: this.data.empInfo.id_type,
+        name: this.data.empInfo.name,
         phone: this.data.empInfo.phone,
         id_number: this.data.empInfo.id_number
       })

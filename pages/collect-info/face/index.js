@@ -21,7 +21,7 @@ Page({
     options: {},
     ctx: {},
     timer: 0,
-    status: 'start', //start, stop, uploading
+    status: 'start', // start, stop, uploading
     cameraErrorText: "",
     isCameraAuth:true,
     progress: 0,
@@ -41,11 +41,9 @@ Page({
       app.myLog('相机检测', '相机组件检测通过');
       that.setData({
         ctx: wx.createCameraContext()
-      }) 
-      
+      })
     }
     app.Util.checkcanIUse('cover-view');
-    
   },
 
   cameraError: function () {
@@ -122,7 +120,6 @@ Page({
       }, 1000);
       that.startRecord(that, that.data.ctx, int);
     }
-
   },
 
   /**
@@ -133,7 +130,6 @@ Page({
     ctx.startRecord({
       success: (res) => {
         console.log('startRecord')
-
       }
     })
   },
@@ -190,7 +186,6 @@ Page({
             url: '/pages/e-card/detail/index'
           })
         }
-
       });
 
     } else if (that.data.options.source == 'editInfo') {
@@ -223,6 +218,7 @@ Page({
       face_verify_code: self.data.options.faceConfig.face_verify_code,
       op_type: op_type,
       user_type: user_type,
+      user_name: self.data.options.idInfo.name,
       phone: self.data.options.idInfo.phone,
       id_type: self.data.options.idInfo.id_type,
       id_number: self.data.options.idInfo.id_number
@@ -236,7 +232,7 @@ Page({
     var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
     wx.showLoading({ title: '人脸上传中' });
     var uploadTask = wx.uploadFile({
-      url: 'http://61.149.7.239:10008/mini_program/api/',        //app.globalData.BASE_API_URL,
+      url: 'http://61.149.7.239:10001/mini_program/api/',        //app.globalData.BASE_API_URL,
       method: 'POST',
       filePath: tempVideoPath,
       header: {
@@ -259,15 +255,15 @@ Page({
           clearInterval(timer);
           callback();
         } else if(data.result) {
-          self.uploadFaceError(data.result.error);
+          self.uploadFaceError(data.sub_code, data.result.error);
           app.myLog("人脸上传失败", data.result.error);
         } else {
-          self.uploadFaceError(data.sub_msg);
+          self.uploadFaceError(data.sub_code, data.sub_msg);
           app.myLog("人脸上传失败", data.sub_msg);
         }
       },
       fail: function () {
-        self.uploadFaceError('请将正脸置于框内，用普通话说出4位验证数字。');
+        self.uploadFaceError(0, '请将正脸置于框内，用普通话说出4位验证数字。');
         app.myLog("微信上传文件失败", "上传人脸失败");
       }
     })
@@ -280,11 +276,12 @@ Page({
     })
   },
 
-  uploadFaceError(errMsg){
+  uploadFaceError(errCode, errMsg){
     var pages = getCurrentPages();
     var prevPage = pages[pages.length - 2];
     prevPage.setData({
       error: true,
+      errorCode: errCode,
       errorMsg: errMsg
     });
     wx.navigateBack({

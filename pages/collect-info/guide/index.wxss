@@ -1,25 +1,42 @@
 /* pages/collect-info/guide/index.wxss */
-
-.page__bd {
-  margin: 218rpx 84rpx 0;
+page {
+  background: rgba(249, 250, 251, 1);
 }
-
+.page__bd {
+  margin: 72rpx 50rpx 0;
+  color: rgba(26, 42, 75, 1);
+}
+.page__bd image {
+  width: 146rpx;
+  height: 176rpx;
+}
 .icon-yuangonglururenlian {
   color: #007bff;
   font-size: 144rpx;
 }
 .invoice {
-  margin-bottom: 58rpx;
   line-height: 28rpx;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: rgba(136, 145, 169, 1)
+}
+.tit {
+  line-height: 1;
+  margin: 30rpx 0;
 }
 .page__ft {
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 30rpx 0 110rpx;
+  padding: 0 0 30rpx;
+  background: #fff;
+}
+.infowrap {
+  padding: 30rpx 0 30rpx;
+  margin-bottom: 30rpx;
+  border-top: 2rpx solid rgba(220, 220, 220, .5);
+  border-bottom: 2rpx solid rgba(220, 220, 220, .5);  
 }
 .icon-dunpai {
   color: rgba(77, 219, 120, 1);
