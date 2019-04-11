@@ -95,6 +95,14 @@
         "pages/restaurant-reserve/index",
         "pages/restaurant-time/index"
       ]
+    },
+    {
+      "root": "support",
+      "name": "Support",
+      "pages": [
+        "pages/supportCenter/chooseIdentity/index",
+        "pages/supportCenter/introduce/index"
+      ]
     }
   ],
   "window": {
