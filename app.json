@@ -92,6 +92,14 @@
         "pages/hotel-reserve/index",
         "pages/calendar-hotel/index"
       ]
+    },
+    {
+      "root": "support",
+      "name": "Support",
+      "pages": [
+        "pages/supportCenter/chooseIdentity/index",
+        "pages/supportCenter/introduce/index"
+      ]
     }
   ],
   "window": {
