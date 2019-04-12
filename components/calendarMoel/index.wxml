@@ -1,8 +1,8 @@
 <!--components/calendarMoel/index.wxml-->
 <view class="calendar">
-<view class="calendar_view" bind:tap="toggleSelect">
+<!-- <view class="calendar_view" bind:tap="toggleSelect">
     <slot></slot>
-</view>
+</view> -->
 <view class="calendar_panel_wrapper {{show ? ' show' : ''}}">
     <view class="calendar_shadow" catch:tap="hideCalendar"></view>
     <view class="calendar_panel">

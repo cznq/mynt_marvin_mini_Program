@@ -12,6 +12,14 @@ Component({
     data: {
       type: Array,
       value: []
+    },
+    checkDate:{
+      type:String,
+      value:''
+    },
+    show:{
+      type: Boolean,
+      value: false
     }
   },
   /**
@@ -24,17 +32,33 @@ Component({
     today: DATE_YEAR + "-" + DATE_MONTH + "-" + DATE_DAY,
     currMonth: [], //当前显示月份
     systemInfo: {},
-    show: false,
     n: "0",
     markData: false, //选择标记
-    selectData:DATE_YEAR + "-" + DATE_MONTH + "-" + DATE_DAY,//默认选择当前时间
   },
   /**
    * 组件的方法列表
    */
-  // ready: function() {
-  //   //this.createDateListData();
-  // },
+  ready: function() {
+    console.log(this.data.show)
+    console.log(this.data.checkDate)
+    let show = this.data.show
+    this.setData({
+      calendarShow:show,
+      dateList: this.createDateListData(),
+      selectData:this.data.checkDate //从组件外部传入的选择的日期，若直接点击确定 默认时间就是组件外部之前选择的时间
+    });
+    //console.log(this.data.dateList)
+    var _this = this;
+    wx.getSystemInfo({
+      success: function(res) {
+        _this.setData({
+          systemInfo: res,
+          currMonth: _this.data.dateList[0],
+          show: !show
+        });
+      }
+    });
+  },
   methods: {
     createDateListData: function() {
       var dateList = [];
@@ -171,24 +195,25 @@ Component({
       });
     },
     //初始化选择器信息
-    toggleSelect:function(){
-      let show = this.data.show
-      if (show) return this.setData({ show: !show })
-      this.setData({
-        dateList: this.createDateListData()
-      });
-      console.log(this.data.dateList)
-      var _this = this;
-      wx.getSystemInfo({
-        success: function(res) {
-          _this.setData({
-            systemInfo: res,
-            currMonth: _this.data.dateList[0],
-            show: !show
-          });
-        }
-      });
-    },
+    // toggleSelect:function(){
+    //   let show = this.data.show
+    //   if (show) return this.setData({ show: !show })
+    //   this.setData({
+    //     dateList: this.createDateListData(),
+    //     selectData:this.data.checkDate //从组件外部传入的选择的日期，若直接点击确定 默认时间就是组件外部之前选择的时间
+    //   });
+    //   //console.log(this.data.dateList)
+    //   var _this = this;
+    //   wx.getSystemInfo({
+    //     success: function(res) {
+    //       _this.setData({
+    //         systemInfo: res,
+    //         currMonth: _this.data.dateList[0],
+    //         show: !show
+    //       });
+    //     }
+    //   });
+    // },
     //关闭弹窗
     // 取消
     hideCalendar() {

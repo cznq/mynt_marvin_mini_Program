@@ -1,4 +1,5 @@
 // banquet/pages/restaurant-time/index.js
+var util = require("../../../utils/util.js");
 Page({
 
   /**
@@ -6,26 +7,32 @@ Page({
    */
   data: {
     dateList: [],
-    checkId:'',
-    week:'',
-    checkDate:'',
-    pmMark:false,//午市标记
+    checkId:0,
+    week:'今天',
+    checkDate: '',
+    pmMark:true,//午市标记
     eveningMark:false,//晚市标记
     pmTime:[
-      { value: '12:00', id: '1', checked: true },
-      { value: '12:30', id: '2', checked: false },
-      { value: '13:00', id: '3', checked: false },
-      { value: '13:30', id: '4' , checked: false},
+      { value: '11:00', checked: true },
+      { value: '11:30', checked: false },
+      { value: '12:00', checked: false },
+      { value: '12:30', checked: false },
+      { value: '13:00', checked: false },
+      { value: '13:30', checked: false},
     ],
     eveningTime:[
-      { value: '17:00', id: '5', checked: false },
-      { value: '17:30', id: '6', checked: false},
-      { value: '18:00', id: '7', checked: false },
-      { value: '18:30', id: '8', checked: false},
-      { value: '19:00', id: '9', checked: false },
-      { value: '19:30', id: '10', checked: false },
-      { value: '20:00', id: '11', checked: false },
-    ]
+      { value: '17:00', checked: false },
+      { value: '17:30', checked: false},
+      { value: '18:00', checked: false },
+      { value: '18:30', checked: false},
+      { value: '19:00', checked: false },
+      { value: '19:30', checked: false },
+      { value: '20:00', checked: false },
+    ],
+    calendarShow:false,
+    showPmTime:true,
+    showEveningTime:true,
+    checkTime:'',//选择的时段断
   },
 
   /**
@@ -33,11 +40,36 @@ Page({
    */
   onLoad: function (options) {
     let dataList = this.getDates(15);//获取往后15天的日期
-    dataList[0].week ='今天'
-    dataList[1].week ='明天'
+    dataList[0].week ='今天';
+    dataList[1].week ='明天';
     this.setData({
-      dateList: dataList
+      dateList: dataList,
+      checkDate:this.getCurrentMonthFirst() //初始化默认选择时间为当前时间
     })
+    this.filterTimeSlot(this.data.checkDate);
+  },
+  // 过滤时间段
+  filterTimeSlot:function(todate) {
+    let curTime = util.getTime() //获取当前时间点 “12:00”
+    let today = this.getCurrentMonthFirst();
+    let pm = this.data.pmTime;
+    let evening = this.data.eveningTime;
+    if(todate == today){ //如果选择的时间是今天 就要过滤时间段的显示
+      //是否超过午市最大时间段
+      if (curTime > pm[pm.length-1].value) {
+        this.setData({
+          showPmTime: false,
+          showEveningTime:true
+        })
+      } else {
+        
+      } 
+    }else{
+      this.setData({
+        showPmTime: true,
+        showEveningTime:true
+      })
+    }
   },
   /**
    * 获取当前时间多少天后的日期和对应星期
@@ -92,24 +124,45 @@ Page({
       checkDate:date,
       week:week,
     });
+    this.filterTimeSlot(date);
   },
   onSelect(e) { 
     //console.log(e)
     let day = new Date(e.detail).getDay() //获取星期
     let show_day = new Array('周日', '周一', '周二', '周三', '周四', '周五', '周六');
+    let weekDay = show_day[day];
     this.setData({
       checkDate: e.detail,
-      week:show_day[day]
+      week:weekDay
     })
   },
-  radioChangeTime:function(e){
+  showCalendar:function(){
+    this.setData({
+      calendarShow:true
+    })
+  },
+  radioChangePm:function(e){
     var items = this.data.pmTime;
     for (var i = 0; i < items.length; ++i) {
-      items[i].checked = items[i].id == e.detail.value
+      items[i].checked = items[i].value == e.detail.value
     }
-    console.log(items)
     this.setData({
-      pmTime: items
+      pmTime: items,
+      checkTime:e.detail.value,
+      pmMark:true,
+      eveningMark:false
+    });
+  },
+  radioChangeEvening:function(e){
+    var items = this.data.eveningTime;
+    for (var i = 0; i < items.length; ++i) {
+      items[i].checked = items[i].value == e.detail.value
+    }
+    this.setData({
+      eveningTime: items,
+      checkTime:e.detail.value,
+      pmMark:false,
+      eveningMark:true
     });
   },
   /**
@@ -125,39 +178,4 @@ Page({
   onShow: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

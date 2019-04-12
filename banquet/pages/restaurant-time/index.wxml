@@ -5,29 +5,37 @@
             <view class="_week">{{item.week}}</view>
             <view class="_day">{{item.newdates}}</view>
         </view>
-        <view class="date_item more_date">
-            <!-- <text class="iconfont icon-rili"></text>
-            <view class="_day">更多</view> -->
-            <calendar bind:select="onSelect">
-                <view class="calendar-select">
-                    <text class="iconfont icon-rili"></text>
-                    <view class="_day">更多</view>
-                </view>
-            </calendar>
+        <view class="date_item more_date" bindtap="showCalendar">
+            <text class="iconfont icon-rili"></text>
+            <view class="_day">更多</view>
         </view>
     </scroll-view>
 </view>
+<calendar show ="{{calendarShow}}" checkDate="{{ checkDate }}"></calendar>
 <view class="time-slot">
-    <view class='title'>午市（11:00—13:30）</view>
-    <radio-group bindchange="radioChangeTime">
-        <view class='label'>
-            <label class="ui-radio {{item.checked?'is_checked':''}}" wx:for="{{pmTime}}" wx:key="">
-                <radio value="{{item.id}}" checked="{{item.checked}}" />
-                <text class="text">{{item.value}}</text>
-            </label>
-        </view>
-    </radio-group>
+    <block wx:if="{{showPmTime}}">
+        <view class='title'>午市（11:00—13:30）</view>
+        <radio-group bindchange="radioChangePm">
+            <view class='label'>
+                <label class="ui-radio {{item.checked && pmMark?'is_checked':''}}" wx:for="{{pmTime}}" wx:key="">
+                    <radio value="{{item.value}}" checked="{{item.checked}}" />
+                    <text class="text">{{item.value}}</text>
+                </label>
+            </view>
+        </radio-group>
+    </block>
+    <block wx:if="{{showEveningTime}}">
+        <view class='title'>晚市（17:00—20:00）</view>
+        <radio-group bindchange="radioChangeEvening">
+            <view class='label'>
+                <label class="ui-radio {{item.checked && eveningMark?'is_checked':''}}" wx:for="{{eveningTime}}" wx:key="">
+                    <radio value="{{item.value}}" checked="{{item.checked}}" />
+                    <text class="text">{{item.value}}</text>
+                </label>
+            </view>
+        </radio-group>
+    </block>
 </view>
 <view>
-    <text decode="{{true}}" >{{checkDate}}&nbsp;&nbsp;{{week}}</text>
+    <text decode="{{true}}" >{{checkDate}}&nbsp;&nbsp;{{week}}&nbsp;&nbsp;{{checkTime}}</text>
 </view>

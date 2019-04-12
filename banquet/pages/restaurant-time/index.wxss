@@ -3,9 +3,9 @@ page{
     background-color: #F0F2F5;
 }
 .header_date{
-    width: 750rpx;
+    width: 100%;
     background-color: #fff;
-    padding: 40rpx 16rpx;
+    padding: 40rpx 0;
 }
 .date_item{
     width: 134rpx;
