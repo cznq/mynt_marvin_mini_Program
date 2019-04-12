@@ -150,10 +150,8 @@ Page({
   },
 
   finishSubmit(that, timer, tempFilePath) {
-    console.log(that.data.options.source);
     if (that.data.options.source == 'invite') {
-      var op_type = 0, user_type = 0;
-      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.company_id, op_type, user_type, function () {
+      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.company_id, 0, function () {
         app.receiveSubmit(that.data.options.params.invitation_id, that.data.options.params.form_id, function () {
           wx.hideLoading();
           wx.reLaunch({
@@ -161,10 +159,8 @@ Page({
           })
         })
       });
-
     } else if (that.data.options.source == 'applyVisit') {
-      var op_type = 0, user_type = 0;
-      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.visit_company_id, op_type, user_type, function () {
+      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.visit_company_id, 0, function () {
         app.applySubmit(that.data.options.params.visit_company_id, that.data.options.params.form_id, that.data.options.params.visitor_name, that.data.options.params.note, function (visit_apply_id) {
           wx.hideLoading();
           wx.reLaunch({
@@ -172,10 +168,8 @@ Page({
           })
         })
       });
-
     } else if (that.data.options.source == 'takeCard') {
-      var op_type = 0, user_type = 2;
-      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.company_id, op_type, user_type, function () {
+      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.company_id, 2, function () {
         wx.hideLoading();
         if (that.data.options.params.card_type == 0) {
           wx.reLaunch({
@@ -187,19 +181,15 @@ Page({
           })
         }
       });
-
     } else if (that.data.options.source == 'editInfo') {
-      var op_type = 0, user_type = 2;
-      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.company_id, op_type, user_type, function () {
+      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.company_id, 2, function () {
         wx.hideLoading();
         wx.reLaunch({
           url: '/pages/employee/homepage/index',
         })
       });
-
     } else if (that.data.options.source == 'reRecodeFace') {
-      var op_type = 1, user_type = 2;
-      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.company_id, op_type, user_type, function () {
+      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.company_id, 2, function () {
         wx.hideLoading();
         wx.reLaunch({
           url: '/pages/employee/homepage/index',
@@ -211,20 +201,17 @@ Page({
   /**
    * 上传人脸视频
    */
-  uploadFaceVideo(self, timer, tempVideoPath, company_id, op_type, user_type, callback = function () { }) {
+  uploadFaceVideo(self, timer, tempVideoPath, company_id, user_type, callback = function () { }) {
     var data = JSON.stringify({
       union_id: wx.getStorageSync('xy_session'),
       company_id: company_id,
-      face_verify_code: self.data.options.faceConfig.face_verify_code,
-      op_type: op_type,
-      user_type: user_type,
       user_name: self.data.options.idInfo.name,
       phone: self.data.options.idInfo.phone,
       id_type: self.data.options.idInfo.id_type,
       id_number: self.data.options.idInfo.id_number
     });
     var service = 'face';
-    var method = 'upload_face_video';
+    var method = 'verify';
     var app_id = '65effd5a42fd1870b2c7c5343640e9a8';
     var timestamp = Math.round(new Date().getTime() / 1000 - 28800);
     var sign_type = 'MD5';
@@ -272,6 +259,31 @@ Page({
       self.setData({ status: 'uploading'})
       if(res.progress == 100){
         wx.hideLoading();
+      }
+    })
+  },
+
+  updateFace(company_id, user_type) {
+    app.Util.network.POST({
+      url: 'http://61.149.7.239:10008/mini_program/api/',  //app.globalData.BASE_API_URL,
+      params: {
+        service: 'face',
+        method: 'update',
+        data: JSON.stringify({
+          company_id: company_id,
+          user_type: user_type
+        })
+      },
+      success: res => {
+        if (res.data.result) {
+         
+        }
+      },
+      fail: res => {
+        console.log('fail');
+      },
+      complete: res => {
+
       }
     })
   },
