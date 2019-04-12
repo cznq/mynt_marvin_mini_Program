@@ -119,7 +119,7 @@ Page({
       company_id: this.data.cmpInfo.company_id
     })
     wx.navigateTo({
-      url: '/pages/collect-info/identity/index?source=' + source + '&params=' + params + '&idInfo=' + JSON.stringify({id_type:0,name:'范停生',phone:'13861820994',id_number:'34082219910204395'}),
+      url: '/pages/collect-info/identity/index?source=' + source + '&params=' + params
     })
   },
 
