@@ -1,0 +1,15 @@
+<view class="collect _row _cen_space">
+  <view class="_row _cen_start">
+    <image src="" class="shopImg"></image>
+    <view class="_ml20 _txt_gray _font34 _fontw400">西苑花厨</view>
+  </view>
+  <view class="_txt_pale_red _font44">￥ 169</view>
+</view>
+
+<view class="invoicebox _mt20 ">
+  <view class="invoice _row _cen_space">
+    <text class="_txt_gray _font36">开具发票</text>
+    <image src='' class="invoiceBtn"></image>
+  </view>
+
+</view>

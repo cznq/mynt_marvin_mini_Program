@@ -1,1 +1,84 @@
 /* pages/supportCenter/chooseIdentity.wxss */
+@import "../../../../templates/showToast/showToast.wxss";
+
+page {
+    width: 750rpx;
+    background-color: #F9FAFB;
+}
+
+.page {
+    padding: 0 34rpx;
+}
+
+.banner {
+    width: 682rpx;
+    height: 326rpx;
+    background: #FFFFFF;
+}
+
+.banner-top {
+    height: 326rpx;
+}
+
+.banner-bottom {
+    height: 563rpx;
+}
+
+.banner-slide {
+    /*margin-top: 40rpx;*/
+    width: 682rpx;
+    height: 260rpx;
+    padding-top: 35rpx;
+}
+
+.banner-slide .swiper-item {
+    width: 100%;
+    height: 260rpx;
+}
+
+swiper {
+    height: 260rpx;
+}
+
+.banner-two {
+    padding: 40rpx 0;
+}
+
+.sub-banner {
+    width: 682rpx;
+    height: 230rpx;
+    background: #F0EFF2;
+}
+
+.sub1 {
+    height: 230rpx;
+}
+
+.sub2 {
+    height: 230rpx;
+    margin-top: 23rpx;
+}
+
+.sub-banner-image {
+    width: 215rpx;
+    height: 230rpx;
+}
+
+.sub-img {
+    width: 255rpx;
+    height: 230rpx;
+    padding-left: 40rpx;
+}
+
+.txt {
+    font-size: 38rpx;
+    font-weight: 400;
+    color: #1A2A4B;
+    padding-left: 57rpx;
+}
+
+.icon-jiantou {
+    opacity: 0.3;
+    margin-left: auto;
+    padding-right: 36rpx;
+}

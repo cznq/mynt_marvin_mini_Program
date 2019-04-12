@@ -1,0 +1,135 @@
+<view class="head">
+  <view class="headTop _row">
+    <view class="imgSign">
+      <!-- <text  class="iconfont icon-shijian"></text> -->
+      <!-- <text  class="iconfont icon-daixiaofei"></text> -->
+      <!-- <text  class="iconfont icon-daifukuan"></text> -->
+      <text  class="iconfont icon-yudingchenggong"></text>
+    </view>
+    <view class="txtSign _column">
+      <text class="padding_bottom_10 _font44 txt_white">待确认</text>
+      <text class="txtTime _font28">预计时间：2019-03-06  16:00</text>
+    </view>
+  </view>
+  <!-- 流程状态 -->
+  <view class="headNav _row _cen_space">
+    <view class="_relative">
+      <text class="_font28 InvalidCor">提交预订</text>
+      <view class="time">2019-03-06  13:00</view>
+    </view>
+    <text class="line"></text>
+    <view class="_relative">
+      <text class="_font28 InvalidCor">商家确认</text>
+      <view class="time">2019-03-06  13:00</view>
+    </view>
+    <text class="line"></text>
+    <view>
+      <text class="_font28 InvalidCor">到店消费</text>
+    </view>
+  </view>
+
+</view>
+<view class="nav _row _cen_space">
+  <view class="navIntr _row _cen_start">
+    <image class="navImg" src=''></image>
+    <view class="navTxt _column _start_space">
+      <view class="_column marg_top-10">
+      <text class="_font34 _txt_gray">西苑花厨</text>
+      <text class="_font26 txt_gray2">西苑花厨</text>
+      </view>
+      <view class="_row">
+      <block wx:for="{{5}}" wx:key="">
+        <image class="star" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/love_gray@2x.png"></image>
+      </block>
+      </view>
+    </view>
+  </view>
+  <view><text  class="iconfont icon-jiantou"></text></view>
+</view>
+
+<view class="payed bg_white _row _cen_space _mt20">
+  <view class="_row _cen_start">
+    <view class="_txt_gray _font36 _mr30 _fontw500">已支付</view>
+    <view class="pricePay _column">
+      <view class="_txt_pale_red _fontw500 _font22">¥<text class="_font30">1999</text></view>
+      <text class="_font24 _txt_light_gray">已优惠 ¥1000</text>
+    </view>
+  </view>
+  <view class="seeInvoice _txt_gray">
+    查看发票
+  </view>
+</view>
+
+<view class="navReserve">
+  <view class="reserveInfo">
+    <text class="infoTxt _txt_gray _font36">预订信息</text>
+  </view>
+  <view class="reserInstr _row _cen_start">
+    <text  class="iconfont icon-rili  _mr10"></text>
+    <text class="_txt_gray _font30 _fontw600 _mr10">就餐时间</text>
+    <text class="_txt_gray _font30 ">2019-03-06  周二  17:00</text>
+  </view>
+  <view class="reserInstr _row _cen_start">
+    <text  class="iconfont icon-shijian sizeLess _mr10"></text>
+    <text class="_txt_gray _font30 _fontw600 _mr10">预计到店</text>
+    <text class="_txt_gray _font30 ">17:00</text>
+  </view>
+  <view class="reserInstr _row _cen_start">
+    <text  class="iconfont icon-renshu _mr10"></text>
+    <text class="_txt_gray _font30 _fontw600 _mr10">入住人</text>
+    <text class="_txt_gray _font30 ">田倩，谢凌云</text>
+  </view>
+  <view class="reserInstr _row _cen_start">
+    <text  class="iconfont icon-fangjian- _mr10"></text>
+    <text class="_txt_gray _font30 _fontw600 _mr10">房间</text>
+    <text class="_txt_gray _font30 ">标准间  4间</text>
+  </view>
+</view>
+
+<view class="navReserve">
+  <view class="reserveInfo">
+    <text class="infoTxt _txt_gray _font36">预订信息</text>
+  </view>
+  <view class="reserInstr _row _cen_start">
+    <view class="instrDetail _txt_gray3 _font28 _mr10">预订人:</view>
+    <text class="_txt_gray3 _font28 ">陈海</text>
+  </view>
+  <view class="reserInstr _row _cen_start">
+    <view class="instrDetail _txt_gray3 _font28 _mr10">手机号：</view>
+    <text class="_txt_gray3 _font28 ">7894758493275</text>
+  </view>
+  <view class="reserInstr _row _cen_start">
+    <view class="instrDetail _txt_gray3 _font28 _mr10">下单时间：</view>
+    <text class="_txt_gray3 _font28 ">2019-03-06 </text>
+  </view>
+  <view class="reserInstr _row _cen_start">
+    <view class="instrDetail _txt_gray3 _font28 _mr10">预定单号：</view>
+    <text class="_txt_gray3 _font28 ">25423543543 </text>
+  </view>
+</view>
+<view class="bg_white _mt10">
+  <view class="contact _row _cen_space">
+    <view class="left _column">
+      <text class="_font36 _txt_gray">联系客服</text>
+      <text class="_font24 _txt_light_gray">工作时间：09:00-17:00</text>
+    </view>
+    <view class="right _txt_center">
+        <text class="iconfont icon-lianxikefu _font40"></text>
+
+    </view>
+  </view>
+</view>
+<view class="cancelBtn">
+取消订单
+</view>
+
+<view class="fixPay bg_white _row _cen_space">
+  <view class="pricePay _column">
+    <view class="_txt_pale_red _fontw500 _font22">¥<text class="_font30">1999</text></view>
+    <text class="_font24 _txt_light_gray">已优惠 ¥200</text>
+  </view>
+  <view class="payCheck _row _cen_end">
+    <view class="_txt_light_gray _font26 _mr30">查看单据</view>
+    <view class="payBtn">付款</view>
+  </view>
+</view>
