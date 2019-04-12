@@ -74,7 +74,7 @@ Page({
    */
   loadConfig: function(_this) {
     app.Util.network.POST({
-      url: 'http://61.149.7.239:10008/mini_program/api/',  //app.globalData.BASE_API_URL,
+      url: app.globalData.BASE_API_URL,
       params: {
         service: 'face',
         method: 'load_face_config',

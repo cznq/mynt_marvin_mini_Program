@@ -76,7 +76,7 @@ Page({
                       that.setData({
                         cameraErrorText: "已经授权，请关闭小程序重新打开"
                       });
-                      that.data.isCameraAuth=true;
+                      that.data.isCameraAuth = true;
                       wx.navigateBack();
                     } else {
                       wx.showToast({
@@ -104,32 +104,32 @@ Page({
    * 开始录入
    */
   startRecodeFace: function () {
-    var that = this;
-    var int;
-    that.openCameraAuth(); console.log(that.data.options.faceConfig);
-    if (that.data.isCameraAuth==true){
-      int = setInterval(function () {
-        that.setData({ 
-          timer: that.data.timer + 1,
-          progress: (100/that.data.options.faceConfig.counter)*that.data.timer
-        })
-        if (that.data.timer >= that.data.options.faceConfig.counter) {
-          clearInterval(int);
-          that.stopRecord(that, that.data.ctx, int);
-        }
-      }, 1000);
-      that.startRecord(that, that.data.ctx, int);
+    if (this.data.isCameraAuth==true){
+      this.startRecord(this, this.data.ctx);
+    } else {
+      this.openCameraAuth();
     }
   },
 
   /**
    * 开始录像
    */
-  startRecord(self, ctx, timer){
+  startRecord(self, ctx){
+    var int;
     self.setData({ status: 'stop' })
     ctx.startRecord({
       success: (res) => {
         console.log('startRecord')
+        int = setInterval(function () {
+          self.setData({
+            timer: self.data.timer + 1,
+            progress: (100 / self.data.options.faceConfig.counter) * self.data.timer
+          })
+          if (self.data.timer >= self.data.options.faceConfig.counter) {
+            clearInterval(int);
+            self.stopRecord(self, self.data.ctx, int);
+          }
+        }, 1000);
       }
     })
   },
@@ -217,9 +217,9 @@ Page({
     var sign_type = 'MD5';
     var stringA = 'app_id=' + app_id + '&data=' + data + '&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
     var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
-    wx.showLoading({ title: '人脸上传中' });
+    wx.showLoading({ title: '身份核验中' });
     var uploadTask = wx.uploadFile({
-      url: 'http://61.149.7.239:10001/mini_program/api/',        //app.globalData.BASE_API_URL,
+      url: app.globalData.BASE_API_URL,
       method: 'POST',
       filePath: tempVideoPath,
       header: {
@@ -239,8 +239,7 @@ Page({
         console.log(res);
         var data = JSON.parse(res.data);
         if (data.sub_code == 0) {
-          clearInterval(timer);
-          callback();
+          self.updateFace(self, user_type, callback)
         } else if(data.result) {
           self.uploadFaceError(data.sub_code, data.result.error);
           app.myLog("人脸上传失败", data.result.error);
@@ -263,24 +262,29 @@ Page({
     })
   },
 
-  updateFace(company_id, user_type) {
+  updateFace(self, user_type, callback = function () { }) {
+    wx.showLoading({ title: '人脸创建中' });
     app.Util.network.POST({
-      url: 'http://61.149.7.239:10008/mini_program/api/',  //app.globalData.BASE_API_URL,
+      url: app.globalData.BASE_API_URL,
       params: {
         service: 'face',
         method: 'update',
         data: JSON.stringify({
-          company_id: company_id,
           user_type: user_type
         })
       },
+      showLoading: false,
       success: res => {
-        if (res.data.result) {
-         
+        console.log(res)
+        if (res.data.sub_code == 0) {
+          callback()
+        } else {
+          self.uploadFaceError(res.data.sub_code, res.data.sub_msg);
         }
       },
       fail: res => {
         console.log('fail');
+        self.uploadFaceError(0, '请将正脸置于框内，用普通话说出4位验证数字。');
       },
       complete: res => {
 
