@@ -1,2 +1,37 @@
 <!--pages/supportCenter/chooseIdentity.wxml-->
-<text>pages/supportCenter/chooseIdentity.wxml</text>
+<view class="page">
+    <view class="banner banner-top">
+        <!-- <image class="banner-image" src="{{topImageUrl}}"></image> -->
+        <view class="banner-slide">
+            <swiper indicator-dots="{{slideData.indicatorDots}}" autoplay="{{slideData.autoplay}}" interval="{{slideData.interval}}" duration="{{slideData.duration}}">
+                <block wx:for="{{slideData.slideImg}}" wx:key="key">
+                    <swiper-item>
+                        <view class="swiper-item" bindtap="linkRedirect" data-link="{{item.link_url}}" style="background: url({{item.image_url}}) no-repeat center center;background-size:cover;"></view>
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view>
+    </view>
+    <view class="banner banner-bottom _mt20 banner-two">
+        <view wx:for="{{centerData}}" wx:key="{{key}}">
+            <view wx:if="{{key == 0}}" class="sub-banner _flex _mt40 sub1" data-centerId="{{item.help_center_id}}" bindtap="redirectDetail">
+                <view class="sub-img">
+                    <image class='sub-banner-image' src="{{item.title_banner_url}}"></image>
+                </view>
+                <view class="txt _flex _flex_item_center">
+                    <text>{{item.title}}</text>
+                </view>
+                <view class="c_dot iconfont icon-jiantou _flex _flex_item_center _cen_end"></view>
+            </view>
+            <view wx:else class="sub-banner _flex sub2" data-centerId="{{item.help_center_id}}" bindtap="redirectDetail">
+                <view class="sub-img">
+                    <image class='sub-banner-image' src="{{item.title_banner_url}}"></image>
+                </view>
+                <view class="txt _flex _flex_item_center">
+                    <text>{{item.title}}</text>
+                </view>
+                <view class="c_dot iconfont icon-jiantou _flex _flex_item_center _cen_end"></view>
+            </view>
+        </view>
+    </view>
+</view>
