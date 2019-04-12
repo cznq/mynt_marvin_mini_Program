@@ -35,7 +35,6 @@
     <view  class="_list _time_slot">
         <view class="_lw">预计到店</view>
         <view>
-            <!-- <input type="text" placeholder="请选择到店时间" placeholder-class="input_text_phc"></input> -->
             <time-slot bind:select="onSelect">
                 <view class="time-select {{selectData ==='请选择到店时间' ?'input_text_phc':''}}">{{selectData}}</view>
             </time-slot>
@@ -46,7 +45,7 @@
     <view class="_lw">备注</view>
     <textarea class="_conts" placeholder-class="input_text_phc" cursor-spacing="100rpx" name="remarks" placeholder="备注您的需求，我们会尽快为您安排" bindinput="remarksText" maxlength="{{max}}" >
     </textarea>
-    <text class="currentWordNumber">{{ww|0}}/{{max}}</text>
+    <text class="currentWordNumber">{{currentWordNumber|0}}/{{max}}</text>
 </view>
 <view class="_footer">
     <view class="tip _flex">

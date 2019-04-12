@@ -1,0 +1,157 @@
+/* banquet/pages/restaurant-reserve/index.wxss */
+page{
+    background-color: #F0F2F5;
+}
+.input_text_phc{
+    color: rgba(136, 145, 169, .5);
+}
+._reserve_info,
+._person_info{
+    background-color: #fff;
+    font-size: 32rpx;
+    color: #8891A9;
+    padding: 0 40rpx;
+    margin-bottom: 20rpx;
+}
+._reserve_info ._item,
+._person_info ._item{
+    min-height: 100rpx;
+    border-bottom: 1px solid #DEE7F2;
+}
+._reserve_info ._item ._time{
+    color: #1A2A4B;
+}
+._reserve_info ._item:last-child,
+._person_info ._item:last-child{
+    border: none;
+}
+._reserve_info .stepper ._minus text,
+._reserve_info .stepper ._plus text{
+    color: #FF6923;
+    font-size: 36rpx;
+}
+._reserve_info .stepper input{
+    width: 92rpx;
+    text-align: center;
+    color: #1A2A4B;
+}
+.switch {
+    position: relative;
+	width: 47px;
+	height: 24px;
+    border-radius: 12px;
+    background-color: #FF6923;
+    text-align: center;
+}
+.switch::after {
+	position: absolute;
+	display: inline-block;
+	content: "";
+	height: 22px;
+	width: 22px;
+	border-radius: 50%;
+	background-color: #fff;
+	transition: left 0.2s ease-out;
+    -webkit-transition: left ease-out 0.2s;
+}
+.toggle-off{
+    background-color: #fff;
+    border: 1px solid #DEE7F2
+}
+.toggle-off::after{
+    left: 1px;
+    top: 1px;
+	box-shadow: 1px 2px 3px rgba(103, 116, 152, 0.28);
+}
+
+.toggle-on:after{
+	left: 24px;
+    top: 1px;
+}
+._person_info{  
+    color: #1A2A4B;
+}
+._person_info ._lw{
+    width: 100rpx;
+    color: #8891A9;
+    line-height:1.2;
+}
+._person_info ._checkbox{
+    width: 252rpx;
+}
+/* 自定义 radio 样式 */
+radio{
+    width: 48rpx;
+    /* display: none; */
+}
+ 
+radio .wx-radio-input{
+    border-radius: 50%; 
+    width: 32rpx;/* 背景的宽 */
+    height: 32rpx;/* 背景的高 */
+    margin-top: -2px;
+}
+ 
+/* 选中后的样式  */
+radio .wx-radio-input.wx-radio-input-checked::before{
+    border-radius: 50%;
+    width:44rpx;
+    height: 44rpx; 
+    text-align: center;
+    line-height: 44rpx;
+    font-size: 26rpx; /* 对勾大小 */
+    color:#FF6923; /* 对勾颜色 */
+    background: #fff;
+    border:1px solid #FF6923;
+}
+.remarks{
+    position: relative;  
+    height: 288rpx;
+    box-sizing: border-box;   
+    padding-top: 34rpx;
+    align-items: flex-start;
+}
+.remarks ._conts{
+    height: 150rpx;
+    line-height:1.2;
+}
+.remarks .currentWordNumber{
+    position: absolute;
+    right: 40rpx;
+    bottom: 40rpx;
+}
+._footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 40rpx 36rpx;
+    box-sizing: border-box;
+}
+._footer .tip{
+    font-size: 24rpx;
+    color: #8891A9;
+    margin-bottom: 20rpx;
+    align-items: flex-start;
+}
+._footer .tip ._icon{
+    background-color: rgba(136, 145, 169, .5);
+    color: #fff;
+    border-radius: 100%;
+    width: 30rpx;
+    height: 30rpx;
+    font-size: 20rpx;
+    line-height: 30rpx;
+    text-align: center;
+    margin-right: 6rpx;
+    margin-top: 4rpx;
+}
+._footer button{
+    width: 670rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    background-color: #FF6923;
+    color: #fff;
+    font-size: 32rpx;
+}

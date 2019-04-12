@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "预定时间",
+  "usingComponents": {
+    "calendar": "../../../../components/calendarMoel/index"
+  }
+}

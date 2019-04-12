@@ -1,0 +1,41 @@
+<!--banquet/pages/restaurant-time/index.wxml-->
+<view class="header_date">
+    <scroll-view scroll-x style="white-space: nowrap;">
+        <view wx:for="{{dateList}}" wx:for-index="idx" wx:key="key" class="date_item  {{ checkId ==idx ?'active':''}}" data-year="{{item.year}}" data-month="{{item.month}}" data-day="{{item.day}}" data-id="{{idx}}" data-week="{{item.week}}"  bindtap="onPressDate">
+            <view class="_week">{{item.week}}</view>
+            <view class="_day">{{item.newdates}}</view>
+        </view>
+        <view class="date_item more_date" bindtap="showCalendar">
+            <text class="iconfont icon-rili"></text>
+            <view class="_day">更多</view>
+        </view>
+    </scroll-view>
+</view>
+<calendar show ="{{calendarShow}}" checkDate="{{ checkDate }}"></calendar>
+<view class="time-slot">
+    <block wx:if="{{showPmTime}}">
+        <view class='title'>午市（11:00—13:30）</view>
+        <radio-group bindchange="radioChangePm">
+            <view class='label'>
+                <label class="ui-radio {{item.checked && pmMark?'is_checked':''}}" wx:for="{{pmTime}}" wx:key="">
+                    <radio value="{{item.value}}" checked="{{item.checked}}" />
+                    <text class="text">{{item.value}}</text>
+                </label>
+            </view>
+        </radio-group>
+    </block>
+    <block wx:if="{{showEveningTime}}">
+        <view class='title'>晚市（17:00—20:00）</view>
+        <radio-group bindchange="radioChangeEvening">
+            <view class='label'>
+                <label class="ui-radio {{item.checked && eveningMark?'is_checked':''}}" wx:for="{{eveningTime}}" wx:key="">
+                    <radio value="{{item.value}}" checked="{{item.checked}}" />
+                    <text class="text">{{item.value}}</text>
+                </label>
+            </view>
+        </radio-group>
+    </block>
+</view>
+<view>
+    <text decode="{{true}}" >{{checkDate}}&nbsp;&nbsp;{{week}}&nbsp;&nbsp;{{checkTime}}</text>
+</view>
