@@ -1,7 +1,7 @@
 <!--banquet/pages/restaurant-time/index.wxml-->
 <view class="header_date">
     <scroll-view scroll-x style="white-space: nowrap;">
-        <view wx:for="{{dateList}}" wx:for-index="idx" wx:key="key" class="date_item  {{ checkId ==idx ?'active':''}}" data-year="{{item.year}}" data-month="{{item.month}}" data-day="{{item.day}}" data-id="{{idx}}" data-week="{{item.week}}"  bindtap="onPressDate">
+        <view wx:for="{{dateList}}" wx:for-index="idx" wx:key="key" class="date_item  {{ (item.year+'-'+item.month+'-'+ item.day) == checkDate ?'active':''}}" data-year="{{item.year}}" data-month="{{item.month}}" data-day="{{item.day}}" data-id="{{idx}}" data-week="{{item.week}}"  bindtap="onPressDate">
             <view class="_week">{{item.week}}</view>
             <view class="_day">{{item.newdates}}</view>
         </view>
@@ -11,7 +11,7 @@
         </view>
     </scroll-view>
 </view>
-<calendar show ="{{calendarShow}}" checkDate="{{ checkDate }}"></calendar>
+<calendar bind:select="onSelect" show="{{show}}" checkDate="{{checkDate}}"></calendar>
 <view class="time-slot">
     <block wx:if="{{showPmTime}}">
         <view class='title'>午市（11:00—13:30）</view>
@@ -36,6 +36,6 @@
         </radio-group>
     </block>
 </view>
-<view>
-    <text decode="{{true}}" >{{checkDate}}&nbsp;&nbsp;{{week}}&nbsp;&nbsp;{{checkTime}}</text>
+<view class="_footer">
+    <button bindtap="confirm">确定</button>
 </view>

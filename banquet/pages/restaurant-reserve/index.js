@@ -1,4 +1,5 @@
 // banquet/pages/reserve-success/index.js
+var util = require("../../../utils/util.js");
 const app = getApp();
 Page({
 
@@ -13,6 +14,10 @@ Page({
             { name: '女士', checked: false}
         ],
         max:'100',
+        checkDate:'',
+        checkTime:'',
+        week:'今天',
+        timeArr:['11:00','11:30','12:00','12:30','13:00','13:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00'],
     },
   
     /**
@@ -20,9 +25,32 @@ Page({
      */
     onLoad: function (options) {
         var that = this;
+        let curTime = util.getTime();//获取当前时间
+        var arr = that.data.timeArr
+        let checkDate =  util.getDate();//默认选择当前日期
+        let checkTime = that.data.checkTime;
+        let week = that.data.week;
+        if(curTime < arr[0]){
+            checkTime = arr[0]
+        }
+        if(curTime >=arr[0] && curTime<arr[arr.length-1]){
+            for (let i = 0; i < arr.length; i++) {
+                if (curTime >= arr[i]) {
+                    checkTime =  arr[i+1]
+                }
+            }
+        }
+        if(curTime>=arr[arr.length-1]){
+            checkDate = this.getNextDay(checkDate);
+            checkTime = arr[0];
+            week="明天"
+        }
         that.setData({
           commerce_id: options.commerce_id,
           // commerce_type: options.commerce_type
+          checkDate:checkDate,
+          checkTime:checkTime,
+          week:week
         })
         that.getDetailInfo(that.data.commerce_id);
     },
@@ -51,6 +79,22 @@ Page({
             }
         }
         })
+    },
+    /*获取下一天日期*/
+    getNextDay:function(d){
+        d = new Date(d);
+        d = +d + 1000 * 60 * 60 * 24;
+        d = new Date(d);
+        var y = d.getFullYear();
+        var m = d.getMonth() + 1;
+        var d = d.getDate();
+        if (m < 10) {
+            m = "0" + m;
+        }
+        if (d < 10) {
+            d = "0" + d;
+        }
+        return y + "-" + m + "-" + d;
     },
     /* 点击减号 */
     bindMinus: function() {
@@ -102,6 +146,11 @@ Page({
     changeSex:function(e){
         console.log(e.detail.value)
     },
+    goReserve:function(){
+        wx.navigateTo({
+            url: '/banquet/pages/restaurant-time/index',
+        })
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -113,6 +162,15 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-  
+        var that = this;
+        let pages = getCurrentPages();
+        let currPage = pages[pages.length - 1];
+        if (currPage.data.stayDays>0) {
+          that.setData({
+            checkDate: currPage.data.checkDate,
+            week:currPage.data.week,
+            checkTime:currPage.data.checkTime
+          })
+        }
     },
   })

@@ -39,13 +39,10 @@ Component({
    * 组件的方法列表
    */
   ready: function() {
-    console.log(this.data.show)
-    console.log(this.data.checkDate)
-    let show = this.data.show
     this.setData({
-      calendarShow:show,
+      show: this.data.show,
       dateList: this.createDateListData(),
-      selectData:this.data.checkDate //从组件外部传入的选择的日期，若直接点击确定 默认时间就是组件外部之前选择的时间
+      checkDate:this.data.checkDate //初始化默认为今天
     });
     //console.log(this.data.dateList)
     var _this = this;
@@ -54,7 +51,6 @@ Component({
         _this.setData({
           systemInfo: res,
           currMonth: _this.data.dateList[0],
-          show: !show
         });
       }
     });
@@ -155,7 +151,7 @@ Component({
       if (day < 10) tempDay = "0" + day;
 
       var date = year + "-" + tempMonth + "-" + tempDay;
-      if (this.data.markData || this.data.selectData === date) {
+      if (this.data.markData || this.data.checkDate === date) {
         this.setData({
           markData: false,
           dateList: this.createDateListData()
@@ -163,7 +159,7 @@ Component({
       }
       if (!this.data.markData) {
         this.setData({
-          selectData: date,
+          checkDate: date,
           markData: true,
           dateList: this.createDateListData()
         });
@@ -193,6 +189,7 @@ Component({
         dateList: dateList,
         currMonth: dateList[this.data.n]
       });
+      console.log(this.data.dateList)
     },
     //初始化选择器信息
     // toggleSelect:function(){
@@ -200,7 +197,7 @@ Component({
     //   if (show) return this.setData({ show: !show })
     //   this.setData({
     //     dateList: this.createDateListData(),
-    //     selectData:this.data.checkDate //从组件外部传入的选择的日期，若直接点击确定 默认时间就是组件外部之前选择的时间
+    //     checkDate:this.data.checkDate //从组件外部传入的选择的日期，若直接点击确定 默认时间就是组件外部之前选择的时间
     //   });
     //   //console.log(this.data.dateList)
     //   var _this = this;
@@ -217,16 +214,26 @@ Component({
     //关闭弹窗
     // 取消
     hideCalendar() {
-      this.setData({ show: false });
+      let dateList = this.createDateListData()
+      this.setData({ 
+        show: false ,
+        dateList: dateList,
+        currMonth: dateList[0],
+        markData: false,
+      });
     },
     //确定
     submitCalendar: function() {
+      let dateList = this.createDateListData()
       this.setData({
         show: false,
-        selectData:this.data.selectData
+        checkDate:this.data.checkDate,
+        dateList: dateList,
+        currMonth: dateList[0],
+        markData: false,
       },
         ()=>{       
-          const result=this.data.selectData
+          const result=this.data.checkDate
           this.triggerEvent('select', result)
         }
       );
