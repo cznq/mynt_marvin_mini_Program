@@ -1,4 +1,6 @@
 /* pages/supportCenter/chooseIdentity.wxss */
+@import "../../../../templates/showToast/showToast.wxss";
+
 page {
     width: 750rpx;
     background-color: #F9FAFB;

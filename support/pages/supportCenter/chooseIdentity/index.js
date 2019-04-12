@@ -1,5 +1,6 @@
 // pages/supportCenter/chooseIdentity.js
 const app = getApp();
+var toast = require('../../../../templates/showToast/showToast');
 Page({
 
     /**
@@ -52,9 +53,12 @@ Page({
                         centerData: ret.help_list,
                     });
                 } else {
-                    _this.setData({
-                        shopList: null
-                    })
+                    toast.showToast(this, {
+                        toastStyle: 'toast',
+                        title: res.data.sub_msg,
+                        duration: 1000,
+                        mask: false,
+                    });
                 }
             },
             fail: res => {
