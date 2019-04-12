@@ -89,6 +89,7 @@
         "pages/banquet-home/index",
         "pages/detail/index",
         "pages/order/order",
+        "pages/orderDetail/orderDetail",
         "pages/hotel-reserve/index",
         "pages/calendar-hotel/index"
       ]

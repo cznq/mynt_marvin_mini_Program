@@ -137,6 +137,11 @@
   color: #1a2a4b !important;
 }
 
+/*灰色 一般情况 第三级内容 正文*/
+._txt_light_gray {
+  color: #A1A8BA;
+}
+
 /*灰色 一般情况 标题 正文*/
 ._txt_darkgrey {
   color: #8891a9 !important;
@@ -184,6 +189,11 @@
 /* 红色 负面信息颜色*/
 ._txt_lightblack {
   color: #484f62 !important;
+}
+
+/* 红色 提示内容*/
+._txt_pale_red {
+  color: #F63C2E
 }
 
 /*浅黑 管理员头像背景颜*/
