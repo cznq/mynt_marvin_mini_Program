@@ -68,6 +68,7 @@
     "pages/businessService/servicePay/index",
     "pages/businessService/payRecord/index",
     "pages/businessService/suite-introduce/suite-introduce"
+
   ],
   "subPackages": [
     {
@@ -90,6 +91,7 @@
         "pages/detail/index",
         "pages/order/order",
         "pages/orderDetail/orderDetail",
+        "pages/cashier/cashier",
         "pages/hotel-reserve/index",
         "pages/calendar-hotel/index",
         "pages/reserve-success/index",
