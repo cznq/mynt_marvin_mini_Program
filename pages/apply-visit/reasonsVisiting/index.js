@@ -49,11 +49,11 @@ Page({
           //不需要输入身份信息
           if (_this.data.is_force_visitor_input_info == 0) {
             wx.navigateTo({
-              url: '/pages/collect-info/identity/index?source=applyVisit&params=' + params + '&hideIdCard=true'
+              url: '/pages/collect-info/guide/index?source=applyVisit&params=' + params + '&hideIdCard=true'
             })
           } else {
             wx.navigateTo({
-              url: '/pages/collect-info/identity/index?source=applyVisit&params=' + params
+              url: '/pages/collect-info/guide/index?source=applyVisit&params=' + params
             })
           }
         } else {
