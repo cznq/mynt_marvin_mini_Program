@@ -119,7 +119,7 @@ Page({
       company_id: this.data.cmpInfo.company_id
     })
     wx.navigateTo({
-      url: '/pages/collect-info/identity/index?source=' + source + '&params=' + params
+      url: '/pages/collect-info/guide/index?source=' + source + '&params=' + params
     })
   },
 

@@ -83,3 +83,12 @@ page {
   text-overflow:ellipsis;
   text-align: right;
 }
+.icon-dunpai {
+  color: rgba(77, 219, 120, 1);
+  font-size: 26rpx;
+  margin-right: 10rpx;
+}
+.auth {
+  color: rgba(77, 219, 120, 1);
+  margin-right: 32rpx;
+}
