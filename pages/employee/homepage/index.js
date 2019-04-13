@@ -13,11 +13,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-   
-    that.getEmployeeInfo();
-    that.getCompany();
-    
+    this.getEmployeeInfo();
+    this.getCompany();
   },
 
   /**
@@ -87,7 +84,6 @@ Page({
             cmpInfo: res.data.result
           })
         }
-        
       }
     })
   },
@@ -123,7 +119,7 @@ Page({
       company_id: this.data.cmpInfo.company_id
     })
     wx.navigateTo({
-      url: '/pages/collect-info/identity/index?source=' + source + '&params=' + params,
+      url: '/pages/collect-info/identity/index?source=' + source + '&params=' + params
     })
   },
 

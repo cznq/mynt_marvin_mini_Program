@@ -1,13 +1,15 @@
 <view class="page">
   <view class="page__bd _txt_center">
-    <text class=" iconfont icon-yuangonglururenlian"></text>
-    <view class="_font44 _fontw600">录入身份及人脸信息</view>
-    <view class="_font32">首先，我们需要获取您的个人信息，以便我们进行安全和身份验证，另一方面让大厅服务机器人能够认识您并更好的为您提供服务。</view>
+    <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/real_name%402x.png"></image>
+    <view class="_font46 _fontw600 tit">实名认证</view>
+    <view class="_font32">根据公安的要求，物业需要获取您的实名认证信息，另一方面让大厅服务机器人认识您并更好的为您提供服务。</view>
   </view>
 
   <view class="_fixed page__ft  _txt_center ">
-    <view class="_font24 invoice"><text class="iconfont icon-dunpai"></text>请放心我们不会向任何第三方透露您的身份信息。</view>
-    <button class="_button next_btn _font32" bindtap="startRecodeInfo">开始录入</button>
+    <view class="infowrap">
+      <view class="_font24 invoice"><text class="iconfont icon-dunpai"></text>请放心我们不会向任何第三方透露您的身份信息。</view>
+    </view>
+    <button class="_button next_btn _font34" bindtap="startRecodeInfo">开始录入</button>
   </view>
    
  

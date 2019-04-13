@@ -1,0 +1,21 @@
+<view class="page">
+  <view class="page__bd">
+    <view class='collect-information'>
+      <image class="readalert" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/reade-number.png" mode='widthFix'></image>
+    </view>
+  </view>
+  <view class="_fixed footer {{isIphoneX?'iphonex':''}}">
+    <view class="check-part _txt_center">
+      <text class="_font32 ">请在拍摄时朗读4位验证数字</text>
+      <view class="num-col _flex _flex_justify_center _flex_space_around">
+        <block wx:for="{{face_verify_code}}" wx:key="">
+          <view class="num">{{item}}</view>
+        </block>
+      </view>
+    </view>
+    <button class="_button next_btn _font32" bindtap="startRecodeFace" disabled='{{buttonDisabled}}'>记住了，开始拍摄</button>
+  </view>
+
+</view>
+<import src="../../../templates/showToast/showToast.wxml" /> 
+<template is="showToast" data="{{showToast: showToast}}" /> 

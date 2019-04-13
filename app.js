@@ -56,7 +56,6 @@ App({
         }
       }
     })
-
   },
 
   onShow: function() {

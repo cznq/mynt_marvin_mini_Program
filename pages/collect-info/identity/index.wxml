@@ -1,13 +1,16 @@
 <import src="../../../templates/inputError/inputError.wxml" /> 
 <view class="page">
-<view class='_content collect-information'>
-  <view class="_flex step">
-    <view class='cur'></view>
-    <view></view>
-  </view>
+<view class='_content'>
   <view class='recodeTitle _fontw600 _font48;'>录入身份信息</view>
   <view class='recodeIntro'>根据公安部门和物业要求，请输您的身份信息，请注意证件号一旦确认不可更改。</view>
   <form bindsubmit='editSubmit'>
+    <view class='input_block' id='ib0'>
+      <view>
+        <text class='_font24 _txt_darkgrey'>真实姓名</text>
+      </view>
+      <input class="input_text {{inputError.name?'error':''}}" type="text" name="name" value='{{formData.name}}' bindinput="checkForm" placeholder-class='input_text_phc' placeholder='请输入真实姓名' id='i0'></input>
+      <icon type="clear" size="16" wx:if="{{formData.name}}" catchtap="clearInput" id="b0"></icon>
+    </view>
     <view class='input_block' id='ib1'>
       <view>
         <text class='_font24 _txt_darkgrey'>手机号</text>
@@ -17,7 +20,7 @@
     </view>
     <view class="input_block {{hideIdCard?'hide':''}}" id='ib2'>
       <view>
-        <text class='_font24 _txt_darkgrey'>证件号</text>
+        <text class='_font24 _txt_darkgrey'>证件类型与证件号</text>
       </view>
       <view class="_info_btn">
         <button class="_card_button {{cardType==0?'on':''}}" bindtap="changCardType" data-idtype="0">大陆身份证</button>
@@ -29,7 +32,7 @@
 
     <view class="_fixed footer {{isIphoneX?'iphonex':''}}">
       <view class="_font24 invoice"><text class="iconfont icon-dunpai"></text>请放心我们不会向任何第三方透露您的身份信息。</view>
-      <button class="_button _font32" disabled="{{formReady?'':'disabled'}}" form-type="submit">下一步</button>
+      <button class="_button _font34" disabled="{{formReady?'':'disabled'}}" form-type="submit">下一步</button>
     </view>
   </form>
 </view>
