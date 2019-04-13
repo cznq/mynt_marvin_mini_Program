@@ -74,7 +74,7 @@ Page({
         id_type: this.data.empInfo.id_type,
         name: null,
         phone: this.data.empInfo.phone,
-        id_number: this.data.empInfo.id_number
+        id_number: null
       })
       wx.redirectTo({
         url: '/pages/collect-info/identity/index?source=' + this.data.options.source + '&params=' + this.data.options.params + '&idInfo=' + idInfo,
