@@ -13,7 +13,8 @@ Page({
         imageList: {},
         videoList: {},
         topHeight: null,
-        tabFixed: false
+        tabFixed: false,
+        showCoverView: false
     },
 
     /**
@@ -62,11 +63,13 @@ Page({
         var _this = this;
         if (e.scrollTop < _this.data.topHeight) {
             _this.setData({
-                tabFixed: false
+                tabFixed: false,
+                showCoverView: false
             });
         } else {
             _this.setData({
-                tabFixed: true
+                tabFixed: true,
+                showCoverView: _this.data.currentIndex == 2 ? true : false,
             });
         }
     },
