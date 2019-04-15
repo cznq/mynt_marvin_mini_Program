@@ -1,10 +1,10 @@
 <!--pages/supportCenter/introduce/index.wxml-->
 <view class="page">
     <view class="banner">
-        <view class="slide-image">
+        <view class="slide-image" id="selTab">
             <image src="{{titleBannerUrl}}"></image>
         </view>
-        <view class="tab {{tabFixed ? 'fixed' : ''}}" id="selTab">
+        <view class="tab" wx:if="{{tabFixed == false}}">
             <view class="tabSel {{currentIndex == 1 ? 'tabLineSel':''}}" bindtap='tabClick' data-idx='1'>
                 <text>简介</text>
             </view>
@@ -28,3 +28,7 @@
         </view>
     </view>
 </view>
+<cover-view class="tab fixed" wx:if="{{tabFixed == true}}">
+    <button class="tabSel {{currentIndex == 1 ? 'tabLineSel':''}}" bindtap='tabClick' data-idx='1'>简介</button>
+    <button class="tabSel {{currentIndex == 2 ? 'tabLineSel':''}}" bindtap='tabClick' data-idx='2'>功能视频</button>
+</cover-view>

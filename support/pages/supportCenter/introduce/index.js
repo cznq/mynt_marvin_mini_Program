@@ -12,7 +12,7 @@ Page({
         currentIndex: 2,
         imageList: {},
         videoList: {},
-        taboffsetTop: null,
+        topHeight: null,
         tabFixed: false
     },
 
@@ -56,29 +56,29 @@ Page({
             }
         })
         _this.getOffsetTop();
+        console.log(_this.data);
     },
     onPageScroll: function(e) {
         var _this = this;
-        if (e.scrollTop < _this.data.taboffsetTop) {
+        if (e.scrollTop < _this.data.topHeight) {
             _this.setData({
                 tabFixed: false
             });
-            console.log(_this.data.tabFixed);
         } else {
             _this.setData({
                 tabFixed: true
             });
-            console.log(_this.data.tabFixed);
         }
     },
     getOffsetTop() {
         var _this = this;
-        const query = wx.createSelectorQuery()
-        query.select('#selTab').boundingClientRect()
-        query.selectViewport().scrollOffset()
+        const query = wx.createSelectorQuery();
+        query.select('#selTab').boundingClientRect();
+        query.selectViewport().scrollOffset();
         query.exec(function(res) {
+            console.log(res[0]);
             _this.setData({
-                taboffsetTop: res[0].top
+                topHeight: res[0].height,
             })
         })
     },
