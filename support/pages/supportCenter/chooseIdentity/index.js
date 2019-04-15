@@ -37,12 +37,12 @@ Page({
                 if (res.data.sub_code == 0 && res.data.result) {
                     let ret = res.data.result;
                     for (let i = 0; i < ret.help_list.length; i++) {
-                        if (ret.help_list[i].title == '管理员支持') {
+                        if (ret.help_list[i].help_center_id == 1) {
                             _this.setData({
                                 adminImageUrl: ret.help_list[i].title_banner_url,
                             });
                         }
-                        if (ret.help_list[i].title == '员工支持') {
+                        if (ret.help_list[i].help_center_id == 2) {
                             _this.setData({
                                 employeeImageUrl: ret.help_list[i].title_banner_url,
                             });
@@ -67,9 +67,9 @@ Page({
         })
     },
     redirectDetail: function(e) {
-        var helpCenterId = e.currentTarget.dataset.centerId;
+        var helpCenterId = e.currentTarget.dataset.centerid;
         wx.navigateTo({
-            url: '/support/pages/supportCenter/introduce/index?centerId=' + helpCenterId,
+            url: '/support/pages/supportCenter/introduce/index?centerid=' + helpCenterId,
         })
     },
     // 轮播图点击跳转
