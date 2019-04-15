@@ -119,11 +119,10 @@ Page({
     self.setData({ status: 'stop' })
     ctx.startRecord({
       success: (res) => {
-        console.log('startRecord')
         int = setInterval(function () {
           self.setData({
             timer: self.data.timer + 1,
-            progress: (100 / self.data.options.faceConfig.counter) * self.data.timer
+            progress: (100 / self.data.options.faceConfig.counter) * (self.data.timer + 1)
           })
           if (self.data.timer >= self.data.options.faceConfig.counter) {
             clearInterval(int);
@@ -140,7 +139,6 @@ Page({
     self.setData({ recodeFace: 'start' })
     ctx.stopRecord({
       success: (res) => {
-        console.log(res);
         self.finishSubmit(self, timer, res.tempVideoPath)
       },
       fail: function () {
@@ -254,11 +252,8 @@ Page({
       }
     })
     uploadTask.onProgressUpdate((res) => {
-      console.log(res);
+      console.log(res)
       self.setData({ status: 'uploading'})
-      if(res.progress == 100){
-        wx.hideLoading();
-      }
     })
   },
 

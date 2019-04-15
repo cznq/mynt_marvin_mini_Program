@@ -46,8 +46,13 @@ Page({
         formData: idInfo,
         cardType: idInfo.id_type
       })
-    }
-    if (options.hideIdCard=='true'){
+      if (idInfo.name && idInfo.id_number) {
+        this.setData({ formReady: true })
+        this.showError('#ib2', '请确保使用您本人的证件号，我们会将它作为重置您人脸信息的凭证。');
+      } else {
+        this.showInfo('#ib2', '请确保使用您本人的证件号，我们会将它作为重置您人脸信息的凭证。');
+      }
+    } else if (options.hideIdCard=='true'){
       this.setData({
         hideIdCard: true
       })
