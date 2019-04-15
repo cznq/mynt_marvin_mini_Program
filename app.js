@@ -18,6 +18,7 @@ App({
     fundebug: fundebug,
     open_id_type: 1,
     isIphoneX: false,
+    isIphone: false,
     BASE_IMG_URl: 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/',
     // 开发环境
     // BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
@@ -45,6 +46,9 @@ App({
           key: 'sysinfo',
           data: res,
         })
+        if (res.platform === 'ios') {
+          that.globalData.isIphone = true
+        }
         if (res.model.search('iPhone X') != -1) {
           that.globalData.isIphoneX = true
         }

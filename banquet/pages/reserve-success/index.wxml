@@ -2,10 +2,16 @@
 <view class="page">
     <view class="_flex page_hd">
         <text class="iconfont icon-yudingchenggong"></text>
+        <block wx:if="{{router ===''}}">
         <text class="_txt">预定成功</text>
         <text class="_tip">请等待确认，确认结果稍后以微信消息或专人联系告知。</text>
+        </block>
+        <block wx:if="{{router ==='order'}}">
+          <text class="_txt">付款成功</text>
+          <text class="_tip">您的付款已成功，小觅楼宇管理员将会把纸质发票送达给您。</text>
+          </block>
     </view>
-    <view class="reserve_progress">
+    <view wx:if="{{router ===''}}" class="reserve_progress">
         <view class="_step_cont">
             <view class="_step active">
                 <view class="_step_name">提交预订</view>

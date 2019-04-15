@@ -5,7 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orderTitle: 'all'
+    orderTitle: 'all',
+    searchNoneData: {
+      textInfo: '暂无订单',
+      show: false
+    },
   },
 
   /**

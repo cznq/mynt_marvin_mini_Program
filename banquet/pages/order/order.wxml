@@ -1,3 +1,4 @@
+<import src="../../../templates/noneData/noneData.wxml" />
 <view class="orderTitle _row _cen_space padding0-33 " >
   <view class="box"  >
     <view  bindtap="touchTit" data-tag='all' class=" {{orderTitle === 'all' ? 'title_border05 active ':''}}">全部</view>
@@ -13,7 +14,7 @@
   </view>
 </view>
 
-<view class="order-content-box">
+<view wx:if="{{!searchNoneData.show}}" class="order-content-box">
   <view class="orBlock">
     <view class='orStatus _row _cen_space'>
       <view class="storeName _row _cen_space">
@@ -43,4 +44,8 @@
       </view>
     </view>
   </view>
+</view>
+
+<view wx:if='{{searchNoneData.show}}' class="moveUp108">
+  <template is="noneDataPage" data="{{noneData:searchNoneData}}" />
 </view>

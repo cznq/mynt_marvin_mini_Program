@@ -1,3 +1,6 @@
 {
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "订单",
+  "navigationBarTextStyle": "black",
   "usingComponents": {}
 }

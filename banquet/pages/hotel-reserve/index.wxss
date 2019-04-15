@@ -1,155 +1,191 @@
 /* benifit/pages/hotel-reserve/index.wxss */
-page{
-    background-color: #F0F2F5;
-    padding-bottom: 320rpx;
+page {
+  background-color: #F0F2F5;
+  padding-bottom: 320rpx;
 }
-.input_text_phc{
-    color: rgba(136, 145, 169, .5);
+
+.input_text_phc {
+  color: rgba(136, 145, 169, .5);
 }
-.select_time{
-    align-items: center;
-    padding:0 40rpx;
-    color: rgba(136, 145, 169, 1);
-    font-size: 32rpx;
-    height: 100rpx;
-    background-color: #fff;
-    margin-bottom: 20rpx;
+
+.select_time {
+  align-items: center;
+  padding: 0 40rpx;
+  color: rgba(136, 145, 169, 1);
+  font-size: 32rpx;
+  height: 100rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
 }
-.select_time ._text_plc{
-    color: rgba(136, 145, 169, .5);
-    align-items: center;
+
+.select_time ._text_plc {
+  color: rgba(136, 145, 169, .5);
+  align-items: center;
 }
-.select_time ._check_time{
-    color: #1A2A4B;
-    align-items: center;
+
+.select_time ._check_time {
+  color: #1A2A4B;
+  align-items: center;
 }
-.select_time text{
-    margin-left: 20rpx;
-    font-size: 24rpx;
+
+.select_time text {
+  margin-left: 20rpx;
+  font-size: 24rpx;
 }
-.select_time ._check_time text{
-    margin: 0;
+
+.select_time ._check_time text {
+  margin: 0;
 }
-._fill_info{
-    background-color: #fff;
-    margin-bottom: 20rpx;
-    padding: 0 40rpx;
+
+._fill_info {
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  padding: 0 40rpx;
 }
-._fill_info ._list{
-    display: flex;
-    align-items: center;
-    color: rgba(136, 145, 169, 1);
-    font-size: 32rpx;
-    min-height: 100rpx;
-    border-bottom: 1px solid #DEE7F2;
+
+._fill_info ._list {
+  display: flex;
+  align-items: center;
+  color: rgba(136, 145, 169, 1);
+  font-size: 32rpx;
+  min-height: 100rpx;
+  border-bottom: 1px solid #DEE7F2;
 }
-._fill_info ._list:last-child{
-    border: none;
+
+._fill_info ._list:last-child {
+  border: none;
 }
-._fill_info ._list input{
-    color: #1A2A4B;
-    height: 90rpx;
+
+._fill_info ._list input {
+  color: #1A2A4B;
+  height: 90rpx;
 }
-._fill_info ._list._room{
-    justify-content: space-between;
+
+._fill_info ._list._room {
+  justify-content: space-between;
 }
-._fill_info ._list ._lw{
-    min-width: 158rpx;
+
+._fill_info ._list ._lw {
+  min-width: 158rpx;
 }
+
 ._fill_info ._list._room .stepper ._minus text,
-._fill_info ._list._room .stepper ._plus text{
-    color: #FF6923;
-    font-size: 36rpx;
+._fill_info ._list._room .stepper ._plus text {
+  color: #FF6923;
+  font-size: 36rpx;
 }
-._fill_info ._list._room .stepper input{
-    width: 92rpx;
-    text-align: center;
+
+._fill_info ._list._room .stepper input {
+  width: 92rpx;
+  text-align: center;
 }
-._fill_info ._list ._person{
-    width: 100%;
+
+._fill_info ._list ._person {
+  width: 100%;
 }
-._fill_info ._list ._person input{
-    border-bottom: 1px solid #DEE7F2;
-    width: 100%;
+
+._fill_info ._list ._person input {
+  border-bottom: 1px solid #DEE7F2;
+  width: 100%;
 }
-._fill_info ._list ._person input:last-child{
-    border:none;
+
+._fill_info ._list ._person input:last-child {
+  border: none;
 }
-._fill_info ._list .time-select{
-    color: #1A2A4B;
+
+._fill_info ._list .time-select {
+  color: #1A2A4B;
 }
-._fill_info ._list .time-select.input_text_phc{
-    color: rgba(136, 145, 169, .5);
+
+._fill_info ._list .time-select.input_text_phc {
+  color: rgba(136, 145, 169, .5);
 }
-.remarks{
-    display: flex;
-    align-items: flex-start;
-    color: rgba(136, 145, 169, 1);
-    font-size: 32rpx;
-    background-color: #fff;
-    padding: 40rpx;
-    height: 288rpx;
-    box-sizing: border-box;   
-    position: relative;
+
+.remarks {
+  display: flex;
+  align-items: flex-start;
+  color: rgba(136, 145, 169, 1);
+  font-size: 32rpx;
+  background-color: #fff;
+  padding: 40rpx;
+  height: 288rpx;
+  box-sizing: border-box;
+  position: relative;
 }
-.remarks ._conts{
-    height: 150rpx;
-    line-height: 1.2;
+
+.remarks ._conts {
+  height: 150rpx;
+  line-height: 1.2;
 }
-.remarks ._lw{
-    width: 100rpx;
-    line-height: 1.2;
+
+.remarks ._contsIos {
+  margin-top: -15rpx;
+  height: 150rpx;
+  line-height: 1.2;
 }
-.remarks .currentWordNumber{
-    position: absolute;
-    right: 40rpx;
-    bottom: 40rpx;
+
+.remarks ._lw {
+  width: 100rpx;
+  line-height: 1.2;
 }
-._footer{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #fff;
-    padding: 40rpx 36rpx;
-    box-sizing: border-box;
+
+.remarks .currentWordNumber {
+  position: absolute;
+  right: 40rpx;
+  bottom: 40rpx;
 }
-._footer .tip{
-    font-size: 24rpx;
-    color: #8891A9;
-    margin-bottom: 20rpx;
-    align-items: flex-start;
+
+._footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 40rpx 36rpx;
+  box-sizing: border-box;
 }
-._footer .tip ._icon{
-    background-color: rgba(136, 145, 169, .5);
-    color: #fff;
-    border-radius: 100%;
-    width: 30rpx;
-    height: 30rpx;
-    font-size: 20rpx;
-    line-height: 30rpx;
-    text-align: center;
-    margin-right: 10rpx;
-    margin-top: 4rpx;
+
+._footer .tip {
+  font-size: 24rpx;
+  color: #8891A9;
+  margin-bottom: 20rpx;
+  align-items: flex-start;
 }
-._consult .price{
-    color: #1A2A4B;
-    font-size: 28rpx;
+
+._footer .tip ._icon {
+  background-color: rgba(136, 145, 169, .5);
+  color: #fff;
+  border-radius: 100%;
+  width: 30rpx;
+  height: 30rpx;
+  font-size: 20rpx;
+  line-height: 30rpx;
+  text-align: center;
+  margin-right: 10rpx;
+  margin-top: 4rpx;
 }
-._consult .price text{
-    color: #F63C2E;
-    font-size: 44rpx;
+
+._consult .price {
+  color: #1A2A4B;
+  font-size: 28rpx;
 }
-._consult .discount{
-    font-size: 26rpx;
-    color: #8891A9;
+
+._consult .price text {
+  color: #F63C2E;
+  font-size: 44rpx;
 }
-._consult .reserve_btn{
-    width: 290rpx;
-    height: 90rpx;
-    line-height: 90rpx;
-    background-color: #FF6923;
-    border-radius: 10rpx;
-    color: #fff;
-    margin: 0;
+
+._consult .discount {
+  font-size: 26rpx;
+  color: #8891A9;
+}
+
+._consult .reserve_btn {
+  width: 290rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  background-color: #FF6923;
+  border-radius: 10rpx;
+  color: #fff;
+  margin: 0;
 }

@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isIphone: false,
     commerce_id: null,
     commerce_type: null,
     num: 1,
@@ -19,7 +20,8 @@ Page({
   onLoad: function(options) {
     var that = this;
     that.setData({
-      commerce_id: options.commerce_id,
+      isIphone: app.globalData.isIphone,
+      // commerce_id: options.commerce_id,
       // commerce_type: options.commerce_type
     })
     that.getDetailInfo(that.data.commerce_id);

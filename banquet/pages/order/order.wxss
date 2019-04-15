@@ -1,3 +1,5 @@
+@import '../../../templates/noneData/noneData.wxss'
+
 .padding0-33 {
   padding: 0 66rpx;
 }
@@ -15,6 +17,10 @@ page {
   z-index: 100;
   background-color: #fff;
   box-sizing: border-box;
+}
+
+.moveUp108 {
+  margin-top: 270rpx;
 }
 
 .orderTitle .box {
