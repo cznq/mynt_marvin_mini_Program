@@ -29,7 +29,7 @@
   </view>
 
 </view>
-<view class="nav _row _cen_space">
+<view catchtap='jumpDetail' class="nav _row _cen_space">
   <view class="navIntr _row _cen_start">
     <image class="navImg" src=''></image>
     <view class="navTxt _column _start_space">
@@ -113,9 +113,8 @@
       <text class="_font36 _txt_gray">联系客服</text>
       <text class="_font24 _txt_light_gray">工作时间：09:00-17:00</text>
     </view>
-    <view class="right _txt_center">
+    <view bindtap='callUp' class="right _txt_center">
         <text class="iconfont icon-lianxikefu _font40"></text>
-
     </view>
   </view>
 </view>
@@ -125,7 +124,7 @@
 
 <view class="fixPay bg_white _row _cen_space">
   <view class="pricePay _column">
-    <view class="_txt_pale_red _fontw500 _font22">¥<text class="_font30">1999</text></view>
+    <view class="_txt_pale_red _fontw600 _font22">¥<text class="_font30">1999</text></view>
     <text class="_font24 _txt_light_gray">已优惠 ¥200</text>
   </view>
   <view class="payCheck _row _cen_end">

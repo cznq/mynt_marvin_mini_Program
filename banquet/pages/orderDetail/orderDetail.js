@@ -20,13 +20,22 @@ Page({
         title: '当前页面'
       })
   },
+  jumpDetail() {
+    wx.navigateTo({
+      url: ''
+    })
+  },
   previewImage() {
     wx.previewImage({
       current: '', // 当前显示图片的http链接
       urls: [] // 需要预览的图片http链接列表
     })
   },
-
+  callUp() {
+    wx.makePhoneCall({
+      phoneNumber: '0571-82613693' // 仅为示例，并非真实的电话号码
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
