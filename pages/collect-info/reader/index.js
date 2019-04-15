@@ -52,6 +52,9 @@ Page({
   //取消关闭弹层
   bindToastClose: function () {
     toast.hideToast();
+    wx.navigateBack({
+      delta: 3
+    })
   },
   //确定退出企业
   bindToastSure: function () {

@@ -59,7 +59,6 @@ Page({
     } else {
       this.showInfo('#ib2', '请确保使用您本人的证件号，我们会将它作为重置您人脸信息的凭证。');
     }
-    
   },
 
   /**
@@ -172,10 +171,9 @@ Page({
    */
   checkParam(name, phone, id_number, callback) {
     var that = this
-    var name_reg = name == ''?false:true
+    var name_reg = name == '' || name == null ?false:true
     var idcard_reg = app.Util.checkID(id_number) || app.Util.checkPassport(id_number);
     var phone_reg = app.Util.checkPhone(phone);
-
     if (name_reg === false) {
       that.setData({
         'inputError.name': true,
@@ -208,6 +206,7 @@ Page({
   clearInput: function (e) {
     console.log(e);
     this.setData({
+      formReady: false,
       errorData: null,
       inputError: {
         name: false,

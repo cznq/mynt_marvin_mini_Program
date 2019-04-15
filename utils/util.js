@@ -275,7 +275,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
   //校验身份证
   function checkID(ID) {
-    if (typeof ID !== 'string') return '非法字符串';
+    if (typeof ID !== 'string') return false;
     var city = {
       11: "北京",
       12: "天津",
@@ -337,6 +337,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
   //校验护照
   function checkPassport(passport) {
+    if (typeof passport !== 'string') return false;
     var reg = /^1[45][0-9]{7}|([P|p|S|s]\d{7})|([S|s|G|g]\d{8})|([Gg|Tt|Ss|Ll|Qq|Dd|Aa|Ff]\d{8})|([H|h|M|m]\d{8，10})$/;
     if (reg.test(passport) === false) {
       return false;
@@ -347,6 +348,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
   //校验电话
   function checkPhone(phone) {
+    if (typeof phone !== 'string') return false;
     var phone_reg = /^1[0-9]{10}$/;
     if (phone_reg.test(phone) === false) {
       return false;
