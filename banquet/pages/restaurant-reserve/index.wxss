@@ -74,7 +74,6 @@ page{
 ._person_info ._lw{
     width: 100rpx;
     color: #8891A9;
-    line-height:1.2;
 }
 ._person_info ._checkbox{
     width: 252rpx;

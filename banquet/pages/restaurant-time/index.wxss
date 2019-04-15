@@ -65,3 +65,20 @@ page{
     background-color: #FFDCC5;
     color: #FF6923;
 }
+._footer{
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40rpx;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+}
+._footer button{
+    width: 670rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    background-color: #FF6923;
+    color: #fff;
+    font-size: 32rpx;
+}
