@@ -26,7 +26,7 @@
       </view>
     </view>
     <view class="infoWrapper bottom">
-      <view class="info-column">
+      <view class="info-column" wx:if="{{commerce_type == 0}}">
         <view class="on-sale-time">
           <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/icon_kitchen@2x.png"></image>
           <block wx:if="{{commerceDetail.business_hours == null}}">
@@ -50,37 +50,29 @@
   </view>
   <view class="page__bd">
     <view class="discount-list" id="discSec">
-      <view class="content-title" wx:if="{{commerce_type < 3}}">
+      <view class="content-title" wx:if="{{commerce_type == 2}}">
         <view class="vertical-middle">
           <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/icon_protocol@2x.png"></image>
           <text>协议优惠</text>
         </view>
       </view>
-      <view class="itemWrap" wx:else>
+      <block wx:else>
+      <view class="itemWrap">
         <view class="disText">
           <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/shape@2x.png"></image>
-          <text>商务宴请</text>
+          <text>宴请</text>
         </view>
         <view class="disBtn">
-          <button open-type="contact" show-message-card="true" session-from="shop-order-detail" send-message-title="{{commerceDetail.name}} - {{item.bed_introduce}}" wx:if="{{is_vip}}">协议咨询</button>
-          <button bindtap="cardTopay" wx:else>协议咨询</button>
-        </view>
+          <button bindtap="restaurantReserve">预定</button>
+        </view>   
       </view>
-      <!-- 餐饮和娱乐协议优惠列表 -->
-      <block wx:for="{{protocolInfo}}" wx:key="" wx:if="{{commerce_type < 2}}">
-        <view class="itemWrap">
-          <view class="disText">
-            <view class="item-title">{{item.benifit_content}}</view>
-            <view class="item-intro">{{item.benifit_limit}}</view>
-          </view>
-          <view class="disBtn">
-            <button bindtap="cardTopay" data-discount="{{item.benifit_content}}" data-limit="{{item.benifit_limit}}">协议买单</button>
-          </view>
-        </view>
-      </block>
+      <view class="dis_detail" >
+        <text>全场菜品9折优惠,全场菜品9折优惠,全场菜品9折优惠,全场菜品9折优惠。</text>
+      </view>
+    </block>
       <!-- 酒店协议优惠列表 -->
       <block wx:for="{{protocolInfo}}" wx:key="" wx:for-index="rindex" wx:if="{{commerce_type == 2}}">
-        <view class="hotel-protocol-item" id="discSec">
+        <view class="hotel-protocol-item">
           <view class="hotel-short-img">
             <image src="{{item.thumbnail_url[0]}}" mode="aspectFill" bindtap="previewHotelImage" data-rowid="{{rindex}}" data-pindex="0"></image>
           </view>
@@ -98,8 +90,6 @@
                     <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/num/num{{num}}.png"></image>
                   </block>
                 </view>
-                <!-- <button open-type="contact" show-message-card="true" session-from="shop-order-detail" send-message-title="{{commerceDetail.name}} - {{item.bed_introduce}}" wx:if="{{is_vip}}">协议咨询</button>
-                <button bindtap="cardTopay" wx:else>协议咨询</button> -->
                 <button bindtap="hotelReserve">预定</button>
               </view>
             </view>
@@ -118,7 +108,6 @@
     <view class="detail_show tabContent" id="detailSec" wx:if="{{commerceDetail.details}}">
       <view class="content-title">详情展示</view>
       <view class="content">
-        <!-- <template is="html2wxml" data="{{wxmlData:details}}" /> -->
         <template is="wxParse" data="{{wxParseData:details.nodes}}" />
       </view>
     </view>
@@ -166,51 +155,5 @@
         </block>
       </view>
     </view>
-  </view>
-  <view id="vip-dialogs" wx:if="{{showVipCard}}">
-    <view class="js_dialog" id="iosDialog1">
-      <view class="weui-mask"></view>
-      <view class="weui-dialog">
-        <view class="weui-dialog__hd">
-          <view class="weui-dialog__title">向商家出示此页面以享受优惠</view>
-          <view class="shop-pic">
-            <image src="{{commerceDetail.thumbnail_url[0]}}" width="100%" mode="widthFix"></image>
-          </view>
-          <view class="shop-name">{{commerceDetail.name}}</view>
-        </view>
-        <view class="weui-dialog__bd">
-          <view class="card-wrapper vip-card-wrapper">
-            <view class="card-content">
-              <view class="vip-card-top">
-                <view class="name">
-                  <text>协</text>{{employeeInfo.name}}</view>
-                <image class="avatar" src="{{employeeInfo.avatar}}" mode="widthFix" wx:if="{{employeeInfo.avatar != ''}}"></image>
-              </view>
-              <view class="vip-card-middle">
-                <view class="company-name">{{employeeInfo.company_name}}</view>
-                <view class="company-address">{{employeeInfo.company_address}}</view>
-              </view>
-              <view class="bar">
-                <view class="bar-bg" style="background: url(https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/benifit/mynt_vip_bg.png) no-repeat right center;background-size:310rpx 66rpx;">
-                  <view class="id-num">ID: {{employeeInfo.employee_card_id}}</view>
-                  <view class="expire-time">有效期: {{employeeInfo.expire}}</view>
-                </view>
-              </view>
-            </view>
-            <view class="discount-info">
-              <view class="coupon">{{dialog_discount}}</view>
-              <view class="limit">{{dialog_discount_limit}}</view>
-            </view>
-          </view>
-        </view>
-        <view class="weui-dialog__ft">
-          <button class="weui-dialog__btn" bindtap="closeDialog">
-            <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/back@2x.png"></image>
-          </button>
-        </view>
-      </view>
-    </view>
-  </view>
-  <view class="page__ft">
   </view>
 </view>

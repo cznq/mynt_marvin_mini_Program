@@ -20,6 +20,12 @@ page{
 }
 ._reserve_info ._item ._time{
     color: #1A2A4B;
+    display: flex;
+    align-items: center;
+}
+._reserve_info .icon-jiantou{
+    font-size: 24rpx;
+    color: #B2C1CB;
 }
 ._reserve_info ._item:last-child,
 ._person_info ._item:last-child{

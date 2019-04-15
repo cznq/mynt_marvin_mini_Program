@@ -37,15 +37,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
     if (options.tabSelected && options.selectedType) {
       this.setData({ tabSelected: options.tabSelected, selectedType: options.selectedType });
     }
     var self = this;
 
     self.getCommerceList(self.data.selectedType);
-    self.getEmployeeInfo();
-
     self.getOffsetTop();
   },
 
@@ -64,62 +61,6 @@ Page({
       })
     })
   },
-
-  /**
-   * 获取员工信息
-   */
-  getEmployeeInfo() {
-    var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
-      params: {
-        service: 'company',
-        method: 'get_company_service_status',
-        data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session'),
-          service_key: 'EMPLOYEE_BENIFIT'
-        })
-      },
-      success: res => {
-        if (res.data.result) {
-          if (res.data.result.service_status !== 0) {
-            console.log('kaitong');
-            app.Util.network.POST({
-              url: app.globalData.BENIFIT_API_URL,
-              params: {
-                service: 'company',
-                method: 'get_employee_info',
-                union_id: wx.getStorageSync('xy_session'),
-                data: JSON.stringify({})
-              },
-              success: res => {
-                console.log(res);
-                if (res.data.result) {
-                  that.setData({
-                    is_vip: true
-                  })
-                } else {
-                  that.setData({
-                    is_vip: false
-                  })
-                }
-              }
-            })
-          } else {
-            that.setData({
-              is_vip: false
-            })
-          }
-        } else {
-          that.setData({
-            is_vip: false
-          })
-        }
-      }
-    })
-  },
-
-
   /**
    * 监听滚动，tab置顶
    */

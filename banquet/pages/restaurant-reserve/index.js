@@ -148,7 +148,7 @@ Page({
     },
     goReserve:function(){
         wx.navigateTo({
-            url: '/banquet/pages/restaurant-time/index',
+            url: '/banquet/pages/restaurant-time/index?checkDate='+this.data.checkDate + '&checkTime=' + this.data.checkTime + '&week=' + this.data.week,
         })
     },
     /**

@@ -17,7 +17,6 @@ Page({
       interval: 20000,
       duration: 300
     },
-    showVipCard: false,
     is_vip: false,
     commerce_id: null,
     commerce_type: null,
@@ -25,8 +24,6 @@ Page({
     employeeInfo: null,
     protocolInfo: null,
     commentList: null,
-    dialog_discount: null,
-    dialog_discount_limit: null,
     businessStatus: "",
     latitude: null,
     longitude: null
@@ -43,17 +40,6 @@ Page({
     })
     that.getDetailInfo(that.data.commerce_id);
     that.getEmployeeInfo();
-    if (options.showVipCard) {
-      that.setData({
-        showVipCard: true,
-        dialog_discount: options.dialog_discount,
-        dialog_discount_limit: options.dialog_discount_limit
-      })
-      wx.setNavigationBarColor({
-        frontColor: '#ffffff',
-        backgroundColor: '#000000'
-      })
-    }
   },
 
   /**
@@ -252,51 +238,6 @@ Page({
   },
 
   /**
-   * 关闭VIP卡弹窗
-   */
-  closeDialog: function () {
-    this.setData({
-      showVipCard: false
-    })
-    wx.setNavigationBarColor({
-      frontColor: '#000000',
-      backgroundColor: '#ffffff',
-    })
-  },
-
-  /**
-   * 协议买单
-   */
-  cardTopay: function (e) {
-    if (this.data.commerceDetail.sub_mch_id == '') { // 未开通支付
-      if (this.data.employeeInfo) { // 小觅用户
-        if (this.data.is_vip) {  // 小觅VIP用户
-          this.setData({
-            showVipCard: true,
-            dialog_discount: e.currentTarget.dataset.discount,
-            dialog_discount_limit: e.currentTarget.dataset.limit,
-          })
-          wx.setNavigationBarColor({
-            frontColor: '#ffffff',
-            backgroundColor: '#000000',
-          })
-        } else {
-          wx.redirectTo({
-            url: '../vip-card/vip-card',
-          })
-        }
-      } else { // 非小觅用户
-        wx.redirectTo({
-          url: '/pages/manage/manage',
-        })
-      }
-    } else { // 已开通支付
-      wx.navigateTo({
-        url: '../scan-pay/scan-pay?commerce_id=' + this.data.commerce_id + '&type=' + this.data.commerce_type
-      })
-    }
-  },
-  /**
    * 酒店预定
    */
   hotelReserve:function(){
@@ -304,6 +245,12 @@ Page({
     var commerce_type = this.data.commerce_type;
     wx.navigateTo({
       url: '/banquet/pages/hotel-reserve/index?commerce_id=' + commerce_id + '&commerce_type=' + commerce_type,
+    })
+  },
+  restaurantReserve:function(){
+    var commerce_id = this.data.commerce_id;
+    wx.navigateTo({
+      url: '/banquet/pages/restaurant-reserve/index?commerce_id=' + commerce_id,
     })
   },
   /**
@@ -335,15 +282,6 @@ Page({
     wx.previewImage({
       current: this.data.protocolInfo[row].thumbnail_url[pindex],
       urls: this.data.protocolInfo[row].thumbnail_url
-    })
-  },
-
-  /**
-   * 拨打电话
-   */
-  makePhoneCall: function (e) {
-    wx.makePhoneCall({
-      phoneNumber: e.currentTarget.dataset.phone
     })
   },
 
@@ -383,7 +321,5 @@ Page({
   onShow: function () {
     this.getComments(this.data.commerce_id);
   }
-
-
 
 })

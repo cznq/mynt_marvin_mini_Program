@@ -1,13 +1,14 @@
 /* pages/supportCenter/introduce/index.wxss */
 page {
     width: 750rpx;
+    height: 100%;
     background-color: #FFFFFF;
 }
 
 .banner {
     width: 750rpx;
     height: 448rpx;
-    background: rgba(255, 255, 255, 1);
+    background: #FFFFFF;
     box-shadow: 0rpx 12rpx 92rpx 0rpx rgba(43, 51, 72, 0.03);
     display: flex;
     flex-direction: column;
@@ -27,10 +28,17 @@ page {
     align-items: center;
     justify-content: space-around;
     box-sizing: border-box;
+    background: #FFFFFF;
+    box-shadow: 0px 12px 92px 0px rgba(43, 51, 72, 0.03);
+}
+
+.fixed {
+    position: fixed;
+    top: 0;
 }
 
 .tabSel {
-    width: 120rpx;
+    width: 132rpx;
     height: 80rpx;
     line-height: 80rpx;
     font-size: 32rpx;
@@ -56,21 +64,51 @@ page {
 
 .introduce {
     width: 750rpx;
-    height: 4480rpx;
-    margin-top: 58rpx;
+    height: auto;
+    margin-top: 59rpx;
 }
 
+.video-view {
+    width: 750rpx;
+    height: 506rpx;
+    padding: 0 33rpx 0 31rpx;
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    box-sizing: border-box;
+    background: #FFFFFF;
+}
 
-.swiper {
+.video-item {
     width: 100%;
-    flex: 1;
-    height: 100vh;
-    overflow: scroll;
 }
 
-.recordItem {
-    margin-top: 10rpx;
-    background-color: white;
-    padding-bottom: 20rpx;
-    padding-top: 20rpx;
+.video {
+    width: 100%;
+    height: 386rpx;
+}
+
+.video-txt {
+    width: 100%;
+    height: 32rpx;
+    font-size: 32rpx;
+    padding: 0 0 31rpx 0;
+    font-weight: 500;
+    color: #092344;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}
+
+.pd61 {
+    padding: 61 0 31rpx 0;
+}
+
+.video-txt .icon {
+    width: 10px;
+    height: 10px;
+    background: #FF9C00;
+    border-radius: 50%;
+    margin-right: 10rpx;
 }

@@ -14,7 +14,7 @@
     </view>
     <view class="banner banner-bottom _mt20 banner-two">
         <view wx:for="{{centerData}}" wx:key="{{key}}">
-            <view wx:if="{{key == 0}}" class="sub-banner _flex _mt40 sub1" data-centerId="{{item.help_center_id}}" bindtap="redirectDetail">
+            <view wx:if="{{key == 0}}" class="sub-banner _flex _mt40 sub1" data-centerid="{{item.help_center_id}}" bindtap="redirectDetail">
                 <view class="sub-img">
                     <image class='sub-banner-image' src="{{item.title_banner_url}}"></image>
                 </view>
@@ -23,7 +23,7 @@
                 </view>
                 <view class="c_dot iconfont icon-jiantou _flex _flex_item_center _cen_end"></view>
             </view>
-            <view wx:else class="sub-banner _flex sub2" data-centerId="{{item.help_center_id}}" bindtap="redirectDetail">
+            <view wx:else class="sub-banner _flex sub2" data-centerid="{{item.help_center_id}}" bindtap="redirectDetail">
                 <view class="sub-img">
                     <image class='sub-banner-image' src="{{item.title_banner_url}}"></image>
                 </view>

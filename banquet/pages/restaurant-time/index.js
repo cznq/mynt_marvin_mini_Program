@@ -10,7 +10,7 @@ Page({
     week: '今天',
     checkDate: '',
     show: false,///日历展示 默认不显示
-    pmMark: true,//午市标记
+    pmMark: false,//午市标记
     eveningMark: false,//晚市标记
     pmTime: [
       { value: '11:00', checked: true },
@@ -38,23 +38,54 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let dataList = this.getDates(15);//获取往后15天的日期
+    wx.setStorageSync('pmTimeOri', this.data.pmTime);
+    wx.setStorageSync('eveningTimeOri', this.data.eveningTime); //保存原始的午市和晚市时间段
+    //获取往后15天的日期
+    let dataList = this.getDates(15);
     dataList[0].week = '今天';
     dataList[1].week = '明天';
-    wx.setStorageSync('pmTimeOri', this.data.pmTime);
-    wx.setStorageSync('eveningTimeOri', this.data.eveningTime);
-    let checkDate = this.getCurrentMonthFirst() //初始化默认选择时间为当前时间
+    //获取传入的日期和时间段
+    let checkDate = options.checkDate
+    let checkTime = options.checkTime  
+    this.filterTimeSlot(checkDate);//过滤时间段,过去的时间段不显示
+
+    var pm = this.data.pmTime;
+    var evening =this.data.eveningTime;
     let curTime = util.getTime() //获取当前时间点 “12:00”
-    let evening = this.data.eveningTime;
-    //大于晚市时间 默认改为选中明天
-    if(curTime >= evening[evening.length - 1].value){  
-      checkDate = this.getNextDay(checkDate)
+    //如果当前时间大于晚市，默认今天不显示
+    if( curTime >=evening[evening.length-1].value){
+      dataList.splice(0, 1);
     }
-    this.setData({
+    
+    var that = this 
+    //默认选中 上一页传入的时段
+    if (checkTime<evening[0].value) { 
+      for (var i = 0; i < pm.length; ++i) {
+        pm[i].checked = pm[i].value == checkTime
+      }
+      that.setData({
+        pmMark:true,
+        eveningMark:false,
+        pmTime:pm
+      })
+    } else {
+      for (var j = 0; j < evening.length; ++j) {
+        evening[j].checked = evening[j].value == checkTime
+      }
+      that.setData({
+        pmMark:false,
+        eveningMark:true,
+        eveningTime:evening
+      })
+    }
+    that.setData({
       dateList: dataList,
-      checkDate: checkDate
+      checkDate: checkDate,
+      week:options.week,
+      checkTime:checkTime,
+      pmTime:that.data.pmTime,
+      eveningTime:that.data.eveningTime
     })
-    this.filterTimeSlot(this.data.checkDate);
   },
   // 过滤时间段
   filterTimeSlot: function (todate) {
@@ -62,13 +93,15 @@ Page({
     let today = this.getCurrentMonthFirst();//今天
     let pm = wx.getStorageSync("pmTimeOri");
     let evening = wx.getStorageSync("eveningTimeOri");
-    if (todate == today) { //如果选择的时间是今天 就要过滤时间段的显示
+    if (todate == today) { //如果选择的时间是今天 就要过滤时间段的显示     
       //小于午市
       if (curTime < pm[0].value) {
         this.setData({
           showPmTime: true,
           showEveningTime: true,
-          checkTime: pm[0].value
+          checkTime: pm[0].value,
+          pmTime:pm,
+          eveningTime:evening
         })
       }
       //在午市之间
@@ -124,7 +157,17 @@ Page({
           checkTime: evening[0].value
         })
       }
-    } else {
+      if( curTime >= evening[evening.length - 1].value){
+        this.setData({
+          showPmTime: false,
+          showEveningTime: false,
+          pmMark: false,
+          eveningMark: false
+        })
+      }
+    } else {   
+      pm[0].checked =true
+      //console.log(pm)
       this.setData({
         showPmTime: true,
         showEveningTime: true,
