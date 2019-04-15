@@ -9,7 +9,20 @@
 <view class="invoicebox _mt20 ">
   <view class="invoice _row _cen_space">
     <text class="_txt_gray _font36">开具发票</text>
-    <image src='' class="invoiceBtn"></image>
+    <image src='../../../images/button-{{invSwitch?"on":"off"}}.png' class="invoiceBtn" bindtap='chooseInvoece' />
   </view>
+  <block wx:if="{{taxNumber !=''&& title!=''}}" >
+  <view class="invoice _row _cen_space">
+    <text class="_txt_darkgrey _font32">名称</text>
+    <text class="_txt_gray _font32">{{title}}</text>
+  </view>
+  <view class="invoice _row _cen_space">
+    <text class="_txt_darkgrey _font32">税号</text>
+    <text class="_txt_gray _font32">{{taxNumber}}</text>
+  </view>
+</block>
+</view>
 
+<view class="payBtn _font32 _fontw400">
+支付 ￥{{169}}
 </view>
