@@ -2,29 +2,29 @@
 <view class="page">
     <view class="banner">
         <view class="slide-image">
-            <image src="{{aaa}}"></image>
+            <image src="{{titleBannerUrl}}"></image>
         </view>
-        <view class='tab'>
-            <view class="tabSel {{currentIndex == 0 ? 'tabLineSel':''}}" bindtap='tabClick' data-idx='0'>
-                <text>图片</text>
-            </view>
+        <view class="tab {{tabFixed ? 'fixed' : ''}}" id="selTab">
             <view class="tabSel {{currentIndex == 1 ? 'tabLineSel':''}}" bindtap='tabClick' data-idx='1'>
-                <text>视频</text>
+                <text>简介</text>
+            </view>
+            <view class="tabSel {{currentIndex == 2 ? 'tabLineSel':''}}" bindtap='tabClick' data-idx='2'>
+                <text>功能视频</text>
             </view>
         </view>
     </view>
     <view class="introduce">
-        <swiper class='swiper' bindchange='pagechange' current='{{currentIndex}}'>
-            <swiper-item class='swiper'>
-                <view wx:for="{{imageList}}" wx:key="{{key}}" class='recordItem'>
-                    <view class='name'>图片{{item}}</view>
-                </view>
-            </swiper-item>
-            <swiper-item class='swiper' class='swiper'>
-                <view wx:for="{{videoList}}" wx:key="{{key}}" class='recordItem'>
-                    <view class='name'>视频{{item}}</view>
-                </view>
-            </swiper-item>
-        </swiper>
+        <view wx:if="{{currentIndex == 1}}" wx:for="{{imageList}}" wx:key="index" class='slide-image'>
+            <image src="{{item.intro_image_url}}"></image>
+        </view>
+        <view wx:if="{{currentIndex == 2}}" wx:for="{{videoList}}" wx:key="index" class='video-view'>
+            <view class="video-txt {{index == 0 ? '' : 'pd61'}}">
+                <view class="icon"></view>
+                <text>{{item.video_intro}}</text>
+            </view>
+            <view class="video-item">
+                <video class='video' id="video{{index}}" data-idx="{{index}}" bindplay="videoPlay" controls src="{{item.video_url}}" objectFit="fill"></video>
+            </view>
+        </view>
     </view>
 </view>
