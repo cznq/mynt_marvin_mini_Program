@@ -5,6 +5,7 @@ page {
 .collect {
   padding: 20rpx 42rpx 20rpx 40rpx;
   background: #fff;
+  box-sizing: border-box;
 }
 
 .shopImg {
@@ -15,12 +16,13 @@ page {
 }
 
 .invoicebox {
-  padding: 32rpx 40rpx 0;
+  padding: 0 40rpx;
   background: #fff;
 }
 
 .invoice {
   width: 670rpx;
+  padding-top: 30rpx;
   padding-bottom: 32rpx;
   border-bottom: 1rpx solid rgba(222, 231, 242, 1);
 }
@@ -28,5 +30,18 @@ page {
 .invoiceBtn {
   width: 72rpx;
   height: 35rpx;
-  border: 1px solid red;
+}
+
+.payBtn {
+  position: fixed;
+  left: 50%;
+  bottom: 50rpx;
+  transform: translateX(-50%);
+  width: 650rpx;
+  height: 100rpx;
+  background: rgba(255, 105, 35, 1);
+  border-radius: 8rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 100rpx;
 }
