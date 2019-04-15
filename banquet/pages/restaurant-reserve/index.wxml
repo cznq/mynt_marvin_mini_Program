@@ -3,8 +3,9 @@
     <view class="_reserve_info">
         <view class="_flex _flex_space_between _item _flex_item_center">
             <view>时间</view>
-            <view class="_time">
-                <text decode="{{true}}">{{checkDate}}&nbsp;{{week}}&nbsp;{{checkTime}}</text>
+            <view class="_time"  bindtap="goReserve">
+                <text decode="{{true}}">{{checkDate}}&nbsp;{{week}}&nbsp;{{checkTime}}&nbsp;</text>
+                <text class="iconfont icon-jiantou"></text>
             </view>
         </view>
         <view class="_flex _flex_space_between _item _flex_item_center">
@@ -60,5 +61,5 @@
         <view class="_icon">!</view>
         <text>温馨提示：\n提交后请等待小觅楼宇管家为您确认，您暂时不需要付款。</text>
     </view>
-    <button class="reserve_btn" bindtap="goReserve"> 立即预定</button>
+    <button class="reserve_btn"> 立即预定</button>
 </view>
