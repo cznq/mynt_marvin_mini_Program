@@ -9,7 +9,7 @@ Page({
     data: {
         titleBannerUrl: "",
         playingIndex: 0,
-        currentIndex: 2,
+        currentIndex: 1,
         imageList: {},
         videoList: {},
         topHeight: null,
