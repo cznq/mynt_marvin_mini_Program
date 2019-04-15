@@ -81,7 +81,7 @@ swiper {
   vertical-align: top;
   margin: 0 8rpx 0 0;
   width: 28rpx;
-  height: 22rpx;
+  height: 24rpx;
 }
 
 .star-part.comment-star .start {
@@ -193,15 +193,8 @@ swiper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40rpx 0;
-  margin: 0 40rpx;
-  border-bottom: 1px dashed rgba(216, 227, 240, 1);
+  padding: 0 40rpx 24rpx;
 }
-
-.discount-list .itemWrap:last-child {
-  border-bottom: none;
-}
-
 .discount-list .disText {
   padding-left: 20rpx;
 }
@@ -216,7 +209,11 @@ swiper {
   font-size: 24rpx;
   color: rgba(26, 42, 75, 0.6);
 }
-
+.discount-list .dis_detail{
+  padding: 0 40rpx;
+  font-size: 28rpx;
+  color: rgba(26, 42, 75, 0.6);
+}
 .hotel-protocol-item .textArea {
   width: calc(100% - 120rpx);
   margin-left: 20rpx;
@@ -417,7 +414,6 @@ button::after {
 
 .comment-content .user-name {
   font-size: 28rpx;
-  line-height: 1.2;
 }
 
 .comment-content .time {
@@ -436,7 +432,6 @@ button::after {
   color: rgba(102, 114, 128, 1);
   width: auto;
   line-height: 24rpx;
-  vertical-align: top;
 }
 
 .comment-content .comment-detail {
