@@ -9,11 +9,12 @@ Page({
   data: {
     titleBannerUrl: "",
     playingIndex: 0,
-    currentIndex: 2,
+    currentIndex: 1,
     imageList: {},
     videoList: {},
-    taboffsetTop: null,
-    tabFixed: false
+    topHeight: null,
+    tabFixed: false,
+    showCoverView: false
   },
 
   /**
@@ -32,23 +33,53 @@ Page({
           union_id: wx.getStorageSync('xy_session'),
           help_center_id: helpCenterId
         })
+        _this.getOffsetTop();
+        console.log(_this.data);
       },
-      success: res => {
-        console.log(res.data);
-        if (res.data.sub_code == 0 && res.data.result) {
-          let ret = res.data.result;
+      onPageScroll: function(e) {
+        var _this = this;
+        if (e.scrollTop < _this.data.topHeight) {
           _this.setData({
-            titleBannerUrl: ret.help_list.title_banner_url,
-            imageList: ret.help_list.image_intro_list,
-            videoList: ret.help_list.video_intro_list
+            tabFixed: false,
+            showCoverView: false
           });
         } else {
-          toast.showToast(this, {
-            toastStyle: 'toast',
-            title: res.data.sub_msg,
-            duration: 1000,
-            mask: false,
+          _this.setData({
+            tabFixed: true,
+            showCoverView: _this.data.currentIndex == 2 ? true : false,
           });
+        }
+      },
+      getOffsetTop() {
+        var _this = this;
+        const query = wx.createSelectorQuery();
+        query.select('#selTab').boundingClientRect();
+        query.selectViewport().scrollOffset();
+        query.exec(function(res) {
+          console.log(res[0]);
+          _this.setData({
+            topHeight: res[0].height,
+          })
+        })
+      },
+      //点击tab切换
+      tabClick: function(e) {
+        this.setData({
+          currentIndex: e.currentTarget.dataset.idx
+        })
+      },
+      // 播放视频
+      videoPlay: function(e) {
+        let _this = this;
+        let clickPlay = e.currentTarget.dataset.idx;
+        if (clickPlay != _this.data.playingIndex) {
+          let videoContentPrev = wx.createVideoContext(`video${_this.data.playingIndex}`);
+          videoContentPrev.pause();
+          _this.setData({
+            playingIndex: clickPlay
+          });
+          let videoContent = wx.createVideoContext(`video${clickPlay}`);
+          videoContent.play();
         }
       },
       fail: res => {

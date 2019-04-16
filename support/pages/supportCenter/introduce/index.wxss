@@ -49,6 +49,10 @@ page {
     border-bottom: 4rpx solid #FFFFFF;
 }
 
+button.tabSel {
+    border-radius: 0;
+}
+
 .tabLineSel {
     border-bottom: 4rpx solid #092344;
 }
@@ -111,4 +115,16 @@ page {
     background: #FF9C00;
     border-radius: 50%;
     margin-right: 10rpx;
+}
+
+.cover-tab {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 750rpx;
+    height: 88rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: #FFFFFF;
 }
