@@ -22,10 +22,13 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        var _this = this;
+        let _this = this;
         let helpCenterId = options.centerid;
-        var _this = this;
-        app.Util.checkcanIUse('cover-view'); //检测组件兼容性 础库 1.4.0 开始支持
+        _this.initData(helpCenterId);
+    },
+    // onload初始化数据
+    initData: function(helpCenterId) {
+        let _this = this;
         app.Util.network.POST({
             url: app.globalData.BASE_API_URL,
             params: {
@@ -62,21 +65,11 @@ Page({
         console.log(_this.data);
     },
     onPageScroll: function(e) {
-        var _this = this;
+        let _this = this;
         _this.setData({
             currentScroll: e.scrollTop
         })
-        if (e.scrollTop < _this.data.topHeight) {
-            _this.setData({
-                tabFixed: false,
-                showCoverView: false
-            });
-        } else {
-            _this.setData({
-                tabFixed: true,
-                showCoverView: _this.data.currentIndex == 2 ? true : false,
-            });
-        }
+        _this.setFixTab(e);
     },
     getOffsetTop() {
         var _this = this;
@@ -108,6 +101,21 @@ Page({
             });
         }
     },
+    // 根据当前滚动条高度和tab选项卡设置tab的固定位置
+    setFixTab: function(e) {
+        let _this = this;
+        if (e.scrollTop < _this.data.topHeight) {
+            _this.setData({
+                tabFixed: false,
+                showCoverView: false
+            });
+        } else {
+            _this.setData({
+                tabFixed: true,
+                showCoverView: _this.data.currentIndex == 2 ? true : false,
+            });
+        }
+    },
     // 播放视频
     videoPlay: function(e) {
         let _this = this;
@@ -122,6 +130,7 @@ Page({
             videoContent.play();
         }
     },
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
