@@ -15,6 +15,7 @@ Page({
   onLoad: function (options) {
     this.getEmployeeInfo();
     this.getCompany();
+    
   },
 
   /**

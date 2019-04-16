@@ -1,3 +1,4 @@
+var toast = require('../../../templates/showToast/showToast');
 var app = getApp()
 Page({
 
@@ -17,7 +18,10 @@ Page({
   data: {
     isIphoneX: app.globalData.isIphoneX,
     options: {},
-    checked: false
+    checked: false,
+    error: false,
+    errorCode: 0,
+    errorMsg: '请将正脸置于框内，用普通话说出4位验证数字。'
   },
 
   onLoad: function (options) {
@@ -25,6 +29,44 @@ Page({
     this.data.options.params = options.params;
     this.data.options.idInfo = options.idInfo;
   
+  },
+
+  onShow: function () {
+    if (this.data.error) {
+      toast.showToast(this, {
+        toastStyle: 'toast4',
+        title: '验证失败',
+        introduce: this.data.errorMsg,
+        mask: true,
+        isSure: true,
+        sureText: '重新录入',
+        isClose: true,
+        closeText: '退出'
+      });
+    }
+  },
+
+  //取消关闭弹层
+  bindToastClose: function () {
+    toast.hideToast();
+    wx.navigateBack({
+      delta: 2
+    })
+  },
+  //确定退出企业
+  bindToastSure: function () {
+    var _this = this;
+    toast.hideToast(_this, {
+      cb: function () {
+        if (_this.data.errorCode == '800005') {
+          wx.navigateTo({
+            url: '../identity/index?source=' + _this.data.options.source + '&params=' + _this.data.options.params + '&idInfo=' + _this.data.options.idInfo
+          })
+        } else {
+          _this.startRecodeFace();
+        }
+      }
+    });
   },
 
   //单选按钮
@@ -49,7 +91,7 @@ Page({
 
   startRecodeFace: function () {
     wx.navigateTo({
-      url: '../reader/index?source=' + this.data.options.source + '&params=' + this.data.options.params + '&idInfo=' + this.data.options.idInfo,
+      url: '../face/index?source=' + this.data.options.source + '&params=' + this.data.options.params + '&idInfo=' + this.data.options.idInfo,
     })
   },
 

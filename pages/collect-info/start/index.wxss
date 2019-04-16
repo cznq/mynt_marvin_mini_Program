@@ -1,3 +1,4 @@
+@import "../../../templates/showToast/showToast.wxss";
 page, 
 .page {
   background-color: #F9FAFB!important;
@@ -28,8 +29,8 @@ page,
   padding-top:30rpx;
 }
 .face-pic {
-  width: 252rpx;
-  height: 308rpx;
+  width: 256rpx;
+  height: 304rpx;
   margin: 178rpx auto 0;
 }
 
