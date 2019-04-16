@@ -28,24 +28,6 @@
                 <video class='video' id="video{{index}}" data-idx="{{index}}" bindplay="videoPlay" controls src="{{item.video_url}}" objectFit="fill"></video>
             </view>
         </view>
-        <view wx:if="{{currentIndex == 2}}" wx:for="{{videoList}}" wx:key="index" class='video-view'>
-            <view class="video-txt {{index == 0 ? '' : 'pd61'}}">
-                <view class="icon"></view>
-                <text>{{item.video_intro}}</text>
-            </view>
-            <view class="video-item">
-                <video class='video' id="video{{index}}" data-idx="{{index}}" bindplay="videoPlay" controls src="{{item.video_url}}" objectFit="fill"></video>
-            </view>
-        </view>
-        <view wx:if="{{currentIndex == 2}}" wx:for="{{videoList}}" wx:key="index" class='video-view'>
-            <view class="video-txt {{index == 0 ? '' : 'pd61'}}">
-                <view class="icon"></view>
-                <text>{{item.video_intro}}</text>
-            </view>
-            <view class="video-item">
-                <video class='video' id="video{{index}}" data-idx="{{index}}" bindplay="videoPlay" controls src="{{item.video_url}}" objectFit="fill"></video>
-            </view>
-        </view>
     </view>
 </view>
 <cover-view class="tab fixed" wx:if="{{showCoverView == true && tabFixed == true}}">
