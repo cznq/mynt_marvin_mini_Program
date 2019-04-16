@@ -22,24 +22,24 @@ Page({
     ctx: {},
     timer: 0,
     status: 'start', // start, stop, uploading
-    cameraErrorText: "",
+    cameraErrorText: "",  
     isCameraAuth:true,
     progress: 0,
-    face_verify_code: []
+    face_verify_code: [],
+    tempThumbPath: 'https://slightech-marvin-faceid.oss-cn-hangzhou.aliyuncs.com/development/face/faceplusplus/6/143_1554978683.jpg',
+    buttonDisabled: true
   },
 
   onLoad: function (options) {
     console.log(options);
-    var that = this;
-    that.data.options.source = options.source;
-    that.data.options.params = JSON.parse(options.params);
-    that.data.options.idInfo = JSON.parse(options.idInfo);
-    that.data.options.faceConfig = JSON.parse(options.faceConfig);
+    this.loadConfig(this);
+    this.data.options.source = options.source;
+    this.data.options.params = JSON.parse(options.params);
+    this.data.options.idInfo = JSON.parse(options.idInfo);
 
-    that.setData({ face_verify_code: that.data.options.faceConfig.face_verify_code.split('') })
     if (app.Util.checkcanIUse('camera')) {
       app.myLog('相机检测', '相机组件检测通过');
-      that.setData({
+      this.setData({
         ctx: wx.createCameraContext()
       })
     }
@@ -122,9 +122,9 @@ Page({
         int = setInterval(function () {
           self.setData({
             timer: self.data.timer + 1,
-            progress: (100 / self.data.options.faceConfig.counter) * (self.data.timer + 1)
+            progress: (100 / self.data.faceConfig.counter) * (self.data.timer + 1)
           })
-          if (self.data.timer >= self.data.options.faceConfig.counter) {
+          if (self.data.timer >= self.data.faceConfig.counter) {
             clearInterval(int);
             self.stopRecord(self, self.data.ctx, int);
           }
@@ -136,9 +136,9 @@ Page({
    * 结束录像
    */
   stopRecord(self, ctx, timer){
-    self.setData({ recodeFace: 'start' })
     ctx.stopRecord({
       success: (res) => {
+        self.setData({ tempThumbPath: res.tempThumbPath })
         self.finishSubmit(self, timer, res.tempVideoPath)
       },
       fail: function () {
@@ -215,7 +215,7 @@ Page({
     var sign_type = 'MD5';
     var stringA = 'app_id=' + app_id + '&data=' + data + '&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
     var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
-    wx.showLoading({ title: '身份核验中' });
+    wx.showLoading({ title: '身份核验中', mask: true });
     var uploadTask = wx.uploadFile({
       url: app.globalData.BASE_API_URL,
       method: 'POST',
@@ -240,15 +240,15 @@ Page({
           self.updateFace(self, user_type, callback)
         } else if(data.result) {
           self.uploadFaceError(data.sub_code, data.result.error);
-          app.myLog("人脸上传失败", data.result.error);
+          app.myLog("身份核验失败", data.result.error);
         } else {
           self.uploadFaceError(data.sub_code, data.sub_msg);
-          app.myLog("人脸上传失败", data.sub_msg);
+          app.myLog("身份核验失败", data.sub_msg);
         }
       },
       fail: function () {
         self.uploadFaceError(0, '请将正脸置于框内，用普通话说出4位验证数字。');
-        app.myLog("微信上传文件失败", "上传人脸失败");
+        app.myLog("身份核验失败", "身份核验失败");
       }
     })
     uploadTask.onProgressUpdate((res) => {
@@ -273,17 +273,19 @@ Page({
         console.log(res)
         if (res.data.sub_code == 0) {
           callback()
+        } else if (res.data.result) {
+          self.uploadFaceError(res.data.sub_code, res.data.result.error);
+          app.myLog("人脸创建失败", res.data.result.error);
         } else {
           self.uploadFaceError(res.data.sub_code, res.data.sub_msg);
+          app.myLog("人脸创建失败", res.data.sub_msg);
         }
       },
       fail: res => {
         console.log('fail');
         self.uploadFaceError(0, '请将正脸置于框内，用普通话说出4位验证数字。');
       },
-      complete: res => {
-
-      }
+      complete: res => {}
     })
   },
 
@@ -297,6 +299,33 @@ Page({
     });
     wx.navigateBack({
       delta: 1
+    })
+  },
+
+  /**
+   * 请求验证数字
+   */
+  loadConfig(_this) {
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'face',
+        method: 'load_face_config',
+        data: JSON.stringify({})
+      },
+      success: res => {
+        if (res.data.result) {
+          _this.setData({
+            faceConfig: res.data.result,
+            face_verify_code: res.data.result.face_verify_code.split(''),
+            buttonDisabled: false
+          })
+        }
+      },
+      fail: res => {
+        console.log('fail');
+      },
+      complete: res => {}
     })
   },
 

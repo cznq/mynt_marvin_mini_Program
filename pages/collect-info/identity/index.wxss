@@ -36,6 +36,7 @@ icon {
 }
 .input_text {
   padding-bottom: 16rpx;
+  padding-right:36rpx;
 }
 ._card_button {
   font-size: 30rpx;

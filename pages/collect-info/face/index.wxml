@@ -1,34 +1,34 @@
 <view class="page">
   <view class="page__bd">
-
     <view class="cameraErrorText _txt_center">
       <text>{{cameraErrorText}}</text>
     </view>
-    <camera device-position="front" flash="off" binderror="cameraError" style="width: 100%; height: 768rpx;position:relative;">
+    <camera device-position="front" flash="off" binderror="cameraError" style="width: 100%; height: 724rpx;position:relative;" wx:if="{{status == 'start' || status == 'stop'}}">
       <!-- <cover-view class="warn _font30">
         <cover-view class="txt">请将人脸放置在人形框内，</cover-view>
         <cover-view class="txt">并用普通话说出4位验证数字</cover-view>
       </cover-view> -->
       <cover-image class="circle" mode="widthFix" src="../../../images/avatar-frame@2x.png"></cover-image>
     </camera>
+    <view class="_relative" wx:if="{{status == 'uploading'}}">
+      <image class="circle" mode="widthFix" src="../../../images/avatar-frame@2x.png"></image>
+      <image class="tempFile" src="{{tempThumbPath}}" wx:if="{{status == 'uploading'}}"></image>
+    </view>
   </view>
+  <view class="mask" wx:if="{{status == 'uploading'}}"></view>
   <view class="_fixed footer {{isIphoneX?'iphonex':''}}">
+    <view class="check-part _txt_center">
+      <view class="_font34">点击按钮开始拍摄，并在拍摄时朗读4位验证数字</view>
+      <view class="num-col _flex _flex_justify_center _flex_space_around">
+        <block wx:for="{{face_verify_code}}" wx:key="">
+          <view class="num">{{item}}</view>
+        </block>
+      </view>
+    </view>
     <block wx:if="{{status == 'start'}}">
-      <view class="recodeWarn">   
-        <image src='https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/record_graphic%402x.png'></image> 
-        <view class="_font32">请将人脸放置在人形框内</view> 
-      </view>
-      <button class="_button _font34 _start_button" bindtap="startRecodeFace" >开始拍摄</button>
+      <button class="_button _font34 _start_button" bindtap="startRecodeFace" disabled='{{buttonDisabled}}'>开始拍摄</button>
     </block>
-    <block wx:elif="{{status == 'stop' || status == 'uploading'}}">
-      <view class="check-part _txt_center">
-        <text class="_font36 ">请在拍摄时朗读4位验证数字</text>
-        <view class="num-col _flex _flex_justify_center _flex_space_around">
-          <block wx:for="{{face_verify_code}}" wx:key="">
-            <view class="num">{{item}}</view>
-          </block>
-        </view>
-      </view>
+    <block wx:elif="{{status == 'uploading' || status == 'stop'}}">
       <view class="_font34 uploadTxt">
         <view class="progressBar">
           <view class="progress active" style="width: {{status == 'uploading'? '100':progress}}%"></view>
@@ -36,9 +36,7 @@
         <view class="uptxt">录制中…</view>
       </view>
     </block>
-    
   </view>
-
 </view>
 
 <import src="../../../templates/showToast/showToast.wxml" /> 
