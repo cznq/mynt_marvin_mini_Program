@@ -120,6 +120,12 @@ radio .wx-radio-input.wx-radio-input-checked::before{
     height: 150rpx;
     line-height:1.2;
 }
+.remarks ._contsIos {
+    margin-top: -15rpx;
+    height: 150rpx;
+    line-height: 1.2;
+  }
+  
 .remarks .currentWordNumber{
     position: absolute;
     right: 40rpx;

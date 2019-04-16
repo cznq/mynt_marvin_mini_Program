@@ -1,4 +1,5 @@
 // benifit/pages/hotel-reserve/index.js
+var toast = require('../../../templates/showToast/showToast');
 const app = getApp();
 Page({
 
@@ -9,9 +10,12 @@ Page({
     isIphone: false,
     commerce_id: null,
     commerce_type: null,
+    checkInDate:'',
     num: 1,
     max: '100',
     selectData: '请选择到店时间',
+    price:'',
+    totalPrice:''
   },
 
   /**
@@ -19,10 +23,14 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
+    var price = options.price
+    var num = this.data.num
     that.setData({
       isIphone: app.globalData.isIphone,
-      // commerce_id: options.commerce_id,
+       commerce_id: options.commerce_id,
       // commerce_type: options.commerce_type
+      price:price,
+      totalPrice:price*num
     })
     that.getDetailInfo(that.data.commerce_id);
   },
@@ -55,27 +63,33 @@ Page({
   /* 点击减号 */
   bindMinus: function() {
     var num = this.data.num;
+    var price = this.data.price
     // 如果大于1时，才可以减
     if (num > 1) {
       num--;
     }
     this.setData({
-      num: num
+      num: num,
+      totalPrice:num*price
     });
   },
   /* 点击加号 */
   bindPlus: function() {
     var num = this.data.num;
+    var price = this.data.price
     num++;
     this.setData({
-      num: num
+      num: num,
+      totalPrice:num*price
     });
   },
   /* 输入框事件 */
   bindManual: function(e) {
     var num = parseInt(e.detail.value);
+    var price = this.data.price
     this.setData({
-      num: num
+      num: num,
+      totalPrice:num*price
     });
   },
   remarksText: function(e) {
@@ -121,5 +135,47 @@ Page({
       })
     }
   },
-
+  formSubmit:function(e){
+    console.log(e)
+    var _this = this;
+    let checkInDate = this.data.checkInDate
+    let checkOutDate = this.data.checkOutDate
+    let stayDays = this.data.stayDays
+    let time = '';//入住时间
+    let room_num =e.detail.value.num;//房间数
+    let room_name = (e.detail.value.order_name).replace(/\s+/g, '');//入住人姓名
+    let phone = (e.detail.value.phone).replace(/\s+/g, '');//手机号
+    let arrive_time = _this.data.selectData //预计到店时间
+    let remark = e.detail.value.remark //备注
+    if(checkInDate ==''){
+      _this.Toast('请选择入住时间')
+      return false
+    }else{
+      checkInDate = (new Date(this.data.checkInDate)).getTime()
+      checkOutDate = (new Date(this.data.checkOutDate)).getTime()
+    }
+    if (room_name == '') {
+      _this.Toast('请填写入住人')
+      return false
+    }
+    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+    if (phone == '') {
+      _this.Toast('请填写手机号')
+      return false
+    }else if(!myreg.test(phone)){
+      _this.Toast('请填写有效的手机号')
+      return false
+    }
+    wx.navigateTo({
+      url: '/banquet/pages/reserve-success/index',
+    })
+  },
+  Toast: function(text) {
+    toast.showToast(this, {
+      toastStyle: 'toast',
+      title: text,
+      duration: 1500,
+      mask: false
+    });
+  },
 })

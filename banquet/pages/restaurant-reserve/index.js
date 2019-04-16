@@ -7,6 +7,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        isIphone: false,
         num:1,
         isChecked:false,
         sex:[
@@ -50,7 +51,8 @@ Page({
           // commerce_type: options.commerce_type
           checkDate:checkDate,
           checkTime:checkTime,
-          week:week
+          week:week,
+          isIphone: app.globalData.isIphone,
         })
         that.getDetailInfo(that.data.commerce_id);
     },

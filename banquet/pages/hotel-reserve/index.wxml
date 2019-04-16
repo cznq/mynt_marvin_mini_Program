@@ -1,4 +1,5 @@
 <!--benifit/pages/hotel-reserve/index.wxml-->
+<form bindsubmit='formSubmit'>
 <view class="select_time _flex _flex_space_between">
     <view>时间</view>
     <view class="_time" bindtap="selectDate">
@@ -13,7 +14,7 @@
             <!-- 减号 -->
             <view class="_minus" bindtap="bindMinus"><text class="iconfont icon-ziyuan"></text></view>
             <!-- 数值 -->
-            <input type="number" bindchange="bindManual" value="{{num}}" />
+            <input type="number" bindchange="bindManual" name="num" value="{{num}}" />
             <!-- 加号 -->
             <view class="_plus" bindtap="bindPlus"><text class="iconfont icon-ziyuan1"></text></view>
         </view>
@@ -21,13 +22,13 @@
     <view  class="_list _name">
         <view class="_lw">入住人</view>
         <view class="_person">
-            <input type="text" placeholder="请输入入住人姓名" placeholder-class="input_text_phc"></input>
+            <input type="text" placeholder="请输入入住人姓名" name="order_name" placeholder-class="input_text_phc"></input>
         </view>
     </view>
     <view  class="_list _tel">
         <view class="_lw">手机号</view>
         <view>
-            <input type="number" placeholder="请输入您的联系方式" placeholder-class="input_text_phc"></input>
+            <input type="number" placeholder="请输入您的联系方式" name="phone" placeholder-class="input_text_phc"></input>
         </view>
     </view>
     <view  class="_list _time_slot">
@@ -41,7 +42,7 @@
 </view>
 <view class="remarks">
     <view class="_lw">备注</view>
-    <textarea class="{{isIphone?'_contsIos':'_conts'}}" placeholder-class="input_text_phc" cursor-spacing="100rpx" placeholder="备注您的需求，我们会尽快为您安排" bindinput="remarksText" maxlength="{{max}}" >
+    <textarea class="{{isIphone?'_contsIos':'_conts'}}" placeholder-class="input_text_phc" cursor-spacing="100rpx" placeholder="备注您的需求，我们会尽快为您安排" bindinput="remarksText" maxlength="{{max}}" name="remark">
     </textarea>
     <text class="currentWordNumber">{{currentWordNumber|0}}/{{max}}</text>
 </view>
@@ -52,11 +53,14 @@
     </view>
     <view class="_consult _flex _flex_item_center _flex_space_between">
         <view class="_total">
-            <view class="price">合计金额：<text>¥1999.00</text></view>
+            <view class="price">合计金额：<text>¥{{totalPrice}}</text></view>
             <view class="discount">已优惠¥1000.00</view>
         </view>
-        <button class="reserve_btn">
+        <button class="reserve_btn" formType="submit" data-from="hotel">
             立即预定
         </button>
     </view>
 </view>
+</form>
+<import src="../../../templates/showToast/showToast.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />

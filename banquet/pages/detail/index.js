@@ -240,11 +240,14 @@ Page({
   /**
    * 酒店预定
    */
-  hotelReserve:function(){
+  hotelReserve:function(e){
+    console.log(e)
     var commerce_id = this.data.commerce_id;
     var commerce_type = this.data.commerce_type;
+    var price = ((e.currentTarget.dataset.price).toString()).replace(/,/g, "")
     wx.navigateTo({
-      url: '/banquet/pages/hotel-reserve/index?commerce_id=' + commerce_id + '&commerce_type=' + commerce_type,
+      url: '/banquet/pages/hotel-reserve/index?commerce_id=' + commerce_id + '&commerce_type=' + commerce_type+ '&price=' + 
+      price,
     })
   },
   restaurantReserve:function(){
