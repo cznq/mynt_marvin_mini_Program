@@ -5,11 +5,13 @@
             <image src="{{titleBannerUrl}}"></image>
         </view>
         <view class="tab {{tabFixed ? 'fixed' : ''}}" wx:if="{{showCoverView == false}}">
-            <view class=" tabSel {{currentIndex == 1 ? 'tabLineSel':''}}" bindtap='tabClick' data-idx='1'>
-                <text>简介</text>
+            <view class="tabSel" bindtap='tabClick' data-idx='1'>
+                <view class="top">简介</view>
+                <view class="bottom {{currentIndex == 1 ? 'tabLineSel':'tabLineUnsel'}}"></view>
             </view>
-            <view class=" tabSel {{currentIndex == 2 ? 'tabLineSel':''}}" bindtap='tabClick' data-idx='2'>
-                <text>功能视频</text>
+            <view class="tabSel" bindtap='tabClick' data-idx='2'>
+                <view class="top">功能视频</view>
+                <view class="bottom {{currentIndex == 2 ? 'tabLineSel':'tabLineUnsel'}}"></view>
             </view>
         </view>
     </view>
@@ -26,9 +28,33 @@
                 <video class='video' id="video{{index}}" data-idx="{{index}}" bindplay="videoPlay" controls src="{{item.video_url}}" objectFit="fill"></video>
             </view>
         </view>
+        <view wx:if="{{currentIndex == 2}}" wx:for="{{videoList}}" wx:key="index" class='video-view'>
+            <view class="video-txt {{index == 0 ? '' : 'pd61'}}">
+                <view class="icon"></view>
+                <text>{{item.video_intro}}</text>
+            </view>
+            <view class="video-item">
+                <video class='video' id="video{{index}}" data-idx="{{index}}" bindplay="videoPlay" controls src="{{item.video_url}}" objectFit="fill"></video>
+            </view>
+        </view>
+        <view wx:if="{{currentIndex == 2}}" wx:for="{{videoList}}" wx:key="index" class='video-view'>
+            <view class="video-txt {{index == 0 ? '' : 'pd61'}}">
+                <view class="icon"></view>
+                <text>{{item.video_intro}}</text>
+            </view>
+            <view class="video-item">
+                <video class='video' id="video{{index}}" data-idx="{{index}}" bindplay="videoPlay" controls src="{{item.video_url}}" objectFit="fill"></video>
+            </view>
+        </view>
     </view>
 </view>
 <cover-view class="tab fixed" wx:if="{{showCoverView == true && tabFixed == true}}">
-    <button class="tabSel {{currentIndex == 1 ? 'tabLineSel':''}}" bindtap='tabClick' data-idx='1'>简介</button>
-    <button class="tabSel {{currentIndex == 2 ? 'tabLineSel':''}}" bindtap='tabClick' data-idx='2'>功能视频</button>
+    <cover-view class="tabSel" bindtap='tabClick' data-idx='1'>
+        <cover-view class="top">简介</cover-view>
+        <cover-view class="bottom {{currentIndex == 1 ? 'tabLineSel':'tabLineUnsel'}}"></cover-view>
+    </cover-view>
+    <cover-view class="tabSel" bindtap='tabClick' data-idx='2'>
+        <cover-view class="top">功能视频</cover-view>
+        <cover-view class="bottom {{currentIndex == 2 ? 'tabLineSel':'tabLineUnsel'}}"></cover-view>
+    </cover-view>
 </cover-view>
