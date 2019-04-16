@@ -26,7 +26,7 @@ Page({
     isCameraAuth:true,
     progress: 0,
     face_verify_code: [],
-    tempThumbPath: 'https://slightech-marvin-faceid.oss-cn-hangzhou.aliyuncs.com/development/face/faceplusplus/6/143_1554978683.jpg',
+    tempThumbPath: '',
     buttonDisabled: true
   },
 
@@ -138,7 +138,12 @@ Page({
   stopRecord(self, ctx, timer){
     ctx.stopRecord({
       success: (res) => {
-        self.setData({ tempThumbPath: res.tempThumbPath })
+        ctx.takePhoto({
+          quality: 'high',
+          success: (res) => {
+            self.setData({ tempThumbPath: res.tempImagePath })
+          }
+        })
         self.finishSubmit(self, timer, res.tempVideoPath)
       },
       fail: function () {
