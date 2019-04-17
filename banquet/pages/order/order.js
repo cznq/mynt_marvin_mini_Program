@@ -1,4 +1,6 @@
 // pages/businessDining/order/order.js
+const app = getApp();
+
 Page({
 
   /**
@@ -48,6 +50,45 @@ Page({
       default:
         console.log('无效的选择');
     }
+  },
+  get_order_list: function() {
+    app.Util.networkUrl.postUrl({
+      url: app.globalData.BASE_ASSET_URL + "/owner/update",
+      params: {
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+          owner_id: _this.data.owner_id,
+          name: _this.data.name,
+          number: _this.number,
+          phone: _this.phone,
+          paperwork_pic_url: paperwork_pic_url_complex
+        })
+      },
+      success: res => {
+        console.log(res);
+        let data = res.data
+        if (data.sub_code == "SUCCESS") {
+
+        } else {
+
+        }
+        toast.showToast(this, {
+          toastStyle: 'toast',
+          title: info,
+          duration: 2000,
+          mask: false,
+          cb: function() {
+            _this.setData({
+              isfocus: true
+            })
+          }
+        });
+
+      },
+      fail: res => {
+        console.log('fail');
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
