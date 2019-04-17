@@ -50,7 +50,7 @@
         </view>
         <view class="_flex _item remarks">
             <view class="_lw"><text>备注</text></view>
-            <textarea class="_conts" placeholder-class="input_text_phc" cursor-spacing="100rpx" name="remarks" placeholder="备注您的需求，我们会尽快为您安排" bindinput="remarksText" maxlength="{{max}}" >
+            <textarea class="{{isIphone?'_contsIos':'_conts'}}" placeholder-class="input_text_phc" cursor-spacing="100rpx" name="remarks" placeholder="备注您的需求，我们会尽快为您安排" bindinput="remarksText" maxlength="{{max}}" >
             </textarea>
             <text class="currentWordNumber">{{currentWordNumber|0}}/{{max}}</text>
         </view>
@@ -61,5 +61,5 @@
         <view class="_icon">!</view>
         <text>温馨提示：\n提交后请等待小觅楼宇管家为您确认，您暂时不需要付款。</text>
     </view>
-    <button class="reserve_btn"> 立即预定</button>
+    <button class="reserve_btn" data-from="restaurant"> 立即预定</button>
 </view>

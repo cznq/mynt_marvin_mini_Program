@@ -13,15 +13,15 @@
     </view>
     <view wx:if="{{router ===''}}" class="reserve_progress">
         <view class="_step_cont">
-            <view class="_step active">
+            <view class="_step {{stepOne?'active':''}}">
                 <view class="_step_name">提交预订</view>
                 <view class="_time">2019-03-06  13:00</view>
             </view>
-            <view class="_step">
+            <view class="_step {{stepTwo?'active':''}}">
                 <view class="_step_name">等待确认</view>
                 <view class="_time">预计确认时间：2019-03-06  16:00</view>
             </view>
-            <view class="_step">
+            <view class="_step {{stepThree?'active':''}}">
                 <view class="_step_name">到店消费</view>
             </view>
         </view>

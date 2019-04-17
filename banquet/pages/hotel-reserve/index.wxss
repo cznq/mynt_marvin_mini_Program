@@ -1,4 +1,5 @@
 /* benifit/pages/hotel-reserve/index.wxss */
+@import "../../../templates/showToast/showToast.wxss";
 page {
   background-color: #F0F2F5;
   padding-bottom: 320rpx;

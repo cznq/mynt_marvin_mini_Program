@@ -5,20 +5,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    router: 'order'
+    router: '',
+    stepOne:true,
+    stepTwo:false,
+    stepThree:false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if (options.router) {
       let router = options.router
       this.setData({
         router: router
       })
-    }
-
   },
 
   /**
