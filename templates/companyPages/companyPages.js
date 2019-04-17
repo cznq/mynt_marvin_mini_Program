@@ -44,9 +44,31 @@ function pubData(_this, app, service, method, parameter, cb) {
       } else {
         console.log(res.data.sub_msg);
       }
+      getServiceStatus(app, _this)
     },
     fail: res => {
       console.log('fail');
+    }
+  })
+}
+/**
+ * 获取商业服务套件的状态
+ */
+function getServiceStatus(app, _this) {
+  app.Util.network.POST({
+    url: app.globalData.BASE_API_URL,
+    params: {
+      service: 'company',
+      method: 'get_business_service_suite_status',
+      data: JSON.stringify({}),
+    },
+    showLoading: false,
+    success: res => {
+      if (res.data.return_code === "SUCCESS") {
+        _this.setData({
+          'cd.service_suite': res.data.result.business_service_suite_status,
+        })
+      }
     }
   })
 }
