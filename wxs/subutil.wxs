@@ -105,10 +105,22 @@ case 4:
    break;
 }
 }
+
 var priceFix = function(i){
   var Price = Math.round(i)
   return Price
 }
+
+var txtFix_hid = function(txt,len){
+  var txt_len = txt.length;
+  var endTxt = txt;
+  if(txt_len > len){
+     endTxt = endTxt.substring(0,len) + '…';
+  }
+  return endTxt
+}
+
+module.exports.txtFix_hid = txtFix_hid;
 module.exports.typeReturnMouth = typeReturnMouth;
 module.exports.priceFix = priceFix;
 module.exports.transRoleClassName = transRoleClassName;
