@@ -11,6 +11,7 @@ Component({
   data: {
     timeArr: [
       { id: 0, time_slot: "00:00 — 01:00" },
+      { id: 1, time_slot: "01:00 — 02:00" },
       { id: 2, time_slot: "02:00 — 03:00" },
       { id: 3, time_slot: "03:00 — 04:00" },
       { id: 4, time_slot: "04:00 — 05:00" },
@@ -32,7 +33,14 @@ Component({
       { id: 20, time_slot: "20:00 — 21:00" },
       { id: 21, time_slot: "21:00 — 22:00" },
       { id: 22, time_slot: "22:00 — 23:00" },
-      { id: 23, time_slot: "23:00 — 00:00" },
+      { id: 23, time_slot: "23:00 — 24:00" },
+      { id: 24, time_slot: "次日00:00 — 01:00" },
+      { id: 25, time_slot: "次日01:00 — 02:00" },
+      { id: 26, time_slot: "次日02:00 — 03:00" },
+      { id: 27, time_slot: "次日03:00 — 04:00" },
+      { id: 28, time_slot: "次日04:00 — 05:00" },
+      { id: 29, time_slot: "次日05:00 — 06:00" },
+      { id: 30, time_slot: "次日06:00 — 07:00" },
     ],
     show: false,
     value:[0],//默认当前显示在第几个时间段
@@ -40,15 +48,21 @@ Component({
    /**
    * 组件的方法列表
    */
+  ready: function() {
+    wx.setStorageSync('timeOri', this.data.timeArr);
+  },
   methods: {
     //初始化选择器信息
     toggleSelect: function () {
       let show = this.data.show
       if (show) return this.setData({ show: !show })
       let hour = parseInt(new Date().getHours());    //返回小时数
+      let timeArr = wx.getStorageSync("timeOri");
+      timeArr.splice(0,hour)
       this.setData({
         show: !show,
-        value:[hour-1],//根据当前时间，默认选中最近的时间段
+        value:[0],//根据当前时间，默认选中最近的时间段 截断后默认都是第一个
+        timeArr:timeArr
       });
     },
     changeTimePicker: function (e) {
@@ -68,10 +82,11 @@ Component({
       let n = this.data.value
       this.setData({
         show: false,
-        time_slot: this.data.timeArr[n].time_slot
+        time_slot: this.data.timeArr[n].time_slot,
+        time_id:this.data.timeArr[n].id
       },
       ()=>{       
-        const result=this.data.time_slot
+        const result=[this.data.time_slot,this.data.time_id]
         this.triggerEvent('select', result)
       }
       );

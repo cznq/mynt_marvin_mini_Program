@@ -241,13 +241,12 @@ Page({
    * 酒店预定
    */
   hotelReserve:function(e){
-    console.log(e)
     var commerce_id = this.data.commerce_id;
-    var commerce_type = this.data.commerce_type;
+    var hotel_room_id = e.currentTarget.dataset.id
     var price = ((e.currentTarget.dataset.price).toString()).replace(/,/g, "")
     wx.navigateTo({
-      url: '/banquet/pages/hotel-reserve/index?commerce_id=' + commerce_id + '&commerce_type=' + commerce_type+ '&price=' + 
-      price,
+      url: '/banquet/pages/hotel-reserve/index?commerce_id=' + commerce_id + '&hotel_room_id=' + hotel_room_id+ '&price=' + 
+      price+ '&store_price=' + e.currentTarget.dataset.storeprice,
     })
   },
   restaurantReserve:function(){
@@ -271,7 +270,7 @@ Page({
   previewImage(e) {
     var pindex = e.currentTarget.dataset.pindex;
     var mindex = e.currentTarget.dataset.mindex;
-    console.log(this.data.commentList);
+    //console.log(this.data.commentList);
     wx.previewImage({
       current: this.data.commentList[mindex].pic_url[pindex],
       urls: this.data.commentList[mindex].pic_url

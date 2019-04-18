@@ -1,5 +1,6 @@
 // banquet/pages/reserve-success/index.js
 var util = require("../../../utils/util.js");
+var toast = require('../../../templates/showToast/showToast');
 const app = getApp();
 Page({
 
@@ -9,7 +10,7 @@ Page({
     data: {
         isIphone: false,
         num:1,
-        isChecked:false,
+        isChecked:false,//包厢
         sex:[
             { name: '先生', checked: true},
             { name: '女士', checked: false}
@@ -48,7 +49,6 @@ Page({
         }
         that.setData({
           commerce_id: options.commerce_id,
-          // commerce_type: options.commerce_type
           checkDate:checkDate,
           checkTime:checkTime,
           week:week,
@@ -152,6 +152,82 @@ Page({
         wx.navigateTo({
             url: '/banquet/pages/restaurant-time/index?checkDate='+this.data.checkDate + '&checkTime=' + this.data.checkTime + '&week=' + this.data.week,
         })
+    },
+    restaurantSubmit:function(e){
+        console.log(e)
+        var _this = this;
+        let commerce_id = _this.data.commerce_id;//商家ID
+        let checkDate= _this.data.checkDate
+        let checkTime= _this.data.checkTime
+        let appointment_time = parseInt((new Date(checkDate+' '+checkTime)).getTime()/1000) //预定时间
+        let person_num = e.detail.value.person_num;//预定人数
+        let isChecked = _this.data.isChecked;
+        let need_box = '';
+        if(isChecked){
+            need_box = 1
+        }else{
+            need_box = 0
+        }
+        let contact_name = (e.detail.value.contact_name).replace(/\s+/g, '');
+        let contact_tel=(e.detail.value.phone).replace(/\s+/g, '');//手机号
+        let remark = (e.detail.value.remark).replace(/\s+/g, '') //备注
+        if (contact_name == '') {
+            _this.Toast('请填写入住人')
+            return false
+        }
+        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+        if (contact_tel == '') {
+          _this.Toast('请填写手机号')
+          return false
+        }else if(!myreg.test(contact_tel)){
+          _this.Toast('请填写有效的手机号')
+          return false
+        }
+        if(remark==""){
+            _this.Toast('请备注您的需求')
+            return false
+        }
+        app.Util.networkUrl.postUrl({
+            url: app.globalData.BANQUET_API_URL + "/commerce/book/fete/apply",
+            params: {
+                data: JSON.stringify({
+                union_id: wx.getStorageSync('xy_session'),
+                commerce_id:commerce_id,
+                contact_name: contact_name,
+                contact_tel:contact_tel,
+                person_num:person_num,
+                appointment_time:appointment_time,
+                remark:remark,
+                need_box:need_box
+                })
+            },
+            success: res => {
+                console.log(res);
+                if(res.data.result){       
+                     var params = JSON.stringify({
+                        apply_time: res.data.result.apply_time,
+                        book_no: res.data.result.book_no,//订单号
+                        expect_confirm_time: res.data.result.expect_confirm_time,
+                    })     
+                wx.navigateTo({
+                    url: '/banquet/pages/reserve-success/index?params='+params+ '&from=' + e.detail.target.dataset.from,
+                })
+                }else{
+                    _this.Toast(res.data.sub_msg)
+                }
+            },
+            fail: res => {
+                console.log('fail');
+            }
+            })
+    },
+    Toast: function(text) {
+        toast.showToast(this, {
+          toastStyle: 'toast',
+          title: text,
+          duration: 1500,
+          mask: false
+        });
     },
     /**
      * 生命周期函数--监听页面初次渲染完成

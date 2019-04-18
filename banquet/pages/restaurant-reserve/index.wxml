@@ -1,4 +1,5 @@
 <!--banquet/pages/restaurant-reserve/index.wxml-->
+<form bindsubmit='restaurantSubmit'>
 <view class="page">
     <view class="_reserve_info">
         <view class="_flex _flex_space_between _item _flex_item_center">
@@ -14,7 +15,7 @@
                 <!-- 减号 -->
                 <view class="_minus" bindtap="bindMinus"><text class="iconfont icon-ziyuan"></text></view>
                 <!-- 数值 -->
-                <input type="number" bindchange="bindManual" value="{{num}}" />
+                <input type="number" bindchange="bindManual" value="{{num}}" name="person_num"/>
                 <!-- 加号 -->
                 <view class="_plus" bindtap="bindPlus"><text class="iconfont icon-ziyuan1"></text></view>
             </view>
@@ -31,7 +32,7 @@
             <view class="_lw"><text>姓名</text></view>
             <view class="_flex _flex_item_center">
                 <view class="_name">
-                    <input type="text" placeholder="请输入您的姓名" placeholder-class="input_text_phc"></input>
+                    <input type="text" placeholder="请输入您的姓名" name="contact_name" placeholder-class="input_text_phc"></input>
                 </view>
                 <view class="_checkbox">
                     <radio-group class="radio-group _flex _flex_space_between " bindchange="changeSex">
@@ -45,12 +46,12 @@
         <view class="_flex  _item _flex_item_center">
             <view class="_lw"><text>手机</text></view>
             <view class="_tel">
-                <input type="text" placeholder="请输入您的联系方式" placeholder-class="input_text_phc"></input>
+                <input type="text" placeholder="请输入您的联系方式" placeholder-class="input_text_phc" name="phone"></input>
             </view>
         </view>
         <view class="_flex _item remarks">
             <view class="_lw"><text>备注</text></view>
-            <textarea class="{{isIphone?'_contsIos':'_conts'}}" placeholder-class="input_text_phc" cursor-spacing="100rpx" name="remarks" placeholder="备注您的需求，我们会尽快为您安排" bindinput="remarksText" maxlength="{{max}}" >
+            <textarea class="{{isIphone?'_contsIos':'_conts'}}" placeholder-class="input_text_phc" cursor-spacing="100rpx" name="remarks" placeholder="备注您的需求，我们会尽快为您安排" bindinput="remarksText" maxlength="{{max}}" name="remark">
             </textarea>
             <text class="currentWordNumber">{{currentWordNumber|0}}/{{max}}</text>
         </view>
@@ -61,5 +62,8 @@
         <view class="_icon">!</view>
         <text>温馨提示：\n提交后请等待小觅楼宇管家为您确认，您暂时不需要付款。</text>
     </view>
-    <button class="reserve_btn" data-from="restaurant"> 立即预定</button>
+    <button class="reserve_btn" formType="submit" data-from="restaurant"> 立即预定</button>
 </view>
+</form>
+<import src="../../../templates/showToast/showToast.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />

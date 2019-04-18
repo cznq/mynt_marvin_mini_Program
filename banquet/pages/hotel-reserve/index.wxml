@@ -54,7 +54,7 @@
     <view class="_consult _flex _flex_item_center _flex_space_between">
         <view class="_total">
             <view class="price">合计金额：<text>¥{{totalPrice}}</text></view>
-            <view class="discount">已优惠¥1000.00</view>
+            <view class="discount">已优惠¥{{discountPrice}}</view>
         </view>
         <button class="reserve_btn" formType="submit" data-from="hotel">
             立即预定

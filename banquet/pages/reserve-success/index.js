@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    router: '',
+    pay: false,
     stepOne:true,
     stepTwo:false,
     stepThree:false,
@@ -15,10 +15,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-      let router = options.router
+      let from = options.from
+      var params = JSON.parse(options.params);
       this.setData({
-        router: router
+        orderInfo:params
       })
+      if(from == "hotel" || from =="restaurant"){
+        this.setData({
+          router: false
+        })
+      }else{
+        this.setData({
+          router: true
+        })
+      }
+      
   },
 
   /**

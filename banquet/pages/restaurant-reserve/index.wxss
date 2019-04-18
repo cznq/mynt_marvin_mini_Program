@@ -1,4 +1,5 @@
 /* banquet/pages/restaurant-reserve/index.wxss */
+@import "../../../templates/showToast/showToast.wxss";
 page{
     background-color: #F0F2F5;
 }

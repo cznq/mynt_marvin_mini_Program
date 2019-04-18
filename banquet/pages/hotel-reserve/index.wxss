@@ -117,12 +117,14 @@ page {
 .remarks ._conts {
   height: 150rpx;
   line-height: 1.2;
+  color: #1A2A4B;
 }
 
 .remarks ._contsIos {
   margin-top: -15rpx;
   height: 150rpx;
   line-height: 1.2;
+  color: #1A2A4B;
 }
 
 .remarks ._lw {
