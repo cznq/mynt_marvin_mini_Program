@@ -52,7 +52,7 @@ Page({
     }
   },
   get_order_list: function() {
-    app.Util.networkUrl.postUrl({
+    app.Util.requestApi.post({
       url: app.globalData.BASE_ASSET_URL + "/owner/update",
       params: {
         data: JSON.stringify({

@@ -538,10 +538,6 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     POST: POST
   }
 
-  module.exports.networkUrl = {
-    getUrl: getUrl,
-    postUrl: postUrl
-  }
   module.exports.generateMap = generateMap;
   module.exports.dateFormat = dateFormat;
   module.exports.unique = unique;
