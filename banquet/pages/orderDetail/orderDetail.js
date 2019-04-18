@@ -1,17 +1,19 @@
 // banquet/pages/orderDetail/orderDetail.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    isIphoneX: app.globalData.isIphoneX
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    // 设置titleStyle
     wx.setNavigationBarColor({
         frontColor: '#ffffff',
         backgroundColor: '#FF6923'
@@ -19,6 +21,7 @@ Page({
       wx.setNavigationBarTitle({
         title: '当前页面'
       })
+
   },
   jumpDetail() {
     wx.navigateTo({

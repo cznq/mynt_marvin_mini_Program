@@ -44,6 +44,26 @@ page {
   margin-right: 16rpx;
 }
 
+.balconyInfo {
+  padding: 25rpx 0;
+}
+
+.balcony {
+  padding: 0 20rpx;
+  height: 94rpx;
+  line-height: 94rpx;
+  background: rgba(254, 105, 35, 0.06);
+  border-radius: 10rpx;
+  color: #FF6923;
+  letter-spacing: 15rpx;
+  text-indent: 15rpx;
+  margin: 24rpx 0 33rpx;
+}
+
+._color07 {
+  color: rgba(26, 42, 75, .7);
+}
+
 .icon-yudingchenggong {
   color: #fff;
   font-size: 44rpx;
@@ -198,6 +218,10 @@ page {
   height: 160rpx;
   padding: 40rpx 40rpx 40rpx 30rpx;
   box-sizing: border-box;
+}
+
+.fixPay.isIphoneX {
+  padding: 40rpx 40rpx 70rpx 30rpx;
 }
 
 .seeInvoice {
