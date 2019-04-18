@@ -206,7 +206,7 @@ Page({
       _this.Toast('请备注您的需求')
       return false
     }
-    app.Util.networkUrl.postUrl({
+    app.request.requestApi.post({
       url: app.globalData.BANQUET_API_URL + "/commerce/book/hotel/apply",
       params: {
         data: JSON.stringify({
@@ -223,7 +223,7 @@ Page({
       },
       success: res => {
         console.log(res);
-        if(res.data.result){
+        if(res.data.sub_code =='SUCCESS'){
           var params = JSON.stringify({
             apply_time: res.data.result.apply_time,
             book_no: res.data.result.book_no,//订单号
@@ -232,8 +232,8 @@ Page({
           wx.navigateTo({
             url: '/banquet/pages/reserve-success/index?params='+params+ '&from=' + e.detail.target.dataset.from,
           })
-        }else{
-          _this.Toast(res.data.sub_msg)
+        }else if(res.data.sub_code ==''){
+          _this.Toast(res.data.error_msg)
         }
       },
       fail: res => {

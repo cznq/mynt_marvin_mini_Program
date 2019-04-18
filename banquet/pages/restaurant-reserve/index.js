@@ -187,7 +187,7 @@ Page({
             _this.Toast('请备注您的需求')
             return false
         }
-        app.Util.networkUrl.postUrl({
+        app.request.requestApi.post({
             url: app.globalData.BANQUET_API_URL + "/commerce/book/fete/apply",
             params: {
                 data: JSON.stringify({
