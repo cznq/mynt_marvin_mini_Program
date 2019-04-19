@@ -229,7 +229,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     return hour + ":" + minute;
   }
 
-  function formatTime(fmt) {
+  function formatTime(fmt, type = 1) {
     var date = new Date();
     date.setTime(fmt * 1000);
     var y = date.getFullYear();
@@ -241,8 +241,22 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     minute = minute < 10 ? ('0' + minute) : minute;
     var weekDay = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
     var myDate = new Date(Date.parse(y + '/' + m + '/' + d));
+    if (type == 1) {
+      return m + '月' + d + '日' + '，' + weekDay[myDate.getDay()] + '，' + h + ':' + minute;
+    } else if (type == 2) {
+      return y + "-" + m + '-' + d + ' ' + weekDay[myDate.getDay()] + ' ' + h + ':' + minute;
+    } else if (type == 3) {
+      return y + "-" + m + '-' + d;
+    }
 
-    return m + '月' + d + '日' + '，' + weekDay[myDate.getDay()] + '，' + h + ':' + minute;
+  }
+
+  var dateDiff_Day = function(s1, s2) {
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date(s2.replace(/-/g, "/"));
+    let days = s2.getTime() - s1.getTime();
+    let time = parseInt(days / (1000 * 60 * 60 * 24));
+    return time;
   }
 
   // 2018-09-11 11:30 转化时间戳 1542369600
@@ -537,7 +551,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     GET: GET,
     POST: POST
   }
-
+  module.exports.dateDiff_Day = dateDiff_Day
   module.exports.generateMap = generateMap;
   module.exports.dateFormat = dateFormat;
   module.exports.unique = unique;

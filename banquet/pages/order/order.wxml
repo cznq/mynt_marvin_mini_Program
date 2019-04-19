@@ -1,42 +1,48 @@
 <import src="../../../templates/noneData/noneData.wxml" />
 <view class="orderTitle _row _cen_space padding0-33 " >
   <view class="box"  >
-    <view  bindtap="touchTit" data-tag='all' class=" {{orderTitle === 'all' ? 'title_border05 active ':''}}">全部</view>
+    <view  bindtap="touchTit" data-tag='0' class=" {{book_status == 0 ? 'title_border05 active ':''}}">全部</view>
   </view>
   <view class="box" >
-    <view  bindtap="touchTit" data-tag='reConfirm' class="{{orderTitle === 'reConfirm' ? 'title_border05 active':''}}">待确认</view>
+    <view  bindtap="touchTit" data-tag='1' class="{{book_status == 1 ? 'title_border05 active':''}}">待确认</view>
   </view>
   <view class="box" >
-    <view bindtap="touchTit" data-tag='reCost' class="{{orderTitle === 'reCost' ? 'title_border05 active':''}}">待消费</view>
+    <view bindtap="touchTit" data-tag='2' class="{{book_status == 2 ? 'title_border05 active':''}}">待消费</view>
   </view>
   <view class="box" >
-    <view bindtap="touchTit" data-tag='rePay' class="{{orderTitle === 'rePay' ? 'title_border05 active':''}}">待付款</view>
+    <view bindtap="touchTit" data-tag='3' class="{{book_status == 3 ? 'title_border05 active':''}}">待付款</view>
   </view>
 </view>
 
 <view wx:if="{{!searchNoneData.show}}" class="order-content-box">
-  <view class="orBlock">
+  <view class="orBlock" wx:for="{{listItem}}" wx:key='index'>
     <view class='orStatus _row _cen_space'>
       <view class="storeName _row _cen_space">
-        <text class="_font30 _fontw400">希尔顿酒店</text>
+        <text class="_font30 _fontw400">{{item.commerce_name}}</text>
         <text  class="iconfont icon-jiantou"></text>
       </view>
       <view class="storeStatus">
-        <text class="_font28">待付款</text>
+        <text class="_font28">{{item.status === 1 ? '待确认' : item.status === 2 ? '待消费' : item.status === 3 ? '待付款' : '交易成功'}}</text>
       </view>
     </view>
     <view class='orDetile _row _cen_start'>
-      <image src='' class="detileImg"></image>
+      <image src="{{item.commerce_thumbnail_url}}" class="detileImg"></image>
       <view class="orInstr _column _start_space">
-        <text class="_font30 _fontw400">2019-03-06 至 2019-03-08（2晚）</text>
-        <text class="_font28 _txt_darkgrey">房间：4间</text>
-        <text class="_font28 _txt_darkgrey">总价：¥1220</text>
+        <text class="_font30 _fontw400" wx:if='{{item.book_type=="2"}}'>{{item.appointmentTime}}</text>
+          <text class="_font30 _fontw400" wx:if='{{item.book_type=="1"}}'>{{item.bookBeginTime}} 至 {{item.bookEndTime}} ({{item.dateDiff_Day}}天)</text>
+        <text class="_font28 _txt_darkgrey" >{{item.book_type=="2"? '人数：'+item.person_num+'人': '房间：'+item.room_num+'间'}}</text>
+        <block wx:if='{{item.book_type=="1"}}'>
+          <text class="_font28 _txt_darkgrey">总价：¥{{item.book_price}}</text>
+        </block>
+        <block wx:if='{{item.book_type=="2"}}'>
+          <text class="_font28 _txt_darkgrey">{{item.need_box ===1 ?'包厢就餐':'大厅就餐'}}</text>
+        </block>
       </view>
     </view>
-    <view class='orPay'>
+    <view class='orPay' wx:if="{{item.pay_price != 0}}">
       <view class="payBox">
         <view class="_row _cen_space">
-          <view class="pay_cl _font24">付款金额：<text class="_font34">¥1999.00</text></view>
+          <view class="pay_cl _font24">付款金额：<text class="_font34">¥{{item.pay_price/100}}</text></view>
           <view class='payBtn'>
             <text class="_font28">付款</text>
           </view>

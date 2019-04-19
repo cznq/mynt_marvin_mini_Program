@@ -90,7 +90,6 @@ page {
   width: 110rpx;
   height: 110rpx;
   border-radius: 10rpx;
-  border: 1px solid red;
   margin-right: 45rpx;
 }
 
