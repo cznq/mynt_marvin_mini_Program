@@ -3,133 +3,127 @@ page,
 .page {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  position: relative;
 }
-.coverview {
-  position: absolute;
-  top: 0;
-  z-index: 100;
-  background: #fff;
-  width: 100%;
+.page__bd {
   height: 100%;
-}
-.camera-bottom-text {
-  position: absolute;
-  top: 660rpx;
-  left: 88rpx;
-  right: 88rpx;
+  position: relative;
 }
 .circle {
   position: absolute;
   left: 50%;
   top: 0;
+  z-index: 98;
   margin-left: -50%;
   width: 100%;
+  height: 722rpx;
 }
-.step cover-view {
-  width: 50%;
-}
-.step cover-view{background:#E7E8EE;height:6rpx;margin-right:19rpx;border-radius: 6rpx;}
-.step .cur{background: #007bff;}
-
-.collect-information {
-  position: relative;
-}
-.recodeTitle {
-  padding-bottom: 20rpx;
-  padding-top:60rpx;
-  line-height: 1.2;
-  color: #1A2A4B;
-}
-.recodeIntro {
-  font-size: 30rpx;
-  color: #1A2A4B;
-  font-weight: 400;
-  margin-bottom: 80rpx;
-  white-space: pre-wrap;
-}
-.txt {
-  margin-top: 52rpx;
-  line-height: 48rpx;
-  white-space: pre-wrap;
-}
-.bottom-txt {
-  width: 516rpx;
-  margin: 10rpx auto;
+.recodeWarn {
   text-align: center;
+  padding: 30rpx 0 60rpx;
 }
-.step {
-  padding-top:30rpx;
+.recodeWarn image {
+  width: 130rpx;
+  height: 124rpx;
+  margin: 0 auto 24rpx;
 }
-.face-pic {
-  width: 172rpx;
-  margin: 47rpx auto 48rpx;
-}
-.warm {
+.recodeWarn view {
   color: rgba(26, 42, 75, 1);
-  width: 360rpx;
-  line-height: 48rpx;
-  margin: 54rpx auto 0;
-  white-space: pre-wrap;
+  line-height: 1;
 }
-.collect-information .face-pic {
-  margin: 200rpx auto 0;
-}
-.progress-bar {
-  width: 360rpx;
-  margin: 0 auto 46rpx;
-  height: 6rpx;
-  background-color: rgba(241, 243, 245, 1);
-}
-.progress {
-  background-color: rgba(0, 123, 255, 1);
-  height: 6rpx;
-  width: 0rpx;
-  animation: bianchang 30s infinite;
-}
-@-webkit-keyframes bianchang {
-  0% { width: 0; }
-  100% { width: 360rpx; }
-}
-@keyframes bianchang {
-  0% { width: 0; }
-  100% { width: 360rpx; }
-}
-canvas {
+.tempFile {
+  width: 750rpx; 
+  height: 724rpx;
   position: absolute;
-  bottom: -300px;
+  top: 0;
+  left: 50%;
+  margin-left: -50%;
+  z-index: 97;
+}
+.mask {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .2);
+  position: absolute;
+  top: 0;
   left: 0;
-  height: 300px;
-  width: 300px;
+  z-index: 102;
 }
 .footer {
-  background: rgba(253, 254, 254, .96);
   left:0;
   bottom:0;
   width:100%;
-  padding:30rpx 0;
-  border-top:1rpx solid #eeeeee;
+  border-top: none;
   z-index: 101;
+  background: #fff;
 }
 .footer.iphonex {
   padding-bottom: 110rpx;
 }
-.footer button {
-  background: #007bff;
+.check-part {
+  width: 560rpx;
+  margin: 0 auto;
+}
+.check-part ._font34 { 
+  line-height: 48rpx;
+  color: rgba(26, 42, 75, 1);
+}
+.num-col {
+  width: 520rpx;
+  height: 110rpx;
+  margin: 30rpx auto 0;
+  background-color: rgba(232, 236, 241, 1);
+}
+.num-col .num {
+  font-size: 62rpx;
+  line-height: 110rpx;
+  position: relative;
+  width: 25%;
+}
+.num-col .num:after {
+  content: '';
+  width: 2rpx;
+  height: 68rpx;
+  background: rgba(210, 216, 223, 1);
+  position: absolute;
+  right: 1px;
+  top: 21rpx;
+} 
+.num-col .num:last-child:after {
+  width: 0;
+}
+._button {
+  height: 100rpx;
+  line-height: 100rpx;
   color: #fff!important;
 }
-._button.back_btn {
-  width: 156rpx;
-  margin-right: 0;
-  background-color: #fff;
-  color: rgba(26, 42, 75, 1)!important;
-  border: 2rpx solid rgba(0,0,0,.05);
+._start_button {
+  margin-top: 68rpx;
+  background: rgba(0, 123, 255, 1);
 }
-._button.next_btn {
-  margin-left: 32rpx;
-  width: 442rpx;
+.uploadTxt {
+  color: rgba(26, 42, 75, 1);
+  height: 100rpx;
+  margin-top: 68rpx;
+  padding: 10rpx 0 20rpx;
+  box-sizing: border-box;
 }
-.footer button[disabled] {
-  background: rgba(71, 95, 253, .2);
+.uploadTxt .uptxt {
+  text-align: center;
+  font-size: 28rpx;
+  margin-top: 22rpx;
+  line-height: 1;
+}
+.progressBar {
+  width: 360rpx;
+  height: 8rpx;
+  margin: 0 auto;
+  border-radius: 4rpx;
+  background-color: rgba(208, 208, 208, 1);
+}
+.progressBar .progress {
+  height: 100%;
+  border-radius: 4rpx;
+}
+.progressBar .active {
+  background-color: rgba(0, 123, 255, 1);
 }

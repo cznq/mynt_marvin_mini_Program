@@ -26,7 +26,7 @@
     </view>
     <view class="_menu_card _menu_card_hm _font34 _flex _flex_item_center _flex_space_between" bindtap="resetFace" wx:if="{{empInfo.input_pic_url !==''}}">
       <view class="_flex _flex_item_center"><text class="iconfont icon-yuangonglururenlian"></text><text>重设人脸信息</text></view>
-      <view><text class="iconfont icon-jiantou"></text></view>
+      <view><text class="iconfont icon-dunpai"></text><text class="auth _font24">已实名</text><text class="iconfont icon-jiantou"></text></view>
     </view>
     <view class="_menu_card _font34 _flex _flex_item_center _flex_space_between" bindtap="recodeFace" wx:else>
       <view class="_flex _flex_item_center"><text class="iconfont icon-yuangonglururenlian"></text><text>录入人脸信息</text></view>

@@ -72,11 +72,12 @@ Page({
     if (idnum == id_number_last_six) {
       var idInfo = JSON.stringify({
         id_type: this.data.empInfo.id_type,
+        name: null,
         phone: this.data.empInfo.phone,
-        id_number: this.data.empInfo.id_number
+        id_number: null
       })
       wx.redirectTo({
-        url: '/pages/collect-info/face/index?source=' + this.data.options.source + '&params=' + this.data.options.params + '&idInfo=' + idInfo,
+        url: '/pages/collect-info/identity/index?source=' + this.data.options.source + '&params=' + this.data.options.params + '&idInfo=' + idInfo,
       })
     } else {
       wx.showToast({

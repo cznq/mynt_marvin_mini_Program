@@ -275,3 +275,10 @@
   content: "\e65b";
 }
 
+.icon-shijian:before {
+  content: "\e627";
+}
+
+.icon-loading:before {
+  content: "\e628";
+}

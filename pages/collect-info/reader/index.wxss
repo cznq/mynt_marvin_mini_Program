@@ -1,0 +1,69 @@
+@import "../../../templates/showToast/showToast.wxss";
+page, 
+.page {
+  background-color: rgba(249, 250, 251, 1);
+}
+
+.collect-information {
+  text-align: center;
+}
+
+.readalert {
+  width: 516rpx;
+  height: 470rpx;
+  margin: 148rpx auto 0;
+}
+.check-part text { line-height: 1;color: rgba(26, 42, 75, 1);font-weight: 300;}
+.num-col {
+  width: 534rpx;
+  height: 120rpx;
+  margin: 30rpx auto 74rpx;
+  background-color: rgba(232, 236, 241, 1);
+}
+.num-col .num {
+  font-size: 64rpx;
+  line-height: 120rpx;
+  position: relative;
+  width: 25%;
+}
+.num-col .num:after {
+  content: '';
+  width: 2rpx;
+  height: 68rpx;
+  background: rgba(210, 216, 223, 1);
+  position: absolute;
+  right: 1px;
+  top: 26rpx;
+} 
+.num-col .num:last-child:after {
+  width: 0;
+}
+.footer {
+  background: rgba(253, 254, 254, 1);
+  left:0;
+  bottom:0;
+  width:100%;
+  padding:30rpx 0;
+  border-top:1rpx solid #eeeeee;
+  z-index: 101;
+}
+.footer.iphonex {
+  padding-bottom: 110rpx;
+}
+.footer button {
+  background: #007bff;
+  color: #fff!important;
+}
+.footer button[disabled] {
+  background: rgba(0, 123, 255, 0.2) !important;
+  color: #fff !important;
+}
+.toast4 .toast-title {
+  font-size: 36rpx;
+  font-weight: 700;
+}
+.toast4 .toast-introduce {
+  font-size: 30rpx;
+  color: rgba(27, 43, 76, 1);
+  font-weight: 400;
+}

@@ -716,7 +716,7 @@ button[disabled] {
 }
 
 .errorwrap text {
-    padding: 30rpx 30rpx;
+    padding: 24rpx 36rpx;
     border-radius: 10rpx;
     display: inline-block;
 }

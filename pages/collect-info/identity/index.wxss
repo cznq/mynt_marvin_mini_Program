@@ -1,14 +1,14 @@
-
-.step view {
-  width: 50%;
-}
-.collect-information {
+page {
   padding-bottom:300rpx;
   position: relative;
+  background: rgba(249, 250, 251, 1)
+}
+._content {
+  background: rgba(249, 250, 251, 1)
 }
 .recodeTitle {
-  padding-bottom: 20rpx;
-  padding-top:60rpx;
+  padding-bottom: 16rpx;
+  padding-top:50rpx;
   line-height: 1.2;
   color: #1A2A4B;
 }
@@ -16,7 +16,8 @@
   font-size: 30rpx;
   color: #1A2A4B;
   font-weight: 400;
-  margin-bottom: 80rpx;
+  line-height: 1.2;
+  margin-bottom: 60rpx;
 }
 .input_block {
   padding-bottom: 25rpx;
@@ -30,13 +31,17 @@ icon {
 }
 ._info_btn {
   height: 66rpx;
-  margin-bottom: 32rpx;
-  margin-top: 20rpx;
+  margin-bottom: 14rpx;
+  margin-top: 14rpx;
+}
+.input_text {
+  padding-bottom: 16rpx;
+  padding-right:36rpx;
 }
 ._card_button {
   font-size: 30rpx;
   height: 66rpx;
-  line-height: 66rpx;
+  line-height: 62rpx;
   display: inline-block;
   width: auto;
   margin-right: 12rpx;
@@ -48,9 +53,6 @@ icon {
   color: #fff;
   background: rgba(26, 42, 75, 1);
 }
-.step {
-  padding-top:30rpx;
-}
 .invoice {
   margin-bottom: 30rpx;
   line-height: 28rpx;
@@ -58,12 +60,13 @@ icon {
   justify-content: center;
   align-items: center;
   padding: 20rpx 0;
+  color: rgba(136, 145, 169, 1);
   border-bottom: 1rpx solid rgba(220, 220, 220, .5);
 }
 
 .icon-dunpai {
   color: rgba(77, 219, 120, 1);
-  font-size: 28rpx;
+  font-size: 32rpx;
   margin-right: 16rpx;
 }
 .footer {
