@@ -9,9 +9,11 @@
       </view>
       <view class="home-slide">
         <swiper indicator-dots="{{slide_data.indicatorDots}}" autoplay="{{slide_data.autoplay}}" interval="{{slide_data.interval}}" duration="{{slide_data.duration}}">
+            <block wx:for="{{slide_data.slide_img}}" wx:key="key">
             <swiper-item>
-              <view class="swiper-item" style="background: url(https://slightech-marvin-benifit.oss-cn-hangzhou.aliyuncs.com/testing/benifit/building/0/homepage/ff732e3cca161a807c59745f0ef7bc60.png) no-repeat center center;background-size:cover;"></view>
+              <view class="swiper-item" bindtap="linkRedirect" data-link="{{item.link_url}}" style="background: url({{item.homepage_url}}) no-repeat center center;background-size:cover;"></view>
             </swiper-item>
+            </block>
         </swiper>
       </view>
     </view>
@@ -24,14 +26,14 @@
       </view>
       <view class="shop-list">
         <!-- 商家列表 -->
-        <block wx:for="{{shopList.commerces}}" wx:key="{{key}}">
+        <block wx:for="{{shopList}}" wx:key="commerce_id">
           <view class="shop-wrapper" bindtap="redirectCommerce" data-commerceid="{{item.commerce_id}}" data-commercetype="{{selectedType}}">
             <view class="head-pic">
               <image src="{{item.commerce_homepage_url}}" mode="aspectFill"></image>
             </view>
             <view class="shop-name">{{item.commerce_name}}</view>
             <view class="star-part">
-              <block wx:for="{{5}}" wx:key="" wx:for-item="num">
+              <block wx:for="{{5}}" wx:key="key" wx:for-item="num">
                 <image class="star" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/{{num <= item.score-1 ? 'love@2x.png' : 'love_gray@2x.png'}}"></image>
               </block>
             </view>

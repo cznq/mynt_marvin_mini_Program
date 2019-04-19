@@ -1,5 +1,6 @@
 // benifit/pages/hotel-reserve/index.js
 var toast = require('../../../templates/showToast/showToast');
+var util = require("../../../utils/util.js");
 const app = getApp();
 Page({
 
@@ -198,7 +199,7 @@ Page({
         }else{
           arrive_hour = arrive_hour + ":00"
         }
-        let expect_day = this.getNextDay(checkInDate)
+        let expect_day = util.getNextDay(checkInDate)
         expect_arrive_time =  parseInt((new Date(expect_day+' '+arrive_hour)).getTime()/1000)
       }
     }
@@ -249,20 +250,4 @@ Page({
       mask: false
     });
   },
-    /*获取下一天日期*/
-    getNextDay:function(d){
-      d = new Date(d);
-      d = +d + 1000 * 60 * 60 * 24;
-      d = new Date(d);
-      var y = d.getFullYear();
-      var m = d.getMonth() + 1;
-      var d = d.getDate();
-      if (m < 10) {
-          m = "0" + m;
-      }
-      if (d < 10) {
-          d = "0" + d;
-      }
-      return y + "-" + m + "-" + d;
-    },
 })

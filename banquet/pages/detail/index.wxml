@@ -56,20 +56,24 @@
           <text>协议优惠</text>
         </view>
       </view>
-      <block wx:else>
-      <view class="itemWrap">
-        <view class="disText">
-          <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/shape@2x.png"></image>
-          <text>宴请</text>
+        <view class="itemWrap" wx:else>
+          <view class="disText">
+            <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/shape@2x.png"></image>
+            <text>宴请</text>
+          </view>
+          <view class="disBtn">
+            <button bindtap="restaurantReserve">预定</button>
+          </view>   
         </view>
-        <view class="disBtn">
-          <button bindtap="restaurantReserve">预定</button>
-        </view>   
-      </view>
-      <view class="dis_detail" >
-        <text>全场菜品9折优惠,全场菜品9折优惠,全场菜品9折优惠,全场菜品9折优惠。</text>
-      </view>
-    </block>
+      <!-- 宴请协议优惠列表 -->
+      <block wx:for="{{protocolInfo}}" wx:key="" wx:if="{{commerce_type == 0}}">
+          <view class="itemWrap">
+            <view class="disText">
+              <view class="item-title">{{item.benifit_content}}</view>
+              <view class="item-intro">{{item.benifit_limit}}</view>
+            </view>
+          </view>
+        </block>
       <!-- 酒店协议优惠列表 -->
       <block wx:for="{{protocolInfo}}" wx:key="" wx:for-index="rindex" wx:if="{{commerce_type == 2}}">
         <view class="hotel-protocol-item">

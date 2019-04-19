@@ -222,22 +222,6 @@ Page({
       (date.getDate() < 10 ? "0" + date.getDate() : date.getDate());
     return todate;
   },
-  /*获取下一天日期*/
-  getNextDay:function(d){
-    d = new Date(d);
-    d = +d + 1000 * 60 * 60 * 24;
-    d = new Date(d);
-    var y = d.getFullYear();
-    var m = d.getMonth() + 1;
-    var d = d.getDate();
-    if (m < 10) {
-        m = "0" + m;
-    }
-    if (d < 10) {
-        d = "0" + d;
-    }
-    return y + "-" + m + "-" + d;
-  },
   onPressDate: function (e) {
     var { year, month, day, week } = e.currentTarget.dataset;
     var tempMonth = month;

@@ -266,7 +266,22 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     var myDate = new Date(Date.parse(str));
     return weekDay[myDate.getDay()]; // 星期六
   }
-
+  /*获取下一天日期*/
+  function getNextDay(d){
+    d = new Date(d);
+    d = +d + 1000 * 60 * 60 * 24;
+    d = new Date(d);
+    var y = d.getFullYear();
+    var m = d.getMonth() + 1;
+    var d = d.getDate();
+    if (m < 10) {
+        m = "0" + m;
+    }
+    if (d < 10) {
+        d = "0" + d;
+    }
+    return y + "-" + m + "-" + d;
+  }
   function decodeTextAreaString(str) {
     var reg = new RegExp("\n", "g");
     str = str.replace(reg, "<br/>");
@@ -562,5 +577,6 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   module.exports.checkEmpty = checkEmpty;
   module.exports.uploadImage = uploadImage;
   module.exports.uploadvideo = uploadvideo;
+  module.exports.getNextDay = getNextDay;
 
 })();

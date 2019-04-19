@@ -43,7 +43,7 @@ Page({
             }
         }
         if(curTime>=arr[arr.length-1]){
-            checkDate = this.getNextDay(checkDate);
+            checkDate = util.getNextDay(checkDate);
             checkTime = arr[0];
             week="明天"
         }
@@ -81,22 +81,6 @@ Page({
             }
         }
         })
-    },
-    /*获取下一天日期*/
-    getNextDay:function(d){
-        d = new Date(d);
-        d = +d + 1000 * 60 * 60 * 24;
-        d = new Date(d);
-        var y = d.getFullYear();
-        var m = d.getMonth() + 1;
-        var d = d.getDate();
-        if (m < 10) {
-            m = "0" + m;
-        }
-        if (d < 10) {
-            d = "0" + d;
-        }
-        return y + "-" + m + "-" + d;
     },
     /* 点击减号 */
     bindMinus: function() {
