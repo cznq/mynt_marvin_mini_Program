@@ -30,17 +30,8 @@
     <view class="_person_info">
         <view class="_flex _item _flex_item_center">
             <view class="_lw"><text>姓名</text></view>
-            <view class="_flex _flex_item_center">
-                <view class="_name">
-                    <input type="text" placeholder="请输入您的姓名" name="contact_name" placeholder-class="input_text_phc"></input>
-                </view>
-                <view class="_checkbox">
-                    <radio-group class="radio-group _flex _flex_space_between " bindchange="changeSex">
-                        <label class="radio" wx:for="{{sex}}" wx:key="key">
-                             <radio value="{{item.name}}" color='#fff' checked="{{item.checked}}"/>{{item.name}}
-                        </label>
-                   </radio-group>
-                </view>
+            <view class="_name">
+                <input type="text" placeholder="请输入您的姓名" name="contact_name" placeholder-class="input_text_phc"></input>
             </view>
         </view>
         <view class="_flex  _item _flex_item_center">

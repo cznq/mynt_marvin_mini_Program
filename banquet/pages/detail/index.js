@@ -115,7 +115,9 @@ Page({
           wx.setNavigationBarTitle({
             title: res.data.result.name
           })
+         if(that.data.commerce_type != 2){
           that.onBusiness(res.data.result.business_hours);
+         }
         }
         that.getProtocol(commerce_id, that.data.commerce_type);
         that.getComments(commerce_id);

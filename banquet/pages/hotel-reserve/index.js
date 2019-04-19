@@ -1,5 +1,6 @@
 // benifit/pages/hotel-reserve/index.js
 var toast = require('../../../templates/showToast/showToast');
+var util = require("../../../utils/util.js");
 const app = getApp();
 Page({
 
@@ -198,7 +199,7 @@ Page({
         }else{
           arrive_hour = arrive_hour + ":00"
         }
-        let expect_day = this.getNextDay(checkInDate)
+        let expect_day = util.getNextDay(checkInDate)
         expect_arrive_time =  parseInt((new Date(expect_day+' '+arrive_hour)).getTime()/1000)
       }
     }
@@ -206,7 +207,7 @@ Page({
       _this.Toast('请备注您的需求')
       return false
     }
-    app.Util.networkUrl.postUrl({
+    app.request.requestApi.post({
       url: app.globalData.BANQUET_API_URL + "/commerce/book/hotel/apply",
       params: {
         data: JSON.stringify({
@@ -223,7 +224,7 @@ Page({
       },
       success: res => {
         console.log(res);
-        if(res.data.result){
+        if(res.data.sub_code =='SUCCESS'){
           var params = JSON.stringify({
             apply_time: res.data.result.apply_time,
             book_no: res.data.result.book_no,//订单号
@@ -232,8 +233,8 @@ Page({
           wx.navigateTo({
             url: '/banquet/pages/reserve-success/index?params='+params+ '&from=' + e.detail.target.dataset.from,
           })
-        }else{
-          _this.Toast(res.data.sub_msg)
+        }else if(res.data.sub_code ==''){
+          _this.Toast("服务器异常请重试")
         }
       },
       fail: res => {
@@ -249,20 +250,4 @@ Page({
       mask: false
     });
   },
-    /*获取下一天日期*/
-    getNextDay:function(d){
-      d = new Date(d);
-      d = +d + 1000 * 60 * 60 * 24;
-      d = new Date(d);
-      var y = d.getFullYear();
-      var m = d.getMonth() + 1;
-      var d = d.getDate();
-      if (m < 10) {
-          m = "0" + m;
-      }
-      if (d < 10) {
-          d = "0" + d;
-      }
-      return y + "-" + m + "-" + d;
-    },
 })

@@ -40,6 +40,7 @@ Page({
     if (options.tabSelected && options.selectedType) {
       this.setData({ tabSelected: options.tabSelected, selectedType: options.selectedType });
     }
+    this.setData({ benifit_type: options.benifit_type });
     var self = this;
 
     self.getCommerceList(self.data.selectedType);
@@ -103,22 +104,17 @@ Page({
         method: 'get_commerce_list',
         union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
+          benifit_type:that.data.benifit_type,
           type: commerceType
         })
       },
       success: res => {
         if (res.data.sub_code == 0 && res.data.result) {
-          if (commerceType == 2) {
-            that.setData({
-              shopList: that.transData(res.data.result),
-              [slide_img]: res.data.result.hompage
-            })
-          } else {
-            that.setData({
-              shopList: res.data.result,
-              [slide_img]: res.data.result.hompage
-            })
-          }
+          that.setData({
+            shopList: res.data.result.commerces,
+            [slide_img]: res.data.result.hompage
+          })
+          console.log(this.data.shopList)
         } else {
           that.setData({
             shopList: null
@@ -126,13 +122,6 @@ Page({
         }
       }
     })
-  },
-
-  transData(preData) {
-    for (var i = 0; i < preData.length; i++) {
-      preData[i].agreement_price = String(preData[i].agreement_price).split('');
-    }
-    return preData;
   },
 
   /**
@@ -145,7 +134,15 @@ Page({
       url: '/banquet/pages/detail/index?commerce_id=' + commerce_id + '&commerce_type=' + commerce_type,
     })
   },
-
+  /**
+   * 头部轮播图跳转
+   */
+  linkRedirect: function (e) {
+    var link = e.currentTarget.dataset.link;
+    wx.navigateTo({
+      url: link,
+    })
+  },
 
   onReady: function () {
 

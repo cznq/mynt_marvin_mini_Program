@@ -43,7 +43,7 @@ Page({
             }
         }
         if(curTime>=arr[arr.length-1]){
-            checkDate = this.getNextDay(checkDate);
+            checkDate = util.getNextDay(checkDate);
             checkTime = arr[0];
             week="明天"
         }
@@ -81,22 +81,6 @@ Page({
             }
         }
         })
-    },
-    /*获取下一天日期*/
-    getNextDay:function(d){
-        d = new Date(d);
-        d = +d + 1000 * 60 * 60 * 24;
-        d = new Date(d);
-        var y = d.getFullYear();
-        var m = d.getMonth() + 1;
-        var d = d.getDate();
-        if (m < 10) {
-            m = "0" + m;
-        }
-        if (d < 10) {
-            d = "0" + d;
-        }
-        return y + "-" + m + "-" + d;
     },
     /* 点击减号 */
     bindMinus: function() {
@@ -187,7 +171,7 @@ Page({
             _this.Toast('请备注您的需求')
             return false
         }
-        app.Util.networkUrl.postUrl({
+        app.request.requestApi.post({
             url: app.globalData.BANQUET_API_URL + "/commerce/book/fete/apply",
             params: {
                 data: JSON.stringify({
@@ -213,7 +197,7 @@ Page({
                     url: '/banquet/pages/reserve-success/index?params='+params+ '&from=' + e.detail.target.dataset.from,
                 })
                 }else{
-                    _this.Toast(res.data.sub_msg)
+                    _this.Toast("服务器异常请重试")
                 }
             },
             fail: res => {

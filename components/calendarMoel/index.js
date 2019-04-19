@@ -42,7 +42,7 @@ Component({
     this.setData({
       show: this.data.show,
       dateList: this.createDateListData(),
-      checkDate:this.data.checkDate //初始化默认为今天
+      checkDate:this.data.checkDate
     });
     //console.log(this.data.dateList)
     var _this = this;
