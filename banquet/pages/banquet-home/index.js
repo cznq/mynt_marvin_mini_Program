@@ -40,6 +40,7 @@ Page({
     if (options.tabSelected && options.selectedType) {
       this.setData({ tabSelected: options.tabSelected, selectedType: options.selectedType });
     }
+    this.setData({ benifit_type: options.benifit_type });
     var self = this;
 
     self.getCommerceList(self.data.selectedType);
@@ -103,6 +104,7 @@ Page({
         method: 'get_commerce_list',
         union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
+          benifit_type:that.data.benifit_type,
           type: commerceType
         })
       },

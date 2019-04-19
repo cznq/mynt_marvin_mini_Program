@@ -83,6 +83,13 @@ Page({
             bindtap: 'unattendedSetting',
             isShow: true,
             news: false
+        }, {
+            url: '',
+            pic: app.globalData.BASE_IMG_URl + 'manage/m11.png',
+            name: '商务宴请',
+            bindtap: 'banquetReserve',
+            isShow: true,
+            news: false
         }],
         server_input_pic_url: '',
         serviceStatus: '',
@@ -229,6 +236,12 @@ Page({
             fail: res => {
                 console.log('获取服务失败')
             }
+        })
+    },
+    //商务宴请
+    banquetReserve:function(){
+        wx.navigateTo({
+            url: '/banquet/pages/banquet-home/index?benifit_type=1',
         })
     },
     //邀请访客

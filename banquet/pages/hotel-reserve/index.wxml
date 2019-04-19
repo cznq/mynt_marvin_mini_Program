@@ -34,7 +34,7 @@
     <view  class="_list _time_slot">
         <view class="_lw">预计到店</view>
         <view>
-            <time-slot bind:select="onSelect">
+            <time-slot bind:select="onSelect" checkInDate="{{checkInDate}}">
                 <view class="time-select {{selectData ==='请选择到店时间' ?'input_text_phc':''}}">{{selectData}}</view>
             </time-slot>
         </view>

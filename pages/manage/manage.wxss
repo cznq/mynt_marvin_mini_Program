@@ -69,6 +69,7 @@ swiper-item.active1 image {width:630rpx;margin-left:40rpx;display: block;height:
 .application .block image.m4{width:56rpx;height:54rpx;}
 .application .block image.m5{width:56rpx;height:56rpx;}
 .application .block image.m6{width:60rpx;height:54rpx;}
+.application .block image.m7{width:60rpx;height:50rpx;margin: 2rpx auto 22rpx;}
 .news{position: absolute;right:24rpx;top:17rpx;width: 26rpx;height: 26rpx;border-radius: 26rpx;background: #FA4343;color:#ffffff;font-size:18rpx;text-align: center;line-height: 26rpx;font-weight: bold;}
 
 /* .service .block{width:264rpx;height:120rpx;background:#F5F5FF;border-radius: 8rpx;text-align:right;padding-right:40rpx;font-size:28rpx;color:#1A2A4B;line-height:28rpx;margin-left:15rpx;float:left;margin-right:7rpx;}

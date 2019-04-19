@@ -197,7 +197,7 @@ Page({
                     url: '/banquet/pages/reserve-success/index?params='+params+ '&from=' + e.detail.target.dataset.from,
                 })
                 }else{
-                    _this.Toast(res.data.sub_msg)
+                    _this.Toast("服务器异常请重试")
                 }
             },
             fail: res => {

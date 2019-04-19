@@ -3,7 +3,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-   
+    checkInDate:{
+      type:String,
+      value:''
+    },
   },
   /**
  * 组件的初始数据
@@ -50,20 +53,34 @@ Component({
    */
   ready: function() {
     wx.setStorageSync('timeOri', this.data.timeArr);
+    this.setData({
+      checkInDate:this.data.checkInDate
+    });
   },
   methods: {
     //初始化选择器信息
     toggleSelect: function () {
       let show = this.data.show
       if (show) return this.setData({ show: !show })
-      let hour = parseInt(new Date().getHours());    //返回小时数
+      let checkInDate = this.data.checkInDate
+      let hour = parseInt(new Date().getHours());    //返回当前小时数
       let timeArr = wx.getStorageSync("timeOri");
-      timeArr.splice(0,hour)
-      this.setData({
-        show: !show,
-        value:[0],//根据当前时间，默认选中最近的时间段 截断后默认都是第一个
-        timeArr:timeArr
-      });
+      //如果选中的入住时间是今天，那么时间段要去掉今天已经过去的时间
+      if(checkInDate == this.getCurrentMonthFirst()){
+        timeArr.splice(0,hour)
+        this.setData({
+          show: !show,
+          value:[0],//根据当前时间，默认选中最近的时间段 截断后默认都是第一个
+          timeArr:timeArr
+        });
+      }else{
+        this.setData({
+          show: !show,
+          value:[hour],
+          timeArr:timeArr
+        });
+      }
+      
     },
     changeTimePicker: function (e) {
       const val = e.detail.value
@@ -71,6 +88,19 @@ Component({
         value: val,
         time_slot: this.data.timeArr[val].time_slot
       });
+    },
+    //获取当前时间
+    getCurrentMonthFirst: function () {
+      var date = new Date();
+      var todate =
+        date.getFullYear() +
+        "-" +
+        (date.getMonth() + 1 < 10
+          ? "0" + (date.getMonth() + 1)
+          : date.getMonth() + 1) +
+        "-" +
+        (date.getDate() < 10 ? "0" + date.getDate() : date.getDate());
+      return todate;
     },
     //关闭弹窗
     // 取消
