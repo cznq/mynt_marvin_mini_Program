@@ -1,4 +1,7 @@
 /* banquet/pages/banquet-home/index.wxss */
+page{
+  background-color: rgba(246, 246, 246, 1);
+}
 .page {
   background-attachment: fixed;
   background-repeat: repeat-x;
@@ -6,16 +9,6 @@
 
 .page__hd {
   padding: 1px 60rpx;
-  background: -webkit-linear-gradient(
-    top,
-    rgba(255, 255, 255, 1),
-    rgba(246, 246, 246, 1)
-  );
-  background: linear-gradient(
-    top,
-    rgba(255, 255, 255, 1),
-    rgba(246, 246, 246, 1)
-  );
 }
 
 .page__bd {
@@ -91,15 +84,16 @@
 .shop-list {
   width: 100%;
   overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .shop-list .shop-wrapper {
   width: calc(50% - 7px);
   box-sizing: border-box;
-  padding: 20rpx;
+  padding: 20rpx 20rpx 10rpx;
   background-color: #fff;
   border-radius: 10rpx;
-  display: inline-block;
   margin-right: 14px;
   margin-bottom: 14px;
   box-shadow: 0 0 16rpx rgba(0, 0, 0, 0.05);
@@ -127,12 +121,13 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  height: 100rpx;
+  height: 80rpx;
+  line-height: 1.2;
 }
 
 .star-part {
   margin-top: 10rpx;
-  height: 30rpx;
+  height: 28rpx;
 }
 
 .star-part .star {
@@ -140,8 +135,8 @@
   vertical-align: top;
   margin: 0 8rpx 0 0;
   line-height: 1;
-  width: 16rpx;
-  height: 13rpx;
+  width: 18rpx;
+  height: 16rpx;
 }
 
 .tags {
@@ -190,4 +185,13 @@
   height: 36rpx;
   margin-right: 2rpx;
   display: inline-block;
+}
+.discount_tag{
+  color: #BFA571;
+  font-size: 20rpx;
+  line-height: 1;
+  border: 1px solid #BFA571;
+  padding:4rpx 8rpx;
+  display: inline-block;
+  margin:0 8rpx 8rpx 0;
 }
