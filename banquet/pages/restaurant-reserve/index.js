@@ -73,11 +73,9 @@ Page({
         },
         success: res => {
             if (res.data.result) {
-            if (res.data.result.details) {
                 wx.setNavigationBarTitle({
-                title: res.data.result.name
+                    title: res.data.result.name
                 })
-            }
             }
         }
         })

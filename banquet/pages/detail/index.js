@@ -110,7 +110,9 @@ Page({
           that.setData({
             commerceDetail: res.data.result,
             [slide_img]: res.data.result.thumbnail_url,
-            [imgCount]: res.data.result.thumbnail_url.length
+            [imgCount]: res.data.result.thumbnail_url.length,
+            latitude: res.data.result.latitude,
+            longitude: res.data.result.longitude
           })
           wx.setNavigationBarTitle({
             title: res.data.result.name
@@ -121,7 +123,7 @@ Page({
         }
         that.getProtocol(commerce_id, that.data.commerce_type);
         that.getComments(commerce_id);
-        app.Util.generateMap(this, res.data.result.address);
+        //app.Util.generateMap(this, res.data.result.address);
       }
     })
   },
@@ -132,7 +134,7 @@ Page({
    * endTime 结束时间 
    */
   onBusiness(businessHours) {
-    if (businessHours == null) {
+    if (businessHours.length == 1 && businessHours[0] == null) {
       this.setData({
         businessStatus: "营业中"
       })
@@ -295,8 +297,8 @@ Page({
 
   openMap: function () {
     wx.openLocation({
-      latitude: this.data.latitude,
-      longitude: this.data.longitude,
+      latitude: parseFloat(this.data.latitude),
+      longitude: parseFloat(this.data.longitude),
       scale: 28
     })
   },

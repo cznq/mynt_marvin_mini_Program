@@ -143,7 +143,11 @@ Page({
       url: link,
     })
   },
-
+  orderList:function(){
+    wx.navigateTo({
+      url: '/banquet/pages/order/order',
+    })
+  },
   onReady: function () {
 
   },
