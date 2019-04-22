@@ -127,6 +127,13 @@ Page({
       }
     })
   },
+  currDetil: (e) => {
+    // console.log('e:', e);
+    const bookid = e.currentTarget.dataset.bookid
+    wx.navigateTo({
+      url: '../orderDetail/orderDetail?bookid=' + bookid
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -15,7 +15,7 @@
 </view>
 
 <view wx:if="{{!searchNoneData.show}}" class="order-content-box">
-  <view class="orBlock" wx:for="{{listItem}}" wx:key='index'>
+  <view class="orBlock" wx:for="{{listItem}}" wx:key='index' data-bookid='{{item.book_id}}' bindtap='currDetil'>
     <view class='orStatus _row _cen_space'>
       <view class="storeName _row _cen_space">
         <text class="_font30 _fontw400">{{item.commerce_name}}</text>
