@@ -7,6 +7,15 @@ page,
 .page__bd {
   height: 100%;
   position: relative;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 120rpx;
+  box-sizing: border-box;
+}
+.page__bd.iphonex {
+  padding-bottom: 230rpx;
 }
 .circle {
   position: absolute;
@@ -15,7 +24,7 @@ page,
   z-index: 98;
   margin-left: -50%;
   width: 100%;
-  height: 722rpx;
+  height: 674rpx;
 }
 .recodeWarn {
   text-align: center;
@@ -30,9 +39,12 @@ page,
   color: rgba(26, 42, 75, 1);
   line-height: 1;
 }
+.lastPhoto {
+  height: 780rpx;
+}
 .tempFile {
   width: 750rpx; 
-  height: 724rpx;
+  height: 780rpx;
   position: absolute;
   top: 0;
   left: 50%;
@@ -55,6 +67,7 @@ page,
   border-top: none;
   z-index: 101;
   background: #fff;
+  padding: 0;
 }
 .footer.iphonex {
   padding-bottom: 110rpx;
@@ -71,13 +84,14 @@ page,
   width: 520rpx;
   height: 110rpx;
   margin: 30rpx auto 0;
-  background-color: rgba(232, 236, 241, 1);
+  border: 2rpx solid rgba(210, 216, 223, 1);
 }
 .num-col .num {
   font-size: 62rpx;
   line-height: 110rpx;
   position: relative;
   width: 25%;
+  color: rgba(0, 123, 255, 1);
 }
 .num-col .num:after {
   content: '';
@@ -92,33 +106,92 @@ page,
   width: 0;
 }
 ._button {
-  height: 100rpx;
-  line-height: 100rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  width: 100%;
+  border-radius: 0;
   color: #fff!important;
 }
 ._start_button {
-  margin-top: 68rpx;
   background: rgba(0, 123, 255, 1);
 }
 .uploadTxt {
   color: rgba(26, 42, 75, 1);
-  height: 100rpx;
-  margin-top: 68rpx;
-  padding: 10rpx 0 20rpx;
+  height: 120rpx;
   box-sizing: border-box;
 }
-.uploadTxt .uptxt {
-  text-align: center;
-  font-size: 28rpx;
-  margin-top: 22rpx;
-  line-height: 1;
+.voice {
+  height: 112rpx;
+}
+.voice .vc {
+  width: 4rpx;
+  margin: 0 5rpx;
+  background-color: rgba(0, 123, 255, 1);
+}
+.voice.ani .vc{
+  animation: voiceAni 0.6s infinite ease-in-out alternate;
+}
+.voice .v1 {
+  height: 16rpx;
+  
+}
+.voice .v2 {
+  height: 28rpx;
+  
+}
+.voice .v3 {
+  height: 22rpx;
+  
+}
+.voice .v4 {
+  height: 40rpx;
+  
+}
+.voice .v5 {
+  height: 18rpx;
+  
+}
+.voice .v6 {
+  height: 22rpx;
+  
+}
+.voice .v7 {
+  height: 28rpx;
+  
+}
+.voice .v8 {
+  height: 18rpx;
+  
+}
+.voice .v9 {
+  height: 36rpx;
+  
+}
+.voice .v10 {
+  height: 16rpx;
+  
+}
+.voice .horn image{
+  width: 48rpx;
+  height: 66rpx;
+  margin: 15rpx;
+}
+@keyframes voiceAni{
+  from {
+    /* height: 16rpx; */
+    transform: scaleY(0.8)
+  }
+  to {
+    /* height: 36rpx; */
+    transform: scaleY(1.2)
+  }
 }
 .progressBar {
-  width: 360rpx;
+  width: 100%;
   height: 8rpx;
   margin: 0 auto;
   border-radius: 4rpx;
-  background-color: rgba(208, 208, 208, 1);
+  background-color: rgba(225, 225, 225, 1);
 }
 .progressBar .progress {
   height: 100%;

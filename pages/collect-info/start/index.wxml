@@ -1,10 +1,6 @@
 <view class="page">
   <view class="page__bd">
     <view class='collect-information'>
-      <view class="_flex step">
-        <view class='cur'></view>
-        <view class='cur'></view>
-      </view>
       <view class='recodeTitle _fontw600 _font48;'>录入人脸信息</view>
       <view class="recodeIntro">我们即将采集您的人脸信息，以便机器人能够快速认出您，并为您提供相应的服务。</view>
       <view class="_txt_center">
