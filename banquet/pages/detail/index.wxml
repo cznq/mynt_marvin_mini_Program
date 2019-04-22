@@ -29,7 +29,7 @@
       <view class="info-column" wx:if="{{commerce_type == 0}}">
         <view class="on-sale-time">
           <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/icon_kitchen@2x.png"></image>
-          <block wx:if="{{commerceDetail.business_hours == null}}">
+          <block wx:if="{{commerceDetail.business_hours[0] == null}}">
             <text>全天</text>
           </block>
           <block wx:else>
