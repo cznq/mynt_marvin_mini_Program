@@ -56,7 +56,7 @@
             <view class="price">合计金额：<text>¥{{totalPrice}}</text></view>
             <view class="discount">已优惠¥{{discountPrice}}</view>
         </view>
-        <button class="reserve_btn" formType="submit" data-from="hotel">
+        <button class="reserve_btn" formType="submit">
             立即预定
         </button>
     </view>

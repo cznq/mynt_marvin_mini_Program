@@ -53,7 +53,7 @@
         <view class="_icon">!</view>
         <text>温馨提示：\n提交后请等待小觅楼宇管家为您确认，您暂时不需要付款。</text>
     </view>
-    <button class="reserve_btn" formType="submit" data-from="restaurant"> 立即预定</button>
+    <button class="reserve_btn" formType="submit"> 立即预定</button>
 </view>
 </form>
 <import src="../../../templates/showToast/showToast.wxml" />

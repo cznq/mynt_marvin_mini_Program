@@ -29,9 +29,9 @@ Page({
   },
   backPage() {
     switch (this.data.route) {
-      case '':
+      case 'reserve':
         wx.redirectTo({
-          url: ''
+          url: '../orderDetail/orderDetail?router=' + 'reserve'
         })
         break;
       case 'pay':

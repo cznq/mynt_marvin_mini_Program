@@ -231,7 +231,7 @@ Page({
             expect_confirm_time: res.data.result.expect_confirm_time,
           })
           wx.navigateTo({
-            url: '/banquet/pages/reserve-success/index?params='+params+ '&from=' + e.detail.target.dataset.from,
+            url: '/banquet/pages/reserve-success/index?params='+params+ '&router='+ 'reserve',
           })
         }else if(res.data.sub_code ==''){
           _this.Toast("服务器异常请重试")

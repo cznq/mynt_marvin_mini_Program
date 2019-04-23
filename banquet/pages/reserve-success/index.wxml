@@ -2,7 +2,7 @@
 <view class="page">
     <view class="_flex page_hd">
         <text class="iconfont icon-yudingchenggong"></text>
-        <block wx:if="{{route ===''}}">
+        <block wx:if="{{route ==='reserve'}}">
         <text class="_txt">预定成功</text>
         <text class="_tip">请等待确认，确认结果稍后以微信消息或专人联系告知。</text>
         </block>
@@ -15,7 +15,7 @@
             <text class="_tip">小觅楼宇管理员将会把纸质发票送达给您，请耐心等待。</text>
             </block>
     </view>
-    <view wx:if="{{route ===''}}" class="reserve_progress">
+    <view wx:if="{{route ==='reserve'}}" class="reserve_progress">
         <view class="_step_cont">
             <view class="_step {{stepOne?'active':''}}">
                 <view class="_step_name">提交预订</view>
@@ -32,5 +32,5 @@
     </view>
 </view>
 <view bindtap='backPage' class="_footer">
-    <button>{{route === ''|| route === 'pay' ?'查看订单':'查看'}}</button>
+    <button>{{route === 'reserve'|| route === 'pay' ?'查看订单':'查看'}}</button>
 </view>
