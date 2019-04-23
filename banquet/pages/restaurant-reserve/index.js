@@ -136,7 +136,6 @@ Page({
         })
     },
     restaurantSubmit:function(e){
-        console.log(e)
         var _this = this;
         let commerce_id = _this.data.commerce_id;//商家ID
         let checkDate= _this.data.checkDate
@@ -192,7 +191,7 @@ Page({
                         expect_confirm_time: res.data.result.expect_confirm_time,
                     })     
                 wx.navigateTo({
-                    url: '/banquet/pages/reserve-success/index?params='+params+ '&from=' + e.detail.target.dataset.from,
+                    url: '/banquet/pages/reserve-success/index?params='+params+ '&router=' + 'reserve',
                 })
                 }else{
                     _this.Toast("服务器异常请重试")
