@@ -9,7 +9,18 @@ Page({
   data: {
     isIphoneX: app.globalData.isIphoneX,
     bookId: 0,
-    detail: {}
+    detail: {},
+    invoiceStatus: false,
+    invoice: {
+      bankAccount: "", //银行账号
+      bankName: "", //银行名称
+      companyAddress: "", //单位地址
+      errMsg: "",
+      taxNumber: "", //抬头税号
+      telephone: "", //手机号码
+      title: "", //抬头名称
+      type: 0 //0 单位 1 个人
+    }
   },
 
   /**
@@ -18,6 +29,12 @@ Page({
   onLoad: function(options) {
     const _this = this;
     const bookId = options.bookid
+    const router = options.router
+    if (router && router === 'invoice') {
+      _this.setData({
+        invoiceStatus: false,
+      })
+    }
     // 设置titleStyle
     wx.setNavigationBarColor({
         frontColor: '#ffffff',
@@ -67,11 +84,30 @@ Page({
     })
   },
   invoiceBtn() {
+    let _that = this;
     wx.chooseInvoiceTitle({
       success(res) {
+        console.log('res:', res);
 
+        _that.setData({
+          invoice: res,
+          invoiceStatus: true
+        })
+
+      },
+      fail(res) {
+        wx.showToast({
+          title: res,
+          icon: 'none'
+        })
       }
     })
+  },
+  invoiceQuer() {
+    wx.navigateTo({
+      url: '../reserve-success/index?router=' + 'invoice'
+    })
+
   },
   previewImage() {
     wx.previewImage({

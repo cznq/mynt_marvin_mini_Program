@@ -5,33 +5,49 @@ Page({
    * 页面的初始数据
    */
   data: {
+    route: '',
     pay: false,
-    stepOne:true,
-    stepTwo:false,
-    stepThree:false,
+    stepOne: true,
+    stepTwo: false,
+    stepThree: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-      let from = options.from
+    if (options.params) {
       var params = JSON.parse(options.params);
       this.setData({
-        orderInfo:params
+        orderInfo: params
       })
-      if(from == "hotel" || from =="restaurant"){
-        this.setData({
-          router: false
-        })
-      }else{
-        this.setData({
-          router: true
-        })
-      }
-      
-  },
+    }
 
+    this.setData({ //获取来源
+      route: options.router
+    })
+  },
+  backPage() {
+    switch (this.data.route) {
+      case '':
+        wx.redirectTo({
+          url: ''
+        })
+        break;
+      case 'pay':
+        wx.redirectTo({
+          url: '../orderDetail/orderDetail?router=' + 'pay'
+        })
+        break;
+      case 'invoice':
+        wx.redirectTo({
+          url: '../orderDetail/orderDetail?router=' + 'invoice'
+        })
+        break;
+      default:
+        break;
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -3,6 +3,42 @@ page {
   padding-bottom: 180rpx;
 }
 
+.invoicePage {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: rgba(240, 242, 245, 1);
+}
+
+.invoicebox {
+  padding: 0 40rpx;
+  background: #fff;
+}
+
+.invoice {
+  width: 670rpx;
+  padding-top: 30rpx;
+  padding-bottom: 32rpx;
+  border-bottom: 1rpx solid rgba(222, 231, 242, 1);
+}
+
+.invoiceQuer {
+  position: fixed;
+  bottom: 40rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 670rpx;
+  height: 100rpx;
+  background: rgba(255, 105, 35, 1);
+  border-radius: 8rpx;
+  color: #fff;
+  line-height: 100rpx;
+  text-align: center;
+}
+
 .marg_top-10 {
   margin-top: -10rpx;
 }

@@ -139,3 +139,19 @@
     <view class="payBtn">付款</view>
   </view>
 </view>
+
+<view wx:if="{{invoiceStatus}}" class="invoicePage">
+  <view class="invoicebox ">
+  <view class="invoice _row _cen_space">
+    <text class="_txt_darkgrey _font32">名称</text>
+    <text class="_txt_gray _font32">{{invoice.title}}</text>
+  </view>
+  <view class="invoice _row _cen_space">
+    <text class="_txt_darkgrey _font32">税号</text>
+    <text class="_txt_gray _font32">{{invoice.taxNumber}}</text>
+  </view>
+</view>
+<view bindtap='invoiceQuer' class='invoiceQuer _font34'>
+  确定
+</view>
+</view>
