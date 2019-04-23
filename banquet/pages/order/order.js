@@ -115,7 +115,11 @@ Page({
             total_page: total_page,
             listItem: listItem
           })
-          // console.log('listItem:', listItem);
+        } else {
+          wx.showToast({
+            title: res.errMsg,
+            icon: 'none'
+          })
         }
       },
       fail: res => {
@@ -132,6 +136,20 @@ Page({
     const bookid = e.currentTarget.dataset.bookid
     wx.navigateTo({
       url: '../orderDetail/orderDetail?bookid=' + bookid
+    })
+  },
+  /**
+   * 立即支付
+   */
+  quickPay: function(e) {
+    console.log('e:', e);
+    const commerce_name = e.currentTarget.dataset.commerce_name;
+    const commerce_thumbnail_url = e.currentTarget.dataset.commerce_thumbnail_url;
+    const pay_price = e.currentTarget.dataset.pay_price / 100;
+    const bookid = e.currentTarget.dataset.bookid;
+    wx.navigateTo({
+      url: '../cashier/cashier?bookid=' + bookid + '&commerce_name=' + commerce_name + '&commerce_thumbnail_url=' + commerce_thumbnail_url +
+        '&pay_price=' + pay_price
     })
   },
   /**

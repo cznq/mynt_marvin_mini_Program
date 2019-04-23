@@ -176,7 +176,6 @@ page {
   height: 126rpx;
   margin-right: 20rpx;
   border-radius: 10rpx;
-  border: 1px solid red;
 }
 
 .navReserve {

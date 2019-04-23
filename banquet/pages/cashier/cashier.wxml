@@ -1,9 +1,9 @@
 <view class="collect _row _cen_space">
   <view class="_row _cen_start">
-    <image src="" class="shopImg"></image>
-    <view class="_ml20 _txt_gray _font34 _fontw400">西苑花厨</view>
+    <image src="{{commerce_thumbnail_url}}" class="shopImg"></image>
+    <view class="_ml20 _txt_gray _font34 _fontw400">{{commerce_name}}</view>
   </view>
-  <view class="_txt_pale_red _font44">￥ 169</view>
+  <view class="_txt_pale_red _font44">￥ {{pay_price}}</view>
 </view>
 
 <view class="invoicebox _mt20 ">
@@ -23,6 +23,6 @@
 </block>
 </view>
 
-<view class="payBtn _font32 _fontw400">
-支付 ￥{{169}}
+<view catchtap='quickPay' class="payBtn _font32 _fontw400">
+支付 ￥{{pay_price}}
 </view>

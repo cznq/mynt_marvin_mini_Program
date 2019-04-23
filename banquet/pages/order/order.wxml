@@ -39,11 +39,11 @@
         </block>
       </view>
     </view>
-    <view class='orPay' wx:if="{{item.pay_price != 0}}">
+    <view class='orPay' wx:if="{{item.status ===3}}">
       <view class="payBox">
         <view class="_row _cen_space">
           <view class="pay_cl _font24">付款金额：<text class="_font34">¥{{item.pay_price/100}}</text></view>
-          <view class='payBtn'>
+          <view class='payBtn' data-bookId='{{item.book_id}}' data-commerce_name='{{item.commerce_name}}' data-commerce_thumbnail_url='{{item.commerce_thumbnail_url}}' data-pay_price='{{item.pay_price}}' catchtap='quickPay'>
             <text class="_font28">付款</text>
           </view>
         </view>

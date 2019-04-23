@@ -7,21 +7,21 @@
       <text wx:if="{{detail.status === 3}}" class="iconfont icon-daifukuan"></text>
       <text wx:if="{{detail.status === 4}}" class="iconfont icon-yudingchenggong"></text>
     </view>
-    <view class="txtSign _column">
+    <view class="txtSign padding_bottom_10 _column" >
       <text class="padding_bottom_10 _font44 txt_white">{{detail.status === 1 ? '待确认' : item.status === 2 ? '待消费' : item.status === 3 ? '待付款' : '交易成功'}}</text>
-      <text class="txtTime _font28">预计时间：2019-03-06  16:00</text>
+      <text class="txtTime _font28" wx:if="{{detail.status != 3 && detail.status != 4}}">{{detail.status == 2? '订单已经确认，您可以前往使用':'预计时间：'+ detail.expect_confirm_time}}</text>
     </view>
   </view>
   <!-- 流程状态 -->
   <view class="headNav _row _cen_space" wx:if="{{detail.status != 3 && detail.status != 4}}">
     <view class="_relative">
-      <text class="_font28 InvalidCor {{detail.status === 1 ?'active': ''}}">提交预订</text>
-      <view class="time">2019-03-06  13:00</view>
+      <text class="_font28 InvalidCor {{detail.status == 1 ?'active': ''}}">提交预订</text>
+      <view class="time">{{detail.apply_time}}</view>
     </view>
     <text class="line"></text>
     <view class="_relative">
-      <text class="_font28 InvalidCor {{detail.status === 2 ?'active': ''}}">商家确认</text>
-      <view class="time">2019-03-06  13:00</view>
+      <text class="_font28 InvalidCor {{detail.status == 2 ?'active': ''}}">商家确认</text>
+      <view class="time" wx:if='{{detail.status == 2}}'>{{detail.confirm_time}}</view>
     </view>
     <text class="line"></text>
     <view>
@@ -32,15 +32,15 @@
 </view>
 <view catchtap='jumpDetail' class="nav _row _cen_space">
   <view class="navIntr _row _cen_start">
-    <image class="navImg" src='{{detail.commerce_thumbnail_url}}'></image>
+    <image class="navImg" src='{{detail.commerce.commerce_thumbnail_url}}'></image>
     <view class="navTxt _column _start_space">
       <view class="_column marg_top-10">
-      <text class="_font34 _txt_gray">{{detail.commerce_name}}</text>
-      <text class="_font26 txt_gray2">西苑花厨</text>
+      <text class="_font34 _txt_gray">{{detail.commerce.commerce_name}}</text>
+      <text class="_font26 txt_gray2" wx:if="{{detail.book_type=='1'}}">{{detail.commerce.commerce_name}}</text>
       </view>
       <view class="_row">
-      <block wx:for="{{5}}" wx:key="">
-        <image class="star" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/love_gray@2x.png"></image>
+      <block wx:for="{{5}}" wx:for-item="num" wx:key="">
+        <image class="star" src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/{{ num <= detail.commerce.score -1?'love@2x.png':'love_gray@2x.png'}}"></image>
       </block>
       </view>
     </view>
@@ -48,7 +48,7 @@
   <view><text  class="iconfont icon-jiantou"></text></view>
 </view>
 
-<view class="payed bg_white _row _cen_space _mt20" wx:if="{{detail.status !== 4}}">
+<view class="payed bg_white _row _cen_space _mt20" wx:if="{{detail.status === 4}}">
   <view class="_row _cen_start">
     <view class="_txt_gray _font36 _mr30 _fontw500">已支付</view>
     <view class="pricePay _column">
@@ -71,25 +71,25 @@
   <view class="reserveInfo">
     <text class="infoTxt _txt_gray _font36">预订信息</text>
   </view>
-  <view class="reserInstr _row _cen_start" wx:if='{{detail.book_type ==="1"}}'>
+  <view class="reserInstr _row _cen_start" wx:if='{{detail.book_type =="1"}}'>
     <text  class="iconfont icon-rili  _mr10"></text>
-    <text class="_txt_gray _font30 _fontw600 _mr10">就餐时间</text>
-    <text class="_txt_gray _font30 ">2019-03-06  周二  17:00</text>
+    <text class="_txt_gray _font30 _fontw600 _mr10">入住时间</text>
+    <text class="_txt_gray _font30 ">{{detail.hotel.book_begin_time}} 至 {{detail.hotel.book_endTime}} {{detail.hotel.dateDiff_Day>0? "("+detail.hotel.dateDiff_Day +'天)':''}}</text>
   </view>
   <view class="reserInstr _row _cen_start">
     <text  class="iconfont icon-shijian sizeLess _mr10"></text>
-    <text class="_txt_gray _font30 _fontw600 _mr10">{{detail.book_type ==="1"?'预计到店':'就餐时间'}}</text>
-    <text class="_txt_gray _font30 ">{{detail.book_type ==="1"?detail.apply_time:detail.appointment_time}}</text>
+    <text class="_txt_gray _font30 _fontw600 _mr10">{{detail.book_type =="1"?'预计到店':'就餐时间'}}</text>
+    <text class="_txt_gray _font30 ">{{detail.book_type =="1"?detail.hotel.expect_arrive_time:detail.appointment_time}}</text>
   </view>
   <view class="reserInstr _row _cen_start">
     <text  class="iconfont icon-renshu _mr10"></text>
-    <text class="_txt_gray _font30 _fontw600 _mr10">{{detail.book_type ==="1"?'入住人':'人数'}}</text>
-    <text class="_txt_gray _font30 ">{{detail.book_type ==="1"?detail.contact_name:detail.person_num}}</text>
+    <text class="_txt_gray _font30 _fontw600 _mr10">{{detail.book_type =="1"?'入住人':'人数'}}</text>
+    <text class="_txt_gray _font30 ">{{detail.book_type =="1"?detail.contact_name:detail.person_num}}</text>
   </view>
   <view class="reserInstr _row _cen_start">
     <text  class="iconfont icon-fangjian- _mr10"></text>
-    <text class="_txt_gray _font30 _fontw600 _mr10">{{detail.book_type ==="1"?'房间':'就餐环境'}}</text>
-    <text class="_txt_gray _font30 ">{{detail.book_type ==="1"?detail.room_num : detail.need_box===1?"包厢就餐":"大厅就餐"}}</text>
+    <text class="_txt_gray _font30 _fontw600 _mr10">{{detail.book_type =="1"?'房间':'就餐环境'}}</text>
+    <text class="_txt_gray _font30 ">{{detail.book_type =="1"?detail.hotel.roomName + " " +detail.hotel.room_num +"间" : detail.need_box == 1 ? "包厢就餐":"大厅就餐"}}</text>
   </view>
 </view>
 
@@ -125,18 +125,18 @@
     </view>
   </view>
 </view>
-<view wx:if="{{detail.status === 2 }}" class="cancelBtn" bindtap='canlceBtn'>
+<view wx:if="{{detail.status == 2 }}" class="cancelBtn" bindtap='canlceBtn'>
   取消订单
 </view>
 
-<view class="fixPay bg_white _row _cen_space {{isIphoneX? 'isIphoneX':''}}">
+<view wx:if="{{detail.status !== 4}}" class="fixPay bg_white _row _cen_space {{isIphoneX? 'isIphoneX':''}}">
   <view class="pricePay _column">
     <view class="_txt_pale_red _fontw600 _font22">¥<text class="_font30">{{detail.pay_price/100}}</text></view>
-    <text class="_font24 _txt_light_gray">已优惠 ¥{{}}</text>
+    <text class="_font24 _txt_light_gray" wx:if="{{detail.book_type == 1}}">已优惠 ¥{{detail.discount_price}}</text>
   </view>
   <view class="payCheck _row _cen_end">
-    <view class="_txt_light_gray _font26 _mr30" data-record='{{detail.bill_image_url}}' bindtap='viewRecord'>查看单据</view>
-    <view class="payBtn">付款</view>
+    <view class="_txt_light_gray _font26 _mr30" bindtap='viewRecord'>查看单据</view>
+    <view catchtap='quickPay' class="payBtn">付款</view>
   </view>
 </view>
 

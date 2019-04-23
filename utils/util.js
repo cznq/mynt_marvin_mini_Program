@@ -247,6 +247,8 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
       return y + "-" + m + '-' + d + ' ' + weekDay[myDate.getDay()] + ' ' + h + ':' + minute;
     } else if (type == 3) {
       return y + "-" + m + '-' + d;
+    } else if (type == 4) {
+      return y + "-" + m + '-' + d + ' ' + h + ':' + minute;;
     }
 
   }
@@ -281,7 +283,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     return weekDay[myDate.getDay()]; // 星期六
   }
   /*获取下一天日期*/
-  function getNextDay(d){
+  function getNextDay(d) {
     d = new Date(d);
     d = +d + 1000 * 60 * 60 * 24;
     d = new Date(d);
@@ -289,13 +291,14 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     var m = d.getMonth() + 1;
     var d = d.getDate();
     if (m < 10) {
-        m = "0" + m;
+      m = "0" + m;
     }
     if (d < 10) {
-        d = "0" + d;
+      d = "0" + d;
     }
     return y + "-" + m + "-" + d;
   }
+
   function decodeTextAreaString(str) {
     var reg = new RegExp("\n", "g");
     str = str.replace(reg, "<br/>");
