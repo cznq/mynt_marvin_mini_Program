@@ -33,10 +33,21 @@ Page({
 
   onShow: function () {
     if (this.data.error) {
+      if (this.data.errorCode == '800005') {
+        var title = '人脸与身份比对失败',
+          pic = 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/face_error_con%402x.png'
+      } else if (this.data.errorCode == '800005') {
+        var title = '语音识别失败',
+          pic = 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/face_error_voice@2x.png'
+      } else {
+        var title = '验证失败',
+          pic = 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/face_error_verify@2x.png'
+      }
       toast.showToast(this, {
-        toastStyle: 'toast4',
-        title: '验证失败',
+        toastStyle: 'toast4 toast7',
+        title: title,
         introduce: this.data.errorMsg,
+        pic: pic,
         mask: true,
         isSure: true,
         sureText: '重新录入',

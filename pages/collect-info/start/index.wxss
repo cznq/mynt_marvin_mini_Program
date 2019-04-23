@@ -111,3 +111,7 @@ page,
   background: transparent;
   transform: translate(-50%, -50%) scale(1);
 }
+.toast7 .toast-pic {
+  width: 500rpx;
+  height: 290rpx;
+}

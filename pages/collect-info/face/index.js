@@ -24,7 +24,7 @@ Page({
     status: 'start', // start, stop, uploading
     cameraErrorText: "",  
     isCameraAuth:true,
-    progress: 0,
+    progress: 100,
     face_verify_code: [],
     tempThumbPath: '',
     buttonDisabled: true
@@ -122,8 +122,9 @@ Page({
         int = setInterval(function () {
           self.setData({
             timer: self.data.timer + 1,
-            progress: (100 / self.data.faceConfig.counter) * (self.data.timer + 1)
+            progress: 100 - (100 / self.data.faceConfig.counter) * (self.data.timer + 1)
           })
+          console.log(self.data.timer)
           if (self.data.timer >= self.data.faceConfig.counter) {
             clearInterval(int);
             self.stopRecord(self, self.data.ctx, int);

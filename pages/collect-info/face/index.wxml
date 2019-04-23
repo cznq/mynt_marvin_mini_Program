@@ -42,7 +42,9 @@
           <view class="vc v3"></view>
           <view class="vc v4"></view>
           <view class="vc v5"></view>
-          <view class="horn"><image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/voice%402x.png"></image></view>
+          <view class="horn">
+            <text class="iconfont icon-yuyin"></text>
+          </view>
           <view class="vc v6"></view>
           <view class="vc v7"></view>
           <view class="vc v8"></view>
