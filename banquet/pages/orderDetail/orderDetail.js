@@ -1,5 +1,6 @@
 const app = getApp();
 const util = require('../../../utils/util');
+var toast = require('../../../templates/showToast/showToast');
 
 Page({
 
@@ -155,24 +156,51 @@ Page({
   },
   canlceBtn() {
     const _this = this
-    app.request.requestApi.post({
-      url: app.globalData.BANQUET_API_URL + "/commerce/book/cancel_order",
-      params: {
-        data: JSON.stringify({
-          book_id: _this.data.book_id
-        })
-      },
-      success: res => {
-        console.log('res:', res);
-        if (res.data.sub_code === 'SUCCESS' && res.data.sub_code) {
+    toast.showToast(_this, {
+      toastStyle: 'toast6',
+      title: '您确定要取消订单吗？',
+      mask: true,
+      isSure: true,
+      sureText: '是的',
+      isClose: true,
+      closeText: '暂不取消',
+      cb: function() {
 
-        }
-
-      },
-      fail: res => {
-        console.log('res:fail', res);
       }
-    })
+    });
+
+
+  },
+  bindToastSure: function() {
+    const _this = this;
+    toast.hideToast(this, {
+      cb: function() {
+        app.request.requestApi.post({
+          url: app.globalData.BANQUET_API_URL + "/commerce/book/cancel_order",
+          params: {
+            data: JSON.stringify({
+              book_id: _this.data.book_id
+            })
+          },
+          success: res => {
+            console.log('res:', res);
+            if (res.data.sub_code === 'SUCCESS' && res.data.sub_code) {
+
+            }
+
+          },
+          fail: res => {
+            console.log('res:fail', res);
+          }
+        })
+      }
+    });
+  },
+  bindToastClose: function() {
+    const _this = this;
+    toast.hideToast(this, {
+      cb: function() {}
+    });
   },
   viewRecord() {
     const _this = this;

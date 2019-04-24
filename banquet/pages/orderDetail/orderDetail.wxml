@@ -125,7 +125,7 @@
     </view>
   </view>
 </view>
-<view wx:if="{{detail.status == 2 }}" class="cancelBtn" bindtap='canlceBtn'>
+<view wx:if="{{detail.status == 1 }}" class="cancelBtn" bindtap='canlceBtn'>
   取消订单
 </view>
 
@@ -155,3 +155,5 @@
   确定
 </view>
 </view>
+<import src="../../../templates/showToast/showToast.wxml" />
+ <template is="showToast" data="{{showToast: showToast}}" /> 

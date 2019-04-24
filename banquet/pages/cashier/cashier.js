@@ -89,12 +89,14 @@ Page({
             success: res => {
               // console.log('支付成功');
               wx.redirectTo({
-                url: '../reserve-success/index'
+                url: '../reserve-success/index?router=' + 'pay' + '&book_id=' + _this.data.book_id +
+                  '&status=' + 'success' + '&need_invoice=' + _this.data.need_invoice
               })
             },
             fail: res => {
               wx.redirectTo({
-                url: '../reserve-success/index'
+                url: '../reserve-success/index?router=' + 'pay' + '&book_id=' + _this.data.book_id +
+                  '&status=' + 'fail' + '&need_invoice=' + _this.data.need_invoice
               })
             }
 

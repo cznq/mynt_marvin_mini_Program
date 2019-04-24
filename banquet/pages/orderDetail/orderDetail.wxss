@@ -1,3 +1,5 @@
+@import "../../../templates/showToast/showToast.wxss";
+
 page {
   background: rgba(240, 242, 245, 1);
   padding-bottom: 180rpx;

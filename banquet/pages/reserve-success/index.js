@@ -7,6 +7,7 @@ Page({
   data: {
     route: '',
     pay: false,
+    status: '',
     stepOne: true,
     stepTwo: false,
     stepThree: false,
@@ -22,7 +23,12 @@ Page({
         orderInfo: params
       })
     }
-
+    if (options.status && options.need_invoice) { //支付状态及发票状态
+      this.setData({
+        status: options.status,
+        need_invoice: options.need_invoice
+      })
+    }
     this.setData({ //获取来源
       route: options.router
     })
