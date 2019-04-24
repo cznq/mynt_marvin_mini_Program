@@ -70,6 +70,12 @@ page {
   margin-right: 16rpx;
 }
 
+.icon-shenqingbeijujue {
+  color: #fff;
+  font-size: 46rpx;
+  margin-right: 16rpx;
+}
+
 .icon-daixiaofei {
   color: #fff;
   font-size: 44rpx;

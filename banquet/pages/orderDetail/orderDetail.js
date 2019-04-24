@@ -158,12 +158,6 @@ Page({
     })
 
   },
-  // previewImage() {
-  //   wx.previewImage({
-  //     current: '', // 当前显示图片的http链接
-  //     urls: [] // 需要预览的图片http链接列表
-  //   })
-  // },
   callUp() {
     wx.makePhoneCall({
       phoneNumber: '0571-82613693' // 仅为示例，并非真实的电话号码
@@ -179,14 +173,11 @@ Page({
       sureText: '是的',
       isClose: true,
       closeText: '暂不取消',
-      cb: function() {
-
-      }
     });
 
 
   },
-  bindToastSure: function() {
+  bindToastSure: function() { //确认取消订单
     const _this = this;
     toast.hideToast(this, {
       cb: function() {
@@ -199,10 +190,11 @@ Page({
           },
           success: res => {
             console.log('res:', res);
-            if (res.data.sub_code === 'SUCCESS' && res.data.sub_code) {
-
+            if (res.data.return_code === 'SUCCESS' && res.data.sub_code) {
+              _this.setData({
+                ['detail.status']: 5
+              })
             }
-
           },
           fail: res => {
             console.log('res:fail', res);
@@ -227,8 +219,17 @@ Page({
         })
       },
       success: res => {
-        console.log('resres:', res);
-
+        console.log('小票信息:', res);
+        if (res.data.result && res.data.result.length > 0) {
+          wx.previewImage({
+            urls: res.data.result
+          })
+        } else {
+          wx.showToast({
+            title: '暂无小票信息',
+            icon: 'none'
+          })
+        }
       },
       fail: res => {
         console.log('res:fail', res);

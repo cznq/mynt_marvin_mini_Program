@@ -7,14 +7,15 @@
       <text wx:if="{{detail.status === 2}}" class="iconfont icon-daixiaofei"></text>
       <text wx:if="{{detail.status === 3}}" class="iconfont icon-daifukuan"></text>
       <text wx:if="{{detail.status === 4}}" class="iconfont icon-yudingchenggong"></text>
+      <text wx:if="{{detail.status === 5}}" class="iconfont icon-shenqingbeijujue"></text>
     </view>
     <view class="txtSign padding_bottom_10 _column" >
-      <text class="padding_bottom_10 _font44 txt_white">{{detail.status == 1 ? '待确认' : detail.status == 2 ? '待消费' : detail.status == 3 ? '待付款' : '交易成功'}}</text>
-      <text class="txtTime _font28" wx:if="{{detail.status != 3 && detail.status != 4}}">{{detail.status == 2? '订单已经确认，您可以前往使用':'预计时间：'+ detail.expect_confirm_time}}</text>
+      <text class="padding_bottom_10 _font44 txt_white">{{detail.status == 1 ? '待确认' : detail.status == 2 ? '待消费' : detail.status == 3 ? '待付款' : detail.status == 4 ? '交易成功':'订单已取消'}}</text>
+      <text class="txtTime _font28" wx:if="{{detail.status != 3 && detail.status != 4 && detail.status != 5}}">{{detail.status == 2? '订单已经确认，您可以前往使用':'预计时间：'+ detail.expect_confirm_time}}</text>
     </view>
   </view>
   <!-- 流程状态 -->
-  <view class="headNav _row _cen_space" wx:if="{{detail.status != 3 && detail.status != 4}}">
+  <view class="headNav _row _cen_space" wx:if="{{detail.status != 3 && detail.status != 4  && detail.status != 5}}">
     <view class="_relative">
       <text class="_font28 InvalidCor {{detail.status == 1 ?'active': ''}}">提交预订</text>
       <view class="time">{{detail.apply_time}}</view>
