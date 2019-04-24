@@ -21,21 +21,14 @@ Page({
       telephone: "", //手机号码
       title: "", //抬头名称
       type: 0 //0 单位 1 个人
-    }
+    },
+    statusPage: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    const _this = this;
-    const book_id = options.bookid
-    const router = options.router
-    if (router && router === 'invoice') {
-      _this.setData({
-        invoiceStatus: false,
-      })
-    }
     // 设置titleStyle
     wx.setNavigationBarColor({
         frontColor: '#ffffff',
@@ -44,17 +37,31 @@ Page({
       wx.setNavigationBarTitle({
         title: '当前页面'
       })
-    _this.setData({
-      book_id: book_id
-    }) //获取预定ID
-    _this.getOrder_detail(_this)
+    const _this = this;
+    const book_id = options.bookid
+    const router = options.router
+    console.log('router:', router);
+    console.log('options.bookid:', book_id);
+
+    if (router && router === 'invoice') {
+      _this.setData({
+        invoiceStatus: false,
+      })
+    }
+    if (book_id) {
+      _this.setData({
+        book_id: book_id
+      }) //获取预定ID
+    }
+
+    _this.getOrder_detail(_this, _this.data.book_id)
   },
-  getOrder_detail: (_this) => {
+  getOrder_detail: (_this, book_id) => {
     app.request.requestApi.post({
       url: app.globalData.BANQUET_API_URL + "/commerce/book/get_order_detail",
       params: {
         data: JSON.stringify({
-          book_id: _this.data.book_id
+          book_id: book_id
         })
       },
       success: res => {
@@ -90,7 +97,14 @@ Page({
           _this.setData({
             detail: result
           })
-
+        } else {
+          _this.setData({
+            detail: {}
+          })
+          wx.showToast({
+            title: '数据不存在',
+            icon: 'none'
+          })
         }
 
       },
@@ -102,7 +116,7 @@ Page({
   jumpDetail(e) {
     const commerceid = e.currentTarget.dataset.commerceid;
     wx.navigateTo({
-      url: '../detail/index?'
+      url: '../detail/index?commerce_id=' + commerceid
     })
   },
   /**
@@ -111,7 +125,7 @@ Page({
   quickPay: function() {
     const commerce_name = this.data.detail.commerce.commerce_name;
     const commerce_thumbnail_url = this.data.detail.commerce.commerce_thumbnail_url;
-    const pay_price = this.data.detail.pay_price;
+    const pay_price = this.data.detail.pay_price / 100;
     const bookid = this.data.book_id;
     wx.navigateTo({
       url: '../cashier/cashier?bookid=' + bookid + '&commerce_name=' + commerce_name + '&commerce_thumbnail_url=' + commerce_thumbnail_url +
@@ -235,7 +249,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    const _this = this;
+    if (_this.data.statusPage) {
+      console.log(3333);
+      _this.getOrder_detail(_this, _this.data.book_id)
+    }
   },
 
   /**

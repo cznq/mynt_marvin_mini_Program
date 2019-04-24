@@ -41,7 +41,7 @@ Page({
     let _that = this;
     wx.chooseInvoiceTitle({
       success(res) {
-        console.log('res:', res);
+        console.log('需要发票res:', res);
         _that.setData({
           title: res.title,
           taxNumber: res.taxNumber,
@@ -50,9 +50,10 @@ Page({
           type: res.type,
           telephone: res.telephone,
           companyAddress: res.companyAddress,
-          invSwitch: true
+          invSwitch: true,
+          need_invoice: 1
         })
-
+        console.log('需要发票:', _that.data.need_invoice);
       },
       fail(res) {
         wx.showToast({

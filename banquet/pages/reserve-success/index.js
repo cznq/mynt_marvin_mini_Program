@@ -23,10 +23,11 @@ Page({
         orderInfo: params
       })
     }
-    if (options.status && options.need_invoice) { //支付状态及发票状态
+    if (options.status && options.need_invoice && options.book_id) { //支付状态及发票状态
       this.setData({
         status: options.status,
-        need_invoice: options.need_invoice
+        need_invoice: options.need_invoice,
+        book_id: options.book_id
       })
     }
     this.setData({ //获取来源
@@ -37,21 +38,28 @@ Page({
     switch (this.data.route) {
       case 'reserve':
         wx.redirectTo({
-          url: '../orderDetail/orderDetail?book_id='+this.data.orderInfo.book_no+'&router=' + 'reserve'
+          url: '../orderDetail/orderDetail?bookid=' + this.data.orderInfo.book_no + '&router=' + 'reserve'
         })
         break;
       case 'pay':
-        wx.redirectTo({
-          url: '../orderDetail/orderDetail?router=' + 'pay'
+        const pages = getCurrentPages();
+        const currPage = pages[pages.length - 1];
+        const prevPage = pages[pages.length - 2];
+        prevPage.setData({
+          statusPage: true,
+          book_id: this.data.book_id
+        })
+        wx.navigateBack({
+          delta: 1
         })
         break;
       case 'invoice':
         wx.redirectTo({
-          url: '../orderDetail/orderDetail?router=' + 'invoice'
+          url: '../orderDetail/orderDetail?router=' + 'invoice' + '&bookid=' + this.data.book_id
         })
         break;
-      default:
-        break;
+        // default:
+        //   break;
     }
   },
   /**

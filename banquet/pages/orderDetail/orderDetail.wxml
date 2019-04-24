@@ -1,4 +1,5 @@
 <wxs src="../../../wxs/subutil.wxs" module="tools" />
+<block wx:if='{{detail.status}}'>
 <view class="head">
   <view class="headTop _mb10 _row">
     <view class="imgSign">
@@ -89,7 +90,7 @@
   <view class="reserInstr _row _cen_start">
     <text  class="iconfont icon-fangjian- _mr10"></text>
     <text class="_txt_gray _font30 _fontw600 _mr10">{{detail.book_type =="1"?'房间':'就餐环境'}}</text>
-    <text class="_txt_gray _font30 ">{{detail.book_type =="1"?detail.hotel.roomName + " " +detail.hotel.room_num +"间" : detail.fete.need_box == 1 ? "包厢就餐":"大厅就餐"}}</text>
+    <text class="_txt_gray _font30 ">{{detail.book_type =="1"?detail.hotel.room_name + " " +detail.hotel.room_num +"间" : detail.fete.need_box == 1 ? "包厢就餐":"大厅就餐"}}</text>
   </view>
 </view>
 
@@ -155,5 +156,6 @@
   确定
 </view>
 </view>
+</block>
 <import src="../../../templates/showToast/showToast.wxml" />
  <template is="showToast" data="{{showToast: showToast}}" />

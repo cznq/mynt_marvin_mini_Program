@@ -18,8 +18,8 @@ Page({
       duration: 300
     },
     is_vip: false,
-    commerce_id: null,//商家id
-    commerce_type: null,//商家类型type
+    commerce_id: null, //商家id
+    commerce_type: null, //商家类型type
     commerceDetail: null,
     employeeInfo: null,
     protocolInfo: null,
@@ -32,10 +32,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this;
+    console.log('options.commerce_id//商家id:', options.commerce_id);
     that.setData({
-      commerce_id: options.commerce_id//商家id
+      commerce_id: options.commerce_id //商家id
     })
     that.getDetailInfo(that.data.commerce_id);
     that.getEmployeeInfo();
@@ -78,7 +79,7 @@ Page({
                 })
               }
             }
-          }) 
+          })
         }
       }
     })
@@ -112,14 +113,14 @@ Page({
             [imgCount]: res.data.result.thumbnail_url.length,
             latitude: res.data.result.latitude,
             longitude: res.data.result.longitude,
-            commerce_type:res.data.result.type
+            commerce_type: res.data.result.type
           })
           wx.setNavigationBarTitle({
             title: res.data.result.name
           })
-         if(that.data.commerce_type != 2){
-          that.onBusiness(res.data.result.business_hours);
-         }
+          if (that.data.commerce_type != 2) {
+            that.onBusiness(res.data.result.business_hours);
+          }
         }
         that.getProtocol(commerce_id, that.data.commerce_type);
         that.getComments(commerce_id);
@@ -130,8 +131,8 @@ Page({
 
   /**
    * 用来判断一个时间是不是在某个时间段内
-   * beginTime 开始时间 
-   * endTime 结束时间 
+   * beginTime 开始时间
+   * endTime 结束时间
    */
   onBusiness(businessHours) {
     if (businessHours.length == 1 && businessHours[0] == null) {
@@ -244,16 +245,16 @@ Page({
   /**
    * 酒店预定
    */
-  hotelReserve:function(e){
+  hotelReserve: function(e) {
     var commerce_id = this.data.commerce_id;
     var hotel_room_id = e.currentTarget.dataset.id
     var price = ((e.currentTarget.dataset.price).toString()).replace(/,/g, "")
     wx.navigateTo({
-      url: '/banquet/pages/hotel-reserve/index?commerce_id=' + commerce_id + '&hotel_room_id=' + hotel_room_id+ '&price=' + 
-      price+ '&store_price=' + e.currentTarget.dataset.storeprice,
+      url: '/banquet/pages/hotel-reserve/index?commerce_id=' + commerce_id + '&hotel_room_id=' + hotel_room_id + '&price=' +
+        price + '&store_price=' + e.currentTarget.dataset.storeprice,
     })
   },
-  restaurantReserve:function(){
+  restaurantReserve: function() {
     var commerce_id = this.data.commerce_id;
     wx.navigateTo({
       url: '/banquet/pages/restaurant-reserve/index?commerce_id=' + commerce_id,
@@ -262,7 +263,7 @@ Page({
   /**
    * 查看幻灯片
    */
-  viewPhoto: function (e) {
+  viewPhoto: function(e) {
     var index = e.currentTarget.dataset.index;
     wx.previewImage({
       current: this.data.slide_data.thumbnail_url[index],
@@ -295,7 +296,7 @@ Page({
    * 打开地图服务
    */
 
-  openMap: function () {
+  openMap: function() {
     wx.openLocation({
       latitude: parseFloat(this.data.latitude),
       longitude: parseFloat(this.data.longitude),
@@ -306,7 +307,7 @@ Page({
   /**
    * 去评论
    */
-  enterComment: function (e) {
+  enterComment: function(e) {
     if (this.data.is_vip) {
       var commerce_id = e.currentTarget.dataset.commerceid;
       wx.navigateTo({
@@ -324,7 +325,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     this.getComments(this.data.commerce_id);
   }
 

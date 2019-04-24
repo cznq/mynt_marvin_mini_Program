@@ -1,15 +1,22 @@
 <!--banquet/pages/reserve-success/index.wxml-->
 <view class="page">
     <view class="_flex page_hd">
-        <text class="iconfont icon-yudingchenggong"></text>
+      <text wx:if="{{route ==='pay' && status === 'fail'}}" class="iconfont icon-shenqingbeijujue"></text>
+        <text wx:else class="iconfont icon-yudingchenggong"></text>
+
+
         <block wx:if="{{route ==='reserve'}}">
         <text class="_txt">预定成功</text>
         <text class="_tip">请等待确认，确认结果稍后以微信消息或专人联系告知。</text>
         </block>
-        <block wx:if="{{route ==='pay'}}">
-          <text class="_txt">{{status === 'success' ? '付款成功':'付款失败'}}</text>
+        <block wx:if="{{route ==='pay' && status === 'success'}}">
+          <text class="_txt">付款成功</text>
           <text class="_tip">{{need_invoice ? '您的付款已成功，小觅楼宇管理员将会把纸质发票送达给您。':''}}</text>
           </block>
+          <block wx:if="{{route ==='pay' && status === 'fail'}}">
+            <text class="_txt">付款失败</text>
+            <text class="_tip">您的付款失败，请重新支付。</text>
+            </block>
           <block wx:if="{{route ==='invoice'}}">
             <text class="_txt">发票信息填写成功</text>
             <text class="_tip">小觅楼宇管理员将会把纸质发票送达给您，请耐心等待。</text>
