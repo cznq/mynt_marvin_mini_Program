@@ -44,5 +44,5 @@
 </view>
 <view class="_footer">
   <view class="_text" wx:if="{{!markcheckOutDate}}">{{markcheckInDate?'请选择离店时间':'请选择入住时间'}}</view>
-  <view class="_text" bindtap="confirm" wx:else>确定</view>
+  <view class="_text active" bindtap="confirm" wx:else>确定</view>
 </view>

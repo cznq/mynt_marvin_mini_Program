@@ -12,6 +12,7 @@ Page({
     commerce_id: null,
     commerce_type: null,
     checkInDate:'',
+    checkOutDate:'',
     num: 1,
     max: '100',
     selectData: '请选择到店时间',
@@ -57,11 +58,9 @@ Page({
       },
       success: res => {
         if (res.data.result) {
-          if (res.data.result.details) {
-            wx.setNavigationBarTitle({
-              title: res.data.result.name
-            })
-          }
+          wx.setNavigationBarTitle({
+            title: res.data.result.name
+          })
         }
       }
     })
@@ -165,8 +164,8 @@ Page({
       _this.Toast('请选择入住时间')
       return false
     }else{
-      book_begin_time =  parseInt((new Date(book_begin_time+' 00:00:00')).getTime()/1000)
-      book_end_time = parseInt((new Date(book_end_time+' 00:00:00')).getTime()/1000)
+      book_begin_time =  util.datetoTime(book_begin_time+' 00:00')
+      book_end_time =  util.datetoTime(book_end_time+' 00:00')
     }
     if (contact_name == '') {
       _this.Toast('请填写入住人')
@@ -191,7 +190,7 @@ Page({
         }else{
           arrive_hour = arrive_hour + ":00"
         }
-        expect_arrive_time =  parseInt((new Date(checkInDate+' '+arrive_hour)).getTime()/1000)
+        expect_arrive_time =util.datetoTime(checkInDate+' '+arrive_hour)
       } else {
         arrive_hour = arrive_hour-24
         if (arrive_hour < 10){
@@ -200,7 +199,7 @@ Page({
           arrive_hour = arrive_hour + ":00"
         }
         let expect_day = util.getNextDay(checkInDate)
-        expect_arrive_time =  parseInt((new Date(expect_day+' '+arrive_hour)).getTime()/1000)
+        expect_arrive_time = util.datetoTime(expect_day+' '+arrive_hour)
       }
     }
     if(remark==""){
@@ -229,6 +228,7 @@ Page({
             apply_time: res.data.result.apply_time,
             book_no: res.data.result.book_no,//订单号
             expect_confirm_time: res.data.result.expect_confirm_time,
+            book_id: res.data.result.book_id
           })
           wx.navigateTo({
             url: '/banquet/pages/reserve-success/index?params='+params+ '&router='+ 'reserve',

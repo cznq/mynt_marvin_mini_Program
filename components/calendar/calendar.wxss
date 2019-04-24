@@ -133,3 +133,6 @@ page{
   line-height: 100rpx;
   text-align: center;
 }
+._footer ._text.active{
+  color: #fff;
+}

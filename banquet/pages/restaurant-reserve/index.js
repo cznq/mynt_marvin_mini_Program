@@ -140,7 +140,7 @@ Page({
         let commerce_id = _this.data.commerce_id;//商家ID
         let checkDate= _this.data.checkDate
         let checkTime= _this.data.checkTime
-        let appointment_time = parseInt((new Date(checkDate+' '+checkTime)).getTime()/1000) //预定时间
+        let appointment_time =util.datetoTime(checkDate+' '+checkTime)//预定时间
         let person_num = e.detail.value.person_num;//预定人数
         let isChecked = _this.data.isChecked;
         let need_box = '';
