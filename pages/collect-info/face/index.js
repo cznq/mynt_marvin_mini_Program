@@ -116,18 +116,22 @@ Page({
    */
   startRecord(self, ctx){
     var int;
-    self.setData({ status: 'stop' })
     ctx.startRecord({
       success: (res) => {
+        self.setData({
+          status: 'stop',
+          timer: self.data.timer + 1,
+          progress: 100 - (100 / self.data.faceConfig.counter) * self.data.timer
+        })
         int = setInterval(function () {
-          self.setData({
-            timer: self.data.timer + 1,
-            progress: 100 - (100 / self.data.faceConfig.counter) * (self.data.timer + 1)
-          })
-          console.log(self.data.timer)
-          if (self.data.timer >= self.data.faceConfig.counter) {
+          if (self.data.timer > self.data.faceConfig.counter) {
             clearInterval(int);
             self.stopRecord(self, self.data.ctx, int);
+          } else {
+            self.setData({
+              timer: self.data.timer + 1,
+              progress: 100 - (100 / self.data.faceConfig.counter) * self.data.timer
+            })
           }
         }, 1000);
       }
@@ -145,6 +149,7 @@ Page({
             self.setData({ tempThumbPath: res.tempImagePath })
           }
         })
+        console.log(res)
         self.finishSubmit(self, timer, res.tempVideoPath)
       },
       fail: function () {

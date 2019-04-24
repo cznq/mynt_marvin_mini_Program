@@ -28,7 +28,6 @@ Page({
     this.data.options.source = options.source;
     this.data.options.params = options.params;
     this.data.options.idInfo = options.idInfo;
-  
   },
 
   onShow: function () {
@@ -36,7 +35,7 @@ Page({
       if (this.data.errorCode == '800005') {
         var title = '人脸与身份比对失败',
           pic = 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/face_error_con%402x.png'
-      } else if (this.data.errorCode == '800005') {
+      } else if (this.data.errorCode == '800006') {
         var title = '语音识别失败',
           pic = 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/face_error_voice@2x.png'
       } else {

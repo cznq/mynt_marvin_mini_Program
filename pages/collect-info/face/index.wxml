@@ -34,7 +34,7 @@
     <block wx:elif="{{status == 'uploading' || status == 'stop'}}">
       <view class="_font34 uploadTxt">
         <view class="progressBar">
-          <view class="progress active" style="width: {{status == 'uploading'? '100':progress}}%"></view>
+          <view class="progress active" style="width: {{progress}}%"></view>
         </view>
         <view class="voice _flex _flex_justify_center _flex_item_center {{status == 'stop'?'ani':''}}">
           <view class="vc v1"></view>

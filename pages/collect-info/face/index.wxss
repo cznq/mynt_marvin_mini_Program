@@ -214,6 +214,7 @@ button[disabled] {
 }
 .progressBar .active {
   width: 100%;
+  transition: width 1s linear;
   background-color: rgba(0, 123, 255, .2)
 }
 .progressBar .active.ani {
