@@ -30,7 +30,7 @@
   </view>
 
 </view>
-<view catchtap='jumpDetail' class="nav _row _cen_space">
+<view bindtap='jumpDetail' data-commerceId='{{detail.commerce.commerce_id}}' class="nav _row _cen_space">
   <view class="navIntr _row _cen_start">
     <image class="navImg" src='{{detail.commerce.commerce_thumbnail_url}}'></image>
     <view class="navTxt _column _start_space">
@@ -129,7 +129,7 @@
   取消订单
 </view>
 
-<view wx:if="{{detail.status !== 4}}" class="fixPay bg_white _row _cen_space {{isIphoneX? 'isIphoneX':''}}">
+<view wx:if="{{detail.status === 3}}" class="fixPay bg_white _row _cen_space {{isIphoneX? 'isIphoneX':''}}">
   <view class="pricePay _column">
     <view class="_txt_pale_red _fontw600 _font22">¥<text class="_font30">{{detail.pay_price/100}}</text></view>
     <text class="_font24 _txt_light_gray" wx:if="{{detail.book_type == 1}}">已优惠 ¥{{detail.discount_price}}</text>

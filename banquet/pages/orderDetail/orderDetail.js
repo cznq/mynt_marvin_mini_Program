@@ -99,9 +99,10 @@ Page({
       }
     })
   },
-  jumpDetail() {
+  jumpDetail(e) {
+    const commerceid = e.currentTarget.dataset.commerceid;
     wx.navigateTo({
-      url: ''
+      url: '../detail/index?'
     })
   },
   /**
