@@ -53,7 +53,6 @@ Page({
           invSwitch: true,
           need_invoice: 1
         })
-        console.log('需要发票:', _that.data.need_invoice);
       },
       fail(res) {
         wx.showToast({

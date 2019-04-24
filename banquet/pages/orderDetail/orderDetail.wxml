@@ -58,8 +58,14 @@
       <text class="_font24 _txt_light_gray">已优惠 ¥1000</text>
     </view>
   </view>
-  <view bindtap="invoiceBtn" class="seeInvoice _txt_gray">
+  <view wx:if="{{detail.invoice_status === 0}}" bindtap="invoiceBtn" class="seeInvoice _txt_gray">
     开具发票
+  </view>
+  <view wx:if="{{detail.invoice_status === 1}}" class="invoiceWait">
+    发票待送达
+  </view>
+  <view wx:if="{{detail.invoice_status === 2}}" bindtap="invoiceView" class="seeInvoice _txt_gray">
+    查看发票
   </view>
 </view>
 

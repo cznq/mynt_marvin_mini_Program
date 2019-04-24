@@ -281,6 +281,11 @@ page {
   font-size: 27rpx;
 }
 
+.invoiceWait {
+  font-size: 27rpx;
+  color: #1A2A4B;
+}
+
 .bg_white {
   background: #fff;
 }

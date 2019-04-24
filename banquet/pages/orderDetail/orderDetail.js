@@ -11,7 +11,6 @@ Page({
     isIphoneX: app.globalData.isIphoneX,
     book_id: 0,
     detail: {},
-    invoiceStatus: false,
     invoice: {
       bankAccount: "", //银行账号
       bankName: "", //银行名称
@@ -43,11 +42,11 @@ Page({
     console.log('router:', router);
     console.log('options.bookid:', book_id);
 
-    if (router && router === 'invoice') {
-      _this.setData({
-        invoiceStatus: false,
-      })
-    }
+    // if (router && router === 'invoice') {
+    //   _this.setData({
+    //     invoiceStatus: false,
+    //   })
+    // }
     if (book_id) {
       _this.setData({
         book_id: book_id
@@ -133,14 +132,32 @@ Page({
     })
   },
   invoiceBtn() {
-    let _that = this;
+    let _this = this;
     wx.chooseInvoiceTitle({
       success(res) {
         console.log('res:', res);
-
-        _that.setData({
+        _this.setData({
           invoice: res,
-          invoiceStatus: true
+        })
+        app.request.requestApi.post({
+          url: app.globalData.BANQUET_API_URL + "/commerce/book/apply_invoice",
+          params: {
+            data: JSON.stringify({
+              book_id: _this.data.book_id,
+              invoice_title: _this.daat.invoice.title,
+              invoice_number: _this.daat.invoice.taxNumber
+            })
+          },
+          success: res => {
+            console.log('发票申请成功:', res);
+            _this.setData({
+              ['detail.invoice_status']: 1
+            })
+
+          },
+          fail: res => {
+            console.log('res:fail', res);
+          }
         })
 
       },
@@ -152,11 +169,32 @@ Page({
       }
     })
   },
-  invoiceQuer() {
-    wx.navigateTo({
-      url: '../reserve-success/index?router=' + 'invoice'
+  invoiceView() {
+    const _this = this;
+    app.request.requestApi.post({
+      url: app.globalData.BANQUET_API_URL + "/commerce/book/get_invoice_images",
+      params: {
+        data: JSON.stringify({
+          book_id: _this.data.book_id
+        })
+      },
+      success: res => {
+        console.log('发票信息:', res);
+        if (res.data.result && res.data.result.length > 0) {
+          wx.previewImage({
+            urls: res.data.result
+          })
+        } else {
+          wx.showToast({
+            title: '暂无发票信息',
+            icon: 'none'
+          })
+        }
+      },
+      fail: res => {
+        console.log('res:fail', res);
+      }
     })
-
   },
   callUp() {
     wx.makePhoneCall({
