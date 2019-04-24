@@ -63,18 +63,18 @@ Page({
           const result = res.data.result
           let apply_time = util.formatTime(result.apply_time, 4);
           result.apply_time = apply_time;
-          if (result.status == 1) {
+          if (result.status == 1) { //待确定
             let expect_confirm_time = util.formatTime(result.expect_confirm_time, 4);
             result.expect_confirm_time = expect_confirm_time;
           }
-          if (result.status == 2) {
+          if (result.status == 2) { //待消费
             let confirm_time = util.formatTime(result.confirm_time, 4);
             result.confirm_time = confirm_time;
           }
-          if (result.book_type === 2) {
-            if (result.appointment_time) {
-              let appointment_time = util.formatTime(result.appointment_time, 2);
-              result.appointment_time = appointment_time;
+          if (result.book_type == 2) { //宴请
+            if (result.fete.appointment_time) {
+              let appointment_time = util.formatTime(result.fete.appointment_time, 2);
+              result.fete.appointment_time = appointment_time;
             }
 
           } else {
