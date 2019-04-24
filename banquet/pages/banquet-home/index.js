@@ -131,7 +131,7 @@ Page({
     var commerce_id = e.currentTarget.dataset.commerceid;
     var commerce_type = e.currentTarget.dataset.commercetype;
     wx.navigateTo({
-      url: '/banquet/pages/detail/index?commerce_id=' + commerce_id + '&commerce_type=' + commerce_type,
+      url: '/banquet/pages/detail/index?commerce_id=' + commerce_id,
     })
   },
   /**
