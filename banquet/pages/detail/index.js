@@ -18,8 +18,8 @@ Page({
       duration: 300
     },
     is_vip: false,
-    commerce_id: null,
-    commerce_type: null,
+    commerce_id: null,//商家id
+    commerce_type: null,//商家类型type
     commerceDetail: null,
     employeeInfo: null,
     protocolInfo: null,
@@ -35,8 +35,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.setData({
-      commerce_id: options.commerce_id,
-      commerce_type: options.commerce_type
+      commerce_id: options.commerce_id//商家id
     })
     that.getDetailInfo(that.data.commerce_id);
     that.getEmployeeInfo();
@@ -112,7 +111,8 @@ Page({
             [slide_img]: res.data.result.thumbnail_url,
             [imgCount]: res.data.result.thumbnail_url.length,
             latitude: res.data.result.latitude,
-            longitude: res.data.result.longitude
+            longitude: res.data.result.longitude,
+            commerce_type:res.data.result.type
           })
           wx.setNavigationBarTitle({
             title: res.data.result.name
