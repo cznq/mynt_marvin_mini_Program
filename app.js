@@ -32,6 +32,7 @@ App({
     // BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
     // BENIFIT_API_URL: 'https://marvin-benifit-api-test.slightech.com/mini_program/api',
     // WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com',
+    //BANQUET_API_URL:'https://marvin-test.myntai.com/benifit',
     // 正式环境
     // BASE_API_URL: 'https://marvin-api.slightech.com/mini_program/api/',
     // BENIFIT_API_URL: 'https://marvin-benifit-api.slightech.com/mini_program/api',

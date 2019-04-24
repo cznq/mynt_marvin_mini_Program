@@ -37,7 +37,7 @@ Page({
     switch (this.data.route) {
       case 'reserve':
         wx.redirectTo({
-          url: '../orderDetail/orderDetail?router=' + 'reserve'
+          url: '../orderDetail/orderDetail?book_id='+this.data.orderInfo.book_no+'&router=' + 'reserve'
         })
         break;
       case 'pay':
