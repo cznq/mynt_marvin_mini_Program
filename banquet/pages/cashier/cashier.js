@@ -32,6 +32,12 @@ Page({
         commerce_thumbnail_url: options.commerce_thumbnail_url,
         pay_price: options.pay_price
       })
+      if (options.router) {
+        console.log('订单付款：', options.router);
+        this.setData({
+          router: options.router
+        })
+      }
     } else {
       return false
     }
@@ -90,13 +96,13 @@ Page({
               // console.log('支付成功');
               wx.redirectTo({
                 url: '../reserve-success/index?router=' + 'pay' + '&book_id=' + _this.data.book_id +
-                  '&status=' + 'success' + '&need_invoice=' + _this.data.need_invoice
+                  '&status=' + 'success' + '&need_invoice=' + _this.data.need_invoice + '&source=' + _this.data.router
               })
             },
             fail: res => {
               wx.redirectTo({
                 url: '../reserve-success/index?router=' + 'pay' + '&book_id=' + _this.data.book_id +
-                  '&status=' + 'fail' + '&need_invoice=' + _this.data.need_invoice
+                  '&status=' + 'fail' + '&need_invoice=' + _this.data.need_invoice + '&source=' + _this.data.router
               })
             }
 

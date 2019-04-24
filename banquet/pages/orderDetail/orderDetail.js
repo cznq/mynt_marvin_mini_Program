@@ -41,12 +41,6 @@ Page({
     const router = options.router
     console.log('router:', router);
     console.log('options.bookid:', book_id);
-
-    // if (router && router === 'invoice') {
-    //   _this.setData({
-    //     invoiceStatus: false,
-    //   })
-    // }
     if (book_id) {
       _this.setData({
         book_id: book_id
@@ -290,7 +284,6 @@ Page({
   onShow: function() {
     const _this = this;
     if (_this.data.statusPage) {
-      console.log(3333);
       _this.getOrder_detail(_this, _this.data.book_id)
     }
   },

@@ -29,6 +29,12 @@ Page({
         need_invoice: options.need_invoice,
         book_id: options.book_id
       })
+      if (options.source) {
+        console.log('状态页面来源:', options.source);
+        this.setData({
+          source: options.source
+        })
+      }
     }
     this.setData({ //获取来源
       route: options.router
@@ -42,24 +48,26 @@ Page({
         })
         break;
       case 'pay':
-        const pages = getCurrentPages();
-        const currPage = pages[pages.length - 1];
-        const prevPage = pages[pages.length - 2];
-        prevPage.setData({
-          statusPage: true,
-          book_id: this.data.book_id
-        })
-        wx.navigateBack({
-          delta: 1
-        })
+        if (this.data.source && this.data.source == 'order') {
+          wx.redirectTo({
+            url: '../orderDetail/orderDetail?router=' + 'pay' + '&bookid=' + this.data.book_id
+          })
+          break;
+        } else {
+          const pages = getCurrentPages();
+          const currPage = pages[pages.length - 1];
+          const prevPage = pages[pages.length - 2];
+          prevPage.setData({
+            statusPage: true,
+            book_id: this.data.book_id
+          })
+          wx.navigateBack({
+            delta: 1
+          })
+          break;
+        }
+      default:
         break;
-      case 'invoice':
-        wx.redirectTo({
-          url: '../orderDetail/orderDetail?router=' + 'invoice' + '&bookid=' + this.data.book_id
-        })
-        break;
-        // default:
-        //   break;
     }
   },
   /**
