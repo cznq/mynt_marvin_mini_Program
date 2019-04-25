@@ -54,8 +54,8 @@
   <view class="_row _cen_start">
     <view class="_txt_gray _font36 _mr30 _fontw500">已支付</view>
     <view class="pricePay _column">
-      <view class="_txt_pale_red _fontw500 _font22">¥<text class="_font30">{{detail.pay_price}}</text></view>
-      <text class="_font24 _txt_light_gray">已优惠 ¥1000</text>
+      <view class="_txt_pale_red _fontw500 _font22">¥<text class="_font30">{{detail.pay_price/100}}</text></view>
+      <text  wx:if="{{detail.book_type=='1'}}" class="_font24 _txt_light_gray">已优惠 ¥{{detail.discount_price/100}}</text>
     </view>
   </view>
   <view wx:if="{{detail.invoice_status === 0}}" bindtap="invoiceBtn" class="seeInvoice _txt_gray">
@@ -140,7 +140,7 @@
 <view wx:if="{{detail.status === 3}}" class="fixPay bg_white _row _cen_space {{isIphoneX? 'isIphoneX':''}}">
   <view class="pricePay _column">
     <view class="_txt_pale_red _fontw600 _font22">¥<text class="_font30">{{detail.pay_price/100}}</text></view>
-    <text class="_font24 _txt_light_gray" wx:if="{{detail.book_type == 1}}">已优惠 ¥{{detail.discount_price}}</text>
+    <text class="_font24 _txt_light_gray" wx:if="{{detail.book_type == 1}}">已优惠 ¥{{detail.discount_price/100}}</text>
   </view>
   <view class="payCheck _row _cen_end">
     <view class="_txt_light_gray _font26 _mr30" bindtap='viewRecord'>查看单据</view>

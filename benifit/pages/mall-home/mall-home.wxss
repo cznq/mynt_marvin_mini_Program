@@ -1,5 +1,4 @@
 /* pages/benifit-card/benifit-card.wxss */
-
 .page {
   background-attachment: fixed;
   background-repeat: repeat-x;
@@ -100,12 +99,12 @@ swiper {
   position: relative;
 }
 
-.tab text:last-child{
+.tab text:last-child {
   margin-right: 0;
 }
 
-.tab text.selected:last-child::after{
-  left:65rpx;
+.tab text.selected:last-child::after {
+  /* left:65rpx; */
 }
 
 .tab text.selected::after {

@@ -283,7 +283,7 @@ page {
 
 .invoiceWait {
   font-size: 27rpx;
-  color: #1A2A4B;
+  color: rgba(26, 42, 75, .5);
 }
 
 .bg_white {

@@ -17,25 +17,25 @@ Page({
     tabSelected: 'food',
     selectedType: 0,
     tabList: [{
-      typeid: 0,
-      id: 'food',
-      title: '美食'
-    },
-    // {
-    //   typeid: 1,
-    //   id: 'entertainment',
-    //   title: '娱乐'
-    // },
-    {
-      typeid: 2,
-      id: 'hotel',
-      title: '酒店'
-    },
-    {
-      typeid: 3,
-      id: 'business',
-      title: '商务宴请'
-    }
+        typeid: 0,
+        id: 'food',
+        title: '美食'
+      },
+      // {
+      //   typeid: 1,
+      //   id: 'entertainment',
+      //   title: '娱乐'
+      // },
+      {
+        typeid: 2,
+        id: 'hotel',
+        title: '酒店'
+      },
+      // {
+      //   typeid: 3,
+      //   id: 'business',
+      //   title: '商务宴请'
+      // }
     ],
     tabFixed: false,
     showVipCardTips: true,
@@ -47,10 +47,13 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     console.log(options);
     if (options.tabSelected && options.selectedType) {
-      this.setData({ tabSelected: options.tabSelected, selectedType: options.selectedType });
+      this.setData({
+        tabSelected: options.tabSelected,
+        selectedType: options.selectedType
+      });
     }
     var self = this;
 
@@ -68,7 +71,7 @@ Page({
     const query = wx.createSelectorQuery()
     query.select('#selTab').boundingClientRect()
     query.selectViewport().scrollOffset()
-    query.exec(function (res) {
+    query.exec(function(res) {
       console.log(res[0].top);
       that.setData({
         taboffsetTop: res[0].top
@@ -134,7 +137,7 @@ Page({
   /**
    * 监听滚动，tab置顶
    */
-  onPageScroll: function (e) {
+  onPageScroll: function(e) {
     console.log(e.scrollTop);
     var that = this;
 
@@ -152,17 +155,20 @@ Page({
   /**
    * 切换Tab
    */
-  changeTab: function (e) {
+  changeTab: function(e) {
     var typedId = e.currentTarget.dataset.typeid;
     var selectedId = e.currentTarget.dataset.selectid;
-    this.setData({ tabSelected: selectedId, selectedType: typedId });
+    this.setData({
+      tabSelected: selectedId,
+      selectedType: typedId
+    });
     this.getCommerceList(typedId);
   },
 
   /**
    * 头部轮播图跳转
    */
-  linkRedirect: function (e) {
+  linkRedirect: function(e) {
     var link = e.currentTarget.dataset.link;
     wx.navigateTo({
       url: link,
@@ -192,7 +198,7 @@ Page({
         union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
           type: commerceType,
-          benifit_type:0,
+          benifit_type: 0,
         })
       },
       success: res => {
@@ -227,7 +233,7 @@ Page({
   /**
    * 跳转到商家详情
    */
-  redirectCommerce: function (e) {
+  redirectCommerce: function(e) {
     var commerce_id = e.currentTarget.dataset.commerceid;
     var commerce_type = e.currentTarget.dataset.commercetype;
     wx.navigateTo({
@@ -249,7 +255,7 @@ Page({
 
   },
 
-  onReady: function () {
+  onReady: function() {
     wx.setStorage({
       key: 'firstComeIn',
       data: 'true'
@@ -259,7 +265,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     this.checkShowTip();
   },
 
