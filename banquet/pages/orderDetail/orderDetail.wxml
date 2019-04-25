@@ -69,10 +69,10 @@
   </view>
 </view>
 
-<view wx:if="{{detail.status === 2 && detail.book_type === '2'}}" class="balconyInfo bg_white _column _cen_center _mt20">
-  <view class="_font32 _txt_gray _fontw400">包厢号</view>
-  <view class="balcony _font64 ">{{tools.txtFix_hid(detail.table_number,7)}}</view>
-  <view class="_font30 _color07">到店消费时请告知前台此包厢号</view>
+<view wx:if="{{detail.status === 2 && detail.book_type == 2}}" class="balconyInfo bg_white _column _cen_center _mt20">
+  <view class="_font32 _txt_gray _fontw400">预定桌号</view>
+  <view class="balcony _font64 ">{{tools.txtFix_hid(detail.fete.table_number,7)}}</view>
+  <view class="_font30 _color07">到店消费时请告知前台此预定桌号</view>
 </view>
 
 <view class="navReserve">
@@ -103,7 +103,7 @@
 
 <view class="navReserve">
   <view class="reserveInfo">
-    <text class="infoTxt _txt_gray _font36">预订信息</text>
+    <text class="infoTxt _txt_gray _font36">订单详情</text>
   </view>
   <view class="reserInstr _row _cen_start">
     <view class="instrDetail _txt_gray3 _font28 _mr10">预订人:</view>
