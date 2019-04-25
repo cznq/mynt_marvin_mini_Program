@@ -131,7 +131,7 @@ page {
   opacity: 0.6;
 }
 
-..headNav .InvalidCor.active {
+.headNav .InvalidCor.active {
   opacity: 1;
 }
 
