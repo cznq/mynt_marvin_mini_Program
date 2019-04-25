@@ -123,7 +123,7 @@ Page({
           }
         }
         that.getProtocol(commerce_id, that.data.commerce_type);
-        that.getComments(commerce_id);
+        //that.getComments(commerce_id);
         //app.Util.generateMap(this, res.data.result.address);
       }
     })
@@ -326,7 +326,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.getComments(this.data.commerce_id);
+    //this.getComments(this.data.commerce_id);
   }
 
 })

@@ -104,13 +104,14 @@ Page({
     });
   },
   remarksText: function(e) {
-    var value = e.detail.value;
+    var value = (e.detail.value).replace(/(^\s*)/g, "");
     // 获取输入框内容的长度
     var len = parseInt(value.length);
     //最多字数限制
     if (len > this.data.max) return;
     this.setData({
-      currentWordNumber: len //当前字数
+      currentWordNumber: len,//当前字数
+      remark:value
     })
   },
   selectDate: function() {
@@ -143,7 +144,8 @@ Page({
       that.setData({
         checkInDate: currPage.data.checkInDate,
         checkOutDate: currPage.data.checkOutDate,
-        stayDays: currPage.data.stayDays
+        stayDays: currPage.data.stayDays,
+        selectData: '请选择到店时间',
       })
     }
   },
@@ -158,7 +160,7 @@ Page({
     let arrive_time = _this.data.selectData //预计到店时间
     let arrive_hour = _this.data.selectTimeId //预计到店小时数
     let expect_arrive_time=""//预计到店时间
-    let remark = (e.detail.value.remark).replace(/\s+/g, '') //备注
+    let remark = _this.data.remark //备注
     let hotel_room_id = _this.data.hotel_room_id
     if(book_begin_time ==''){
       _this.Toast('请选择入住时间')

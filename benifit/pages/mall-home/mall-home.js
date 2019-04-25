@@ -191,7 +191,8 @@ Page({
         method: 'get_commerce_list',
         union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
-          type: commerceType
+          type: commerceType,
+          benifit_type:0,
         })
       },
       success: res => {

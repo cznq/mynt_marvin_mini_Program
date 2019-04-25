@@ -42,7 +42,7 @@
 </view>
 <view class="remarks">
     <view class="_lw">备注</view>
-    <textarea class="{{isIphone?'_contsIos':'_conts'}}" placeholder-class="input_text_phc" cursor-spacing="100rpx" placeholder="备注您的需求，我们会尽快为您安排" bindinput="remarksText" maxlength="{{max}}" name="remark">
+    <textarea class="{{isIphone?'_contsIos':'_conts'}}" placeholder-class="input_text_phc" cursor-spacing="100rpx" placeholder="备注您的需求，我们会尽快为您安排" bindinput="remarksText" maxlength="{{max}}">
     </textarea>
     <text class="currentWordNumber">{{currentWordNumber|0}}/{{max}}</text>
 </view>

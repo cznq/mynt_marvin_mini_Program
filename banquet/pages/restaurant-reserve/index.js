@@ -118,13 +118,14 @@ Page({
         }
     },
     remarksText:function (e) {
-        var value = e.detail.value;
+        var value = (e.detail.value).replace(/(^\s*)/g, "");
         // 获取输入框内容的长度
         var len = parseInt(value.length);
         //最多字数限制
         if(len > this.data.max) return;
         this.setData({
-        currentWordNumber: len //当前字数  
+            currentWordNumber: len, //当前字数  
+            remark:value
         })
     },
     changeSex:function(e){
@@ -151,7 +152,7 @@ Page({
         }
         let contact_name = (e.detail.value.contact_name).replace(/\s+/g, '');
         let contact_tel=(e.detail.value.phone).replace(/\s+/g, '');//手机号
-        let remark = (e.detail.value.remark).replace(/\s+/g, '') //备注
+        let remark = _this.data.remark
         if (contact_name == '') {
             _this.Toast('请填写入住人')
             return false
