@@ -29,7 +29,7 @@ Component({
      */
     ready: function () {
         this.createDateListData();
-        console.log(this.data.today)
+        //console.log(this.data.today)
     },
     methods: {
         createDateListData: function () {
@@ -101,7 +101,7 @@ Component({
         onPressDate: function (e) {
             var { year, month, day } = e.currentTarget.dataset;
             //当前选择的日期为同一个月并小于今天，或者点击了空白处（即day<0），不执行
-            if ((day < DATE_DAY && month == DATE_MONTH) || day <= 0 || this.data.markcheckOutDate) return;
+            if ((day < DATE_DAY && month == DATE_MONTH) || day <= 0) return;
 
             var tempMonth = month;
             var tempDay = day;
@@ -111,26 +111,37 @@ Component({
 
             var date = year + '-' + tempMonth + '-' + tempDay;
             var date2 = tempMonth + '月' + tempDay+ '日';
-            if (!this.data.markcheckInDate) {
+            if (!this.data.markcheckInDate) { 
               this.setData({
                   checkInDate: date,
                   showCheckIn : date2,
                   markcheckInDate: true,
               });
             } else if (!this.data.markcheckOutDate) {
-            if(Moment(date).before(this.data.checkInDate) ||date === this.data.checkInDate){//如果选择的离店时间等于入住时间或小于入住时间
-                console.log("不能选择同一天或者之前的时间")
-                return false;
-            }else{
+                if(Moment(date).before(this.data.checkInDate) ||date === this.data.checkInDate){//如果选择的离店时间等于入住时间或小于入住时间
+                    console.log("不能选择同一天或者之前的时间")
+                    return false;
+                }else{
+                    this.setData({
+                    checkOutDate: date,
+                    showCheckOut : date2,
+                    markcheckOutDate: true,
+                    stayDays:Moment(date).differ(this.data.checkInDate)
+                    });
+                    this.selectDataMarkLine();
+                }
+            }else if(this.data.markcheckInDate && this.data.markcheckOutDate){ //如果入住时间和离店时间都已经选择 再点时间会重新渲染
                 this.setData({
-                checkOutDate: date,
-                showCheckOut : date2,
-                markcheckOutDate: true,
-                stayDays:Moment(date).differ(this.data.checkInDate)
+                    checkInDate: date,
+                    showCheckIn : date2,
+                    markcheckInDate: true,
+                    markcheckOutDate:false,
+                    checkOutDate:'',
+                    showCheckOut : '',
+                    stayDays:'',
+                    dateList:this.createDateListData()
                 });
-                this.selectDataMarkLine();
-            }
-            }  
+            } 
             this.renderPressStyle(year, month, day);
         },
         renderPressStyle: function (year, month, day) {
@@ -211,7 +222,7 @@ Component({
             }
             }
             this.setData({
-            dateList: dateList
+                dateList: dateList
             })
         },
         confirm:function(){
