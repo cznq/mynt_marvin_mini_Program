@@ -29,6 +29,7 @@ Component({
      */
     ready: function () {
         this.createDateListData();
+        wx.setStorageSync('dateArr', this.data.dateList);
         //console.log(this.data.today)
     },
     methods: {
@@ -108,7 +109,6 @@ Component({
 
             if (month < 10) tempMonth = '0' + month
             if (day < 10) tempDay = '0' + day
-
             var date = year + '-' + tempMonth + '-' + tempDay;
             var date2 = tempMonth + '月' + tempDay+ '日';
             if (!this.data.markcheckInDate) { 
@@ -131,6 +131,7 @@ Component({
                     this.selectDataMarkLine();
                 }
             }else if(this.data.markcheckInDate && this.data.markcheckOutDate){ //如果入住时间和离店时间都已经选择 再点时间会重新渲染
+                let dateArr = wx.getStorageSync("dateArr");
                 this.setData({
                     checkInDate: date,
                     showCheckIn : date2,
@@ -139,7 +140,7 @@ Component({
                     checkOutDate:'',
                     showCheckOut : '',
                     stayDays:'',
-                    dateList:this.createDateListData()
+                    dateList:dateArr
                 });
             } 
             this.renderPressStyle(year, month, day);

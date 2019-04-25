@@ -56,7 +56,7 @@ Page({
     query.select('#selTab').boundingClientRect()
     query.selectViewport().scrollOffset()
     query.exec(function (res) {
-      console.log(res[0].top);
+      console.log(res[0]);
       that.setData({
         taboffsetTop: res[0].top
       })
@@ -68,7 +68,6 @@ Page({
   onPageScroll: function (e) {
     console.log(e.scrollTop);
     var that = this;
-
     if (e.scrollTop < that.data.taboffsetTop) {
       that.setData({
         tabFixed: false
@@ -78,6 +77,12 @@ Page({
         tabFixed: true
       });
     }
+    // if(e.scrollTop >= 200 && !that.data.tabFixed){
+    //   that.setData({tabFixed: true});
+    // }
+    // if(e.scrollTop < 200 && that.data.tabFixed){
+    //   that.setData({tabFixed: false});
+    // }
   },
 
   /**
