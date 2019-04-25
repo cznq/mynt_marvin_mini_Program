@@ -77,12 +77,6 @@ Page({
         tabFixed: true
       });
     }
-    // if(e.scrollTop >= 200 && !that.data.tabFixed){
-    //   that.setData({tabFixed: true});
-    // }
-    // if(e.scrollTop < 200 && that.data.tabFixed){
-    //   that.setData({tabFixed: false});
-    // }
   },
 
   /**
