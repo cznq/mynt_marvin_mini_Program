@@ -189,6 +189,7 @@ Page({
                         apply_time: res.data.result.apply_time,
                         book_no: res.data.result.book_no,//订单号
                         expect_confirm_time: res.data.result.expect_confirm_time,
+                        book_id: res.data.result.book_id
                     })     
                 wx.navigateTo({
                     url: '/banquet/pages/reserve-success/index?params='+params+ '&router=' + 'reserve',
