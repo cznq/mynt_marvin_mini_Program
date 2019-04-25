@@ -110,15 +110,15 @@
     <text class="_txt_gray3 _font28 ">{{detail.contact_name}}</text>
   </view>
   <view class="reserInstr _row _cen_start">
-    <view class="instrDetail _txt_gray3 _font28 _mr10">手机号：</view>
+    <view class="instrDetail _txt_gray3 _font28 _mr10">手机号:</view>
     <text class="_txt_gray3 _font28 ">{{detail.contact_tel}}</text>
   </view>
   <view class="reserInstr _row _cen_start">
-    <view class="instrDetail _txt_gray3 _font28 _mr10">下单时间：</view>
-    <text class="_txt_gray3 _font28 ">2019-03-06 </text>
+    <view class="instrDetail _txt_gray3 _font28 _mr10">下单时间:</view>
+    <text class="_txt_gray3 _font28 ">{{detail.apply_time}} </text>
   </view>
   <view class="reserInstr _row _cen_start">
-    <view class="instrDetail _txt_gray3 _font28 _mr10">预定单号：</view>
+    <view class="instrDetail _txt_gray3 _font28 _mr10">预定单号:</view>
     <text class="_txt_gray3 _font28 ">{{detail.book_no}}</text>
   </view>
 </view>

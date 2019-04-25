@@ -22,7 +22,7 @@
         <text  class="iconfont icon-jiantou"></text>
       </view>
       <view class="storeStatus">
-        <text class="_font28">{{item.status === 1 ? '待确认' : item.status === 2 ? '待消费' : item.status === 3 ? '待付款' : '交易成功'}}</text>
+        <text class="_font28">{{item.status === 1 ? '待确认' : item.status === 2 ? '待消费' : item.status === 3 ? '待付款' : item.status === 4 ? '付款成功': '已取消'}}</text>
       </view>
     </view>
     <view class='orDetile _row _cen_start'>
