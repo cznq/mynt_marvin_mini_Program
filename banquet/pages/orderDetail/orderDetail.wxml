@@ -17,7 +17,7 @@
   <!-- 流程状态 -->
   <view class="headNav _row _cen_space" wx:if="{{detail.status != 3 && detail.status != 4  && detail.status != 5}}">
     <view class="_relative">
-      <text class="_font28 InvalidCor {{detail.status == 1 ?'active': ''}}">提交预订</text>
+      <text class="_font28 InvalidCor {{detail.status == 1 || detail.status == 2  ?'active': ''}}">提交预订</text>
       <view class="time">{{detail.apply_time}}</view>
     </view>
     <text class="line"></text>

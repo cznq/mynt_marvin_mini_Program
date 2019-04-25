@@ -17,6 +17,7 @@ Page({
       textInfo: '暂无订单',
       show: false
     },
+    isInitRefresh: false
   },
 
   /**
@@ -133,7 +134,12 @@ Page({
   },
   currDetil: (e) => {
     // console.log('e:', e);
-    const bookid = e.currentTarget.dataset.bookid
+    const bookid = e.currentTarget.dataset.bookid;
+    const pages = getCurrentPages();
+    const currPage = pages[pages.length - 1];
+    currPage.setData({
+      isInitRefresh: true
+    })
     wx.navigateTo({
       url: '../orderDetail/orderDetail?bookid=' + bookid
     })
@@ -162,7 +168,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    const _this = this
+    if (_this.data.isInitRefresh) {
+      _this.get_order_list(_this, _this.data.book_status)
+    }
   },
 
   /**

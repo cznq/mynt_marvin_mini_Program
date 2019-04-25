@@ -27,7 +27,7 @@ function checkRequestLogin(method, requestRouter) {
 function request(method, requestRouter, app) {
 
   var dataJson = JSON.parse(requestRouter.params.data);
-  dataJson.union_id = wx.getStorageSync('xy_session'); //'o3iamjpGFNhjyF8vOMlSYrGQVqIo'
+  dataJson.union_id = wx.getStorageSync('xy_session'); //'o3iamjg7wPdNPO_uvqFM4cOr2p4w'
 
   requestRouter.params.data = JSON.stringify(dataJson);
 
