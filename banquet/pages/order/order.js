@@ -63,6 +63,13 @@ Page({
         console.log('无效的选择');
     }
   },
+  /**
+   * 请求参数 requestHandler
+   * book_status
+   * page_size
+   * page
+   * continu       true | false 
+   */
   get_order_list: (_this, book_status = 0, page_size = 5, page = 1, continu = false) => {
     app.request.requestApi.post({
       url: app.globalData.BANQUET_API_URL + "/commerce/book/get_order_list",
@@ -194,12 +201,10 @@ Page({
   onPullDownRefresh: function() {
     const _this = this
     _this.get_order_list(_this, _this.data.book_status, 5, _this.data.curr_page, true)
-    wx.stopPullDownRefresh()
-    // wx.startPullDownRefresh({
-    //   success: function() {
-    //
-    //   }
-    // })
+    setTimeout(() => {
+      wx.stopPullDownRefresh();
+    }, 0)
+
   },
 
   /**
