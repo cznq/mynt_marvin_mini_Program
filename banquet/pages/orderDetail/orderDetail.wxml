@@ -1,7 +1,7 @@
 <wxs src="../../../wxs/subutil.wxs" module="tools" />
 <block wx:if='{{detail.status}}'>
 <view class="head">
-  <view class="headTop _mb10 _row">
+  <view class="headTop _mb20 _row">
     <view class="imgSign">
       <text wx:if="{{detail.status === 1}}" class="iconfont icon-shijian"></text>
       <text wx:if="{{detail.status === 2}}" class="iconfont icon-daixiaofei"></text>

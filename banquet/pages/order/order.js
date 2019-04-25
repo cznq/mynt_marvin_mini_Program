@@ -193,7 +193,7 @@ Page({
    */
   onPullDownRefresh: function() {
     const _this = this
-    _this.get_order_list(_this)
+    _this.get_order_list(_this, _this.data.book_status, 5, _this.data.curr_page, true)
     wx.stopPullDownRefresh()
     // wx.startPullDownRefresh({
     //   success: function() {
@@ -212,7 +212,7 @@ Page({
       _this.setData({
         curr_page: page
       })
-      _this.get_order_list(_this, _this.data.book_status, 4, _this.data.curr_page, true)
+      _this.get_order_list(_this, _this.data.book_status, 5, _this.data.curr_page, true)
     } else {
       wx.showToast({
         title: '我们是有底线的哦！',
