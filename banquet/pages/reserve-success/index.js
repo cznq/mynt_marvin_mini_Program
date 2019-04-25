@@ -29,7 +29,7 @@ Page({
         need_invoice: options.need_invoice,
         book_id: options.book_id
       })
-      if (options.source) {
+      if (options.source != "undefined") {
         console.log('状态页面来源:', options.source);
         this.setData({
           source: options.source

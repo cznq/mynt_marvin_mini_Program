@@ -32,10 +32,10 @@ Page({
         commerce_thumbnail_url: options.commerce_thumbnail_url,
         pay_price: options.pay_price
       })
-      if (options.router) {
-        console.log('订单付款：', options.router);
+      if (options.source) { //订单付款来源是否为order
+        console.log('订单付款来源：', options.source);
         this.setData({
-          router: options.router
+          source: options.source
         })
       }
     } else {
@@ -96,13 +96,13 @@ Page({
               // console.log('支付成功');
               wx.redirectTo({
                 url: '../reserve-success/index?router=' + 'pay' + '&book_id=' + _this.data.book_id +
-                  '&status=' + 'success' + '&need_invoice=' + _this.data.need_invoice + '&source=' + _this.data.router
+                  '&status=' + 'success' + '&need_invoice=' + _this.data.need_invoice + '&source=' + _this.data.source
               })
             },
             fail: res => {
               wx.redirectTo({
                 url: '../reserve-success/index?router=' + 'pay' + '&book_id=' + _this.data.book_id +
-                  '&status=' + 'fail' + '&need_invoice=' + _this.data.need_invoice + '&source=' + _this.data.router
+                  '&status=' + 'fail' + '&need_invoice=' + _this.data.need_invoice + '&source=' + _this.data.source
               })
             }
 

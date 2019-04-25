@@ -28,20 +28,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // 设置titleStyle
-    wx.setNavigationBarColor({
-        frontColor: '#ffffff',
-        backgroundColor: '#FF6923'
-      }),
-      wx.setNavigationBarTitle({
-        title: '当前页面'
-      })
     const _this = this;
     const book_id = options.bookid
     const router = options.router
-    console.log('router:', router);
     console.log('options.bookid:', book_id);
     if (book_id) {
+      console.log('onload book_id:', book_id);
       _this.setData({
         book_id: book_id
       }) //获取预定ID
@@ -87,6 +79,14 @@ Page({
             result.hotel.book_endTime = bookEndTime;
             result.hotel.dateDiff_Day = dateDiff_Day;
           }
+          // 设置titleStyle
+          wx.setNavigationBarColor({
+              frontColor: '#ffffff',
+              backgroundColor: '#FF6923'
+            }),
+            wx.setNavigationBarTitle({
+              title: result.commerce.commerce_name
+            })
           _this.setData({
             detail: result
           })
@@ -267,9 +267,6 @@ Page({
         console.log('res:fail', res);
       }
     })
-    // wx.previewImage({
-    //   urls: [bill_image_url] // 需要预览的图片http链接列表
-    // })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -284,6 +281,7 @@ Page({
   onShow: function() {
     const _this = this;
     if (_this.data.statusPage) {
+      console.log('来源详情支付状态页');
       _this.getOrder_detail(_this, _this.data.book_id)
     }
   },

@@ -62,7 +62,7 @@ Page({
         console.log('无效的选择');
     }
   },
-  get_order_list: (_this, book_status = 0, page_size = 4, page = 1, continu = false) => {
+  get_order_list: (_this, book_status = 0, page_size = 5, page = 1, continu = false) => {
     app.request.requestApi.post({
       url: app.globalData.BANQUET_API_URL + "/commerce/book/get_order_list",
       params: {
@@ -148,7 +148,7 @@ Page({
     const bookid = e.currentTarget.dataset.bookid;
     wx.navigateTo({
       url: '../cashier/cashier?bookid=' + bookid + '&commerce_name=' + commerce_name + '&commerce_thumbnail_url=' + commerce_thumbnail_url +
-        '&pay_price=' + pay_price + '&router=' + 'order'
+        '&pay_price=' + pay_price + '&source=' + 'order'
     })
   },
   /**
