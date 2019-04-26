@@ -1,0 +1,118 @@
+@import "../../../templates/showToast/showToast.wxss";
+page, 
+.page {
+  background-color: #F9FAFB!important;
+}
+
+.step view {
+  width: 50%;
+}
+.step .cur{background: #007bff;height:6rpx;margin-right:19rpx;border-radius: 6rpx;}
+
+.collect-information {
+  position: relative;
+  padding:0 60rpx;
+  background-color: #F9FAFB!important;
+}
+.recodeTitle {
+  padding-bottom: 20rpx;
+  padding-top:60rpx;
+  line-height: 1.2;
+  color: #1A2A4B;
+}
+.recodeIntro {
+  font-size: 30rpx;
+  color: #1A2A4B;
+  font-weight: 400;
+}
+.step {
+  padding-top:30rpx;
+}
+.face-pic {
+  width: 256rpx;
+  height: 304rpx;
+  margin: 178rpx auto 0;
+}
+
+.collect-information .face-pic {
+  margin: 178rpx auto 0;
+}
+
+.footer {
+  background: #FDFEFE;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 20rpx 0 30rpx;
+  border-top: 1rpx solid #eeeeee;
+  z-index: 101;
+}
+.footer.iphonex {
+  padding-bottom: 110rpx;
+}
+.footer button {
+  background: #007BFF;
+  color: #fff!important;
+}
+._button.back_btn {
+  width: 156rpx;
+  margin-right: 0;
+  background-color: #fff;
+  color: rgba(26, 42, 75, 1)!important;
+  border: 2rpx solid rgba(0,0,0,.05);
+}
+._button.next_btn {
+  margin-left: 32rpx;
+  width: 442rpx;
+}
+.footer button[disabled] {
+  background: rgba(0, 123, 255, 0.2) !important;
+  color: #fff !important;
+}
+
+.checkbox-group {
+  color: #1a2a4b;
+  font-size: 24rpx;
+  padding-left: 163rpx;
+  padding-bottom: 20rpx;
+  display: block;
+  font-weight: 300;
+  line-height: 1;
+}
+.checkbox-group text {
+  color: #007BFF;
+}
+.checkbox-group checkbox {
+  transform: scale(0.6);
+  margin: 0 -14rpx 0 0;
+  vertical-align: 2rpx;
+  border-radius: 50%;
+}
+
+.checkbox-group checkbox .wx-checkbox-input {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background-color: #f2f3f6;
+}
+
+.checkbox-group checkbox .wx-checkbox-input-checked {
+  border-color: rgba(0, 123, 255, 1);
+  background: rgba(0, 123, 255, 1);
+}
+
+.checkbox-group checkbox .wx-checkbox-input-checked::before {
+  width: 48rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #fff;
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+}
+.toast7 .toast-pic {
+  margin-top: 60rpx;
+  width: 500rpx;
+  height: 290rpx;
+}

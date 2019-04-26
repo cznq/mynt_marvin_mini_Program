@@ -62,7 +62,6 @@ App({
         }
       }
     })
-
   },
 
   onShow: function() {
@@ -408,10 +407,9 @@ App({
         console.log(res);
         if (res.data.result) {
           callback(res.data.result.input_pic_url);
-        } else if (res.data.sub_msg == '访客不存在') {
+        } else if (res.data.sub_code == 500001) {
           callback('');
         }
-
       },
       fail: res => {
         console.log('')

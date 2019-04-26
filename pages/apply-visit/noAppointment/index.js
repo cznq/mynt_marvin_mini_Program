@@ -10,7 +10,7 @@ Page({
     qr_code_key:'',
     button_text: '申请访问该企业',
     buttonDisable: true,
-    isCoverView: false//视频全屏cover-view隐藏
+    isCoverView: false  //视频全屏cover-view隐藏
   },
   //机器人端二维码隐藏
   updateQrcodeStatus(qr_code_key) {
@@ -27,7 +27,7 @@ Page({
         })
       },
       success: res => {
-        console.log('key',res)
+        console.log('key', res)
       }
     })
   },
@@ -62,11 +62,11 @@ Page({
       })
     }, 1000);
   },
-  //机器人端预览
+  // 机器人端预览
   robotPreview: function() {
     companyPage.robotPreview(this);
   },
-  //简介展开功能
+  // 简介展开功能
   introductionAll: function() {
     companyPage.introductionAll(this);
   },

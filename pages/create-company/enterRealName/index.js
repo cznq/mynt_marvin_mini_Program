@@ -45,7 +45,7 @@ Page({
                     console.log(res);
                     if (res.data.sub_code == 0) {
                         wx.redirectTo({
-                            url: '../guide/index?CstateCode= ' + _this.data.CstateCode + '&company_name=' + _this.data.company_name + '&company_short_name=' + _this.data.company_short_name
+                            url: '../guide/index?CstateCode=' + _this.data.CstateCode + '&company_name=' + _this.data.company_name + '&company_short_name=' + _this.data.company_short_name
                         })
                     } else {
                         console.log(res.data.sub_msg);

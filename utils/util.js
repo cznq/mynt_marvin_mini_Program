@@ -156,6 +156,17 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     return fmt;
   }
 
+  //json拼接成带&的字符串
+  function json2Form(json) {
+    var str = [];
+    for (var p in json) {
+      if (json[p] !== '' || json[p] !== null) {
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(json[p]));
+      }
+    }
+    return str.join("&");
+  }
+
   // 数组去重
   function unique(arr) {
     var result = [],
@@ -307,7 +318,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
   //校验身份证
   function checkID(ID) {
-    if (typeof ID !== 'string') return '非法字符串';
+    if (typeof ID !== 'string') return false;
     var city = {
       11: "北京",
       12: "天津",
@@ -369,6 +380,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
   //校验护照
   function checkPassport(passport) {
+    if (typeof passport !== 'string') return false;
     var reg = /^1[45][0-9]{7}|([P|p|S|s]\d{7})|([S|s|G|g]\d{8})|([Gg|Tt|Ss|Ll|Qq|Dd|Aa|Ff]\d{8})|([H|h|M|m]\d{8，10})$/;
     if (reg.test(passport) === false) {
       return false;
@@ -379,6 +391,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
   //校验电话
   function checkPhone(phone) {
+    if (typeof phone !== 'string') return false;
     var phone_reg = /^1[0-9]{10}$/;
     if (phone_reg.test(phone) === false) {
       return false;
@@ -578,6 +591,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   module.exports.getTime = getTime;
   module.exports.strToDate = strToDate;
   module.exports.dateToStr = dateToStr;
+  module.exports.json2Form = json2Form;
   module.exports.formatTime = formatTime;
   module.exports.checkID = checkID;
   module.exports.checkPassport = checkPassport;

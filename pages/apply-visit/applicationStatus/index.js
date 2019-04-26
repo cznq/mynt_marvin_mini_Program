@@ -11,7 +11,7 @@ Page({
     company_code:'',
     c_status:'',
     submitApplications_title:'您的申请已提交',    
-    submitApplications_hint:''//审核通过文案
+    submitApplications_hint:'' //审核通过文案
   },
   onLoad: function (options) {
     var _this = this;

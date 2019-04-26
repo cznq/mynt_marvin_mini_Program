@@ -20,7 +20,7 @@ Page({
     var _this =this;
     console.log(options)
     //拼接url的参数
-    _this.data.url = '/' + options.route + '?' + options.opt
+    _this.data.url = '/' + options.route + '?' + app.Util.json2Form(JSON.parse(options.opt))
   },
   //单选按钮
   radioChange:function(e){

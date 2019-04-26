@@ -3,133 +3,230 @@ page,
 .page {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  position: relative;
 }
-.coverview {
-  position: absolute;
-  top: 0;
-  z-index: 100;
-  background: #fff;
-  width: 100%;
+.page__bd {
   height: 100%;
+  position: relative;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 120rpx;
+  box-sizing: border-box;
 }
-.camera-bottom-text {
-  position: absolute;
-  top: 660rpx;
-  left: 88rpx;
-  right: 88rpx;
+.page__bd.iphonex {
+  padding-bottom: 230rpx;
 }
 .circle {
   position: absolute;
   left: 50%;
   top: 0;
+  z-index: 98;
   margin-left: -50%;
   width: 100%;
+  height: 740rpx;
 }
-.step cover-view {
-  width: 50%;
-}
-.step cover-view{background:#E7E8EE;height:6rpx;margin-right:19rpx;border-radius: 6rpx;}
-.step .cur{background: #007bff;}
-
-.collect-information {
-  position: relative;
-}
-.recodeTitle {
-  padding-bottom: 20rpx;
-  padding-top:60rpx;
-  line-height: 1.2;
-  color: #1A2A4B;
-}
-.recodeIntro {
-  font-size: 30rpx;
-  color: #1A2A4B;
-  font-weight: 400;
-  margin-bottom: 80rpx;
-  white-space: pre-wrap;
-}
-.txt {
-  margin-top: 52rpx;
-  line-height: 48rpx;
-  white-space: pre-wrap;
-}
-.bottom-txt {
-  width: 516rpx;
-  margin: 10rpx auto;
+.recodeWarn {
   text-align: center;
+  padding: 30rpx 0 60rpx;
 }
-.step {
-  padding-top:30rpx;
+.recodeWarn image {
+  width: 130rpx;
+  height: 124rpx;
+  margin: 0 auto 24rpx;
 }
-.face-pic {
-  width: 172rpx;
-  margin: 47rpx auto 48rpx;
-}
-.warm {
+.recodeWarn view {
   color: rgba(26, 42, 75, 1);
-  width: 360rpx;
-  line-height: 48rpx;
-  margin: 54rpx auto 0;
-  white-space: pre-wrap;
+  line-height: 1;
 }
-.collect-information .face-pic {
-  margin: 200rpx auto 0;
+.icon-yuyin {
+  font-size: 66rpx;
+  color: rgba(0, 123, 255, 1);
 }
-.progress-bar {
-  width: 360rpx;
-  margin: 0 auto 46rpx;
-  height: 6rpx;
-  background-color: rgba(241, 243, 245, 1);
+.lastPhoto {
+  height: 780rpx;
 }
-.progress {
-  background-color: rgba(0, 123, 255, 1);
-  height: 6rpx;
-  width: 0rpx;
-  animation: bianchang 30s infinite;
-}
-@-webkit-keyframes bianchang {
-  0% { width: 0; }
-  100% { width: 360rpx; }
-}
-@keyframes bianchang {
-  0% { width: 0; }
-  100% { width: 360rpx; }
-}
-canvas {
+.tempFile {
+  width: 750rpx; 
+  height: 780rpx;
   position: absolute;
-  bottom: -300px;
+  top: 0;
+  left: 50%;
+  margin-left: -50%;
+  z-index: 97;
+}
+.mask {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .2);
+  position: absolute;
+  top: 0;
   left: 0;
-  height: 300px;
-  width: 300px;
+  z-index: 102;
 }
 .footer {
-  background: rgba(253, 254, 254, .96);
   left:0;
   bottom:0;
   width:100%;
-  padding:30rpx 0;
-  border-top:1rpx solid #eeeeee;
+  border-top: none;
   z-index: 101;
+  background: #fff;
+  padding: 0;
 }
 .footer.iphonex {
   padding-bottom: 110rpx;
 }
-.footer button {
-  background: #007bff;
+.check-part {
+  width: 560rpx;
+  margin: 0 auto;
+}
+.check-part ._font34 { 
+  line-height: 48rpx;
+  color: rgba(26, 42, 75, 1);
+}
+.num-col {
+  width: 520rpx;
+  height: 110rpx;
+  margin: 30rpx auto 0;
+  border: 2rpx solid rgba(210, 216, 223, 1);
+}
+.num-col .num {
+  font-size: 62rpx;
+  line-height: 110rpx;
+  position: relative;
+  width: 25%;
+  color: rgba(0, 123, 255, 1);
+}
+.num-col .num:after {
+  content: '';
+  width: 2rpx;
+  height: 68rpx;
+  background: rgba(210, 216, 223, 1);
+  position: absolute;
+  right: 1px;
+  top: 21rpx;
+} 
+.num-col .num:last-child:after {
+  width: 0;
+}
+._button {
+  height: 120rpx;
+  line-height: 120rpx;
+  width: 100%;
+  border-radius: 0;
   color: #fff!important;
 }
-._button.back_btn {
-  width: 156rpx;
-  margin-right: 0;
-  background-color: #fff;
-  color: rgba(26, 42, 75, 1)!important;
-  border: 2rpx solid rgba(0,0,0,.05);
+button[disabled] {
+  background: rgba(0, 123, 255, 0.3) !important;
+  color: #fff !important;
 }
-._button.next_btn {
-  margin-left: 32rpx;
-  width: 442rpx;
+._start_button {
+  background: rgba(0, 123, 255, 1);
 }
-.footer button[disabled] {
-  background: rgba(71, 95, 253, .2);
+.uploadTxt {
+  color: rgba(26, 42, 75, 1);
+  height: 120rpx;
+  box-sizing: border-box;
+}
+.voice {
+  height: 112rpx;
+}
+.voice .vc {
+  width: 4rpx;
+  margin: 0 5rpx;
+  background-color: rgba(0, 123, 255, 1);
+}
+.voice.ani .v1,
+.voice.ani .v4,
+.voice.ani .v6
+{
+  animation: voiceAni 0.6s infinite ease-in-out alternate;
+}
+.voice.ani .v2,
+.voice.ani .v5,
+.voice.ani .v9
+{
+  animation: voiceAni 0.6s 0.2s infinite ease-in-out alternate;
+}
+.voice.ani .v3,
+.voice.ani .v7,
+.voice.ani .v8,
+.voice.ani .v10
+{
+  animation: voiceAni 0.6s 0.3s infinite ease-in-out alternate;
+}
+.voice .v1 {
+  height: 16rpx;
+}
+.voice .v2 {
+  height: 28rpx;
+}
+.voice .v3 {
+  height: 22rpx;
+}
+.voice .v4 {
+  height: 40rpx;
+}
+.voice .v5 {
+  height: 18rpx;
+}
+.voice .v6 {
+  height: 22rpx;
+}
+.voice .v7 {
+  height: 28rpx;
+}
+.voice .v8 {
+  height: 18rpx;
+}
+.voice .v9 {
+  height: 36rpx;
+}
+.voice .v10 {
+  height: 16rpx;
+}
+.voice .horn image{
+  width: 48rpx;
+  height: 66rpx;
+  margin: 15rpx;
+}
+@keyframes voiceAni{
+  from {
+    /* height: 16rpx; */
+    transform: scaleY(0.6)
+  }
+  to {
+    /* height: 36rpx; */
+    transform: scaleY(1.4)
+  }
+}
+.progressBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120rpx;
+  margin: 0 auto;
+  background-color: transparent;
+}
+.progressBar .progress {
+  height: 100%;
+}
+.progressBar .active {
+  width: 100%;
+  transition: width 1s linear;
+  background-color: rgba(0, 123, 255, .2)
+}
+.progressBar .active.ani {
+  animation: progressAni 4s linear;
+}
+@keyframes progressAni{
+  from {
+    /* height: 16rpx; */
+    transform: translateX(0)
+  }
+  to {
+    /* height: 36rpx; */
+    transform: translateX(-100%)
+  }
 }
