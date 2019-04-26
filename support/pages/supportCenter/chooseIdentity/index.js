@@ -36,18 +36,6 @@ Page({
                 console.log(res.data);
                 if (res.data.sub_code == 0 && res.data.result) {
                     let ret = res.data.result;
-                    for (let i = 0; i < ret.help_list.length; i++) {
-                        if (ret.help_list[i].help_center_id == 1) {
-                            _this.setData({
-                                adminImageUrl: ret.help_list[i].title_banner_url,
-                            });
-                        }
-                        if (ret.help_list[i].help_center_id == 2) {
-                            _this.setData({
-                                employeeImageUrl: ret.help_list[i].title_banner_url,
-                            });
-                        }
-                    }
                     _this.setData({
                         [slideImg]: ret.top_banners,
                         centerData: ret.help_list,
@@ -60,6 +48,7 @@ Page({
                         mask: false,
                     });
                 }
+                console.log(_this.data);
             },
             fail: res => {
                 console.log('fail');
