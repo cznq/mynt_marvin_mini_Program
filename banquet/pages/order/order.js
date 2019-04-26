@@ -68,7 +68,7 @@ Page({
    * book_status
    * page_size
    * page
-   * continu       true | false 
+   * continu       true | false
    */
   get_order_list: (_this, book_status = 0, page_size = 5, page = 1, continu = false) => {
     app.request.requestApi.post({
@@ -200,7 +200,7 @@ Page({
    */
   onPullDownRefresh: function() {
     const _this = this
-    _this.get_order_list(_this, _this.data.book_status, 5, _this.data.curr_page, true)
+    _this.get_order_list(_this, _this.data.book_status, 5, 1, false)
     setTimeout(() => {
       wx.stopPullDownRefresh();
     }, 0)

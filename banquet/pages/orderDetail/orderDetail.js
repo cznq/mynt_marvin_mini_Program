@@ -50,7 +50,7 @@ Page({
         })
       },
       success: res => {
-        console.log('res:', res);
+        console.log('订单详情:', res);
         if (res.data.sub_code === 'SUCCESS' && res.data.sub_code) {
           const result = res.data.result
           let apply_time = util.formatTime(result.apply_time, 4);
@@ -133,13 +133,13 @@ Page({
         _this.setData({
           invoice: res,
         })
-        app.request.requestApi.post({
+        app.request.requestApi.post({ //通知云端申请发票
           url: app.globalData.BANQUET_API_URL + "/commerce/book/apply_invoice",
           params: {
             data: JSON.stringify({
               book_id: _this.data.book_id,
-              invoice_title: _this.daat.invoice.title,
-              invoice_number: _this.daat.invoice.taxNumber
+              invoice_title: _this.data.invoice.title,
+              invoice_number: _this.data.invoice.taxNumber
             })
           },
           success: res => {
