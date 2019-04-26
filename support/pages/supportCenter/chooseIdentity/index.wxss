@@ -75,6 +75,7 @@ swiper {
     font-weight: 400;
     color: #1A2A4B;
     padding-left: 57rpx;
+    white-space: nowrap;
 }
 
 .icon-jiantou {
