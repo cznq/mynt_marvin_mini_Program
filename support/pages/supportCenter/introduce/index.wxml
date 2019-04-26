@@ -17,7 +17,7 @@
     </view>
     <view class=" introduce">
         <view wx:if="{{currentIndex == 1}}" wx:for="{{imageList}}" wx:key="index" class='slide-image'>
-            <image src="{{item.intro_image_url}}"></image>
+            <image src="{{item.intro_image_url}}" mode='widthFix'></image>
         </view>
         <view wx:if="{{currentIndex == 2}}" wx:for="{{videoList}}" wx:key="index" class='video-view'>
             <view class="video-txt {{index == 0 ? '' : 'pd61'}}">
