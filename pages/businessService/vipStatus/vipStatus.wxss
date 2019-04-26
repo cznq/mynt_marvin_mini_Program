@@ -150,3 +150,8 @@
 .submit.IphoneX {
   bottom: 109rpx;
 }
+
+.otherWealImg {
+  color: #DBAF58;
+  font-size: 70rpx;
+}

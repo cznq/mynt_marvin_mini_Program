@@ -45,28 +45,43 @@ Page({
   },
   chooseInvoece() {
     let _that = this;
-    wx.chooseInvoiceTitle({
-      success(res) {
-        console.log('需要发票res:', res);
-        _that.setData({
-          title: res.title,
-          taxNumber: res.taxNumber,
-          bankAccount: res.bankAccount,
-          bankName: res.bankName,
-          type: res.type,
-          telephone: res.telephone,
-          companyAddress: res.companyAddress,
-          invSwitch: true,
-          need_invoice: 1
-        })
-      },
-      fail(res) {
-        wx.showToast({
-          title: res,
-          icon: 'none'
-        })
-      }
-    })
+    if (!_that.data.invSwitch) {
+      wx.chooseInvoiceTitle({
+        success(res) {
+          console.log('需要发票res:', res);
+          _that.setData({
+            title: res.title,
+            taxNumber: res.taxNumber,
+            bankAccount: res.bankAccount,
+            bankName: res.bankName,
+            type: res.type,
+            telephone: res.telephone,
+            companyAddress: res.companyAddress,
+            invSwitch: true,
+            need_invoice: 1
+          })
+        },
+        fail(res) {
+          wx.showToast({
+            title: res,
+            icon: 'none'
+          })
+        }
+      })
+    } else {
+      _that.setData({
+        title: '',
+        taxNumber: '',
+        bankAccount: '',
+        bankName: '',
+        type: '',
+        telephone: '',
+        companyAddress: '',
+        invSwitch: false,
+        need_invoice: 0
+      })
+    }
+
   },
   quickPay: function() {
     const _this = this;

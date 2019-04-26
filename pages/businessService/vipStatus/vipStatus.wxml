@@ -33,28 +33,28 @@
   </view>
   <view class="otherFun _row _cen_space">
     <view class="_column _cen_start">
-      <image class='welfareImg' src='http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/%E5%91%98%E5%B7%A5%E7%A6%8F%E5%88%A9@2x.png'></image>
+      <text class="iconfont icon-yuangongfuli otherWealImg"></text>
       <view class="_column _cen_start">
         <text class='WelfareOne'>员工福利</text>
         <text class='WelfareTwo'>低于其他30%</text>
       </view>
     </view>
     <view class="_column _cen_start">
-      <image class='welfareImg' src='http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/%E8%AE%BF%E5%AE%A2%E9%82%80%E8%AF%B7@2x.png'></image>
+      <text class="iconfont icon-fangkeyaoqing otherWealImg"></text>      
       <view class="_column _cen_start">
         <text class='WelfareOne'>访客邀请</text>
         <text class='WelfareTwo'>缩短时间成本</text>
       </view>
     </view>
     <view class="_column _cen_start">
-      <image class='welfareImg' src='http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/%E5%B9%BF%E5%91%8A%E5%B1%95%E7%A4%BA@2x.png'></image>
+      <text class="iconfont icon-guanggaozhanshi otherWealImg"></text>
       <view class="_column _cen_start">
         <text class='WelfareOne'>广告展示</text>
         <text class='WelfareTwo'>线上线下垂直</text>
       </view>
     </view>
     <view class="_column _cen_start">
-      <image class='welfareImg' src='http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/%E5%95%86%E5%8A%A1%E5%AE%B4%E8%AF%B7@2x.png'></image>
+      <text class="iconfont icon-shangwuyanqing otherWealImg"></text>
       <view class="_column _cen_start">
         <text class='WelfareOne'>商务宴请</text>
         <text class='WelfareTwo'>免预存备用金</text>
