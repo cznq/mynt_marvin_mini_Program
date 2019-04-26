@@ -21,11 +21,11 @@ Page({
         id: 'food',
         title: '美食'
       },
-      // {
-      //   typeid: 1,
-      //   id: 'entertainment',
-      //   title: '娱乐'
-      // },
+      {
+        typeid: 1,
+        id: 'entertainment',
+        title: '娱乐'
+      },
       {
         typeid: 2,
         id: 'hotel',
