@@ -112,259 +112,259 @@ Page({
         _this.setData({
             swiperCurrent: e.detail.current
         })
-    },
+      },
     //获取用户状态
     get_review_status: function(_this) {
-        app.Util.network.POST({
-            url: app.globalData.BASE_API_URL,
-            params: {
-                service: 'company',
-                method: 'get_review_status',
-                data: JSON.stringify({
-                    union_id: wx.getStorageSync('xy_session')
-                })
-            },
-            success: res => {
-                console.log('get_review_status API return:', res);
-                var resdata = res.data.result;
-                if (res.data.sub_code == 0) {
-                    if (resdata.employee_status === 0) {
-                        _this.setData({
-                            role: resdata.role
-                        });
-                        _this.setData({
-                            islogin: false,
-                            ismanage: true
-                        })
-                        //普通员工
-                        if (resdata.role == 2 || resdata.role == 3) {
-                            _this.setData({
-                                'application[5].isShow': true //自动值守
-                            })
-                        } else {
-                            _this.setData({
-                                'application[5].isShow': false //自动值守
-                            })
-                        }
-                        _this.get_info(); //获取企业信息
-                        _this.get_rotation_chart(_this); //获取轮播图
-                    } else {
-                        _this.setData({
-                            islogin: true,
-                            ismanage: false,
-                        })
-                    }
-                } else {
-                    console.log(res.data.sub_msg);
-                }
-            },
-            fail: res => {
-                console.log('fail');
-            }
+      app.Util.network.POST({
+          url: app.globalData.BASE_API_URL,
+          params: {
+              service: 'company',
+              method: 'get_review_status',
+              data: JSON.stringify({
+                  union_id: wx.getStorageSync('xy_session')
+              })
+          },
+          success: res => {
+              console.log('get_review_status API return:', res);
+              var resdata = res.data.result;
+              if (res.data.sub_code == 0) {
+                  if (resdata.employee_status === 0) {
+                      _this.setData({
+                          role: resdata.role
+                      });
+                      _this.setData({
+                          islogin: false,
+                          ismanage: true
+                      })
+                      //普通员工
+                      if (resdata.role == 2 || resdata.role == 3) {
+                          _this.setData({
+                              'application[5].isShow': true //自动值守
+                          })
+                      } else {
+                          _this.setData({
+                              'application[5].isShow': false //自动值守
+                          })
+                      }
+                      _this.get_info(); //获取企业信息
+                      _this.get_rotation_chart(_this); //获取轮播图
+                  } else {
+                      _this.setData({
+                          islogin: true,
+                          ismanage: false,
+                      })
+                  }
+              } else {
+                  console.log(res.data.sub_msg);
+              }
+          },
+          fail: res => {
+              console.log('fail');
+          }
+      })
+  },
+  //加入公司
+  joinCompany: function() {
+    wx.navigateTo({
+      url: '../employee/join-company/choiceJoin/index'
+    })
+  },
+  //创建公司
+  createCompany: function() {
+    wx.navigateTo({
+      url: '../create-company/enterCompanyCode/index',
+    })
+  },
+  //管理中心-企业应用-公司信息
+  editCompanyPages: function() {
+    var _this = this;
+    wx.navigateTo({
+      url: '../create-company/editCompanyPages/index?role=' + _this.data.role
+    })
+  },
+  //员工信息
+  staffList: function() {
+    wx.navigateTo({
+      url: '../employee/staff-list/index'
+    })
+  },
+  //访客列表
+  visitor: function() {
+    wx.navigateTo({
+      url: '../visitor-list/list/index'
+    })
+  },
+  //邀请列表
+  invite: function() {
+    wx.navigateTo({
+      url: '../invite-list/index/index'
+    })
+  },
+  //自动值守
+  unattendedSetting: function() {
+    var that = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_company_service_status',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+          service_key: "ATTEND_FUNCTION"
         })
-    },
-    //加入公司
-    joinCompany: function() {
-        wx.navigateTo({
-            url: '../employee/join-company/choiceJoin/index'
-        })
-    },
-    //创建公司
-    createCompany: function() {
-        wx.navigateTo({
-            url: '../create-company/enterCompanyCode/index',
-        })
-    },
-    //管理中心-企业应用-公司信息
-    editCompanyPages: function() {
-        var _this = this;
-        wx.navigateTo({
-            url: '../create-company/editCompanyPages/index?role=' + _this.data.role
-        })
-    },
-    //员工信息
-    staffList: function() {
-        wx.navigateTo({
-            url: '../employee/staff-list/index'
-        })
-    },
-    //访客列表
-    visitor: function() {
-        wx.navigateTo({
-            url: '../visitor-list/list/index'
-        })
-    },
-    //邀请列表
-    invite: function() {
-        wx.navigateTo({
-            url: '../invite-list/index/index'
-        })
-    },
-    //自动值守
-    unattendedSetting: function() {
-        var that = this;
-        app.Util.network.POST({
-            url: app.globalData.BASE_API_URL,
-            params: {
-                service: 'company',
-                method: 'get_company_service_status',
-                data: JSON.stringify({
-                    union_id: wx.getStorageSync('xy_session'),
-                    service_key: "ATTEND_FUNCTION"
-                })
-            },
-            success: res => {
-                if (res.data.result) {
-                    if (res.data.result.service_status == 0) {
-                        wx.navigateTo({
-                            url: '/pages/company/unattended-setting/setHome/index',
-                        })
-                    }
-                    if (res.data.result.service_status == 1) {
-                        if (that.data.cd.attend_status == 1) {
-                            wx.navigateTo({
-                                url: '/pages/company/unattended-setting/setting/index',
-                            })
-                        } else {
-                            wx.navigateTo({
-                                url: '/pages/company/unattended-setting/setHome/index',
-                            })
-                        }
-                    }
-                }
-            },
-            fail: res => {
-                console.log('获取服务失败')
-            }
-        })
-    },
-    //商务宴请
-    banquetReserve:function(){
-        wx.navigateTo({
-            url: '/banquet/pages/banquet-home/index?benifit_type=1',
-        })
-    },
-    //邀请访客
-    inviteVisitor: function() {
-        wx.navigateTo({
-            url: '/pages/invite-visitor/start/index',
-        })
-    },
-    //员工福利
-    suiteIntroduce: function() {
-        wx.navigateTo({
-            url: '/benifit/pages/vip-card/vip-card',
-        })
-    },
-    //创建公司-轮播图文案信息
-    intervalChange: function(e) {
-        var _this = this;
-        for (var key in _this.data.isSwiperText) {
-            if (key == e.detail.current) {
-                _this.setData({
-                    ["isSwiperText[" + e.detail.current + "]"]: true
-                })
+      },
+      success: res => {
+        if (res.data.result) {
+          if (res.data.result.service_status == 0) {
+            wx.navigateTo({
+              url: '/pages/company/unattended-setting/setHome/index',
+            })
+          }
+          if (res.data.result.service_status == 1 || res.data.result.service_status == 2) {
+            if (that.data.cd.attend_status == 1) {
+              wx.navigateTo({
+                url: '/pages/company/unattended-setting/setting/index',
+              })
             } else {
-                _this.setData({
-                    ["isSwiperText[" + key + "]"]: false
-                })
+              wx.navigateTo({
+                url: '/pages/company/unattended-setting/setHome/index',
+              })
             }
+          }
         }
-    },
-    //请求企业信息
-    get_info: function() {
-        var _this = this;
-        app.Util.network.POST({
-            url: app.globalData.BASE_API_URL,
-            params: {
-                service: 'company',
-                method: 'get_info',
-                data: JSON.stringify({
-                    union_id: wx.getStorageSync('xy_session')
-                })
-            },
-            showLoading: false,
-            success: res => {
-                //员工提示信息
-                if (res.data.result.apply_number > 0) {
-                    _this.setData({
-                        'application[1].news': true
-                    })
-                } else {
-                    _this.setData({
-                        'application[1].news': false
-                    })
-                }
-                if (res.data.sub_code == 0) {
-                    _this.setData({
-                        cd: res.data.result
-                    })
-                } else {
-                    console.log(res.data.sub_msg);
-                }
-                _this.getServiceStatus(_this);
-            },
-            fail: res => {
-                console.log('fail');
-            }
+      },
+      fail: res => {
+        console.log('获取服务失败')
+      }
+    })
+  },
+  //商务宴请
+  banquetReserve:function(){
+    wx.navigateTo({
+        url: '/banquet/pages/banquet-home/index?benifit_type=1',
+    })
+  },
+  //邀请访客
+  inviteVisitor: function() {
+    wx.navigateTo({
+      url: '/pages/invite-visitor/start/index',
+    })
+  },
+  //员工福利
+  suiteIntroduce: function() {
+    wx.navigateTo({
+      url: '/benifit/pages/vip-card/vip-card',
+    })
+  },
+  //创建公司-轮播图文案信息
+  intervalChange: function(e) {
+    var _this = this;
+    for (var key in _this.data.isSwiperText) {
+      if (key == e.detail.current) {
+        _this.setData({
+          ["isSwiperText[" + e.detail.current + "]"]: true
         })
-    },
-    /**
-     * 获取商业服务套件的状态
-     */
-    getServiceStatus: function(that) {
-        app.Util.network.POST({
-            url: app.globalData.BASE_API_URL,
-            params: {
-                service: 'company',
-                method: 'get_business_service_suite_status',
-                data: JSON.stringify({}),
-            },
-            showLoading: false,
-            success: res => {
-                // console.log("商业服务套件的状态:", res);
-                if (res.data.return_code === "SUCCESS") {
-                    let data = res.data
-                    that.setData({
-                        businessVip_status: data.result.business_service_suite_status,
-                    })
-
-                }
-
-            }
+    }else {
+        _this.setData({
+          ["isSwiperText[" + key + "]"]: false
         })
-    },
-    //获取轮播图
-    get_rotation_chart: function(_this) {
-        app.Util.network.POST({
-            url: app.globalData.BASE_API_URL,
-            params: {
-                service: 'company',
-                method: 'get_rotation_chart',
-                data: JSON.stringify({
-                    location_type: 0
-                })
-            },
-            showLoading: false,
-            success: res => {
-                if (res.data.result) {
-                    _this.setData({
-                        imgurl_manage: res.data.result
-                    })
-                } else {
-                    //默认轮播图
-                    _this.setData({
-                        imgurl_manage: [{
-                            'image_url': 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/slide-default.png',
-                            'link_url': '/pages/businessService/suite-introduce/suite-introduce'
-                        }]
-                    })
-                    console.log(res.data.sub_msg);
-                }
-            },
-            fail: res => {
-                console.log('fail');
-            }
-        })
+      }
     }
+  }, 
+  //请求企业信息
+  get_info: function() {
+    var _this = this;
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_info',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session')
+        })
+      },
+      showLoading: false,
+      success: res => {
+        //员工提示信息
+        if (res.data.result.apply_number > 0) {
+          _this.setData({
+            'application[1].news': true
+          })
+        } else {
+          _this.setData({
+            'application[1].news': false
+          })
+        }
+        if (res.data.sub_code == 0) {
+          _this.setData({
+            cd: res.data.result
+          })
+        } else {
+          console.log(res.data.sub_msg);
+        }
+        _this.getServiceStatus(_this);
+      },
+      fail: res => {
+        console.log('fail');
+      }
+    })
+  },
+  /**
+   * 获取商业服务套件的状态
+   */
+  getServiceStatus: function(that) {
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_business_service_suite_status',
+        data: JSON.stringify({}),
+      },
+      showLoading: false,
+      success: res => {
+        // console.log("商业服务套件的状态:", res);
+        if (res.data.return_code === "SUCCESS") {
+          let data = res.data
+          that.setData({
+            businessVip_status: data.result.business_service_suite_status,
+          })
+
+        }
+
+      }
+    })
+  },
+  //获取轮播图
+  get_rotation_chart: function(_this) {
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_rotation_chart',
+        data: JSON.stringify({
+          location_type: 0
+        })
+      },
+      showLoading: false,
+      success: res => {
+        if (res.data.result) {
+          _this.setData({
+            imgurl_manage: res.data.result
+          })
+        } else {
+          //默认轮播图
+          _this.setData({
+            imgurl_manage: [{
+              'image_url': 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/slide-default.png',
+              'link_url': '/pages/businessService/suite-introduce/suite-introduce'
+            }]
+          })
+          console.log(res.data.sub_msg);
+        }
+      },
+      fail: res => {
+        console.log('fail');
+      }
+    })
+  }
 })
