@@ -87,7 +87,7 @@ page{
   display: flex;
   flex-wrap: wrap;
 }
-.shop-list.pt{
+.shop-list.pt50{
   padding-top: 100rpx;
 }
 .shop-list .shop-wrapper {
