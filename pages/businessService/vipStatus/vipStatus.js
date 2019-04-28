@@ -14,7 +14,8 @@ Page({
     end_sign: '',
     end_time: '',
     vipStatus: 'opening',
-    submit: '续费享折扣'
+    submit: '续费享折扣',
+    building_package_status: null // (0: 不显示， 1: 显示)
   },
 
   /**
@@ -22,7 +23,6 @@ Page({
    */
   onLoad: function(options) {
     this.getCompany(this);
-    this.getServiceStatus(this);
   },
   /**
    * 获取公司
@@ -42,15 +42,16 @@ Page({
           that.setData({
             company_name: data.company_name,
             company_short_name: data.company_short_name,
-            logo: data.logo
+            logo: data.logo,
+            building_package_status: data.building_package_status
           })
         } else if (res.data.sub_code !== 0) {
           wx.showToast({
             title: res.data.sub_msg,
             icon: 'none'
           })
-
         }
+        that.getServiceStatus(that);
       }
     })
   },
@@ -84,17 +85,13 @@ Page({
                 submit: "立即开通"
               })
             }
-
           })
-
         } else if (res.data.sub_code !== 0) {
           wx.showToast({
             title: res.data.sub_msg,
             icon: 'none'
           })
-
         }
-
       }
     })
   },

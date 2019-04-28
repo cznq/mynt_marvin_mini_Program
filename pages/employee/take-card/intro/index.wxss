@@ -1,0 +1,11 @@
+.page__hd image {
+  width: 100%;
+  vertical-align: bottom;
+}
+.page__bd {
+  padding: 74rpx 100rpx 0;
+}
+.page__ft {
+  margin-top: 56rpx;
+  padding: 0 0 86rpx;
+}

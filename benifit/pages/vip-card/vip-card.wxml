@@ -126,7 +126,6 @@
                 <image src="../../images/shape@2x.png"></image>协议价
               </view>
               <view class="price-protocol hotel-price">
-            
                 <image src="../../images/num/num_yb.png"></image>
                 <block wx:for="{{item.agreement_price}}" wx:for-item="imgnum" wx:key="">
                   <image src="../../images/num/num_y{{imgnum}}.png"></image>

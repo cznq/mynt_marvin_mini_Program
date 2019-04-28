@@ -14,7 +14,7 @@
     
         <view class="voice _font24">开启无人值守，未预约访客取卡无需前台确认，为确保公司安全，请谨慎开启。</view>
     </view>
-    <view class="page_ft" wx:if="{{serviceStatus == 'tried'}}" bindtap="viewBusinessService">
+    <view class="page_ft" wx:if="{{serviceStatus == 'tried'}}">
         <import src="../../../../templates/vipAd/vipAd.wxml" />
         <template is="vipAd" data="{{text: 'forbar'}}" />
     </view>

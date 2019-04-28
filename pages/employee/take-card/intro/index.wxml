@@ -1,0 +1,10 @@
+<view class="page">
+  <view class="page__hd">
+    <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/take-card-intro{{isIphoneX?'-ipx':''}}@2x.png" mode='widthFix'></image>
+  </view>
+  <view class="_fixed footer {{isIphoneX?'footer_x':''}}">
+    <navigator url='../open/index' hover-class='none'>
+      <button class="_button _font32">立即领取电梯卡</button>
+    </navigator>
+  </view>
+</view>

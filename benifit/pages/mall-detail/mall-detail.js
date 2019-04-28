@@ -215,7 +215,7 @@ Page({
           var data = res.data.result;
           delete data.discount_tag
           for (var i = 0; i < data.length; i++) {
-            data[i].deal_price_fen = String(data[i].deal_price_fen).split('');
+            data[i].deal_price_fen = String(data[i].deal_price_fen/100).split('');
           }
           that.setData({
             protocolInfo: data

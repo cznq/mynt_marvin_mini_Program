@@ -12,6 +12,7 @@
     "pages/employee/homepage/index",
     "pages/employee/edit-name/index",
     "pages/employee/edit-phone/index",
+    "pages/employee/take-card/intro/index",
     "pages/employee/take-card/open/index",
     "pages/employee/take-card/guide/index",
     "pages/employee/staff-list/index",
