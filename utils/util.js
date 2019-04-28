@@ -2,7 +2,7 @@ var md5 = require('md5.js');
 var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
 ;
-(function () {
+(function() {
   // 网络请求
 
   // GET请求
@@ -21,7 +21,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
       request(method, requestHandler, app)
     } else {
 
-      app.checkWxLogin(function () {
+      app.checkWxLogin(function() {
         request(method, requestHandler, app)
       })
 
@@ -117,20 +117,20 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     }
     qqmapsdk.geocoder({
       address: address,
-      success: function (res) {
+      success: function(res) {
         _this.setData({
           latitude: res.result.location.lat,
           longitude: res.result.location.lng
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         app.myLog("根据地址获取经纬度: ", " 地址：" + address + '返回：' + JSON.stringify(res));
         wx.showToast({
           icon: 'none',
           title: '获取经纬度失败'
         })
       },
-      complete: function (res) {
+      complete: function(res) {
         console.log(res);
       }
     })
@@ -264,7 +264,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
   }
 
-  var dateDiff_Day = function (s1, s2) {
+  var dateDiff_Day = function(s1, s2) {
     s1 = new Date(s1.replace(/-/g, "/"));
     s2 = new Date(s2.replace(/-/g, "/"));
     let days = s2.getTime() - s1.getTime();
@@ -410,7 +410,6 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
   //分转元
   function FenToYuan(d) {
-    var regexp = /(?:\.0*|(\.\d+?)0+)$/
     var num = (d / 100).toFixed(2)
     num = parseFloat(num)
     return num
@@ -495,7 +494,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         const tempFilePaths = res.tempFilePaths;
         var i = 0; //选择上传位置
         var dataArr = []; //返回数据组
-        uposs(_this, uposs_url, uposs_service, uposs_method, uposs_name, tempFilePaths, i, dataArr, function (obj) {
+        uposs(_this, uposs_url, uposs_service, uposs_method, uposs_name, tempFilePaths, i, dataArr, function(obj) {
           cb(obj);
         });
 
@@ -516,7 +515,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
         datatt.push(res.tempFilePath);
         var i = 0; //选择上传位置
         var dataArr = []; //返回数据组
-        uposs(_this, uposs_url, uposs_service, uposs_method, uposs_name, datatt, i, dataArr, function (obj) {
+        uposs(_this, uposs_url, uposs_service, uposs_method, uposs_name, datatt, i, dataArr, function(obj) {
           cb(obj);
         });
       }
@@ -587,19 +586,22 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   }
   //浮点数计算
   /*
-  * 判断obj是否为一个整数
-  */
+   * 判断obj是否为一个整数
+   */
   function isInteger(obj) {
     return Math.floor(obj) === obj
   }
   /*
-       * 将一个浮点数转成整数，返回整数和倍数。如 3.14 >> 314，倍数是 100
-       * @param floatNum {number} 小数
-       * @return {object}
-       *   {times:100, num: 314}
-       */
+   * 将一个浮点数转成整数，返回整数和倍数。如 3.14 >> 314，倍数是 100
+   * @param floatNum {number} 小数
+   * @return {object}
+   *   {times:100, num: 314}
+   */
   function toInteger(floatNum) {
-    var ret = { times: 1, num: 0 }
+    var ret = {
+      times: 1,
+      num: 0
+    }
     if (isInteger(floatNum)) {
       ret.num = floatNum
       return ret
@@ -614,15 +616,15 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     return ret
   }
   /*
-     * 核心方法，实现加减乘除运算，确保不丢失精度
-     * 思路：把小数放大为整数（乘），进行算术运算，再缩小为小数（除）
-     *
-     * @param a {number} 运算数1
-     * @param b {number} 运算数2
-     * @param digits {number} 精度，保留的小数点数，比如 2, 即保留为两位小数
-     * @param op {string} 运算类型，有加减乘除（add/subtract/multiply/divide）
-     *
-     */
+   * 核心方法，实现加减乘除运算，确保不丢失精度
+   * 思路：把小数放大为整数（乘），进行算术运算，再缩小为小数（除）
+   *
+   * @param a {number} 运算数1
+   * @param b {number} 运算数2
+   * @param digits {number} 精度，保留的小数点数，比如 2, 即保留为两位小数
+   * @param op {string} 运算类型，有加减乘除（add/subtract/multiply/divide）
+   *
+   */
   function operation(a, b, digits, op) {
     var o1 = toInteger(a)
     var o2 = toInteger(b)
@@ -663,12 +665,15 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   function add(a, b, digits) {
     return operation(a, b, digits, 'add')
   }
+
   function subtract(a, b, digits) {
     return operation(a, b, digits, 'subtract')
   }
+
   function multiply(a, b, digits) {
     return operation(a, b, digits, 'multiply')
   }
+
   function divide(a, b, digits) {
     return operation(a, b, digits, 'divide')
 
