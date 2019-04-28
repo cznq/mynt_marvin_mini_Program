@@ -108,10 +108,10 @@
             </view>
             <view class="other-price">
               <view class="">
-                <image src="../../images/icon_store@2x.png"></image>门店价{{item.store_price_fen}}
+                <image src="../../images/icon_store@2x.png"></image>门店价{{item.store_price_fen/100}}
               </view>
               <view class="">
-                <image src="../../images/icon_sale@2x.png"></image>特惠价{{item.preferential_price}}
+                <image src="../../images/icon_sale@2x.png"></image>特惠价{{item.preferential_price/100}}
               </view>
             </view>
           </view>
