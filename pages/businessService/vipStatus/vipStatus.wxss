@@ -146,6 +146,9 @@
   line-height: 100rpx;
   text-align: center;
 }
+.submit.nouse {
+  background-color: #b7bdcb
+}
 
 .submit.IphoneX {
   bottom: 109rpx;

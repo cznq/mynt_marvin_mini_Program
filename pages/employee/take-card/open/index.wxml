@@ -27,7 +27,7 @@
 
       <view class="_font24 warn_info">该功能只对入驻小觅楼宇服务的公司员工开放，如果您还不是员工请先加入公司。</view>
 
-      <view class="page__ft" wx:if="{{serviceStatus == 'tried' && !hasFace}}" bindtap="viewBusinessService">
+      <view class="page__ft" wx:if="{{serviceStatus == 'tried' && !hasFace}}">
         <import src="../../../../templates/vipAd/vipAd.wxml" />
         <template is="vipAd" data="{{text: 'forbar'}}" />
       </view>

@@ -17,7 +17,7 @@
 
   </view>
 
-  <view class="page_ft" wx:if="{{serviceStatus == 'tried'}}" bindtap="viewBusinessService">
+  <view class="page_ft" wx:if="{{serviceStatus == 'tried'}}">
     <import src="../../../templates/vipAd/vipAd.wxml" />
     <template is="vipAd" data="{{text: 'forbar'}}" />
   </view>

@@ -61,6 +61,7 @@
       </view>
     </view>
   </view>
-<navigator url='../servicePay/index' hover-class='none'>
+<navigator url='../servicePay/index' hover-class='none' wx:if="{{building_package_status == 1}}">
 <view class="submit {{isIphoneX?'IphoneX':''}}">{{submit}}</view>
 </navigator>
+<view class="submit nouse {{isIphoneX?'IphoneX':''}}" wx:elif="{{building_package_status == 0}}">服务升级中，尽请期待</view>

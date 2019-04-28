@@ -8,7 +8,8 @@ Page({
    */
   data: {
     isiphoneX: app.globalData.isIphoneX,
-    route: 'other'
+    route: 'other',
+    building_package_status: null // (0: 不显示， 1: 显示)
   },
 
   /**
@@ -24,7 +25,7 @@ Page({
     }
 
     self.getSuiteInfos();
-
+    self.getCompany(self);
   },
 
   /**
@@ -33,6 +34,33 @@ Page({
   quickPay: function() {
     wx.redirectTo({
       url: '/pages/businessService/servicePay/index'
+    })
+  },
+
+  /**
+   * 获取公司
+   */
+  getCompany: function (that) {
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_info',
+        data: JSON.stringify({}),
+      },
+      success: res => {
+        if (res.data.sub_code == 0) {
+          let data = res.data.result
+          that.setData({
+            building_package_status: data.building_package_status
+          })
+        } else {
+          wx.showToast({
+            title: res.data.sub_msg,
+            icon: 'none'
+          })
+        }
+      }
     })
   },
 
