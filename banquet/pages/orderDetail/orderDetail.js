@@ -140,7 +140,7 @@ Page({
               book_id: _this.data.book_id,
               invoice_title: _this.data.invoice.title,
               invoice_number: _this.data.invoice.taxNumber,
-              invoice_type: parseInt(_this.invoice.type)
+              invoice_type: parseInt(_this.data.invoice.type)
             })
           },
           success: res => {
