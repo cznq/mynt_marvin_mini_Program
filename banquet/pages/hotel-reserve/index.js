@@ -247,17 +247,21 @@ Page({
       },
       success: res => {
         console.log(res);
-        if(res.data.sub_code =='SUCCESS'){
-          var params = JSON.stringify({
-            apply_time: res.data.result.apply_time,
-            book_no: res.data.result.book_no,//订单号
-            expect_confirm_time: res.data.result.expect_confirm_time,
-            book_id: res.data.result.book_id
-          })
-          wx.navigateTo({
-            url: '/banquet/pages/reserve-success/index?params='+params+ '&router='+ 'reserve',
-          })
-        }else if(res.data.sub_code ==''){
+        if(res.data.return_code =='SUCCESS'){
+          if(res.data.sub_code == 'SUCCESS'){
+            var params = JSON.stringify({
+              apply_time: res.data.result.apply_time,
+              book_no: res.data.result.book_no,//订单号
+              expect_confirm_time: res.data.result.expect_confirm_time,
+              book_id: res.data.result.book_id
+            })
+            wx.navigateTo({
+              url: '/banquet/pages/reserve-success/index?params='+params+ '&router='+ 'reserve',
+            })
+          }else{
+            _this.Toast(res.data.sub_msg)
+          }
+        }else{
           _this.Toast("服务器异常请重试")
         }
       },
