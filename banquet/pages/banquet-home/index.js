@@ -1,6 +1,5 @@
 // banquet/pages/banquet-home/index.js
 const app = getApp();
-var util = require("../../../utils/util.js");
 Page({
 
   /**
@@ -110,10 +109,6 @@ Page({
       },
       success: res => {
         if (res.data.sub_code == 0 && res.data.result) {
-          var commerces = res.data.result.commerces
-          for (var i = 0; i < commerces.length; i++) {
-            commerces[i].agreement_price = String(util.FenToYuan(commerces[i].agreement_price)).split('');
-          }
           that.setData({
             shopList: res.data.result.commerces,
             [slide_img]: res.data.result.hompage
