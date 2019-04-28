@@ -32,7 +32,7 @@
           <text class="_font30 _fontw400" wx:if='{{item.book_type=="1"}}'>{{item.bookBeginTime}} 至 {{item.bookEndTime}} ({{item.dateDiff_Day}}天)</text>
         <text class="_font28 _txt_darkgrey" >{{item.book_type=="2"? '人数：'+item.person_num+'人': '房间：'+item.room_num+'间'}}</text>
         <block wx:if='{{item.book_type=="1"}}'>
-          <text class="_font28 _txt_darkgrey">总价：¥{{item.book_price}}</text>
+          <text class="_font28 _txt_darkgrey">总价：¥{{item.book_price/100}}</text>
         </block>
         <block wx:if='{{item.book_type=="2"}}'>
           <text class="_font28 _txt_darkgrey">{{item.need_box ===1 ?'包厢就餐':'大厅就餐'}}</text>
