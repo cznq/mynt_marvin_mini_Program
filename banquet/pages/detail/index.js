@@ -2,6 +2,7 @@
 const app = getApp();
 var QQMapWX = require('../../../utils/qqmap-wx-jssdk.min.js');
 var wxParse = require('../../vendor/wxParse/wxParse.js');
+var util = require("../../../utils/util.js");
 
 Page({
 
@@ -34,7 +35,6 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-    console.log('options.commerce_id//商家id:', options.commerce_id);
     that.setData({
       commerce_id: options.commerce_id //商家id
     })
@@ -206,7 +206,10 @@ Page({
           var data = res.data.result;
           delete data.discount_tag
           for (var i = 0; i < data.length; i++) {
-            data[i].deal_price_fen = String(data[i].deal_price_fen).split('');
+            // data[i].deal_price_fen = String(data[i].deal_price_fen).split('');
+            data[i].deal_price_fen = String(util.FenToYuan(data[i].deal_price_fen)).split('');
+            data[i].store_price_fen = util.FenToYuan(data[i].store_price_fen);
+            data[i].preferential_price = util.FenToYuan(data[i].preferential_price);
           }
           that.setData({
             protocolInfo: data
@@ -298,8 +301,8 @@ Page({
 
   openMap: function() {
     wx.openLocation({
-      latitude: parseFloat(this.data.latitude),
-      longitude: parseFloat(this.data.longitude),
+      latitude: Number(this.data.latitude),
+      longitude: Number(this.data.longitude),
       scale: 28
     })
   },
