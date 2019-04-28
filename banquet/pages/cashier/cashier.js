@@ -54,7 +54,7 @@ Page({
             taxNumber: res.taxNumber,
             bankAccount: res.bankAccount,
             bankName: res.bankName,
-            type: res.type,
+            type: parseInt(res.type),
             telephone: res.telephone,
             companyAddress: res.companyAddress,
             invSwitch: true,
@@ -94,7 +94,8 @@ Page({
           open_id: wx.getStorageSync('open_id'),
           need_invoice: _this.data.need_invoice,
           invoice_title: _this.data.title,
-          invoice_number: _this.data.taxNumber
+          invoice_number: _this.data.taxNumber,
+          invoice_type: _this.data.type
         })
       },
       success: res => {
