@@ -26,18 +26,18 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-    var price = options.price
-    var store_price = options.store_price//门店价
-    var discountPriceOne = store_price-price//单个房间优惠金额
+    var price = parseFloat(options.price)
+    var store_price = parseFloat(options.store_price)//门店价
+    var discountPriceOne = util.subtract(store_price,price)//单个房间优惠金额
     var num = this.data.num
     that.setData({
       isIphone: app.globalData.isIphone,
       commerce_id: options.commerce_id,
       hotel_room_id:options.hotel_room_id,
       price:price,
-      totalPrice:price*num,
+      totalPrice:util.multiply(price,num),
       discountPriceOne:discountPriceOne,
-      discountPrice:discountPriceOne*num
+      discountPrice:util.multiply(discountPriceOne,num)
     })
     that.getDetailInfo(that.data.commerce_id);
   },
@@ -76,8 +76,8 @@ Page({
     }
     this.setData({
       num: num,
-      totalPrice:num*price,
-      discountPrice :num*discountPriceOne,
+      totalPrice:util.multiply(price,num),
+      discountPrice:util.multiply(discountPriceOne,num)
     });
   },
   /* 点击加号 */
@@ -88,8 +88,8 @@ Page({
     num++;
     this.setData({
       num: num,
-      totalPrice:num*price,
-      discountPrice :num*discountPriceOne,
+      totalPrice:util.multiply(price,num),
+      discountPrice:util.multiply(discountPriceOne,num)
     });
   },
   /* 输入框事件 */
@@ -99,8 +99,8 @@ Page({
     var discountPriceOne = this.data.discountPriceOne
     this.setData({
       num: num,
-      totalPrice:num*price,
-      discountPrice :num*discountPriceOne,
+      totalPrice:util.multiply(price,num),
+      discountPrice:util.multiply(discountPriceOne,num)
     });
   },
   remarksText: function(e) {

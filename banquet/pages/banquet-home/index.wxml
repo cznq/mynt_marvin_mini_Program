@@ -49,7 +49,8 @@
                     <view class="price-protocol hotel-price">
                       <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/num/num_yb.png"></image>
                       <block wx:for="{{item.agreement_price}}" wx:for-item="imgnum" wx:key="">
-                        <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/num/num_y{{imgnum}}.png"></image>
+                        <image wx:if="{{imgnum == '.'}}"  src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/num/ydot.png"></image>
+                        <image wx:else src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/num/num_y{{imgnum}}.png"></image>
                       </block>
                     </view>
                   </view>

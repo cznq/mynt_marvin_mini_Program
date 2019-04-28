@@ -91,7 +91,8 @@
                 <view class="price-num">
                   <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/num/numb.png"></image>
                   <block wx:for="{{item.deal_price_fen}}" wx:for-item="num" wx:key="">
-                    <image src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/num/num{{num}}.png"></image>
+                    <image wx:if="{{num == '.'}}"  src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/num/dot.png"></image>
+                    <image wx:else src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/num/num{{num}}.png"></image>
                   </block>
                 </view>
                 <button bindtap="hotelReserve" data-price="{{item.deal_price_fen}}" data-id="{{item.hotel_room_id}}" data-storeprice="{{item.store_price_fen}}">预定</button>
