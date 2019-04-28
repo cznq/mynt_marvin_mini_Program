@@ -16,7 +16,7 @@
         </view>
     </view>
     <view class=" introduce">
-        <view wx:if="{{currentIndex == 1}}" wx:for="{{imageList}}" wx:key="index" class='slide-image'>
+        <view wx:if="{{currentIndex == 1}}" wx:for="{{imageList}}" wx:key="index" class='introduce-image'>
             <image src="{{item.intro_image_url}}" mode='widthFix'></image>
         </view>
         <view wx:if="{{currentIndex == 2}}" wx:for="{{videoList}}" wx:key="index" class='video-view'>

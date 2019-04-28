@@ -39,11 +39,11 @@ function request(method, requestRouter, app) {
     })
   }
 
-  requestRouter.params.app_id = '65effd5a42fd1870b2c7c5343640e9a8'; //接口需要的第三方App_id
+  requestRouter.params.app_id = '65effd5a42fd1870b2c7c5343640e9a8'; //接口需要的第三方App_id//正式环境：ed01f6eaf0445ab969d00798bb44f2db//测试环境：65effd5a42fd1870b2c7c5343640e9a8
   requestRouter.params.timestamp = Math.round(new Date().getTime() / 1000 - 28800);
   requestRouter.params.sign_type = 'MD5';
   var stringA = 'app_id=' + requestRouter.params.app_id + '&data=' + requestRouter.params.data + '&timestamp=' + requestRouter.params.timestamp;
-  requestRouter.params.sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
+  requestRouter.params.sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95'); //正式环境：976b5abac8278c4306b612643216f52d//测试：a8bfb7a5f749211df4446833414f8f95
   //打印参数
   console.log('requestRouter.params:', requestRouter.params);
   wx.request({

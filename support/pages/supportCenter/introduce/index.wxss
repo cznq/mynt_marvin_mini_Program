@@ -21,6 +21,11 @@ page {
     height: 360rpx;
 }
 
+.introduce-image {
+    width: 748rpx;
+    padding: 0 auto;
+}
+
 .tab {
     width: 750rpx;
     height: 88rpx;
