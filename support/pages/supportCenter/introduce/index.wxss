@@ -26,6 +26,10 @@ page {
     padding: 0 auto;
 }
 
+.introduce-image image {
+    width: 100%;
+}
+
 .tab {
     width: 750rpx;
     height: 88rpx;
