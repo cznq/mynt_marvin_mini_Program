@@ -200,6 +200,9 @@ Page({
    */
   onPullDownRefresh: function() {
     const _this = this
+    _this.setData({
+      curr_page: 1
+    })
     _this.get_order_list(_this, _this.data.book_status, 5, 1, false)
     setTimeout(() => {
       wx.stopPullDownRefresh();
