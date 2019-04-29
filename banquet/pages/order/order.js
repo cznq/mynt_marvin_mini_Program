@@ -60,6 +60,7 @@ Page({
         break;
       default:
         console.log('无效的选择');
+        break;
     }
     _this.get_order_list(_this, _this.data.book_status)
   },
@@ -218,7 +219,7 @@ Page({
    */
   onReachBottom: function() {
     const _this = this;
-    if (_this.data.curr_page != _this.data.total_page) {
+    if (_this.data.curr_page != _this.data.total_page && _this.data.totalCount < 10) {
       let page = _this.data.curr_page + 1
       _this.setData({
         curr_page: page
