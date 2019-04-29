@@ -1,5 +1,6 @@
 // pages/businessService/servicePay/index.js
 const app = getApp()
+const util = require('../../../utils/util');
 Page({
 
   /**
@@ -46,16 +47,15 @@ Page({
         if (res.data.return_code === "SUCCESS" && res.data.result) {
           let data = res.data.result.period_list
           for (let obj of data) {
-            for (let i in obj) {
-              if (obj['reduction'] === 1) {
-                let price_arr = obj['real_money'].toString().split('')
-                obj.price_arr = price_arr
-              } else {
-                let price_arr = obj['package_money'].toString().split('')
-                obj.price_arr = price_arr
-                obj.reason = ""
-              }
-
+            obj['real_money'] = util.FenToYuan(obj['real_money'])
+            obj['package_money'] = util.FenToYuan(obj['package_money'])
+            if (obj['reduction'] === 1) { //是否优惠,0:没有优惠,1:优惠
+              let price_arr = obj['real_money'].toString().split('')
+              obj.price_arr = price_arr
+            } else {
+              let price_arr = obj['package_money'].toString().split('')
+              obj.price_arr = price_arr
+              obj.reason = ""
             }
           }
           _this.setData({

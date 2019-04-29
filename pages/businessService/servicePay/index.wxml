@@ -25,7 +25,7 @@
               <image src="../../../images/num/num{{num=='.'?'dot':num}}.png" mode='widthFix' style="width:{{tools.returnPicWidth(num)}}rpx"></image>
             </block>
           </view>
-          <view class="save" wx:if="{{item.discount_rate}}">立省{{item.discount_pay}}元</view>
+          <view class="save" wx:if="{{item.discount_rate}}">立省{{item.discount_pay/100}}元</view>
         </view>
       </view>
     </view>
