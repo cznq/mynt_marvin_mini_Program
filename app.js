@@ -1,15 +1,16 @@
 const Promise = require('utils/promise.js');
+// 环境变量配置
+const env = 'test' // dev, test, prod (开发、测试、生产环境) 
+const setting = require('config/' + env + '.js')
+
 /**
  * Fundebug 打印日志
  * 其它页面引用  app.globalData.fundebug.notify("TEST", "Hello, Fundebug!");
  * 抛出的错误对象   app.globalData.fundebug.notifyError(new Error("TEST"));
- *
  */
 var fundebug = require('utils/fundebug.1.0.0.min.js');
-// 配置项
 fundebug.init({
-  // apikey: "950ab8d47c6dbb69527a604ee684c588369af4dd554cc59fa38e1e4aa5b763ac", //正式环境
-  apikey: "f7a08bd4f8006965ba11314b2571777ea295a98e84766ade31bdb5c272b87428", //测试环境
+  apikey: setting.fundebug.apikey,
   silent: false
 })
 
@@ -20,24 +21,11 @@ App({
     isIphoneX: false,
     isIphone: false,
     BASE_IMG_URl: 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/',
-    // 开发环境
-    // BASE_API_URL: 'http://61.149.7.239:10001/mini_program/api/',
-    // BENIFIT_API_URL: 'http://61.149.7.239:10004/mini_program/api',
-    // BASE_API_URL: 'http://192.168.1.204:10009/mini_program/api/', //VIP套餐接口调试地址
-    // BASE_API_URL: 'http://192.168.1.204:10001/mini_program/api/', //内网环境
-    // BENIFIT_API_URL: 'http://192.168.1.204:10004/mini_program/api', //内网环境
-    // WEB_VIEW_URL: 'https://marvin-official-account-dev.slightech.com',
-    // BANQUET_API_URL: 'http://192.168.1.211:20000/benifit',
-    // 测试环境
-    BASE_API_URL: 'https://marvin-api-test.slightech.com/mini_program/api/',
-    BENIFIT_API_URL: 'https://marvin-benifit-api-test.slightech.com/mini_program/api',
-    WEB_VIEW_URL: 'https://marvin-official-account-test.slightech.com',
-    BANQUET_API_URL: 'https://marvin-test.myntai.com/benifit',
-    // 正式环境
-    // BASE_API_URL: 'https://marvin-api.slightech.com/mini_program/api/',
-    // BENIFIT_API_URL: 'https://marvin-benifit-api.slightech.com/mini_program/api',
-    // WEB_VIEW_URL: 'https://marvin-official-account.slightech.com',
-    // BANQUET_API_URL: 'https://marvin.myntai.com/benifit'
+    BASE_API_URL: setting.api.BASE_API_URL,
+    BENIFIT_API_URL: setting.api.BENIFIT_API_URL,
+    WEB_VIEW_URL: setting.api.WEB_VIEW_URL,
+    BANQUET_API_URL: setting.api.BANQUET_API_URL,
+    SIGN_DATA: setting.signData
   },
 
   onLaunch: function() {

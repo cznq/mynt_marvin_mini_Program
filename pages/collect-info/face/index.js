@@ -134,6 +134,12 @@ Page({
             })
           }
         }, 1000);
+      },
+      fail: function () {
+        wx.showToast({
+          title: '微信录入视频出错',
+          icon: 'none'
+        })
       }
     })
   },
