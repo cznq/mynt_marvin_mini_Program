@@ -28,6 +28,9 @@ Page({
     _this.get_order_list(_this)
   },
   touchTit: function(e) {
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
     const _this = this
     let tag = e.currentTarget.dataset.tag;
     switch (tag) {
@@ -36,32 +39,29 @@ Page({
           book_status: 0,
           curr_page: 1
         });
-        _this.get_order_list(_this, _this.data.book_status)
         break;
       case '1':
         this.setData({
           book_status: 1,
           curr_page: 1
         });
-        _this.get_order_list(_this, _this.data.book_status)
         break;
       case '2':
         this.setData({
           book_status: 2,
           curr_page: 1
         });
-        _this.get_order_list(_this, _this.data.book_status)
         break;
       case '3':
         this.setData({
           book_status: 3,
           curr_page: 1
         });
-        _this.get_order_list(_this, _this.data.book_status)
         break;
       default:
         console.log('无效的选择');
     }
+    _this.get_order_list(_this, _this.data.book_status)
   },
   /**
    * 请求参数 requestHandler
@@ -70,7 +70,7 @@ Page({
    * page
    * continu       true | false
    */
-  get_order_list: (_this, book_status = 0, page_size = 5, page = 1, continu = false) => {
+  get_order_list: (_this, book_status = 0, page_size = 10, page = 1, continu = false) => {
     app.request.requestApi.post({
       url: app.globalData.BANQUET_API_URL + "/commerce/book/get_order_list",
       params: {
@@ -206,7 +206,7 @@ Page({
     _this.setData({
       curr_page: 1
     })
-    _this.get_order_list(_this, _this.data.book_status, 5, 1, false)
+    _this.get_order_list(_this, _this.data.book_status, 10, 1, false)
     setTimeout(() => {
       wx.stopPullDownRefresh();
     }, 0)
@@ -223,7 +223,7 @@ Page({
       _this.setData({
         curr_page: page
       })
-      _this.get_order_list(_this, _this.data.book_status, 5, _this.data.curr_page, true)
+      _this.get_order_list(_this, _this.data.book_status, 10, _this.data.curr_page, true)
     } else {
       wx.showToast({
         title: '我们是有底线的哦！',
