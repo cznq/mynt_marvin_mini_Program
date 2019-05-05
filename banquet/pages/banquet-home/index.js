@@ -108,16 +108,27 @@ Page({
         })
       },
       success: res => {
-        if (res.data.sub_code == 0 && res.data.result) {
-          that.setData({
-            shopList: res.data.result.commerces,
-            [slide_img]: res.data.result.hompage
-          })
-          //console.log(this.data.shopList)
-        } else {
-          that.setData({
-            shopList: null
-          })
+        if(res.data.sub_code == 0){
+          if(res.data.result){
+            if(res.data.result.hompage !=''){
+              that.setData({
+                [slide_img]: res.data.result.hompage
+              })
+            }else{
+              that.setData({
+                [slide_img]: [{homepage_url:"https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/banquet/default%402x.png",link_url: "/pages/businessService/suite-introduce/suite-introduce"}]
+              })
+            }
+            if(res.data.result.commerces){
+              that.setData({
+                shopList: res.data.result.commerces
+              })
+            }else{
+              that.setData({
+                shopList: null
+              })
+            }
+          }
         }
       }
     })
