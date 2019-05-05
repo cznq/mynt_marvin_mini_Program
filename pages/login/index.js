@@ -23,13 +23,12 @@ Page({
       success: function(res) {
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: function(res) {
-              app.authorizeLogin(res.encryptedData, res.iv, () => {
-                wx.reLaunch({
-                  url: _this.data.url,
-                })
-              });
+          _this.wxGetUserInfo(_this)
+        } else {
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success() {
+              _this.wxGetUserInfo(_this)
             }
           })
         }
@@ -37,5 +36,16 @@ Page({
     })
   },
 
-  
+  wxGetUserInfo(_this) {
+    wx.getUserInfo({
+      success: function (res) {
+        app.authorizeLogin(res.encryptedData, res.iv, () => {
+          wx.reLaunch({
+            url: _this.data.url,
+          })
+        });
+      }
+    })
+  }
+
 })
