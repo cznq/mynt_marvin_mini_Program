@@ -98,12 +98,14 @@ Page({
     onLoad: function(options) {
         var _this = this;
         _this.get_review_status(_this); //获取用户状态
+        _this.get_banquet_info(_this); //商务宴请
         _this.data.islock = false;
     },
     onShow: function() {
         var _this = this;
         if (_this.data.islock) {
             _this.get_review_status(_this); //获取用户状态
+            _this.get_banquet_info(_this); //商务宴请
         }
         _this.data.islock = true;
     },
@@ -162,6 +164,64 @@ Page({
               console.log('fail');
           }
       })
+  },
+  //商务宴请入口
+  get_banquet_info:function(_this){
+    app.Util.network.POST({
+      url: app.globalData.BASE_API_URL,
+      params: {
+        service: 'company',
+        method: 'get_company_service_status',
+        data: JSON.stringify({
+          union_id: wx.getStorageSync('xy_session'),
+          service_key: 'EMPLOYEE_BENIFIT'
+        })
+      },
+      success: res => {
+        if (res.data.result) {
+          if (res.data.result.service_status != 0) { //开通或试用
+            app.Util.network.POST({ //获取职员信息
+              url: app.globalData.BASE_API_URL,
+              params: {
+                  service: 'company',
+                  method: 'get_employee_info',
+                  data: JSON.stringify({
+                      union_id: wx.getStorageSync('xy_session')
+                  })
+              },
+              success: res => {
+                  console.log('get_employee_info API return:', res);
+                  var resdata = res.data.result;
+                  if (res.data.sub_code == 0) {
+                    if (resdata.role == 2 || resdata.role == 3 ||resdata.person_type ) { //前台 管理员 高管 
+                      console.log("111")
+                      _this.setData({
+                          'application[6].isShow': true //商务宴请
+                      })
+                    } else {
+                      _this.setData({
+                            'application[6].isShow': false //商务宴请
+                        })
+                    }
+                  } else {
+                      console.log(res.data.sub_msg);
+                  }
+              },
+              fail: res => {
+                  console.log('fail');
+              }
+            })
+          }else{
+            _this.setData({
+              'application[6].isShow': false //商务宴请
+            })
+          }
+        }
+      },
+      fail: res => {
+        console.log('获取服务失败')
+      }
+    })
   },
   //加入公司
   joinCompany: function() {
