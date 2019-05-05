@@ -3,7 +3,7 @@
     <view class="cameraErrorText _txt_center">
       <text>{{cameraErrorText}}</text>
     </view>
-    <view wx:if="{{status == 'start'}}">
+    <view wx:if="{{status == 'start' && cameraErrorText == ''}}">
       <view class="_font44 _txt_center"><text>请正对手机，点击下方按钮\n读出屏幕中出现的数字</text></view>
     </view>
     <view class="check-part _txt_center" wx:elif="{{status == 'uploading' || status == 'stop'}}">
