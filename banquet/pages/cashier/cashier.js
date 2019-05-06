@@ -49,7 +49,7 @@ Page({
   chooseInvoece: function() {
     var that = this
     that.checkAuth(that, function() {
-      that.chooseInvoe()
+      that.invoeStatus()
     })
   },
 
@@ -59,24 +59,25 @@ Page({
         console.log(res)
         if (res.authSetting['scope.invoiceTitle']) {
           callback()
-        } else {
-          _this.openAuth()
-        }
-      }
-    })
-  },
-
-  openAuth: function() {
-    let _this = this
-    wx.openSetting({
-      success: function(data) {
-        if (data.authSetting["scope.invoiceTitle"] === true) {
-          wx.showToast({
-            title: '授权成功',
-            icon: 'success',
-            duration: 1000
+        } else if (res.authSetting['scope.invoiceTitle'] === false) {
+          wx.openSetting({
+            success: function(data) {
+              if (data.authSetting["scope.invoiceTitle"] === true) {
+                wx.showToast({
+                  title: '授权成功',
+                  icon: 'success',
+                  duration: 1000
+                })
+                _this.chooseInvoece();
+              } else {
+                wx.showToast({
+                  title: '发票抬头授权失败',
+                  icon: 'none',
+                  duration: 3000
+                })
+              }
+            }
           })
-          _this.chooseInvoece();
         } else {
           wx.authorize({
             scope: 'scope.invoiceTitle',
@@ -88,8 +89,7 @@ Page({
       }
     })
   },
-
-  chooseInvoe() {
+  invoeStatus() {
     let _that = this;
     if (!_that.data.invSwitch) {
       wx.chooseInvoiceTitle({
