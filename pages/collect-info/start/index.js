@@ -100,8 +100,34 @@ Page({
   },
 
   startRecodeFace: function () {
+    let _this = this
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.camera']) {
+          _this.next(_this)
+        } else if (res.authSetting['scope.camera'] === false) {
+          wx.openSetting({
+            success: function (data) {
+              if (data.authSetting["scope.camera"] === true) {
+                _this.next(_this)
+              }
+            }
+          })
+        } else {
+          wx.authorize({
+            scope: 'scope.camera',
+            success() {
+              _this.next(_this)
+            }
+          })
+        }
+      }
+    })
+  },
+
+  next(_this) {
     wx.navigateTo({
-      url: '../face/index?source=' + this.data.options.source + '&params=' + this.data.options.params + '&idInfo=' + this.data.options.idInfo,
+      url: '../face/index?source=' + _this.data.options.source + '&params=' + _this.data.options.params + '&idInfo=' + _this.data.options.idInfo
     })
   },
 
