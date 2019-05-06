@@ -124,7 +124,10 @@ Page({
           that.setData({
             commerceDetail: res.data.result,
             [slide_img]: res.data.result.thumbnail_url,
-            [imgCount]: res.data.result.thumbnail_url.length
+            [imgCount]: res.data.result.thumbnail_url.length,
+            latitude: res.data.result.latitude,
+            longitude: res.data.result.longitude,
+            commerce_type: res.data.result.type
           })
           wx.setNavigationBarTitle({
             title: res.data.result.name
@@ -133,7 +136,7 @@ Page({
         }
         that.getProtocol(commerce_id, that.data.commerce_type);
         that.getComments(commerce_id);
-        app.Util.generateMap(this, res.data.result.address);
+        //app.Util.generateMap(this, res.data.result.address);
       }
     })
   },
@@ -344,8 +347,8 @@ Page({
 
   openMap: function () {
     wx.openLocation({
-      latitude: this.data.latitude,
-      longitude: this.data.longitude,
+      latitude: Number(this.data.latitude),
+      longitude: Number(this.data.longitude),
       scale: 28
     })
   },
