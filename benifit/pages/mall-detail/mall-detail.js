@@ -349,7 +349,9 @@ Page({
     wx.openLocation({
       latitude: Number(this.data.latitude),
       longitude: Number(this.data.longitude),
-      scale: 28
+      scale: 28,
+      name:this.data.commerceDetail.name,
+      address:this.data.commerceDetail.address,
     })
   },
 
