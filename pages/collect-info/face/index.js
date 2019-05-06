@@ -103,16 +103,16 @@ Page({
         self.setData({
           status: 'stop',
           timer: self.data.timer + 1,
-          progress: 100 - (100 / self.data.faceConfig.counter) * self.data.timer
+          progress: 100 - (100 / parseInt(self.data.faceConfig.counter)) * self.data.timer
         })
-        int = setInterval(function() {
-          if (self.data.timer > self.data.faceConfig.counter) {
+        int = setInterval(function () {
+          if (self.data.timer > parseInt(self.data.faceConfig.counter)) {
             clearInterval(int);
             self.stopRecord(self, self.data.ctx, int);
           } else {
             self.setData({
               timer: self.data.timer + 1,
-              progress: 100 - (100 / self.data.faceConfig.counter) * self.data.timer
+              progress: 100 - (100 / parseInt(self.data.faceConfig.counter)) * self.data.timer
             })
           }
         }, 1000);
