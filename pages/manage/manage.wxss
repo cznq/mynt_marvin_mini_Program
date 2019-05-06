@@ -44,7 +44,7 @@ background: linear-gradient(to bottom,#ffffff 0%,#ffffff 3%,#f3f3f3 97%,#f3f3f3 
 
 
 .manage-swiper-box{height:210rpx;margin-top:42rpx;margin-bottom:12rpx;}
-swiper-item image{width:730rpx;float:left;}
+swiper-item image{width:630rpx;height:210rpx;float:left;}
 swiper-item.active1 image {width:630rpx;margin-left:40rpx;display: block;height:210rpx;border-radius: 8rpx;}
 
 .dots{display: flex;justify-content: center;margin-bottom:35rpx;}
