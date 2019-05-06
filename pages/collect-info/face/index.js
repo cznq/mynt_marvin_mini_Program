@@ -67,7 +67,7 @@ Page({
           wx.openSetting({
             success: function (data) {
               if (data.authSetting["scope.record"] === true) {
-                callback()
+                wx.navigateBack()
               }
             }
           })
