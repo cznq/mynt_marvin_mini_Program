@@ -42,12 +42,6 @@ Page({
       this.setData({
         ctx: wx.createCameraContext()
       })
-      wx.authorize({
-        scope: 'scope.record',
-        success(res) {
-          console.log(res)
-        }
-      })
     }
     app.Util.checkcanIUse('cover-view');
     
@@ -62,36 +56,26 @@ Page({
     that.data.isCameraAuth = false;
   },
 
-  openAuth: function () {
-    wx.openSetting({
-      success: function (data) {
-        if (data.authSetting["scope.camera"] === true && data.authSetting["scope.record"] === true) {
-          wx.showToast({
-            title: '授权成功',
-            icon: 'success',
-            duration: 1000
+  checkAuth(_this, callback = function () {}) {
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.record']) {
+          callback()
+        } else if (res.authSetting['scope.record'] === false) {
+          wx.openSetting({
+            success: function (data) {
+              if (data.authSetting["scope.record"] === true) {
+                callback()
+              }
+            }
           })
-          wx.navigateBack();
         } else {
           wx.authorize({
             scope: 'scope.record',
             success() {
-              wx.navigateBack();
+              callback()
             }
           })
-        }
-      }
-    })  
-  },
-
-  checkAuth(_this, callback = function () {}) {
-    wx.getSetting({
-      success(res) {
-        console.log(res)
-        if (res.authSetting['scope.camera'] && res.authSetting['scope.record']) {
-          callback()
-        } else {
-          _this.openAuth()
         }
       }
     })
