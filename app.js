@@ -180,7 +180,12 @@ App({
     wx.login({
       success: res => {
         if (res.code) {
-          that.thirdLogin(res.code, encryptedData, iv, callback);
+          wx.getUserInfo({
+            success: function (relt) {
+              console.log(relt)
+              that.thirdLogin(res.code, relt.encryptedData, relt.iv, callback);
+            }
+          })
         }
       },
       fail: res => {

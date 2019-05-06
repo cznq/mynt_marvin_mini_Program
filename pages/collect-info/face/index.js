@@ -24,6 +24,7 @@ Page({
     status: 'start', // start, stop, uploading
     cameraErrorText: "",  
     isCameraAuth:true,
+    isMicroAuth: true,
     progress: 100,
     face_verify_code: [],
     tempThumbPath: '',
@@ -31,7 +32,7 @@ Page({
   },
 
   onLoad: function (options) {
-    console.log(options);
+    console.log(options); this.checkAuth();
     this.loadConfig(this);
     this.data.options.source = options.source;
     this.data.options.params = JSON.parse(options.params);
@@ -44,6 +45,7 @@ Page({
       })
     }
     app.Util.checkcanIUse('cover-view');
+    
   },
 
   cameraError: function () {
@@ -55,46 +57,36 @@ Page({
     that.data.isCameraAuth = false;
   },
 
-  openCameraAuth: function () {
-    var that = this;
-    wx.getSetting({
-      success(res) {
-        if (res.authSetting['scope.camera'] == false) {
-          wx.showModal({
-            title: '是否授权录入人脸',
-            content: '录入人脸需要打开摄像头，点击确定打开摄像头',
-            success: function (tip) {
-              if (tip.confirm) {
-                wx.openSetting({
-                  success: function (data) {
-                    if (data.authSetting["scope.camera"] === true) {
-                      wx.showToast({
-                        title: '授权成功',
-                        icon: 'success',
-                        duration: 1000
-                      })
-                      that.setData({
-                        cameraErrorText: "已经授权，请关闭小程序重新打开"
-                      });
-                      that.data.isCameraAuth = true;
-                      wx.navigateBack();
-                    } else {
-                      wx.showToast({
-                        title: '授权失败',
-                        icon: 'none',
-                        duration: 1000
-                      })
-                      that.data.isCameraAuth = false;
-                    }
-                  }
-                })
-              }
+  openAuth: function () {
+    wx.openSetting({
+      success: function (data) {
+        if (data.authSetting["scope.camera"] === true && data.authSetting["scope.record"] === true) {
+          wx.showToast({
+            title: '授权成功',
+            icon: 'success',
+            duration: 1000
+          })
+          wx.navigateBack();
+        } else {
+          wx.authorize({
+            scope: 'scope.record',
+            success() {
+              wx.navigateBack();
             }
           })
-        }else{
-          if (res.authSetting['scope.camera'] !== undefined){
-            that.data.isCameraAuth = true;
-          }
+        }
+      }
+    })  
+  },
+
+  checkAuth(_this, callback = function () {}) {
+    wx.getSetting({
+      success(res) {
+        console.log(res)
+        if (res.authSetting['scope.camera'] && res.authSetting['scope.record']) {
+          callback()
+        } else {
+          _this.openAuth()
         }
       }
     })
@@ -104,11 +96,10 @@ Page({
    * 开始录入
    */
   startRecodeFace: function () {
-    if (this.data.isCameraAuth==true){
-      this.startRecord(this, this.data.ctx);
-    } else {
-      this.openCameraAuth();
-    }
+    var that = this
+    that.checkAuth(that, function(){
+      that.startRecord(that, that.data.ctx)
+    })
   },
 
   /**
@@ -135,10 +126,11 @@ Page({
           }
         }, 1000);
       },
-      fail: function () {
+      fail: function (res) {
         wx.showToast({
           title: '微信录入视频出错',
-          icon: 'none'
+          icon: 'none',
+          duration: 3000
         })
       }
     })
@@ -158,8 +150,12 @@ Page({
         console.log(res)
         self.finishSubmit(self, timer, res.tempVideoPath)
       },
-      fail: function () {
-        console.log('stop recode fail')
+      fail: function(res) {
+        wx.showToast({
+          title: '微信录入视频出错',
+          icon: 'none',
+          duration: 3000
+        })
       }
     })
   },
