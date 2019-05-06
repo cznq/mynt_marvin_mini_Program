@@ -43,7 +43,53 @@ Page({
     }
 
   },
-  chooseInvoece() {
+  /**
+   * 申请发票录入
+   */
+  chooseInvoece: function() {
+    var that = this
+    that.checkAuth(that, function() {
+      that.chooseInvoe()
+    })
+  },
+
+  checkAuth(_this, callback = function() {}) {
+    wx.getSetting({
+      success(res) {
+        console.log(res)
+        if (res.authSetting['scope.invoiceTitle']) {
+          callback()
+        } else {
+          _this.openAuth()
+        }
+      }
+    })
+  },
+
+  openAuth: function() {
+    let _this = this
+    wx.openSetting({
+      success: function(data) {
+        if (data.authSetting["scope.invoiceTitle"] === true) {
+          wx.showToast({
+            title: '授权成功',
+            icon: 'success',
+            duration: 1000
+          })
+          _this.chooseInvoece();
+        } else {
+          wx.authorize({
+            scope: 'scope.invoiceTitle',
+            success() {
+              _this.chooseInvoece();
+            }
+          })
+        }
+      }
+    })
+  },
+
+  chooseInvoe() {
     let _that = this;
     if (!_that.data.invSwitch) {
       wx.chooseInvoiceTitle({

@@ -121,6 +121,8 @@ swiper {
 .shop-list {
   width: 100%;
   overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .shop-list .shop-wrapper {
@@ -131,7 +133,6 @@ swiper {
   border-radius: 10rpx;
   display: inline-block;
   margin-right: 14px;
-  float: left;
   margin-bottom: 14px;
   box-shadow: 0 0 16rpx rgba(0, 0, 0, 0.05);
 }
