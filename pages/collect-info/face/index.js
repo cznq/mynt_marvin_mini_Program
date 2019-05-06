@@ -24,7 +24,6 @@ Page({
     status: 'start', // start, stop, uploading
     cameraErrorText: "",  
     isCameraAuth:true,
-    isMicroAuth: true,
     progress: 100,
     face_verify_code: [],
     tempThumbPath: '',
@@ -42,6 +41,12 @@ Page({
       app.myLog('相机检测', '相机组件检测通过');
       this.setData({
         ctx: wx.createCameraContext()
+      })
+      wx.authorize({
+        scope: 'scope.record',
+        success(res) {
+          console.log(res)
+        }
       })
     }
     app.Util.checkcanIUse('cover-view');
@@ -340,17 +345,6 @@ Page({
       },
       complete: res => {}
     })
-  },
-
-  onShow: function () {
-    this.openCameraAuth();
-  },
-
-  /**
-   * 返回按钮
-   */
-  backAction: function () {
-    wx.navigateBack({});
   }
 
 })
