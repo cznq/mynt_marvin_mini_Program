@@ -105,13 +105,8 @@ Page({
           timer: self.data.timer + 1,
           progress: 100 - (100 / parseInt(self.data.faceConfig.counter)) * self.data.timer
         })
-<<<<<<< HEAD
-        int = setInterval(function() {
-          if (self.data.timer > self.data.faceConfig.counter) {
-=======
         int = setInterval(function () {
           if (self.data.timer > parseInt(self.data.faceConfig.counter)) {
->>>>>>> hotfix4_30
             clearInterval(int);
             self.stopRecord(self, self.data.ctx, int);
           } else {
