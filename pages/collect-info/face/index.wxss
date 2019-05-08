@@ -217,16 +217,3 @@ button[disabled] {
   transition: width 1s linear;
   background-color: rgba(0, 123, 255, .2)
 }
-.progressBar .active.ani {
-  animation: progressAni 4s linear;
-}
-@keyframes progressAni{
-  from {
-    /* height: 16rpx; */
-    transform: translateX(0)
-  }
-  to {
-    /* height: 36rpx; */
-    transform: translateX(-100%)
-  }
-}

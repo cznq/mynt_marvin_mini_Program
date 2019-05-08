@@ -31,8 +31,6 @@ Page({
   },
 
   onLoad: function(options) {
-    console.log(options);
-    this.checkAuth();
     this.loadConfig(this);
     this.data.options.source = options.source;
     this.data.options.params = JSON.parse(options.params);
@@ -45,7 +43,6 @@ Page({
       })
     }
     app.Util.checkcanIUse('cover-view');
-
   },
 
   cameraError: function() {
@@ -56,7 +53,6 @@ Page({
     });
     that.data.isCameraAuth = false;
   },
-
 
   checkAuth(_this, callback = function() {}) {
     wx.getSetting({
@@ -100,6 +96,9 @@ Page({
     var int;
     ctx.startRecord({
       success: (res) => {
+        setTimeout(function () {
+          self.stopRecord(self, self.data.ctx);
+        }, parseInt(self.data.faceConfig.counter) * 1000)
         self.setData({
           status: 'stop',
           timer: self.data.timer + 1,
@@ -108,7 +107,6 @@ Page({
         int = setInterval(function () {
           if (self.data.timer > parseInt(self.data.faceConfig.counter)) {
             clearInterval(int);
-            self.stopRecord(self, self.data.ctx, int);
           } else {
             self.setData({
               timer: self.data.timer + 1,
@@ -116,6 +114,7 @@ Page({
             })
           }
         }, 1000);
+        
       },
       fail: function() {
         wx.showToast({
@@ -129,7 +128,7 @@ Page({
   /**
    * 结束录像
    */
-  stopRecord(self, ctx, timer) {
+  stopRecord(self, ctx) {
     ctx.stopRecord({
       success: (res) => {
         ctx.takePhoto({
@@ -140,8 +139,7 @@ Page({
             })
           }
         })
-        console.log(res)
-        self.finishSubmit(self, timer, res.tempVideoPath)
+        self.finishSubmit(self, res.tempVideoPath)
       },
       fail: function(res) {
         wx.showToast({
@@ -153,9 +151,9 @@ Page({
     })
   },
 
-  finishSubmit(that, timer, tempFilePath) {
+  finishSubmit(that, tempFilePath) {
     if (that.data.options.source == 'invite') {
-      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.company_id, 0, function() {
+      that.uploadFaceVideo(that, tempFilePath, that.data.options.params.company_id, 0, function() {
         app.receiveSubmit(that.data.options.params.invitation_id, that.data.options.params.form_id, function() {
           wx.hideLoading();
           wx.reLaunch({
@@ -164,7 +162,7 @@ Page({
         })
       });
     } else if (that.data.options.source == 'applyVisit') {
-      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.visit_company_id, 0, function() {
+      that.uploadFaceVideo(that, tempFilePath, that.data.options.params.visit_company_id, 0, function() {
         app.applySubmit(that.data.options.params.visit_company_id, that.data.options.params.form_id, that.data.options.params.visitor_name, that.data.options.params.note, function(visit_apply_id) {
           wx.hideLoading();
           wx.reLaunch({
@@ -173,7 +171,7 @@ Page({
         })
       });
     } else if (that.data.options.source == 'takeCard') {
-      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.company_id, 2, function() {
+      that.uploadFaceVideo(that, tempFilePath, that.data.options.params.company_id, 2, function() {
         wx.hideLoading();
         if (that.data.options.params.card_type == 0) {
           wx.reLaunch({
@@ -186,14 +184,14 @@ Page({
         }
       });
     } else if (that.data.options.source == 'editInfo') {
-      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.company_id, 2, function() {
+      that.uploadFaceVideo(that, tempFilePath, that.data.options.params.company_id, 2, function() {
         wx.hideLoading();
         wx.reLaunch({
           url: '/pages/employee/homepage/index',
         })
       });
     } else if (that.data.options.source == 'reRecodeFace') {
-      that.uploadFaceVideo(that, timer, tempFilePath, that.data.options.params.company_id, 2, function() {
+      that.uploadFaceVideo(that, tempFilePath, that.data.options.params.company_id, 2, function() {
         wx.hideLoading();
         wx.reLaunch({
           url: '/pages/employee/homepage/index',
@@ -205,7 +203,7 @@ Page({
   /**
    * 上传人脸视频
    */
-  uploadFaceVideo(self, timer, tempVideoPath, company_id, user_type, callback = function() {}) {
+  uploadFaceVideo(self, tempVideoPath, company_id, user_type, callback = function() {}) {
     var data = JSON.stringify({
       union_id: wx.getStorageSync('xy_session'),
       company_id: company_id,
@@ -243,7 +241,6 @@ Page({
         data: data
       },
       success: function(res) {
-        console.log(res);
         var data = JSON.parse(res.data);
         if (data.sub_code == 0) {
           self.updateFace(self, user_type, callback)
@@ -261,7 +258,6 @@ Page({
       }
     })
     uploadTask.onProgressUpdate((res) => {
-      console.log(res)
       self.setData({
         status: 'uploading'
       })
@@ -283,7 +279,6 @@ Page({
       },
       showLoading: false,
       success: res => {
-        console.log(res)
         if (res.data.sub_code == 0) {
           callback()
         } else if (res.data.result) {

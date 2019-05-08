@@ -15,10 +15,6 @@
       </view>
     </view>
     <camera device-position="front" flash="off" binderror="cameraError" style="width: 100%; height: 780rpx;position:relative;" wx:if="{{status == 'start' || status == 'stop'}}">
-      <!-- <cover-view class="warn _font30">
-        <cover-view class="txt">请将人脸放置在人形框内，</cover-view>
-        <cover-view class="txt">并用普通话说出4位验证数字</cover-view>
-      </cover-view> -->
       <cover-image class="circle" mode="widthFix" src="../../../images/avatar-frame@2x.png"></cover-image>
     </camera>
     <view class="_relative lastPhoto" wx:if="{{status == 'uploading'}}">
