@@ -96,27 +96,24 @@ Page({
     var int;
     ctx.startRecord({
       success: (res) => {
-        setTimeout(function () {
-          self.stopRecord(self, self.data.ctx);
-        }, parseInt(self.data.faceConfig.counter) * 1000)
         self.setData({
           status: 'stop',
           timer: self.data.timer + 1,
           progress: 100 - (100 / parseInt(self.data.faceConfig.counter)) * self.data.timer
         })
         int = setInterval(function () {
-          if (self.data.timer > parseInt(self.data.faceConfig.counter)) {
-            clearInterval(int);
-          } else {
-            self.setData({
-              timer: self.data.timer + 1,
-              progress: 100 - (100 / parseInt(self.data.faceConfig.counter)) * self.data.timer
-            })
-          }
+          self.setData({
+            timer: self.data.timer + 1,
+            progress: 100 - (100 / parseInt(self.data.faceConfig.counter)) * self.data.timer
+          })
         }, 1000);
-        
+        setTimeout(function () {
+          clearInterval(int);
+          self.stopRecord(self, self.data.ctx);
+        }, parseInt(self.data.faceConfig.counter) * 1000)
       },
-      fail: function() {
+      fail: function(res) {
+        app.myLog("开始录像出错", res.errMsg);
         wx.showToast({
           title: '微信录入视频出错',
           icon: 'none',
@@ -142,8 +139,9 @@ Page({
         self.finishSubmit(self, res.tempVideoPath)
       },
       fail: function(res) {
+        app.myLog("结束录像出错", res.errMsg);
         wx.showToast({
-          title: '微信录入视频出错',
+          title: '微信结束录入视频出错',
           icon: 'none',
           duration: 3000
         })
