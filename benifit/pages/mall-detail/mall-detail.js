@@ -107,7 +107,7 @@ Page({
       url: app.globalData.BANQUET_API_URL + "/commerce/get_commerce_detail",
       params: {
         data: JSON.stringify({
-          commerce_id: 1 //commerce_id
+          commerce_id: commerce_id 
         })
       },
       success: res => {
@@ -125,7 +125,7 @@ Page({
             commerce_type: res.data.result.type
           })
           wx.setNavigationBarTitle({
-            title: res.data.result.name
+            title: res.data.result.commerce_name
           })
           that.onBusiness(res.data.result.business_hours);
         }
@@ -142,7 +142,7 @@ Page({
    * endTime 结束时间
    */
   onBusiness(businessHours) {
-    if (businessHours == null) {
+    if (businessHours.length == 1 && businessHours[0] == null) {
       this.setData({
         businessStatus: "营业中"
       })
