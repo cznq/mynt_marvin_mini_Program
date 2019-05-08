@@ -195,22 +195,24 @@ Page({
       },
       success: res => {
         console.log('get_commerce_list:', res);
-        if (res.data.sub_code == 0 && res.data.result) {
-          if (commerceType == 2) {
+        if(res.data.sub_code == 'SUCCESS'){
+          if(res.data.result){
+            if (commerceType == 2) {
+              that.setData({
+                shopList: that.transData(res.data.result),
+                [slide_img]: res.data.result.homepage
+              })
+            } else {
+              that.setData({
+                shopList: res.data.result,
+                [slide_img]: res.data.result.homepage
+              })
+            }
+          }else{
             that.setData({
-              shopList: that.transData(res.data.result),
-              [slide_img]: res.data.result.hompage
-            })
-          } else {
-            that.setData({
-              shopList: res.data.result,
-              [slide_img]: res.data.result.hompage
+              shopList: null
             })
           }
-        } else {
-          that.setData({
-            shopList: null
-          })
         }
       }
     })
