@@ -84,11 +84,9 @@ Page({
    */
   getEmployeeInfo() {
     var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
+    app.request.requestApi.post({
+      url: app.globalData.BANQUET_API_URL + "/company/get_company_service_status",
       params: {
-        service: 'company',
-        method: 'get_company_service_status',
         data: JSON.stringify({
           union_id: wx.getStorageSync('xy_session'),
           service_key: 'EMPLOYEE_BENIFIT'
@@ -98,12 +96,9 @@ Page({
         if (res.data.result) {
           if (res.data.result.service_status !== 0) {
             console.log('kaitong');
-            app.Util.network.POST({
-              url: app.globalData.BENIFIT_API_URL,
+            app.request.requestApi.post({
+              url: app.globalData.BANQUET_API_URL + "/company/get_employee_info",
               params: {
-                service: 'company',
-                method: 'get_employee_info',
-                union_id: wx.getStorageSync('xy_session'),
                 data: JSON.stringify({})
               },
               success: res => {
@@ -190,18 +185,16 @@ Page({
   getCommerceList(commerceType) {
     var that = this;
     var slide_img = "slide_data.slide_img";
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
+    app.request.requestApi.post({
+      url: app.globalData.BANQUET_API_URL + "/commerce/get_commerce_list",
       params: {
-        service: 'commerce',
-        method: 'get_commerce_list',
-        union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
           type: commerceType,
           benifit_type: 0,
         })
       },
       success: res => {
+        console.log('get_commerce_list:', res);
         if (res.data.sub_code == 0 && res.data.result) {
           if (commerceType == 2) {
             that.setData({

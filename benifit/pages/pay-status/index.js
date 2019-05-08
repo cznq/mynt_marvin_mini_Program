@@ -21,7 +21,7 @@ Page({
       pay_from: options.pay_from
     })
     if (options.pay_from == 'commerce') {
-      _this.searchOrderInfo(_this, options.out_order_id, app.globalData.BENIFIT_API_URL);
+      _this.searchOrderInfo(_this, options.out_order_id, app.globalData.BANQUET_API_URL + "/customer/order_info");
     } else if (options.pay_from == 'package') {
       _this.searchOrderInfo(_this, options.out_order_id, app.globalData.BASE_API_URL);
     }
@@ -29,7 +29,7 @@ Page({
   },
   //套餐订单查询
   searchOrderInfo(_this, out_order_id, requestUrl) {
-    app.Util.network.POST({
+    app.request.requestApi.post({
       url: requestUrl,
       params: {
         service: 'pay',

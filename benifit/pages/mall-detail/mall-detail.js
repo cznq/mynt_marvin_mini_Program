@@ -35,7 +35,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this;
     that.setData({
       commerce_id: options.commerce_id,
@@ -61,25 +61,21 @@ Page({
    */
   getEmployeeInfo() {
     var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
+    app.request.requestApi.post({
+      url: app.globalData.BANQUET_API_URL + "/company/get_employee_info",
       params: {
-        service: 'company',
-        method: 'get_employee_info',
-        union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({})
       },
       showLoading: false,
       success: res => {
+        console.log('get_employee_info', res);
         if (res.data.result) {
           that.setData({
             employeeInfo: res.data.result
           })
-          app.Util.network.POST({
-            url: app.globalData.BENIFIT_API_URL,
+          app.request.requestApi.post({
+            url: app.globalData.BANQUET_API_URL + "/company/get_company_service_status",
             params: {
-              service: 'company',
-              method: 'get_company_service_status',
               data: JSON.stringify({
                 union_id: wx.getStorageSync('xy_session'),
                 service_key: 'EMPLOYEE_BENIFIT'
@@ -87,13 +83,14 @@ Page({
             },
             showLoading: false,
             success: res => {
+              console.log('get_company_service_status', res);
               if (res.data.result.service_status !== 0) {
                 that.setData({
                   is_vip: true
                 })
               }
             }
-          }) 
+          })
         }
       }
     })
@@ -106,17 +103,15 @@ Page({
     var that = this;
     var slide_img = "slide_data.thumbnail_url";
     var imgCount = "slide_data.imgCount";
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
+    app.request.requestApi.post({
+      url: app.globalData.BANQUET_API_URL + "/commerce/get_commerce_detail",
       params: {
-        service: 'commerce',
-        method: 'get_commerce_info',
-        union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
-          commerce_id: commerce_id
+          commerce_id: 1 //commerce_id
         })
       },
       success: res => {
+        console.log('get_commerce_detail:', res);
         if (res.data.result) {
           if (res.data.result.details) {
             wxParse.wxParse('details', 'html', res.data.result.details, that, 5);
@@ -143,8 +138,8 @@ Page({
 
   /**
    * 用来判断一个时间是不是在某个时间段内
-   * beginTime 开始时间 
-   * endTime 结束时间 
+   * beginTime 开始时间
+   * endTime 结束时间
    */
   onBusiness(businessHours) {
     if (businessHours == null) {
@@ -201,12 +196,9 @@ Page({
    */
   getProtocol(commerce_id, typeid) {
     var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
+    app.request.requestApi.post({
+      url: app.globalData.BANQUET_API_URL + "/commerce/get_commerce_discount",
       params: {
-        service: 'commerce',
-        method: 'get_commerce_discount',
-        union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
           commerce_id: commerce_id,
           type: typeid
@@ -214,11 +206,12 @@ Page({
       },
       showLoading: false,
       success: res => {
+        console.log('get_commerce_discount:', res);
         if (res.data.result) {
           var data = res.data.result;
           delete data.discount_tag
           for (var i = 0; i < data.length; i++) {
-            data[i].deal_price_fen = String(data[i].deal_price_fen/100).split('');
+            data[i].deal_price_fen = String(data[i].deal_price_fen / 100).split('');
           }
           that.setData({
             protocolInfo: data
@@ -233,21 +226,19 @@ Page({
    */
   getComments(commerce_id) {
     var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
+    app.request.requestApi.post({
+      url: app.globalData.BANQUET_API_URL + "/comment/get_comment_list",
       params: {
-        service: 'commerce',
-        method: 'get_comment_list',
-        union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
           commerce_id: commerce_id
         })
       },
       showLoading: false,
       success: res => {
-        if (res.data.result) {
+        console.log('get_comment_list:', res);
+        if (res.data.result.data) {
           that.setData({
-            commentList: res.data.result
+            commentList: res.data.result.data
           })
         }
       }
@@ -257,7 +248,7 @@ Page({
   /**
    * 关闭VIP卡弹窗
    */
-  closeDialog: function () {
+  closeDialog: function() {
     this.setData({
       showVipCard: false
     })
@@ -270,10 +261,10 @@ Page({
   /**
    * 协议买单
    */
-  cardTopay: function (e) {
+  cardTopay: function(e) {
     if (this.data.commerceDetail.sub_mch_id == '') { // 未开通支付
       if (this.data.employeeInfo) { // 小觅用户
-        if (this.data.is_vip) {  // 小觅VIP用户
+        if (this.data.is_vip) { // 小觅VIP用户
           this.setData({
             showVipCard: true,
             dialog_discount: e.currentTarget.dataset.discount,
@@ -303,7 +294,7 @@ Page({
   /**
    * 查看幻灯片
    */
-  viewPhoto: function (e) {
+  viewPhoto: function(e) {
     var index = e.currentTarget.dataset.index;
     wx.previewImage({
       current: this.data.slide_data.thumbnail_url[index],
@@ -335,7 +326,7 @@ Page({
   /**
    * 拨打电话
    */
-  makePhoneCall: function (e) {
+  makePhoneCall: function(e) {
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.phone
     })
@@ -345,20 +336,20 @@ Page({
    * 打开地图服务
    */
 
-  openMap: function () {
+  openMap: function() {
     wx.openLocation({
       latitude: Number(this.data.latitude),
       longitude: Number(this.data.longitude),
       scale: 28,
-      name:this.data.commerceDetail.name,
-      address:this.data.commerceDetail.address,
+      name: this.data.commerceDetail.name,
+      address: this.data.commerceDetail.address,
     })
   },
 
   /**
    * 去评论
    */
-  enterComment: function (e) {
+  enterComment: function(e) {
     if (this.data.is_vip) {
       var commerce_id = e.currentTarget.dataset.commerceid;
       wx.navigateTo({
@@ -376,7 +367,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     this.getComments(this.data.commerce_id);
   }
 

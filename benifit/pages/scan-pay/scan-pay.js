@@ -32,41 +32,43 @@ Page({
    */
   getEmployeeInfo(sub_mch_id) {
     var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
+    app.request.requestApi.post({
+      url: app.globalData.BANQUET_API_URL + "/company/get_employee_info",
       params: {
-        service: 'company',
-        method: 'get_employee_info',
-        union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({})
       },
       showLoading: false,
       success: res => {
+        console.log('get_employee_info:', res);
         if (res.data.result) {
           that.setData({
             employeeInfo: res.data.result
           })
         }
-        app.Util.network.POST({
-          url: app.globalData.BENIFIT_API_URL,
+        app.request.requestApi.post({
+          url: app.globalData.BANQUET_API_URL + "/company/get_company_service_status",
           params: {
-            service: 'company',
-            method: 'get_company_service_status',
-            data: JSON.stringify({ service_key: 'EMPLOYEE_BENIFIT' })
+            data: JSON.stringify({
+              service_key: 'EMPLOYEE_BENIFIT'
+            })
           },
           success: res => {
-            that.setData({ loadComplete: true })
+            that.setData({
+              loadComplete: true
+            })
             wx.setNavigationBarTitle({
               title: '协议买单'
             })
             if (res.data.result) {
               if (res.data.result.service_status !== 0) {
-                that.setData({ isVip: true })
+                that.setData({
+                  isVip: true
+                })
               }
-            } 
+            }
             if (sub_mch_id == '') { // 未开通支付
               if (that.data.employeeInfo) { // 小觅用户
-                if (that.data.isVip) {  // 小觅VIP用户
+                if (that.data.isVip) { // 小觅VIP用户
                   wx.redirectTo({
                     url: '../mall-detail/mall-detail?showVipCard=true&dialog_discount=' + that.data.cd_CommerceDiscount[0].benifit_content + '&dialog_discount_limit=' + that.data.cd_CommerceDiscount[0].benifit_limit + '&commerce_id=' + that.data.commerce_id + '&commerce_type=' + that.data.type,
                   })
@@ -92,25 +94,22 @@ Page({
    */
   getCommerceInfo(commerce_id) {
     var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
+    app.request.requestApi.post({
+      url: app.globalData.BANQUET_API_URL + "/commerce/get_commerce_detail",
       params: {
-        service: 'commerce',
-        method: 'get_commerce_info',
-        union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
           "commerce_id": commerce_id
         })
       },
       showLoading: false,
       success: res => {
-        console.log(res);
-        if(res.data.result){
+        console.log("get_commerce_detail:", res);
+        if (res.data.result) {
           that.setData({
             cd_CommerceInfo: res.data.result
           })
           that.getEmployeeInfo(res.data.result.sub_mch_id);
-        } 
+        }
       }
     })
   },
@@ -119,19 +118,17 @@ Page({
    */
   getCommerceDiscount(commerce_id, type) {
     var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
+    app.request.requestApi.post({
+      url: app.globalData.BANQUET_API_URL + "/commerce/get_commerce_discount",
       params: {
-        service: 'commerce',
-        method: 'get_commerce_discount',
-        union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
-          "commerce_id": commerce_id,
-          "type": type
+          "commerce_id": 1, // commerce_id,
+          "type": 0 // type
         })
       },
       showLoading: false,
       success: res => {
+        console.log('get_commerce_discount:', res);
         that.setData({
           cd_CommerceDiscount: res.data.result
         })
@@ -143,12 +140,9 @@ Page({
    * 扫码后发送请求记录扫码次数
    */
   sendScanRecord(commerce_id) {
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
+    app.request.requestApi.post({
+      url: app.globalData.BANQUET_API_URL + "/customer/scan",
       params: {
-        service: 'commerce',
-        method: 'scavenger_user_records',
-        union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
           "commerce_id": commerce_id
         })
@@ -161,23 +155,28 @@ Page({
   },
 
   changeCheckBox: function() {
-    if(this.data.checkBox){
-      this.setData({ checkBox: false, outPrice: null })
+    if (this.data.checkBox) {
+      this.setData({
+        checkBox: false,
+        outPrice: null
+      })
       this.calcRealPrice();
     } else {
-      this.setData({ checkBox: true })
+      this.setData({
+        checkBox: true
+      })
     }
   },
   inputPrice(event) {
     let pid = event.target.id;
-    if (pid == 'tp') { 
-      this.setData({ 
+    if (pid == 'tp') {
+      this.setData({
         keyVal: 0
-      }) 
-    } else if (pid == 'op') { 
-      this.setData({ 
+      })
+    } else if (pid == 'op') {
+      this.setData({
         keyVal: 1
-      }) 
+      })
     }
 
   },
@@ -192,10 +191,14 @@ Page({
   },
   handleTotalValue(val) {
     if (val == 'del') {
-      this.setData({ totalPrice: this.data.totalPrice.toString().substr(0, this.data.totalPrice.toString().length - 1) });
+      this.setData({
+        totalPrice: this.data.totalPrice.toString().substr(0, this.data.totalPrice.toString().length - 1)
+      });
     } else {
       if (this.data.totalPrice == null) {
-        this.setData({ totalPrice: '' })
+        this.setData({
+          totalPrice: ''
+        })
       }
       //禁止小数点后面输入第三位
       if (this.data.totalPrice.toString().indexOf('.') != -1 && this.data.totalPrice.toString().substr(this.data.totalPrice.toString().indexOf('.'), this.data.totalPrice.toString().length - 1).length > 2) {
@@ -204,15 +207,21 @@ Page({
       if (val == '.' && (this.data.totalPrice.toString().indexOf('.') != -1 || this.data.totalPrice == '')) {
         val = ''
       }
-      this.setData({ totalPrice: this.data.totalPrice + val })
+      this.setData({
+        totalPrice: this.data.totalPrice + val
+      })
     }
   },
   handleOutValue(val) {
     if (val == 'del') {
-      this.setData({ outPrice: this.data.outPrice.toString().substr(0, this.data.outPrice.toString().length - 1) });
+      this.setData({
+        outPrice: this.data.outPrice.toString().substr(0, this.data.outPrice.toString().length - 1)
+      });
     } else {
       if (this.data.outPrice == null) {
-        this.setData({ outPrice: '' })
+        this.setData({
+          outPrice: ''
+        })
       }
       //禁止小数点后面输入第三位
       if (this.data.outPrice.toString().indexOf('.') != -1 && this.data.outPrice.toString().substr(this.data.outPrice.toString().indexOf('.'), this.data.outPrice.toString().length - 1).length > 2) {
@@ -221,12 +230,14 @@ Page({
       if (val == '.' && (this.data.outPrice.toString().indexOf('.') != -1 || this.data.outPrice == '')) {
         val = ''
       }
-      this.setData({ outPrice: this.data.outPrice + val })
+      this.setData({
+        outPrice: this.data.outPrice + val
+      })
     }
   },
-  pay: function () {
+  pay: function() {
     let _this = this
-    if(_this.data.realPrice==0 || _this.data.totalPrice==null){
+    if (_this.data.realPrice == 0 || _this.data.totalPrice == null) {
       toast.showToast(_this, {
         toastStyle: 'toast',
         title: '请先输入金额',
@@ -234,25 +245,23 @@ Page({
         mask: false,
         isArrow: true
       });
-      return ;
+      return;
     }
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
+    app.request.requestApi.post({
+      url: app.globalData.BANQUET_API_URL + "/customer/pay",
       params: {
-        service: 'wechat',
-        method: 'pay',
         data: JSON.stringify({
           "commerce_id": _this.data.commerce_id,
-          "total": _this.data.totalPrice*100,
-          "enjoy_discount": _this.data.isVip?1:0,
-          "out_price": _this.data.outPrice == null ? 0 : _this.data.outPrice*100,
-          "total_fee": _this.data.realPrice*100,
+          "total": _this.data.totalPrice * 100,
+          "enjoy_discount": _this.data.isVip ? 1 : 0,
+          "out_price": _this.data.outPrice == null ? 0 : _this.data.outPrice * 100,
+          "total_fee": _this.data.realPrice * 100,
           "pay_type": 3
         })
       },
       success: res => {
-        console.log(res.data);
-        if(res.data.sub_code==0){
+        console.log('/customer/pay:', res);
+        if (res.data.sub_code == 0) {
           let out_order_id = res.data.result.out_order_id
           wx.requestPayment({
             timeStamp: res.data.result.wx_package.timeStamp,
@@ -279,39 +288,45 @@ Page({
             isArrow: true
           });
         }
-        
+
       }
     })
   },
-  
-  calcRealPrice: function () {
+
+  calcRealPrice: function() {
     let discount_tag = this.data.cd_CommerceDiscount.discount_tag;
     //console.log(discount_tag.full_price + "==" + discount_tag.discount_type + '==' + discount_tag.discount_price);
     //console.log('totalPrice:'+this.data.totalPrice+'  outPrice:'+this.data.outPrice+'  realPrice:'+this.data.realPrice);
     if (this.data.totalPrice == null || this.data.totalPrice == '') {
-      this.setData({ realPrice: 0 })
+      this.setData({
+        realPrice: 0
+      })
       this.calcSavedPrice();
-      return ;
+      return;
     }
     if (this.data.isVip == false) {
-      this.setData({ realPrice: this.data.totalPrice })
+      this.setData({
+        realPrice: this.data.totalPrice
+      })
       this.calcSavedPrice();
-      return ;
+      return;
     }
     if (this.data.totalPrice - this.data.outPrice < 0) {
-      this.setData({ realPrice: this.data.totalPrice })
+      this.setData({
+        realPrice: this.data.totalPrice
+      })
       this.calcSavedPrice();
-      return ;
+      return;
     }
     if (discount_tag.discount_type == 1) {
       console.log('折扣方式');
       if (this.data.outPrice !== null && this.data.outPrice !== '') {
         this.setData({
-          realPrice: parseFloat(((this.data.totalPrice - this.data.outPrice) * (discount_tag.discount_price / 100) + parseFloat(this.data.outPrice)).toFixed(2))
+          realPrice: Math.round(((this.data.totalPrice - this.data.outPrice) * (discount_tag.discount_price / 100) + parseFloat(this.data.outPrice)))
         })
       } else {
         this.setData({
-          realPrice: parseFloat((this.data.totalPrice * (discount_tag.discount_price / 100)).toFixed(2))
+          realPrice: Math.round((this.data.totalPrice * (discount_tag.discount_price / 100)))
         })
       }
     } else {
@@ -329,9 +344,11 @@ Page({
     this.calcSavedPrice();
   },
   //计算优惠的价格
-  calcSavedPrice(){
+  calcSavedPrice() {
     if (this.data.realPrice == null || this.data.realPrice == 0 || this.data.totalPrice == null || this.data.totalPrice == '') {
-      this.setData({ savedPrice:'' })
+      this.setData({
+        savedPrice: ''
+      })
     } else {
       this.setData({
         savedPrice: parseFloat((this.data.realPrice - this.data.totalPrice).toFixed(2))

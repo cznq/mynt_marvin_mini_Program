@@ -29,11 +29,9 @@ Page({
    */
   getEmployeeInfo() {
     var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BASE_API_URL,
+    app.request.requestApi.post({
+      url: app.globalData.BANQUET_API_URL + "/company/get_company_service_status",
       params: {
-        service: 'company',
-        method: 'get_company_service_status',
         data: JSON.stringify({
           union_id: wx.getStorageSync('xy_session'),
           service_key: 'EMPLOYEE_BENIFIT'
@@ -42,15 +40,12 @@ Page({
       success: res => {
         console.log(res);
         //res.data.result.service_status=0;
-        if (res.data.result){
+        if (res.data.result) {
           if (res.data.result.service_status !== 0) {
             console.log('kaitong');
-            app.Util.network.POST({
-              url: app.globalData.BENIFIT_API_URL,
+            app.request.requestApi.post({
+              url: app.globalData.BANQUET_API_URL + "/company/get_employee_info",
               params: {
-                service: 'company',
-                method: 'get_employee_info',
-                union_id: wx.getStorageSync('xy_session'),
                 data: JSON.stringify({})
               },
               success: res => {
@@ -85,7 +80,7 @@ Page({
               is_vip: false
             })
           }
-        }else{
+        } else {
           that.setData({
             is_vip: false
           })
@@ -99,29 +94,28 @@ Page({
    */
   getHotCommerce(typeId) {
     var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
+    app.request.requestApi.post({
+      url: app.globalData.BANQUET_API_URL + "/commerce/get_hot_commerce",
       params: {
-        service: 'commerce',
-        method: 'get_hot_commerce',
         union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
           type: typeId
         })
       },
       success: res => {
-        if (res.data.result) {
+        console.log('get_hot_commerce:', res);
+        if (res.data.result.data) {
           if (typeId == 0) {
             that.setData({
-              hotDinnerCommerce: res.data.result
+              hotDinnerCommerce: res.data.result.data
             })
           } else if (typeId == 1) {
             that.setData({
-              hotEnterCommerce: res.data.result
+              hotEnterCommerce: res.data.result.data
             })
           } else {
             that.setData({
-              hotHotelCommerce: that.transData(res.data.result)
+              hotHotelCommerce: that.transData(res.data.result.data)
             })
           }
         }
