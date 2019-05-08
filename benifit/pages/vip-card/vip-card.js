@@ -38,7 +38,7 @@ Page({
         })
       },
       success: res => {
-        console.log(res);
+        console.log("get_company_service_status:", res);
         //res.data.result.service_status=0;
         if (res.data.result) {
           if (res.data.result.service_status !== 0) {
@@ -49,7 +49,7 @@ Page({
                 data: JSON.stringify({})
               },
               success: res => {
-                console.log(res);
+                console.log("get_employee_info:", res);
                 if (res.data.result) {
                   that.setData({
                     is_vip: true
@@ -104,18 +104,18 @@ Page({
       },
       success: res => {
         console.log('get_hot_commerce:', res);
-        if (res.data.result.data) {
+        if (res.data.result.commerces) {
           if (typeId == 0) {
             that.setData({
-              hotDinnerCommerce: res.data.result.data
+              hotDinnerCommerce: res.data.result.commerces
             })
           } else if (typeId == 1) {
             that.setData({
-              hotEnterCommerce: res.data.result.data
+              hotEnterCommerce: res.data.result.commerces
             })
           } else {
             that.setData({
-              hotHotelCommerce: that.transData(res.data.result.data)
+              hotHotelCommerce: that.transData(res.data.result.commerces)
             })
           }
         }

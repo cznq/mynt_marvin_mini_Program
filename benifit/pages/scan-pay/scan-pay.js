@@ -98,7 +98,7 @@ Page({
       url: app.globalData.BANQUET_API_URL + "/commerce/get_commerce_detail",
       params: {
         data: JSON.stringify({
-          "commerce_id": commerce_id
+          "commerce_id": 1 //commerce_id
         })
       },
       showLoading: false,
@@ -123,7 +123,7 @@ Page({
       params: {
         data: JSON.stringify({
           "commerce_id": 1, // commerce_id,
-          "type": 0 // type
+          "type": 1 // type
         })
       },
       showLoading: false,
@@ -251,17 +251,18 @@ Page({
       url: app.globalData.BANQUET_API_URL + "/customer/pay",
       params: {
         data: JSON.stringify({
-          "commerce_id": _this.data.commerce_id,
+          "commerce_id": 1, // _this.data.commerce_id,
           "total": _this.data.totalPrice * 100,
           "enjoy_discount": _this.data.isVip ? 1 : 0,
           "out_price": _this.data.outPrice == null ? 0 : _this.data.outPrice * 100,
           "total_fee": _this.data.realPrice * 100,
-          "pay_type": 3
+          "pay_type": 3,
+          "open_id": wx.getStorageSync('open_id')
         })
       },
       success: res => {
         console.log('/customer/pay:', res);
-        if (res.data.sub_code == 0) {
+        if (res.data.sub_code == "SUCCESS") {
           let out_order_id = res.data.result.out_order_id
           wx.requestPayment({
             timeStamp: res.data.result.wx_package.timeStamp,
@@ -322,11 +323,11 @@ Page({
       console.log('折扣方式');
       if (this.data.outPrice !== null && this.data.outPrice !== '') {
         this.setData({
-          realPrice: Math.round(((this.data.totalPrice - this.data.outPrice) * (discount_tag.discount_price / 100) + parseFloat(this.data.outPrice)))
+          realPrice: Math.ceil((this.data.totalPrice - this.data.outPrice) * (discount_tag.discount_price / 100) * 100) / 100 + parseFloat(this.data.outPrice)
         })
       } else {
         this.setData({
-          realPrice: Math.round((this.data.totalPrice * (discount_tag.discount_price / 100)))
+          realPrice: Math.ceil((this.data.totalPrice * (discount_tag.discount_price / 100)) * 100) / 100
         })
       }
     } else {

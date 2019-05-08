@@ -21,11 +21,43 @@ Page({
       pay_from: options.pay_from
     })
     if (options.pay_from == 'commerce') {
-      _this.searchOrderInfo(_this, options.out_order_id, app.globalData.BANQUET_API_URL + "/customer/order_info");
+      _this.searchOrderInfo_benifit(_this, options.out_order_id, app.globalData.BANQUET_API_URL + "/customer/order_info");
     } else if (options.pay_from == 'package') {
       _this.searchOrderInfo(_this, options.out_order_id, app.globalData.BASE_API_URL);
     }
 
+  },
+  //套餐订单查询
+  searchOrderInfo_benifit(_this, out_order_id, requestUrl) {
+    app.request.requestApi.post({
+      url: requestUrl,
+      params: {
+        data: JSON.stringify({
+          out_order_id: out_order_id
+        })
+      },
+      success: res => {
+        console.log('order_info:', res);
+        if (res.data.result) {
+          if (res.data.result.status == 1) {
+            _this.setData({
+              status: 'success'
+            })
+          } else if (res.data.result.status == 0) {
+            _this.setData({
+              status: 'fail'
+            })
+          }
+        } else {
+          wx.showToast({
+            title: res.data.sub_msg,
+            icon: 'none'
+          })
+        }
+
+      },
+      fail: res => {}
+    })
   },
   //套餐订单查询
   searchOrderInfo(_this, out_order_id, requestUrl) {
