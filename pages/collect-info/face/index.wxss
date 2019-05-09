@@ -192,11 +192,9 @@ button[disabled] {
 }
 @keyframes voiceAni{
   from {
-    /* height: 16rpx; */
     transform: scaleY(0.6)
   }
   to {
-    /* height: 36rpx; */
     transform: scaleY(1.4)
   }
 }
@@ -208,9 +206,18 @@ button[disabled] {
   height: 120rpx;
   margin: 0 auto;
   background-color: transparent;
+  /* animation: trans 3s linear forwards; */
 }
 .progressBar .progress {
   height: 100%;
+}
+@keyframes trans{
+  from {
+    transform: translateX(0%)
+  }
+  to {
+    transform: translateX(-100%)
+  }
 }
 .progressBar .active {
   width: 100%;

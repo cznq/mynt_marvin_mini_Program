@@ -20,14 +20,14 @@ Page({
     isIphoneX: app.globalData.isIphoneX,
     options: {},
     ctx: {},
-    timer: 0,
     status: 'start', // start, stop, uploading
     cameraErrorText: "",
     isCameraAuth: true,
     progress: 100,
     face_verify_code: [],
     tempThumbPath: '',
-    buttonDisabled: true
+    buttonDisabled: true,
+    progressAni: ''
   },
 
   onLoad: function(options) {
@@ -97,18 +97,9 @@ Page({
     ctx.startRecord({
       success: (res) => {
         self.setData({
-          status: 'stop',
-          timer: self.data.timer + 1,
-          progress: 100 - (100 / parseInt(self.data.faceConfig.counter)) * self.data.timer
-        })
-        int = setInterval(function () {
-          self.setData({
-            timer: self.data.timer + 1,
-            progress: 100 - (100 / parseInt(self.data.faceConfig.counter)) * self.data.timer
-          })
-        }, 1000);
+          status: 'stop'
+        }, function(){ self.createProgressAni() })
         setTimeout(function () {
-          clearInterval(int);
           self.stopRecord(self, self.data.ctx);
         }, parseInt(self.data.faceConfig.counter) * 1000)
       },
@@ -333,6 +324,30 @@ Page({
       },
       complete: res => {}
     })
-  }
+  },
 
+  createProgressAni: function () {
+    let self = this
+    let animation = wx.createAnimation({
+      duration: parseInt(self.data.faceConfig.counter) * 1000,
+      timingFunction: 'linear',
+      success: function (res) {
+        console.log(res)
+      }
+    })
+    // let windowWidth = wx.getStorageSync('sysinfo').windowWidth;
+    wx.getStorage({
+      key: 'sysinfo',
+      success(res) {
+        console.log(res.data.windowWidth)
+        animation.translateX(-res.data.windowWidth).step()
+        self.setData({
+          progressAni: animation.export()
+        })
+      }
+    })
+    // animation.translateX(-windowWidth).step()
+    
+  }
+  
 })
