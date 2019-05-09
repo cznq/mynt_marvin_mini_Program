@@ -323,11 +323,11 @@ Page({
       console.log('折扣方式');
       if (this.data.outPrice !== null && this.data.outPrice !== '') {
         this.setData({
-          realPrice: Math.ceil((this.data.totalPrice - this.data.outPrice) * (discount_tag.discount_price / 100) * 100) / 100 + parseFloat(this.data.outPrice)
+          realPrice: Math.floor((this.data.totalPrice - this.data.outPrice) * (discount_tag.discount_price / 100) * 100) / 100 + parseFloat(this.data.outPrice)
         })
       } else {
         this.setData({
-          realPrice: Math.ceil((this.data.totalPrice * (discount_tag.discount_price / 100)) * 100) / 100
+          realPrice: Math.floor((this.data.totalPrice * (discount_tag.discount_price / 100)) * 100) / 100
         })
       }
     } else {
