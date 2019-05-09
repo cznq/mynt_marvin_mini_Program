@@ -112,25 +112,34 @@ Page({
       },
       success: res => {
         console.log('get_commerce_detail:', res);
-        if (res.data.result) {
-          if (res.data.result.details) {
-            wxParse.wxParse('details', 'html', res.data.result.details, that, 5);
+        if(res.data.return_code == 'SUCCESS'){
+          if (res.data.result) {
+            if (res.data.result.details) {
+              wxParse.wxParse('details', 'html', res.data.result.details, that, 5);
+            }
+            that.setData({
+              commerceDetail: res.data.result,
+              [slide_img]: res.data.result.thumbnail_url,
+              [imgCount]: res.data.result.thumbnail_url.length,
+              latitude: res.data.result.latitude,
+              longitude: res.data.result.longitude,
+              commerce_type: res.data.result.type
+            })
+            wx.setNavigationBarTitle({
+              title: res.data.result.commerce_name
+            })
+            that.onBusiness(res.data.result.business_hours);
           }
-          that.setData({
-            commerceDetail: res.data.result,
-            [slide_img]: res.data.result.thumbnail_url,
-            [imgCount]: res.data.result.thumbnail_url.length,
-            latitude: res.data.result.latitude,
-            longitude: res.data.result.longitude,
-            commerce_type: res.data.result.type
+          that.getProtocol(commerce_id, that.data.commerce_type);
+          that.getComments(commerce_id);
+        }else{
+          wx.showToast({
+            title: '服务器异常请重试',
+            icon: 'none',
+            duration: 2000
           })
-          wx.setNavigationBarTitle({
-            title: res.data.result.commerce_name
-          })
-          that.onBusiness(res.data.result.business_hours);
         }
-        that.getProtocol(commerce_id, that.data.commerce_type);
-        that.getComments(commerce_id);
+      
         //app.Util.generateMap(this, res.data.result.address);
       }
     })
@@ -142,7 +151,7 @@ Page({
    * endTime 结束时间
    */
   onBusiness(businessHours) {
-    if (businessHours.length == 1 && businessHours[0] == null) {
+    if (businessHours == null) {
       this.setData({
         businessStatus: "营业中"
       })
@@ -206,17 +215,37 @@ Page({
       },
       showLoading: false,
       success: res => {
-        console.log('get_commerce_discount:', res);
-        if (res.data.result) {
-          var data = res.data.result;
-          delete data.discount_tag
-          for (var i = 0; i < data.length; i++) {
-            data[i].deal_price_fen = String(data[i].deal_price_fen / 100).split('');
+        if(res.data.return_code == 'SUCCESS'){
+          if(res.data.sub_code == 'SUCCESS'&&res.data.result){
+            if(typeid == 2){//酒店
+                var data = res.data.result.hotel
+                for (var i = 0; i < data.length; i++) {
+                  data[i].deal_price_fen = String(data[i].deal_price_fen / 100).split('');
+                }
+            }else{
+              var data = res.data.result.cate_or_entertainment
+            }
+            that.setData({
+              protocolInfo: data
+            })
           }
-          that.setData({
-            protocolInfo: data
+        }else{
+          wx.showToast({
+            title: '服务器异常请重试',
+            icon: 'none',
+            duration: 2000
           })
         }
+        // if (res.data.result) {
+        //   var data = res.data.result;
+        //   delete data.discount_tag
+        //   for (var i = 0; i < data.length; i++) {
+        //     data[i].deal_price_fen = String(data[i].deal_price_fen / 100).split('');
+        //   }
+        //   that.setData({
+        //     protocolInfo: data
+        //   })
+        // }
       }
     })
   },

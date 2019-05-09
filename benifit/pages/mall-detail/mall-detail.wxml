@@ -99,7 +99,8 @@
                 <view class="price-num">
                   <image src="../../images/num/numb.png"></image>
                   <block wx:for="{{item.deal_price_fen}}" wx:for-item="num" wx:key="">
-                    <image src="../../images/num/num{{num}}.png"></image>
+                    <image wx:if="{{num == '.'}}"  src="../../images/num/dot.png"></image>
+                    <image wx:else src="../../images/num/num{{num}}.png"></image>
                   </block>
                 </view>
                 <button open-type="contact" show-message-card="true" session-from="shop-order-detail" send-message-title="{{commerceDetail.name}} - {{item.bed_introduce}}" wx:if="{{is_vip}}">协议咨询</button>
