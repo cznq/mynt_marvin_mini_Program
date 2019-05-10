@@ -72,7 +72,7 @@ Page({
     query.select('#selTab').boundingClientRect()
     query.selectViewport().scrollOffset()
     query.exec(function(res) {
-      console.log(res[0].top);
+      // console.log(res[0].top);
       that.setData({
         taboffsetTop: res[0].top
       })
@@ -133,7 +133,7 @@ Page({
    * 监听滚动，tab置顶
    */
   onPageScroll: function(e) {
-    console.log(e.scrollTop);
+    // console.log(e.scrollTop);
     var that = this;
 
     if (e.scrollTop < that.data.taboffsetTop) {
@@ -195,8 +195,8 @@ Page({
       },
       success: res => {
         console.log('get_commerce_list:', res);
-        if(res.data.sub_code == 'SUCCESS'){
-          if(res.data.result){
+        if (res.data.sub_code == 'SUCCESS') {
+          if (res.data.result) {
             if (commerceType == 2) {
               that.setData({
                 shopList: that.transData(res.data.result),
@@ -208,7 +208,7 @@ Page({
                 [slide_img]: res.data.result.homepage
               })
             }
-          }else{
+          } else {
             that.setData({
               shopList: null
             })

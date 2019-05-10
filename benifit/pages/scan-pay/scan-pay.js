@@ -1,4 +1,5 @@
 const Promise = require('../../../utils/promise.js');
+const util = require('../../../utils/util');
 var toast = require('../../../templates/showToast/showToast');
 const app = getApp();
 Page({
@@ -98,7 +99,7 @@ Page({
       url: app.globalData.BANQUET_API_URL + "/commerce/get_commerce_detail",
       params: {
         data: JSON.stringify({
-          "commerce_id": 1 //commerce_id
+          "commerce_id": commerce_id
         })
       },
       showLoading: false,
@@ -122,8 +123,8 @@ Page({
       url: app.globalData.BANQUET_API_URL + "/commerce/get_commerce_discount",
       params: {
         data: JSON.stringify({
-          "commerce_id": 1, // commerce_id,
-          "type": 1 // type
+          "commerce_id": commerce_id,
+          "type": type
         })
       },
       showLoading: false,
@@ -251,7 +252,7 @@ Page({
       url: app.globalData.BANQUET_API_URL + "/customer/pay",
       params: {
         data: JSON.stringify({
-          "commerce_id": 1, // _this.data.commerce_id,
+          "commerce_id": _this.data.commerce_id,
           "total": _this.data.totalPrice * 100,
           "enjoy_discount": _this.data.isVip ? 1 : 0,
           "out_price": _this.data.outPrice == null ? 0 : _this.data.outPrice * 100,
@@ -322,8 +323,9 @@ Page({
     if (discount_tag.discount_type == 1) {
       console.log('折扣方式');
       if (this.data.outPrice !== null && this.data.outPrice !== '') {
+        let realPrice = util.add(Math.floor((this.data.totalPrice - this.data.outPrice) * (discount_tag.discount_price / 100) * 100) / 100, parseFloat(this.data.outPrice), 2)
         this.setData({
-          realPrice: Math.floor((this.data.totalPrice - this.data.outPrice) * (discount_tag.discount_price / 100) * 100) / 100 + parseFloat(this.data.outPrice)
+          realPrice: realPrice
         })
       } else {
         this.setData({
