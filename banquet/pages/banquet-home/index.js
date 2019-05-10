@@ -96,23 +96,20 @@ Page({
   getCommerceList(commerceType) {
     var that = this;
     var slide_img = "slide_data.slide_img";
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
+    app.request.requestApi.post({
+      url: app.globalData.BANQUET_API_URL + "/commerce/get_commerce_list",
       params: {
-        service: 'commerce',
-        method: 'get_commerce_list',
-        union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
           benifit_type:that.data.benifit_type,
           type: commerceType
         })
       },
       success: res => {
-        if(res.data.sub_code == 0){
+        if(res.data.sub_code == 'SUCCESS'){
           if(res.data.result){
-            if(res.data.result.hompage !=''){
+            if(res.data.result.homepage !=''){
               that.setData({
-                [slide_img]: res.data.result.hompage
+                [slide_img]: res.data.result.homepage
               })
             }else{
               that.setData({

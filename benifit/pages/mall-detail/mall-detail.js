@@ -120,7 +120,7 @@ Page({
             that.setData({
               commerceDetail: res.data.result,
               [slide_img]: res.data.result.thumbnail_url,
-              [imgCount]: res.data.result.thumbnail_url.length,
+              //[imgCount]: res.data.result.thumbnail_url.length,
               latitude: res.data.result.latitude,
               longitude: res.data.result.longitude,
               commerce_type: res.data.result.type
@@ -236,16 +236,6 @@ Page({
             duration: 2000
           })
         }
-        // if (res.data.result) {
-        //   var data = res.data.result;
-        //   delete data.discount_tag
-        //   for (var i = 0; i < data.length; i++) {
-        //     data[i].deal_price_fen = String(data[i].deal_price_fen / 100).split('');
-        //   }
-        //   that.setData({
-        //     protocolInfo: data
-        //   })
-        // }
       }
     })
   },
@@ -366,13 +356,19 @@ Page({
    */
 
   openMap: function() {
-    wx.openLocation({
-      latitude: Number(this.data.latitude),
-      longitude: Number(this.data.longitude),
-      scale: 28,
-      name: this.data.commerceDetail.name,
-      address: this.data.commerceDetail.address,
-    })
+    let latitude =  Number(this.data.latitude)
+    let longitude =  Number(this.data.longitude)
+    if(latitude==0 || longitude == 0){
+      return false
+    }else{
+      wx.openLocation({
+        latitude: latitude,
+        longitude: longitude,
+        scale: 28,
+        name:this.data.commerceDetail.commerce_name,
+        address:this.data.commerceDetail.address,
+      })
+    } 
   },
 
   /**
@@ -399,7 +395,5 @@ Page({
   onShow: function() {
     this.getComments(this.data.commerce_id);
   }
-
-
 
 })
