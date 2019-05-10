@@ -8,14 +8,14 @@
           <view class="swiper-item" style="background: url({{item}}) no-repeat center center;background-size:cover;" bindtap="viewPhoto" data-index="{{index}}">
             <view class="swiperInfo">
               <image src="../../images/search@2x.png"></image>
-              <text>{{index+1}}/{{slide_data.imgCount}}</text>
+              <text>{{index+1}}/{{slide_data.thumbnail_url.length}}</text>
             </view>
           </view>
         </swiper-item>
       </block>
     </swiper>
     <view class="infoWrapper top">
-      <view class="shop-name">{{commerceDetail.name}}</view>
+      <view class="shop-name">{{commerceDetail.commerce_name}}</view>
       <view class="needinfo">
         <text>{{commerceDetail.business_projects}}</text>
         <view class="star-part">
