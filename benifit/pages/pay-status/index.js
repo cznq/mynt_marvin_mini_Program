@@ -100,7 +100,7 @@ Page({
   },
   backPay() {
     if (this.data.pay_from == 'commerce') {
-      if (status == "success") {
+      if (this.data.status == "success") {
         wx.navigateBack({
           delta: 2
         })
