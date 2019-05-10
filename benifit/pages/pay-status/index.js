@@ -100,7 +100,15 @@ Page({
   },
   backPay() {
     if (this.data.pay_from == 'commerce') {
-      wx.navigateBack();
+      if (status == "success") {
+        wx.navigateBack({
+          delta: 2
+        })
+      } else {
+        wx.navigateBack({
+          delta: 1
+        })
+      }
     } else if (this.data.pay_from == 'package') {
       wx.redirectTo({
         url: '/pages/businessService/servicePay/index',
