@@ -120,6 +120,7 @@ var txtFix_hid = function(txt,len){
   return endTxt
 }
 
+
 module.exports.txtFix_hid = txtFix_hid;
 module.exports.typeReturnMouth = typeReturnMouth;
 module.exports.priceFix = priceFix;

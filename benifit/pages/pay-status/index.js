@@ -61,7 +61,7 @@ Page({
   },
   //套餐订单查询
   searchOrderInfo(_this, out_order_id, requestUrl) {
-    app.request.requestApi.post({
+    app.Util.network.POST({
       url: requestUrl,
       params: {
         service: 'pay',
@@ -110,9 +110,16 @@ Page({
         })
       }
     } else if (this.data.pay_from == 'package') {
-      wx.redirectTo({
-        url: '/pages/businessService/vipStatus/vipStatus',
-      })
+      if (this.data.status == "success") {
+        wx.redirectTo({
+          url: '/pages/businessService/vipStatus/vipStatus',
+        })
+      } else {
+        wx.redirectTo({
+          url: '/pages/businessService/servicePay/index',
+        })
+      }
+
     }
 
   }
