@@ -7,21 +7,16 @@ page {
 }
 
 .page {
-    padding: 0 34rpx;
+    
 }
 
 .banner {
-    width: 682rpx;
-    height: 326rpx;
+    padding: 0 34rpx;
     background: #FFFFFF;
 }
 
 .banner-top {
     height: 326rpx;
-}
-
-.banner-bottom {
-    height: 563rpx;
 }
 
 .banner-slide {
@@ -41,7 +36,7 @@ swiper {
 }
 
 .banner-two {
-    padding: 40rpx 0;
+    padding: 40rpx 34rpx;
 }
 
 .sub-banner {
@@ -65,7 +60,7 @@ swiper {
 }
 
 .sub-img {
-    width: 255rpx;
+    width: 216rpx;
     height: 230rpx;
     padding-left: 40rpx;
 }
@@ -74,7 +69,7 @@ swiper {
     font-size: 38rpx;
     font-weight: 400;
     color: #1A2A4B;
-    padding-left: 57rpx;
+    padding-left: 54rpx;
     white-space: nowrap;
 }
 

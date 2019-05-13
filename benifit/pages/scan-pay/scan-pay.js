@@ -130,10 +130,11 @@ Page({
       showLoading: false,
       success: res => {
         console.log('get_commerce_discount:', res);
-        that.setData({
-          cd_CommerceDiscount: res.data.result
-        })
-
+        if (res.data.result) {
+          that.setData({
+            cd_CommerceDiscount: res.data.result
+          })
+        }
       }
     })
   },
