@@ -25,7 +25,7 @@
         <text bindtap="changeTab" data-typeid="{{item.typeid}}" data-selectid="{{item.id}}" wx:else>{{item.title}}</text>
       </block>
     </view>
-    <view class="shop-list">
+    <view class="shop-list {{tabFixed ? 'pt50' : ''}}">
       <!-- 商家列表 -->
       <block wx:for="{{shopList.commerces}}" wx:key="{{key}}">
         <view class="shop-wrapper" bindtap="redirectCommerce" data-commerceid="{{item.commerce_id}}" data-commercetype="{{selectedType}}">

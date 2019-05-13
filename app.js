@@ -181,7 +181,7 @@ App({
       success: res => {
         if (res.code) {
           wx.getUserInfo({
-            success: function (relt) {
+            success: function(relt) {
               console.log(relt)
               that.thirdLogin(res.code, relt.encryptedData, relt.iv, callback);
             }

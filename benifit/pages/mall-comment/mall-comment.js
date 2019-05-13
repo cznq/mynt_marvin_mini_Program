@@ -20,13 +20,13 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     console.log(options.commerce_id);
     var self = this;
     self.setData({
       commerce_id: options.commerce_id
     })
-    
+
   },
 
   // 图片选择
@@ -51,7 +51,7 @@ Page({
   /**
    * 监听表单提交状态
    */
-  monitorInput: function (e) {
+  monitorInput: function(e) {
     if (e.detail.value !== '') {
       this.setData({
         formReady: true
@@ -113,7 +113,9 @@ Page({
       })
       return;
     }
-    this.setData({ content: e.detail.value.content });
+    this.setData({
+      content: e.detail.value.content
+    });
     if (this.data.selectedImages.length > 0) {
       this.uploadImage(0);
     } else {
@@ -125,12 +127,9 @@ Page({
   submit() {
     var that = this;
     console.log(that.data.selectedImages);
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
+    app.request.requestApi.post({
+      url: app.globalData.BANQUET_API_URL + "/comment/add_comment",
       params: {
-        service: 'commerce',
-        method: 'add_comment',
-        union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
           commerce_id: that.data.commerce_id,
           user_nickname: wx.getStorageSync('nickname'),
@@ -150,7 +149,7 @@ Page({
         })
       }
     });
-    
+
   },
 
   // 上传图片
@@ -159,25 +158,23 @@ Page({
     var service = 'commerce';
     var data = JSON.stringify({});
     var method = 'upload_comment_file';
-    var app_id = '65effd5a42fd1870b2c7c5343640e9a8';
+    var app_id = app.globalData.SIGN_DATA.app_id;
     var timestamp = Math.round(new Date().getTime() / 1000 - 28800);
     var sign_type = 'MD5';
-    var stringA = 'app_id=' + app_id + '&data=' + data + '&method=' + method + '&service=' + service + '&timestamp=' + timestamp;
-    var sign = md5.hex_md5(stringA + '&key=a8bfb7a5f749211df4446833414f8f95');
+    var stringA = 'app_id=' + app_id + '&data=' + data + '&timestamp=' + timestamp;
+    var sign = md5.hex_md5(stringA + '&key=' + app.globalData.SIGN_DATA.key);
     that.setData({
       uploading: true
     });
     var uploadTask = wx.uploadFile({
-      url: app.globalData.BENIFIT_API_URL,
+      url: app.globalData.BANQUET_API_URL + "/comment/upload_comment_file",
       filePath: that.data.selectedImages[i],
       header: {
         'content-type': 'multipart/form-data'
       },
-      name: 'comment_pic',
+      name: 'file',
       formData: {
         union_id: wx.getStorageSync('xy_session'),
-        service: service,
-        method: method,
         app_id: app_id,
         timestamp: timestamp,
         sign_type: sign_type,
@@ -223,19 +220,19 @@ Page({
       }
     })
   },
-  
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  
+  onReady: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  
+  onShow: function() {
+
   }
 
 })

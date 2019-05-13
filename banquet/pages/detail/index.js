@@ -39,50 +39,6 @@ Page({
       commerce_id: options.commerce_id //商家id
     })
     that.getDetailInfo(that.data.commerce_id);
-    that.getEmployeeInfo();
-  },
-
-  /**
-   * 获取员工信息
-   */
-  getEmployeeInfo() {
-    var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
-      params: {
-        service: 'company',
-        method: 'get_employee_info',
-        union_id: wx.getStorageSync('xy_session'),
-        data: JSON.stringify({})
-      },
-      showLoading: false,
-      success: res => {
-        if (res.data.result) {
-          that.setData({
-            employeeInfo: res.data.result
-          })
-          app.Util.network.POST({
-            url: app.globalData.BENIFIT_API_URL,
-            params: {
-              service: 'company',
-              method: 'get_company_service_status',
-              data: JSON.stringify({
-                union_id: wx.getStorageSync('xy_session'),
-                service_key: 'EMPLOYEE_BENIFIT'
-              })
-            },
-            showLoading: false,
-            success: res => {
-              if (res.data.result.service_status !== 0) {
-                that.setData({
-                  is_vip: true
-                })
-              }
-            }
-          })
-        }
-      }
-    })
   },
 
   /**
@@ -92,39 +48,55 @@ Page({
     var that = this;
     var slide_img = "slide_data.thumbnail_url";
     var imgCount = "slide_data.imgCount";
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
+    app.request.requestApi.post({
+      url: app.globalData.BANQUET_API_URL + "/commerce/get_commerce_detail",
       params: {
-        service: 'commerce',
-        method: 'get_commerce_info',
-        union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
           commerce_id: commerce_id
         })
       },
       success: res => {
-        if (res.data.result) {
-          if (res.data.result.details) {
-            wxParse.wxParse('details', 'html', res.data.result.details, that, 5);
-          }
-          that.setData({
-            commerceDetail: res.data.result,
-            [slide_img]: res.data.result.thumbnail_url,
-            [imgCount]: res.data.result.thumbnail_url.length,
-            latitude: res.data.result.latitude,
-            longitude: res.data.result.longitude,
-            commerce_type: res.data.result.type
-          })
-          wx.setNavigationBarTitle({
-            title: res.data.result.name
-          })
-          if (that.data.commerce_type != 2) {
-            that.onBusiness(res.data.result.business_hours);
+        if(res.data.return_code == 'SUCCESS'){
+          if(res.data.sub_code =='SUCCESS'){
+            if (res.data.result) {
+              if (res.data.result.details) {
+                wxParse.wxParse('details', 'html', res.data.result.details, that, 5);
+              }
+              that.setData({
+                commerceDetail: res.data.result,
+                [slide_img]: res.data.result.thumbnail_url,
+                //[imgCount]: res.data.result.thumbnail_url.length,
+                latitude: res.data.result.latitude,
+                longitude: res.data.result.longitude,
+                commerce_type: res.data.result.type
+              })
+              wx.setNavigationBarTitle({
+                title: res.data.result.commerce_name
+              })
+              if (that.data.commerce_type != 2) {
+                that.onBusiness(res.data.result.business_hours);
+              }
+            }           
+            that.getProtocol(commerce_id, that.data.commerce_type);
+          }else if(res.data.sub_code =='COMMERCE_OFF_SHELF'){
+            wx.showToast({
+              icon: 'none',
+              title: '该商家已下架',
+              duration: 2000
+            })
+            setTimeout(function(){
+              wx.navigateBack({
+                delta: 1
+              })
+            },2500)
+          }else{
+            wx.showToast({
+              icon: 'none',
+              title: res.data.sub_msg,
+              duration: 2000
+            })
           }
         }
-        that.getProtocol(commerce_id, that.data.commerce_type);
-        //that.getComments(commerce_id);
-        //app.Util.generateMap(this, res.data.result.address);
       }
     })
   },
@@ -135,7 +107,7 @@ Page({
    * endTime 结束时间
    */
   onBusiness(businessHours) {
-    if (businessHours.length == 1 && businessHours[0] == null) {
+    if (businessHours == null) {
       this.setData({
         businessStatus: "营业中"
       })
@@ -189,12 +161,9 @@ Page({
    */
   getProtocol(commerce_id, typeid) {
     var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
+    app.request.requestApi.post({
+      url: app.globalData.BANQUET_API_URL + "/commerce/get_commerce_discount",
       params: {
-        service: 'commerce',
-        method: 'get_commerce_discount',
-        union_id: wx.getStorageSync('xy_session'),
         data: JSON.stringify({
           commerce_id: commerce_id,
           type: typeid
@@ -202,43 +171,28 @@ Page({
       },
       showLoading: false,
       success: res => {
-        if (res.data.result) {
-          var data = res.data.result;
-          delete data.discount_tag
-          for (var i = 0; i < data.length; i++) {
-            // data[i].deal_price_fen = String(data[i].deal_price_fen).split('');
-            data[i].deal_price_fen = String(util.FenToYuan(data[i].deal_price_fen)).split('');
-            data[i].store_price_fen = util.FenToYuan(data[i].store_price_fen);
-            data[i].preferential_price = util.FenToYuan(data[i].preferential_price);
+        if(res.data.return_code == 'SUCCESS'){
+          if (res.data.sub_code == 'SUCCESS'&&res.data.result) {
+            if(typeid == 2){
+              var data = res.data.result.hotel
+              for (var i = 0; i < data.length; i++) {
+                // data[i].deal_price_fen = String(data[i].deal_price_fen).split('');
+                data[i].deal_price_fen = String(util.FenToYuan(data[i].deal_price_fen)).split('');
+                data[i].store_price_fen = util.FenToYuan(data[i].store_price_fen);
+                data[i].preferential_price = util.FenToYuan(data[i].preferential_price);
+              }
+            }else{
+              var data = res.data.result.cate_or_entertainment
+            }
+            that.setData({
+              protocolInfo: data
+            })
           }
-          that.setData({
-            protocolInfo: data
-          })
-        }
-      }
-    })
-  },
-
-  /**
-   * 获取评论信息
-   */
-  getComments(commerce_id) {
-    var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
-      params: {
-        service: 'commerce',
-        method: 'get_comment_list',
-        union_id: wx.getStorageSync('xy_session'),
-        data: JSON.stringify({
-          commerce_id: commerce_id
-        })
-      },
-      showLoading: false,
-      success: res => {
-        if (res.data.result) {
-          that.setData({
-            commentList: res.data.result
+        }else{
+          wx.showToast({
+            icon: 'none',
+            title: '服务器异常请重试',
+            duration: 2000
           })
         }
       }
@@ -274,16 +228,6 @@ Page({
     })
   },
 
-  // 全屏查看评论图
-  previewImage(e) {
-    var pindex = e.currentTarget.dataset.pindex;
-    var mindex = e.currentTarget.dataset.mindex;
-    //console.log(this.data.commentList);
-    wx.previewImage({
-      current: this.data.commentList[mindex].pic_url[pindex],
-      urls: this.data.commentList[mindex].pic_url
-    })
-  },
 
   // 查看房型缩略图
   previewHotelImage(e) {
@@ -300,31 +244,19 @@ Page({
    */
 
   openMap: function() {
-    wx.openLocation({
-      latitude: Number(this.data.latitude),
-      longitude: Number(this.data.longitude),
-      scale: 28,
-      name:this.data.commerceDetail.name,
-      address:this.data.commerceDetail.address,
-    })
-  },
-
-  /**
-   * 去评论
-   */
-  enterComment: function(e) {
-    if (this.data.is_vip) {
-      var commerce_id = e.currentTarget.dataset.commerceid;
-      wx.navigateTo({
-        url: '/benifit/pages/mall-comment/mall-comment?commerce_id=' + commerce_id
+    let latitude =  Number(this.data.latitude)
+    let longitude =  Number(this.data.longitude)
+    if(latitude==0 || longitude == 0){
+      return false
+    }else{
+      wx.openLocation({
+        latitude: latitude,
+        longitude: longitude,
+        scale: 28,
+        name:this.data.commerceDetail.commerce_name,
+        address:this.data.commerceDetail.address,
       })
-    } else {
-      wx.showToast({
-        icon: 'none',
-        title: '你还不是VIP，不能评论'
-      })
-    }
-
+    } 
   },
 
   /**

@@ -17,14 +17,7 @@ function pubData(_this, app, service, method, parameter, cb) {
     success: res => {
       console.log(res);
       if (res.data.sub_code == 0) {
-        //简介展开数据
-        // res.data.result.isRobotReview = false;
-        // if (res.data.result.introduction.length >= 68) {
-        //   res.data.result.introductionAll = res.data.result.introduction;
-        //   res.data.result.introduction = res.data.result.introduction.substr(0, 68) + '...';
-        //   res.data.result.introductionAll_button = true;
-        // }
-        //res.data.result.introduction = '复古的风格发的';
+
         res.data.result.isRobotReview = false;
         _this.setData({
           cd: res.data.result
@@ -139,10 +132,6 @@ function introductionAll(_this) {
       "cd.isEllipsis": true
     })
   }
-  // _this.setData({
-  //   'cd.introductionAll_button': false,
-  //   'cd.introduction': _this.data.cd.introductionAll
-  // })
 }
 //机器人端预览
 function robotPreview() {
