@@ -8,14 +8,14 @@
           <view class="swiper-item" style="background: url({{item}}) no-repeat center center;background-size:cover;" bindtap="viewPhoto" data-index="{{index}}">
             <view class="swiperInfo">
               <image src="../../images/search@2x.png"></image>
-              <text>{{index+1}}/{{slide_data.imgCount}}</text>
+              <text>{{index+1}}/{{slide_data.thumbnail_url.length}}</text>
             </view>
           </view>
         </swiper-item>
       </block>
     </swiper>
     <view class="infoWrapper top">
-      <view class="shop-name">{{commerceDetail.name}}</view>
+      <view class="shop-name">{{commerceDetail.commerce_name}}</view>
       <view class="needinfo">
         <text>{{commerceDetail.business_projects}}</text>
         <view class="star-part">
@@ -99,7 +99,8 @@
                 <view class="price-num">
                   <image src="../../images/num/numb.png"></image>
                   <block wx:for="{{item.deal_price_fen}}" wx:for-item="num" wx:key="">
-                    <image src="../../images/num/num{{num}}.png"></image>
+                    <image wx:if="{{num == '.'}}"  src="../../images/num/dot.png"></image>
+                    <image wx:else src="../../images/num/num{{num}}.png"></image>
                   </block>
                 </view>
                 <button open-type="contact" show-message-card="true" session-from="shop-order-detail" send-message-title="{{commerceDetail.name}} - {{item.bed_introduce}}" wx:if="{{is_vip}}">协议咨询</button>

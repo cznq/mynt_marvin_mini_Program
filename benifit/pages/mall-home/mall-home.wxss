@@ -124,7 +124,9 @@ swiper {
   display: flex;
   flex-wrap: wrap;
 }
-
+.shop-list.pt50{
+  padding-top: 128rpx;
+}
 .shop-list .shop-wrapper {
   width: calc(50% - 7px);
   box-sizing: border-box;

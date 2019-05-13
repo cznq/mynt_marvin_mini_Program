@@ -10,7 +10,8 @@ Page({
     isiphoneX: app.globalData.isIphoneX,
     button_text:'我已关注',
     disabled:true,
-    checked:false
+    checked:false,
+    webViewUrl: app.globalData.WEB_VIEW_URL + '/employee/follow/guide'
   },
 
   /**
@@ -21,6 +22,9 @@ Page({
     console.log(options)
     //拼接url的参数
     _this.data.url = '/' + options.route + '?' + app.Util.json2Form(JSON.parse(options.opt))
+    this.setData({
+      webViewUrl: _this.data.webViewUrl + '?params=' + encodeURIComponent(_this.data.url)
+    })
   },
   //单选按钮
   radioChange:function(e){

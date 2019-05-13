@@ -73,7 +73,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
           var currentPage = pages[pages.length - 1] //获取当前页面的对象
           var url = currentPage.route; //获取当前页面url
           var opt = JSON.stringify(currentPage.options) //获取url中所带的参数
-          wx.navigateTo({
+          wx.redirectTo({
             url: '/pages/checkfollow/index?route=' + url + '&opt=' + opt,
           })
         }
