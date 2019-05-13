@@ -56,26 +56,47 @@ Page({
         })
       },
       success: res => {
-        if (res.data.result) {
-          if (res.data.result.details) {
-            wxParse.wxParse('details', 'html', res.data.result.details, that, 5);
-          }
-          that.setData({
-            commerceDetail: res.data.result,
-            [slide_img]: res.data.result.thumbnail_url,
-            //[imgCount]: res.data.result.thumbnail_url.length,
-            latitude: res.data.result.latitude,
-            longitude: res.data.result.longitude,
-            commerce_type: res.data.result.type
-          })
-          wx.setNavigationBarTitle({
-            title: res.data.result.commerce_name
-          })
-          if (that.data.commerce_type != 2) {
-            that.onBusiness(res.data.result.business_hours);
+        if(res.data.return_code == 'SUCCESS'){
+          if(res.data.sub_code =='SUCCESS'){
+            if (res.data.result) {
+              if (res.data.result.details) {
+                wxParse.wxParse('details', 'html', res.data.result.details, that, 5);
+              }
+              that.setData({
+                commerceDetail: res.data.result,
+                [slide_img]: res.data.result.thumbnail_url,
+                //[imgCount]: res.data.result.thumbnail_url.length,
+                latitude: res.data.result.latitude,
+                longitude: res.data.result.longitude,
+                commerce_type: res.data.result.type
+              })
+              wx.setNavigationBarTitle({
+                title: res.data.result.commerce_name
+              })
+              if (that.data.commerce_type != 2) {
+                that.onBusiness(res.data.result.business_hours);
+              }
+            }           
+            that.getProtocol(commerce_id, that.data.commerce_type);
+          }else if(res.data.sub_code =='COMMERCE_OFF_SHELF'){
+            wx.showToast({
+              icon: 'none',
+              title: '该商家已下架',
+              duration: 2000
+            })
+            setTimeout(function(){
+              wx.navigateBack({
+                delta: 1
+              })
+            },2500)
+          }else{
+            wx.showToast({
+              icon: 'none',
+              title: res.data.sub_msg,
+              duration: 2000
+            })
           }
         }
-        that.getProtocol(commerce_id, that.data.commerce_type);
       }
     })
   },
