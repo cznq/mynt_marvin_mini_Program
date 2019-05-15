@@ -158,7 +158,7 @@ Page({
   quickPay: function(e) {
     const commerce_name = e.currentTarget.dataset.commerce_name;
     const commerce_thumbnail_url = e.currentTarget.dataset.commerce_thumbnail_url;
-    const pay_price = e.currentTarget.dataset.pay_price / 100;
+    const pay_price = util.divide(e.currentTarget.dataset.pay_price, 100, 0);
     const bookid = e.currentTarget.dataset.bookid;
     wx.navigateTo({
       url: '../cashier/cashier?bookid=' + bookid + '&commerce_name=' + commerce_name + '&commerce_thumbnail_url=' + commerce_thumbnail_url +
