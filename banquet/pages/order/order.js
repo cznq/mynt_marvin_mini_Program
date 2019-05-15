@@ -113,7 +113,7 @@ Page({
               } else { //酒店
                 let bookBeginTime = util.formatTime(item.book_begin_time, 3)
                 let bookEndTime = util.formatTime(item.book_end_time, 3)
-                let dateDiff_Day = Moment(bookEndTime).differ(bookBeginTime)
+                let dateDiff_Day = util.dateDiff_Day(bookBeginTime, bookEndTime)
                 item.bookBeginTime = bookBeginTime;
                 item.bookEndTime = bookEndTime;
                 item.dateDiff_Day = dateDiff_Day;

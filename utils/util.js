@@ -264,6 +264,14 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
 
   }
 
+  var dateDiff_Day = function(s1, s2) {
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date(s2.replace(/-/g, "/"));
+    let days = s2.getTime() - s1.getTime();
+    let time = parseInt(days / (1000 * 60 * 60 * 24));
+    return time;
+  }
+
   // 2018-09-11 11:30 转化时间戳 1542369600
   function datetoTime(strtime) {
     var date = new Date(strtime.replace(/-/g, '/')).getTime();
@@ -580,6 +588,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
     GET: GET,
     POST: POST
   }
+  module.exports.dateDiff_Day = dateDiff_Day
   module.exports.generateMap = generateMap;
   module.exports.dateFormat = dateFormat;
   module.exports.unique = unique;
