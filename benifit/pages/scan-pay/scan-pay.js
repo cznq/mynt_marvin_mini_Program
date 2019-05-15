@@ -254,10 +254,10 @@ Page({
       params: {
         data: JSON.stringify({
           "commerce_id": _this.data.commerce_id,
-          "total": util.multiply(_this.data.totalPrice, 100, 0),
+          "total": util.multiply(parseFloat(_this.data.totalPrice), 100, 0),
           "enjoy_discount": _this.data.isVip ? 1 : 0,
-          "out_price": _this.data.outPrice == null ? 0 : util.multiply(_this.data.outPrice, 100, 0),
-          "total_fee": util.multiply(_this.data.realPrice, 100, 0),
+          "out_price": _this.data.outPrice == null ? 0 : util.multiply(parseFloat(_this.data.outPrice), 100, 0),
+          "total_fee": util.multiply(parseFloat(_this.data.realPrice), 100, 0),
           "pay_type": 3,
           "open_id": wx.getStorageSync('open_id')
         })
