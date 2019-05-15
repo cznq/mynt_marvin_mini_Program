@@ -1,6 +1,6 @@
 const Promise = require('utils/promise.js');
 // 环境变量配置
-const env = 'test' // dev, test, prod (开发、测试、生产环境) 
+const env = 'dev' // dev, test, prod (开发、测试、生产环境) 
 const setting = require('config/' + env + '.js')
 
 /**
