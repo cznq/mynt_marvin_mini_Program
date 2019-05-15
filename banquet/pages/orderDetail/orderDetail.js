@@ -1,6 +1,7 @@
 const app = getApp();
 const util = require('../../../utils/util');
 var toast = require('../../../templates/showToast/showToast');
+const Moment = require('../../../utils/moment.js');
 
 Page({
 
@@ -74,7 +75,7 @@ Page({
             result.hotel.expect_arrive_time = expect_arrive_time;
             let bookBeginTime = util.formatTime(result.hotel.book_begin_time, 3);
             let bookEndTime = util.formatTime(result.hotel.book_endTime, 3);
-            let dateDiff_Day = util.dateDiff_Day(bookBeginTime, bookEndTime);
+            let dateDiff_Day = Moment(bookEndTime).differ(bookBeginTime);
             result.hotel.book_begin_time = bookBeginTime;
             result.hotel.book_endTime = bookEndTime;
             result.hotel.dateDiff_Day = dateDiff_Day;
