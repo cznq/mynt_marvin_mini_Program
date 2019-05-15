@@ -1,6 +1,7 @@
 // benifit/pages/hotel-reserve/index.js
 var toast = require('../../../templates/showToast/showToast');
 var util = require("../../../utils/util.js");
+var floatPoint = require("../../../utils/floating-point.js");
 const app = getApp();
 Page({
 
@@ -30,19 +31,19 @@ Page({
     var that = this;
     var price = parseFloat(options.price)
     var store_price = parseFloat(options.store_price)//门店价
-    var discountPriceOne = util.subtract(store_price,price)//单个房间一天优惠金额
+    var discountPriceOne = floatPoint.subtract(store_price,price)//单个房间一天优惠金额
     var num = that.data.num
     var days = parseFloat(that.data.stayDays)
-    var oneDayRoom = util.multiply(price,num)//一天的价格 房间价*房间数
-    var oneDayDiscount = util.multiply(discountPriceOne,num)
+    var oneDayRoom = floatPoint.multiply(price,num)//一天的价格 房间价*房间数
+    var oneDayDiscount = floatPoint.multiply(discountPriceOne,num)
     that.setData({
       isIphone: app.globalData.isIphone,
       commerce_id: options.commerce_id,
       hotel_room_id:options.hotel_room_id,
       price:price,
-      totalPrice:util.multiply(oneDayRoom,days),
+      totalPrice:floatPoint.multiply(oneDayRoom,days),
       discountPriceOne:discountPriceOne,
-      discountPrice:util.multiply(oneDayDiscount,days)
+      discountPrice:floatPoint.multiply(oneDayDiscount,days)
     })
     that.getDetailInfo(that.data.commerce_id);
   },
@@ -80,12 +81,12 @@ Page({
     if (num > 1) {
       num--;
     }
-    var oneDayRoom = util.multiply(price,num)//一天的价格 房间价*房间数
-    var oneDayDiscount = util.multiply(discountPriceOne,num)
+    var oneDayRoom = floatPoint.multiply(price,num)//一天的价格 房间价*房间数
+    var oneDayDiscount = floatPoint.multiply(discountPriceOne,num)
     this.setData({
       num: num,
-      totalPrice:util.multiply(oneDayRoom,days),
-      discountPrice:util.multiply(oneDayDiscount,days)
+      totalPrice:floatPoint.multiply(oneDayRoom,days),
+      discountPrice:floatPoint.multiply(oneDayDiscount,days)
     });
   },
   /* 点击加号 */
@@ -95,12 +96,12 @@ Page({
     var price = this.data.price
     var discountPriceOne = this.data.discountPriceOne
     num++;
-    var oneDayRoom = util.multiply(price,num)//一天的价格 房间价*房间数
-    var oneDayDiscount = util.multiply(discountPriceOne,num)
+    var oneDayRoom = floatPoint.multiply(price,num)//一天的价格 房间价*房间数
+    var oneDayDiscount = floatPoint.multiply(discountPriceOne,num)
     this.setData({
       num: num,
-      totalPrice:util.multiply(oneDayRoom,days),
-      discountPrice:util.multiply(oneDayDiscount,days)
+      totalPrice:floatPoint.multiply(oneDayRoom,days),
+      discountPrice:floatPoint.multiply(oneDayDiscount,days)
     });
   },
   /* 输入框事件 */
@@ -109,12 +110,12 @@ Page({
     var days = parseFloat(this.data.stayDays)
     var price = this.data.price
     var discountPriceOne = this.data.discountPriceOne
-    var oneDayRoom = util.multiply(price,num)//一天的价格 房间价*房间数
-    var oneDayDiscount = util.multiply(discountPriceOne,num)
+    var oneDayRoom = floatPoint.multiply(price,num)//一天的价格 房间价*房间数
+    var oneDayDiscount = floatPoint.multiply(discountPriceOne,num)
     this.setData({
       num: num,
-      totalPrice:util.multiply(oneDayRoom,days),
-      discountPrice:util.multiply(oneDayDiscount,days)
+      totalPrice:floatPoint.multiply(oneDayRoom,days),
+      discountPrice:floatPoint.multiply(oneDayDiscount,days)
     });
   },
   remarksText: function(e) {
@@ -156,8 +157,8 @@ Page({
     var days = parseFloat(that.data.stayDays)
     var price = that.data.price //协议价
     var discountPriceOne = that.data.discountPriceOne //单间单天优惠金额
-    var oneDayRoom = util.multiply(price,num)//一天的价格 房间协议价*房间数
-    var oneDayDiscount = util.multiply(discountPriceOne,num)//一天优惠金额 优惠金额*房间数
+    var oneDayRoom = floatPoint.multiply(price,num)//一天的价格 房间协议价*房间数
+    var oneDayDiscount = floatPoint.multiply(discountPriceOne,num)//一天优惠金额 优惠金额*房间数
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1];
     if (currPage.data.stayDays > 0) {
@@ -166,8 +167,8 @@ Page({
         checkOutDate: currPage.data.checkOutDate,
         stayDays: currPage.data.stayDays,
         selectData: '请选择到店时间',
-        totalPrice:util.multiply(oneDayRoom,days),
-        discountPrice:util.multiply(oneDayDiscount,days)
+        totalPrice:floatPoint.multiply(oneDayRoom,days),
+        discountPrice:floatPoint.multiply(oneDayDiscount,days)
       })
     }
   },
