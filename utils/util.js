@@ -382,7 +382,7 @@ var QQMapWX = require('qqmap-wx-jssdk.min.js');
   function checkPassport(passport) {
     if (typeof passport !== 'string') return false;
     //var reg = /^1[45][0-9]{7}|([P|p|S|s]\d{7})|([S|s|G|g]\d{8})|([Gg|Tt|Ss|Ll|Qq|Dd|Aa|Ff]\d{8})|([H|h|M|m]\d{8，10})$/;
-    var reg = /^([a-zA-z0-9]){1,20}$/;
+    var reg = /^([a-zA-z0-9]){6,20}$/;
     if (reg.test(passport) === false) {
       return false;
     } else {

@@ -105,13 +105,26 @@ Page({
    * 重置人脸信息
    */
   resetFace: function () {
+    let id_type = this.data.empInfo.id_type
     var source = 'reRecodeFace';
     var params = JSON.stringify({
       company_id: this.data.cmpInfo.company_id
     })
-    wx.navigateTo({
-      url: '/pages/collect-info/confirmIdentity/index?source=' + source + '&params=' + params,
-    })
+    if(id_type == 0){
+      wx.navigateTo({
+        url: '/pages/collect-info/confirmIdentity/index?source=' + source + '&params=' + params,
+      })
+    }else{
+      var idInfo = JSON.stringify({
+        id_type: id_type,
+        name: null,
+        phone: this.data.empInfo.phone,
+        id_number: null
+      })
+      wx.navigateTo({
+        url: '/pages/collect-info/identity/index?source=' + source + '&params=' + params + '&idInfo=' + idInfo,
+      })
+    }
   },
 
   recodeFace: function () {
