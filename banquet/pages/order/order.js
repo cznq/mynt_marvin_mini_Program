@@ -1,6 +1,8 @@
 // pages/businessDining/order/order.js
 const app = getApp();
 const util = require('../../../utils/util');
+const utilCal = require('../../../utils/floating-point.js');
+const Moment = require('../../../utils/moment.js');
 Page({
 
   /**
@@ -158,7 +160,7 @@ Page({
   quickPay: function(e) {
     const commerce_name = e.currentTarget.dataset.commerce_name;
     const commerce_thumbnail_url = e.currentTarget.dataset.commerce_thumbnail_url;
-    const pay_price = e.currentTarget.dataset.pay_price / 100;
+    const pay_price = utilCal.divide(parseFloat(e.currentTarget.dataset.pay_price), 100, 0);
     const bookid = e.currentTarget.dataset.bookid;
     wx.navigateTo({
       url: '../cashier/cashier?bookid=' + bookid + '&commerce_name=' + commerce_name + '&commerce_thumbnail_url=' + commerce_thumbnail_url +

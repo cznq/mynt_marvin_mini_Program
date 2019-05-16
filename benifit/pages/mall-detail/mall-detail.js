@@ -139,8 +139,6 @@ Page({
             duration: 2000
           })
         }
-      
-        //app.Util.generateMap(this, res.data.result.address);
       }
     })
   },
