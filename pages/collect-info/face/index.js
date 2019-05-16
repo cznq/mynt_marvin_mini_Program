@@ -82,7 +82,7 @@ Page({
   /**
    * 开始录入
    */
-  startRecodeFace: function() {
+  startRecordFace: function() {
     var that = this
     that.checkAuth(that, function() {
       that.startRecord(that, that.data.ctx)
@@ -98,8 +98,10 @@ Page({
       success: (res) => {
         self.setData({
           status: 'stop'
-        }, function(){ self.createProgressAni() })
-        setTimeout(function () {
+        }, function() {
+          self.createProgressAni()
+        })
+        setTimeout(function() {
           self.stopRecord(self, self.data.ctx);
         }, parseInt(self.data.faceConfig.counter) * 1000)
       },
@@ -326,12 +328,12 @@ Page({
     })
   },
 
-  createProgressAni: function () {
+  createProgressAni: function() {
     let self = this
     let animation = wx.createAnimation({
       duration: parseInt(self.data.faceConfig.counter) * 1000,
       timingFunction: 'linear',
-      success: function (res) {
+      success: function(res) {
         console.log(res)
       }
     })
@@ -347,7 +349,7 @@ Page({
       }
     })
     // animation.translateX(-windowWidth).step()
-    
+
   }
-  
+
 })
