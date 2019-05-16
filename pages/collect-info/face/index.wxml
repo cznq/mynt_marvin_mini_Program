@@ -14,7 +14,7 @@
         </block>
       </view>
     </view>
-    <camera device-position="front" flash="off" binderror="cameraError" style="width: 100%; height: 60%;position:relative;" wx:if="{{status == 'start' || status == 'stop'}}">
+    <camera device-position="front" flash="off" binderror="cameraError" style="width: 100%; height: 70%;position:relative;" wx:if="{{status == 'start' || status == 'stop'}}">
       <cover-image class="circle" mode="widthFix" src="../../../images/avatar-frame@2x.png"></cover-image>
     </camera>
     <view class="_relative lastPhoto" wx:if="{{status == 'uploading'}}">
@@ -25,7 +25,7 @@
   <view class="mask" wx:if="{{status == 'uploading'}}"></view>
   <view class="_fixed footer {{isIphoneX?'iphonex':''}}">
     <block wx:if="{{status == 'start'}}">
-  <button class="_button _font34 _start_button" bindtap="startRecordFace" disabled='{{false}}'>开始读数字</button>
+        <button class="_button _font34 _start_button" bindtap="startRecordFace" disabled='{{buttonDisabled}}'>开始读数字</button>
     </block>
     <block wx:elif="{{status == 'uploading' || status == 'stop'}}">
       <view class="_font34 uploadTxt">
