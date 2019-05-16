@@ -70,7 +70,7 @@
     "pages/businessService/vipStatus/vipStatus",
     "pages/businessService/servicePay/index",
     "pages/businessService/payRecord/index",
-    "pages/businessService/suite-introduce/suite-introduce",
+    "pages/businessService/suite-introduce/suite-introduce"
   ],
   "subPackages": [
     {
