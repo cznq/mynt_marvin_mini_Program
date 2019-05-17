@@ -44,11 +44,11 @@ page,
   color: rgba(0, 123, 255, 1);
 }
 .lastPhoto {
-  height: 780rpx;
+  height: 70%;
 }
 .tempFile {
   width: 750rpx; 
-  height: 780rpx;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 50%;
