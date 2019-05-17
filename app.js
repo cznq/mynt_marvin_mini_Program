@@ -1,6 +1,6 @@
 const Promise = require('utils/promise.js');
 // 环境变量配置
-const env = 'test' // dev, test, prod (开发、测试、生产环境) 
+const env = 'test' // dev, test, prod (开发、测试、生产环境)
 const setting = require('config/' + env + '.js')
 
 /**
@@ -94,6 +94,7 @@ App({
 
   Util: require('utils/util.js'),
   request: require('utils/request.js'),
+  server: require('server/request.js'),
 
   /**
    * 检查App是否登录
