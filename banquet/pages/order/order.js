@@ -86,59 +86,10 @@ Page({
       },
       success: res => {
         console.log('订单列表:', res);
-        let data = res.data
-        if (data.sub_code == "SUCCESS") {
-          let totalCount = data.result.total_count;
-          let total_page = data.result.total_page;
-          let listItem = data.result.data
-          if (listItem.length == 0) {
-            _this.setData({
-              ['searchNoneData.show']: true
-            })
-            return false
-          } else {
-            _this.setData({
-              ['searchNoneData.show']: false
-            })
-          }
-          if (continu) {
-            listItem = _this.data.listItem.concat(data.result.data);
-          }
-          for (let item of listItem) {
-            for (var o in item) {
-              if (item['book_type'] === 2) { //宴请
-                let appointmentTime = util.formatTime(item.appointment_time, 2)
-                item.appointmentTime = appointmentTime;
-                break;
-              } else { //酒店
-                let bookBeginTime = util.formatTime(item.book_begin_time, 3)
-                let bookEndTime = util.formatTime(item.book_end_time, 3)
-                let dateDiff_Day = util.dateDiff_Day(bookBeginTime, bookEndTime)
-                item.bookBeginTime = bookBeginTime;
-                item.bookEndTime = bookEndTime;
-                item.dateDiff_Day = dateDiff_Day;
-                break;
-              }
-            }
-          }
-          _this.setData({
-            totalCount: totalCount,
-            total_page: total_page,
-            listItem: listItem
-          })
-        } else {
-          wx.showToast({
-            title: res.errMsg,
-            icon: 'none'
-          })
-        }
+
       },
       fail: res => {
-        console.log('fail');
-        wx.showToast({
-          title: res.errMsg,
-          none: 'none'
-        })
+
       }
     })
   },
@@ -154,7 +105,59 @@ Page({
         })
       }
     }).then(res => {
-      console.log('订单列表:', res);
+      console.log('订单列表6:', res);
+      let data = res.data
+      if (data.sub_code == "SUCCESS") {
+        let totalCount = data.result.total_count;
+        let total_page = data.result.total_page;
+        let listItem = data.result.data
+        if (listItem.length == 0) {
+          _this.setData({
+            ['searchNoneData.show']: true
+          })
+          return false
+        } else {
+          _this.setData({
+            ['searchNoneData.show']: false
+          })
+        }
+        if (continu) {
+          listItem = _this.data.listItem.concat(data.result.data);
+        }
+        for (let item of listItem) {
+          for (var o in item) {
+            if (item['book_type'] === 2) { //宴请
+              let appointmentTime = util.formatTime(item.appointment_time, 2)
+              item.appointmentTime = appointmentTime;
+              break;
+            } else { //酒店
+              let bookBeginTime = util.formatTime(item.book_begin_time, 3)
+              let bookEndTime = util.formatTime(item.book_end_time, 3)
+              let dateDiff_Day = util.dateDiff_Day(bookBeginTime, bookEndTime)
+              item.bookBeginTime = bookBeginTime;
+              item.bookEndTime = bookEndTime;
+              item.dateDiff_Day = dateDiff_Day;
+              break;
+            }
+          }
+        }
+        _this.setData({
+          totalCount: totalCount,
+          total_page: total_page,
+          listItem: listItem
+        })
+      } else {
+        wx.showToast({
+          title: res.errMsg,
+          icon: 'none'
+        })
+      }
+    }).catch(res =>{
+      console.log('fail');
+      wx.showToast({
+        title: res.errMsg,
+        none: 'none'
+      })
     })
   },
   currDetil: (e) => {

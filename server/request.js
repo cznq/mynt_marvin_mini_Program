@@ -1,5 +1,4 @@
 const md5 = require('../utils/md5.js');
-const Promise = require('../utils/promise.js')
 // 网络请求
 // GET请求
 function get(requestRouter) {
@@ -7,13 +6,15 @@ function get(requestRouter) {
 }
 // POST请求
 function post(requestRouter) {
-  checkRequestLogin('POST', requestRouter)
+  return new Promise((resolve, reject) => {
+  checkRequestLogin('POST', requestRouter, resolve, reject)
+})
 }
 //检测是否已登陆
-function checkRequestLogin(method, requestRouter) {
+function checkRequestLogin(method, requestRouter, resolve, reject) {
   const app = getApp();
   app.checkWxLogin(function() {
-    request(method, requestRouter, app)
+    request(method, requestRouter, app, resolve, reject)
   })
 }
 
@@ -24,7 +25,7 @@ function checkRequestLogin(method, requestRouter) {
  * requestRouter.loadingTitle      '正在加载'
  * requestRouter.showLoading       true | false
  */
-function request(method, requestRouter, app) {
+function request(method, requestRouter, app, resolve, reject) {
 
   var dataJson = JSON.parse(requestRouter.params.data);
   dataJson.union_id = wx.getStorageSync('xy_session') //; //'o3iamjg7wPdNPO_uvqFM4cOr2p4w'
@@ -46,7 +47,7 @@ function request(method, requestRouter, app) {
   requestRouter.params.sign = md5.hex_md5(stringA + '&key=' + app.globalData.SIGN_DATA.key);
   //打印参数
   console.log('requestRouter1111.params:', requestRouter.params);
-  return new Promise((resolve, reject) => {
+
     wx.request({
       url: requestRouter.url,
       data: requestRouter.params,
@@ -85,15 +86,15 @@ function request(method, requestRouter, app) {
           title: '加载失败，请尝试刷新',
           icon: 'none'
         })
-        // if (requestRouter.fail) requestRouter.fail();
         reject(res)
+        // if (requestRouter.fail) requestRouter.fail();
       },
       complete: () => {
         wx.stopPullDownRefresh();
         if (requestRouter.complete) requestRouter.complete();
       }
     })
-  })
+
 
 }
 
