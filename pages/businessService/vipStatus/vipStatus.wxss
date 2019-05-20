@@ -1,8 +1,64 @@
+.header .top {
+  padding: 0 40rpx;
+  margin-bottom: 49rpx;
+}
+
+.header .top image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 8rpx;
+  float: left;
+  margin-right: 20rpx;
+}
+
+.header .peoNum {
+  width: 128rpx;
+  height: 38rpx;
+  border: 1rpx solid rgba(198, 201, 212, 1);
+  border-radius: 7rpx;
+  font-size: 22rpx;
+  color: rgba(26, 42, 75, 1);
+  line-height: 38rpx;
+  text-align: center;
+  margin-left: 19rpx;
+}
+
+.header .t1 {
+  font-size: 44rpx;
+  line-height: 65rpx;
+  color: #081C33;
+}
+
+.header .t2 {
+  font-size: 24rpx;
+  color: #8891A9;
+}
+
+.header .record {
+  right: 40rpx;
+  top: 25rpx;
+  width: 128rpx;
+  height: 46rpx;
+}
+
+.header .cordColor {
+  color: rgba(26, 42, 75, .8);
+}
+
+.memberTip {
+  width: 670rpx;
+  height: 79rpx;
+  background: rgba(245, 246, 247, 1);
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  padding:11rpx 20rpx;
+  margin: 0 auto 11rpx;
+}
+
 .vipCard {
   position: relative;
   width: 750rpx;
   height: 360rpx;
-  margin: 40rpx auto 0;
 }
 
 .vipCard .cardBg {
@@ -146,6 +202,7 @@
   line-height: 100rpx;
   text-align: center;
 }
+
 .submit.nouse {
   background-color: #b7bdcb
 }
