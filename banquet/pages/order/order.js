@@ -27,7 +27,7 @@ Page({
    */
   onLoad: function(options) {
     const _this = this
-    _this.Get_order_list(_this)
+    _this.get_order_list(_this)
   },
   touchTit: function(e) {
     wx.pageScrollTo({
@@ -74,75 +74,6 @@ Page({
    * continu       true | false
    */
   get_order_list: (_this, book_status = 0, page_size = 10, page = 1, continu = false) => {
-    app.request.requestApi.post({
-      url: app.globalData.BANQUET_API_URL + "/commerce/book/get_order_list",
-      params: {
-        data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session'),
-          book_status: book_status,
-          page_size: page_size,
-          page: page
-        })
-      },
-      success: res => {
-        console.log('订单列表:', res);
-        let data = res.data
-        if (data.sub_code == "SUCCESS") {
-          let totalCount = data.result.total_count;
-          let total_page = data.result.total_page;
-          let listItem = data.result.data
-          if (listItem.length == 0) {
-            _this.setData({
-              ['searchNoneData.show']: true
-            })
-            return false
-          } else {
-            _this.setData({
-              ['searchNoneData.show']: false
-            })
-          }
-          if (continu) {
-            listItem = _this.data.listItem.concat(data.result.data);
-          }
-          for (let item of listItem) {
-            for (var o in item) {
-              if (item['book_type'] === 2) { //宴请
-                let appointmentTime = util.formatTime(item.appointment_time, 2)
-                item.appointmentTime = appointmentTime;
-                break;
-              } else { //酒店
-                let bookBeginTime = util.formatTime(item.book_begin_time, 3)
-                let bookEndTime = util.formatTime(item.book_end_time, 3)
-                let dateDiff_Day = util.dateDiff_Day(bookBeginTime, bookEndTime)
-                item.bookBeginTime = bookBeginTime;
-                item.bookEndTime = bookEndTime;
-                item.dateDiff_Day = dateDiff_Day;
-                break;
-              }
-            }
-          }
-          _this.setData({
-            totalCount: totalCount,
-            total_page: total_page,
-            listItem: listItem
-          })
-        } else {
-          wx.showToast({
-            title: res.errMsg,
-            icon: 'none'
-          })
-        }
-      },
-      fail: res => {
-        console.log('fail');
-        wx.showToast({
-          title: res.errMsg,
-          none: 'none'
-        })
-      }
-    })
-  },
-  Get_order_list: (_this, book_status = 0, page_size = 10, page = 1, continu = false) => {
     app.server.requestApi.post({
       url: app.globalData.BANQUET_API_URL + "/commerce/book/get_order_list",
       params: {
@@ -155,6 +86,54 @@ Page({
       }
     }).then(res => {
       console.log('订单列表:', res);
+      let data = res.data
+      if (data.sub_code == "SUCCESS") {
+        let totalCount = data.result.total_count;
+        let total_page = data.result.total_page;
+        let listItem = data.result.data
+        if (listItem.length == 0) {
+          _this.setData({
+            ['searchNoneData.show']: true
+          })
+          return false
+        } else {
+          _this.setData({
+            ['searchNoneData.show']: false
+          })
+        }
+        if (continu) {
+          listItem = _this.data.listItem.concat(data.result.data);
+        }
+        for (let item of listItem) {
+          for (var o in item) {
+            if (item['book_type'] === 2) { //宴请
+              let appointmentTime = util.formatTime(item.appointment_time, 2)
+              item.appointmentTime = appointmentTime;
+              break;
+            } else { //酒店
+              let bookBeginTime = util.formatTime(item.book_begin_time, 3)
+              let bookEndTime = util.formatTime(item.book_end_time, 3)
+              let dateDiff_Day = util.dateDiff_Day(bookBeginTime, bookEndTime)
+              item.bookBeginTime = bookBeginTime;
+              item.bookEndTime = bookEndTime;
+              item.dateDiff_Day = dateDiff_Day;
+              break;
+            }
+          }
+        }
+        _this.setData({
+          totalCount: totalCount,
+          total_page: total_page,
+          listItem: listItem
+        })
+      } else {
+        wx.showToast({
+          title: res.errMsg,
+          icon: 'none'
+        })
+      }
+    }).catch(res => {
+      console.log(res);
     })
   },
   currDetil: (e) => {

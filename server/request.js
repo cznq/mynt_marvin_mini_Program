@@ -7,13 +7,15 @@ function get(requestRouter) {
 }
 // POST请求
 function post(requestRouter) {
-  checkRequestLogin('POST', requestRouter)
+  return new Promise((resolve, reject) => {
+    checkRequestLogin('POST', requestRouter, resolve, reject)
+  })
 }
 //检测是否已登陆
-function checkRequestLogin(method, requestRouter) {
+function checkRequestLogin(method, requestRouter, resolve, reject) {
   const app = getApp();
   app.checkWxLogin(function() {
-    request(method, requestRouter, app)
+    request(method, requestRouter, app, resolve, reject)
   })
 }
 
@@ -24,7 +26,7 @@ function checkRequestLogin(method, requestRouter) {
  * requestRouter.loadingTitle      '正在加载'
  * requestRouter.showLoading       true | false
  */
-function request(method, requestRouter, app) {
+function request(method, requestRouter, app, resolve, reject) {
 
   var dataJson = JSON.parse(requestRouter.params.data);
   dataJson.union_id = wx.getStorageSync('xy_session') //; //'o3iamjg7wPdNPO_uvqFM4cOr2p4w'
@@ -46,54 +48,54 @@ function request(method, requestRouter, app) {
   requestRouter.params.sign = md5.hex_md5(stringA + '&key=' + app.globalData.SIGN_DATA.key);
   //打印参数
   console.log('requestRouter1111.params:', requestRouter.params);
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: requestRouter.url,
-      data: requestRouter.params,
-      method: method, // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: res => {
-        //未关注公众号跳转
-        if (res.data.return_code == 'NO_FOLLOW') {
-          var pages = getCurrentPages();
-          var currentPage = pages[pages.length - 1] //获取当前页面的对象
-          var url = currentPage.route; //获取当前页面url
-          var opt = JSON.stringify(currentPage.options) //获取url中所带的参数
-          wx.redirectTo({
-            url: '/pages/checkfollow/index?route=' + url + '&opt=' + opt,
-          })
-        }
 
-        if (res.data.sub_code != 0) {
-          app.myLog("请求成功错误", 'union_id:' + wx.getStorageSync('xy_session') + '\nopen_id:' + wx.getStorageSync('open_id') + '\n\n请求参数：\n' + JSON.stringify(requestRouter.params) + '\n\n接口返回信息：\n' + JSON.stringify(res))
-        }
-        if (requestRouter.showLoading != false) {
-          wx.hideLoading();
-        }
-        // if (requestRouter.success) requestRouter.success(res);
-        resolve(res)
-      },
-      fail: (res) => {
-        app.myLog("请求错误", 'union_id:' + wx.getStorageSync('xy_session') + '\nopen_id:' + wx.getStorageSync('open_id') + '\n\n请求参数：\n' + JSON.stringify(requestRouter.params) + '\n\n接口返回信息：\n' + JSON.stringify(res))
-        if (requestRouter.showLoading != false) {
-          wx.hideLoading();
-        }
-
-        wx.showToast({
-          title: '加载失败，请尝试刷新',
-          icon: 'none'
+  wx.request({
+    url: requestRouter.url,
+    data: requestRouter.params,
+    method: method, // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+    header: {
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    success: res => {
+      //未关注公众号跳转
+      if (res.data.return_code == 'NO_FOLLOW') {
+        var pages = getCurrentPages();
+        var currentPage = pages[pages.length - 1] //获取当前页面的对象
+        var url = currentPage.route; //获取当前页面url
+        var opt = JSON.stringify(currentPage.options) //获取url中所带的参数
+        wx.redirectTo({
+          url: '/pages/checkfollow/index?route=' + url + '&opt=' + opt,
         })
-        // if (requestRouter.fail) requestRouter.fail();
-        reject(res)
-      },
-      complete: () => {
-        wx.stopPullDownRefresh();
-        if (requestRouter.complete) requestRouter.complete();
       }
-    })
+
+      if (res.data.sub_code != 0) {
+        app.myLog("请求成功错误", 'union_id:' + wx.getStorageSync('xy_session') + '\nopen_id:' + wx.getStorageSync('open_id') + '\n\n请求参数：\n' + JSON.stringify(requestRouter.params) + '\n\n接口返回信息：\n' + JSON.stringify(res))
+      }
+      if (requestRouter.showLoading != false) {
+        wx.hideLoading();
+      }
+      // if (requestRouter.success) requestRouter.success(res);
+      resolve(res)
+    },
+    fail: (res) => {
+      app.myLog("请求错误", 'union_id:' + wx.getStorageSync('xy_session') + '\nopen_id:' + wx.getStorageSync('open_id') + '\n\n请求参数：\n' + JSON.stringify(requestRouter.params) + '\n\n接口返回信息：\n' + JSON.stringify(res))
+      if (requestRouter.showLoading != false) {
+        wx.hideLoading();
+      }
+
+      wx.showToast({
+        title: '加载失败，请尝试刷新',
+        icon: 'none'
+      })
+      // if (requestRouter.fail) requestRouter.fail();
+      reject(res)
+    },
+    complete: () => {
+      wx.stopPullDownRefresh();
+      if (requestRouter.complete) requestRouter.complete();
+    }
   })
+
 
 }
 
