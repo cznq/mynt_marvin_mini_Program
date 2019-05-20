@@ -54,12 +54,6 @@ Page({
             })
           },
           success: res => {
-            that.setData({
-              loadComplete: true
-            })
-            wx.setNavigationBarTitle({
-              title: '协议买单'
-            })
             if (res.data.result) {
               if (res.data.result.service_status !== 0) {
                 that.setData({
@@ -71,7 +65,7 @@ Page({
               if (that.data.employeeInfo) { // 小觅用户
                 if (that.data.isVip) { // 小觅VIP用户
                   wx.redirectTo({
-                    url: '../mall-detail/mall-detail?showVipCard=true&dialog_discount=' + that.data.cd_CommerceDiscount[0].benifit_content + '&dialog_discount_limit=' + that.data.cd_CommerceDiscount[0].benifit_limit + '&commerce_id=' + that.data.commerce_id + '&commerce_type=' + that.data.type,
+                    url: '../mall-detail/mall-detail?showVipCard=true&dialog_discount=' + that.data.cd_CommerceDiscount.cate_or_entertainment[0].benifit_content + '&dialog_discount_limit=' + that.data.cd_CommerceDiscount.cate_or_entertainment[0].benifit_limit + '&commerce_id=' + that.data.commerce_id + '&commerce_type=' + that.data.type,
                   })
                 } else {
                   wx.redirectTo({
@@ -83,6 +77,13 @@ Page({
                   url: '/pages/manage/manage',
                 })
               }
+            } else {
+              that.setData({
+                loadComplete: true
+              })
+              wx.setNavigationBarTitle({
+                title: '协议买单'
+              })
             }
           }
         })

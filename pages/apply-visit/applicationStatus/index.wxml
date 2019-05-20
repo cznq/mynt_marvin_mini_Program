@@ -2,7 +2,7 @@
 <import src="../../../templates/companyPages/companyPages.wxml" />
 
 <!-- 申请已提交 -->
-<view class='headerCon' style="background:{{background_color}}">
+<view class="headerCon {{c_status==1||c_status==2?'pass':''}}" style="background:{{background_color}}">
   <view class='submitApplications' wx:if="{{c_status == 0}}">
     <view class='pubLayout'>
       <view class="icon iconfont icon-shenqingtijiao"></view>
@@ -18,14 +18,22 @@
   <!-- 申请已通过 -->
   <view class='pass'  wx:if="{{c_status == 1||c_status == 2}}">
     <view class='pubLayout'>
-      <view class="icon iconfont icon-shenqingtongguo"></view>
-      <view class='title'>申请已通过，请前往取卡</view>
-      <view class='con'>请重新唤醒小觅机器人，我们将快速为您发卡</view>
+      <view class="icon iconfont icon-yudingchenggong"></view>
+      <view class='title'>{{passApplicationText.barTitle}}</view>
+      <view class='con'>{{passApplicationText.barIntro}}</view>
     </view>
     <view class='cardPrompt'>
-      <view class='t1'>前往机器人取卡</view>
-      <view class='ct1'>公司已通过了您的访问申请，请前往机器人处取卡。</view>
-      <image src='http://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/take_card_graphic@2x.png'></image>
+      <view class='t1 _fontw600'>取卡流程</view>
+      <view class='ct1'><text>{{passApplicationText.textIntro}}</text></view>
+      <view class="list-guide">
+        <view class="items _flex _flex_item_center" wx:for="{{passApplicationText.listGuide}}" wx:key="">
+          <view><image src='{{item.pic}}'></image></view>
+          <view class="_txt_left">
+            <view class="tit _font500">{{item.title}}</view>
+            <view class="intro">{{item.intro}}</view>
+          </view>
+        </view>
+      </view>
     </view>
   </view>
   <!-- 申请已拒绝 -->
@@ -37,7 +45,7 @@
     </view>
   </view>
 </view>
-<template is="companyPages" data="{{cd:cd}}" />
+<template is="companyPages" data="{{cd:cd}}" wx:if="{{c_status == 0|| c_status == 3}}"/>
 <view class='_fixed footer f_follow'>
   <official-account></official-account>
 </view>

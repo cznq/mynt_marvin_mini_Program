@@ -11,10 +11,17 @@
 .icon-lianxiqiantai{float: left;width: 34rpx;height: 34rpx;margin:22rpx 13rpx 0 53rpx;font-size:34rpx;line-height: 34rpx;}
 .submitApplications{padding-bottom:40rpx;}
 .submitApplications .hint{color:rgba(255,255,255,1);font-size: 24rpx;text-align: center;}
-.pass{padding-bottom: 40rpx;}
+.pass{padding-bottom: 220rpx;}
 .pass .pubLayout{border-bottom:0;}
-.pass .cardPrompt{background: #fff;height: 430rpx;border-radius: 14rpx;color:#000;text-align:center;padding-top:60rpx;}
+.pass .cardPrompt{background: #fff;height: auto;border-radius: 14rpx;color:#000;text-align:center;padding:60rpx 0 48rpx;box-shadow: 0 0 120rpx rgba(74, 82, 128, 0.25);}
 .t1{font-size:40rpx;line-height: 40rpx;}
-.ct1{color:#18181C;font-size:26rpx;line-height: 26rpx;padding:22rpx 0 46rpx 0;}
-.cardPrompt image{width:546rpx;height: 258rpx;margin:0 auto;display: block;}
+.ct1{color:#18181C;font-size:26rpx;padding:22rpx 0 46rpx 0;}
 .refuse .pubLayout{border-bottom:0;}
+.list-guide {margin-top: 40rpx;padding: 0 60rpx;}
+.list-guide .items{margin-top: 118rpx;}
+.list-guide .items:first-child{margin-top: 22rpx;}
+.list-guide ._txt_left {margin-left: 36rpx;}
+.list-guide image{width: 270rpx;height: 256rpx;}
+.list-guide .tit{color:rgba(136, 145, 169, 1);font-size: 38rpx;margin-bottom: 10rpx;}
+.list-guide .intro{font-size: 28rpx;}
+.headerCon.pass{height: 458rpx;}

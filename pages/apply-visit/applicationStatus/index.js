@@ -11,7 +11,25 @@ Page({
     company_code:'',
     c_status:'',
     submitApplications_title:'您的申请已提交',    
-    submitApplications_hint:'' //审核通过文案
+    submitApplications_hint:'', //审核通过文案
+    passApplicationText: {
+      barTitle: '申请已通过，请前往取卡',
+      barIntro: '公司已通过您的申请，请前往机器人处取卡',
+      textIntro: '公司已通过您的访问申请，请前往机器人处取卡。',
+      listGuide: [{
+        pic: 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/take-card-guide-step1%402x.png',
+        title: '第一步',
+        intro: '在写字楼大厅找到并唤醒小觅机器人。'
+      }, {
+          pic: 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/take-card-guide-step2%402x.png',
+        title: '第二步',
+          intro: '机器人会自动检测到您的预约信息并给您发电梯卡。'
+      }, {
+          pic: 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/take-card-guide-step3%402x.png',
+          title: '第三步',
+          intro: '取出电梯卡并在电梯刷卡上楼。'
+      }]
+    }
   },
   onLoad: function (options) {
     var _this = this;
@@ -42,13 +60,27 @@ Page({
                 _this.data.submitApplications_hint = '申请通过后，将会发送消息到您的微信，请在服务通知中查看。';
               }
               break;
-            case 1:
-              //同意但是没有取卡
+            case 1: case 2:
+              //1同意但是没有取卡,2同意并且已取卡
               _this.data.background_color = '#38C361';
-              break;
-            case 2:
-              //同意并且已取卡
-              _this.data.background_color = '#38C361';
+              if (take_card_ways == 1) {
+                _this.setData({
+                  passApplicationText: {
+                    barTitle: '申请已通过',
+                    barIntro: '请在服务通知查收电子门卡，刷卡上楼',
+                    textIntro: '公司已通过您的访问申请，请在服务通知查收电子\n门卡。',
+                    listGuide: [{
+                      pic: 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/take-electronic-card-step1%402x.png',
+                      title: '第一步',
+                      intro: '在微信服务通知查看电子门卡'
+                    }, {
+                        pic: 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/take-electronic-card-step2%402x.png',
+                      title: '第二步',
+                      intro: '打开电子门卡，在电梯刷卡上楼'
+                    }]
+                  }
+                })
+              }
               break;
             case 3:
               //已拒绝
