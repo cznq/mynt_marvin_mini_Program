@@ -41,7 +41,7 @@ Page({
       showLoading: false,
       success: res => {
         console.log('get_employee_info:', res);
-        if (res.data.result) {
+        if (JSON.stringify(res.data.result) !== '{}') {
           that.setData({
             employeeInfo: res.data.result
           })

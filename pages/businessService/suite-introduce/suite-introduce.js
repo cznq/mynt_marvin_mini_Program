@@ -9,7 +9,8 @@ Page({
   data: {
     isiphoneX: app.globalData.isIphoneX,
     route: 'other',
-    building_package_status: null // (0: 不显示， 1: 显示)
+    building_package_status: null, // (0: 不显示， 1: 显示)
+    serviceStatusTips: '服务升级中，敬请期待'
   },
 
   /**
@@ -55,9 +56,9 @@ Page({
             building_package_status: data.building_package_status
           })
         } else {
-          wx.showToast({
-            title: res.data.sub_msg,
-            icon: 'none'
+          that.setData({
+            serviceStatusTips: '还未加入小觅楼宇入驻企业',
+            building_package_status: 0
           })
         }
       }
