@@ -110,10 +110,10 @@
       "root": "businessservice",
       "name": "BusinessService",
       "pages": [
-        "pages/vipstatus/vipstatus",
-        "pages/servicepay/index",
-        "pages/payrecord/index",
-        "pages/expandcapacity/index"
+        "pages/vipStatus/vipstatus",
+        "pages/servicePay/index",
+        "pages/payRecord/index",
+        "pages/expandCapacity/index"
       ]
     }
   ],
