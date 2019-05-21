@@ -12,15 +12,16 @@
 }
 
 .header .peoNum {
-  width: 128rpx;
+  width: auto;
   height: 38rpx;
-  border: 1rpx solid rgba(198, 201, 212, 1);
-  border-radius: 7rpx;
+  padding: 2rpx 14rpx;
   font-size: 22rpx;
   color: rgba(26, 42, 75, 1);
   line-height: 38rpx;
   text-align: center;
   margin-left: 19rpx;
+  border: 1rpx solid rgba(198, 201, 212, 1);
+  border-radius: 7rpx;
 }
 
 .header .t1 {
@@ -51,20 +52,27 @@
   background: rgba(245, 246, 247, 1);
   border-radius: 10rpx;
   box-sizing: border-box;
-  padding:11rpx 20rpx;
+  padding: 11rpx 20rpx;
   margin: 0 auto 11rpx;
+}
+
+.memberTip .iconTips {
+  color: rgba(230, 57, 23, 1);
+}
+
+.memberTip .tipTxt {
+  color: rgba(230, 57, 23, 1);
 }
 
 .vipCard {
   position: relative;
-  width: 750rpx;
-  height: 360rpx;
+  height: 350rpx;
 }
 
 .vipCard .cardBg {
   position: absolute;
   width: 750rpx;
-  height: 360rpx;
+  height: 350rpx;
   z-index: 1;
 }
 
@@ -90,7 +98,7 @@
 }
 
 .companyName .signTwo {
-  color: #fff;
+  color: rgba(255, 255, 255, .9);
   font-size: 20rpx;
   line-height: 30rpx;
 }
@@ -110,25 +118,57 @@
   z-index: 2;
 }
 
-.vipCard .timeStatus {
+.vipCard .peopleStatus {
   position: absolute;
-  bottom: 78rpx;
+  bottom: 55rpx;
   left: 60rpx;
   z-index: 2;
+  box-sizing: border-box;
 }
 
-.timeStatus .signName {
+.peopleStatus .signName {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.signName .pelNum {
   color: #fff;
-  font-size: 20rpx;
-  line-height: 30rpx;
-  letter-spacing: 1rpx;
+  font-weight: 600;
+  font-size: 100rpx;
 }
 
-.timeStatus .signTime {
+.peopleStatus .signTime {
+  width: 48rpx;
   color: #fff;
   font-size: 24rpx;
-  line-height: 36rpx;
-  letter-spacing: 1rpx;
+  padding-right: 20rpx;
+  margin-bottom: 35rpx;
+}
+
+.peopleStatus .signExpand {
+  width: 140rpx;
+  height: 50rpx;
+  background: rgba(230, 211, 172, 1);
+  border-radius: 25rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 24rpx;
+  font-weight: 500;
+  color: rgba(139, 87, 42, 1);
+  margin-bottom: 35rpx;
+}
+
+.peopleStatus .overdue {
+  width: 192rpx;
+  color: #fff;
+  margin-bottom: 25rpx;
+}
+
+.peopleStatus .overTxt {
+  width: 350rpx;
+  color: rgba(255, 255, 255, .9);
+  margin-bottom: 33rpx;
 }
 
 .vipCard .statusName {
@@ -142,8 +182,19 @@
   line-height: 66rpx;
 }
 
+.nextBtn {
+  width: 400rpx;
+  text-align: center;
+  line-height: 80rpx;
+  background: rgba(219, 175, 88, 1);
+  color: rgba(255, 255, 255, 1);
+  border-radius: 10rpx;
+  margin: -25rpx auto 65rpx
+}
+
 .vipNav {
   padding: 0 60rpx;
+  margin-bottom: 40rpx;
 }
 
 .vipNav .exclusive {
@@ -165,8 +216,37 @@
   color: #8891A9;
 }
 
+.fuliEenter {
+  padding: 0 60rpx;
+}
+
+.fuliEenter .fuliOne {
+  width: 315rpx;
+  height: 120rpx;
+  padding:0 10rpx 0 20rpx;
+  background: rgba(250, 247, 240, 0.3);
+  border: 1rpx solid rgba(246, 231, 208, 1);
+  border-radius: 15rpx;
+  box-sizing:border-box;
+}
+
+.fuliEenter .fulicard {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 15rpx;
+}
+
+.fuliEenter .iconFuli {
+  font-size: 50rpx;
+  color: linear-gradient(30deg, rgba(192, 156, 95, 1), rgba(230, 211, 172, 1));
+}
+
+.fuliEenter .fuliTxt {
+  color: #818692;
+}
+
 .otherFun {
-  padding: 62rpx 38rpx 0;
+  padding: 30rpx 38rpx 0;
 }
 
 .otherFun .welfareImg {
@@ -189,10 +269,6 @@
 }
 
 .submit {
-  position: fixed;
-  bottom: 60rpx;
-  left: 50%;
-  transform: translate(-50%, 0);
   width: 630rpx;
   height: 100rpx;
   background: rgba(219, 175, 88, 1);

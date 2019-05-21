@@ -1,6 +1,51 @@
 /* pages/businessService/payRecode/index.wxss */
 @import "../../../templates/noneData/noneData.wxss";
+.orderTitle {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  background-color: #fff;
+  box-sizing: border-box;
+}
 
+.moveUp108 {
+  margin-top: 270rpx;
+}
+
+.orderTitle .box {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  font-weight: 400;
+  color: rgba(26, 42, 75, 1);
+  text-align: center;
+}
+
+.title_border05 {
+  position: relative;
+}
+
+.title_border05::after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 4rpx;
+  background-color: rgba(255, 105, 35, 1);
+  border-radius: 2rpx;
+  z-index: 1;
+}
+
+.orderTitle .box .active {
+  color: #FF6923
+}
+.page__bd{
+  margin-top:125rpx;
+}
 .payList {
   border-top: 1px solid rgba(136, 145, 169, 0.3);
   padding: 4rpx 40rpx 40rpx;

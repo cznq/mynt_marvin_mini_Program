@@ -83,6 +83,9 @@
 ._mr30 {
   margin-right: 30rpx !important;
 }
+._mr40 {
+  margin-right: 40rpx !important;
+}
 
 /* padding  */
 /*20  */
@@ -208,6 +211,9 @@
 
 /* 金色 贵宾尊贵背景*/
 /*字体大小*/
+._font20 {
+  font-size: 20rpx;
+}
 ._font22 {
   font-size: 22rpx;
 }
@@ -543,9 +549,9 @@
   justify-content: flex-end;
 }
 
-._cen_center {
-  align-items: center;
-  justify-content: center;
+._end_start {
+  align-items: flex-end;
+  justify-content: start;
 }
 
 /* 去除边框  */

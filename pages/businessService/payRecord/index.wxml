@@ -2,9 +2,21 @@
 <wxs src="../../../wxs/subutil.wxs" module="tools" />
 <import src="../../../templates/noneData/noneData.wxml" />
 <view class="page">
-  <view class="page__hd _flex _flex_item_center">
-
+  <view class="orderTitle _row _cen_space padding0-33 " >
+    <view class="box"  >
+      <view  bindtap="touchTit" data-tag='0' class=" {{book_status == 0 ? 'title_border05 active ':''}}">全部</view>
+    </view>
+    <view class="box" >
+      <view  bindtap="touchTit" data-tag='1' class="{{book_status == 1 ? 'title_border05 active':''}}">待确认</view>
+    </view>
+    <view class="box" >
+      <view bindtap="touchTit" data-tag='2' class="{{book_status == 2 ? 'title_border05 active':''}}">待消费</view>
+    </view>
+    <view class="box" >
+      <view bindtap="touchTit" data-tag='3' class="{{book_status == 3 ? 'title_border05 active':''}}">待付款</view>
+    </view>
   </view>
+
   <view wx:if="{{orderList.length!=0}}" class="page__bd">
     <view wx:for="{{orderList}}" wx:key="" wx:item='item' class="payList">
       <view class="pck-title _font32 _flex _flex_item_center _flex_space_between">
