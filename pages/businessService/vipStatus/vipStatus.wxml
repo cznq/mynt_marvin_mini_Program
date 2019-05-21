@@ -1,67 +1,86 @@
-  <view class="vipCard">
-    <image wx:if="{{service_status=='0'||service_status=='2'}}" class="cardBg" src="http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/card_gray@2x.png" alt="vip背景" />
-    <image wx:if="{{service_status=='1'}}"  class="cardBg" src="http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/card@2x.png" alt="vip背景" />
-    <view class="companyName _row _cen_start">
-      <image class="companyLogo" src='{{logo}}' style="width:60rpx" wx:if="{{logo!==''}}"/>
-      <view class="_column">
-        <text class="signOne">{{company_short_name}}</text>
-        <text class="signTwo">{{company_name}}</text>
-      </view>
+<view class="header">
+  <view class='_relative top'>
+    <image class='logo'  src='http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/card_gray@2x.png' mode="{{mode}}"></image>
+    <view class='_row _cen_start t1 _ellipsis _fontw600'>
+      <text>小雪公司</text>
+      <view class="peoNum">120位员工</view>
     </view>
+    <view class='t2 _ellipsis'>断开了房间爱的快乐</view>
     <navigator url='../payRecord/index' hover-class='none'>
-    <view class="payRecord">缴费记录</view>
+    <view class='_absolute record'>
+      <text class='_font24 cordColor'>购买记录</text>
+      <text class="iconfont icon-jiantou jianSign _ml10"></text>
+    </view>
     </navigator>
-    <view wx:if="{{service_status=='1' || service_status=='2'}}" class="timeStatus _column">
-      <view class="signName">{{end_sign}}</view>
-      <view class="signTime">{{end_time}}</view>
-    </view>
-    <view class="statusName">
-      <text  wx:if="{{service_status=='0'}}">未开通</text>
-        <text  wx:if="{{service_status=='1'}}">已开通</text>
-          <text  wx:if="{{service_status=='2'}}">已过期</text>
+  </view>
+</view>
+<view class="memberTip _row _cen_start">
+
+</view>
+<view class="vipCard">
+  <image wx:if="{{service_status=='0'||service_status=='2'}}" class="cardBg" src="http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/card_gray@2x.png" alt="vip背景" />
+  <image wx:if="{{service_status=='1'}}" class="cardBg" src="http://marvin-business-service.oss-cn-hangzhou.aliyuncs.com/card@2x.png" alt="vip背景" />
+  <view class="companyName _row _cen_start">
+    <image class="companyLogo" src='{{logo}}' style="width:60rpx" wx:if="{{logo!==''}}" />
+    <view class="_column">
+      <text class="signOne">{{company_short_name}}</text>
+      <text class="signTwo">{{company_name}}</text>
     </view>
   </view>
-  <!-- nav -->
-  <view class="vipNav _row _cen_space">
-    <view class="exclusive">小觅商业服务专属特权</view>
-    <view class=" _row _cen_center">
-      <navigator url='/pages/businessService/suite-introduce/suite-introduce?route=vipStatus' hover-class='none'>
+  <navigator url='../payRecord/index' hover-class='none'>
+    <view class="payRecord">缴费记录</view>
+  </navigator>
+  <view wx:if="{{service_status=='1' || service_status=='2'}}" class="timeStatus _column">
+    <view class="signName">{{end_sign}}</view>
+    <view class="signTime">{{end_time}}</view>
+  </view>
+  <view class="statusName">
+    <text wx:if="{{service_status=='0'}}">未开通</text>
+    <text wx:if="{{service_status=='1'}}">已开通</text>
+    <text wx:if="{{service_status=='2'}}">已过期</text>
+  </view>
+</view>
+<!-- nav -->
+<view class="vipNav _row _cen_space">
+  <view class="exclusive">小觅商业服务专属特权</view>
+  <view class=" _row _cen_center">
+    <navigator url='/pages/businessService/suite-introduce/suite-introduce?route=vipStatus' hover-class='none'>
       <text class="exclusive_instr">全部权益</text>
-      <text  class="iconfont icon-jiantou jianSign"></text>
-      </navigator>
+      <text class="iconfont icon-jiantou jianSign"></text>
+    </navigator>
+  </view>
+</view>
+<view class="otherFun _row _cen_space">
+  <view class="_column _cen_start">
+    <text class="iconfont icon-yuangongfuli otherWealImg"></text>
+    <view class="_column _cen_start">
+      <text class='WelfareOne'>员工福利</text>
+      <text class='WelfareTwo'>低于其他30%</text>
     </view>
   </view>
-  <view class="otherFun _row _cen_space">
+  <view class="_column _cen_start">
+    <text class="iconfont icon-fangkeyaoqing otherWealImg"></text>
     <view class="_column _cen_start">
-      <text class="iconfont icon-yuangongfuli otherWealImg"></text>
-      <view class="_column _cen_start">
-        <text class='WelfareOne'>员工福利</text>
-        <text class='WelfareTwo'>低于其他30%</text>
-      </view>
-    </view>
-    <view class="_column _cen_start">
-      <text class="iconfont icon-fangkeyaoqing otherWealImg"></text>      
-      <view class="_column _cen_start">
-        <text class='WelfareOne'>访客邀请</text>
-        <text class='WelfareTwo'>缩短时间成本</text>
-      </view>
-    </view>
-    <view class="_column _cen_start">
-      <text class="iconfont icon-guanggaozhanshi otherWealImg"></text>
-      <view class="_column _cen_start">
-        <text class='WelfareOne'>广告展示</text>
-        <text class='WelfareTwo'>线上线下垂直</text>
-      </view>
-    </view>
-    <view class="_column _cen_start">
-      <text class="iconfont icon-shangwuyanqing otherWealImg"></text>
-      <view class="_column _cen_start">
-        <text class='WelfareOne'>商务宴请</text>
-        <text class='WelfareTwo'>免预存备用金</text>
-      </view>
+      <text class='WelfareOne'>访客邀请</text>
+      <text class='WelfareTwo'>缩短时间成本</text>
     </view>
   </view>
+  <view class="_column _cen_start">
+    <text class="iconfont icon-guanggaozhanshi otherWealImg"></text>
+    <view class="_column _cen_start">
+      <text class='WelfareOne'>广告展示</text>
+      <text class='WelfareTwo'>线上线下垂直</text>
+    </view>
+  </view>
+  <view class="_column _cen_start">
+    <text class="iconfont icon-shangwuyanqing otherWealImg"></text>
+    <view class="_column _cen_start">
+      <text class='WelfareOne'>商务宴请</text>
+      <text class='WelfareTwo'>免预存备用金</text>
+    </view>
+  </view>
+</view>
 <navigator url='../servicePay/index' hover-class='none' wx:if="{{building_package_status == 1}}">
-<view class="submit {{isIphoneX?'IphoneX':''}}">{{submit}}</view>
+  <view class="submit {{isIphoneX?'IphoneX':''}}">{{submit}}</view>
 </navigator>
 <view class="submit nouse {{isIphoneX?'IphoneX':''}}" wx:elif="{{building_package_status == 0}}">服务升级中，尽请期待</view>
