@@ -107,13 +107,13 @@
       ]
     },
     {
-      "root": "businessService",
+      "root": "businessservice",
       "name": "BusinessService",
       "pages": [
-        "pages/vipStatus/vipStatus",
-        "pages/servicePay/index",
-        "pages/payRecord/index",
-        "pages/expandCapacity/index"
+        "pages/vipstatus/vipstatus",
+        "pages/servicepay/index",
+        "pages/payrecord/index",
+        "pages/expandcapacity/index"
       ]
     }
   ],
@@ -128,6 +128,5 @@
     "connectSocket": 50000,
     "uploadFile": 50000,
     "downloadFile": 50000
-  },
-  "sitemapLocation": "sitemap.json"
+  }
 }
