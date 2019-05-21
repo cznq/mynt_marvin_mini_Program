@@ -4,11 +4,36 @@
   <view class="page__hd _flex _flex_item_center">
     <view class="_logo" wx:if="{{cmpInfo.logo}}"><image src="{{cmpInfo.logo}}"></image></view>
     <view class="_company_info">
-      <view class="_company_name">{{cmpInfo.company_short_name}}</view>
+      <view class="_company_name _flex">
+          <text>{{cmpInfo.company_short_name}} </text>
+          <text class="_company_people_num">560位员工</text>
+      </view>
       <view class="_company_short_name">{{cmpInfo.company_name}}</view>
     </view>
   </view>
   <view class="page__bd {{isIphoneX?'iphonex':''}}">
+    <!-- 选择套件容量 -->
+    <view class="chose_capacity" wx:if="{{renew_capacity}}">
+      <view class="_flex _flex_item_center _title">
+        <text>选择套件容量</text>
+        <text class="_icon">!</text>
+      </view>
+      <view class="_capacity_menu">
+        <scroll-view scroll-x style="white-space:nowrap;">
+          <view class="_capacity_item {{idx == choose?'active':''}}"  wx:for-index="idx" wx:for="{{capacityList}}" wx:key="key"  data-choose="{{idx}}" bindtap="chooseCapacity">{{item}}</view>
+        </scroll-view>
+        <view class="_tip">根据您企业目前的员工数为您选择商业服务套件600人版</view>
+      </view>
+    </view>
+    <view class="chose_capacity" wx:else>
+      <view class="_flex _flex_space_between _flex_item_center _title">
+        <text>套件容量</text>
+        <text class="_text">套件600人版</text>
+      </view>
+      <view class="_tip">续费套件容量无法更改，如要扩容请前往[套件中心]-[扩容]</view>
+    </view>
+  <view class="_capacity_time">
+    <view class="_title">选择套件有效期</view>
     <block wx:for="{{pckList}}" wx:for-item="item" wx:for-index="idx" wx:key="">
     <!-- 套件详情 开始-->
     <view class="pay-package {{idx == chooseId?'light-on':''}} _mb20" data-pckid="{{idx}}" bindtap="choosePck">
@@ -31,31 +56,25 @@
     </view>
     <!-- 套件详情 结束-->
     </block>
-
+  </view>
     <view class="introdution _font24">
-      <view class="_line">说明： </view>
-      <view class="_line">1. 8折优惠折扣价格仅限连续缴费会员专享，会员身份过期后将无法享受；</view>
-      <view class="_line">2. 续费成功后会员期限将自动延长，续费操作可在历史记录中查询；</view>
-      <view class="_line">3. 发票事宜请联系客服：2871980128；</view>
+      <view class="_line">套件购买说明：</view>
+      <view class="_line">1.如您在购买上述套餐后，企业人数发生变化，我们提供灵活的套餐升降级服务，按照多退少补的原则进行费用的退补，详情查看套件容量说明</view>
+      <view class="_line">2.合约期间内，如若签约企业临时搬迁（搬迁当月时间，若不满一月按一月收费。），可退还搬迁后第二个月开始的套件费用；</view>
+      <view class="_line">3.开票及其他售前售后事宜请联系客服：0571-8261 3693</view>
     </view>
 
   </view>
   <view class="page__ft _txt_center">
     <view class="_fixed footer {{isIphoneX?'iphonex':''}}">
       <block wx:if='{{business_service_suite_status == 0}}'>
-        <view class="_font24 time-alert"  >开通后功能立即生效</view>
-        <button bindtap='quickPay' class="_button _font32">立即开通</button>
+        <button bindtap='quickPay' class="_button _font32">为企业支付</button>
       </block>
       <block wx:elif="{{business_service_suite_status > 0}}">
-        <view class="_font24 time-alert">{{end_time}}到期，购买后有效期将延续</view>
-        <button bindtap='quickPay' class="_button _font32">立即续费</button>
+        <view class="_font24 time-alert">当前{{end_time}}到期，购买后有效期将延续</view>
+        <button bindtap='quickPay' class="_button _font32">为企业支付</button>
       </block>
     </view>
   </view>
-
-
-
-
-
 
 </view>

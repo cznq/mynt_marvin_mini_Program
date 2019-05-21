@@ -2,6 +2,10 @@ var app = getApp()
 Page({
   data: {
     isiphoneX: app.globalData.isIphoneX,
+    headerTip:{
+      text:'公司人数已超出套餐容量请前往[套件中心]扩容',
+      show:true
+    },
     swiperCurrent: 0,
     showLoginModal: false,
     indicatorDots: true, //是否显示面板指示点
@@ -425,5 +429,13 @@ Page({
         console.log('fail');
       }
     })
+  },
+  closeTip:function(){
+    var that = this;
+    if(that.data.headerTip.show){
+      that.setData({
+        'headerTip.show':false
+      })
+    }
   }
 })

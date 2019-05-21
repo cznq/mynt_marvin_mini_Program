@@ -86,3 +86,34 @@ swiper-item.active1 image {width:630rpx;margin-left:40rpx;display: block;height:
 .s_hint .text {color: #3ed26b;}
 .company-sh {background: #fff;}
 .zwc{height: 180rpx;overflow: hidden;}
+
+.header_tip{
+    height: 60rpx;
+    background-color: #F5F6F7;
+    line-height: 60rpx;
+    margin-bottom: 40rpx;
+    padding: 0 40rpx;
+    align-items: center;
+}
+.header_tip .marquee_text {
+    white-space: nowrap;
+    font-size: 24rpx;
+    color: #FF3A33;
+    display: flex;
+    align-items: center;
+}
+.header_tip .marquee_text .icon_tip{
+    background-color: #FF3A33;
+    color: #fff;
+    border-radius: 100%;
+    width: 24rpx;
+    height: 24rpx;
+    font-size: 20rpx;
+    line-height: 24rpx;
+    text-align: center;
+    margin-right: 16rpx;
+}
+.header_tip .icon-cha{
+    font-size: 20rpx;
+    color: #8891A9;
+}

@@ -122,5 +122,6 @@
     "connectSocket": 50000,
     "uploadFile": 50000,
     "downloadFile": 50000
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

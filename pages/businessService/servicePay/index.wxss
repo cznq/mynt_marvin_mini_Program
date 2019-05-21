@@ -1,36 +1,106 @@
 /* pages/businessService/servicePay/index.wxss */
+page{
+  background-color: #F5F6F7;
+}
 .page__hd {
   padding: 40rpx;
+  background-color: #fff;
 }
 ._company_name {
-  font-size: 32rpx;
+  font-size: 36rpx;
   font-weight: 600;
   line-height: 1;
-  margin-bottom: 8rpx;
+  margin-bottom: 16rpx;
   color: rgba(26, 42, 75, 1);
 }
 ._company_short_name {
-  font-size: 20rpx;
+  font-size: 24rpx;
   line-height: 1;
-  color: rgba(26, 42, 75, 0.6);
+  color: #8891A9;
+}
+._company_people_num{
+  font-size: 20rpx;
+  color: #1A2A4B;
+  display: inline-block;
+  padding: 8rpx 14rpx;
+  border: 1px solid #C6C9D4;
+  border-radius: 8rpx;
+  margin-left: 20rpx;
 }
 ._logo {
-  width: 60rpx;
-  height: 60rpx;
-  margin-right: 12rpx;
+  width: 90rpx;
+  height: 90rpx;
+  margin-right: 28rpx;
   background-color: rgba(136, 145, 169, 0.3);
-  border-radius: 8rpx;
+  border-radius: 10rpx;
+  box-shadow: 6rpx 6rpx 46rpx 0 rgba(43, 51, 72, 0.12);
 }
 ._logo image {
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 8rpx;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 10rpx;
 }
 .page__bd {
   padding: 0 40rpx 256rpx;
 }
 .page__bd.iphonex {
   padding: 0 40rpx 296rpx;
+}
+.chose_capacity{
+  padding-top: 60rpx;
+}
+.chose_capacity ._title{
+  font-size: 32rpx;
+  color: #1A2A4B;
+  font-weight: 600;
+}
+.chose_capacity ._title ._icon{
+  font-size: 20rpx;
+  background-color: transparent;
+  display: inline-block;
+  width: 30rpx;
+  height: 30rpx;
+  text-align: center;
+  line-height: 30rpx;
+  border: 1px solid #8891A9;
+  border-radius: 100%;
+  color: #8891A9;
+  margin-left: 20rpx;
+}
+.chose_capacity ._text{
+  font-size:24rpx;
+}
+._capacity_menu{
+  width: 750rpx;
+}
+._capacity_menu ._capacity_item{
+  width: 190rpx;
+  height: 84rpx;
+  border: 1px solid #C6C9D4;
+  line-height: 84rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #1A2A4B;
+  border-radius: 42rpx;
+  display: inline-block;
+  background-color: #fff;
+  margin: 40rpx 24rpx 20rpx 0;
+}
+._capacity_menu ._capacity_item.active{
+  border: 1px solid #E6C78A;
+  background-color: #FFF7E6;
+}
+.chose_capacity ._tip{
+  font-size: 24rpx;
+  color: #8891A9;
+  margin-bottom: 80rpx;
+  
+}
+._capacity_time ._title{
+  font-size: 32rpx;
+  color: #1A2A4B;
+  margin-bottom: 20rpx;
+  font-weight: 600;
 }
 .pay-package {
   width: 100%;
@@ -107,17 +177,19 @@
   margin-top: 40rpx;
 }
 .footer {
-  padding: 0 0 60rpx;
+  padding: 0 0 40rpx;
   background: #fff;
 }
 .footer.iphonex {
   padding-bottom: 109rpx;
 }
 .time-alert {
-  padding: 28rpx 0;
+  padding: 30rpx 0 28rpx;
   line-height: 1;
+  color: #092344;
 }
 ._button {
-  background: rgba(219, 175, 88, 1);
-  border-radius: 8rpx;
+  background: #DBAF58;
+  border-radius: 10rpx;
 }
+
