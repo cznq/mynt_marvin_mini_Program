@@ -2,6 +2,13 @@
 <view wx:if="{{ismanage==false? false : true}}">
     <view class='manage'>
         <view class='header'>
+            <view class="header_tip _flex _flex_space_between" wx:if="{{headerTip.show}}">
+                <view class="marquee_text _flex">
+                    <view class="icon_tip">!</view>
+                    <view>{{headerTip.text}}</view>
+                </view>
+                <view class="iconfont icon-cha" bindtap="closeTip"></view>
+            </view>
             <view class='_relative top'>
                 <image class='logo' wx:if="{{cd.logo}}" src='{{cd.logo}}' mode="{{mode}}"></image>
                 <view class='t1 _ellipsis _fontw600'>{{cd.company_short_name}}</view>

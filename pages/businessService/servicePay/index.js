@@ -11,7 +11,10 @@ Page({
     pckList: [],
     end_time: '',
     business_service_suite_status: null, // 0：未开通，1：已开通，2：已过期
-    chooseId: 0
+    chooseId: 0,//套餐有效期
+    choose:0,//套餐容量
+    capacityList:['600人版','650人版','700人版','750人版','80人版','850人版'],
+    renew_capacity:false,//续费
   },
 
   /**
@@ -22,7 +25,7 @@ Page({
     this.get_suite_type(this);
     this.get_end_time(this);
   },
-
+  
   choosePck: function(e) {
     // console.log(e);
     let chid = e.currentTarget.dataset.pckid;
@@ -30,7 +33,12 @@ Page({
       chooseId: chid
     })
   },
-
+  chooseCapacity: function(e) {
+    let chid = e.currentTarget.dataset.choose;
+    this.setData({
+      choose: chid
+    })
+  },
   /**
    * 获取支付方式
    */
