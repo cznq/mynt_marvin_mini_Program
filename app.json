@@ -67,7 +67,7 @@
     "pages/visitor-list/list/index",
     "pages/visitor-list/detail/index",
     "pages/company/unattended-setting/setting/index",
-    "pages/businessService/suite-introduce/suite-introduce"
+    "pages/businessservice/suite-introduce/suite-introduce"
   ],
   "subPackages": [
     {
@@ -128,5 +128,6 @@
     "connectSocket": 50000,
     "uploadFile": 50000,
     "downloadFile": 50000
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
