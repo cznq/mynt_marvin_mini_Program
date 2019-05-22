@@ -10,7 +10,7 @@
 								<view>100位员工</view>
 						</view>
 						<view class="bottom">
-								<text>轻客智能科技有限公司</text>
+								<text class="_ellipsis">轻客智能科技有限公司</text>
 						</view>
 				</view>
 		</view>
@@ -20,15 +20,23 @@
 		<view class="footers">
 				<view class="foot-top">
 						<view class="d1">
-								<view class="d11">套件550人版</view>
-								<view class="d12">有效期至2019-04-25</view>
+								<view class="text1 _ellipsis">套件550人版</view>
+								<view class="text2 _ellipsis">有效期至2019-04-25</view>
 						</view>
 						<view class="d2">扩容至</view>
 						<view class="d3">
-								<view class="d31">请选择套件容量</view>
-								<view class="d32">有效期至2019-06-25</view>
+								<view class="text1 _ellipsis _txt_right">请选择套件容量</view>
+								<view class="text2 _ellipsis _txt_right">有效期至2019-06-25</view>
 						</view>
 				</view>
-				<view class="foot-bottom"></view>
+				<view class="foot-bottom">
+						<view class="text1">
+								<view class="buy_text1 _ellipsis">请选择套件容量</view>
+								<view class="buy_text2 _ellipsis">剩余36天扩容50人差价费用</view>
+						</view>
+						<view class="button">
+								<button>为企业购买</button>
+						</view>
+				</view>
 		</view>
 </view>
