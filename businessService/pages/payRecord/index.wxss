@@ -1,5 +1,8 @@
-/* pages/businessService/payRecode/index.wxss */
+page{
+  background:rgba(245,246,247,1);
+}
 @import "../../../templates/noneData/noneData.wxss";
+
 .orderTitle {
   position: fixed;
   width: 100%;
@@ -8,6 +11,7 @@
   z-index: 100;
   background-color: #fff;
   box-sizing: border-box;
+  padding: 0 40rpx;
 }
 
 .moveUp108 {
@@ -15,12 +19,11 @@
 }
 
 .orderTitle .box {
-  height: 80rpx;
   line-height: 80rpx;
-  font-size: 30rpx;
+  font-size: 32rpx;
   font-weight: 400;
-  color: rgba(26, 42, 75, 1);
-  text-align: center;
+  color: rgba(9, 35, 68, 1);
+  padding: 0 25rpx 15rpx;
 }
 
 .title_border05 {
@@ -34,18 +37,21 @@
   display: block;
   content: "";
   width: 100%;
-  height: 4rpx;
-  background-color: rgba(255, 105, 35, 1);
-  border-radius: 2rpx;
+  height: 6rpx;
+  background-color: rgba(0, 132, 255, 1);
   z-index: 1;
 }
 
-.orderTitle .box .active {
-  color: #FF6923
+.orderTitle .box.active {
+  font-size: 46rpx;
+  font-weight: 500;
+  color: rgba(9, 35, 68, 1);
 }
-.page__bd{
-  margin-top:125rpx;
+
+.page__bd {
+  margin-top: 125rpx;
 }
+
 .payList {
   border-top: 1px solid rgba(136, 145, 169, 0.3);
   padding: 4rpx 40rpx 40rpx;
