@@ -15,7 +15,46 @@
 				</view>
 		</view>
 		<view class="content">
-				<text></text>
+				<view class="cap_text">
+						<text>选择套件容量</text>
+						<view>
+								<text class="iconfont icon-tips_line"></text>
+						</view>
+				</view>
+				<view class='cap_choose'>
+						<scroll-view scroll-x scroll-into-view='item1'>
+								<view id='item1' class='item'>
+										<view class='inner'>100人版</view>
+								</view>
+								<view id='item2' class='item'>
+										<view class='inner'>200人版</view>
+								</view>
+								<view class='item'>
+										<view class='inner'>300人版</view>
+								</view>
+								<view class='item'>
+										<view class='inner'>400人版</view>
+								</view>
+								<view class='item'>
+										<view class='inner'>500人版</view>
+								</view>
+								<view class='item'>
+										<view class='inner'>600人版</view>
+								</view>
+								<view class='item'>
+										<view class='inner'>700人版</view>
+								</view>
+						</scroll-view>
+				</view>
+				<view class="cap_warn">当前选择套件容量无法服务企业所有员工，建议选择700人版</view>
+				<view class="cap_expain">
+						<text>
+								套件购买说明：
+1.如您在购买上述套餐后，企业人数发生变化，我们提供灵活的套餐升降级服务，按照多退少补的原则进行费用的退补，详情查看套件容量说明;
+2.合约期间内，如若签约企业临时搬迁（搬迁当月时间，若不满一月按一月收费。），可退还搬迁后第二个月开始的套件费用；
+3.开票及其他售前售后事宜请联系客服：0571-8261 3693
+						</text>
+				</view>
 		</view>
 		<view class="footers">
 				<view class="foot-top">
@@ -30,12 +69,12 @@
 						</view>
 				</view>
 				<view class="foot-bottom">
-						<view class="text1">
+						<view>
 								<view class="buy_text1 _ellipsis">请选择套件容量</view>
 								<view class="buy_text2 _ellipsis">剩余36天扩容50人差价费用</view>
 						</view>
-						<view class="button">
-								<button>为企业购买</button>
+						<view>
+								<button class="enabled">为企业购买</button>
 						</view>
 				</view>
 		</view>

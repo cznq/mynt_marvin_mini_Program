@@ -93,6 +93,10 @@ Moment.prototype.before = function(date) {
 Moment.prototype.after = function(date) {
   return this.date.getTime() > date.getTime()
 }
+Moment.prototype.later = function(later) {
+  var dates = this.date.setDate(this.date.getDate() + later)
+  return dates
+}
 
 module.exports = function(date) {
   return new Moment(date);

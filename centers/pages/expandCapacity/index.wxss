@@ -1,22 +1,23 @@
 page {
-  background: #fff;
+  background: #f5f6f7;
 }
 
 .page {
   flex-direction: column;
-  padding: 0 60rpx;
 }
 
 .header {
   display: flex;
   width: 670rpx;
   height: 170rpx;
+  padding: 0 40rpx;
+  background: #fff;
 }
 
 .header .t1 {
   margin: 40rpx 0;
   margin-right: 20rpx;
-  background: wheat;
+  border-radius: 10rpx;
 }
 
 .header .t1 image {
@@ -67,17 +68,16 @@ page {
 }
 
 .content {
-  width: 670rpx;
-  background: #f5f6f7;
+  width: 750rpx;
 }
 
 .footers {
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 670rpx;
+  width: 750rpx;
   height: 279rpx;
-  margin: 0 40rpx;
+  background: #fff;
 }
 
 .footers .foot-top {
@@ -85,6 +85,7 @@ page {
   justify-content: space-around;
   width: 670rpx;
   height: 98rpx;
+  margin: 0 40rpx;
   border-bottom: 1rpx dashed rgba(136,145,169,.3);
 }
 
@@ -116,12 +117,23 @@ page {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 670rpx;
+  height: 100rpx;
+  margin: 40rpx;
+}
+
+.footers .foot-bottom button {
+  line-height: 100rpx;
+  width: 300rpx;
+  color: #fff;
+  background: #dbaf58;
 }
 
 .footers .foot-bottom .buy_text1 {
+  font-size: 40rpx;
   font-weight: 500;
   line-height: 38rpx;
-  line-height: 36rpx;
+  line-height: 36px;
   color: #092344;
 }
 
@@ -129,6 +141,79 @@ page {
   font-size: 24rpx;
   font-weight: 400;
   line-height: 40rpx;
-  color: #8891a9
+  color: #8891a9;
+}
+
+.footers .foot-bottom button.disabled {
+  opacity: .3;
+}
+
+.footers .foot-bottom button.enabled {
+  opacity: 1;
+}
+
+/* 套件容量选择和说明部分样式 */
+.content .cap_text {
+  font-size: 32rpx;
+  font-weight: 500;
+  line-height: 30rpx;
+  display: flex;
+  align-items: center;
+  width: 670rpx;
+  height: 130rpx;
+  padding: 0 40rpx;
+  color: #1a2a4b;
+}
+
+.content .cap_text .iconfont {
+  padding-left: 19rpx;
+}
+
+.content .cap_choose {
+  height: 84rpx;
+  padding-left: 40rpx;
+}
+
+.content .cap_warn {
+  font-size: 24rpx;
+  line-height: 36rpx;
+  width: 670rpx;
+  height: 24rpx;
+  padding: 20rpx 40rpx 0 40rpx;
+  color: #e74222;
+}
+
+.content .cap_expain {
+  font-size: 24rpx;
+  font-weight: 400;
+  line-height: 40rpx;
+  width: 670rpx;
+  padding: 0 40rpx;
+  word-wrap: break-word;
+  color: #8891a9;
+}
+
+.cap_choose {
+  box-sizing: border-box;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.cap_choose  .item {
+  line-height: 84rpx;
+  display: inline-block;
+  width: 190rpx;
+  height: 84rpx;
+  margin-right: 20rpx;
+  text-align: center;
+  border: 1px solid #c6c9d4;
+  border-radius: 42rpx;
+  background: #fff;
+}
+
+.cap_choose .item .inner {
+  font-size: 30rpx;
+  font-weight: 400;
+  color: #1a2a4b
   ;
 }
