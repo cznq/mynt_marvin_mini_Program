@@ -110,7 +110,7 @@
 			"root": "centers",
 			"name": "Centers",
 			"pages": [
-				"pages/vipStatus/vipstatus",
+				"pages/vipStatus/vipStatus",
 				"pages/servicePay/index",
 				"pages/payRecord/index",
 				"pages/expandCapacity/index"
