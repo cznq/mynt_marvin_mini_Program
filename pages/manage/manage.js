@@ -1,10 +1,12 @@
 var app = getApp()
+var util = require("../../utils/util.js");
+var moment = require("../../utils/moment.js");
 Page({
   data: {
     isiphoneX: app.globalData.isIphoneX,
     headerTip:{
-      text:'公司人数已超出套餐容量请前往[套件中心]扩容',
-      show:true
+      text:'',
+      show:false
     },
     swiperCurrent: 0,
     showLoginModal: false,
@@ -197,7 +199,7 @@ Page({
                 // console.log('get_employee_info API return:', res);
                 var resdata = res.data.result;
                 if (res.data.sub_code == 0) {
-                  if (resdata.role == 2 || resdata.role == 3 || resdata.person_type) { //前台 管理员 高管 
+                  if (resdata.role == 2 || resdata.role == 3 || resdata.person_type ==3 ) { //前台 管理员 高管 
                     _this.setData({
                       'application[6].isShow': true //商务宴请
                     })
@@ -365,6 +367,8 @@ Page({
         } else {
           console.log(res.data.sub_msg);
         }
+        //1.获取公司人数，在获取套件容量 ，提示超出容量
+        //2 获取套件有效期
         _this.getServiceStatus(_this);
       },
       fail: res => {
@@ -391,9 +395,62 @@ Page({
           that.setData({
             businessVip_status: data.result.business_service_suite_status,
           })
-
+         if(data.result.business_service_suite_status == 1){//已开通
+          var end_time = data.result.end_time
+          let tip_day = moment(moment(util.getDate()).later(5)).format('yyyy-MM-dd')
+          app.Util.network.POST({ //获取职员信息
+            url: app.globalData.BASE_API_URL,
+            params: {
+              service: 'company',
+              method: 'get_employee_info',
+              data: JSON.stringify({
+                union_id: wx.getStorageSync('xy_session')
+              })
+            },
+            success: res => {
+              var resdata = res.data.result;
+              if (res.data.return_code == 'SUCCESS' && res.data.result) {
+                if (resdata.role == 2 || resdata.role == 3 || resdata.person_type ==3 ) { //前台 管理员 高管 
+                  if(tip_day == end_time){//今天是套餐结束时间前5天
+                    that.setData({
+                      'headerTip.text':'贵企业的套件将与'+end_time+'过期，请尽快续费',
+                      'headerTip.show':true,
+                    })
+                    wx.setStorage({
+                      key: 'showEndTime',
+                      data: 'true'
+                    })
+                  }else{
+                    that.setData({
+                      'headerTip.text':'',
+                      'headerTip.show':false,
+                    })
+                    wx.s
+                  }
+                  if(!that.data.headerTip.show){
+                    if(company_num > 600){ //公司总人数超过套餐容量 
+                      that.setData({
+                        'headerTip.text':'公司人数已超出套餐容量请前往[套件中心]扩容',
+                        'headerTip.show':true,
+                      })
+                      wx.setStorage({
+                        key: 'showCapacityMore',
+                        data: 'true'
+                      })
+                    }
+                  }            
+                }
+              } else {
+                console.log(res.data.sub_msg);
+              }
+            },
+            fail: res => {
+              console.log('fail');
+            }
+          })
+         }
         }
-
+        
       }
     })
   },

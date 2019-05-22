@@ -67,7 +67,7 @@
 		"pages/visitor-list/list/index",
 		"pages/visitor-list/detail/index",
 		"pages/company/unattended-setting/setting/index",
-		"pages/businessservice/suite-introduce/suite-introduce"
+		"pages/businessService/suite-introduce/suite-introduce"
 	],
 	"subPackages": [
 		{
