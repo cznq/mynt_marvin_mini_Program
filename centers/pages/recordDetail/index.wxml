@@ -1,0 +1,31 @@
+<view class="header _column _cen_center">
+  <text class="iconfont icon-successful iconSuccessful"></text>
+  <text class="_font38 _fontw500 _mt_30">交易完成</text>
+  <text class="_font32 _txt_gray">订单价格￥1260 原价￥1620</text>
+</view>
+<view class="mt100 pd_lr40">
+  <view class="_gray_bordr _row _cen_space _font24 _line_h70">
+    <text class="_txt_darkgrey">商品详情</text>
+    <text class="_txt_gray">开通商业服务套件</text>
+  </view>
+  <view class="_gray_bordr _row _cen_space _font24 _line_h70">
+    <text class="_txt_darkgrey">容量</text>
+    <text class="_txt_gray">150人</text>
+  </view>
+  <view class="_gray_bordr _row _cen_space _font24 _line_h70">
+    <text class="_txt_darkgrey">有效期</text>
+    <text class="_txt_gray">2018-12-26至2019-11-26</text>
+  </view>
+  <view class="_gray_bordr _row _cen_space _font24 _line_h70">
+    <text class="_txt_darkgrey">订单时间</text>
+    <text class="_txt_gray">2018-12-26 11:28:20</text>
+  </view>
+  <view class="_gray_bordr _row _cen_space _font24 _line_h70">
+    <text class="_txt_darkgrey">购买渠道</text>
+    <text class="_txt_gray">微信支付</text>
+  </view>
+  <view class="_gray_bordr _row _cen_space _font24 _line_h70">
+    <text class="_txt_darkgrey">订单编号</text>
+    <text class="_txt_gray">3917392781381623612893</text>
+  </view>
+</view>

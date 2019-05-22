@@ -1,0 +1,19 @@
+.mt100{
+  margin-top:100rpx;
+}
+._mt_30{
+  margin-top:-30rpx;
+}
+.pd_lr40{
+  padding:0 40rpx;
+}
+._line_h70{
+  line-height: 70rpx
+}
+._gray_bordr{
+  border-bottom:1rpx solid rgba(136,145,169,1);
+}
+.iconSuccessful{
+  color:#64DB89;
+  font-size: 142rpx;
+}

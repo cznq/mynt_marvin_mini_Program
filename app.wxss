@@ -553,6 +553,10 @@
   align-items: flex-end;
   justify-content: start;
 }
+._cen_center {
+  align-items: center;
+  justify-content: center;
+}
 
 /* 去除边框  */
 button::after {

@@ -14,10 +14,6 @@ page{
   padding: 0 40rpx;
 }
 
-.moveUp108 {
-  margin-top: 270rpx;
-}
-
 .orderTitle .box {
   line-height: 80rpx;
   font-size: 32rpx;
@@ -49,17 +45,19 @@ page{
 }
 
 .page__bd {
-  margin-top: 125rpx;
+  margin-top: 100rpx;
 }
 
 .payList {
   border-top: 1px solid rgba(136, 145, 169, 0.3);
   padding: 4rpx 40rpx 40rpx;
 }
-
+.payList:first-child {
+  border-top:none;
+}
 .pck-title {
   line-height: 1;
-  padding: 44rpx 0 20rpx;
+  padding: 30rpx 0 20rpx;
   border-bottom: 1px dashed rgba(136, 145, 169, 0.3);
 }
 
