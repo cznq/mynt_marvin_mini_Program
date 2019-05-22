@@ -1,133 +1,133 @@
 {
-  "pages": [
-    "pages/manage/manage",
-    "pages/checkfollow/index",
-    "pages/login/index",
-    "pages/collect-info/guide/index",
-    "pages/collect-info/agreement/index",
-    "pages/collect-info/start/index",
-    "pages/collect-info/face/index",
-    "pages/collect-info/identity/index",
-    "pages/collect-info/confirmIdentity/index",
-    "pages/employee/homepage/index",
-    "pages/employee/edit-name/index",
-    "pages/employee/edit-phone/index",
-    "pages/employee/take-card/intro/index",
-    "pages/employee/take-card/open/index",
-    "pages/employee/take-card/guide/index",
-    "pages/employee/staff-list/index",
-    "pages/employee/invite-staff/index",
-    "pages/employee/new-staff/index",
-    "pages/employee/staff-apply/index",
-    "pages/employee/admin-executive/admin-list/index",
-    "pages/employee/admin-executive/adminHome/index",
-    "pages/employee/admin-executive/adminShare/index",
-    "pages/employee/admin-executive/adminReceive/index",
-    "pages/employee/staff-choose-list/index",
-    "pages/create-company/enterpriseInformation/index",
-    "pages/create-company/enterCompanyCode/index",
-    "pages/create-company/enterRealName/index",
-    "pages/create-company/createSuccess/index",
-    "pages/create-company/examples/index",
-    "pages/create-company/updateReviewInfo/index",
-    "pages/create-company/guide/index",
-    "pages/create-company/guideVip/index",
-    "pages/create-company/basicInformation/index",
-    "pages/create-company/vipInformation/index",
-    "pages/create-company/companyPages/index",
-    "pages/create-company/robotPreview/index",
-    "pages/create-company/editCompanyPages/index",
-    "pages/employee/join-company/applyJoinResult/index",
-    "pages/employee/join-company/invitationCode/index",
-    "pages/employee/join-company/choiceJoin/index",
-    "pages/employee/join-company/confirmCompanyInformation/index",
-    "pages/company/unattended-setting/setHome/index",
-    "pages/company/introduction/index",
-    "pages/company/otherCompany/index",
-    "pages/company/webview/index",
-    "pages/invite-visitor/start/index",
-    "pages/invite-visitor/guide/index",
-    "pages/invite-visitor/edit/index",
-    "pages/invite-visitor/share/index",
-    "pages/invite-visitor/receive/index",
-    "pages/invite-visitor/detail/index",
-    "pages/apply-visit/noAppointment/index",
-    "pages/apply-visit/reasonsVisiting/index",
-    "pages/apply-visit/applicationStatus/index",
-    "pages/e-card/detail/index",
-    "pages/employee/senior-executive/executiveHome/index",
-    "pages/employee/senior-executive/bossList/index",
-    "pages/employee/senior-executive/fillName/index",
-    "pages/employee/senior-executive/bossShare/index",
-    "pages/employee/senior-executive/receive/index",
-    "pages/demo/iconfont/index",
-    "pages/demo/showToastDemo/index",
-    "pages/invite-list/index/index",
-    "pages/invite-list/invite-detail/invite-detail",
-    "pages/visitor-list/list/index",
-    "pages/visitor-list/detail/index",
-    "pages/company/unattended-setting/setting/index",
-    "pages/businessservice/suite-introduce/suite-introduce"
-  ],
-  "subPackages": [
-    {
-      "root": "benifit",
-      "name": "Benifit",
-      "pages": [
-        "pages/scan-pay/scan-pay",
-        "pages/vip-card/vip-card",
-        "pages/mall-home/mall-home",
-        "pages/mall-detail/mall-detail",
-        "pages/mall-comment/mall-comment",
-        "pages/pay-status/index"
-      ]
-    },
-    {
-      "root": "banquet",
-      "name": "Banquet",
-      "pages": [
-        "pages/banquet-home/index",
-        "pages/detail/index",
-        "pages/order/order",
-        "pages/orderDetail/orderDetail",
-        "pages/cashier/cashier",
-        "pages/hotel-reserve/index",
-        "pages/calendar-hotel/index",
-        "pages/reserve-success/index",
-        "pages/restaurant-reserve/index",
-        "pages/restaurant-time/index"
-      ]
-    },
-    {
-      "root": "support",
-      "name": "Support",
-      "pages": [
-        "pages/supportCenter/chooseIdentity/index",
-        "pages/supportCenter/introduce/index"
-      ]
-    },
-    {
-      "root": "businessservice",
-      "name": "BusinessService",
-      "pages": [
-        "pages/vipStatus/vipstatus",
-        "pages/servicePay/index",
-        "pages/payRecord/index",
-        "pages/expandCapacity/index"
-      ]
-    }
-  ],
-  "window": {
-    "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "",
-    "navigationBarTextStyle": "black"
-  },
-  "networkTimeout": {
-    "request": 10000,
-    "connectSocket": 50000,
-    "uploadFile": 50000,
-    "downloadFile": 50000
-  },
-  "sitemapLocation": "sitemap.json"
+	"pages": [
+		"pages/manage/manage",
+		"pages/checkfollow/index",
+		"pages/login/index",
+		"pages/collect-info/guide/index",
+		"pages/collect-info/agreement/index",
+		"pages/collect-info/start/index",
+		"pages/collect-info/face/index",
+		"pages/collect-info/identity/index",
+		"pages/collect-info/confirmIdentity/index",
+		"pages/employee/homepage/index",
+		"pages/employee/edit-name/index",
+		"pages/employee/edit-phone/index",
+		"pages/employee/take-card/intro/index",
+		"pages/employee/take-card/open/index",
+		"pages/employee/take-card/guide/index",
+		"pages/employee/staff-list/index",
+		"pages/employee/invite-staff/index",
+		"pages/employee/new-staff/index",
+		"pages/employee/staff-apply/index",
+		"pages/employee/admin-executive/admin-list/index",
+		"pages/employee/admin-executive/adminHome/index",
+		"pages/employee/admin-executive/adminShare/index",
+		"pages/employee/admin-executive/adminReceive/index",
+		"pages/employee/staff-choose-list/index",
+		"pages/create-company/enterpriseInformation/index",
+		"pages/create-company/enterCompanyCode/index",
+		"pages/create-company/enterRealName/index",
+		"pages/create-company/createSuccess/index",
+		"pages/create-company/examples/index",
+		"pages/create-company/updateReviewInfo/index",
+		"pages/create-company/guide/index",
+		"pages/create-company/guideVip/index",
+		"pages/create-company/basicInformation/index",
+		"pages/create-company/vipInformation/index",
+		"pages/create-company/companyPages/index",
+		"pages/create-company/robotPreview/index",
+		"pages/create-company/editCompanyPages/index",
+		"pages/employee/join-company/applyJoinResult/index",
+		"pages/employee/join-company/invitationCode/index",
+		"pages/employee/join-company/choiceJoin/index",
+		"pages/employee/join-company/confirmCompanyInformation/index",
+		"pages/company/unattended-setting/setHome/index",
+		"pages/company/introduction/index",
+		"pages/company/otherCompany/index",
+		"pages/company/webview/index",
+		"pages/invite-visitor/start/index",
+		"pages/invite-visitor/guide/index",
+		"pages/invite-visitor/edit/index",
+		"pages/invite-visitor/share/index",
+		"pages/invite-visitor/receive/index",
+		"pages/invite-visitor/detail/index",
+		"pages/apply-visit/noAppointment/index",
+		"pages/apply-visit/reasonsVisiting/index",
+		"pages/apply-visit/applicationStatus/index",
+		"pages/e-card/detail/index",
+		"pages/employee/senior-executive/executiveHome/index",
+		"pages/employee/senior-executive/bossList/index",
+		"pages/employee/senior-executive/fillName/index",
+		"pages/employee/senior-executive/bossShare/index",
+		"pages/employee/senior-executive/receive/index",
+		"pages/demo/iconfont/index",
+		"pages/demo/showToastDemo/index",
+		"pages/invite-list/index/index",
+		"pages/invite-list/invite-detail/invite-detail",
+		"pages/visitor-list/list/index",
+		"pages/visitor-list/detail/index",
+		"pages/company/unattended-setting/setting/index",
+		"pages/businessservice/suite-introduce/suite-introduce"
+	],
+	"subPackages": [
+		{
+			"root": "benifit",
+			"name": "Benifit",
+			"pages": [
+				"pages/scan-pay/scan-pay",
+				"pages/vip-card/vip-card",
+				"pages/mall-home/mall-home",
+				"pages/mall-detail/mall-detail",
+				"pages/mall-comment/mall-comment",
+				"pages/pay-status/index"
+			]
+		},
+		{
+			"root": "banquet",
+			"name": "Banquet",
+			"pages": [
+				"pages/banquet-home/index",
+				"pages/detail/index",
+				"pages/order/order",
+				"pages/orderDetail/orderDetail",
+				"pages/cashier/cashier",
+				"pages/hotel-reserve/index",
+				"pages/calendar-hotel/index",
+				"pages/reserve-success/index",
+				"pages/restaurant-reserve/index",
+				"pages/restaurant-time/index"
+			]
+		},
+		{
+			"root": "support",
+			"name": "Support",
+			"pages": [
+				"pages/supportCenter/chooseIdentity/index",
+				"pages/supportCenter/introduce/index"
+			]
+		},
+		{
+			"root": "centers",
+			"name": "Centers",
+			"pages": [
+				"pages/vipStatus/vipStatus",
+				"pages/servicePay/index",
+				"pages/payRecord/index",
+				"pages/expandCapacity/index"
+			]
+		}
+	],
+	"window": {
+		"backgroundTextStyle": "dark",
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTitleText": "",
+		"navigationBarTextStyle": "black"
+	},
+	"networkTimeout": {
+		"request": 10000,
+		"connectSocket": 50000,
+		"uploadFile": 50000,
+		"downloadFile": 50000
+	},
+	"sitemapLocation": "sitemap.json"
 }
