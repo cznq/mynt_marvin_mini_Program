@@ -330,7 +330,8 @@ Page({
           realPrice: realPrice
         })
       } else {
-        let realPrice = utilCal.divide(Math.floor((this.data.totalPrice * (discount_tag.discount_price / 100)) * 100), 100, 2)
+        let discount_price = utilCal.divide(discount_tag.discount_price, 100, 2)
+        let realPrice = parseFloat(utilCal.multiply(parseFloat(this.data.totalPrice), parseFloat(discount_price),2).toFixed(2))
         this.setData({
           realPrice: realPrice
         })
