@@ -38,7 +38,6 @@
     <view class="navTxt _column _start_space">
       <view class="_column marg_top-10">
       <text class="_font34 _txt_gray">{{detail.commerce.commerce_name}}</text>
-      <text class="_font26 txt_gray2" wx:if="{{detail.book_type=='1'}}">{{detail.commerce.commerce_name}}</text>
       </view>
       <view class="_row">
       <block wx:for="{{5}}" wx:for-item="num" wx:key="">
