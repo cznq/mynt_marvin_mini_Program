@@ -206,15 +206,17 @@ Page({
     var commerce_id = this.data.commerce_id;
     var hotel_room_id = e.currentTarget.dataset.id
     var price = ((e.currentTarget.dataset.price).toString()).replace(/,/g, "")
+    var commerce_name = e.currentTarget.dataset.commercename;
     wx.navigateTo({
-      url: '/banquet/pages/hotel-reserve/index?commerce_id=' + commerce_id + '&hotel_room_id=' + hotel_room_id + '&price=' +
+      url: '/banquet/pages/hotel-reserve/index?commerce_id=' + commerce_id + '&commerce_name=' + commerce_name + '&hotel_room_id=' + hotel_room_id + '&price=' +
         price + '&store_price=' + e.currentTarget.dataset.storeprice,
     })
   },
-  restaurantReserve: function() {
+  restaurantReserve: function(e) {
     var commerce_id = this.data.commerce_id;
+    var commerce_name = e.currentTarget.dataset.commercename;
     wx.navigateTo({
-      url: '/banquet/pages/restaurant-reserve/index?commerce_id=' + commerce_id,
+      url: '/banquet/pages/restaurant-reserve/index?commerce_id=' + commerce_id+ '&commerce_name=' + commerce_name,
     })
   },
   /**

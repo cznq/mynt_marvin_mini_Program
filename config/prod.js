@@ -1,6 +1,5 @@
 export const api = {
   BASE_API_URL: 'https://marvin-api.slightech.com/mini_program/api/',
-  BENIFIT_API_URL: 'https://marvin-benifit-api.slightech.com/mini_program/api',
   WEB_VIEW_URL: 'https://marvin-official-account.slightech.com',
   BANQUET_API_URL: 'https://marvin.myntai.com/benifit'
 }

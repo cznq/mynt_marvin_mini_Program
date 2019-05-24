@@ -22,7 +22,6 @@ App({
     isIphone: false,
     BASE_IMG_URl: 'https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/',
     BASE_API_URL: setting.api.BASE_API_URL,
-    BENIFIT_API_URL: setting.api.BENIFIT_API_URL,
     WEB_VIEW_URL: setting.api.WEB_VIEW_URL,
     BANQUET_API_URL: setting.api.BANQUET_API_URL,
     SIGN_DATA: setting.signData

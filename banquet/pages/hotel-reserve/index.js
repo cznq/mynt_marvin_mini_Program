@@ -45,30 +45,8 @@ Page({
       discountPriceOne:discountPriceOne,
       discountPrice:floatPoint.multiply(oneDayDiscount,days)
     })
-    that.getDetailInfo(that.data.commerce_id);
-  },
-  /**
-   * 获取商家详情
-   */
-  getDetailInfo(commerce_id) {
-    var that = this;
-    app.Util.network.POST({
-      url: app.globalData.BENIFIT_API_URL,
-      params: {
-        service: 'commerce',
-        method: 'get_commerce_info',
-        union_id: wx.getStorageSync('xy_session'),
-        data: JSON.stringify({
-          commerce_id: commerce_id
-        })
-      },
-      success: res => {
-        if (res.data.result) {
-          wx.setNavigationBarTitle({
-            title: res.data.result.name
-          })
-        }
-      }
+    wx.setNavigationBarTitle({
+      title: options.commerce_name
     })
   },
   /* 点击减号 */
