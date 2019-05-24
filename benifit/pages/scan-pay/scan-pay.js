@@ -325,12 +325,12 @@ Page({
     if (discount_tag.discount_type == 1) {
       console.log('折扣方式');
       if (this.data.outPrice !== null && this.data.outPrice !== '') {
-        let realPrice = utilCal.add(Math.floor((this.data.totalPrice - this.data.outPrice) * (discount_tag.discount_price / 100) * 100) / 100, parseFloat(this.data.outPrice), 2)
+        let realPrice = utilCal.add(Math.floor(utilCal.multiply((this.data.totalPrice - this.data.outPrice),(discount_tag.discount_price / 100),0) * 100) / 100, parseFloat(this.data.outPrice), 2)
         this.setData({
           realPrice: realPrice
         })
       } else {
-        let realPrice = utilCal.divide(Math.floor((this.data.totalPrice * (discount_tag.discount_price / 100)) * 100), 100, 2)
+        let realPrice = utilCal.divide(Math.floor((utilCal.multiply(this.data.totalPrice,(discount_tag.discount_price / 100),0)) * 100), 100, 2)
         this.setData({
           realPrice: realPrice
         })
