@@ -1,3 +1,41 @@
+// Closure
+(function(){
+
+	/**
+	 * Decimal adjustment of a number.
+	 *
+	 * @param	{String}	type	The type of adjustment.
+	 * @param	{Number}	value	The number.
+	 * @param	{Integer}	exp		The exponent (the 10 logarithm of the adjustment base).
+	 * @returns	{Number}			The adjusted value.
+	 */
+	function decimalAdjust(type, value, exp) {
+		// If the exp is undefined or zero...
+		if (typeof exp === 'undefined' || +exp === 0) {
+			return Math[type](value);
+		}
+		value = +value;
+		exp = +exp;
+		// If the value is not a number or the exp is not an integer...
+		if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+			return NaN;
+		}
+		// Shift
+		value = value.toString().split('e');
+		value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+		// Shift back
+		value = value.toString().split('e');
+		return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+	}
+
+	// Decimal floor
+	if (!Math.floor10) {
+		Math.floor10 = function(value, exp) {
+			return decimalAdjust('floor', value, exp);
+		};
+	}
+
+})();
 //浮点数计算
 /*
  * 判断obj是否为一个整数
@@ -39,7 +77,7 @@ function toInteger(floatNum) {
  * @param op {string} 运算类型，有加减乘除（add/subtract/multiply/divide）
  *
  */
-function operation(a, b, digits, op) {
+function operation(a, b, op) {
     var o1 = toInteger(a)
     var o2 = toInteger(b)
     var n1 = o1.num
@@ -76,20 +114,20 @@ function operation(a, b, digits, op) {
     }
 }
 // 加减乘除的四个接口
-function add(a, b, digits) {
-    return operation(a, b, digits, 'add')
+function add(a, b) {
+    return operation(a, b, 'add')
 }
 
-function subtract(a, b, digits) {
-    return operation(a, b, digits, 'subtract')
+function subtract(a, b) {
+    return operation(a, b, 'subtract')
 }
 
-function multiply(a, b, digits) {
-    return operation(a, b, digits, 'multiply')
+function multiply(a, b) {
+    return operation(a, b, 'multiply')
 }
 
-function divide(a, b, digits) {
-    return operation(a, b, digits, 'divide')
+function divide(a, b) {
+    return operation(a, b, 'divide')
 
 }
 module.exports = {
@@ -98,4 +136,3 @@ module.exports = {
     multiply: multiply,
     divide: divide
 }
-  
