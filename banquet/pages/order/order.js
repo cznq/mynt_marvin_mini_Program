@@ -27,7 +27,7 @@ Page({
    */
   onLoad: function(options) {
     const _this = this
-    _this.Get_order_list(_this)
+    _this.get_order_list(_this)
   },
   touchTit: function(e) {
     wx.pageScrollTo({
@@ -74,26 +74,6 @@ Page({
    * continu       true | false
    */
   get_order_list: (_this, book_status = 0, page_size = 10, page = 1, continu = false) => {
-    app.request.requestApi.post({
-      url: app.globalData.BANQUET_API_URL + "/commerce/book/get_order_list",
-      params: {
-        data: JSON.stringify({
-          union_id: wx.getStorageSync('xy_session'),
-          book_status: book_status,
-          page_size: page_size,
-          page: page
-        })
-      },
-      success: res => {
-        console.log('订单列表:', res);
-
-      },
-      fail: res => {
-
-      }
-    })
-  },
-  Get_order_list: (_this, book_status = 0, page_size = 10, page = 1, continu = false) => {
     app.server.requestApi.post({
       url: app.globalData.BANQUET_API_URL + "/commerce/book/get_order_list",
       params: {
@@ -105,7 +85,7 @@ Page({
         })
       }
     }).then(res => {
-      console.log('订单列表6:', res);
+      console.log('订单列表:', res);
       let data = res.data
       if (data.sub_code == "SUCCESS") {
         let totalCount = data.result.total_count;
@@ -152,12 +132,8 @@ Page({
           icon: 'none'
         })
       }
-    }).catch(res =>{
-      console.log('fail');
-      wx.showToast({
-        title: res.errMsg,
-        none: 'none'
-      })
+    }).catch(res => {
+      console.log(res);
     })
   },
   currDetil: (e) => {
